@@ -1,0 +1,55 @@
+speakeasyVersion: 1.796.4
+sources:
+    ContinuousSimulation-OAS:
+        sourceNamespace: continuous-simulation
+        sourceRevisionDigest: sha256:4c417777143926ee34edb54cf5d52fa4c34692b9ebdde0fd834153f87f631e8e
+        sourceBlobDigest: sha256:9a72676ce4c321324d8c8aee63ba41a2b870e4d2687afb40f559e8f7f9ec1787
+        tags:
+            - latest
+    continuous-simulation:
+        sourceNamespace: continuous-simulation
+        sourceRevisionDigest: sha256:4c417777143926ee34edb54cf5d52fa4c34692b9ebdde0fd834153f87f631e8e
+        sourceBlobDigest: sha256:9a72676ce4c321324d8c8aee63ba41a2b870e4d2687afb40f559e8f7f9ec1787
+        tags:
+            - latest
+targets:
+    continuous-python:
+        source: continuous-simulation
+        sourceNamespace: continuous-simulation
+        sourceRevisionDigest: sha256:4c417777143926ee34edb54cf5d52fa4c34692b9ebdde0fd834153f87f631e8e
+        sourceBlobDigest: sha256:9a72676ce4c321324d8c8aee63ba41a2b870e4d2687afb40f559e8f7f9ec1787
+        codeSamplesNamespace: continuous-python-code-samples
+        codeSamplesRevisionDigest: sha256:38599e1682da0ad121f13d7fc9b7681137be46529a5e617d8b6fa65a1c50948c
+    continuous-simulation:
+        source: ContinuousSimulation-OAS
+        sourceNamespace: continuous-simulation
+        sourceRevisionDigest: sha256:4c417777143926ee34edb54cf5d52fa4c34692b9ebdde0fd834153f87f631e8e
+        sourceBlobDigest: sha256:9a72676ce4c321324d8c8aee63ba41a2b870e4d2687afb40f559e8f7f9ec1787
+        codeSamplesNamespace: continuous-simulation-oas-python-code-samples
+        codeSamplesRevisionDigest: sha256:bf2daad291cfc9fc98b82f480d344bcc6a96958abc9b7fec69e8ecf8b45b62dc
+    continuous-simulation-python:
+        source: continuous-simulation
+        sourceNamespace: continuous-simulation
+        sourceRevisionDigest: sha256:4c417777143926ee34edb54cf5d52fa4c34692b9ebdde0fd834153f87f631e8e
+        sourceBlobDigest: sha256:9a72676ce4c321324d8c8aee63ba41a2b870e4d2687afb40f559e8f7f9ec1787
+        codeSamplesNamespace: continuous-simulation-python-code-samples
+        codeSamplesRevisionDigest: sha256:ce2f60c067ab42f91cba64bb09ae4b327a6d9b3929894665b0aead7dcf53d758
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: 1.796.4
+    sources:
+        continuous-simulation:
+            inputs:
+                - location: registry.speakeasyapi.dev/continuous/continuous/continuous-simulation@main
+            output: .speakeasy/out.openapi.yaml
+    targets:
+        continuous-python:
+            target: python
+            source: continuous-simulation
+            publish:
+                pypi:
+                    useTrustedPublishing: true
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/continuous/continuous/continuous-python-code-samples
+                blocking: false

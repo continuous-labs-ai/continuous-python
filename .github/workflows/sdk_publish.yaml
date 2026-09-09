@@ -1,0 +1,34 @@
+name: Publish
+permissions:
+  checks: write
+  contents: write
+  pull-requests: write
+  statuses: write
+  id-token: write
+"on":
+  push:
+    branches:
+      - main
+    paths:
+      - .speakeasy/gen.lock
+  workflow_dispatch: {}
+jobs:
+  publish:
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@68f3bfefb79354d39358bf4699863dabd2cea0f6
+    with:
+      target: continuous-python
+    secrets:
+      github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+  publish-pypi:
+    needs:
+      - publish
+    if: ${{ needs.publish.outputs.python_regenerated == 'true' && needs.publish.outputs.publish_python == 'true' && needs.publish.outputs.use_pypi_trusted_publishing == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+      - uses: speakeasy-api/sdk-generation-action/publish-pypi@68f3bfefb79354d39358bf4699863dabd2cea0f6
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+          python-directory: ${{ needs.publish.outputs.python_directory }}
+          speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}

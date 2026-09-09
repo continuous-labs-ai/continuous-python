@@ -1,0 +1,12 @@
+/src/** linguist-generated=true
+/docs/** linguist-generated=true
+/scripts/** linguist-generated=true
+/USAGE.md linguist-generated=true
+/CONTRIBUTING.md linguist-generated=true
+/pyproject.toml linguist-generated=true
+/uv.lock linguist-generated=true
+/.speakeasy/gen.lock linguist-generated=true
+/.speakeasy/workflow.lock linguist-generated=true
+/.speakeasy/out.openapi.yaml linguist-generated=true
+/.speakeasy/gen.yaml linguist-generated=false
+/.speakeasy/workflow.yaml linguist-generated=false
