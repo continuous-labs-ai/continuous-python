@@ -1,6 +1,6 @@
 [project]
 name = "continuous-labs"
-version = "0.1.3"
+version = "0.1.4"
 description = "Python SDK for the Continuous Simulation API."
 authors = [{ name = "Continuous Labs" },]
 readme = "README-PYPI.md"
@@ -10,7 +10,7 @@ dependencies = [
     "httpx >=0.28.1",
     "pydantic >=2.11.2",
 ]
-urls.repository = "https://github.com/continuous-labs-ai/continuous-python"
+urls.repository = "https://github.com/continuous-labs-ai/continuous-python.git"
 license = { text = "MIT" }
 
 [dependency-groups]
