@@ -1,4 +1,4 @@
-# continuous
+# continuous-labs
 
 Python SDK for the Continuous Simulation API.
 
@@ -13,7 +13,7 @@ Continuous Simulation API: The Continuous Simulation API builds reusable Simulat
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
-* [continuous](https://github.com/continuous-labs-ai/continuous-python/blob/master/#continuous)
+* [continuous-labs](https://github.com/continuous-labs-ai/continuous-python/blob/master/#continuous-labs)
   * [SDK Installation](https://github.com/continuous-labs-ai/continuous-python/blob/master/#sdk-installation)
   * [IDE Support](https://github.com/continuous-labs-ai/continuous-python/blob/master/#ide-support)
   * [SDK Example Usage](https://github.com/continuous-labs-ai/continuous-python/blob/master/#sdk-example-usage)

@@ -13,7 +13,7 @@ Continuous Simulation API: The Continuous Simulation API builds reusable Simulat
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
-* [continuous](#continuous)
+* [continuous-labs](#continuous-labs)
   * [SDK Installation](#sdk-installation)
   * [IDE Support](#ide-support)
   * [SDK Example Usage](#sdk-example-usage)

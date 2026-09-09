@@ -5,15 +5,15 @@ management:
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.1.3
-  configChecksum: a792ba3f5de224ca4be72b6e51c8d8f8
-  repoURL: https://github.com/continuous-labs-ai/continuous-python
+  releaseVersion: 0.1.4
+  configChecksum: b56730997b4efc2583677e3a6518d5eb
+  repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: 1aaaa3d3-cac2-4524-8930-6ed457566c0e
-  pristine_commit_hash: 93d608fde1233c257951a63dbfafeaa105cbd4d4
-  pristine_tree_hash: f63710b8f487dda0f2a03674adf8c6b5f258ed1d
+  generation_id: b5a0b6fd-ad3c-4224-95d4-aff22243e98b
+  pristine_commit_hash: 4fef86097ac3b1b0c81bb4f40ae3eebd5e70a4ed
+  pristine_tree_hash: c5aca767d61ff0cf478dc6d2262704bf5d598721
 features:
   python:
     additionalDependencies: 1.1.0
@@ -40,8 +40,8 @@ features:
 trackedFiles:
   .devcontainer/README.md:
     id: b170c0f184ac
-    last_write_checksum: sha1:ec10d06007a82f9037aeee238eb8175b57141283
-    pristine_git_object: 10c677fe7d3f7d032ec3f75b5a38e27c1dfd7d54
+    last_write_checksum: sha1:d7a2ff7efa8c7978e3b06a7881abae31f30058da
+    pristine_git_object: d10706efa5c1d006bcf706bd7ec232dbedfc26d7
   .devcontainer/devcontainer.json:
     id: b34062a34eb1
     last_write_checksum: sha1:94309e8c8eab5ab063986bf625f513a59825e947
@@ -276,12 +276,12 @@ trackedFiles:
     pristine_git_object: c00200cfd072e9febac5d6be783da1925d11dac0
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:db92cb8fd25c39b029d04b0fa033ce3f24d8bbc6
-    pristine_git_object: ab9c694f690f3b114aa93fd9054d22e556c9e69a
+    last_write_checksum: sha1:2409b2f75e150035d6be7e1566e0b06582a4d06c
+    pristine_git_object: 5074d8116591ecc951d1a30d4752cf8b0e335653
   scripts/prepare_readme.py:
     id: e0c5957a6035
-    last_write_checksum: sha1:4a23709d33195b609719c45a5e7fceb66b5d6b2f
-    pristine_git_object: 839b11baaf93832d77f7d8e20755eb311b8479d7
+    last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
+    pristine_git_object: 5be512dc1613e724b783e62408e99709f4e9565d
   scripts/publish.sh:
     id: fe273b08f514
     last_write_checksum: sha1:b290b25b36dca3d5eb1a2e66a2e1bcf2e7326cf3
@@ -304,8 +304,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:04feff451cf74c0976cce986c7185f071e66bcd0
-    pristine_git_object: 1a0a246819884a7e4f16bac106b4f37c7e19475f
+    last_write_checksum: sha1:355692f4e51d35586c7d160f5e48c001fa4b4ad2
+    pristine_git_object: c63cc4ecfa33e4cc55f2fca8b4ff0deb2b3dcae0
   src/continuous/basesdk.py:
     id: 7c7025a9c533
     last_write_checksum: sha1:c2195f8abe74c3f8baf5cb652679b710b838987d
