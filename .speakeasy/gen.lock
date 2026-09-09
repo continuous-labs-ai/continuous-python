@@ -5,15 +5,15 @@ management:
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.1.2
-  configChecksum: a0d81a1b9c2f22eeb2fa5247b29a8de2
+  releaseVersion: 0.1.3
+  configChecksum: a792ba3f5de224ca4be72b6e51c8d8f8
   repoURL: https://github.com/continuous-labs-ai/continuous-python
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: e60419cf-b09c-44b9-9a55-229058bd9b43
-  pristine_commit_hash: 2ff4df4008668ef95d98d18e2dcd8211dede4b6e
-  pristine_tree_hash: 4e4840d8d341f71e982ebf599e79b02b7ee15bb0
+  generation_id: 1aaaa3d3-cac2-4524-8930-6ed457566c0e
+  pristine_commit_hash: 93d608fde1233c257951a63dbfafeaa105cbd4d4
+  pristine_tree_hash: f63710b8f487dda0f2a03674adf8c6b5f258ed1d
 features:
   python:
     additionalDependencies: 1.1.0
@@ -276,8 +276,8 @@ trackedFiles:
     pristine_git_object: c00200cfd072e9febac5d6be783da1925d11dac0
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:1a9558bf8036ec5f26a25b2ff67b3948b57ee977
-    pristine_git_object: a3f5fe3110feae1f9ff77b7a722066bb031fc894
+    last_write_checksum: sha1:db92cb8fd25c39b029d04b0fa033ce3f24d8bbc6
+    pristine_git_object: ab9c694f690f3b114aa93fd9054d22e556c9e69a
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:4a23709d33195b609719c45a5e7fceb66b5d6b2f
@@ -304,8 +304,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:4b7803caa28fcf0beab7326c58bc6cdd84e275df
-    pristine_git_object: bde23d0f5d5f36f8377691ea04d4391382423ae1
+    last_write_checksum: sha1:04feff451cf74c0976cce986c7185f071e66bcd0
+    pristine_git_object: 1a0a246819884a7e4f16bac106b4f37c7e19475f
   src/continuous/basesdk.py:
     id: 7c7025a9c533
     last_write_checksum: sha1:c2195f8abe74c3f8baf5cb652679b710b838987d

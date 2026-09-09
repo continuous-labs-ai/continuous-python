@@ -34,7 +34,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 python:
-  version: 0.1.2
+  version: 0.1.3
   additionalDependencies:
     dev: {}
     main: {}
@@ -91,7 +91,7 @@ python:
   optionalDependencies: {}
   outputModelSuffix: output
   packageManager: uv
-  packageName: continuous
+  packageName: continuous-labs
   preApplyUnionDiscriminators: true
   pytestFilterWarnings: []
   pytestTimeout: 0
