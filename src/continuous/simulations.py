@@ -10,7 +10,7 @@ from typing import Any, Mapping, Optional
 
 
 class Simulations(BaseSDK):
-    r"""Create and control isolated runtime instances of ready Simulators."""
+    r"""Create Simulations from ready Simulators, then fork, stop, start, and delete them."""
 
     def list_simulations(
         self,
@@ -28,8 +28,8 @@ class Simulations(BaseSDK):
 
         Returns all Simulations that the API key can access. Results can be filtered by status or Simulator.
 
-        :param status: Optional lifecycle status filter.
-        :param simulator_id: Optional stable Simulator ID filter.
+        :param status: Optional status filter.
+        :param simulator_id: Optional Simulator ID filter.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
@@ -136,8 +136,8 @@ class Simulations(BaseSDK):
 
         Returns all Simulations that the API key can access. Results can be filtered by status or Simulator.
 
-        :param status: Optional lifecycle status filter.
-        :param simulator_id: Optional stable Simulator ID filter.
+        :param status: Optional status filter.
+        :param simulator_id: Optional Simulator ID filter.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
@@ -240,9 +240,9 @@ class Simulations(BaseSDK):
     ) -> models.CreatedSimulation:
         r"""Create Simulation
 
-        Creates an isolated runtime from a ready Simulator. The response includes its endpoint and a 1-hour token.
+        Creates a Simulation from a ready Simulator and starts it. The response includes the Simulation endpoint and a token that expires in 1 hour. List and get do not return the token.
 
-        :param simulator_id: Stable ID of the ready Simulator.
+        :param simulator_id: ID of the ready Simulator.
         :param name: Optional Simulation name. Omission generates a name.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -349,9 +349,9 @@ class Simulations(BaseSDK):
     ) -> models.CreatedSimulation:
         r"""Create Simulation
 
-        Creates an isolated runtime from a ready Simulator. The response includes its endpoint and a 1-hour token.
+        Creates a Simulation from a ready Simulator and starts it. The response includes the Simulation endpoint and a token that expires in 1 hour. List and get do not return the token.
 
-        :param simulator_id: Stable ID of the ready Simulator.
+        :param simulator_id: ID of the ready Simulator.
         :param name: Optional Simulation name. Omission generates a name.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -459,7 +459,7 @@ class Simulations(BaseSDK):
 
         Deletes a Simulation and its saved runtime state. Delete World-owned Simulations through their World.
 
-        :param id: Stable resource ID.
+        :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -560,7 +560,7 @@ class Simulations(BaseSDK):
 
         Deletes a Simulation and its saved runtime state. Delete World-owned Simulations through their World.
 
-        :param id: Stable resource ID.
+        :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -659,9 +659,9 @@ class Simulations(BaseSDK):
     ) -> models.Simulation:
         r"""Get Simulation
 
-        Returns a Simulation and its current runtime status. The response does not include data-plane tokens.
+        Returns a Simulation and its current status. The response does not include tokens.
 
-        :param id: Stable Simulation ID.
+        :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -758,9 +758,9 @@ class Simulations(BaseSDK):
     ) -> models.Simulation:
         r"""Get Simulation
 
-        Returns a Simulation and its current runtime status. The response does not include data-plane tokens.
+        Returns a Simulation and its current status. The response does not include tokens.
 
-        :param id: Stable Simulation ID.
+        :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -859,9 +859,9 @@ class Simulations(BaseSDK):
     ) -> models.CreatedSimulation:
         r"""Fork Simulation
 
-        Creates a Simulation with a 1-hour token. The source Simulation continues to run.
+        Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running or paused; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and a token that expires in 1 hour.
 
-        :param id: Stable source Simulation ID.
+        :param id: Source Simulation ID.
         :param at_step: Completed step to fork from. Omission forks from the latest state.
         :param name: Optional child Simulation name. Omission generates a name.
         :param retries: Override the default retry configuration for this method
@@ -973,9 +973,9 @@ class Simulations(BaseSDK):
     ) -> models.CreatedSimulation:
         r"""Fork Simulation
 
-        Creates a Simulation with a 1-hour token. The source Simulation continues to run.
+        Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running or paused; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and a token that expires in 1 hour.
 
-        :param id: Stable source Simulation ID.
+        :param id: Source Simulation ID.
         :param at_step: Completed step to fork from. Omission forks from the latest state.
         :param name: Optional child Simulation name. Omission generates a name.
         :param retries: Override the default retry configuration for this method
@@ -1085,9 +1085,9 @@ class Simulations(BaseSDK):
     ) -> models.Simulation:
         r"""Start Simulation
 
-        Starts a stopped Simulation from its saved runtime state. Its endpoint becomes available after the runtime starts.
+        Starts a stopped Simulation from its saved state. The endpoint serves requests once the response returns. A Simulation that is already running or paused is returned unchanged.
 
-        :param id: Stable Simulation ID.
+        :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1188,9 +1188,9 @@ class Simulations(BaseSDK):
     ) -> models.Simulation:
         r"""Start Simulation
 
-        Starts a stopped Simulation from its saved runtime state. Its endpoint becomes available after the runtime starts.
+        Starts a stopped Simulation from its saved state. The endpoint serves requests once the response returns. A Simulation that is already running or paused is returned unchanged.
 
-        :param id: Stable Simulation ID.
+        :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1293,9 +1293,9 @@ class Simulations(BaseSDK):
     ) -> models.ListSimulationStepsResponse:
         r"""List Simulation Steps
 
-        Returns recorded steps for a running or paused Simulation. Use any step to create a deterministic fork.
+        Lists the Simulation's steps in order. Each request that changed state is one step; a request that only reads registers none. Pass a step number as at_step when you fork to start the child from the state after that step. A stopped Simulation returns 409 simulation_stopped; start it first.
 
-        :param id: Stable Simulation ID.
+        :param id: Simulation ID.
         :param cursor: Opaque next_cursor value from a previous page.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param retries: Override the default retry configuration for this method
@@ -1400,9 +1400,9 @@ class Simulations(BaseSDK):
     ) -> models.ListSimulationStepsResponse:
         r"""List Simulation Steps
 
-        Returns recorded steps for a running or paused Simulation. Use any step to create a deterministic fork.
+        Lists the Simulation's steps in order. Each request that changed state is one step; a request that only reads registers none. Pass a step number as at_step when you fork to start the child from the state after that step. A stopped Simulation returns 409 simulation_stopped; start it first.
 
-        :param id: Stable Simulation ID.
+        :param id: Simulation ID.
         :param cursor: Opaque next_cursor value from a previous page.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param retries: Override the default retry configuration for this method
@@ -1505,9 +1505,9 @@ class Simulations(BaseSDK):
     ) -> models.Simulation:
         r"""Stop Simulation
 
-        Stops a Simulation and saves its runtime state. You can start it later from the saved state.
+        Stops a Simulation and saves its state. Requests to its endpoint return 409 simulation_stopped until you start it again. A stopped Simulation is returned unchanged.
 
-        :param id: Stable Simulation ID.
+        :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1606,9 +1606,9 @@ class Simulations(BaseSDK):
     ) -> models.Simulation:
         r"""Stop Simulation
 
-        Stops a Simulation and saves its runtime state. You can start it later from the saved state.
+        Stops a Simulation and saves its state. Requests to its endpoint return 409 simulation_stopped until you start it again. A stopped Simulation is returned unchanged.
 
-        :param id: Stable Simulation ID.
+        :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1708,9 +1708,9 @@ class Simulations(BaseSDK):
     ) -> models.SimulationToken:
         r"""Mint Simulation Token
 
-        Mints an expiring data-plane token. Send it in X-Continuous-Simulation-Token. Other unexpired tokens remain valid.
+        Creates another token for requests to the Simulation endpoint. Send it in the X-Continuous-Simulation-Token header. Earlier tokens stay valid until they expire.
 
-        :param id: Stable Simulation ID.
+        :param id: Simulation ID.
         :param ttl_seconds: Token lifetime in seconds, from 60 through 86,400.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1817,9 +1817,9 @@ class Simulations(BaseSDK):
     ) -> models.SimulationToken:
         r"""Mint Simulation Token
 
-        Mints an expiring data-plane token. Send it in X-Continuous-Simulation-Token. Other unexpired tokens remain valid.
+        Creates another token for requests to the Simulation endpoint. Send it in the X-Continuous-Simulation-Token header. Earlier tokens stay valid until they expire.
 
-        :param id: Stable Simulation ID.
+        :param id: Simulation ID.
         :param ttl_seconds: Token lifetime in seconds, from 60 through 86,400.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method

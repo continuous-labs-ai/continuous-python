@@ -7,7 +7,7 @@ Speakeasy generates this SDK from the public OpenAPI contract in [continuous-lab
 <!-- Start Summary [summary] -->
 ## Summary
 
-Continuous Simulation API: The Continuous Simulation API builds reusable Simulators and runs isolated Simulations and Worlds. This document describes the stable v1 public contract.
+Continuous Simulation API: Build Simulators from OpenAPI or WSDL documents, create Simulations from them, and build Worlds that run Simulations together. Authenticate every request with an API key sent as a Bearer token.
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->

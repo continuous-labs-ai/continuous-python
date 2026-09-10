@@ -21,14 +21,14 @@ if TYPE_CHECKING:
 
 
 class Continuous(BaseSDK):
-    r"""Continuous Simulation API: The Continuous Simulation API builds reusable Simulators and runs isolated Simulations and Worlds. This document describes the stable v1 public contract."""
+    r"""Continuous Simulation API: Build Simulators from OpenAPI or WSDL documents, create Simulations from them, and build Worlds that run Simulations together. Authenticate every request with an API key sent as a Bearer token."""
 
     simulations: "Simulations"
-    r"""Create and control isolated runtime instances of ready Simulators."""
+    r"""Create Simulations from ready Simulators, then fork, stop, start, and delete them."""
     simulators: "Simulators"
-    r"""Build, inspect, and delete reusable Simulator artifacts."""
+    r"""Build Simulators from OpenAPI or WSDL documents, check or cancel a build, and delete Simulators."""
     worlds: "Worlds"
-    r"""Build and control coordinated groups of Simulations."""
+    r"""Build Worlds from one or more Simulators and start or stop their Simulations together."""
     _sub_sdk_map = {
         "simulations": ("continuous.simulations", "Simulations"),
         "simulators": ("continuous.simulators", "Simulators"),

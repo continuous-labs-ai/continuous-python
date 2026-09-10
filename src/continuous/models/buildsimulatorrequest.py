@@ -12,7 +12,7 @@ Builder = Literal[
     "openai",
     "claude",
 ]
-r"""Builder provider. The default is claude."""
+r"""Model provider that builds the Simulator. Defaults to claude."""
 
 
 SpecKind = Literal[
@@ -24,34 +24,34 @@ r"""Source specification format. Omission detects the format."""
 
 class BuildSimulatorRequestTypedDict(TypedDict):
     builder: NotRequired[Builder]
-    r"""Builder provider. The default is claude."""
+    r"""Model provider that builds the Simulator. Defaults to claude."""
     filter_: NotRequired[List[str]]
-    r"""Optional operation filter regular expressions. Supply at most 64 expressions, with 1,024 characters in each expression. An empty list keeps all operations."""
+    r"""Regular expressions (RE2 syntax) that select the operations to implement. Each is matched against the OpenAPI operationId or the WSDL operation name; an operation is kept when any expression matches, and an OpenAPI operation without an operationId is dropped. At most 64 expressions of at most 1,024 characters each. Omit or send an empty list to keep every operation. Not allowed for an incremental build."""
     instructions: NotRequired[str]
-    r"""Build guidance. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted."""
+    r"""Instructions for the builder. Required for an incremental build. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
     name: NotRequired[str]
     r"""Optional Simulator name. Names cannot start with smr_. Omission generates a name."""
     parent_id: NotRequired[str]
-    r"""Stable parent Simulator ID for an incremental build."""
+    r"""Parent Simulator ID. With instructions and no spec this starts an incremental build: the parent must be ready, and the request takes no filter or spec_kind."""
     spec_kind: NotRequired[SpecKind]
     r"""Source specification format. Omission detects the format."""
 
 
 class BuildSimulatorRequest(BaseModel):
     builder: Optional[Builder] = "claude"
-    r"""Builder provider. The default is claude."""
+    r"""Model provider that builds the Simulator. Defaults to claude."""
 
     filter_: Annotated[Optional[List[str]], pydantic.Field(alias="filter")] = None
-    r"""Optional operation filter regular expressions. Supply at most 64 expressions, with 1,024 characters in each expression. An empty list keeps all operations."""
+    r"""Regular expressions (RE2 syntax) that select the operations to implement. Each is matched against the OpenAPI operationId or the WSDL operation name; an operation is kept when any expression matches, and an OpenAPI operation without an operationId is dropped. At most 64 expressions of at most 1,024 characters each. Omit or send an empty list to keep every operation. Not allowed for an incremental build."""
 
     instructions: Optional[str] = None
-    r"""Build guidance. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted."""
+    r"""Instructions for the builder. Required for an incremental build. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
 
     name: Optional[str] = None
     r"""Optional Simulator name. Names cannot start with smr_. Omission generates a name."""
 
     parent_id: Optional[str] = None
-    r"""Stable parent Simulator ID for an incremental build."""
+    r"""Parent Simulator ID. With instructions and no spec this starts an incremental build: the parent must be ready, and the request takes no filter or spec_kind."""
 
     spec_kind: Optional[SpecKind] = None
     r"""Source specification format. Omission detects the format."""

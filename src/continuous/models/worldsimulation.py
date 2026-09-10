@@ -7,14 +7,14 @@ from typing_extensions import TypedDict
 
 class WorldSimulationTypedDict(TypedDict):
     id: str
-    r"""Stable ID of the created Simulation."""
+    r"""ID of the created Simulation."""
     simulator_id: str
-    r"""Stable ID of the Simulator that this Simulation runs."""
+    r"""ID of the Simulator that this Simulation runs."""
 
 
 class WorldSimulation(BaseModel):
     id: str
-    r"""Stable ID of the created Simulation."""
+    r"""ID of the created Simulation."""
 
     simulator_id: str
-    r"""Stable ID of the Simulator that this Simulation runs."""
+    r"""ID of the Simulator that this Simulation runs."""

@@ -54,7 +54,7 @@ class Spec(BaseModel):
 class SimulatorsBuildSimulatorRequestTypedDict(TypedDict):
     request: BuildSimulatorRequestTypedDict
     spec: NotRequired[SpecTypedDict]
-    r"""OpenAPI or WSDL file. A spec build sends it. At most 67,108,864 UTF-8 bytes."""
+    r"""OpenAPI or WSDL document, UTF-8 encoded, at most 64 MiB. Required unless the request is an incremental build (parent_id and instructions, no spec)."""
 
 
 class SimulatorsBuildSimulatorRequest(BaseModel):
@@ -65,7 +65,7 @@ class SimulatorsBuildSimulatorRequest(BaseModel):
     spec: Annotated[
         Optional[Spec], FieldMetadata(multipart=MultipartFormMetadata(file=True))
     ] = None
-    r"""OpenAPI or WSDL file. A spec build sends it. At most 67,108,864 UTF-8 bytes."""
+    r"""OpenAPI or WSDL document, UTF-8 encoded, at most 64 MiB. Required unless the request is an incremental build (parent_id and instructions, no spec)."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -1,6 +1,6 @@
 # SimulatorStatus
 
-Current build status.
+building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect.
 
 ## Example Usage
 

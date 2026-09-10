@@ -1,6 +1,6 @@
 # ListSimulationsStatus
 
-Optional lifecycle status filter.
+Optional status filter.
 
 ## Example Usage
 

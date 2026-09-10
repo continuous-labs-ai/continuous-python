@@ -2,7 +2,7 @@
 
 ## Overview
 
-Build and control coordinated groups of Simulations.
+Build Worlds from one or more Simulators and start or stop their Simulations together.
 
 ### Available Operations
 
@@ -42,7 +42,7 @@ with Continuous(
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `limit`                                                             | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Page size. Values below 1 use 50. Values above 200 use 200.         |
-| `cursor`                                                            | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Opaque cursor from the previous page.                               |
+| `cursor`                                                            | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Opaque next_cursor value from a previous page.                      |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
@@ -59,7 +59,7 @@ with Continuous(
 
 ## build_world
 
-Builds a World definition from stable Simulator IDs. Start the World to create its Simulations.
+Starts an asynchronous World build from one or more ready Simulators and returns the World in the building state. Start the World once it is ready to create its Simulations.
 
 ### Example Usage
 
@@ -84,11 +84,11 @@ with Continuous(
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `simulators`                                                                               | List[*str*]                                                                                | :heavy_check_mark:                                                                         | Stable Simulator IDs for the World.                                                        |
-| `instructions`                                                                             | *Optional[str]*                                                                            | :heavy_minus_sign:                                                                         | Build guidance. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted. |
-| `retries`                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                           | :heavy_minus_sign:                                                                         | Configuration to override the default retry behavior of the client.                        |
+| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `simulators`                                                                                                         | List[*str*]                                                                                                          | :heavy_check_mark:                                                                                                   | Simulator IDs for the World.                                                                                         |
+| `instructions`                                                                                                       | *Optional[str]*                                                                                                      | :heavy_minus_sign:                                                                                                   | Instructions for the builder. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000. |
+| `retries`                                                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                     | :heavy_minus_sign:                                                                                                   | Configuration to override the default retry behavior of the client.                                                  |
 
 ### Response
 
@@ -128,7 +128,7 @@ with Continuous(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Stable World ID.                                                    |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | World ID.                                                           |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Errors
@@ -166,7 +166,7 @@ with Continuous(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Stable World ID.                                                    |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | World ID.                                                           |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
@@ -208,7 +208,7 @@ with Continuous(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Stable World ID.                                                    |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | World ID.                                                           |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
@@ -225,7 +225,7 @@ with Continuous(
 
 ## start_world
 
-Creates member Simulations on first start. Later starts restore stopped Simulations from saved state.
+Starts every Simulation in the World. The first start creates the Simulations; later starts restore them from saved state. The World must be ready or stopped, and the workspace must have room for all members under its active-Simulation limit. A running World is returned unchanged.
 
 ### Example Usage
 
@@ -250,7 +250,7 @@ with Continuous(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Stable World ID.                                                    |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | World ID.                                                           |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
@@ -292,7 +292,7 @@ with Continuous(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Stable World ID.                                                    |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | World ID.                                                           |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response

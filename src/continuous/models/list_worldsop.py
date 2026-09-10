@@ -12,7 +12,7 @@ class ListWorldsRequestTypedDict(TypedDict):
     limit: NotRequired[int]
     r"""Page size. Values below 1 use 50. Values above 200 use 200."""
     cursor: NotRequired[str]
-    r"""Opaque cursor from the previous page."""
+    r"""Opaque next_cursor value from a previous page."""
 
 
 class ListWorldsRequest(BaseModel):
@@ -26,7 +26,7 @@ class ListWorldsRequest(BaseModel):
         Optional[str],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
     ] = None
-    r"""Opaque cursor from the previous page."""
+    r"""Opaque next_cursor value from a previous page."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

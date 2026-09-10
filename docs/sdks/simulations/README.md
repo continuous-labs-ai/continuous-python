@@ -2,7 +2,7 @@
 
 ## Overview
 
-Create and control isolated runtime instances of ready Simulators.
+Create Simulations from ready Simulators, then fork, stop, start, and delete them.
 
 ### Available Operations
 
@@ -43,8 +43,8 @@ with Continuous(
 
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `status`                                                                        | [Optional[models.ListSimulationsStatus]](../../models/listsimulationsstatus.md) | :heavy_minus_sign:                                                              | Optional lifecycle status filter.                                               |
-| `simulator_id`                                                                  | *Optional[str]*                                                                 | :heavy_minus_sign:                                                              | Optional stable Simulator ID filter.                                            |
+| `status`                                                                        | [Optional[models.ListSimulationsStatus]](../../models/listsimulationsstatus.md) | :heavy_minus_sign:                                                              | Optional status filter.                                                         |
+| `simulator_id`                                                                  | *Optional[str]*                                                                 | :heavy_minus_sign:                                                              | Optional Simulator ID filter.                                                   |
 | `limit`                                                                         | *Optional[int]*                                                                 | :heavy_minus_sign:                                                              | Page size. Values below 1 use 50. Values above 200 use 200.                     |
 | `cursor`                                                                        | *Optional[str]*                                                                 | :heavy_minus_sign:                                                              | Opaque next_cursor value from a previous page.                                  |
 | `retries`                                                                       | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                | :heavy_minus_sign:                                                              | Configuration to override the default retry behavior of the client.             |
@@ -63,7 +63,7 @@ with Continuous(
 
 ## create_simulation
 
-Creates an isolated runtime from a ready Simulator. The response includes its endpoint and a 1-hour token.
+Creates a Simulation from a ready Simulator and starts it. The response includes the Simulation endpoint and a token that expires in 1 hour. List and get do not return the token.
 
 ### Example Usage
 
@@ -88,7 +88,7 @@ with Continuous(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `simulator_id`                                                      | *str*                                                               | :heavy_check_mark:                                                  | Stable ID of the ready Simulator.                                   |
+| `simulator_id`                                                      | *str*                                                               | :heavy_check_mark:                                                  | ID of the ready Simulator.                                          |
 | `name`                                                              | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Optional Simulation name. Omission generates a name.                |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
@@ -130,7 +130,7 @@ with Continuous(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Stable resource ID.                                                 |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Simulation ID.                                                      |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Errors
@@ -143,7 +143,7 @@ with Continuous(
 
 ## get_simulation
 
-Returns a Simulation and its current runtime status. The response does not include data-plane tokens.
+Returns a Simulation and its current status. The response does not include tokens.
 
 ### Example Usage
 
@@ -168,7 +168,7 @@ with Continuous(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Stable Simulation ID.                                               |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Simulation ID.                                                      |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
@@ -185,7 +185,7 @@ with Continuous(
 
 ## fork_simulation
 
-Creates a Simulation with a 1-hour token. The source Simulation continues to run.
+Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running or paused; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and a token that expires in 1 hour.
 
 ### Example Usage
 
@@ -210,7 +210,7 @@ with Continuous(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Stable source Simulation ID.                                        |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Source Simulation ID.                                               |
 | `at_step`                                                           | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Completed step to fork from. Omission forks from the latest state.  |
 | `name`                                                              | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Optional child Simulation name. Omission generates a name.          |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
@@ -229,7 +229,7 @@ with Continuous(
 
 ## start_simulation
 
-Starts a stopped Simulation from its saved runtime state. Its endpoint becomes available after the runtime starts.
+Starts a stopped Simulation from its saved state. The endpoint serves requests once the response returns. A Simulation that is already running or paused is returned unchanged.
 
 ### Example Usage
 
@@ -254,7 +254,7 @@ with Continuous(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Stable Simulation ID.                                               |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Simulation ID.                                                      |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
@@ -271,7 +271,7 @@ with Continuous(
 
 ## list_simulation_steps
 
-Returns recorded steps for a running or paused Simulation. Use any step to create a deterministic fork.
+Lists the Simulation's steps in order. Each request that changed state is one step; a request that only reads registers none. Pass a step number as at_step when you fork to start the child from the state after that step. A stopped Simulation returns 409 simulation_stopped; start it first.
 
 ### Example Usage
 
@@ -296,7 +296,7 @@ with Continuous(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Stable Simulation ID.                                               |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Simulation ID.                                                      |
 | `cursor`                                                            | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Opaque next_cursor value from a previous page.                      |
 | `limit`                                                             | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Page size. Values below 1 use 50. Values above 200 use 200.         |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
@@ -315,7 +315,7 @@ with Continuous(
 
 ## stop_simulation
 
-Stops a Simulation and saves its runtime state. You can start it later from the saved state.
+Stops a Simulation and saves its state. Requests to its endpoint return 409 simulation_stopped until you start it again. A stopped Simulation is returned unchanged.
 
 ### Example Usage
 
@@ -340,7 +340,7 @@ with Continuous(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Stable Simulation ID.                                               |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Simulation ID.                                                      |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
@@ -357,7 +357,7 @@ with Continuous(
 
 ## mint_simulation_token
 
-Mints an expiring data-plane token. Send it in X-Continuous-Simulation-Token. Other unexpired tokens remain valid.
+Creates another token for requests to the Simulation endpoint. Send it in the X-Continuous-Simulation-Token header. Earlier tokens stay valid until they expire.
 
 ### Example Usage
 
@@ -382,7 +382,7 @@ with Continuous(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Stable Simulation ID.                                               |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Simulation ID.                                                      |
 | `ttl_seconds`                                                       | *int*                                                               | :heavy_check_mark:                                                  | Token lifetime in seconds, from 60 through 86,400.                  |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 

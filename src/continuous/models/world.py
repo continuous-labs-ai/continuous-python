@@ -21,45 +21,45 @@ WorldStatus = Union[
     ],
     UnrecognizedStr,
 ]
-r"""Current World lifecycle status."""
+r"""building while the build runs; ready when the World can be started; running or stopped once its Simulations exist; failed when the first start could not create its Simulations; canceled when the build was canceled."""
 
 
 class WorldTypedDict(TypedDict):
     created_at: datetime
-    r"""Time when the World build started."""
+    r"""World creation time."""
     error: Nullable[ResourceErrorTypedDict]
     id: str
-    r"""Stable World ID."""
+    r"""World ID."""
     instructions: str
     r"""Build guidance stored with the World."""
     simulations: List[WorldSimulationTypedDict]
-    r"""Created member Simulations. This list is empty before first start."""
+    r"""Simulations in the World. Empty unless the World is running or stopped."""
     simulators: List[str]
-    r"""Stable Simulator IDs in member order."""
+    r"""Simulator IDs in member order."""
     status: WorldStatus
-    r"""Current World lifecycle status."""
+    r"""building while the build runs; ready when the World can be started; running or stopped once its Simulations exist; failed when the first start could not create its Simulations; canceled when the build was canceled."""
 
 
 class World(BaseModel):
     created_at: datetime
-    r"""Time when the World build started."""
+    r"""World creation time."""
 
     error: Nullable[ResourceError]
 
     id: str
-    r"""Stable World ID."""
+    r"""World ID."""
 
     instructions: str
     r"""Build guidance stored with the World."""
 
     simulations: List[WorldSimulation]
-    r"""Created member Simulations. This list is empty before first start."""
+    r"""Simulations in the World. Empty unless the World is running or stopped."""
 
     simulators: List[str]
-    r"""Stable Simulator IDs in member order."""
+    r"""Simulator IDs in member order."""
 
     status: WorldStatus
-    r"""Current World lifecycle status."""
+    r"""building while the build runs; ready when the World can be started; running or stopped once its Simulations exist; failed when the first start could not create its Simulations; canceled when the build was canceled."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

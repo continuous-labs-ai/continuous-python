@@ -1,6 +1,6 @@
 # SimulationStatus
 
-Current Simulation status.
+Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it.
 
 ## Example Usage
 

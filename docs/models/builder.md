@@ -1,6 +1,6 @@
 # Builder
 
-Builder provider. The default is claude.
+Model provider that builds the Simulator. Defaults to claude.
 
 ## Example Usage
 

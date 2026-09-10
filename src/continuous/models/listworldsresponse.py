@@ -10,14 +10,14 @@ from typing_extensions import TypedDict
 
 class ListWorldsResponseTypedDict(TypedDict):
     next_cursor: Nullable[str]
-    r"""Cursor for the next page, or null when this is the last page."""
+    r"""Cursor for the next page, or null."""
     worlds: List[WorldTypedDict]
     r"""Worlds in this page."""
 
 
 class ListWorldsResponse(BaseModel):
     next_cursor: Nullable[str]
-    r"""Cursor for the next page, or null when this is the last page."""
+    r"""Cursor for the next page, or null."""
 
     worlds: List[World]
     r"""Worlds in this page."""

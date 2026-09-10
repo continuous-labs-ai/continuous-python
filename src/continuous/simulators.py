@@ -10,7 +10,7 @@ from typing import Any, Mapping, Optional, Union
 
 
 class Simulators(BaseSDK):
-    r"""Build, inspect, and delete reusable Simulator artifacts."""
+    r"""Build Simulators from OpenAPI or WSDL documents, check or cancel a build, and delete Simulators."""
 
     def list_simulators(
         self,
@@ -29,7 +29,7 @@ class Simulators(BaseSDK):
         Returns all Simulators that the API key can access. Results can be filtered by status or name.
 
         :param status: Optional build status filter.
-        :param name: Optional exact Simulator name. Prefix a catalog name with continuous/. Names cannot start with smr_.
+        :param name: Return only the Simulator with this exact name. For a Simulator from the Continuous catalog, prefix the name with continuous/. Names cannot start with smr_.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
@@ -137,7 +137,7 @@ class Simulators(BaseSDK):
         Returns all Simulators that the API key can access. Results can be filtered by status or name.
 
         :param status: Optional build status filter.
-        :param name: Optional exact Simulator name. Prefix a catalog name with continuous/. Names cannot start with smr_.
+        :param name: Return only the Simulator with this exact name. For a Simulator from the Continuous catalog, prefix the name with continuous/. Names cannot start with smr_.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
@@ -242,10 +242,10 @@ class Simulators(BaseSDK):
     ) -> models.Simulator:
         r"""Build Simulator
 
-        Creates a Simulator from an OpenAPI or WSDL source. The build runs asynchronously. Send multipart/form-data with one JSON request part, and one spec file part for a spec build.
+        Starts an asynchronous Simulator build and returns the Simulator with status building. Send multipart/form-data with a JSON part named request. To build from a document, add a file part named spec with the OpenAPI or WSDL document. For an incremental build, omit spec and set parent_id and instructions.
 
         :param request: The request object to send.
-        :param spec: OpenAPI or WSDL file. A spec build sends it. At most 67,108,864 UTF-8 bytes.
+        :param spec: OpenAPI or WSDL document, UTF-8 encoded, at most 64 MiB. Required unless the request is an incremental build (parent_id and instructions, no spec).
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -355,10 +355,10 @@ class Simulators(BaseSDK):
     ) -> models.Simulator:
         r"""Build Simulator
 
-        Creates a Simulator from an OpenAPI or WSDL source. The build runs asynchronously. Send multipart/form-data with one JSON request part, and one spec file part for a spec build.
+        Starts an asynchronous Simulator build and returns the Simulator with status building. Send multipart/form-data with a JSON part named request. To build from a document, add a file part named spec with the OpenAPI or WSDL document. For an incremental build, omit spec and set parent_id and instructions.
 
         :param request: The request object to send.
-        :param spec: OpenAPI or WSDL file. A spec build sends it. At most 67,108,864 UTF-8 bytes.
+        :param spec: OpenAPI or WSDL document, UTF-8 encoded, at most 64 MiB. Required unless the request is an incremental build (parent_id and instructions, no spec).
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -467,7 +467,7 @@ class Simulators(BaseSDK):
 
         Deletes a Simulator that has no dependent Worlds, Simulations, or child Simulators.
 
-        :param id: Stable Simulator ID.
+        :param id: Simulator ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -568,7 +568,7 @@ class Simulators(BaseSDK):
 
         Deletes a Simulator that has no dependent Worlds, Simulations, or child Simulators.
 
-        :param id: Stable Simulator ID.
+        :param id: Simulator ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -669,7 +669,7 @@ class Simulators(BaseSDK):
 
         Returns a Simulator and its current build status.
 
-        :param id: Stable Simulator ID.
+        :param id: Simulator ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -768,7 +768,7 @@ class Simulators(BaseSDK):
 
         Returns a Simulator and its current build status.
 
-        :param id: Stable Simulator ID.
+        :param id: Simulator ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -867,7 +867,7 @@ class Simulators(BaseSDK):
 
         Requests cancellation of an active Simulator build. The build can finish before cancellation takes effect.
 
-        :param id: Stable Simulator ID.
+        :param id: Simulator ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -968,7 +968,7 @@ class Simulators(BaseSDK):
 
         Requests cancellation of an active Simulator build. The build can finish before cancellation takes effect.
 
-        :param id: Stable Simulator ID.
+        :param id: Simulator ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds

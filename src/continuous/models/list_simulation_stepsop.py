@@ -10,7 +10,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class ListSimulationStepsRequestTypedDict(TypedDict):
     id: str
-    r"""Stable Simulation ID."""
+    r"""Simulation ID."""
     cursor: NotRequired[str]
     r"""Opaque next_cursor value from a previous page."""
     limit: NotRequired[int]
@@ -21,7 +21,7 @@ class ListSimulationStepsRequest(BaseModel):
     id: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
-    r"""Stable Simulation ID."""
+    r"""Simulation ID."""
 
     cursor: Annotated[
         Optional[str],

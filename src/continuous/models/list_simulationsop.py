@@ -13,14 +13,14 @@ ListSimulationsStatus = Literal[
     "paused",
     "stopped",
 ]
-r"""Optional lifecycle status filter."""
+r"""Optional status filter."""
 
 
 class ListSimulationsRequestTypedDict(TypedDict):
     status: NotRequired[ListSimulationsStatus]
-    r"""Optional lifecycle status filter."""
+    r"""Optional status filter."""
     simulator_id: NotRequired[str]
-    r"""Optional stable Simulator ID filter."""
+    r"""Optional Simulator ID filter."""
     limit: NotRequired[int]
     r"""Page size. Values below 1 use 50. Values above 200 use 200."""
     cursor: NotRequired[str]
@@ -32,13 +32,13 @@ class ListSimulationsRequest(BaseModel):
         Optional[ListSimulationsStatus],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
     ] = None
-    r"""Optional lifecycle status filter."""
+    r"""Optional status filter."""
 
     simulator_id: Annotated[
         Optional[str],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
     ] = None
-    r"""Optional stable Simulator ID filter."""
+    r"""Optional Simulator ID filter."""
 
     limit: Annotated[
         Optional[int],
