@@ -9,17 +9,17 @@ from typing_extensions import NotRequired, TypedDict
 
 class BuildWorldRequestTypedDict(TypedDict):
     simulators: List[str]
-    r"""Stable Simulator IDs for the World."""
+    r"""Simulator IDs for the World."""
     instructions: NotRequired[str]
-    r"""Build guidance. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted."""
+    r"""Instructions for the builder. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
 
 
 class BuildWorldRequest(BaseModel):
     simulators: List[str]
-    r"""Stable Simulator IDs for the World."""
+    r"""Simulator IDs for the World."""
 
     instructions: Optional[str] = None
-    r"""Build guidance. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted."""
+    r"""Instructions for the builder. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

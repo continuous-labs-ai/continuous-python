@@ -8,11 +8,11 @@ from typing_extensions import Annotated, TypedDict
 
 class StopSimulationRequestTypedDict(TypedDict):
     id: str
-    r"""Stable Simulation ID."""
+    r"""Simulation ID."""
 
 
 class StopSimulationRequest(BaseModel):
     id: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
-    r"""Stable Simulation ID."""
+    r"""Simulation ID."""

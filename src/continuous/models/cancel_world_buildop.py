@@ -8,11 +8,11 @@ from typing_extensions import Annotated, TypedDict
 
 class CancelWorldBuildRequestTypedDict(TypedDict):
     id: str
-    r"""Stable World ID."""
+    r"""World ID."""
 
 
 class CancelWorldBuildRequest(BaseModel):
     id: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
-    r"""Stable World ID."""
+    r"""World ID."""

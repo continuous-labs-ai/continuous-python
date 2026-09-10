@@ -21,7 +21,7 @@ class ListSimulatorsRequestTypedDict(TypedDict):
     status: NotRequired[ListSimulatorsStatus]
     r"""Optional build status filter."""
     name: NotRequired[str]
-    r"""Optional exact Simulator name. Prefix a catalog name with continuous/. Names cannot start with smr_."""
+    r"""Return only the Simulator with this exact name. For a Simulator from the Continuous catalog, prefix the name with continuous/. Names cannot start with smr_."""
     limit: NotRequired[int]
     r"""Page size. Values below 1 use 50. Values above 200 use 200."""
     cursor: NotRequired[str]
@@ -39,7 +39,7 @@ class ListSimulatorsRequest(BaseModel):
         Optional[str],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
     ] = None
-    r"""Optional exact Simulator name. Prefix a catalog name with continuous/. Names cannot start with smr_."""
+    r"""Return only the Simulator with this exact name. For a Simulator from the Continuous catalog, prefix the name with continuous/. Names cannot start with smr_."""
 
     limit: Annotated[
         Optional[int],

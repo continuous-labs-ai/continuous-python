@@ -10,7 +10,7 @@ class SimulationTokenTypedDict(TypedDict):
     expires_at: datetime
     r"""Token expiration time."""
     token: str
-    r"""New data-plane token."""
+    r"""New token for requests to the Simulation endpoint. Send it in the X-Continuous-Simulation-Token header."""
 
 
 class SimulationToken(BaseModel):
@@ -18,4 +18,4 @@ class SimulationToken(BaseModel):
     r"""Token expiration time."""
 
     token: str
-    r"""New data-plane token."""
+    r"""New token for requests to the Simulation endpoint. Send it in the X-Continuous-Simulation-Token header."""

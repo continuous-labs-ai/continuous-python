@@ -16,24 +16,24 @@ SimulationStatus = Union[
     ],
     UnrecognizedStr,
 ]
-r"""Current Simulation status."""
+r"""Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it."""
 
 
 class SimulationTypedDict(TypedDict):
     created_at: datetime
     r"""Simulation creation time."""
     endpoint: str
-    r"""Data-plane endpoint for the Simulation."""
+    r"""Base URL for requests to the Simulation."""
     id: str
-    r"""Stable Simulation ID."""
+    r"""Simulation ID."""
     name: str
     r"""Simulation name."""
     parent_id: Nullable[str]
-    r"""Stable source Simulation ID for a fork, or null."""
+    r"""Source Simulation ID for a fork, or null."""
     simulator_id: str
-    r"""Stable ID of the Simulator."""
+    r"""ID of the Simulator."""
     status: SimulationStatus
-    r"""Current Simulation status."""
+    r"""Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it."""
 
 
 class Simulation(BaseModel):
@@ -41,22 +41,22 @@ class Simulation(BaseModel):
     r"""Simulation creation time."""
 
     endpoint: str
-    r"""Data-plane endpoint for the Simulation."""
+    r"""Base URL for requests to the Simulation."""
 
     id: str
-    r"""Stable Simulation ID."""
+    r"""Simulation ID."""
 
     name: str
     r"""Simulation name."""
 
     parent_id: Nullable[str]
-    r"""Stable source Simulation ID for a fork, or null."""
+    r"""Source Simulation ID for a fork, or null."""
 
     simulator_id: str
-    r"""Stable ID of the Simulator."""
+    r"""ID of the Simulator."""
 
     status: SimulationStatus
-    r"""Current Simulation status."""
+    r"""Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -1,6 +1,6 @@
 # Source
 
-Simulator source.
+workspace for a Simulator your workspace built; catalog for a read-only Simulator that Continuous publishes.
 
 ## Example Usage
 

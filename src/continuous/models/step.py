@@ -7,14 +7,14 @@ from typing_extensions import TypedDict
 
 class StepTypedDict(TypedDict):
     label: str
-    r"""Request label. It usually contains the HTTP method and path."""
+    r"""HTTP method and path of the request that produced this step, without the query string, for example POST /v1/widgets."""
     step: int
-    r"""Completed request number. Use this value as at_step when you fork the Simulation."""
+    r"""Step number. Use it as at_step when you fork."""
 
 
 class Step(BaseModel):
     label: str
-    r"""Request label. It usually contains the HTTP method and path."""
+    r"""HTTP method and path of the request that produced this step, without the query string, for example POST /v1/widgets."""
 
     step: int
-    r"""Completed request number. Use this value as at_step when you fork the Simulation."""
+    r"""Step number. Use it as at_step when you fork."""

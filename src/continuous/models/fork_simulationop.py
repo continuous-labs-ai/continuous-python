@@ -9,7 +9,7 @@ from typing_extensions import Annotated, TypedDict
 
 class ForkSimulationRequestRequestTypedDict(TypedDict):
     id: str
-    r"""Stable source Simulation ID."""
+    r"""Source Simulation ID."""
     body: ForkSimulationRequestTypedDict
 
 
@@ -17,7 +17,7 @@ class ForkSimulationRequestRequest(BaseModel):
     id: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
-    r"""Stable source Simulation ID."""
+    r"""Source Simulation ID."""
 
     body: Annotated[
         ForkSimulationRequest,

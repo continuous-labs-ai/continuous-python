@@ -10,7 +10,7 @@ from typing import Any, Iterable, List, Mapping, Optional
 
 
 class Worlds(BaseSDK):
-    r"""Build and control coordinated groups of Simulations."""
+    r"""Build Worlds from one or more Simulators and start or stop their Simulations together."""
 
     def list_worlds(
         self,
@@ -27,7 +27,7 @@ class Worlds(BaseSDK):
         Returns all Worlds that the API key can access.
 
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
-        :param cursor: Opaque cursor from the previous page.
+        :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -129,7 +129,7 @@ class Worlds(BaseSDK):
         Returns all Worlds that the API key can access.
 
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
-        :param cursor: Opaque cursor from the previous page.
+        :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -228,10 +228,10 @@ class Worlds(BaseSDK):
     ) -> models.World:
         r"""Build World
 
-        Builds a World definition from stable Simulator IDs. Start the World to create its Simulations.
+        Starts an asynchronous World build from one or more ready Simulators and returns the World in the building state. Start the World once it is ready to create its Simulations.
 
-        :param simulators: Stable Simulator IDs for the World.
-        :param instructions: Build guidance. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted.
+        :param simulators: Simulator IDs for the World.
+        :param instructions: Instructions for the builder. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -335,10 +335,10 @@ class Worlds(BaseSDK):
     ) -> models.World:
         r"""Build World
 
-        Builds a World definition from stable Simulator IDs. Start the World to create its Simulations.
+        Starts an asynchronous World build from one or more ready Simulators and returns the World in the building state. Start the World once it is ready to create its Simulations.
 
-        :param simulators: Stable Simulator IDs for the World.
-        :param instructions: Build guidance. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted.
+        :param simulators: Simulator IDs for the World.
+        :param instructions: Instructions for the builder. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -443,7 +443,7 @@ class Worlds(BaseSDK):
 
         Deletes a World, all its Simulations, and their saved runtime states.
 
-        :param id: Stable World ID.
+        :param id: World ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -542,7 +542,7 @@ class Worlds(BaseSDK):
 
         Deletes a World, all its Simulations, and their saved runtime states.
 
-        :param id: Stable World ID.
+        :param id: World ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -641,7 +641,7 @@ class Worlds(BaseSDK):
 
         Returns a World, its build instructions, and its Simulator IDs.
 
-        :param id: Stable World ID.
+        :param id: World ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -740,7 +740,7 @@ class Worlds(BaseSDK):
 
         Returns a World, its build instructions, and its Simulator IDs.
 
-        :param id: Stable World ID.
+        :param id: World ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -839,7 +839,7 @@ class Worlds(BaseSDK):
 
         Cancels an active World build. Repeated cancellation returns the current World.
 
-        :param id: Stable World ID.
+        :param id: World ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -938,7 +938,7 @@ class Worlds(BaseSDK):
 
         Cancels an active World build. Repeated cancellation returns the current World.
 
-        :param id: Stable World ID.
+        :param id: World ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1035,9 +1035,9 @@ class Worlds(BaseSDK):
     ) -> models.World:
         r"""Start World
 
-        Creates member Simulations on first start. Later starts restore stopped Simulations from saved state.
+        Starts every Simulation in the World. The first start creates the Simulations; later starts restore them from saved state. The World must be ready or stopped, and the workspace must have room for all members under its active-Simulation limit. A running World is returned unchanged.
 
-        :param id: Stable World ID.
+        :param id: World ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1136,9 +1136,9 @@ class Worlds(BaseSDK):
     ) -> models.World:
         r"""Start World
 
-        Creates member Simulations on first start. Later starts restore stopped Simulations from saved state.
+        Starts every Simulation in the World. The first start creates the Simulations; later starts restore them from saved state. The World must be ready or stopped, and the workspace must have room for all members under its active-Simulation limit. A running World is returned unchanged.
 
-        :param id: Stable World ID.
+        :param id: World ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1239,7 +1239,7 @@ class Worlds(BaseSDK):
 
         Stops a World and saves each Simulation state. You can start the World later from the saved states.
 
-        :param id: Stable World ID.
+        :param id: World ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1338,7 +1338,7 @@ class Worlds(BaseSDK):
 
         Stops a World and saves each Simulation state. You can start the World later from the saved states.
 
-        :param id: Stable World ID.
+        :param id: World ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds

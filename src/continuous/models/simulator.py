@@ -16,7 +16,7 @@ Source = Union[
     ],
     UnrecognizedStr,
 ]
-r"""Simulator source."""
+r"""workspace for a Simulator your workspace built; catalog for a read-only Simulator that Continuous publishes."""
 
 
 SimulatorStatus = Union[
@@ -28,7 +28,7 @@ SimulatorStatus = Union[
     ],
     UnrecognizedStr,
 ]
-r"""Current build status."""
+r"""building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
 
 
 class SimulatorTypedDict(TypedDict):
@@ -36,15 +36,15 @@ class SimulatorTypedDict(TypedDict):
     r"""Simulator creation time."""
     error: Nullable[ResourceErrorTypedDict]
     id: str
-    r"""Stable Simulator ID."""
+    r"""Simulator ID."""
     name: str
     r"""Simulator name. Names cannot start with smr_."""
     parent_id: Nullable[str]
-    r"""Stable parent Simulator ID, or null."""
+    r"""Parent Simulator ID, or null."""
     source: Source
-    r"""Simulator source."""
+    r"""workspace for a Simulator your workspace built; catalog for a read-only Simulator that Continuous publishes."""
     status: SimulatorStatus
-    r"""Current build status."""
+    r"""building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
 
 
 class Simulator(BaseModel):
@@ -54,19 +54,19 @@ class Simulator(BaseModel):
     error: Nullable[ResourceError]
 
     id: str
-    r"""Stable Simulator ID."""
+    r"""Simulator ID."""
 
     name: str
     r"""Simulator name. Names cannot start with smr_."""
 
     parent_id: Nullable[str]
-    r"""Stable parent Simulator ID, or null."""
+    r"""Parent Simulator ID, or null."""
 
     source: Source
-    r"""Simulator source."""
+    r"""workspace for a Simulator your workspace built; catalog for a read-only Simulator that Continuous publishes."""
 
     status: SimulatorStatus
-    r"""Current build status."""
+    r"""building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

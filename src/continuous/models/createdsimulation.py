@@ -16,28 +16,28 @@ CreatedSimulationStatus = Union[
     ],
     UnrecognizedStr,
 ]
-r"""Current Simulation status."""
+r"""Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it."""
 
 
 class CreatedSimulationTypedDict(TypedDict):
     created_at: datetime
     r"""Simulation creation time."""
     endpoint: str
-    r"""Data-plane endpoint for the Simulation."""
+    r"""Base URL for requests to the Simulation."""
     expires_at: datetime
     r"""Token expiration time."""
     id: str
-    r"""Stable Simulation ID."""
+    r"""Simulation ID."""
     name: str
     r"""Simulation name."""
     parent_id: Nullable[str]
-    r"""Stable source Simulation ID for a fork, or null."""
+    r"""Source Simulation ID for a fork, or null."""
     simulator_id: str
-    r"""Stable ID of the Simulator."""
+    r"""ID of the Simulator."""
     status: CreatedSimulationStatus
-    r"""Current Simulation status."""
+    r"""Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it."""
     token: str
-    r"""One-time data-plane token."""
+    r"""Token for requests to the Simulation endpoint. Send it in the X-Continuous-Simulation-Token header. It is returned only here; list and get omit it. Create more with POST /v1/simulations/{id}/tokens."""
 
 
 class CreatedSimulation(BaseModel):
@@ -45,28 +45,28 @@ class CreatedSimulation(BaseModel):
     r"""Simulation creation time."""
 
     endpoint: str
-    r"""Data-plane endpoint for the Simulation."""
+    r"""Base URL for requests to the Simulation."""
 
     expires_at: datetime
     r"""Token expiration time."""
 
     id: str
-    r"""Stable Simulation ID."""
+    r"""Simulation ID."""
 
     name: str
     r"""Simulation name."""
 
     parent_id: Nullable[str]
-    r"""Stable source Simulation ID for a fork, or null."""
+    r"""Source Simulation ID for a fork, or null."""
 
     simulator_id: str
-    r"""Stable ID of the Simulator."""
+    r"""ID of the Simulator."""
 
     status: CreatedSimulationStatus
-    r"""Current Simulation status."""
+    r"""Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it."""
 
     token: str
-    r"""One-time data-plane token."""
+    r"""Token for requests to the Simulation endpoint. Send it in the X-Continuous-Simulation-Token header. It is returned only here; list and get omit it. Create more with POST /v1/simulations/{id}/tokens."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

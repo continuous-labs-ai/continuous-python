@@ -12,7 +12,7 @@ from typing_extensions import Annotated, TypedDict
 
 class MintSimulationTokenRequestRequestTypedDict(TypedDict):
     id: str
-    r"""Stable Simulation ID."""
+    r"""Simulation ID."""
     body: MintSimulationTokenRequestTypedDict
 
 
@@ -20,7 +20,7 @@ class MintSimulationTokenRequestRequest(BaseModel):
     id: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
-    r"""Stable Simulation ID."""
+    r"""Simulation ID."""
 
     body: Annotated[
         MintSimulationTokenRequest,

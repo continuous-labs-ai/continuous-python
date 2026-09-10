@@ -9,14 +9,14 @@ from typing_extensions import NotRequired, TypedDict
 
 class CreateSimulationRequestTypedDict(TypedDict):
     simulator_id: str
-    r"""Stable ID of the ready Simulator."""
+    r"""ID of the ready Simulator."""
     name: NotRequired[str]
     r"""Optional Simulation name. Omission generates a name."""
 
 
 class CreateSimulationRequest(BaseModel):
     simulator_id: str
-    r"""Stable ID of the ready Simulator."""
+    r"""ID of the ready Simulator."""
 
     name: Optional[str] = None
     r"""Optional Simulation name. Omission generates a name."""
