@@ -2,7 +2,7 @@
 
 Python SDK for the Continuous Simulation API.
 
-Speakeasy generates this SDK from the public OpenAPI contract in [continuous-labs-ai/continuous](https://github.com/continuous-labs-ai/continuous/blob/main/openapi/simulation.yaml). Report API problems there and SDK packaging problems here.
+Speakeasy generates this SDK from the public Continuous Simulation API contract. The [API reference](https://docs.continuouslabs.ai/api-reference/overview) documents every operation. Report SDK and API problems in this repository.
 
 <!-- Start Summary [summary] -->
 ## Summary
