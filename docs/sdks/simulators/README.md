@@ -53,7 +53,7 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 403, 404, 422       | application/problem+json      |
+| errors.Error                  | 400, 401, 422                 | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
@@ -61,7 +61,30 @@ with Continuous(
 
 Starts an asynchronous Simulator build and returns the Simulator with status building. Send multipart/form-data with a JSON part named request. To build from a document, add a file part named spec with the OpenAPI or WSDL document. For an incremental build, omit spec and set parent_id and instructions.
 
-### Example Usage
+### Example Usage: bad_request_body
+
+<!-- UsageSnippet language="python" operationID="build-simulator" method="post" path="/v1/simulators" example="bad_request_body" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.simulators.build_simulator(request={
+        "filter_": [],
+        "instructions": "Return stable example data for every operation.",
+        "name": "billing-api",
+        "spec_kind": "openapi",
+    })
+
+    # Handle response
+    print(res)
+
+```
+### Example Usage: simulator_unknown_parent
 
 <!-- UsageSnippet language="python" operationID="build-simulator" method="post" path="/v1/simulators" example="simulator_unknown_parent" -->
 ```python
@@ -95,15 +118,17 @@ with Continuous(
 
 ### Response
 
-**[models.Simulator](../../models/simulator.md)**
+**[models.BuildSimulatorResponse](../../models/buildsimulatorresponse.md)**
 
 ### Errors
 
-| Error Type                                       | Status Code                                      | Content Type                                     |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| errors.Error                                     | 400, 401, 403, 404, 408, 409, 413, 415, 422, 429 | application/problem+json                         |
-| errors.Error                                     | 500, 503                                         | application/problem+json                         |
-| errors.ContinuousDefaultError                    | 4XX, 5XX                                         | \*/\*                                            |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| errors.Error                      | 400, 401, 408, 409, 413, 415, 422 | application/problem+json          |
+| errors.Error                      | 429                               | application/problem+json          |
+| errors.Error                      | 500                               | application/problem+json          |
+| errors.Error                      | 503                               | application/problem+json          |
+| errors.ContinuousDefaultError     | 4XX, 5XX                          | \*/\*                             |
 
 ## delete_simulator
 
@@ -138,7 +163,7 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 403, 404, 409, 422  | application/problem+json      |
+| errors.Error                  | 401, 403, 404, 409, 422       | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
@@ -180,7 +205,7 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 403, 404, 422       | application/problem+json      |
+| errors.Error                  | 401, 403, 404, 422            | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
@@ -222,6 +247,6 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 403, 404, 409, 422  | application/problem+json      |
+| errors.Error                  | 401, 403, 404, 422            | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |

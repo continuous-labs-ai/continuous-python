@@ -347,7 +347,7 @@ with Continuous(
 ### Error Classes
 **Primary errors:**
 * [`ContinuousError`](./src/continuous/errors/continuouserror.py): The base class for HTTP error responses.
-  * [`Error`](./src/continuous/errors/error.py): Bad Request.
+  * [`Error`](./src/continuous/errors/error.py): Generic error.
 
 <details><summary>Less common errors (5)</summary>
 

@@ -94,7 +94,7 @@ class Worlds(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.ListWorldsResponse, http_res)
         if utils.match_response(
-            http_res, ["400", "401", "403", "404", "422"], "application/problem+json"
+            http_res, ["400", "401", "422"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -196,7 +196,7 @@ class Worlds(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.ListWorldsResponse, http_res)
         if utils.match_response(
-            http_res, ["400", "401", "403", "404", "422"], "application/problem+json"
+            http_res, ["400", "401", "422"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -228,10 +228,10 @@ class Worlds(BaseSDK):
     ) -> models.World:
         r"""Build World
 
-        Starts an asynchronous World build from one or more ready Simulators and returns the World in the building state. Start the World once it is ready to create its Simulations.
+        Starts an asynchronous World build from ready Simulators and returns it in the building state. Instructions generate and validate initial synthetic data. Start the World once it is ready to create its Simulations.
 
         :param simulators: Simulator IDs for the World.
-        :param instructions: Instructions for the builder. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000.
+        :param instructions: Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -302,7 +302,7 @@ class Worlds(BaseSDK):
             return unmarshal_json_response(models.World, http_res)
         if utils.match_response(
             http_res,
-            ["400", "401", "403", "404", "408", "409", "413", "415", "422"],
+            ["400", "401", "408", "409", "413", "415", "422"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -335,10 +335,10 @@ class Worlds(BaseSDK):
     ) -> models.World:
         r"""Build World
 
-        Starts an asynchronous World build from one or more ready Simulators and returns the World in the building state. Start the World once it is ready to create its Simulations.
+        Starts an asynchronous World build from ready Simulators and returns it in the building state. Instructions generate and validate initial synthetic data. Start the World once it is ready to create its Simulations.
 
         :param simulators: Simulator IDs for the World.
-        :param instructions: Instructions for the builder. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000.
+        :param instructions: Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -409,7 +409,7 @@ class Worlds(BaseSDK):
             return unmarshal_json_response(models.World, http_res)
         if utils.match_response(
             http_res,
-            ["400", "401", "403", "404", "408", "409", "413", "415", "422"],
+            ["400", "401", "408", "409", "413", "415", "422"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -509,7 +509,7 @@ class Worlds(BaseSDK):
         if utils.match_response(http_res, "204", "*"):
             return
         if utils.match_response(
-            http_res, ["400", "401", "403", "404", "409"], "application/problem+json"
+            http_res, ["401", "403", "404"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -608,7 +608,7 @@ class Worlds(BaseSDK):
         if utils.match_response(http_res, "204", "*"):
             return
         if utils.match_response(
-            http_res, ["400", "401", "403", "404", "409"], "application/problem+json"
+            http_res, ["401", "403", "404"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -707,7 +707,7 @@ class Worlds(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.World, http_res)
         if utils.match_response(
-            http_res, ["400", "401", "403", "404"], "application/problem+json"
+            http_res, ["401", "403", "404"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -806,7 +806,7 @@ class Worlds(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.World, http_res)
         if utils.match_response(
-            http_res, ["400", "401", "403", "404"], "application/problem+json"
+            http_res, ["401", "403", "404"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -905,7 +905,7 @@ class Worlds(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.World, http_res)
         if utils.match_response(
-            http_res, ["400", "401", "403", "404", "409"], "application/problem+json"
+            http_res, ["401", "403", "404"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -1004,7 +1004,7 @@ class Worlds(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.World, http_res)
         if utils.match_response(
-            http_res, ["400", "401", "403", "404", "409"], "application/problem+json"
+            http_res, ["401", "403", "404"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -1103,9 +1103,7 @@ class Worlds(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.World, http_res)
         if utils.match_response(
-            http_res,
-            ["400", "401", "403", "404", "409", "429"],
-            "application/problem+json",
+            http_res, ["401", "403", "404", "409", "429"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -1204,9 +1202,7 @@ class Worlds(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.World, http_res)
         if utils.match_response(
-            http_res,
-            ["400", "401", "403", "404", "409", "429"],
-            "application/problem+json",
+            http_res, ["401", "403", "404", "409", "429"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -1305,7 +1301,7 @@ class Worlds(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.World, http_res)
         if utils.match_response(
-            http_res, ["400", "401", "403", "404", "409"], "application/problem+json"
+            http_res, ["401", "403", "404", "409"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -1404,7 +1400,7 @@ class Worlds(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.World, http_res)
         if utils.match_response(
-            http_res, ["400", "401", "403", "404", "409"], "application/problem+json"
+            http_res, ["401", "403", "404", "409"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)

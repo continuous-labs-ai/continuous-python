@@ -100,7 +100,7 @@ class Simulators(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.ListSimulatorsResponse, http_res)
         if utils.match_response(
-            http_res, ["400", "401", "403", "404", "422"], "application/problem+json"
+            http_res, ["400", "401", "422"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -208,7 +208,7 @@ class Simulators(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.ListSimulatorsResponse, http_res)
         if utils.match_response(
-            http_res, ["400", "401", "403", "404", "422"], "application/problem+json"
+            http_res, ["400", "401", "422"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -239,7 +239,7 @@ class Simulators(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.Simulator:
+    ) -> models.BuildSimulatorResponse:
         r"""Build Simulator
 
         Starts an asynchronous Simulator build and returns the Simulator with status building. Send multipart/form-data with a JSON part named request. To build from a document, add a file part named spec with the OpenAPI or WSDL document. For an incremental build, omit spec and set parent_id and instructions.
@@ -317,15 +317,23 @@ class Simulators(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
-            return unmarshal_json_response(models.Simulator, http_res)
+            return models.BuildSimulatorResponse(
+                result=unmarshal_json_response(models.Simulator, http_res), headers={}
+            )
         if utils.match_response(
             http_res,
-            ["400", "401", "403", "404", "408", "409", "413", "415", "422", "429"],
+            ["400", "401", "408", "409", "413", "415", "422"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
-        if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
+        if utils.match_response(http_res, "429", "application/problem+json"):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/problem+json"):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, "503", "application/problem+json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
@@ -352,7 +360,7 @@ class Simulators(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.Simulator:
+    ) -> models.BuildSimulatorResponse:
         r"""Build Simulator
 
         Starts an asynchronous Simulator build and returns the Simulator with status building. Send multipart/form-data with a JSON part named request. To build from a document, add a file part named spec with the OpenAPI or WSDL document. For an incremental build, omit spec and set parent_id and instructions.
@@ -430,15 +438,23 @@ class Simulators(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
-            return unmarshal_json_response(models.Simulator, http_res)
+            return models.BuildSimulatorResponse(
+                result=unmarshal_json_response(models.Simulator, http_res), headers={}
+            )
         if utils.match_response(
             http_res,
-            ["400", "401", "403", "404", "408", "409", "413", "415", "422", "429"],
+            ["400", "401", "408", "409", "413", "415", "422"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
-        if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
+        if utils.match_response(http_res, "429", "application/problem+json"):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/problem+json"):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, "503", "application/problem+json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
@@ -533,9 +549,7 @@ class Simulators(BaseSDK):
         if utils.match_response(http_res, "204", "*"):
             return
         if utils.match_response(
-            http_res,
-            ["400", "401", "403", "404", "409", "422"],
-            "application/problem+json",
+            http_res, ["401", "403", "404", "409", "422"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -634,9 +648,7 @@ class Simulators(BaseSDK):
         if utils.match_response(http_res, "204", "*"):
             return
         if utils.match_response(
-            http_res,
-            ["400", "401", "403", "404", "409", "422"],
-            "application/problem+json",
+            http_res, ["401", "403", "404", "409", "422"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -735,7 +747,7 @@ class Simulators(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.Simulator, http_res)
         if utils.match_response(
-            http_res, ["400", "401", "403", "404", "422"], "application/problem+json"
+            http_res, ["401", "403", "404", "422"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -834,7 +846,7 @@ class Simulators(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.Simulator, http_res)
         if utils.match_response(
-            http_res, ["400", "401", "403", "404", "422"], "application/problem+json"
+            http_res, ["401", "403", "404", "422"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -933,9 +945,7 @@ class Simulators(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.Simulator, http_res)
         if utils.match_response(
-            http_res,
-            ["400", "401", "403", "404", "409", "422"],
-            "application/problem+json",
+            http_res, ["401", "403", "404", "422"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -1034,9 +1044,7 @@ class Simulators(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.Simulator, http_res)
         if utils.match_response(
-            http_res,
-            ["400", "401", "403", "404", "409", "422"],
-            "application/problem+json",
+            http_res, ["401", "403", "404", "422"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)

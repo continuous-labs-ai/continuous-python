@@ -3,10 +3,10 @@
 import importlib.metadata
 
 __title__: str = "continuous-labs"
-__version__: str = "0.1.5"
+__version__: str = "0.1.6"
 __openapi_doc_version__: str = "v1"
 __gen_version__: str = "2.935.1"
-__user_agent__: str = "speakeasy-sdk/python 0.1.5 2.935.1 v1 continuous-labs"
+__user_agent__: str = "speakeasy-sdk/python 0.1.6 2.935.1 v1 continuous-labs"
 
 try:
     if __package__ is not None:
