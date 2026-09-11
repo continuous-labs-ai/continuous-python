@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 from .buildsimulatorrequest import BuildSimulatorRequest, BuildSimulatorRequestTypedDict
+from .simulator import Simulator, SimulatorTypedDict
 from continuous.types import BaseModel, UNSET_SENTINEL
 from continuous.utils import FieldMetadata, MultipartFormMetadata
 import io
 import pydantic
 from pydantic import model_serializer
-from typing import IO, Optional, Union
+from typing import Dict, IO, List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
@@ -82,3 +83,14 @@ class SimulatorsBuildSimulatorRequest(BaseModel):
                     m[k] = val
 
         return m
+
+
+class BuildSimulatorResponseTypedDict(TypedDict):
+    headers: Dict[str, List[str]]
+    result: SimulatorTypedDict
+
+
+class BuildSimulatorResponse(BaseModel):
+    headers: Dict[str, List[str]]
+
+    result: Simulator

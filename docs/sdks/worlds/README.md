@@ -53,15 +53,35 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 403, 404, 422       | application/problem+json      |
+| errors.Error                  | 400, 401, 422                 | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
 ## build_world
 
-Starts an asynchronous World build from one or more ready Simulators and returns the World in the building state. Start the World once it is ready to create its Simulations.
+Starts an asynchronous World build from ready Simulators and returns it in the building state. Instructions generate and validate initial synthetic data. Start the World once it is ready to create its Simulations.
 
-### Example Usage
+### Example Usage: bad_request_body
+
+<!-- UsageSnippet language="python" operationID="build-world" method="post" path="/v1/worlds" example="bad_request_body" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.worlds.build_world(simulators=[
+        "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5",
+    ], instructions="Use stable example data for each Simulator.")
+
+    # Handle response
+    print(res)
+
+```
+### Example Usage: simulator_unknown
 
 <!-- UsageSnippet language="python" operationID="build-world" method="post" path="/v1/worlds" example="simulator_unknown" -->
 ```python
@@ -84,11 +104,11 @@ with Continuous(
 
 ### Parameters
 
-| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `simulators`                                                                                                         | List[*str*]                                                                                                          | :heavy_check_mark:                                                                                                   | Simulator IDs for the World.                                                                                         |
-| `instructions`                                                                                                       | *Optional[str]*                                                                                                      | :heavy_minus_sign:                                                                                                   | Instructions for the builder. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000. |
-| `retries`                                                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                     | :heavy_minus_sign:                                                                                                   | Configuration to override the default retry behavior of the client.                                                  |
+| Parameter                                                                                                                                                                                                                                                                   | Type                                                                                                                                                                                                                                                                        | Required                                                                                                                                                                                                                                                                    | Description                                                                                                                                                                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `simulators`                                                                                                                                                                                                                                                                | List[*str*]                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                          | Simulator IDs for the World.                                                                                                                                                                                                                                                |
+| `instructions`                                                                                                                                                                                                                                                              | *Optional[str]*                                                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                                          | Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted. |
+| `retries`                                                                                                                                                                                                                                                                   | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                                                                                          | Configuration to override the default retry behavior of the client.                                                                                                                                                                                                         |
 
 ### Response
 
@@ -96,11 +116,11 @@ with Continuous(
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| errors.Error                                | 400, 401, 403, 404, 408, 409, 413, 415, 422 | application/problem+json                    |
-| errors.Error                                | 500, 503                                    | application/problem+json                    |
-| errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| errors.Error                      | 400, 401, 408, 409, 413, 415, 422 | application/problem+json          |
+| errors.Error                      | 500, 503                          | application/problem+json          |
+| errors.ContinuousDefaultError     | 4XX, 5XX                          | \*/\*                             |
 
 ## delete_world
 
@@ -135,7 +155,7 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 403, 404, 409       | application/problem+json      |
+| errors.Error                  | 401, 403, 404                 | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
@@ -177,7 +197,7 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 403, 404            | application/problem+json      |
+| errors.Error                  | 401, 403, 404                 | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
@@ -219,7 +239,7 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 403, 404, 409       | application/problem+json      |
+| errors.Error                  | 401, 403, 404                 | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
@@ -261,7 +281,7 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 403, 404, 409, 429  | application/problem+json      |
+| errors.Error                  | 401, 403, 404, 409, 429       | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
@@ -303,6 +323,6 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 403, 404, 409       | application/problem+json      |
+| errors.Error                  | 401, 403, 404, 409            | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |

@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: e40197e81fa7e96e9cedd79936df0513
+  docChecksum: 2e13b1cbb95d85e4f713b12108677ccb
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.1.5
-  configChecksum: e09bdf082288f6baad733ef35b4bf4c0
+  releaseVersion: 0.1.6
+  configChecksum: add64c40871e1cb67dee8ed9283a03ae
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: 609ba464-cd13-4995-ba5d-65fa9d5f6084
-  pristine_commit_hash: 806baa898f3ead69c18534602ed91392c31f3a2a
-  pristine_tree_hash: c5af616a8f70fed258ac579972a68c915aff576f
+  generation_id: 65dfd7d6-60e8-45e1-8bce-94b608c56ddc
+  pristine_commit_hash: 5696263471614c944ffdcfd4e64e19002943062c
+  pristine_tree_hash: e2951d69162461af91db90d768b5d815cd964faa
 features:
   python:
     additionalDependencies: 1.1.0
@@ -70,10 +70,14 @@ trackedFiles:
     id: ec6d01a38d98
     last_write_checksum: sha1:c4e4bc5025d04a9fd6173de7515d1a52aec903f3
     pristine_git_object: 56e95d9c7bde537d23501aff2bca3a0e696cc625
+  docs/models/buildsimulatorresponse.md:
+    id: 7bb7eff50b23
+    last_write_checksum: sha1:a30e5048365fe6c7eebbd19af7bc0a350dc587a8
+    pristine_git_object: 8ee53b822f0c2799ec0d0b567e4065460b9b32f1
   docs/models/buildworldrequest.md:
     id: afb04a6b7322
-    last_write_checksum: sha1:e59b77afbe078a302fd4f87aa6774620dcbc030c
-    pristine_git_object: 4664192bacb7a78424f2af443b89722f7644ac20
+    last_write_checksum: sha1:ae65a31c49e5970a8b52a896010e24c1d82e534e
+    pristine_git_object: 1b830b22a0367f3c2d03f0130b7ea17e1ac4f0fd
   docs/models/cancelsimulatorbuildrequest.md:
     id: dc28ce2a7594
     last_write_checksum: sha1:ddf09e2cf1f6386c0b45c25a6b9aa2a9d3c6238c
@@ -174,10 +178,6 @@ trackedFiles:
     id: 40e14718aadf
     last_write_checksum: sha1:7361fd54bc9e7ebde8534559a04d218201e5ab47
     pristine_git_object: 16024770974a49a111e5f6cbdffba25636fa34c9
-  docs/models/resourceerror.md:
-    id: 99093b395ffe
-    last_write_checksum: sha1:2f6703895c10811d2ad1b4675e8c3b31a182e0d7
-    pristine_git_object: d7f04898e31c4b0527a88354ad9b151e83f996f7
   docs/models/security.md:
     id: 452e4d4eb67a
     last_write_checksum: sha1:71fdd7bbeb4eccce70c9b87e9631d708571e0f17
@@ -196,8 +196,16 @@ trackedFiles:
     pristine_git_object: b0925f30e116ac594e8d290e52c32dfc19a130fe
   docs/models/simulator.md:
     id: ee400a6c5eda
-    last_write_checksum: sha1:825e72e8df228d7be3503617953e7f15c1dfa2c0
-    pristine_git_object: 48c69cf6aa84c6ca1e49d796908654a45a467e4f
+    last_write_checksum: sha1:ea1c2ee0c5dc783993615764c20536b4fc911ea0
+    pristine_git_object: 9d25f63bf5b37a4512c26015b347f8368dfbf3ea
+  docs/models/simulatorerror.md:
+    id: cf50547f0511
+    last_write_checksum: sha1:94047b9525ab0300b9d33d95546c9945c9b4f5dc
+    pristine_git_object: 1b3804524db08239e06a7b1aa480b6f923cb7bb3
+  docs/models/simulatorerrorcode.md:
+    id: 0277a7d06258
+    last_write_checksum: sha1:691bd8afbd4c3287d5d85b8a054bd65d34d4a9f3
+    pristine_git_object: 38f96e3ff342e034d20f3b557b40b623132117a0
   docs/models/simulatorsbuildsimulatorrequest.md:
     id: ac73e14fdb53
     last_write_checksum: sha1:1054f8762d7a450f9d8f737d9630c9fc387870f9
@@ -218,6 +226,10 @@ trackedFiles:
     id: 0e961368a5cb
     last_write_checksum: sha1:569d8fe8363d8b7cc41a8f06150e289637356354
     pristine_git_object: 49bf137697009dc00173dc510d10d44a19fe22bf
+  docs/models/stage.md:
+    id: 3c1109e8f1c1
+    last_write_checksum: sha1:a6971f114f5a47311bd3a77330f960b93d1a0c33
+    pristine_git_object: 40bee27ced81dc4eae75f51fd691dbb980927673
   docs/models/startsimulationrequest.md:
     id: 03d5466c921f
     last_write_checksum: sha1:7b6857c2e69218a6047e8a17c1b397415fa59ecb
@@ -244,28 +256,48 @@ trackedFiles:
     pristine_git_object: 69dd549ec7f5f885101d08dd502e25748183aebf
   docs/models/world.md:
     id: d58530de63e7
-    last_write_checksum: sha1:f20d7fdc3a63983753affc5cbd3795ce3f07efeb
-    pristine_git_object: 5437ae772198ca30645f738b9e1c856b8af72733
+    last_write_checksum: sha1:6ef6aaa680f54b317330894425ad0a4d981d0452
+    pristine_git_object: 7dad9187bb8cfb8bc4989a858f21bb801fcc28c4
+  docs/models/worldbuild.md:
+    id: 7727043b33e3
+    last_write_checksum: sha1:dc3f8c6195bebbc0e76ff791b7fbeb413ee1c48b
+    pristine_git_object: aaa06daa1780e04fa812c197cf284c19a9dd3e5f
+  docs/models/worlddatasummary.md:
+    id: a443ade7dc8b
+    last_write_checksum: sha1:ba0e25341784bfd763520eff487777e0e8a79c24
+    pristine_git_object: b4468cd5f84d638e8b980a8162b0fb393586d513
+  docs/models/worlderror.md:
+    id: 0bfd1d35561c
+    last_write_checksum: sha1:6f54d5fa635c60687c3ef32e4f3379f096dcd662
+    pristine_git_object: c99c5e71c1c2882a05edbf58a7de11bf18722e2f
+  docs/models/worlderrorcode.md:
+    id: 8da1dddb5d5a
+    last_write_checksum: sha1:2db6d8048472f384dcb7307ed5d6899a83998e29
+    pristine_git_object: c2357b20b5c6319051b4bfa97925ee69e432c21c
+  docs/models/worldrecordcount.md:
+    id: 069cb6c91be4
+    last_write_checksum: sha1:89b8fab24e56f3e5c9c66febc02ec413386d7b4e
+    pristine_git_object: e808d78ea0769381b75181deac18a87f23249bd7
   docs/models/worldsimulation.md:
     id: 2ec9d67ce3f8
     last_write_checksum: sha1:59d112671df5e98ccdec1ee6bbfb74f653412baf
     pristine_git_object: dbb14a6a64d13c364a08b7883c1ea094a45143ee
   docs/models/worldstatus.md:
     id: 1ea78914cd79
-    last_write_checksum: sha1:a778f6666b2645defeff8a4e4d6c7917303e812c
-    pristine_git_object: 80e85d1938b0bb84fa78d0c933203cf6a98e0df1
+    last_write_checksum: sha1:31e93ed4344154abfbedef1fea358318e91d1389
+    pristine_git_object: a199a4f6353806c62c9b0ab95960f5c93e95dfbb
   docs/sdks/simulations/README.md:
     id: a9e027fcb2b0
-    last_write_checksum: sha1:3933e08476099586d27e76b8b14711ccce0b67ea
-    pristine_git_object: 516ac9f20a0e2d8d05ef0d4eea214aa136191ed3
+    last_write_checksum: sha1:75032ebf1d8b89313c41cbc2375474623e212053
+    pristine_git_object: 9e33950e9cd788909f3d3724b89d1a613edf7cbe
   docs/sdks/simulators/README.md:
     id: 55eacdd8fa62
-    last_write_checksum: sha1:b3ed918f0cb3432378100cc5f80b4094cd66339a
-    pristine_git_object: 1b588629b70b11746e807b91c43578e62c1b6d7d
+    last_write_checksum: sha1:8fbb28ede714aa7d95c518cc0e8ce7c2099fa8f5
+    pristine_git_object: 05798a9065f0a47a799a1e3383c7e00fb89efea4
   docs/sdks/worlds/README.md:
     id: c57d3f2ebb66
-    last_write_checksum: sha1:6f2500c2436c7c54927581a2afc58b1f2ed7405f
-    pristine_git_object: 6ebe4010d72150552bf53f188fbde096b027119c
+    last_write_checksum: sha1:410d5f7e9d86c4bf1ad8b288ff483cac7aff140a
+    pristine_git_object: 0c44c555427445bd23436c188c10906e6e3844eb
   py.typed:
     id: 258c3ed47ae4
     last_write_checksum: sha1:8efc425ffe830805ffcc0f3055871bdcdc542c60
@@ -276,8 +308,8 @@ trackedFiles:
     pristine_git_object: c00200cfd072e9febac5d6be783da1925d11dac0
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:46e5e3a131b6781e4a6b53fc808ad00edc3126a1
-    pristine_git_object: ba7316fb001607560cb0ca0855abb46313e2e46b
+    last_write_checksum: sha1:cf826d883fbd8355b0d33c16f33c7726169bcd62
+    pristine_git_object: a1ec1de22608a209f8973f6269e77bd44d24b578
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -304,8 +336,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:f7ed46606999f91e6199cc49580f710ffcb64921
-    pristine_git_object: 62796904f95d56ab1f0b06879c30df2ce1114c78
+    last_write_checksum: sha1:8a138b4f92851038c1e3a471d0496ab896233d87
+    pristine_git_object: a3a3ad50ce1f3842ed1f86bb9f5b1dc7e10c7d6c
   src/continuous/basesdk.py:
     id: 7c7025a9c533
     last_write_checksum: sha1:c2195f8abe74c3f8baf5cb652679b710b838987d
@@ -340,20 +372,20 @@ trackedFiles:
     pristine_git_object: 89560b566073785535643e694c112bedbd3db13d
   src/continuous/models/__init__.py:
     id: 53b8497bf08d
-    last_write_checksum: sha1:ca3dfb73af17b1807a31e8aafc35035198f69324
-    pristine_git_object: cbba6e1b268d8c346e5d13411c242f0178886dcd
+    last_write_checksum: sha1:edbdb6f90886766b94533501fe723070b25dc917
+    pristine_git_object: fa15419028719831c2dd11648898f20e29c58cf5
   src/continuous/models/build_simulatorop.py:
     id: 5b877d0b3b8f
-    last_write_checksum: sha1:989c04d5cb28a6a9d136a667fcb27a24e4f93d6c
-    pristine_git_object: a669dad2bfc57128bcf28d151c1008889e55309f
+    last_write_checksum: sha1:d1fd45a8ddb8ba7e23a7ac6a003e784a619441b1
+    pristine_git_object: 722b6f8d676bff742f6214da1710e6c95c659b01
   src/continuous/models/buildsimulatorrequest.py:
     id: de11b8340ddc
     last_write_checksum: sha1:2921c10c03910de87e7f9ab15a74889b52ba325f
     pristine_git_object: 5404deeb51397f41dd576ddc37ae0e8236c9a97e
   src/continuous/models/buildworldrequest.py:
     id: 5cb1401e40d8
-    last_write_checksum: sha1:e523325fd793d329bc49fb3ffa5d19b7d037575e
-    pristine_git_object: eaa82b964bcf94aca0d3d0f0673bd43b1deba285
+    last_write_checksum: sha1:cf6662614cbed9d7c7a537674306531c5656f694
+    pristine_git_object: 7b27cb7806c4739b9246edca630204e1aff91565
   src/continuous/models/cancel_simulator_buildop.py:
     id: 8988645601d3
     last_write_checksum: sha1:135a059d8b3f149521f2e9eb5bb16673dc63d35a
@@ -442,10 +474,6 @@ trackedFiles:
     id: 8139d192ef67
     last_write_checksum: sha1:07dcd5f36d381de09428460797083680fae64f28
     pristine_git_object: fc52bbd3777a32488548795f83ae962dd1fba366
-  src/continuous/models/resourceerror.py:
-    id: c4c0d267722c
-    last_write_checksum: sha1:224aa4ce5dfc3f5b76a02d5d2012a226e35d03e6
-    pristine_git_object: 1d8c39e5417a924d574580fe00985091d23b52f3
   src/continuous/models/security.py:
     id: 33ba4508b704
     last_write_checksum: sha1:d49ecb22de44dbc6285143de6961ffd4504662ea
@@ -460,8 +488,12 @@ trackedFiles:
     pristine_git_object: 842f697420f34d9018bc0d57fac7ec473b465348
   src/continuous/models/simulator.py:
     id: a62892295ce3
-    last_write_checksum: sha1:862543286aab179b094544d1d2a8d3cdf5b0f6ac
-    pristine_git_object: 9cb18f831b59fee3d17d0091cb87ccd9a89b3280
+    last_write_checksum: sha1:740fb2c2be13f05ac7cc7c636e6aaa207e020cbc
+    pristine_git_object: 0a615dd976d885fd40a4f592263bca6e8c7487c0
+  src/continuous/models/simulatorerror.py:
+    id: ab2c6f1ead7f
+    last_write_checksum: sha1:fd3de37483dbd0a2aae8d1bd1ce2e578582c0fa6
+    pristine_git_object: 926c5ac29290b80dea491ed22f266831a0d5648b
   src/continuous/models/start_simulationop.py:
     id: 4445d5f93f9d
     last_write_checksum: sha1:f86c887e0ec2b27efcadbd6e69c24ce9768cbdfd
@@ -484,8 +516,24 @@ trackedFiles:
     pristine_git_object: 57a320f6c8ebf4bb0fc89503fe5d564a9f68b9bc
   src/continuous/models/world.py:
     id: d5b6e40ecae5
-    last_write_checksum: sha1:5e4fb5f7dbb9072eb096ec3e48e301a61c1257b3
-    pristine_git_object: e70d8baea648a758f4e58f3d2e8aa5e0c07a5dec
+    last_write_checksum: sha1:717a148c6cc73e11e5ad0adb199b2b5362940aab
+    pristine_git_object: d3fbe03e7efa1a8077c7726b90ba468719a2bca6
+  src/continuous/models/worldbuild.py:
+    id: ebf546b7f0f7
+    last_write_checksum: sha1:9c2e04fe8a43a8624346b28f77bb0ca3aad59dd2
+    pristine_git_object: efa614035b28d6475c58bd12c2084981cc700b36
+  src/continuous/models/worlddatasummary.py:
+    id: 78dc7cd3f55d
+    last_write_checksum: sha1:e388f4655492f723ece5ae650ee89ed6d767506f
+    pristine_git_object: d83fd9c8e367fb688b55ad847ba00e53c4c7db25
+  src/continuous/models/worlderror.py:
+    id: a65b24d4d456
+    last_write_checksum: sha1:afb5d96454c871be930e9d51ff120b65b1babf5c
+    pristine_git_object: d8dcdecccb091382937250317a0a1af407931bbb
+  src/continuous/models/worldrecordcount.py:
+    id: fcdf7cf06ae5
+    last_write_checksum: sha1:95ca2e764a59870f888efe99ff882a5417459e4c
+    pristine_git_object: 1fe0310a432199ff7ce36518bc660814bb926683
   src/continuous/models/worldsimulation.py:
     id: 7f52130ac1e3
     last_write_checksum: sha1:d65f2ad13aefaee34f16e2196de4eec18cfc0959
@@ -504,12 +552,12 @@ trackedFiles:
     pristine_git_object: 0aeeb029c5da501204fe4215cc60c55401147511
   src/continuous/simulations.py:
     id: 7cec67d30787
-    last_write_checksum: sha1:5ea4c033a9784810002710d32eed4ea451f04444
-    pristine_git_object: 002f15ec4ef21a729921e1c6620f8844a1473701
+    last_write_checksum: sha1:8ce102760c9457cc58ad09760cc5b039f4c08e40
+    pristine_git_object: 6e5d544067a779c6025bf42886e19b28c83116c4
   src/continuous/simulators.py:
     id: f782f4a769f3
-    last_write_checksum: sha1:6ee2e8f07da39b188bac8da8e0984d4a89c83d1c
-    pristine_git_object: d2d828b9bac2e14c2189530f0f3b10eb2237c32c
+    last_write_checksum: sha1:1e1a23d03ff68953d4ce1d0bf18eb51635631889
+    pristine_git_object: 726986b9ce6ad879967edf4883cb3ee3d5434270
   src/continuous/types/__init__.py:
     id: c9ee84986773
     last_write_checksum: sha1:f9ad14217f832e74f594285960125add50324be9
@@ -596,8 +644,8 @@ trackedFiles:
     pristine_git_object: ac217f473c5d52a454a2979b3eb35e66175d365c
   src/continuous/worlds.py:
     id: 3a95487cb08c
-    last_write_checksum: sha1:29c40f7ce8c246c1867d266a223fdc2485f67666
-    pristine_git_object: cdca2e6a8dce2560ddfcf0ed035138193500a558
+    last_write_checksum: sha1:844da115989e7cff649d379cb8693499d0088173
+    pristine_git_object: 6cbaf06d8b43952cf415f883c6635473fccb95e0
 examples:
   list-simulations:
     bad_request:
@@ -615,9 +663,9 @@ examples:
           limit: 50
       responses:
         "400":
-          application/problem+json: {"code": "simulator_unknown", "detail": "No Simulator was found with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\"."}
+          application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
         "500":
-          application/problem+json: {"code": "simulator_unknown", "detail": "No Simulator was found with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\"."}
+          application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
     speakeasy-default-list-simulations:
       parameters:
         query:
@@ -635,9 +683,9 @@ examples:
         application/json: {"name": "billing-sandbox", "simulator_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"}
       responses:
         "400":
-          application/problem+json: {"code": "simulator_unknown", "detail": "No Simulator was found with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\"."}
+          application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
         "500":
-          application/problem+json: {"code": "simulator_unknown", "detail": "No Simulator was found with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\"."}
+          application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
     speakeasy-default-create-simulation:
       requestBody:
         application/json: {"name": "billing-sandbox", "simulator_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"}
@@ -648,6 +696,14 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
+    bad_request_body:
+      requestBody:
+        application/json: {"name": "billing-sandbox", "simulator_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"}
+      responses:
+        "400":
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+        "500":
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
   delete-simulation:
     speakeasy-default-delete-simulation:
       parameters:
@@ -658,6 +714,26 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
+        "401":
+          application/problem+json: {"code": "<value>", "detail": "<value>"}
+    auth_invalid:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+    auth_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
   get-simulation:
     speakeasy-default-get-simulation:
       parameters:
@@ -670,6 +746,26 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
+        "401":
+          application/problem+json: {"code": "<value>", "detail": "<value>"}
+    auth_invalid:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+    auth_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
   fork-simulation:
     speakeasy-default-fork-simulation:
       parameters:
@@ -684,6 +780,17 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
+    bad_request_body:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"at_step": 42, "name": "billing-fork"}
+      responses:
+        "400":
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+        "500":
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
   start-simulation:
     speakeasy-default-start-simulation:
       parameters:
@@ -696,6 +803,26 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
+        "401":
+          application/problem+json: {"code": "<value>", "detail": "<value>"}
+    auth_invalid:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+    auth_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
   list-simulation-steps:
     bad_request:
       parameters:
@@ -733,6 +860,26 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
+        "401":
+          application/problem+json: {"code": "<value>", "detail": "<value>"}
+    auth_invalid:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+    auth_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
   mint-simulation-token:
     speakeasy-default-mint-simulation-token:
       parameters:
@@ -747,6 +894,17 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
+    bad_request_body:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"ttl_seconds": 3600}
+      responses:
+        "400":
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+        "500":
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
   list-simulators:
     bad_request:
       parameters:
@@ -774,9 +932,13 @@ examples:
         multipart/form-data: {"request": {"builder": "claude", "filter": [], "instructions": "Return stable example data for every operation.", "name": "billing-api", "spec_kind": "openapi"}}
       responses:
         "400":
-          application/problem+json: {"code": "simulator_unknown", "detail": "No Simulator was found with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\"."}
+          application/problem+json: {"code": "simulator_unknown", "detail": "The parent Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
         "500":
-          application/problem+json: {"code": "simulator_unknown", "detail": "No Simulator was found with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\"."}
+          application/problem+json: {"code": "simulator_unknown", "detail": "The parent Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
+        "429":
+          application/problem+json: {"code": "simulator_unknown", "detail": "The parent Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
+        "503":
+          application/problem+json: {"code": "simulator_unknown", "detail": "The parent Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
     speakeasy-default-build-simulator:
       requestBody:
         multipart/form-data: {"request": {"builder": "claude", "filter": [], "instructions": "Return stable example data for every operation.", "name": "billing-api", "spec_kind": "openapi"}}
@@ -787,6 +949,22 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
+        "429":
+          application/problem+json: {"code": "<value>", "detail": "<value>"}
+        "503":
+          application/problem+json: {"code": "<value>", "detail": "<value>"}
+    bad_request_body:
+      requestBody:
+        multipart/form-data: {"request": {"builder": "claude", "filter": [], "instructions": "Return stable example data for every operation.", "name": "billing-api", "spec_kind": "openapi"}}
+      responses:
+        "400":
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+        "429":
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+        "500":
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+        "503":
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
   delete-simulator:
     speakeasy-default-delete-simulator:
       parameters:
@@ -797,6 +975,26 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
+        "401":
+          application/problem+json: {"code": "<value>", "detail": "<value>"}
+    auth_invalid:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+    auth_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
   get-simulator:
     speakeasy-default-get-simulator:
       parameters:
@@ -809,6 +1007,26 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
+        "401":
+          application/problem+json: {"code": "<value>", "detail": "<value>"}
+    auth_invalid:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+    auth_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
   cancel-simulator-build:
     speakeasy-default-cancel-simulator-build:
       parameters:
@@ -821,6 +1039,26 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
+        "401":
+          application/problem+json: {"code": "<value>", "detail": "<value>"}
+    auth_invalid:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+    auth_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
   list-worlds:
     bad_request:
       parameters:
@@ -848,9 +1086,9 @@ examples:
         application/json: {"instructions": "Use stable example data for each Simulator.", "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"]}
       responses:
         "400":
-          application/problem+json: {"code": "simulator_unknown", "detail": "No Simulator was found with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\"."}
+          application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
         "500":
-          application/problem+json: {"code": "simulator_unknown", "detail": "No Simulator was found with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\"."}
+          application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
     speakeasy-default-build-world:
       requestBody:
         application/json: {"instructions": "Use stable example data for each Simulator.", "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"]}
@@ -861,6 +1099,14 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
+    bad_request_body:
+      requestBody:
+        application/json: {"instructions": "Use stable example data for each Simulator.", "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"]}
+      responses:
+        "400":
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+        "500":
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
   delete-world:
     speakeasy-default-delete-world:
       parameters:
@@ -871,6 +1117,26 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
+        "401":
+          application/problem+json: {"code": "<value>", "detail": "<value>"}
+    auth_invalid:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+    auth_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
   get-world:
     speakeasy-default-get-world:
       parameters:
@@ -883,6 +1149,26 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
+        "401":
+          application/problem+json: {"code": "<value>", "detail": "<value>"}
+    auth_invalid:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+    auth_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
   cancel-world-build:
     speakeasy-default-cancel-world-build:
       parameters:
@@ -895,6 +1181,26 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
+        "401":
+          application/problem+json: {"code": "<value>", "detail": "<value>"}
+    auth_invalid:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+    auth_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
   start-world:
     speakeasy-default-start-world:
       parameters:
@@ -907,6 +1213,26 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
+        "401":
+          application/problem+json: {"code": "<value>", "detail": "<value>"}
+    auth_invalid:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+    auth_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
   stop-world:
     speakeasy-default-stop-world:
       parameters:
@@ -919,4 +1245,25 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
+        "401":
+          application/problem+json: {"code": "<value>", "detail": "<value>"}
+    auth_invalid:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+    auth_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
 examplesVersion: 1.0.2
+releaseNotes: "## Python SDK Changes:\n* `continuous.simulations.list_simulations()`:  `error` **Changed** (Breaking ⚠️)\n* `continuous.simulations.create_simulation()`:  `error` **Changed** (Breaking ⚠️)\n* `continuous.simulations.delete_simulation()`:  `error` **Changed** (Breaking ⚠️)\n* `continuous.simulations.get_simulation()`:  `error.status[400]` **Removed** (Breaking ⚠️)\n* `continuous.simulations.start_simulation()`:  `error.status[400]` **Removed** (Breaking ⚠️)\n* `continuous.simulations.stop_simulation()`:  `error` **Changed** (Breaking ⚠️)\n* `continuous.simulators.list_simulators()`: \n  *  `response.simulators[].error.code` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `continuous.simulators.build_simulator()`: \n  *  `response.error.code` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `continuous.simulators.delete_simulator()`:  `error.status[400]` **Removed** (Breaking ⚠️)\n* `continuous.simulators.get_simulator()`: \n  *  `response.error.code` **Changed** (Breaking ⚠️)\n  *  `error.status[400]` **Removed** (Breaking ⚠️)\n* `continuous.simulators.cancel_simulator_build()`: \n  *  `response.error.code` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `continuous.worlds.list_worlds()`: \n  *  `response.worlds[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `continuous.worlds.build_world()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `continuous.worlds.delete_world()`:  `error` **Changed** (Breaking ⚠️)\n* `continuous.worlds.get_world()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error.status[400]` **Removed** (Breaking ⚠️)\n* `continuous.worlds.cancel_world_build()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `continuous.worlds.start_world()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error.status[400]` **Removed** (Breaking ⚠️)\n* `continuous.worlds.stop_world()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error.status[400]` **Removed** (Breaking ⚠️)\n"

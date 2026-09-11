@@ -100,7 +100,7 @@ class Simulations(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.ListSimulationsResponse, http_res)
         if utils.match_response(
-            http_res, ["400", "401", "403", "404", "422"], "application/problem+json"
+            http_res, ["400", "401", "422"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -208,7 +208,7 @@ class Simulations(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.ListSimulationsResponse, http_res)
         if utils.match_response(
-            http_res, ["400", "401", "403", "404", "422"], "application/problem+json"
+            http_res, ["400", "401", "422"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -314,7 +314,7 @@ class Simulations(BaseSDK):
             return unmarshal_json_response(models.CreatedSimulation, http_res)
         if utils.match_response(
             http_res,
-            ["400", "401", "403", "404", "408", "409", "413", "415", "422", "429"],
+            ["400", "401", "408", "409", "413", "415", "422", "429"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -423,7 +423,7 @@ class Simulations(BaseSDK):
             return unmarshal_json_response(models.CreatedSimulation, http_res)
         if utils.match_response(
             http_res,
-            ["400", "401", "403", "404", "408", "409", "413", "415", "422", "429"],
+            ["400", "401", "408", "409", "413", "415", "422", "429"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -525,13 +525,11 @@ class Simulations(BaseSDK):
         if utils.match_response(http_res, "204", "*"):
             return
         if utils.match_response(
-            http_res, ["400", "401", "403", "404", "409"], "application/problem+json"
+            http_res, ["401", "403", "404", "409"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
-        if utils.match_response(
-            http_res, ["500", "503", "504"], "application/problem+json"
-        ):
+        if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
@@ -626,13 +624,11 @@ class Simulations(BaseSDK):
         if utils.match_response(http_res, "204", "*"):
             return
         if utils.match_response(
-            http_res, ["400", "401", "403", "404", "409"], "application/problem+json"
+            http_res, ["401", "403", "404", "409"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
-        if utils.match_response(
-            http_res, ["500", "503", "504"], "application/problem+json"
-        ):
+        if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
@@ -727,7 +723,7 @@ class Simulations(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.Simulation, http_res)
         if utils.match_response(
-            http_res, ["400", "401", "403", "404"], "application/problem+json"
+            http_res, ["401", "403", "404"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -826,7 +822,7 @@ class Simulations(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.Simulation, http_res)
         if utils.match_response(
-            http_res, ["400", "401", "403", "404"], "application/problem+json"
+            http_res, ["401", "403", "404"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -1153,9 +1149,7 @@ class Simulations(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.Simulation, http_res)
         if utils.match_response(
-            http_res,
-            ["400", "401", "403", "404", "409", "429"],
-            "application/problem+json",
+            http_res, ["401", "403", "404", "409", "429"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -1256,9 +1250,7 @@ class Simulations(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.Simulation, http_res)
         if utils.match_response(
-            http_res,
-            ["400", "401", "403", "404", "409", "429"],
-            "application/problem+json",
+            http_res, ["401", "403", "404", "409", "429"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -1573,13 +1565,11 @@ class Simulations(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.Simulation, http_res)
         if utils.match_response(
-            http_res, ["400", "401", "403", "404", "409"], "application/problem+json"
+            http_res, ["401", "403", "404", "409"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
-        if utils.match_response(
-            http_res, ["500", "503", "504"], "application/problem+json"
-        ):
+        if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
@@ -1674,13 +1664,11 @@ class Simulations(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.Simulation, http_res)
         if utils.match_response(
-            http_res, ["400", "401", "403", "404", "409"], "application/problem+json"
+            http_res, ["401", "403", "404", "409"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
-        if utils.match_response(
-            http_res, ["500", "503", "504"], "application/problem+json"
-        ):
+        if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):

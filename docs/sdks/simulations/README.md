@@ -57,7 +57,7 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 403, 404, 422       | application/problem+json      |
+| errors.Error                  | 400, 401, 422                 | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
@@ -65,7 +65,25 @@ with Continuous(
 
 Creates a Simulation from a ready Simulator and starts it. The response includes the Simulation endpoint and a token that expires in 1 hour. List and get do not return the token.
 
-### Example Usage
+### Example Usage: bad_request_body
+
+<!-- UsageSnippet language="python" operationID="create-simulation" method="post" path="/v1/simulations" example="bad_request_body" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.simulations.create_simulation(simulator_id="smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", name="billing-sandbox")
+
+    # Handle response
+    print(res)
+
+```
+### Example Usage: simulator_unknown
 
 <!-- UsageSnippet language="python" operationID="create-simulation" method="post" path="/v1/simulations" example="simulator_unknown" -->
 ```python
@@ -98,11 +116,11 @@ with Continuous(
 
 ### Errors
 
-| Error Type                                       | Status Code                                      | Content Type                                     |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| errors.Error                                     | 400, 401, 403, 404, 408, 409, 413, 415, 422, 429 | application/problem+json                         |
-| errors.Error                                     | 500, 503, 504                                    | application/problem+json                         |
-| errors.ContinuousDefaultError                    | 4XX, 5XX                                         | \*/\*                                            |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.Error                           | 400, 401, 408, 409, 413, 415, 422, 429 | application/problem+json               |
+| errors.Error                           | 500, 503, 504                          | application/problem+json               |
+| errors.ContinuousDefaultError          | 4XX, 5XX                               | \*/\*                                  |
 
 ## delete_simulation
 
@@ -137,8 +155,8 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 403, 404, 409       | application/problem+json      |
-| errors.Error                  | 500, 503, 504                 | application/problem+json      |
+| errors.Error                  | 401, 403, 404, 409            | application/problem+json      |
+| errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
 ## get_simulation
@@ -179,7 +197,7 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 403, 404            | application/problem+json      |
+| errors.Error                  | 401, 403, 404                 | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
@@ -189,7 +207,7 @@ Creates a new Simulation from the source Simulation's current state, or from an 
 
 ### Example Usage
 
-<!-- UsageSnippet language="python" operationID="fork-simulation" method="post" path="/v1/simulations/{id}/fork" -->
+<!-- UsageSnippet language="python" operationID="fork-simulation" method="post" path="/v1/simulations/{id}/fork" example="bad_request_body" -->
 ```python
 from continuous import Continuous
 import os
@@ -265,7 +283,7 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 403, 404, 409, 429  | application/problem+json      |
+| errors.Error                  | 401, 403, 404, 409, 429       | application/problem+json      |
 | errors.Error                  | 500, 503, 504                 | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
@@ -351,8 +369,8 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 403, 404, 409       | application/problem+json      |
-| errors.Error                  | 500, 503, 504                 | application/problem+json      |
+| errors.Error                  | 401, 403, 404, 409            | application/problem+json      |
+| errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
 ## mint_simulation_token
@@ -361,7 +379,7 @@ Creates another token for requests to the Simulation endpoint. Send it in the X-
 
 ### Example Usage
 
-<!-- UsageSnippet language="python" operationID="mint-simulation-token" method="post" path="/v1/simulations/{id}/tokens" -->
+<!-- UsageSnippet language="python" operationID="mint-simulation-token" method="post" path="/v1/simulations/{id}/tokens" example="bad_request_body" -->
 ```python
 from continuous import Continuous
 import os

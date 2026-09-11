@@ -1,0 +1,11 @@
+# WorldDataSummary
+
+
+## Fields
+
+| Field                                                                           | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `assumptions`                                                                   | List[*str*]                                                                     | :heavy_check_mark:                                                              | Defaults and inferred choices used to prepare the starting data.                |
+| `conditions`                                                                    | List[*str*]                                                                     | :heavy_check_mark:                                                              | Record conditions and counts computed from a complete census of served records. |
+| `records`                                                                       | List[[models.WorldRecordCount](../models/worldrecordcount.md)]                  | :heavy_check_mark:                                                              | Observed starting record counts for each member and record type.                |
+| `relationships`                                                                 | List[*str*]                                                                     | :heavy_check_mark:                                                              | Shared relationships checked against the data and served API values.            |
