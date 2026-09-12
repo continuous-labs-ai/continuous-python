@@ -1,14 +1,14 @@
-# Stage
+# WorldBuildStage
 
 Current phase of starting-data preparation.
 
 ## Example Usage
 
 ```python
-from continuous.models import Stage
+from continuous.models import WorldBuildStage
 
 # Open enum: unrecognized values are captured as UnrecognizedStr
-value: Stage = "planning"
+value: WorldBuildStage = "planning"
 ```
 
 

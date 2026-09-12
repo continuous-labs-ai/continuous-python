@@ -8,7 +8,7 @@ from typing import List, Literal, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-Builder = Literal[
+BuildSimulatorRequestBuilder = Literal[
     "openai",
     "claude",
 ]
@@ -23,7 +23,7 @@ r"""Source specification format. Omission detects the format."""
 
 
 class BuildSimulatorRequestTypedDict(TypedDict):
-    builder: NotRequired[Builder]
+    builder: NotRequired[BuildSimulatorRequestBuilder]
     r"""Model provider that builds the Simulator. Defaults to claude."""
     filter_: NotRequired[List[str]]
     r"""Regular expressions (RE2 syntax) that select the operations to implement. Each is matched against the OpenAPI operationId or the WSDL operation name; an operation is kept when any expression matches, and an OpenAPI operation without an operationId is dropped. At most 64 expressions of at most 1,024 characters each. Omit or send an empty list to keep every operation. Not allowed for an incremental build."""
@@ -38,7 +38,7 @@ class BuildSimulatorRequestTypedDict(TypedDict):
 
 
 class BuildSimulatorRequest(BaseModel):
-    builder: Optional[Builder] = "claude"
+    builder: Optional[BuildSimulatorRequestBuilder] = "claude"
     r"""Model provider that builds the Simulator. Defaults to claude."""
 
     filter_: Annotated[Optional[List[str]], pydantic.Field(alias="filter")] = None

@@ -8,7 +8,7 @@ from typing import Literal, Optional, Union
 from typing_extensions import NotRequired, TypedDict
 
 
-Stage = Union[
+WorldBuildStage = Union[
     Literal[
         "planning",
         "generating",
@@ -21,13 +21,13 @@ r"""Current phase of starting-data preparation."""
 
 
 class WorldBuildTypedDict(TypedDict):
-    stage: Stage
+    stage: WorldBuildStage
     r"""Current phase of starting-data preparation."""
     summary: NotRequired[WorldDataSummaryTypedDict]
 
 
 class WorldBuild(BaseModel):
-    stage: Stage
+    stage: WorldBuildStage
     r"""Current phase of starting-data preparation."""
 
     summary: Optional[WorldDataSummary] = None
