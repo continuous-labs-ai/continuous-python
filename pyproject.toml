@@ -1,6 +1,6 @@
 [project]
 name = "continuous-labs"
-version = "0.1.6"
+version = "0.1.7"
 description = "Python SDK for the Continuous Simulation API."
 authors = [{ name = "Continuous Labs" },]
 readme = "README-PYPI.md"

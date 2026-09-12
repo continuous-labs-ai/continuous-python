@@ -15,8 +15,8 @@ if TYPE_CHECKING:
     )
     from .buildsimulatorrequest import (
         BuildSimulatorRequest,
+        BuildSimulatorRequestBuilder,
         BuildSimulatorRequestTypedDict,
-        Builder,
         SpecKind,
     )
     from .buildworldrequest import BuildWorldRequest, BuildWorldRequestTypedDict
@@ -97,6 +97,13 @@ if TYPE_CHECKING:
     from .simulation import Simulation, SimulationStatus, SimulationTypedDict
     from .simulationtoken import SimulationToken, SimulationTokenTypedDict
     from .simulator import Simulator, SimulatorStatus, SimulatorTypedDict, Source
+    from .simulatorbuildprogress import (
+        LastSubmission,
+        SimulatorBuildProgress,
+        SimulatorBuildProgressBuilder,
+        SimulatorBuildProgressStage,
+        SimulatorBuildProgressTypedDict,
+    )
     from .simulatorerror import (
         SimulatorError,
         SimulatorErrorCode,
@@ -111,7 +118,7 @@ if TYPE_CHECKING:
     from .stop_simulationop import StopSimulationRequest, StopSimulationRequestTypedDict
     from .stop_worldop import StopWorldRequest, StopWorldRequestTypedDict
     from .world import World, WorldStatus, WorldTypedDict
-    from .worldbuild import Stage, WorldBuild, WorldBuildTypedDict
+    from .worldbuild import WorldBuild, WorldBuildStage, WorldBuildTypedDict
     from .worlddatasummary import WorldDataSummary, WorldDataSummaryTypedDict
     from .worlderror import WorldError, WorldErrorCode, WorldErrorTypedDict
     from .worldrecordcount import WorldRecordCount, WorldRecordCountTypedDict
@@ -119,12 +126,12 @@ if TYPE_CHECKING:
 
 __all__ = [
     "BuildSimulatorRequest",
+    "BuildSimulatorRequestBuilder",
     "BuildSimulatorRequestTypedDict",
     "BuildSimulatorResponse",
     "BuildSimulatorResponseTypedDict",
     "BuildWorldRequest",
     "BuildWorldRequestTypedDict",
-    "Builder",
     "CancelSimulatorBuildRequest",
     "CancelSimulatorBuildRequestTypedDict",
     "CancelWorldBuildRequest",
@@ -150,6 +157,7 @@ __all__ = [
     "GetSimulatorRequestTypedDict",
     "GetWorldRequest",
     "GetWorldRequestTypedDict",
+    "LastSubmission",
     "ListSimulationStepsRequest",
     "ListSimulationStepsRequestTypedDict",
     "ListSimulationStepsResponse",
@@ -180,6 +188,10 @@ __all__ = [
     "SimulationTokenTypedDict",
     "SimulationTypedDict",
     "Simulator",
+    "SimulatorBuildProgress",
+    "SimulatorBuildProgressBuilder",
+    "SimulatorBuildProgressStage",
+    "SimulatorBuildProgressTypedDict",
     "SimulatorError",
     "SimulatorErrorCode",
     "SimulatorErrorTypedDict",
@@ -191,7 +203,6 @@ __all__ = [
     "Spec",
     "SpecKind",
     "SpecTypedDict",
-    "Stage",
     "StartSimulationRequest",
     "StartSimulationRequestTypedDict",
     "StartWorldRequest",
@@ -204,6 +215,7 @@ __all__ = [
     "StopWorldRequestTypedDict",
     "World",
     "WorldBuild",
+    "WorldBuildStage",
     "WorldBuildTypedDict",
     "WorldDataSummary",
     "WorldDataSummaryTypedDict",
@@ -226,8 +238,8 @@ _dynamic_imports: dict[str, str] = {
     "Spec": ".build_simulatorop",
     "SpecTypedDict": ".build_simulatorop",
     "BuildSimulatorRequest": ".buildsimulatorrequest",
+    "BuildSimulatorRequestBuilder": ".buildsimulatorrequest",
     "BuildSimulatorRequestTypedDict": ".buildsimulatorrequest",
-    "Builder": ".buildsimulatorrequest",
     "SpecKind": ".buildsimulatorrequest",
     "BuildWorldRequest": ".buildworldrequest",
     "BuildWorldRequestTypedDict": ".buildworldrequest",
@@ -289,6 +301,11 @@ _dynamic_imports: dict[str, str] = {
     "SimulatorStatus": ".simulator",
     "SimulatorTypedDict": ".simulator",
     "Source": ".simulator",
+    "LastSubmission": ".simulatorbuildprogress",
+    "SimulatorBuildProgress": ".simulatorbuildprogress",
+    "SimulatorBuildProgressBuilder": ".simulatorbuildprogress",
+    "SimulatorBuildProgressStage": ".simulatorbuildprogress",
+    "SimulatorBuildProgressTypedDict": ".simulatorbuildprogress",
     "SimulatorError": ".simulatorerror",
     "SimulatorErrorCode": ".simulatorerror",
     "SimulatorErrorTypedDict": ".simulatorerror",
@@ -305,8 +322,8 @@ _dynamic_imports: dict[str, str] = {
     "World": ".world",
     "WorldStatus": ".world",
     "WorldTypedDict": ".world",
-    "Stage": ".worldbuild",
     "WorldBuild": ".worldbuild",
+    "WorldBuildStage": ".worldbuild",
     "WorldBuildTypedDict": ".worldbuild",
     "WorldDataSummary": ".worlddatasummary",
     "WorldDataSummaryTypedDict": ".worlddatasummary",
