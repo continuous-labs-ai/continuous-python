@@ -8,6 +8,26 @@ from typing import Literal, Optional, Union
 from typing_extensions import NotRequired, TypedDict
 
 
+WorldBuildBuilder = Union[
+    Literal[
+        "openai",
+        "claude",
+    ],
+    UnrecognizedStr,
+]
+r"""Selected model provider. Absent for builds created before provider selection."""
+
+
+WorldBuildLastSubmission = Union[
+    Literal[
+        "accepted",
+        "rejected",
+    ],
+    UnrecognizedStr,
+]
+r"""Outcome of the most recent plan submission."""
+
+
 WorldBuildStage = Union[
     Literal[
         "planning",
@@ -23,18 +43,52 @@ r"""Current phase of starting-data preparation."""
 class WorldBuildTypedDict(TypedDict):
     stage: WorldBuildStage
     r"""Current phase of starting-data preparation."""
+    builder: NotRequired[WorldBuildBuilder]
+    r"""Selected model provider. Absent for builds created before provider selection."""
+    last_submission: NotRequired[WorldBuildLastSubmission]
+    r"""Outcome of the most recent plan submission."""
+    last_tool: NotRequired[str]
+    r"""Name of the most recent tool. Tool arguments and output are private."""
+    submissions: NotRequired[int]
+    r"""Number of submitted starting-data plans."""
     summary: NotRequired[WorldDataSummaryTypedDict]
+    tool_calls: NotRequired[int]
+    r"""Number of agent tool calls."""
 
 
 class WorldBuild(BaseModel):
     stage: WorldBuildStage
     r"""Current phase of starting-data preparation."""
 
+    builder: Optional[WorldBuildBuilder] = None
+    r"""Selected model provider. Absent for builds created before provider selection."""
+
+    last_submission: Optional[WorldBuildLastSubmission] = None
+    r"""Outcome of the most recent plan submission."""
+
+    last_tool: Optional[str] = None
+    r"""Name of the most recent tool. Tool arguments and output are private."""
+
+    submissions: Optional[int] = None
+    r"""Number of submitted starting-data plans."""
+
     summary: Optional[WorldDataSummary] = None
+
+    tool_calls: Optional[int] = None
+    r"""Number of agent tool calls."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["summary"])
+        optional_fields = set(
+            [
+                "builder",
+                "last_submission",
+                "last_tool",
+                "submissions",
+                "summary",
+                "tool_calls",
+            ]
+        )
         serialized = handler(self)
         m = {}
 

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from continuous.types import BaseModel, UNSET_SENTINEL
+from datetime import datetime
 from pydantic import model_serializer
 from typing import Optional
 from typing_extensions import NotRequired, TypedDict
@@ -12,6 +13,8 @@ class CreateSimulationRequestTypedDict(TypedDict):
     r"""ID of the ready Simulator."""
     name: NotRequired[str]
     r"""Optional Simulation name. Omission generates a name."""
+    start_time: NotRequired[datetime]
+    r"""Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds."""
 
 
 class CreateSimulationRequest(BaseModel):
@@ -21,9 +24,12 @@ class CreateSimulationRequest(BaseModel):
     name: Optional[str] = None
     r"""Optional Simulation name. Omission generates a name."""
 
+    start_time: Optional[datetime] = None
+    r"""Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["name"])
+        optional_fields = set(["name", "start_time"])
         serialized = handler(self)
         m = {}
 

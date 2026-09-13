@@ -26,8 +26,12 @@ r"""building while the build runs; ready when it can be started; running or stop
 
 
 class WorldTypedDict(TypedDict):
+    active_advance_id: Nullable[str]
+    r"""Current clock advance operation ID, or null."""
     created_at: datetime
     r"""Time when the World build started."""
+    current_time: datetime
+    r"""Current shared simulated time."""
     error: Nullable[WorldErrorTypedDict]
     id: str
     r"""World ID."""
@@ -37,14 +41,22 @@ class WorldTypedDict(TypedDict):
     r"""Created member Simulations. This list is empty before first start."""
     simulators: List[str]
     r"""Simulator IDs in member order."""
+    start_time: datetime
+    r"""Initial simulated time. Before first Start this is the default time."""
     status: WorldStatus
     r"""building while the build runs; ready when it can be started; running or stopped once its Simulations exist; failed when building or first start fails; canceled when the build was canceled."""
     build: NotRequired[WorldBuildTypedDict]
 
 
 class World(BaseModel):
+    active_advance_id: Nullable[str]
+    r"""Current clock advance operation ID, or null."""
+
     created_at: datetime
     r"""Time when the World build started."""
+
+    current_time: datetime
+    r"""Current shared simulated time."""
 
     error: Nullable[WorldError]
 
@@ -60,6 +72,9 @@ class World(BaseModel):
     simulators: List[str]
     r"""Simulator IDs in member order."""
 
+    start_time: datetime
+    r"""Initial simulated time. Before first Start this is the default time."""
+
     status: WorldStatus
     r"""building while the build runs; ready when it can be started; running or stopped once its Simulations exist; failed when building or first start fails; canceled when the build was canceled."""
 
@@ -68,7 +83,7 @@ class World(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(["build"])
-        nullable_fields = set(["error"])
+        nullable_fields = set(["active_advance_id", "error"])
         serialized = handler(self)
         m = {}
 

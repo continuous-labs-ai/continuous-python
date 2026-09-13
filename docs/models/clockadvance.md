@@ -1,0 +1,15 @@
+# ClockAdvance
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `error`                                                              | [Nullable[models.ResourceError]](../models/resourceerror.md)         | :heavy_check_mark:                                                   | N/A                                                                  |
+| `event_count`                                                        | *int*                                                                | :heavy_check_mark:                                                   | Number of committed event executions.                                |
+| `from_`                                                              | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | Clock before the requested advance.                                  |
+| `id`                                                                 | *str*                                                                | :heavy_check_mark:                                                   | Stable clock advance operation ID.                                   |
+| `members`                                                            | List[[models.ClockAdvanceMember](../models/clockadvancemember.md)]   | :heavy_check_mark:                                                   | Progress for each participating Simulation.                          |
+| `status`                                                             | [models.ClockAdvanceStatus](../models/clockadvancestatus.md)         | :heavy_check_mark:                                                   | Durable operation state. Poll while pending or running.              |
+| `step`                                                               | *Nullable[int]*                                                      | :heavy_check_mark:                                                   | Committed local step, or null for no change or a World operation.    |
+| `to`                                                                 | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | Requested absolute target time.                                      |
