@@ -10,6 +10,9 @@ Create Simulations from ready Simulators, then fork, stop, start, and delete the
 * [create_simulation](#create_simulation) - Create Simulation
 * [delete_simulation](#delete_simulation) - Delete Simulation
 * [get_simulation](#get_simulation) - Get Simulation
+* [advance_simulation_time](#advance_simulation_time) - Advance Simulation Time
+* [get_simulation_advance](#get_simulation_advance) - Get Simulation Clock Advance
+* [list_simulation_advance_events](#list_simulation_advance_events) - List Clock Advance Events
 * [fork_simulation](#fork_simulation) - Fork Simulation
 * [start_simulation](#start_simulation) - Start Simulation
 * [list_simulation_steps](#list_simulation_steps) - List Simulation Steps
@@ -104,11 +107,12 @@ with Continuous(
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `simulator_id`                                                      | *str*                                                               | :heavy_check_mark:                                                  | ID of the ready Simulator.                                          |
-| `name`                                                              | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Optional Simulation name. Omission generates a name.                |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `simulator_id`                                                                                            | *str*                                                                                                     | :heavy_check_mark:                                                                                        | ID of the ready Simulator.                                                                                |
+| `name`                                                                                                    | *Optional[str]*                                                                                           | :heavy_minus_sign:                                                                                        | Optional Simulation name. Omission generates a name.                                                      |
+| `start_time`                                                                                              | [date](https://docs.python.org/3/library/datetime.html#date-objects)                                      | :heavy_minus_sign:                                                                                        | Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds. |
+| `retries`                                                                                                 | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                          | :heavy_minus_sign:                                                                                        | Configuration to override the default retry behavior of the client.                                       |
 
 ### Response
 
@@ -198,6 +202,139 @@ with Continuous(
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | errors.Error                  | 401, 403, 404                 | application/problem+json      |
+| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
+
+## advance_simulation_time
+
+Schedules an absolute clock advance. Each successful advance commits all due local events in one step. World members advance through their World. Poll the returned operation until it completes.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="advance-simulation-time" method="post" path="/v1/simulations/{id}/advance-time" example="bad_request_body" -->
+```python
+from continuous import Continuous
+from continuous.utils import parse_datetime
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.simulations.advance_simulation_time(id="<id>", idempotency_key="<value>", to=parse_datetime("2026-11-25T01:01:24.107Z"))
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `id`                                                                                | *str*                                                                               | :heavy_check_mark:                                                                  | Simulation or World ID.                                                             |
+| `idempotency_key`                                                                   | *str*                                                                               | :heavy_check_mark:                                                                  | Stable key for this request. Reuse with the same target returns the same operation. |
+| `to`                                                                                | [date](https://docs.python.org/3/library/datetime.html#date-objects)                | :heavy_check_mark:                                                                  | Absolute target time in RFC 3339, with at most millisecond precision.               |
+| `retries`                                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                    | :heavy_minus_sign:                                                                  | Configuration to override the default retry behavior of the client.                 |
+
+### Response
+
+**[models.ClockAdvance](../../models/clockadvance.md)**
+
+### Errors
+
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| errors.Error                                | 400, 401, 403, 404, 408, 409, 413, 415, 422 | application/problem+json                    |
+| errors.Error                                | 500, 503                                    | application/problem+json                    |
+| errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
+
+## get_simulation_advance
+
+Returns durable clock progress, the event count, and the committed step or failure.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="get-simulation-advance" method="get" path="/v1/simulations/{id}/advances/{advance_id}" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.simulations.get_simulation_advance(id="<id>", advance_id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Simulation or World ID.                                             |
+| `advance_id`                                                        | *str*                                                               | :heavy_check_mark:                                                  | Clock advance operation ID.                                         |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.ClockAdvance](../../models/clockadvance.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| errors.Error                  | 401, 403, 404, 409            | application/problem+json      |
+| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
+
+## list_simulation_advance_events
+
+Returns the ordered event trace for a committed advance. The Simulation must be running or paused. Forks retain traces in their inherited state.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="list-simulation-advance-events" method="get" path="/v1/simulations/{id}/advances/{advance_id}/events" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.simulations.list_simulation_advance_events(id="<id>", advance_id="<id>", limit=50)
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Simulation ID.                                                      |
+| `advance_id`                                                        | *str*                                                               | :heavy_check_mark:                                                  | Advance ID. A historical fork can read inherited runtime receipts.  |
+| `cursor`                                                            | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Cursor from the previous page.                                      |
+| `limit`                                                             | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Page size, up to 200.                                               |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.ListAdvanceEventsOutputBody](../../models/listadvanceeventsoutputbody.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| errors.Error                  | 400, 401, 403, 404, 409, 422  | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 

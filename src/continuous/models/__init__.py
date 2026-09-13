@@ -5,6 +5,18 @@ from typing import Any, TYPE_CHECKING
 from continuous.utils.dynamic_imports import lazy_getattr, lazy_dir
 
 if TYPE_CHECKING:
+    from .advance_simulation_timeop import (
+        AdvanceSimulationTimeRequest,
+        AdvanceSimulationTimeRequestTypedDict,
+    )
+    from .advance_world_timeop import (
+        AdvanceWorldTimeRequest,
+        AdvanceWorldTimeRequestTypedDict,
+    )
+    from .advancetimeinputbody import (
+        AdvanceTimeInputBody,
+        AdvanceTimeInputBodyTypedDict,
+    )
     from .build_simulatorop import (
         BuildSimulatorResponse,
         BuildSimulatorResponseTypedDict,
@@ -19,7 +31,11 @@ if TYPE_CHECKING:
         BuildSimulatorRequestTypedDict,
         SpecKind,
     )
-    from .buildworldrequest import BuildWorldRequest, BuildWorldRequestTypedDict
+    from .buildworldrequest import (
+        BuildWorldRequest,
+        BuildWorldRequestBuilder,
+        BuildWorldRequestTypedDict,
+    )
     from .cancel_simulator_buildop import (
         CancelSimulatorBuildRequest,
         CancelSimulatorBuildRequestTypedDict,
@@ -28,6 +44,13 @@ if TYPE_CHECKING:
         CancelWorldBuildRequest,
         CancelWorldBuildRequestTypedDict,
     )
+    from .clockadvance import ClockAdvance, ClockAdvanceStatus, ClockAdvanceTypedDict
+    from .clockadvancemember import (
+        ClockAdvanceMember,
+        ClockAdvanceMemberStatus,
+        ClockAdvanceMemberTypedDict,
+    )
+    from .clockevent import ClockEvent, ClockEventTypedDict
     from .createdsimulation import (
         CreatedSimulation,
         CreatedSimulationStatus,
@@ -54,9 +77,21 @@ if TYPE_CHECKING:
         ForkSimulationRequest,
         ForkSimulationRequestTypedDict,
     )
+    from .get_simulation_advanceop import (
+        GetSimulationAdvanceRequest,
+        GetSimulationAdvanceRequestTypedDict,
+    )
     from .get_simulationop import GetSimulationRequest, GetSimulationRequestTypedDict
     from .get_simulatorop import GetSimulatorRequest, GetSimulatorRequestTypedDict
+    from .get_world_advanceop import (
+        GetWorldAdvanceRequest,
+        GetWorldAdvanceRequestTypedDict,
+    )
     from .get_worldop import GetWorldRequest, GetWorldRequestTypedDict
+    from .list_simulation_advance_eventsop import (
+        ListSimulationAdvanceEventsRequest,
+        ListSimulationAdvanceEventsRequestTypedDict,
+    )
     from .list_simulation_stepsop import (
         ListSimulationStepsRequest,
         ListSimulationStepsRequestTypedDict,
@@ -72,6 +107,10 @@ if TYPE_CHECKING:
         ListSimulatorsStatus,
     )
     from .list_worldsop import ListWorldsRequest, ListWorldsRequestTypedDict
+    from .listadvanceeventsoutputbody import (
+        ListAdvanceEventsOutputBody,
+        ListAdvanceEventsOutputBodyTypedDict,
+    )
     from .listsimulationsresponse import (
         ListSimulationsResponse,
         ListSimulationsResponseTypedDict,
@@ -93,14 +132,15 @@ if TYPE_CHECKING:
         MintSimulationTokenRequest,
         MintSimulationTokenRequestTypedDict,
     )
+    from .resourceerror import ResourceError, ResourceErrorTypedDict
     from .security import Security, SecurityTypedDict
     from .simulation import Simulation, SimulationStatus, SimulationTypedDict
     from .simulationtoken import SimulationToken, SimulationTokenTypedDict
     from .simulator import Simulator, SimulatorStatus, SimulatorTypedDict, Source
     from .simulatorbuildprogress import (
-        LastSubmission,
         SimulatorBuildProgress,
         SimulatorBuildProgressBuilder,
+        SimulatorBuildProgressLastSubmission,
         SimulatorBuildProgressStage,
         SimulatorBuildProgressTypedDict,
     )
@@ -113,29 +153,54 @@ if TYPE_CHECKING:
         StartSimulationRequest,
         StartSimulationRequestTypedDict,
     )
-    from .start_worldop import StartWorldRequest, StartWorldRequestTypedDict
-    from .step import Step, StepTypedDict
+    from .start_worldop import (
+        StartWorldRequestRequest,
+        StartWorldRequestRequestTypedDict,
+    )
+    from .startworldrequest import StartWorldRequest, StartWorldRequestTypedDict
+    from .step import Kind, Step, StepTypedDict
     from .stop_simulationop import StopSimulationRequest, StopSimulationRequestTypedDict
     from .stop_worldop import StopWorldRequest, StopWorldRequestTypedDict
     from .world import World, WorldStatus, WorldTypedDict
-    from .worldbuild import WorldBuild, WorldBuildStage, WorldBuildTypedDict
+    from .worldbuild import (
+        WorldBuild,
+        WorldBuildBuilder,
+        WorldBuildLastSubmission,
+        WorldBuildStage,
+        WorldBuildTypedDict,
+    )
     from .worlddatasummary import WorldDataSummary, WorldDataSummaryTypedDict
     from .worlderror import WorldError, WorldErrorCode, WorldErrorTypedDict
     from .worldrecordcount import WorldRecordCount, WorldRecordCountTypedDict
     from .worldsimulation import WorldSimulation, WorldSimulationTypedDict
 
 __all__ = [
+    "AdvanceSimulationTimeRequest",
+    "AdvanceSimulationTimeRequestTypedDict",
+    "AdvanceTimeInputBody",
+    "AdvanceTimeInputBodyTypedDict",
+    "AdvanceWorldTimeRequest",
+    "AdvanceWorldTimeRequestTypedDict",
     "BuildSimulatorRequest",
     "BuildSimulatorRequestBuilder",
     "BuildSimulatorRequestTypedDict",
     "BuildSimulatorResponse",
     "BuildSimulatorResponseTypedDict",
     "BuildWorldRequest",
+    "BuildWorldRequestBuilder",
     "BuildWorldRequestTypedDict",
     "CancelSimulatorBuildRequest",
     "CancelSimulatorBuildRequestTypedDict",
     "CancelWorldBuildRequest",
     "CancelWorldBuildRequestTypedDict",
+    "ClockAdvance",
+    "ClockAdvanceMember",
+    "ClockAdvanceMemberStatus",
+    "ClockAdvanceMemberTypedDict",
+    "ClockAdvanceStatus",
+    "ClockAdvanceTypedDict",
+    "ClockEvent",
+    "ClockEventTypedDict",
     "CreateSimulationRequest",
     "CreateSimulationRequestTypedDict",
     "CreatedSimulation",
@@ -151,13 +216,21 @@ __all__ = [
     "ForkSimulationRequestRequest",
     "ForkSimulationRequestRequestTypedDict",
     "ForkSimulationRequestTypedDict",
+    "GetSimulationAdvanceRequest",
+    "GetSimulationAdvanceRequestTypedDict",
     "GetSimulationRequest",
     "GetSimulationRequestTypedDict",
     "GetSimulatorRequest",
     "GetSimulatorRequestTypedDict",
+    "GetWorldAdvanceRequest",
+    "GetWorldAdvanceRequestTypedDict",
     "GetWorldRequest",
     "GetWorldRequestTypedDict",
-    "LastSubmission",
+    "Kind",
+    "ListAdvanceEventsOutputBody",
+    "ListAdvanceEventsOutputBodyTypedDict",
+    "ListSimulationAdvanceEventsRequest",
+    "ListSimulationAdvanceEventsRequestTypedDict",
     "ListSimulationStepsRequest",
     "ListSimulationStepsRequestTypedDict",
     "ListSimulationStepsResponse",
@@ -180,6 +253,8 @@ __all__ = [
     "MintSimulationTokenRequestRequest",
     "MintSimulationTokenRequestRequestTypedDict",
     "MintSimulationTokenRequestTypedDict",
+    "ResourceError",
+    "ResourceErrorTypedDict",
     "Security",
     "SecurityTypedDict",
     "Simulation",
@@ -190,6 +265,7 @@ __all__ = [
     "Simulator",
     "SimulatorBuildProgress",
     "SimulatorBuildProgressBuilder",
+    "SimulatorBuildProgressLastSubmission",
     "SimulatorBuildProgressStage",
     "SimulatorBuildProgressTypedDict",
     "SimulatorError",
@@ -206,6 +282,8 @@ __all__ = [
     "StartSimulationRequest",
     "StartSimulationRequestTypedDict",
     "StartWorldRequest",
+    "StartWorldRequestRequest",
+    "StartWorldRequestRequestTypedDict",
     "StartWorldRequestTypedDict",
     "Step",
     "StepTypedDict",
@@ -215,6 +293,8 @@ __all__ = [
     "StopWorldRequestTypedDict",
     "World",
     "WorldBuild",
+    "WorldBuildBuilder",
+    "WorldBuildLastSubmission",
     "WorldBuildStage",
     "WorldBuildTypedDict",
     "WorldDataSummary",
@@ -231,6 +311,12 @@ __all__ = [
 ]
 
 _dynamic_imports: dict[str, str] = {
+    "AdvanceSimulationTimeRequest": ".advance_simulation_timeop",
+    "AdvanceSimulationTimeRequestTypedDict": ".advance_simulation_timeop",
+    "AdvanceWorldTimeRequest": ".advance_world_timeop",
+    "AdvanceWorldTimeRequestTypedDict": ".advance_world_timeop",
+    "AdvanceTimeInputBody": ".advancetimeinputbody",
+    "AdvanceTimeInputBodyTypedDict": ".advancetimeinputbody",
     "BuildSimulatorResponse": ".build_simulatorop",
     "BuildSimulatorResponseTypedDict": ".build_simulatorop",
     "SimulatorsBuildSimulatorRequest": ".build_simulatorop",
@@ -242,11 +328,20 @@ _dynamic_imports: dict[str, str] = {
     "BuildSimulatorRequestTypedDict": ".buildsimulatorrequest",
     "SpecKind": ".buildsimulatorrequest",
     "BuildWorldRequest": ".buildworldrequest",
+    "BuildWorldRequestBuilder": ".buildworldrequest",
     "BuildWorldRequestTypedDict": ".buildworldrequest",
     "CancelSimulatorBuildRequest": ".cancel_simulator_buildop",
     "CancelSimulatorBuildRequestTypedDict": ".cancel_simulator_buildop",
     "CancelWorldBuildRequest": ".cancel_world_buildop",
     "CancelWorldBuildRequestTypedDict": ".cancel_world_buildop",
+    "ClockAdvance": ".clockadvance",
+    "ClockAdvanceStatus": ".clockadvance",
+    "ClockAdvanceTypedDict": ".clockadvance",
+    "ClockAdvanceMember": ".clockadvancemember",
+    "ClockAdvanceMemberStatus": ".clockadvancemember",
+    "ClockAdvanceMemberTypedDict": ".clockadvancemember",
+    "ClockEvent": ".clockevent",
+    "ClockEventTypedDict": ".clockevent",
     "CreatedSimulation": ".createdsimulation",
     "CreatedSimulationStatus": ".createdsimulation",
     "CreatedSimulationTypedDict": ".createdsimulation",
@@ -262,12 +357,18 @@ _dynamic_imports: dict[str, str] = {
     "ForkSimulationRequestRequestTypedDict": ".fork_simulationop",
     "ForkSimulationRequest": ".forksimulationrequest",
     "ForkSimulationRequestTypedDict": ".forksimulationrequest",
+    "GetSimulationAdvanceRequest": ".get_simulation_advanceop",
+    "GetSimulationAdvanceRequestTypedDict": ".get_simulation_advanceop",
     "GetSimulationRequest": ".get_simulationop",
     "GetSimulationRequestTypedDict": ".get_simulationop",
     "GetSimulatorRequest": ".get_simulatorop",
     "GetSimulatorRequestTypedDict": ".get_simulatorop",
+    "GetWorldAdvanceRequest": ".get_world_advanceop",
+    "GetWorldAdvanceRequestTypedDict": ".get_world_advanceop",
     "GetWorldRequest": ".get_worldop",
     "GetWorldRequestTypedDict": ".get_worldop",
+    "ListSimulationAdvanceEventsRequest": ".list_simulation_advance_eventsop",
+    "ListSimulationAdvanceEventsRequestTypedDict": ".list_simulation_advance_eventsop",
     "ListSimulationStepsRequest": ".list_simulation_stepsop",
     "ListSimulationStepsRequestTypedDict": ".list_simulation_stepsop",
     "ListSimulationsRequest": ".list_simulationsop",
@@ -278,6 +379,8 @@ _dynamic_imports: dict[str, str] = {
     "ListSimulatorsStatus": ".list_simulatorsop",
     "ListWorldsRequest": ".list_worldsop",
     "ListWorldsRequestTypedDict": ".list_worldsop",
+    "ListAdvanceEventsOutputBody": ".listadvanceeventsoutputbody",
+    "ListAdvanceEventsOutputBodyTypedDict": ".listadvanceeventsoutputbody",
     "ListSimulationsResponse": ".listsimulationsresponse",
     "ListSimulationsResponseTypedDict": ".listsimulationsresponse",
     "ListSimulationStepsResponse": ".listsimulationstepsresponse",
@@ -290,6 +393,8 @@ _dynamic_imports: dict[str, str] = {
     "MintSimulationTokenRequestRequestTypedDict": ".mint_simulation_tokenop",
     "MintSimulationTokenRequest": ".mintsimulationtokenrequest",
     "MintSimulationTokenRequestTypedDict": ".mintsimulationtokenrequest",
+    "ResourceError": ".resourceerror",
+    "ResourceErrorTypedDict": ".resourceerror",
     "Security": ".security",
     "SecurityTypedDict": ".security",
     "Simulation": ".simulation",
@@ -301,9 +406,9 @@ _dynamic_imports: dict[str, str] = {
     "SimulatorStatus": ".simulator",
     "SimulatorTypedDict": ".simulator",
     "Source": ".simulator",
-    "LastSubmission": ".simulatorbuildprogress",
     "SimulatorBuildProgress": ".simulatorbuildprogress",
     "SimulatorBuildProgressBuilder": ".simulatorbuildprogress",
+    "SimulatorBuildProgressLastSubmission": ".simulatorbuildprogress",
     "SimulatorBuildProgressStage": ".simulatorbuildprogress",
     "SimulatorBuildProgressTypedDict": ".simulatorbuildprogress",
     "SimulatorError": ".simulatorerror",
@@ -311,8 +416,11 @@ _dynamic_imports: dict[str, str] = {
     "SimulatorErrorTypedDict": ".simulatorerror",
     "StartSimulationRequest": ".start_simulationop",
     "StartSimulationRequestTypedDict": ".start_simulationop",
-    "StartWorldRequest": ".start_worldop",
-    "StartWorldRequestTypedDict": ".start_worldop",
+    "StartWorldRequestRequest": ".start_worldop",
+    "StartWorldRequestRequestTypedDict": ".start_worldop",
+    "StartWorldRequest": ".startworldrequest",
+    "StartWorldRequestTypedDict": ".startworldrequest",
+    "Kind": ".step",
     "Step": ".step",
     "StepTypedDict": ".step",
     "StopSimulationRequest": ".stop_simulationop",
@@ -323,6 +431,8 @@ _dynamic_imports: dict[str, str] = {
     "WorldStatus": ".world",
     "WorldTypedDict": ".world",
     "WorldBuild": ".worldbuild",
+    "WorldBuildBuilder": ".worldbuild",
+    "WorldBuildLastSubmission": ".worldbuild",
     "WorldBuildStage": ".worldbuild",
     "WorldBuildTypedDict": ".worldbuild",
     "WorldDataSummary": ".worlddatasummary",

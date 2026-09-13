@@ -18,7 +18,7 @@ SimulatorBuildProgressBuilder = Union[
 r"""The coding-loop provider."""
 
 
-LastSubmission = Union[
+SimulatorBuildProgressLastSubmission = Union[
     Literal[
         "accepted",
         "rejected",
@@ -42,7 +42,7 @@ r"""derive while the effective spec, build skeleton, and sandbox are prepared; b
 class SimulatorBuildProgressTypedDict(TypedDict):
     builder: SimulatorBuildProgressBuilder
     r"""The coding-loop provider."""
-    last_submission: Nullable[LastSubmission]
+    last_submission: Nullable[SimulatorBuildProgressLastSubmission]
     r"""Outcome of the most recent submit attempt, or null."""
     last_tool: Nullable[str]
     r"""Name of the most recent tool call, or null."""
@@ -60,7 +60,7 @@ class SimulatorBuildProgress(BaseModel):
     builder: SimulatorBuildProgressBuilder
     r"""The coding-loop provider."""
 
-    last_submission: Nullable[LastSubmission]
+    last_submission: Nullable[SimulatorBuildProgressLastSubmission]
     r"""Outcome of the most recent submit attempt, or null."""
 
     last_tool: Nullable[str]

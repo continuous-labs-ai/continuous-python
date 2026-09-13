@@ -195,6 +195,9 @@ with Continuous(
 * [create_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#create_simulation) - Create Simulation
 * [delete_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#delete_simulation) - Delete Simulation
 * [get_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#get_simulation) - Get Simulation
+* [advance_simulation_time](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#advance_simulation_time) - Advance Simulation Time
+* [get_simulation_advance](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#get_simulation_advance) - Get Simulation Clock Advance
+* [list_simulation_advance_events](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#list_simulation_advance_events) - List Clock Advance Events
 * [fork_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#fork_simulation) - Fork Simulation
 * [start_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#start_simulation) - Start Simulation
 * [list_simulation_steps](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#list_simulation_steps) - List Simulation Steps
@@ -215,6 +218,8 @@ with Continuous(
 * [build_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#build_world) - Build World
 * [delete_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#delete_world) - Delete World
 * [get_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#get_world) - Get World
+* [advance_world_time](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#advance_world_time) - Advance World Time
+* [get_world_advance](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#get_world_advance) - Get World Clock Advance
 * [cancel_world_build](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#cancel_world_build) - Cancel World Build
 * [start_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#start_world) - Start World
 * [stop_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#stop_world) - Stop World

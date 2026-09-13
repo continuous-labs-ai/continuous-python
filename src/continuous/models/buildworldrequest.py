@@ -3,13 +3,22 @@
 from __future__ import annotations
 from continuous.types import BaseModel, UNSET_SENTINEL
 from pydantic import model_serializer
-from typing import List, Optional
+from typing import List, Literal, Optional
 from typing_extensions import NotRequired, TypedDict
+
+
+BuildWorldRequestBuilder = Literal[
+    "openai",
+    "claude",
+]
+r"""Model provider that builds starting data. Defaults to claude."""
 
 
 class BuildWorldRequestTypedDict(TypedDict):
     simulators: List[str]
     r"""Simulator IDs for the World."""
+    builder: NotRequired[BuildWorldRequestBuilder]
+    r"""Model provider that builds starting data. Defaults to claude."""
     instructions: NotRequired[str]
     r"""Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted."""
 
@@ -18,12 +27,15 @@ class BuildWorldRequest(BaseModel):
     simulators: List[str]
     r"""Simulator IDs for the World."""
 
+    builder: Optional[BuildWorldRequestBuilder] = "claude"
+    r"""Model provider that builds starting data. Defaults to claude."""
+
     instructions: Optional[str] = None
     r"""Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["instructions"])
+        optional_fields = set(["builder", "instructions"])
         serialized = handler(self)
         m = {}
 

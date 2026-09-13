@@ -20,8 +20,12 @@ r"""Current status. running serves requests. paused means the Simulation was idl
 
 
 class CreatedSimulationTypedDict(TypedDict):
+    active_advance_id: Nullable[str]
+    r"""Current clock advance operation ID, or null."""
     created_at: datetime
     r"""Simulation creation time."""
+    current_time: datetime
+    r"""Current simulated time."""
     endpoint: str
     r"""Base URL for requests to the Simulation."""
     expires_at: datetime
@@ -34,6 +38,8 @@ class CreatedSimulationTypedDict(TypedDict):
     r"""Source Simulation ID for a fork, or null."""
     simulator_id: str
     r"""ID of the Simulator."""
+    start_time: datetime
+    r"""Initial simulated time."""
     status: CreatedSimulationStatus
     r"""Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it."""
     token: str
@@ -41,8 +47,14 @@ class CreatedSimulationTypedDict(TypedDict):
 
 
 class CreatedSimulation(BaseModel):
+    active_advance_id: Nullable[str]
+    r"""Current clock advance operation ID, or null."""
+
     created_at: datetime
     r"""Simulation creation time."""
+
+    current_time: datetime
+    r"""Current simulated time."""
 
     endpoint: str
     r"""Base URL for requests to the Simulation."""
@@ -61,6 +73,9 @@ class CreatedSimulation(BaseModel):
 
     simulator_id: str
     r"""ID of the Simulator."""
+
+    start_time: datetime
+    r"""Initial simulated time."""
 
     status: CreatedSimulationStatus
     r"""Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it."""

@@ -1,14 +1,14 @@
-# LastSubmission
+# Kind
 
-Outcome of the most recent submit attempt, or null.
+api for an API write or advance for a clock advance.
 
 ## Example Usage
 
 ```python
-from continuous.models import LastSubmission
+from continuous.models import Kind
 
 # Open enum: unrecognized values are captured as UnrecognizedStr
-value: LastSubmission = "accepted"
+value: Kind = "api"
 ```
 
 
@@ -16,5 +16,5 @@ value: LastSubmission = "accepted"
 
 This is an open enum. Unrecognized values will not fail type checks.
 
-- `"accepted"`
-- `"rejected"`
+- `"api"`
+- `"advance"`

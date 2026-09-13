@@ -10,6 +10,8 @@ Build Worlds from one or more Simulators and start or stop their Simulations tog
 * [build_world](#build_world) - Build World
 * [delete_world](#delete_world) - Delete World
 * [get_world](#get_world) - Get World
+* [advance_world_time](#advance_world_time) - Advance World Time
+* [get_world_advance](#get_world_advance) - Get World Clock Advance
 * [cancel_world_build](#cancel_world_build) - Cancel World Build
 * [start_world](#start_world) - Start World
 * [stop_world](#stop_world) - Stop World
@@ -75,7 +77,7 @@ with Continuous(
 
     res = c_client.worlds.build_world(simulators=[
         "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5",
-    ], instructions="Use stable example data for each Simulator.")
+    ], builder="claude", instructions="Use stable example data for each Simulator.")
 
     # Handle response
     print(res)
@@ -95,7 +97,7 @@ with Continuous(
 
     res = c_client.worlds.build_world(simulators=[
         "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5",
-    ], instructions="Use stable example data for each Simulator.")
+    ], builder="claude", instructions="Use stable example data for each Simulator.")
 
     # Handle response
     print(res)
@@ -107,6 +109,7 @@ with Continuous(
 | Parameter                                                                                                                                                                                                                                                                   | Type                                                                                                                                                                                                                                                                        | Required                                                                                                                                                                                                                                                                    | Description                                                                                                                                                                                                                                                                 |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `simulators`                                                                                                                                                                                                                                                                | List[*str*]                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                          | Simulator IDs for the World.                                                                                                                                                                                                                                                |
+| `builder`                                                                                                                                                                                                                                                                   | [Optional[models.BuildWorldRequestBuilder]](../../models/buildworldrequestbuilder.md)                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                                                                          | Model provider that builds starting data. Defaults to claude.                                                                                                                                                                                                               |
 | `instructions`                                                                                                                                                                                                                                                              | *Optional[str]*                                                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                                          | Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted. |
 | `retries`                                                                                                                                                                                                                                                                   | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                                                                                          | Configuration to override the default retry behavior of the client.                                                                                                                                                                                                         |
 
@@ -201,6 +204,94 @@ with Continuous(
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
+## advance_world_time
+
+Fences all members, advances each local clock, and returns a durable operation. A partial failure keeps members fenced while the operation retries. The World clock changes after all members commit.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="advance-world-time" method="post" path="/v1/worlds/{id}/advance-time" example="bad_request_body" -->
+```python
+from continuous import Continuous
+from continuous.utils import parse_datetime
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.worlds.advance_world_time(id="<id>", idempotency_key="<value>", to=parse_datetime("2026-11-05T04:15:58.628Z"))
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `id`                                                                                | *str*                                                                               | :heavy_check_mark:                                                                  | Simulation or World ID.                                                             |
+| `idempotency_key`                                                                   | *str*                                                                               | :heavy_check_mark:                                                                  | Stable key for this request. Reuse with the same target returns the same operation. |
+| `to`                                                                                | [date](https://docs.python.org/3/library/datetime.html#date-objects)                | :heavy_check_mark:                                                                  | Absolute target time in RFC 3339, with at most millisecond precision.               |
+| `retries`                                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                    | :heavy_minus_sign:                                                                  | Configuration to override the default retry behavior of the client.                 |
+
+### Response
+
+**[models.ClockAdvance](../../models/clockadvance.md)**
+
+### Errors
+
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| errors.Error                                | 400, 401, 403, 404, 408, 409, 413, 415, 422 | application/problem+json                    |
+| errors.Error                                | 500, 503                                    | application/problem+json                    |
+| errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
+
+## get_world_advance
+
+Returns durable progress for each member. Members remain fenced until the whole advance can finish.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="get-world-advance" method="get" path="/v1/worlds/{id}/advances/{advance_id}" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.worlds.get_world_advance(id="<id>", advance_id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Simulation or World ID.                                             |
+| `advance_id`                                                        | *str*                                                               | :heavy_check_mark:                                                  | Clock advance operation ID.                                         |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.ClockAdvance](../../models/clockadvance.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| errors.Error                  | 401, 403, 404                 | application/problem+json      |
+| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
+
 ## cancel_world_build
 
 Cancels an active World build. Repeated cancellation returns the current World.
@@ -268,10 +359,11 @@ with Continuous(
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | World ID.                                                           |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                                                                                                                                   | Type                                                                                                                                                                        | Required                                                                                                                                                                    | Description                                                                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                                                                                                                                                                        | *str*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                          | World ID.                                                                                                                                                                   |
+| `start_time`                                                                                                                                                                | [date](https://docs.python.org/3/library/datetime.html#date-objects)                                                                                                        | :heavy_minus_sign:                                                                                                                                                          | Initial simulated time for the first Start, in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Saved business dates remain unchanged. Later starts preserve the clock. |
+| `retries`                                                                                                                                                                   | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                            | :heavy_minus_sign:                                                                                                                                                          | Configuration to override the default retry behavior of the client.                                                                                                         |
 
 ### Response
 
@@ -279,11 +371,11 @@ with Continuous(
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 403, 404, 409, 429       | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
-| errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| errors.Error                                | 400, 401, 403, 404, 408, 409, 413, 415, 429 | application/problem+json                    |
+| errors.Error                                | 500, 503                                    | application/problem+json                    |
+| errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
 
 ## stop_world
 
