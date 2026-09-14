@@ -6,12 +6,13 @@ Optional build status filter.
 
 ```python
 from continuous.models import ListSimulatorsStatus
-value: ListSimulatorsStatus = "building"
+value: ListSimulatorsStatus = "pending"
 ```
 
 
 ## Values
 
+- `"pending"`
 - `"building"`
 - `"ready"`
 - `"failed"`

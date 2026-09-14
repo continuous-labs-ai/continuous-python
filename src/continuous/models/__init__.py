@@ -28,9 +28,10 @@ if TYPE_CHECKING:
     from .buildsimulatorrequest import (
         BuildSimulatorRequest,
         BuildSimulatorRequestBuilder,
+        BuildSimulatorRequestSpecKind,
         BuildSimulatorRequestTypedDict,
-        SpecKind,
     )
+    from .buildtoolcall import BuildToolCall, BuildToolCallTypedDict
     from .buildworldrequest import (
         BuildWorldRequest,
         BuildWorldRequestBuilder,
@@ -136,7 +137,13 @@ if TYPE_CHECKING:
     from .security import Security, SecurityTypedDict
     from .simulation import Simulation, SimulationStatus, SimulationTypedDict
     from .simulationtoken import SimulationToken, SimulationTokenTypedDict
-    from .simulator import Simulator, SimulatorStatus, SimulatorTypedDict, Source
+    from .simulator import (
+        Simulator,
+        SimulatorSpecKind,
+        SimulatorStatus,
+        SimulatorTypedDict,
+        Source,
+    )
     from .simulatorbuildprogress import (
         SimulatorBuildProgress,
         SimulatorBuildProgressBuilder,
@@ -162,12 +169,12 @@ if TYPE_CHECKING:
     from .stop_simulationop import StopSimulationRequest, StopSimulationRequestTypedDict
     from .stop_worldop import StopWorldRequest, StopWorldRequestTypedDict
     from .world import World, WorldStatus, WorldTypedDict
-    from .worldbuild import (
-        WorldBuild,
-        WorldBuildBuilder,
-        WorldBuildLastSubmission,
-        WorldBuildStage,
-        WorldBuildTypedDict,
+    from .worldbuildprogress import (
+        WorldBuildProgress,
+        WorldBuildProgressBuilder,
+        WorldBuildProgressLastSubmission,
+        WorldBuildProgressStage,
+        WorldBuildProgressTypedDict,
     )
     from .worlddatasummary import WorldDataSummary, WorldDataSummaryTypedDict
     from .worlderror import WorldError, WorldErrorCode, WorldErrorTypedDict
@@ -183,9 +190,12 @@ __all__ = [
     "AdvanceWorldTimeRequestTypedDict",
     "BuildSimulatorRequest",
     "BuildSimulatorRequestBuilder",
+    "BuildSimulatorRequestSpecKind",
     "BuildSimulatorRequestTypedDict",
     "BuildSimulatorResponse",
     "BuildSimulatorResponseTypedDict",
+    "BuildToolCall",
+    "BuildToolCallTypedDict",
     "BuildWorldRequest",
     "BuildWorldRequestBuilder",
     "BuildWorldRequestTypedDict",
@@ -271,13 +281,13 @@ __all__ = [
     "SimulatorError",
     "SimulatorErrorCode",
     "SimulatorErrorTypedDict",
+    "SimulatorSpecKind",
     "SimulatorStatus",
     "SimulatorTypedDict",
     "SimulatorsBuildSimulatorRequest",
     "SimulatorsBuildSimulatorRequestTypedDict",
     "Source",
     "Spec",
-    "SpecKind",
     "SpecTypedDict",
     "StartSimulationRequest",
     "StartSimulationRequestTypedDict",
@@ -292,11 +302,11 @@ __all__ = [
     "StopWorldRequest",
     "StopWorldRequestTypedDict",
     "World",
-    "WorldBuild",
-    "WorldBuildBuilder",
-    "WorldBuildLastSubmission",
-    "WorldBuildStage",
-    "WorldBuildTypedDict",
+    "WorldBuildProgress",
+    "WorldBuildProgressBuilder",
+    "WorldBuildProgressLastSubmission",
+    "WorldBuildProgressStage",
+    "WorldBuildProgressTypedDict",
     "WorldDataSummary",
     "WorldDataSummaryTypedDict",
     "WorldError",
@@ -325,8 +335,10 @@ _dynamic_imports: dict[str, str] = {
     "SpecTypedDict": ".build_simulatorop",
     "BuildSimulatorRequest": ".buildsimulatorrequest",
     "BuildSimulatorRequestBuilder": ".buildsimulatorrequest",
+    "BuildSimulatorRequestSpecKind": ".buildsimulatorrequest",
     "BuildSimulatorRequestTypedDict": ".buildsimulatorrequest",
-    "SpecKind": ".buildsimulatorrequest",
+    "BuildToolCall": ".buildtoolcall",
+    "BuildToolCallTypedDict": ".buildtoolcall",
     "BuildWorldRequest": ".buildworldrequest",
     "BuildWorldRequestBuilder": ".buildworldrequest",
     "BuildWorldRequestTypedDict": ".buildworldrequest",
@@ -403,6 +415,7 @@ _dynamic_imports: dict[str, str] = {
     "SimulationToken": ".simulationtoken",
     "SimulationTokenTypedDict": ".simulationtoken",
     "Simulator": ".simulator",
+    "SimulatorSpecKind": ".simulator",
     "SimulatorStatus": ".simulator",
     "SimulatorTypedDict": ".simulator",
     "Source": ".simulator",
@@ -430,11 +443,11 @@ _dynamic_imports: dict[str, str] = {
     "World": ".world",
     "WorldStatus": ".world",
     "WorldTypedDict": ".world",
-    "WorldBuild": ".worldbuild",
-    "WorldBuildBuilder": ".worldbuild",
-    "WorldBuildLastSubmission": ".worldbuild",
-    "WorldBuildStage": ".worldbuild",
-    "WorldBuildTypedDict": ".worldbuild",
+    "WorldBuildProgress": ".worldbuildprogress",
+    "WorldBuildProgressBuilder": ".worldbuildprogress",
+    "WorldBuildProgressLastSubmission": ".worldbuildprogress",
+    "WorldBuildProgressStage": ".worldbuildprogress",
+    "WorldBuildProgressTypedDict": ".worldbuildprogress",
     "WorldDataSummary": ".worlddatasummary",
     "WorldDataSummaryTypedDict": ".worlddatasummary",
     "WorldError": ".worlderror",

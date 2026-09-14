@@ -223,6 +223,9 @@ class Worlds(BaseSDK):
         simulators: Iterable[str],
         builder: Optional[models.BuildWorldRequestBuilder] = "claude",
         instructions: Optional[str] = None,
+        name: Optional[str] = None,
+        start_time: Optional[datetime] = None,
+        timeout_seconds: Optional[int] = 3600,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -230,11 +233,14 @@ class Worlds(BaseSDK):
     ) -> models.World:
         r"""Build World
 
-        Starts an asynchronous World build from ready Simulators and returns it in the building state. Instructions generate and validate initial synthetic data. Start the World once it is ready to create its Simulations.
+        Starts an asynchronous World build from ready Simulators and returns it in the pending state. Builds start in queue order when workspace capacity is available. Instructions generate and validate initial synthetic data. Start the World once it is ready to create its Simulations.
 
         :param simulators: Simulator IDs for the World.
         :param builder: Model provider that builds starting data. Defaults to claude.
         :param instructions: Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted.
+        :param name: Name for the World. Omission generates a name. The ID stays its identity, and names need not be unique.
+        :param start_time: Simulated time the World starts at, in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Saved starting data keeps its build dates.
+        :param timeout_seconds: Time limit for generation and validation in seconds, from 1 to 43200. Defaults to 3600 (one hour). Excludes queue wait and finalization. Retries share the same deadline.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -253,7 +259,10 @@ class Worlds(BaseSDK):
         request = models.BuildWorldRequest(
             builder=builder,
             instructions=instructions,
+            name=name,
             simulators=utils.unmarshal(simulators, List[str]),
+            start_time=start_time,
+            timeout_seconds=timeout_seconds,
         )
 
         req = self._build_request(
@@ -333,6 +342,9 @@ class Worlds(BaseSDK):
         simulators: Iterable[str],
         builder: Optional[models.BuildWorldRequestBuilder] = "claude",
         instructions: Optional[str] = None,
+        name: Optional[str] = None,
+        start_time: Optional[datetime] = None,
+        timeout_seconds: Optional[int] = 3600,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -340,11 +352,14 @@ class Worlds(BaseSDK):
     ) -> models.World:
         r"""Build World
 
-        Starts an asynchronous World build from ready Simulators and returns it in the building state. Instructions generate and validate initial synthetic data. Start the World once it is ready to create its Simulations.
+        Starts an asynchronous World build from ready Simulators and returns it in the pending state. Builds start in queue order when workspace capacity is available. Instructions generate and validate initial synthetic data. Start the World once it is ready to create its Simulations.
 
         :param simulators: Simulator IDs for the World.
         :param builder: Model provider that builds starting data. Defaults to claude.
         :param instructions: Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted.
+        :param name: Name for the World. Omission generates a name. The ID stays its identity, and names need not be unique.
+        :param start_time: Simulated time the World starts at, in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Saved starting data keeps its build dates.
+        :param timeout_seconds: Time limit for generation and validation in seconds, from 1 to 43200. Defaults to 3600 (one hour). Excludes queue wait and finalization. Retries share the same deadline.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -363,7 +378,10 @@ class Worlds(BaseSDK):
         request = models.BuildWorldRequest(
             builder=builder,
             instructions=instructions,
+            name=name,
             simulators=utils.unmarshal(simulators, List[str]),
+            start_time=start_time,
+            timeout_seconds=timeout_seconds,
         )
 
         req = self._build_request_async(
@@ -1474,7 +1492,7 @@ class Worlds(BaseSDK):
         Starts every Simulation in the World. The first start creates the Simulations; later starts restore them from saved state. The World must be ready or stopped, and the workspace must have room for all members under its active-Simulation limit. A running World is returned unchanged.
 
         :param id: World ID.
-        :param start_time: Initial simulated time for the first Start, in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Saved business dates remain unchanged. Later starts preserve the clock.
+        :param start_time: Simulated time for the first Start, in RFC 3339 format. Omission keeps the clock chosen at build. Saved business dates remain unchanged. Later starts preserve the clock.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1587,7 +1605,7 @@ class Worlds(BaseSDK):
         Starts every Simulation in the World. The first start creates the Simulations; later starts restore them from saved state. The World must be ready or stopped, and the workspace must have room for all members under its active-Simulation limit. A running World is returned unchanged.
 
         :param id: World ID.
-        :param start_time: Initial simulated time for the first Start, in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Saved business dates remain unchanged. Later starts preserve the clock.
+        :param start_time: Simulated time for the first Start, in RFC 3339 format. Omission keeps the clock chosen at build. Saved business dates remain unchanged. Later starts preserve the clock.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds

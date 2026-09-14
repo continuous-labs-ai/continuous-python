@@ -1,6 +1,6 @@
 # SimulatorStatus
 
-building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect.
+pending while waiting for capacity; building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect.
 
 ## Example Usage
 
@@ -8,7 +8,7 @@ building while the build runs; ready when Simulations, Worlds, and incremental b
 from continuous.models import SimulatorStatus
 
 # Open enum: unrecognized values are captured as UnrecognizedStr
-value: SimulatorStatus = "building"
+value: SimulatorStatus = "pending"
 ```
 
 
@@ -16,6 +16,7 @@ value: SimulatorStatus = "building"
 
 This is an open enum. Unrecognized values will not fail type checks.
 
+- `"pending"`
 - `"building"`
 - `"ready"`
 - `"failed"`

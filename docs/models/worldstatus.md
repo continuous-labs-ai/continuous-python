@@ -1,6 +1,6 @@
 # WorldStatus
 
-building while the build runs; ready when it can be started; running or stopped once its Simulations exist; failed when building or first start fails; canceled when the build was canceled.
+pending while waiting for capacity; building while the build runs; ready when it can be started; running or stopped once its Simulations exist; failed when building or first start fails; canceled when the build was canceled.
 
 ## Example Usage
 
@@ -8,7 +8,7 @@ building while the build runs; ready when it can be started; running or stopped 
 from continuous.models import WorldStatus
 
 # Open enum: unrecognized values are captured as UnrecognizedStr
-value: WorldStatus = "building"
+value: WorldStatus = "pending"
 ```
 
 
@@ -16,6 +16,7 @@ value: WorldStatus = "building"
 
 This is an open enum. Unrecognized values will not fail type checks.
 
+- `"pending"`
 - `"building"`
 - `"ready"`
 - `"running"`
