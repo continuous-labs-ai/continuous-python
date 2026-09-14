@@ -1,14 +1,14 @@
-# WorldBuildLastSubmission
+# WorldBuildProgressLastSubmission
 
-Outcome of the most recent plan submission.
+Outcome of the most recent plan submission, or null.
 
 ## Example Usage
 
 ```python
-from continuous.models import WorldBuildLastSubmission
+from continuous.models import WorldBuildProgressLastSubmission
 
 # Open enum: unrecognized values are captured as UnrecognizedStr
-value: WorldBuildLastSubmission = "accepted"
+value: WorldBuildProgressLastSubmission = "accepted"
 ```
 
 

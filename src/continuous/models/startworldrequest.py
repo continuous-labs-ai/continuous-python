@@ -10,12 +10,12 @@ from typing_extensions import NotRequired, TypedDict
 
 class StartWorldRequestTypedDict(TypedDict):
     start_time: NotRequired[datetime]
-    r"""Initial simulated time for the first Start, in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Saved business dates remain unchanged. Later starts preserve the clock."""
+    r"""Simulated time for the first Start, in RFC 3339 format. Omission keeps the clock chosen at build. Saved business dates remain unchanged. Later starts preserve the clock."""
 
 
 class StartWorldRequest(BaseModel):
     start_time: Optional[datetime] = None
-    r"""Initial simulated time for the first Start, in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Saved business dates remain unchanged. Later starts preserve the clock."""
+    r"""Simulated time for the first Start, in RFC 3339 format. Omission keeps the clock chosen at build. Saved business dates remain unchanged. Later starts preserve the clock."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

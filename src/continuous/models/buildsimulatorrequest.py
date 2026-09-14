@@ -15,7 +15,7 @@ BuildSimulatorRequestBuilder = Literal[
 r"""Model provider that builds the Simulator. Defaults to claude."""
 
 
-SpecKind = Literal[
+BuildSimulatorRequestSpecKind = Literal[
     "openapi",
     "wsdl",
 ]
@@ -33,8 +33,10 @@ class BuildSimulatorRequestTypedDict(TypedDict):
     r"""Optional Simulator name. Names cannot start with smr_. Omission generates a name."""
     parent_id: NotRequired[str]
     r"""Parent Simulator ID. With instructions and no spec this starts an incremental build: the parent must be ready, and the request takes no filter or spec_kind."""
-    spec_kind: NotRequired[SpecKind]
+    spec_kind: NotRequired[BuildSimulatorRequestSpecKind]
     r"""Source specification format. Omission detects the format."""
+    timeout_seconds: NotRequired[int]
+    r"""Time limit for generation and validation in seconds, from 1 to 43200. Defaults to 3600 (one hour). Excludes queue wait and finalization. Retries share the same deadline."""
 
 
 class BuildSimulatorRequest(BaseModel):
@@ -53,13 +55,24 @@ class BuildSimulatorRequest(BaseModel):
     parent_id: Optional[str] = None
     r"""Parent Simulator ID. With instructions and no spec this starts an incremental build: the parent must be ready, and the request takes no filter or spec_kind."""
 
-    spec_kind: Optional[SpecKind] = None
+    spec_kind: Optional[BuildSimulatorRequestSpecKind] = None
     r"""Source specification format. Omission detects the format."""
+
+    timeout_seconds: Optional[int] = 3600
+    r"""Time limit for generation and validation in seconds, from 1 to 43200. Defaults to 3600 (one hour). Excludes queue wait and finalization. Retries share the same deadline."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["builder", "filter", "instructions", "name", "parent_id", "spec_kind"]
+            [
+                "builder",
+                "filter",
+                "instructions",
+                "name",
+                "parent_id",
+                "spec_kind",
+                "timeout_seconds",
+            ]
         )
         serialized = handler(self)
         m = {}

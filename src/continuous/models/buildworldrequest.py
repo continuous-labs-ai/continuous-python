@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from continuous.types import BaseModel, UNSET_SENTINEL
+from datetime import datetime
 from pydantic import model_serializer
 from typing import List, Literal, Optional
 from typing_extensions import NotRequired, TypedDict
@@ -21,6 +22,12 @@ class BuildWorldRequestTypedDict(TypedDict):
     r"""Model provider that builds starting data. Defaults to claude."""
     instructions: NotRequired[str]
     r"""Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted."""
+    name: NotRequired[str]
+    r"""Name for the World. Omission generates a name. The ID stays its identity, and names need not be unique."""
+    start_time: NotRequired[datetime]
+    r"""Simulated time the World starts at, in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Saved starting data keeps its build dates."""
+    timeout_seconds: NotRequired[int]
+    r"""Time limit for generation and validation in seconds, from 1 to 43200. Defaults to 3600 (one hour). Excludes queue wait and finalization. Retries share the same deadline."""
 
 
 class BuildWorldRequest(BaseModel):
@@ -33,9 +40,20 @@ class BuildWorldRequest(BaseModel):
     instructions: Optional[str] = None
     r"""Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted."""
 
+    name: Optional[str] = None
+    r"""Name for the World. Omission generates a name. The ID stays its identity, and names need not be unique."""
+
+    start_time: Optional[datetime] = None
+    r"""Simulated time the World starts at, in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Saved starting data keeps its build dates."""
+
+    timeout_seconds: Optional[int] = 3600
+    r"""Time limit for generation and validation in seconds, from 1 to 43200. Defaults to 3600 (one hour). Excludes queue wait and finalization. Retries share the same deadline."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["builder", "instructions"])
+        optional_fields = set(
+            ["builder", "instructions", "name", "start_time", "timeout_seconds"]
+        )
         serialized = handler(self)
         m = {}
 

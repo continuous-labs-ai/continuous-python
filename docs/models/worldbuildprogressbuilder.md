@@ -1,14 +1,14 @@
-# WorldBuildBuilder
+# WorldBuildProgressBuilder
 
-Selected model provider. Absent for builds created before provider selection.
+Selected model provider, or null for a build created before provider selection.
 
 ## Example Usage
 
 ```python
-from continuous.models import WorldBuildBuilder
+from continuous.models import WorldBuildProgressBuilder
 
 # Open enum: unrecognized values are captured as UnrecognizedStr
-value: WorldBuildBuilder = "openai"
+value: WorldBuildProgressBuilder = "openai"
 ```
 
 

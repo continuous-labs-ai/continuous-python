@@ -23,8 +23,19 @@ Source = Union[
 r"""workspace for a Simulator your workspace built; catalog for a read-only Simulator that Continuous publishes."""
 
 
+SimulatorSpecKind = Union[
+    Literal[
+        "openapi",
+        "wsdl",
+    ],
+    UnrecognizedStr,
+]
+r"""The specification the Simulator was built from, or null until a build has read it."""
+
+
 SimulatorStatus = Union[
     Literal[
+        "pending",
         "building",
         "ready",
         "failed",
@@ -32,7 +43,7 @@ SimulatorStatus = Union[
     ],
     UnrecognizedStr,
 ]
-r"""building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
+r"""pending while waiting for capacity; building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
 
 
 class SimulatorTypedDict(TypedDict):
@@ -43,14 +54,18 @@ class SimulatorTypedDict(TypedDict):
     error: Nullable[SimulatorErrorTypedDict]
     id: str
     r"""Simulator ID."""
+    instructions: str
+    r"""The instructions the build followed, or empty when none were given."""
     name: str
     r"""Simulator name. Names cannot start with smr_."""
     parent_id: Nullable[str]
     r"""Parent Simulator ID, or null."""
     source: Source
     r"""workspace for a Simulator your workspace built; catalog for a read-only Simulator that Continuous publishes."""
+    spec_kind: Nullable[SimulatorSpecKind]
+    r"""The specification the Simulator was built from, or null until a build has read it."""
     status: SimulatorStatus
-    r"""building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
+    r"""pending while waiting for capacity; building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
 
 
 class Simulator(BaseModel):
@@ -65,6 +80,9 @@ class Simulator(BaseModel):
     id: str
     r"""Simulator ID."""
 
+    instructions: str
+    r"""The instructions the build followed, or empty when none were given."""
+
     name: str
     r"""Simulator name. Names cannot start with smr_."""
 
@@ -74,8 +92,11 @@ class Simulator(BaseModel):
     source: Source
     r"""workspace for a Simulator your workspace built; catalog for a read-only Simulator that Continuous publishes."""
 
+    spec_kind: Nullable[SimulatorSpecKind]
+    r"""The specification the Simulator was built from, or null until a build has read it."""
+
     status: SimulatorStatus
-    r"""building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
+    r"""pending while waiting for capacity; building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

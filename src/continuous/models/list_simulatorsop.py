@@ -9,6 +9,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 ListSimulatorsStatus = Literal[
+    "pending",
     "building",
     "ready",
     "failed",
