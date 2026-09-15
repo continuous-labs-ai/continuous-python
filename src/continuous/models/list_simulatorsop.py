@@ -21,8 +21,6 @@ r"""Optional build status filter."""
 class ListSimulatorsRequestTypedDict(TypedDict):
     status: NotRequired[ListSimulatorsStatus]
     r"""Optional build status filter."""
-    name: NotRequired[str]
-    r"""Return only the Simulator with this exact name. For a Simulator from the Continuous catalog, prefix the name with continuous/. Names cannot start with smr_."""
     limit: NotRequired[int]
     r"""Page size. Values below 1 use 50. Values above 200 use 200."""
     cursor: NotRequired[str]
@@ -35,12 +33,6 @@ class ListSimulatorsRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
     ] = None
     r"""Optional build status filter."""
-
-    name: Annotated[
-        Optional[str],
-        FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
-    ] = None
-    r"""Return only the Simulator with this exact name. For a Simulator from the Continuous catalog, prefix the name with continuous/. Names cannot start with smr_."""
 
     limit: Annotated[
         Optional[int],
@@ -56,7 +48,7 @@ class ListSimulatorsRequest(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["status", "name", "limit", "cursor"])
+        optional_fields = set(["status", "limit", "cursor"])
         serialized = handler(self)
         m = {}
 

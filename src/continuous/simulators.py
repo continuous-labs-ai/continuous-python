@@ -16,7 +16,6 @@ class Simulators(BaseSDK):
         self,
         *,
         status: Optional[models.ListSimulatorsStatus] = None,
-        name: Optional[str] = None,
         limit: Optional[int] = 50,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -26,10 +25,9 @@ class Simulators(BaseSDK):
     ) -> models.ListSimulatorsResponse:
         r"""List Simulators
 
-        Returns all Simulators that the API key can access. Results can be filtered by status or name.
+        Returns all Simulators that the API key can access. Results can be filtered by status.
 
         :param status: Optional build status filter.
-        :param name: Return only the Simulator with this exact name. For a Simulator from the Continuous catalog, prefix the name with continuous/. Names cannot start with smr_.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
@@ -49,7 +47,6 @@ class Simulators(BaseSDK):
 
         request = models.ListSimulatorsRequest(
             status=status,
-            name=name,
             limit=limit,
             cursor=cursor,
         )
@@ -124,7 +121,6 @@ class Simulators(BaseSDK):
         self,
         *,
         status: Optional[models.ListSimulatorsStatus] = None,
-        name: Optional[str] = None,
         limit: Optional[int] = 50,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -134,10 +130,9 @@ class Simulators(BaseSDK):
     ) -> models.ListSimulatorsResponse:
         r"""List Simulators
 
-        Returns all Simulators that the API key can access. Results can be filtered by status or name.
+        Returns all Simulators that the API key can access. Results can be filtered by status.
 
         :param status: Optional build status filter.
-        :param name: Return only the Simulator with this exact name. For a Simulator from the Continuous catalog, prefix the name with continuous/. Names cannot start with smr_.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
@@ -157,7 +152,6 @@ class Simulators(BaseSDK):
 
         request = models.ListSimulatorsRequest(
             status=status,
-            name=name,
             limit=limit,
             cursor=cursor,
         )

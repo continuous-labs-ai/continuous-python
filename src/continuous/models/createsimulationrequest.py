@@ -12,7 +12,7 @@ class CreateSimulationRequestTypedDict(TypedDict):
     simulator_id: str
     r"""ID of the ready Simulator."""
     name: NotRequired[str]
-    r"""Optional Simulation name. Omission generates a name."""
+    r"""Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique."""
     start_time: NotRequired[datetime]
     r"""Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds."""
 
@@ -22,7 +22,7 @@ class CreateSimulationRequest(BaseModel):
     r"""ID of the ready Simulator."""
 
     name: Optional[str] = None
-    r"""Optional Simulation name. Omission generates a name."""
+    r"""Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique."""
 
     start_time: Optional[datetime] = None
     r"""Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds."""

@@ -245,7 +245,7 @@ class Simulations(BaseSDK):
         Creates a Simulation from a ready Simulator and starts it. The response includes the Simulation endpoint and a token that expires in 1 hour. List and get do not return the token.
 
         :param simulator_id: ID of the ready Simulator.
-        :param name: Optional Simulation name. Omission generates a name.
+        :param name: Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique.
         :param start_time: Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -357,7 +357,7 @@ class Simulations(BaseSDK):
         Creates a Simulation from a ready Simulator and starts it. The response includes the Simulation endpoint and a token that expires in 1 hour. List and get do not return the token.
 
         :param simulator_id: ID of the ready Simulator.
-        :param name: Optional Simulation name. Omission generates a name.
+        :param name: Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique.
         :param start_time: Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1514,7 +1514,7 @@ class Simulations(BaseSDK):
 
         :param id: Source Simulation ID.
         :param at_step: Completed step to fork from. Omission forks from the latest state.
-        :param name: Optional child Simulation name. Omission generates a name.
+        :param name: Name for the child Simulation. Omission generates a name. The ID stays its identity, and names need not be unique.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1628,7 +1628,7 @@ class Simulations(BaseSDK):
 
         :param id: Source Simulation ID.
         :param at_step: Completed step to fork from. Omission forks from the latest state.
-        :param name: Optional child Simulation name. Omission generates a name.
+        :param name: Name for the child Simulation. Omission generates a name. The ID stays its identity, and names need not be unique.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds

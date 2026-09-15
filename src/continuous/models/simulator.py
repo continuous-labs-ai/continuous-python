@@ -57,7 +57,7 @@ class SimulatorTypedDict(TypedDict):
     instructions: str
     r"""The instructions the build followed, or empty when none were given."""
     name: str
-    r"""Simulator name. Names cannot start with smr_."""
+    r"""Simulator name. The ID is its identity, and names need not be unique."""
     parent_id: Nullable[str]
     r"""Parent Simulator ID, or null."""
     source: Source
@@ -84,7 +84,7 @@ class Simulator(BaseModel):
     r"""The instructions the build followed, or empty when none were given."""
 
     name: str
-    r"""Simulator name. Names cannot start with smr_."""
+    r"""Simulator name. The ID is its identity, and names need not be unique."""
 
     parent_id: Nullable[str]
     r"""Parent Simulator ID, or null."""
