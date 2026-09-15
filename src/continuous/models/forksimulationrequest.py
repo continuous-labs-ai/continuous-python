@@ -11,7 +11,7 @@ class ForkSimulationRequestTypedDict(TypedDict):
     at_step: NotRequired[int]
     r"""Completed step to fork from. Omission forks from the latest state."""
     name: NotRequired[str]
-    r"""Optional child Simulation name. Omission generates a name."""
+    r"""Name for the child Simulation. Omission generates a name. The ID stays its identity, and names need not be unique."""
 
 
 class ForkSimulationRequest(BaseModel):
@@ -19,7 +19,7 @@ class ForkSimulationRequest(BaseModel):
     r"""Completed step to fork from. Omission forks from the latest state."""
 
     name: Optional[str] = None
-    r"""Optional child Simulation name. Omission generates a name."""
+    r"""Name for the child Simulation. Omission generates a name. The ID stays its identity, and names need not be unique."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

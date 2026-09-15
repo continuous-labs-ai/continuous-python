@@ -31,7 +31,7 @@ class SimulationTypedDict(TypedDict):
     id: str
     r"""Simulation ID."""
     name: str
-    r"""Simulation name."""
+    r"""Simulation name. The ID is its identity, and names need not be unique."""
     parent_id: Nullable[str]
     r"""Source Simulation ID for a fork, or null."""
     simulator_id: str
@@ -59,7 +59,7 @@ class Simulation(BaseModel):
     r"""Simulation ID."""
 
     name: str
-    r"""Simulation name."""
+    r"""Simulation name. The ID is its identity, and names need not be unique."""
 
     parent_id: Nullable[str]
     r"""Source Simulation ID for a fork, or null."""
