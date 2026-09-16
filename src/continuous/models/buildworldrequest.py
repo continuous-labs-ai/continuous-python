@@ -27,7 +27,7 @@ class BuildWorldRequestTypedDict(TypedDict):
     start_time: NotRequired[datetime]
     r"""Simulated time the World starts at, in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Saved starting data keeps its build dates."""
     timeout_seconds: NotRequired[int]
-    r"""Time limit for generation and validation in seconds, from 1 to 43200. Defaults to 3600 (one hour). Excludes queue wait and finalization. Retries share the same deadline."""
+    r"""Time limit for generation and validation in seconds, from 1 to 72000. Defaults to 7200 (two hours). Excludes queue wait and finalization. Retries share the same deadline."""
 
 
 class BuildWorldRequest(BaseModel):
@@ -46,8 +46,8 @@ class BuildWorldRequest(BaseModel):
     start_time: Optional[datetime] = None
     r"""Simulated time the World starts at, in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Saved starting data keeps its build dates."""
 
-    timeout_seconds: Optional[int] = 3600
-    r"""Time limit for generation and validation in seconds, from 1 to 43200. Defaults to 3600 (one hour). Excludes queue wait and finalization. Retries share the same deadline."""
+    timeout_seconds: Optional[int] = 7200
+    r"""Time limit for generation and validation in seconds, from 1 to 72000. Defaults to 7200 (two hours). Excludes queue wait and finalization. Retries share the same deadline."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
