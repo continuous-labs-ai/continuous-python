@@ -225,7 +225,7 @@ class Worlds(BaseSDK):
         instructions: Optional[str] = None,
         name: Optional[str] = None,
         start_time: Optional[datetime] = None,
-        timeout_seconds: Optional[int] = 7200,
+        timeout_seconds: Optional[int] = 14400,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -240,7 +240,7 @@ class Worlds(BaseSDK):
         :param instructions: Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted.
         :param name: Name for the World. Omission generates a name. The ID stays its identity, and names need not be unique.
         :param start_time: Simulated time the World starts at, in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Saved starting data keeps its build dates.
-        :param timeout_seconds: Time limit for generation and validation in seconds, from 1 to 72000. Defaults to 7200 (two hours). Excludes queue wait and finalization. Retries share the same deadline.
+        :param timeout_seconds: Time limit for generation and validation in seconds, from 1 to 72000. Defaults to 14400 (four hours). Excludes queue wait and finalization. Retries share the same deadline.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -344,7 +344,7 @@ class Worlds(BaseSDK):
         instructions: Optional[str] = None,
         name: Optional[str] = None,
         start_time: Optional[datetime] = None,
-        timeout_seconds: Optional[int] = 7200,
+        timeout_seconds: Optional[int] = 14400,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -359,7 +359,7 @@ class Worlds(BaseSDK):
         :param instructions: Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted.
         :param name: Name for the World. Omission generates a name. The ID stays its identity, and names need not be unique.
         :param start_time: Simulated time the World starts at, in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Saved starting data keeps its build dates.
-        :param timeout_seconds: Time limit for generation and validation in seconds, from 1 to 72000. Defaults to 7200 (two hours). Excludes queue wait and finalization. Retries share the same deadline.
+        :param timeout_seconds: Time limit for generation and validation in seconds, from 1 to 72000. Defaults to 14400 (four hours). Excludes queue wait and finalization. Retries share the same deadline.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds

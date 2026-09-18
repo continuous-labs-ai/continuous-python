@@ -36,7 +36,7 @@ class BuildSimulatorRequestTypedDict(TypedDict):
     spec_kind: NotRequired[BuildSimulatorRequestSpecKind]
     r"""Source specification format. Omission detects the format."""
     timeout_seconds: NotRequired[int]
-    r"""Time limit for generation and validation in seconds, from 1 to 72000. Defaults to 7200 (two hours). Excludes queue wait and finalization. Retries share the same deadline."""
+    r"""Time limit for generation and validation in seconds, from 1 to 72000. Defaults to 14400 (four hours). Excludes queue wait and finalization. Retries share the same deadline."""
 
 
 class BuildSimulatorRequest(BaseModel):
@@ -58,8 +58,8 @@ class BuildSimulatorRequest(BaseModel):
     spec_kind: Optional[BuildSimulatorRequestSpecKind] = None
     r"""Source specification format. Omission detects the format."""
 
-    timeout_seconds: Optional[int] = 7200
-    r"""Time limit for generation and validation in seconds, from 1 to 72000. Defaults to 7200 (two hours). Excludes queue wait and finalization. Retries share the same deadline."""
+    timeout_seconds: Optional[int] = 14400
+    r"""Time limit for generation and validation in seconds, from 1 to 72000. Defaults to 14400 (four hours). Excludes queue wait and finalization. Retries share the same deadline."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
