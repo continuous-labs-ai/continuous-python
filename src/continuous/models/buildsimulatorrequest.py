@@ -30,7 +30,7 @@ class BuildSimulatorRequestTypedDict(TypedDict):
     instructions: NotRequired[str]
     r"""Instructions for the builder. Required for an incremental build. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
     name: NotRequired[str]
-    r"""Name for the Simulator. Omission generates a name. The ID stays its identity, and names need not be unique."""
+    r"""Name for the Simulator. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
     parent_id: NotRequired[str]
     r"""Parent Simulator ID. With instructions and no spec this starts an incremental build: the parent must be ready, and the request takes no filter or spec_kind."""
     spec_kind: NotRequired[BuildSimulatorRequestSpecKind]
@@ -50,7 +50,7 @@ class BuildSimulatorRequest(BaseModel):
     r"""Instructions for the builder. Required for an incremental build. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
 
     name: Optional[str] = None
-    r"""Name for the Simulator. Omission generates a name. The ID stays its identity, and names need not be unique."""
+    r"""Name for the Simulator. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
 
     parent_id: Optional[str] = None
     r"""Parent Simulator ID. With instructions and no spec this starts an incremental build: the parent must be ready, and the request takes no filter or spec_kind."""
