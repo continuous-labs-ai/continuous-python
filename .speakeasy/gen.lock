@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: fe3c90617986af000e87f021e73bf862
+  docChecksum: 0220256366625819c0bd6a18f330dc17
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.1.13
-  configChecksum: f10632f02849ebd6bac5301a2ae31b1f
+  releaseVersion: 0.1.14
+  configChecksum: c862935e26b7c34a4dfea5c9fbf70623
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: e5bf6389-609b-4fee-ad6f-a9f4e2a17bfb
-  pristine_commit_hash: ac0c5680ce968ebe6ef7fafe45fc1370abbcc27f
-  pristine_tree_hash: 4549f76968e9b34cdf8e3b011a5b96fcdeebe83e
+  generation_id: a156e51a-587e-4cab-b3fe-c06e865d810a
+  pristine_commit_hash: 6b37a68dd160ec6694bbf0f583ec463d1ece5075
+  pristine_tree_hash: eaf9bfd16acd72e4f7b4917dbb8ce06af8623a5d
 features:
   python:
     additionalDependencies: 1.1.0
@@ -60,8 +60,8 @@ trackedFiles:
     pristine_git_object: bd986c6e4ab674036d8a45e1442e6d46442663b3
   docs/errors/error.md:
     id: 098e4ba23534
-    last_write_checksum: sha1:d164f926b117ae0df40b2060ca9f814eec9a53f2
-    pristine_git_object: 4e7788bca6de51758a19d33a03fceed9a02be257
+    last_write_checksum: sha1:898e37e34b9bb9b9990c38cde0aed12f81894ca8
+    pristine_git_object: 0df9bca29f1648e86537b9d150f6935924393411
   docs/models/advancesimulationtimerequest.md:
     id: 5cb6d069be72
     last_write_checksum: sha1:e3d61042e9ce93c736f3590ae1789180cb23ca58
@@ -182,10 +182,6 @@ trackedFiles:
     id: d46db60a194e
     last_write_checksum: sha1:72d7b804ec6f6244bd661cebca6f219ac266f4f0
     pristine_git_object: 6b3741787eb215b91be1f8c288838c706b29e877
-  docs/models/kind.md:
-    id: a1293dccee77
-    last_write_checksum: sha1:d45334302c57abfb69d673480c1cbb2d85d4080f
-    pristine_git_object: 194556d9fe250dc7e944d189ea6dc3cb4567e13b
   docs/models/listadvanceeventsoutputbody.md:
     id: 7580ca786707
     last_write_checksum: sha1:fe19bc28e185a5c4c682e7d4971ad5d9cdd8cc39
@@ -284,12 +280,16 @@ trackedFiles:
     pristine_git_object: d4fb85ed91035192cce44f95a7b3890a18822ca4
   docs/models/simulatorerror.md:
     id: cf50547f0511
-    last_write_checksum: sha1:94047b9525ab0300b9d33d95546c9945c9b4f5dc
-    pristine_git_object: 1b3804524db08239e06a7b1aa480b6f923cb7bb3
+    last_write_checksum: sha1:823d3886c2e099bd5cebf04b8e6e1041fee56e15
+    pristine_git_object: f8119f5cee506048cf8c5d2ee2d88d46a02d124b
   docs/models/simulatorerrorcode.md:
     id: 0277a7d06258
-    last_write_checksum: sha1:691bd8afbd4c3287d5d85b8a054bd65d34d4a9f3
-    pristine_git_object: 38f96e3ff342e034d20f3b557b40b623132117a0
+    last_write_checksum: sha1:cd5eb48c8ac9b56193b448f235b48e6e5791efb3
+    pristine_git_object: 2f9370e6f93227830540aafebb4b3fa1978be55c
+  docs/models/simulatorerrorreason.md:
+    id: dcaa81c286bb
+    last_write_checksum: sha1:39b2d7447420edc3dda2877d3f5c4f528244b78c
+    pristine_git_object: 939cc42c1494c9e114041fbe2799c12259bb66e3
   docs/models/simulatorsbuildsimulatorrequest.md:
     id: ac73e14fdb53
     last_write_checksum: sha1:1054f8762d7a450f9d8f737d9630c9fc387870f9
@@ -310,6 +310,18 @@ trackedFiles:
     id: a08855025036
     last_write_checksum: sha1:f51a1969965ec0e28ba5def709f9de141024f486
     pristine_git_object: 2e5bd5a39db34f93281d45f38516282393ddbe36
+  docs/models/specificationissue.md:
+    id: 4ceaa6fa0d00
+    last_write_checksum: sha1:ecdcc1e129b24b67e6c084cf866e0d3846b901bc
+    pristine_git_object: 011c46f5e0fea5bbe0129ac1a31e7174cd768869
+  docs/models/specificationissuekind.md:
+    id: 1106fa9e1bcb
+    last_write_checksum: sha1:097b02d494418e52d8a7999de983eab621c8093b
+    pristine_git_object: 801df72065d66e65b51d750cf79400b7758ee804
+  docs/models/specificationvalidation.md:
+    id: 3b47aebbf49f
+    last_write_checksum: sha1:76313c954fd5a17a054c19d7a0c7ca352ae93811
+    pristine_git_object: 949148956b617f27b6570574e5db94d998a08c0a
   docs/models/startsimulationrequest.md:
     id: 03d5466c921f
     last_write_checksum: sha1:7b6857c2e69218a6047e8a17c1b397415fa59ecb
@@ -324,8 +336,12 @@ trackedFiles:
     pristine_git_object: 227882e2a619b67e4420713901c08dca8759fed2
   docs/models/step.md:
     id: 5550ae854e09
-    last_write_checksum: sha1:a6080de013e1650238745f6004f04019f655289f
-    pristine_git_object: 5bad97da18c4fa6d14696d02b9631826feb057d6
+    last_write_checksum: sha1:871e0d80104c6889f0b77ea58173179224977679
+    pristine_git_object: 0effa842410a0be13c4bd81c1d228d13d312603a
+  docs/models/stepkind.md:
+    id: fd74c4e72a11
+    last_write_checksum: sha1:93980b4322d01cb3d70a45b21ad210b07010e8e8
+    pristine_git_object: 1ac0cb1946ad1c078915268b338a5eac4236c393
   docs/models/stopsimulationrequest.md:
     id: 4d40203ae074
     last_write_checksum: sha1:0b3d515f67daf01793c3ee343fb89a58dc19b6b5
@@ -364,12 +380,16 @@ trackedFiles:
     pristine_git_object: b4468cd5f84d638e8b980a8162b0fb393586d513
   docs/models/worlderror.md:
     id: 0bfd1d35561c
-    last_write_checksum: sha1:6f54d5fa635c60687c3ef32e4f3379f096dcd662
-    pristine_git_object: c99c5e71c1c2882a05edbf58a7de11bf18722e2f
+    last_write_checksum: sha1:35fa82f1e5110b6169243efdd606f3915d50a94b
+    pristine_git_object: fad1b171d74eeaee7817577be99bbf22bcecc210
   docs/models/worlderrorcode.md:
     id: 8da1dddb5d5a
     last_write_checksum: sha1:2db6d8048472f384dcb7307ed5d6899a83998e29
     pristine_git_object: c2357b20b5c6319051b4bfa97925ee69e432c21c
+  docs/models/worlderrorreason.md:
+    id: 0e46658a6fdd
+    last_write_checksum: sha1:69b69d544e06355bf7c2e4f1c2a41e0e7ad74778
+    pristine_git_object: 803b20c12581346d452da44031a438db9fe67f83
   docs/models/worldrecordcount.md:
     id: 069cb6c91be4
     last_write_checksum: sha1:89b8fab24e56f3e5c9c66febc02ec413386d7b4e
@@ -404,8 +424,8 @@ trackedFiles:
     pristine_git_object: ba50994ac7aceefe62e1571a6cbff467d9a067da
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:3ecee318b7bf87f49f9992f5482185cfdd558b99
-    pristine_git_object: 9eb118b3e5b99f28bc8ba06563e8c1c5b4607268
+    last_write_checksum: sha1:37a509849a2c2e4ddff354504f45b8221aba021a
+    pristine_git_object: f05e37860f3b73f342b72ac9ca0e5f52c7ac82d8
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -432,8 +452,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:06ff1a454cf47c9539c64a70b1c23f5aebff541f
-    pristine_git_object: 8b69ad0cf4737283f9ed248846080e696df1819f
+    last_write_checksum: sha1:f5b2bffea9771f2a9944eecbab9e54d2403daf5a
+    pristine_git_object: 71cec339250e15fcc5459dbfe77a21e7ea400733
   src/continuous/basesdk.py:
     id: 7c7025a9c533
     last_write_checksum: sha1:c2195f8abe74c3f8baf5cb652679b710b838987d
@@ -452,8 +472,8 @@ trackedFiles:
     pristine_git_object: 7b7746da16376c36db7809e9517e6340cb6770e7
   src/continuous/errors/error.py:
     id: d546be1f98cc
-    last_write_checksum: sha1:1498d83486738a4229e897fb75ea7979c4932951
-    pristine_git_object: 7ef68bf45e3ed57440bec97a466b5cc73bba8436
+    last_write_checksum: sha1:318e5592848fdeb9f3d5a82aafa9fe49a70ea6df
+    pristine_git_object: 40bdbb5f89a75c2b00b6c4db4dc8b0b08dc631f7
   src/continuous/errors/no_response_error.py:
     id: 85921853045a
     last_write_checksum: sha1:7f326424a7d5ae1bcd5c89a0d6b3dbda9138942f
@@ -468,8 +488,8 @@ trackedFiles:
     pristine_git_object: 89560b566073785535643e694c112bedbd3db13d
   src/continuous/models/__init__.py:
     id: 53b8497bf08d
-    last_write_checksum: sha1:fc9553318e4dc87387aec820f73580af02a1bf79
-    pristine_git_object: 556f617edd94e0aaa3b00e868e069e6b3282abbc
+    last_write_checksum: sha1:5cdf601affd6e933822790ab2d581f6967699a11
+    pristine_git_object: fb5c6d8f895c12068100958c3bde6e0ac03ee149
   src/continuous/models/advance_simulation_timeop.py:
     id: 64baea32b042
     last_write_checksum: sha1:45b61171c653018ac0c456e888385fb323573fa8
@@ -640,8 +660,16 @@ trackedFiles:
     pristine_git_object: 602d856e7dfa165134a7991c12f686a55d1c93a3
   src/continuous/models/simulatorerror.py:
     id: ab2c6f1ead7f
-    last_write_checksum: sha1:fd3de37483dbd0a2aae8d1bd1ce2e578582c0fa6
-    pristine_git_object: 926c5ac29290b80dea491ed22f266831a0d5648b
+    last_write_checksum: sha1:07265a21039241504a66a0f9d7c2c7fd917d5c9f
+    pristine_git_object: 73eb52646e432e365ab156d5131f2a83a23bf9b3
+  src/continuous/models/specificationissue.py:
+    id: e61f61eeb4e5
+    last_write_checksum: sha1:dfbbf45e68314080254f1dbd4a18d0a47c591c00
+    pristine_git_object: e97be73081eb907f062581b89953bc0a64c4efe1
+  src/continuous/models/specificationvalidation.py:
+    id: f8564b13eaab
+    last_write_checksum: sha1:5acae906708f420f70aa784630838a39ce6f0ede
+    pristine_git_object: 32edd08960dc6170d510f08cf012b479cafb3a56
   src/continuous/models/start_simulationop.py:
     id: 4445d5f93f9d
     last_write_checksum: sha1:f86c887e0ec2b27efcadbd6e69c24ce9768cbdfd
@@ -656,8 +684,8 @@ trackedFiles:
     pristine_git_object: 8861bf505c8fccb9e8e70bd8ccbde922ec1cf72e
   src/continuous/models/step.py:
     id: 48e0eaa93f1f
-    last_write_checksum: sha1:271f64c7082baaecf169ee395da8fa8dd5649de0
-    pristine_git_object: d3f2fb737d99eded34b669bf0f6e2d222b74598b
+    last_write_checksum: sha1:ab3d39312e9db501774cbdc868f7ae0f1f17266f
+    pristine_git_object: ab908c13d44d324e557670c294c00df14917b0e4
   src/continuous/models/stop_simulationop.py:
     id: d3c762b57062
     last_write_checksum: sha1:2a628cc287ff5e4e15474988535c8f663cc6be76
@@ -680,8 +708,8 @@ trackedFiles:
     pristine_git_object: d83fd9c8e367fb688b55ad847ba00e53c4c7db25
   src/continuous/models/worlderror.py:
     id: a65b24d4d456
-    last_write_checksum: sha1:afb5d96454c871be930e9d51ff120b65b1babf5c
-    pristine_git_object: d8dcdecccb091382937250317a0a1af407931bbb
+    last_write_checksum: sha1:d6498920c0104ff14157d1bdf8ade625a5f0f467
+    pristine_git_object: c5a7dc1f42eb7f7312f204f491772d7f33e47a73
   src/continuous/models/worldrecordcount.py:
     id: fcdf7cf06ae5
     last_write_checksum: sha1:95ca2e764a59870f888efe99ff882a5417459e4c
@@ -806,18 +834,18 @@ examples:
           limit: 50
       responses:
         "400":
-          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid."}
+          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid.", "validation": null}
         "500":
-          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid."}
+          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid.", "validation": null}
     simulator_unknown:
       parameters:
         query:
           limit: 50
       responses:
         "400":
-          application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
+          application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace.", "validation": null}
         "500":
-          application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
+          application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace.", "validation": null}
     speakeasy-default-list-simulations:
       parameters:
         query:
@@ -826,18 +854,18 @@ examples:
         "200":
           application/json: {"next_cursor": "<value>", "simulations": [{"active_advance_id": "<id>", "created_at": "2026-01-15T12:00:00Z", "current_time": "2024-05-07T13:39:47.962Z", "endpoint": "https://api.continuouslabs.ai/sim/sim_01J8Z5X4K7M2N9P0Q1R2S3T4V6", "id": "sim_01J8Z5X4K7M2N9P0Q1R2S3T4V6", "name": "billing-sandbox", "parent_id": "sim_01J8Z5X4K7M2N9P0Q1R2S3T4V8", "simulator_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "start_time": "2025-10-24T14:15:51.051Z", "status": "running"}]}
         "400":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
   create-simulation:
     simulator_unknown:
       requestBody:
         application/json: {"name": "billing-sandbox", "simulator_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"}
       responses:
         "400":
-          application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
+          application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace.", "validation": null}
         "500":
-          application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
+          application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace.", "validation": null}
     speakeasy-default-create-simulation:
       requestBody:
         application/json: {"name": "billing-sandbox", "simulator_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"}
@@ -845,17 +873,17 @@ examples:
         "201":
           application/json: {"active_advance_id": null, "created_at": "2026-01-15T12:00:00Z", "current_time": "2024-01-01T00:00:00Z", "endpoint": "https://api.continuouslabs.ai/sim/sim_01J8Z5X4K7M2N9P0Q1R2S3T4V6", "expires_at": "2026-01-15T13:00:00Z", "id": "sim_01J8Z5X4K7M2N9P0Q1R2S3T4V6", "name": "billing-sandbox", "parent_id": "sim_01J8Z5X4K7M2N9P0Q1R2S3T4V8", "simulator_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "start_time": "2024-01-01T00:00:00Z", "status": "running", "token": "<redacted>"}
         "400":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "message": "<value>", "operation": "<value>", "path": "/Applications", "suggestion": "<value>"}]}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "message": "<value>", "operation": "<value>", "path": "/Applications", "suggestion": "<value>"}]}}
     bad_request_body:
       requestBody:
         application/json: {"name": "billing-sandbox", "simulator_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"}
       responses:
         "400":
-          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
         "500":
-          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
   delete-simulation:
     speakeasy-default-delete-simulation:
       parameters:
@@ -865,27 +893,27 @@ examples:
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
     auth_invalid:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
     auth_missing:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   get-simulation:
     speakeasy-default-get-simulation:
       parameters:
@@ -897,27 +925,27 @@ examples:
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
     auth_invalid:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
     auth_missing:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   fork-simulation:
     speakeasy-default-fork-simulation:
       parameters:
@@ -929,9 +957,9 @@ examples:
         "201":
           application/json: {"active_advance_id": null, "created_at": "2026-01-15T12:00:00Z", "current_time": "2024-01-01T00:00:00Z", "endpoint": "https://api.continuouslabs.ai/sim/sim_01J8Z5X4K7M2N9P0Q1R2S3T4V6", "expires_at": "2026-01-15T13:00:00Z", "id": "sim_01J8Z5X4K7M2N9P0Q1R2S3T4V6", "name": "billing-sandbox", "parent_id": "sim_01J8Z5X4K7M2N9P0Q1R2S3T4V8", "simulator_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "start_time": "2024-01-01T00:00:00Z", "status": "running", "token": "<redacted>"}
         "400":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
     bad_request_body:
       parameters:
         path:
@@ -940,9 +968,9 @@ examples:
         application/json: {"at_step": 42, "name": "billing-fork"}
       responses:
         "400":
-          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
         "500":
-          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
   start-simulation:
     speakeasy-default-start-simulation:
       parameters:
@@ -954,27 +982,27 @@ examples:
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "message": "<value>", "operation": "<value>", "path": "/media", "suggestion": "<value>"}]}}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "message": "<value>", "operation": "<value>", "path": "/media", "suggestion": "<value>"}]}}
     auth_invalid:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
     auth_missing:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   list-simulation-steps:
     bad_request:
       parameters:
@@ -984,9 +1012,9 @@ examples:
           limit: 50
       responses:
         "400":
-          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid."}
+          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid.", "validation": null}
         "500":
-          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid."}
+          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid.", "validation": null}
     speakeasy-default-list-simulation-steps:
       parameters:
         path:
@@ -997,9 +1025,9 @@ examples:
         "200":
           application/json: {"next_cursor": "<value>", "steps": [{"advance_id": "<id>", "kind": "advance", "label": "<value>", "step": 499364, "time_after": "2026-03-23T14:17:05.025Z", "time_before": "2026-11-06T00:31:45.990Z"}]}
         "400":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "message": "<value>", "operation": "<value>", "path": "/usr/lib", "suggestion": "<value>"}]}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "message": "<value>", "operation": "<value>", "path": "/usr/lib", "suggestion": "<value>"}]}}
   stop-simulation:
     speakeasy-default-stop-simulation:
       parameters:
@@ -1011,27 +1039,27 @@ examples:
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
     auth_invalid:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
     auth_missing:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   mint-simulation-token:
     speakeasy-default-mint-simulation-token:
       parameters:
@@ -1043,9 +1071,9 @@ examples:
         "200":
           application/json: {"expires_at": "2026-01-15T13:00:00Z", "token": "<redacted>"}
         "400":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
     bad_request_body:
       parameters:
         path:
@@ -1054,9 +1082,9 @@ examples:
         application/json: {"ttl_seconds": 3600}
       responses:
         "400":
-          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
         "500":
-          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
   list-simulators:
     bad_request:
       parameters:
@@ -1064,9 +1092,9 @@ examples:
           limit: 50
       responses:
         "400":
-          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid."}
+          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid.", "validation": null}
         "500":
-          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid."}
+          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid.", "validation": null}
     speakeasy-default-list-simulators:
       parameters:
         query:
@@ -1075,22 +1103,22 @@ examples:
         "200":
           application/json: {"next_cursor": "<value>", "simulators": [{"build": {"builder": "claude", "last_submission": "rejected", "last_tool": "<value>", "recent_tools": [], "stage": "assemble", "submissions": 113509, "tool_calls": 913897, "updated_at": "2024-11-16T22:17:20.816Z"}, "created_at": "2026-01-15T12:00:00Z", "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "<value>", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "source": "workspace", "spec_kind": "wsdl", "status": "building"}]}
         "400":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
   build-simulator:
     simulator_unknown_parent:
       requestBody:
         multipart/form-data: {"request": {"builder": "claude", "filter": [], "instructions": "Return stable example data for every operation.", "name": "billing-api", "spec_kind": "openapi", "timeout_seconds": 14400}}
       responses:
         "400":
-          application/problem+json: {"code": "simulator_unknown", "detail": "The parent Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
+          application/problem+json: {"code": "simulator_unknown", "detail": "The parent Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace.", "validation": null}
         "500":
-          application/problem+json: {"code": "simulator_unknown", "detail": "The parent Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
+          application/problem+json: {"code": "simulator_unknown", "detail": "The parent Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace.", "validation": null}
         "429":
-          application/problem+json: {"code": "simulator_unknown", "detail": "The parent Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
+          application/problem+json: {"code": "simulator_unknown", "detail": "The parent Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace.", "validation": null}
         "503":
-          application/problem+json: {"code": "simulator_unknown", "detail": "The parent Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
+          application/problem+json: {"code": "simulator_unknown", "detail": "The parent Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace.", "validation": null}
     speakeasy-default-build-simulator:
       requestBody:
         multipart/form-data: {"request": {"builder": "claude", "filter": [], "instructions": "Return stable example data for every operation.", "name": "billing-api", "spec_kind": "openapi", "timeout_seconds": 14400}}
@@ -1098,25 +1126,25 @@ examples:
         "202":
           application/json: {"build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "stage": "build", "submissions": 1, "tool_calls": 7, "updated_at": "2026-01-15T12:05:00Z"}, "created_at": "2026-01-15T12:00:00Z", "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "source": "workspace", "spec_kind": "openapi", "status": "building"}
         "400":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "429":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "503":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
     bad_request_body:
       requestBody:
         multipart/form-data: {"request": {"builder": "claude", "filter": [], "instructions": "Return stable example data for every operation.", "name": "billing-api", "spec_kind": "openapi", "timeout_seconds": 14400}}
       responses:
         "400":
-          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
         "429":
-          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
         "500":
-          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
         "503":
-          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
   delete-simulator:
     speakeasy-default-delete-simulator:
       parameters:
@@ -1126,27 +1154,27 @@ examples:
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
     auth_invalid:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
     auth_missing:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   get-simulator:
     speakeasy-default-get-simulator:
       parameters:
@@ -1158,27 +1186,27 @@ examples:
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
     auth_invalid:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
     auth_missing:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   cancel-simulator-build:
     speakeasy-default-cancel-simulator-build:
       parameters:
@@ -1190,27 +1218,27 @@ examples:
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unknown", "message": "<value>", "operation": "<value>", "path": "/var/spool", "suggestion": "<value>"}]}}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unknown", "message": "<value>", "operation": "<value>", "path": "/var/spool", "suggestion": "<value>"}]}}
     auth_invalid:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
     auth_missing:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   list-worlds:
     bad_request:
       parameters:
@@ -1218,9 +1246,9 @@ examples:
           limit: 50
       responses:
         "400":
-          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid."}
+          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid.", "validation": null}
         "500":
-          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid."}
+          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid.", "validation": null}
     speakeasy-default-list-worlds:
       parameters:
         query:
@@ -1229,18 +1257,18 @@ examples:
         "200":
           application/json: {"next_cursor": "<value>", "worlds": [{"active_advance_id": "<id>", "build": {"builder": "openai", "last_submission": "rejected", "last_tool": "<value>", "recent_tools": [], "stage": "validating", "submissions": 22199, "summary": null, "tool_calls": 98602}, "created_at": "2026-01-15T12:00:00Z", "current_time": "2025-09-18T08:14:47.236Z", "error": null, "id": "wld_01J8Z5X4K7M2N9P0Q1R2S3T4V7", "instructions": "Use stable example data for each Simulator.", "name": "<value>", "simulations": [], "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "start_time": "2024-07-28T13:30:18.464Z", "status": "building"}]}
         "400":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "message": "<value>", "operation": "<value>", "path": "/usr/libexec", "suggestion": "<value>"}]}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "message": "<value>", "operation": "<value>", "path": "/usr/libexec", "suggestion": "<value>"}]}}
   build-world:
     simulator_unknown:
       requestBody:
         application/json: {"builder": "claude", "instructions": "Use stable example data for each Simulator.", "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "timeout_seconds": 14400}
       responses:
         "400":
-          application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
+          application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace.", "validation": null}
         "500":
-          application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace."}
+          application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace.", "validation": null}
     speakeasy-default-build-world:
       requestBody:
         application/json: {"builder": "claude", "instructions": "Use stable example data for each Simulator.", "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "timeout_seconds": 14400}
@@ -1248,17 +1276,17 @@ examples:
         "202":
           application/json: {"active_advance_id": null, "build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "stage": "generating", "submissions": 1, "summary": null, "tool_calls": 7}, "created_at": "2026-01-15T12:00:00Z", "current_time": "2024-01-01T00:00:00Z", "error": null, "id": "wld_01J8Z5X4K7M2N9P0Q1R2S3T4V7", "instructions": "Use stable example data for each Simulator.", "name": "open-orders", "simulations": [], "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "start_time": "2024-01-01T00:00:00Z", "status": "building"}
         "400":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
     bad_request_body:
       requestBody:
         application/json: {"builder": "claude", "instructions": "Use stable example data for each Simulator.", "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "timeout_seconds": 14400}
       responses:
         "400":
-          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
         "500":
-          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
   delete-world:
     speakeasy-default-delete-world:
       parameters:
@@ -1268,27 +1296,27 @@ examples:
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "message": "<value>", "operation": "<value>", "path": "/usr/local/src", "suggestion": "<value>"}]}}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "message": "<value>", "operation": "<value>", "path": "/usr/local/src", "suggestion": "<value>"}]}}
     auth_invalid:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
     auth_missing:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   get-world:
     speakeasy-default-get-world:
       parameters:
@@ -1300,27 +1328,27 @@ examples:
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "message": "<value>", "operation": "<value>", "path": "/usr/include", "suggestion": "<value>"}]}}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "message": "<value>", "operation": "<value>", "path": "/usr/include", "suggestion": "<value>"}]}}
     auth_invalid:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
     auth_missing:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   cancel-world-build:
     speakeasy-default-cancel-world-build:
       parameters:
@@ -1332,27 +1360,27 @@ examples:
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
     auth_invalid:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
     auth_missing:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   start-world:
     speakeasy-default-start-world:
       parameters:
@@ -1362,9 +1390,9 @@ examples:
         "200":
           application/json: {"active_advance_id": null, "build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "stage": "generating", "submissions": 1, "summary": null, "tool_calls": 7}, "created_at": "2026-01-15T12:00:00Z", "current_time": "2024-01-01T00:00:00Z", "error": null, "id": "wld_01J8Z5X4K7M2N9P0Q1R2S3T4V7", "instructions": "Use stable example data for each Simulator.", "name": "open-orders", "simulations": [], "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "start_time": "2024-01-01T00:00:00Z", "status": "building"}
         "400":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "401":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
     auth_invalid:
@@ -1391,9 +1419,9 @@ examples:
           id: "<id>"
       responses:
         "400":
-          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
         "500":
-          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
   stop-world:
     speakeasy-default-stop-world:
       parameters:
@@ -1405,27 +1433,27 @@ examples:
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
     auth_invalid:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
     auth_missing:
       parameters:
         path:
           id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   advance-simulation-time:
     bad_request_body:
       parameters:
@@ -1437,9 +1465,9 @@ examples:
         application/json: {"to": "2026-11-25T01:01:24.107Z"}
       responses:
         "400":
-          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
         "500":
-          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
     speakeasy-default-advance-simulation-time:
       parameters:
         path:
@@ -1452,9 +1480,9 @@ examples:
         "202":
           application/json: {"error": {"code": "<value>", "detail": "<value>"}, "event_count": 374944, "from": "2026-03-11T01:12:42.855Z", "id": "<id>", "members": [{"error": {"code": "<value>", "detail": "<value>"}, "event_count": 517513, "simulation_id": "<id>", "status": "failed", "step": 294677}], "status": "failed", "step": 316576, "to": "2026-07-19T10:10:10.879Z"}
         "400":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "message": "<value>", "operation": "<value>", "path": "/usr/include", "suggestion": "<value>"}]}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "message": "<value>", "operation": "<value>", "path": "/usr/include", "suggestion": "<value>"}]}}
   get-simulation-advance:
     auth_invalid:
       parameters:
@@ -1463,9 +1491,9 @@ examples:
           advance_id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
     auth_missing:
       parameters:
         path:
@@ -1473,9 +1501,9 @@ examples:
           advance_id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
     speakeasy-default-get-simulation-advance:
       parameters:
         path:
@@ -1485,9 +1513,9 @@ examples:
         "200":
           application/json: {"error": {"code": "<value>", "detail": "<value>"}, "event_count": 267592, "from": "2026-10-22T14:00:54.991Z", "id": "<id>", "members": [{"error": {"code": "<value>", "detail": "<value>"}, "event_count": 689873, "simulation_id": "<id>", "status": "completed", "step": 893857}], "status": "completed", "step": 92623, "to": "2026-07-17T10:51:18.278Z"}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
   list-simulation-advance-events:
     bad_request:
       parameters:
@@ -1498,9 +1526,9 @@ examples:
           limit: 50
       responses:
         "400":
-          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid."}
+          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid.", "validation": null}
         "500":
-          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid."}
+          application/problem+json: {"code": "bad_request", "detail": "The cursor is invalid.", "validation": null}
     speakeasy-default-list-simulation-advance-events:
       parameters:
         path:
@@ -1512,9 +1540,9 @@ examples:
         "200":
           application/json: {"events": [{"at": "2024-08-15T13:05:04.337Z", "event_id": "<id>", "sequence": 163191, "type": "<value>"}], "next_cursor": "<value>"}
         "400":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
   advance-world-time:
     bad_request_body:
       parameters:
@@ -1526,9 +1554,9 @@ examples:
         application/json: {"to": "2026-11-05T04:15:58.628Z"}
       responses:
         "400":
-          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
         "500":
-          application/problem+json: {"code": "bad_request", "detail": "request body is invalid"}
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
     speakeasy-default-advance-world-time:
       parameters:
         path:
@@ -1541,9 +1569,9 @@ examples:
         "202":
           application/json: {"error": {"code": "<value>", "detail": "<value>"}, "event_count": 110887, "from": "2025-11-15T10:14:50.805Z", "id": "<id>", "members": [], "status": "running", "step": null, "to": "2025-01-18T16:34:14.811Z"}
         "400":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
   get-world-advance:
     auth_invalid:
       parameters:
@@ -1552,9 +1580,9 @@ examples:
           advance_id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid."}
+          application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
     auth_missing:
       parameters:
         path:
@@ -1562,9 +1590,9 @@ examples:
           advance_id: "<id>"
       responses:
         "401":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
         "500":
-          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required."}
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
     speakeasy-default-get-world-advance:
       parameters:
         path:
@@ -1574,7 +1602,8 @@ examples:
         "200":
           application/json: {"error": {"code": "<value>", "detail": "<value>"}, "event_count": 918754, "from": "2024-04-27T20:39:55.215Z", "id": "<id>", "members": [], "status": "completed", "step": 59768, "to": "2026-10-01T10:19:26.413Z"}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "message": "<value>", "operation": "<value>", "path": "/home/user/dir", "suggestion": "<value>"}]}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>"}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "message": "<value>", "operation": "<value>", "path": "/home/user/dir", "suggestion": "<value>"}]}}
 examplesVersion: 1.0.2
+releaseNotes: "## Python SDK Changes:\n* `continuous.simulations.list_simulations()`:  `error.validation` **Added**\n* `continuous.simulations.create_simulation()`:  `error.validation` **Added**\n* `continuous.simulations.delete_simulation()`:  `error.validation` **Added**\n* `continuous.simulations.get_simulation()`:  `error.validation` **Added**\n* `continuous.simulations.advance_simulation_time()`:  `error.validation` **Added**\n* `continuous.simulations.get_simulation_advance()`:  `error.validation` **Added**\n* `continuous.simulations.list_simulation_advance_events()`:  `error.validation` **Added**\n* `continuous.simulations.fork_simulation()`:  `error.validation` **Added**\n* `continuous.simulations.start_simulation()`:  `error.validation` **Added**\n* `continuous.simulations.list_simulation_steps()`:  `error.validation` **Added**\n* `continuous.simulations.stop_simulation()`:  `error.validation` **Added**\n* `continuous.simulations.mint_simulation_token()`:  `error.validation` **Added**\n* `continuous.simulators.list_simulators()`: \n  *  `response.simulators[].error` **Changed**\n  *  `error.validation` **Added**\n* `continuous.simulators.build_simulator()`: \n  *  `response.error` **Changed**\n  *  `error.validation` **Added**\n* `continuous.simulators.delete_simulator()`:  `error.validation` **Added**\n* `continuous.simulators.get_simulator()`: \n  *  `response.error` **Changed**\n  *  `error.validation` **Added**\n* `continuous.simulators.cancel_simulator_build()`: \n  *  `response.error` **Changed**\n  *  `error.validation` **Added**\n* `continuous.worlds.list_worlds()`: \n  *  `response.worlds[].error.reason` **Added**\n  *  `error.validation` **Added**\n* `continuous.worlds.build_world()`: \n  *  `response.error.reason` **Added**\n  *  `error.validation` **Added**\n* `continuous.worlds.delete_world()`:  `error.validation` **Added**\n* `continuous.worlds.get_world()`: \n  *  `response.error.reason` **Added**\n  *  `error.validation` **Added**\n* `continuous.worlds.advance_world_time()`:  `error.validation` **Added**\n* `continuous.worlds.get_world_advance()`:  `error.validation` **Added**\n* `continuous.worlds.cancel_world_build()`: \n  *  `response.error.reason` **Added**\n  *  `error.validation` **Added**\n* `continuous.worlds.start_world()`: \n  *  `response.error.reason` **Added**\n  *  `error.validation` **Added**\n* `continuous.worlds.stop_world()`: \n  *  `response.error.reason` **Added**\n  *  `error.validation` **Added**\n"

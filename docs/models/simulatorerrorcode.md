@@ -18,3 +18,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 
 - `"build_failed"`
 - `"build_cancelled"`
+- `"specification_validation_failed"`

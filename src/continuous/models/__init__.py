@@ -154,7 +154,17 @@ if TYPE_CHECKING:
     from .simulatorerror import (
         SimulatorError,
         SimulatorErrorCode,
+        SimulatorErrorReason,
         SimulatorErrorTypedDict,
+    )
+    from .specificationissue import (
+        SpecificationIssue,
+        SpecificationIssueKind,
+        SpecificationIssueTypedDict,
+    )
+    from .specificationvalidation import (
+        SpecificationValidation,
+        SpecificationValidationTypedDict,
     )
     from .start_simulationop import (
         StartSimulationRequest,
@@ -165,7 +175,7 @@ if TYPE_CHECKING:
         StartWorldRequestRequestTypedDict,
     )
     from .startworldrequest import StartWorldRequest, StartWorldRequestTypedDict
-    from .step import Kind, Step, StepTypedDict
+    from .step import Step, StepKind, StepTypedDict
     from .stop_simulationop import StopSimulationRequest, StopSimulationRequestTypedDict
     from .stop_worldop import StopWorldRequest, StopWorldRequestTypedDict
     from .world import World, WorldStatus, WorldTypedDict
@@ -177,7 +187,12 @@ if TYPE_CHECKING:
         WorldBuildProgressTypedDict,
     )
     from .worlddatasummary import WorldDataSummary, WorldDataSummaryTypedDict
-    from .worlderror import WorldError, WorldErrorCode, WorldErrorTypedDict
+    from .worlderror import (
+        WorldError,
+        WorldErrorCode,
+        WorldErrorReason,
+        WorldErrorTypedDict,
+    )
     from .worldrecordcount import WorldRecordCount, WorldRecordCountTypedDict
     from .worldsimulation import WorldSimulation, WorldSimulationTypedDict
 
@@ -236,7 +251,6 @@ __all__ = [
     "GetWorldAdvanceRequestTypedDict",
     "GetWorldRequest",
     "GetWorldRequestTypedDict",
-    "Kind",
     "ListAdvanceEventsOutputBody",
     "ListAdvanceEventsOutputBodyTypedDict",
     "ListSimulationAdvanceEventsRequest",
@@ -280,6 +294,7 @@ __all__ = [
     "SimulatorBuildProgressTypedDict",
     "SimulatorError",
     "SimulatorErrorCode",
+    "SimulatorErrorReason",
     "SimulatorErrorTypedDict",
     "SimulatorSpecKind",
     "SimulatorStatus",
@@ -289,6 +304,11 @@ __all__ = [
     "Source",
     "Spec",
     "SpecTypedDict",
+    "SpecificationIssue",
+    "SpecificationIssueKind",
+    "SpecificationIssueTypedDict",
+    "SpecificationValidation",
+    "SpecificationValidationTypedDict",
     "StartSimulationRequest",
     "StartSimulationRequestTypedDict",
     "StartWorldRequest",
@@ -296,6 +316,7 @@ __all__ = [
     "StartWorldRequestRequestTypedDict",
     "StartWorldRequestTypedDict",
     "Step",
+    "StepKind",
     "StepTypedDict",
     "StopSimulationRequest",
     "StopSimulationRequestTypedDict",
@@ -311,6 +332,7 @@ __all__ = [
     "WorldDataSummaryTypedDict",
     "WorldError",
     "WorldErrorCode",
+    "WorldErrorReason",
     "WorldErrorTypedDict",
     "WorldRecordCount",
     "WorldRecordCountTypedDict",
@@ -426,15 +448,21 @@ _dynamic_imports: dict[str, str] = {
     "SimulatorBuildProgressTypedDict": ".simulatorbuildprogress",
     "SimulatorError": ".simulatorerror",
     "SimulatorErrorCode": ".simulatorerror",
+    "SimulatorErrorReason": ".simulatorerror",
     "SimulatorErrorTypedDict": ".simulatorerror",
+    "SpecificationIssue": ".specificationissue",
+    "SpecificationIssueKind": ".specificationissue",
+    "SpecificationIssueTypedDict": ".specificationissue",
+    "SpecificationValidation": ".specificationvalidation",
+    "SpecificationValidationTypedDict": ".specificationvalidation",
     "StartSimulationRequest": ".start_simulationop",
     "StartSimulationRequestTypedDict": ".start_simulationop",
     "StartWorldRequestRequest": ".start_worldop",
     "StartWorldRequestRequestTypedDict": ".start_worldop",
     "StartWorldRequest": ".startworldrequest",
     "StartWorldRequestTypedDict": ".startworldrequest",
-    "Kind": ".step",
     "Step": ".step",
+    "StepKind": ".step",
     "StepTypedDict": ".step",
     "StopSimulationRequest": ".stop_simulationop",
     "StopSimulationRequestTypedDict": ".stop_simulationop",
@@ -452,6 +480,7 @@ _dynamic_imports: dict[str, str] = {
     "WorldDataSummaryTypedDict": ".worlddatasummary",
     "WorldError": ".worlderror",
     "WorldErrorCode": ".worlderror",
+    "WorldErrorReason": ".worlderror",
     "WorldErrorTypedDict": ".worlderror",
     "WorldRecordCount": ".worldrecordcount",
     "WorldRecordCountTypedDict": ".worldrecordcount",

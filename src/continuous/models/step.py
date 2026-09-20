@@ -8,7 +8,7 @@ from typing import Literal, Union
 from typing_extensions import TypedDict
 
 
-Kind = Union[
+StepKind = Union[
     Literal[
         "api",
         "advance",
@@ -21,7 +21,7 @@ r"""api for an API write or advance for a clock advance."""
 class StepTypedDict(TypedDict):
     advance_id: Nullable[str]
     r"""Advance that produced this step, if any."""
-    kind: Kind
+    kind: StepKind
     r"""api for an API write or advance for a clock advance."""
     label: str
     r"""HTTP method and path of the request that produced this step, without the query string, for example POST /v1/widgets."""
@@ -37,7 +37,7 @@ class Step(BaseModel):
     advance_id: Nullable[str]
     r"""Advance that produced this step, if any."""
 
-    kind: Kind
+    kind: StepKind
     r"""api for an API write or advance for a clock advance."""
 
     label: str
