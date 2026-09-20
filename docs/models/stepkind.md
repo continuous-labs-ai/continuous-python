@@ -1,14 +1,14 @@
-# Kind
+# StepKind
 
 api for an API write or advance for a clock advance.
 
 ## Example Usage
 
 ```python
-from continuous.models import Kind
+from continuous.models import StepKind
 
 # Open enum: unrecognized values are captured as UnrecognizedStr
-value: Kind = "api"
+value: StepKind = "api"
 ```
 
 

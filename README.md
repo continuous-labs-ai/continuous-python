@@ -347,6 +347,7 @@ with Continuous(
         if isinstance(e, errors.Error):
             print(e.data.code)  # str
             print(e.data.detail)  # str
+            print(e.data.validation)  # Nullable[models.SpecificationValidation]
 ```
 
 ### Error Classes

@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 from continuous.errors import ContinuousError
-from continuous.types import BaseModel
+from continuous.models import specificationvalidation as models_specificationvalidation
+from continuous.types import BaseModel, Nullable
 from dataclasses import dataclass, field
 import httpx
 from typing import Optional
@@ -13,6 +14,7 @@ class ErrorData(BaseModel):
     r"""Stable machine-readable error code."""
     detail: str
     r"""Safe human-readable error detail."""
+    validation: Nullable[models_specificationvalidation.SpecificationValidation]
 
 
 @dataclass(unsafe_hash=True)
