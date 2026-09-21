@@ -29,16 +29,53 @@ WorldBuildProgressLastSubmission = Union[
 r"""Outcome of the most recent plan submission, or null."""
 
 
+LastValidationCode = Union[
+    Literal[
+        "invalid_plan",
+        "unsupported_claim",
+        "invalid_requirement",
+        "nested_proof",
+        "request_not_satisfied",
+        "verification_unavailable",
+    ],
+    UnrecognizedStr,
+]
+r"""Fixed code for the latest validation finding. Null when no finding is available. Authored details stay private."""
+
+
+WorldBuildProgressPhase = Union[
+    Literal[
+        "build",
+        "review",
+        "finalize",
+    ],
+    UnrecognizedStr,
+]
+r"""Agent phase: build for generation, review for the separate reviewer, finalize for author repair after review. Null when not recorded."""
+
+
+ReviewStatus = Union[
+    Literal[
+        "pending",
+        "accepted",
+        "rejected",
+    ],
+    UnrecognizedStr,
+]
+r"""Status of the original independent review, not approval of later edits. Null before review."""
+
+
 WorldBuildProgressStage = Union[
     Literal[
         "planning",
         "generating",
         "validating",
+        "reviewing",
         "complete",
     ],
     UnrecognizedStr,
 ]
-r"""Current phase of starting-data preparation."""
+r"""Internal step of starting-data preparation."""
 
 
 class WorldBuildProgressTypedDict(TypedDict):
@@ -48,14 +85,22 @@ class WorldBuildProgressTypedDict(TypedDict):
     r"""Outcome of the most recent plan submission, or null."""
     last_tool: Nullable[str]
     r"""Name of the most recent tool, or null. Tool arguments and output are private."""
+    last_validation_code: Nullable[LastValidationCode]
+    r"""Fixed code for the latest validation finding. Null when no finding is available. Authored details stay private."""
+    phase: Nullable[WorldBuildProgressPhase]
+    r"""Agent phase: build for generation, review for the separate reviewer, finalize for author repair after review. Null when not recorded."""
     recent_tools: List[BuildToolCallTypedDict]
     r"""The most recent tool calls, oldest first, at most 20."""
+    review_status: Nullable[ReviewStatus]
+    r"""Status of the original independent review, not approval of later edits. Null before review."""
     stage: WorldBuildProgressStage
-    r"""Current phase of starting-data preparation."""
+    r"""Internal step of starting-data preparation."""
     submissions: int
-    r"""Number of submitted starting-data plans."""
+    r"""Number of distinct candidate plans submitted."""
     summary: Nullable[WorldDataSummaryTypedDict]
     r"""Verified starting data, or null before a completed build."""
+    tests: int
+    r"""Number of distinct candidate plans tested. Zero when not recorded."""
     tool_calls: int
     r"""Number of agent tool calls."""
 
@@ -70,17 +115,29 @@ class WorldBuildProgress(BaseModel):
     last_tool: Nullable[str]
     r"""Name of the most recent tool, or null. Tool arguments and output are private."""
 
+    last_validation_code: Nullable[LastValidationCode]
+    r"""Fixed code for the latest validation finding. Null when no finding is available. Authored details stay private."""
+
+    phase: Nullable[WorldBuildProgressPhase]
+    r"""Agent phase: build for generation, review for the separate reviewer, finalize for author repair after review. Null when not recorded."""
+
     recent_tools: List[BuildToolCall]
     r"""The most recent tool calls, oldest first, at most 20."""
 
+    review_status: Nullable[ReviewStatus]
+    r"""Status of the original independent review, not approval of later edits. Null before review."""
+
     stage: WorldBuildProgressStage
-    r"""Current phase of starting-data preparation."""
+    r"""Internal step of starting-data preparation."""
 
     submissions: int
-    r"""Number of submitted starting-data plans."""
+    r"""Number of distinct candidate plans submitted."""
 
     summary: Nullable[WorldDataSummary]
     r"""Verified starting data, or null before a completed build."""
+
+    tests: int
+    r"""Number of distinct candidate plans tested. Zero when not recorded."""
 
     tool_calls: int
     r"""Number of agent tool calls."""

@@ -24,3 +24,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"world_population_unsupported"`
 - `"world_population_invalid"`
 - `"world_population_unavailable"`
+- `"world_population_incompatible"`
