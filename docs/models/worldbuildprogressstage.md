@@ -1,6 +1,6 @@
 # WorldBuildProgressStage
 
-Current phase of starting-data preparation.
+Internal step of starting-data preparation.
 
 ## Example Usage
 
@@ -19,4 +19,5 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"planning"`
 - `"generating"`
 - `"validating"`
+- `"reviewing"`
 - `"complete"`

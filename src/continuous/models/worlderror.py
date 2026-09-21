@@ -17,6 +17,7 @@ WorldErrorCode = Union[
         "world_population_unsupported",
         "world_population_invalid",
         "world_population_unavailable",
+        "world_population_incompatible",
     ],
     UnrecognizedStr,
 ]

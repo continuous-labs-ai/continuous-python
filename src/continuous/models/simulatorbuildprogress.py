@@ -29,6 +29,17 @@ SimulatorBuildProgressLastSubmission = Union[
 r"""Outcome of the most recent submit attempt, or null."""
 
 
+SimulatorBuildProgressPhase = Union[
+    Literal[
+        "build",
+        "review",
+        "finalize",
+    ],
+    UnrecognizedStr,
+]
+r"""Agent phase: build for generation, review for the separate reviewer, finalize for author repair after review. Null when not recorded."""
+
+
 SimulatorBuildProgressStage = Union[
     Literal[
         "derive",
@@ -47,6 +58,8 @@ class SimulatorBuildProgressTypedDict(TypedDict):
     r"""Outcome of the most recent submit attempt, or null."""
     last_tool: Nullable[str]
     r"""Name of the most recent tool call, or null."""
+    phase: Nullable[SimulatorBuildProgressPhase]
+    r"""Agent phase: build for generation, review for the separate reviewer, finalize for author repair after review. Null when not recorded."""
     recent_tools: List[BuildToolCallTypedDict]
     r"""The most recent tool calls, oldest first, at most 20."""
     stage: SimulatorBuildProgressStage
@@ -68,6 +81,9 @@ class SimulatorBuildProgress(BaseModel):
 
     last_tool: Nullable[str]
     r"""Name of the most recent tool call, or null."""
+
+    phase: Nullable[SimulatorBuildProgressPhase]
+    r"""Agent phase: build for generation, review for the separate reviewer, finalize for author repair after review. Null when not recorded."""
 
     recent_tools: List[BuildToolCall]
     r"""The most recent tool calls, oldest first, at most 20."""
