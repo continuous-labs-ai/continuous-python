@@ -21,7 +21,7 @@ Create Simulations from ready Simulators, then fork, stop, start, and delete the
 
 ## list_simulations
 
-Returns all Simulations that the API key can access. Results can be filtered by status or Simulator.
+Returns all Simulations that the API key can access. Results can be filtered by status, Simulator ID, or pinned Simulator digest.
 
 ### Example Usage
 
@@ -48,6 +48,7 @@ with Continuous(
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `status`                                                                        | [Optional[models.ListSimulationsStatus]](../../models/listsimulationsstatus.md) | :heavy_minus_sign:                                                              | Optional status filter.                                                         |
 | `simulator_id`                                                                  | *Optional[str]*                                                                 | :heavy_minus_sign:                                                              | Optional Simulator ID filter.                                                   |
+| `simulator_digest`                                                              | *Optional[str]*                                                                 | :heavy_minus_sign:                                                              | Optional exact pinned OCI manifest digest filter.                               |
 | `limit`                                                                         | *Optional[int]*                                                                 | :heavy_minus_sign:                                                              | Page size. Values below 1 use 50. Values above 200 use 200.                     |
 | `cursor`                                                                        | *Optional[str]*                                                                 | :heavy_minus_sign:                                                              | Opaque next_cursor value from a previous page.                                  |
 | `retries`                                                                       | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                | :heavy_minus_sign:                                                              | Configuration to override the default retry behavior of the client.             |

@@ -18,6 +18,7 @@ class Simulations(BaseSDK):
         *,
         status: Optional[models.ListSimulationsStatus] = None,
         simulator_id: Optional[str] = None,
+        simulator_digest: Optional[str] = None,
         limit: Optional[int] = 50,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -27,10 +28,11 @@ class Simulations(BaseSDK):
     ) -> models.ListSimulationsResponse:
         r"""List Simulations
 
-        Returns all Simulations that the API key can access. Results can be filtered by status or Simulator.
+        Returns all Simulations that the API key can access. Results can be filtered by status, Simulator ID, or pinned Simulator digest.
 
         :param status: Optional status filter.
         :param simulator_id: Optional Simulator ID filter.
+        :param simulator_digest: Optional exact pinned OCI manifest digest filter.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
@@ -51,6 +53,7 @@ class Simulations(BaseSDK):
         request = models.ListSimulationsRequest(
             status=status,
             simulator_id=simulator_id,
+            simulator_digest=simulator_digest,
             limit=limit,
             cursor=cursor,
         )
@@ -126,6 +129,7 @@ class Simulations(BaseSDK):
         *,
         status: Optional[models.ListSimulationsStatus] = None,
         simulator_id: Optional[str] = None,
+        simulator_digest: Optional[str] = None,
         limit: Optional[int] = 50,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -135,10 +139,11 @@ class Simulations(BaseSDK):
     ) -> models.ListSimulationsResponse:
         r"""List Simulations
 
-        Returns all Simulations that the API key can access. Results can be filtered by status or Simulator.
+        Returns all Simulations that the API key can access. Results can be filtered by status, Simulator ID, or pinned Simulator digest.
 
         :param status: Optional status filter.
         :param simulator_id: Optional Simulator ID filter.
+        :param simulator_digest: Optional exact pinned OCI manifest digest filter.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
@@ -159,6 +164,7 @@ class Simulations(BaseSDK):
         request = models.ListSimulationsRequest(
             status=status,
             simulator_id=simulator_id,
+            simulator_digest=simulator_digest,
             limit=limit,
             cursor=cursor,
         )
