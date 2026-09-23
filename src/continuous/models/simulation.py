@@ -34,8 +34,10 @@ class SimulationTypedDict(TypedDict):
     r"""Simulation name. The ID is its identity, and names need not be unique."""
     parent_id: Nullable[str]
     r"""Source Simulation ID for a fork, or null."""
-    simulator_id: Nullable[str]
-    r"""ID of the Simulator, or null for a digest-addressed Simulation."""
+    simulator_digest: str
+    r"""OCI manifest digest pinned when the Simulation was created."""
+    simulator_id: str
+    r"""ID of the Simulator bound to this Simulation."""
     start_time: datetime
     r"""Initial simulated time."""
     status: SimulationStatus
@@ -64,8 +66,11 @@ class Simulation(BaseModel):
     parent_id: Nullable[str]
     r"""Source Simulation ID for a fork, or null."""
 
-    simulator_id: Nullable[str]
-    r"""ID of the Simulator, or null for a digest-addressed Simulation."""
+    simulator_digest: str
+    r"""OCI manifest digest pinned when the Simulation was created."""
+
+    simulator_id: str
+    r"""ID of the Simulator bound to this Simulation."""
 
     start_time: datetime
     r"""Initial simulated time."""
