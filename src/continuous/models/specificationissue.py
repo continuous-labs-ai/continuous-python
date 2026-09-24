@@ -23,12 +23,12 @@ class SpecificationIssueTypedDict(TypedDict):
     r"""Stable validation rule code."""
     kind: SpecificationIssueKind
     r"""Whether the input is invalid, unsupported, incomplete, or has no specific diagnosis."""
+    location: str
+    r"""Readable endpoint or field affected by this issue."""
     message: str
     r"""What needs attention at this location."""
     operation: str
     r"""Affected operation ID or method and path, when available. Empty for document-level issues."""
-    path: str
-    r"""Location in the submitted specification, as a JSON pointer or XML path."""
     suggestion: str
     r"""How to correct or address the problem."""
 
@@ -40,14 +40,14 @@ class SpecificationIssue(BaseModel):
     kind: SpecificationIssueKind
     r"""Whether the input is invalid, unsupported, incomplete, or has no specific diagnosis."""
 
+    location: str
+    r"""Readable endpoint or field affected by this issue."""
+
     message: str
     r"""What needs attention at this location."""
 
     operation: str
     r"""Affected operation ID or method and path, when available. Empty for document-level issues."""
-
-    path: str
-    r"""Location in the submitted specification, as a JSON pointer or XML path."""
 
     suggestion: str
     r"""How to correct or address the problem."""

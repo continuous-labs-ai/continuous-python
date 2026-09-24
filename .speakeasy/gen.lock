@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: 171ba94829cef14a52863b4ae1f4037f
+  docChecksum: 1a7cf0621c28fbd535a3de4d87d0424a
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.1.17
-  configChecksum: 6d7909a57387e215d007a76cc19cdcbe
+  releaseVersion: 0.1.18
+  configChecksum: c8041f49ed6c6ac4af085e12c3aced5d
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: f70c89a3-ebc4-4ece-a082-0cca48658144
-  pristine_commit_hash: a9a4b62d41f19ec2475ca29517b38289370aec2f
-  pristine_tree_hash: cf64a3edf3ec72f55b63454c347034d6ae5f6712
+  generation_id: f488c383-ec6e-4977-8aa7-9f820370cc3f
+  pristine_commit_hash: ab20277167331e999bedc5b529325005f478bce0
+  pristine_tree_hash: ea05f5b81d3a51f14a1f3f7d9460090e0a26e190
 features:
   python:
     additionalDependencies: 1.1.0
@@ -76,32 +76,40 @@ trackedFiles:
     pristine_git_object: 22aff537eebca7b96b1d583576b4dfeb8ff968a2
   docs/models/buildsimulatorrequest.md:
     id: ec6d01a38d98
-    last_write_checksum: sha1:25f8258faf80c428b2f9ec1b7037133e17c8f55e
-    pristine_git_object: 1484521780c9129f1644058fba8cadec634acbe8
+    last_write_checksum: sha1:fef91e245361120b95ccbbb9f7071db7b3b2b061
+    pristine_git_object: 7cfa14d611ae31197cd49d9af4f865757bfbe1cd
   docs/models/buildsimulatorrequestbuilder.md:
     id: 503f4cf91b8a
-    last_write_checksum: sha1:a76831268dc2e7082760992ddc370c96928f3769
-    pristine_git_object: 352fca5ea4de8c039eed192b47c20aaebd916f17
+    last_write_checksum: sha1:9043c2e0022fab4863abf71fc32f02cfa0bd7226
+    pristine_git_object: c57d2722068590e02c753dee93ad804d389c83bf
+  docs/models/buildsimulatorrequestmodel.md:
+    id: 45b3242a15cf
+    last_write_checksum: sha1:63eca2a87068e0a63095b95e9461e686342533c7
+    pristine_git_object: b80d01a49f4ddbde60c14dcdba26b480ef1795bd
   docs/models/buildsimulatorrequestspeckind.md:
     id: e3b58303d033
     last_write_checksum: sha1:3245de88d1838fdb6e315581600dde49b6dbf34c
     pristine_git_object: 640bf526cc57f230782cc978fe59ceba564cdca5
   docs/models/buildsimulatorresponse.md:
     id: 7bb7eff50b23
-    last_write_checksum: sha1:2d598e63d1ef3e4dfb58b13f73fe55ff49bb4c5d
-    pristine_git_object: 3d83bf9c31287486db5a8e887da1a8bffa39c39f
+    last_write_checksum: sha1:cd63f6a86d77ea2f59ef44e58926a05299d052c1
+    pristine_git_object: ee7157d1d5c5d2a367b9cd395bed067a81a83c2f
   docs/models/buildtoolcall.md:
     id: bc09dd4c17d2
     last_write_checksum: sha1:9db4a70dcdcbd834486a39fb9a13278953ef12f8
     pristine_git_object: bc5c293cf05a3df4e6326243724868c786d342ff
   docs/models/buildworldrequest.md:
     id: afb04a6b7322
-    last_write_checksum: sha1:cf9bfb353d2421a9a0e00df702180e9b85e603c6
-    pristine_git_object: 56e83724126a04f20c860b29798de7514d66225c
+    last_write_checksum: sha1:88496dce76961c526986d75771951a41104eb4d9
+    pristine_git_object: 50f0aa961b51e9cff21f1aef10d99256c80ddc41
   docs/models/buildworldrequestbuilder.md:
     id: b113e427467e
-    last_write_checksum: sha1:ba5e10610d73ce51afece798012048034941e41f
-    pristine_git_object: a47c0483ca037bfb6fa1c3fb3985fd42b5ae6f47
+    last_write_checksum: sha1:88e7d96107bfdf0dffbf6ca34257e62e9c757bed
+    pristine_git_object: fdf0258dc7f02b9e83652ca3a30b89818b3944ef
+  docs/models/buildworldrequestmodel.md:
+    id: d06887653fd3
+    last_write_checksum: sha1:cf23bfb158ce33432b4ddc6823af60910e730878
+    pristine_git_object: 1e3c24bf2f584a9ec1fa407520440e89e5444d37
   docs/models/cancelsimulatorbuildrequest.md:
     id: dc28ce2a7594
     last_write_checksum: sha1:ddf09e2cf1f6386c0b45c25a6b9aa2a9d3c6238c
@@ -272,8 +280,8 @@ trackedFiles:
     pristine_git_object: 4aa33f525c147a9b80975468fac1734a9b963489
   docs/models/simulatorbuildprogress.md:
     id: ddb5f0b1cc58
-    last_write_checksum: sha1:db8cbe037c501f738cec1e9a4b3f3250a4bf958f
-    pristine_git_object: 19f514c662b45ee5cd682c9969eb84956f196a2a
+    last_write_checksum: sha1:1d55e0d130d0a09245eef0a52710cb284c41ec94
+    pristine_git_object: 9dba4942e4e6d77353b092006a5220ab6a93f6e9
   docs/models/simulatorbuildprogressbuilder.md:
     id: 3fec654765a7
     last_write_checksum: sha1:44c516ba556b80a12aa90ded40af516804ef8e41
@@ -282,6 +290,10 @@ trackedFiles:
     id: 8b1682fab21d
     last_write_checksum: sha1:b3aa17f85a66e8333e657edf65a6f9f8e509b88c
     pristine_git_object: ca043c973761ed077180604010e7bef83d156a69
+  docs/models/simulatorbuildprogressmodel.md:
+    id: 138d6a550e28
+    last_write_checksum: sha1:149a7b62f83b5f9a67726fd8f7accc43252ff423
+    pristine_git_object: bdadd91047f4ffcc78880716462eae9388e430c8
   docs/models/simulatorbuildprogressphase.md:
     id: 51abcbb82bfa
     last_write_checksum: sha1:9127fdcbea0215b56c3bfa02126e8472542a3f22
@@ -304,8 +316,8 @@ trackedFiles:
     pristine_git_object: 939cc42c1494c9e114041fbe2799c12259bb66e3
   docs/models/simulatorsbuildsimulatorrequest.md:
     id: ac73e14fdb53
-    last_write_checksum: sha1:1054f8762d7a450f9d8f737d9630c9fc387870f9
-    pristine_git_object: a2b221f601d60ed24f0edf7c2cf99b0b96443947
+    last_write_checksum: sha1:5b6a396b729e0726c0ae3af994c1fe07f3044bd7
+    pristine_git_object: 3f8097adec81799e427eebe9e01988ff5154993b
   docs/models/simulatorspeckind.md:
     id: 1e142bc3bde4
     last_write_checksum: sha1:6e063aa78481c66bc5b8a243dcac72ca7a2f1c8a
@@ -324,8 +336,8 @@ trackedFiles:
     pristine_git_object: 2e5bd5a39db34f93281d45f38516282393ddbe36
   docs/models/specificationissue.md:
     id: 4ceaa6fa0d00
-    last_write_checksum: sha1:ecdcc1e129b24b67e6c084cf866e0d3846b901bc
-    pristine_git_object: 011c46f5e0fea5bbe0129ac1a31e7174cd768869
+    last_write_checksum: sha1:e88903ec8a1ee03f950260b2d5f05cbf8bcc528a
+    pristine_git_object: 5b8f368869c5e886b330a7e12758c3578017cb2d
   docs/models/specificationissuekind.md:
     id: 1106fa9e1bcb
     last_write_checksum: sha1:097b02d494418e52d8a7999de983eab621c8093b
@@ -372,8 +384,8 @@ trackedFiles:
     pristine_git_object: 63972b28d621b660a80a1fb6393066cfd927cfb4
   docs/models/worldbuildprogress.md:
     id: f51d7f90b591
-    last_write_checksum: sha1:76e0ca372c6408fbe248041da9bf609327dc4aa5
-    pristine_git_object: 25b07aa6de08465c2d52e91904737da2d1ff649e
+    last_write_checksum: sha1:1ed126b1cc0ccdd24d3fbfa34b616783b79bbbf4
+    pristine_git_object: 7f8916332f0debec5b675c5555f90c247ebe7129
   docs/models/worldbuildprogressbuilder.md:
     id: 25256b4e309f
     last_write_checksum: sha1:61637bcaf4fd94c7347e8a663614a8d6520ce930
@@ -382,6 +394,10 @@ trackedFiles:
     id: f1f4c1d2fd11
     last_write_checksum: sha1:0ca5b804ea0e0190f00f974fa0107a362cfcb3dc
     pristine_git_object: 68cac0eabadbf1e9471bc59da719092d556ed50d
+  docs/models/worldbuildprogressmodel.md:
+    id: 024cd08e8bbc
+    last_write_checksum: sha1:1d2922ce6d54f5749f7793870a8a187dbe44a659
+    pristine_git_object: 4b4eb93eca19dc75ae8c5bd7eb72c0ff4381baa3
   docs/models/worldbuildprogressphase.md:
     id: cf7aef0bc486
     last_write_checksum: sha1:e9b4b0d53c3be1b10f8bf2616e4cb574327cdafe
@@ -424,12 +440,12 @@ trackedFiles:
     pristine_git_object: 24b42171736480d3467214145b34e9a1c30bc7cf
   docs/sdks/simulators/README.md:
     id: 55eacdd8fa62
-    last_write_checksum: sha1:0ce86459a2c9b3d2ef02e0021a441a2d6846fd7b
-    pristine_git_object: 0dd5855aa5d461c201fd0d946058c2ddaebeae8b
+    last_write_checksum: sha1:3c181d67e121918dc79b76ca35a82c142e995065
+    pristine_git_object: d044287bc10c911933bdf6101652af44e7beb73d
   docs/sdks/worlds/README.md:
     id: c57d3f2ebb66
-    last_write_checksum: sha1:845dec5a8a79022de589a9c1ba848a061773cc7c
-    pristine_git_object: c110925d37b9faabb45c65c5fbe1888afc0b642d
+    last_write_checksum: sha1:7da6a60459a9503daf820c818fcda3ccac3debf0
+    pristine_git_object: 1e9852b9be321f9069c27a2750f78dcabd846059
   py.typed:
     id: 258c3ed47ae4
     last_write_checksum: sha1:8efc425ffe830805ffcc0f3055871bdcdc542c60
@@ -440,8 +456,8 @@ trackedFiles:
     pristine_git_object: ba50994ac7aceefe62e1571a6cbff467d9a067da
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:8af362531668ee76a035a88fbfacc0597dce419c
-    pristine_git_object: fba47c26940a6eceb550643261331617e4077f19
+    last_write_checksum: sha1:ec4eca6426079751038e1e67e49ea609ce6a0f3b
+    pristine_git_object: 028a3f0b35d5996c7d6d9c81ff282ebd3598234b
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -468,8 +484,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:d453220996b42bdcaa7bbce4e4c750834835cb61
-    pristine_git_object: 5a53b53c997475784badb60e2df6f9c7b7149395
+    last_write_checksum: sha1:ce0f2233eb41fde739804544141cffb87f0f1209
+    pristine_git_object: f49bf49ad62bcdfc31020ce4725f7bcb6297343c
   src/continuous/basesdk.py:
     id: 7c7025a9c533
     last_write_checksum: sha1:c2195f8abe74c3f8baf5cb652679b710b838987d
@@ -504,8 +520,8 @@ trackedFiles:
     pristine_git_object: 89560b566073785535643e694c112bedbd3db13d
   src/continuous/models/__init__.py:
     id: 53b8497bf08d
-    last_write_checksum: sha1:db34e43d1f59895b906e717a301ec62f8d47d800
-    pristine_git_object: eb4e25c56b229589e2a884ffda3ba4402d629e30
+    last_write_checksum: sha1:5b128acfbff44169f0d00624bb7535733894310e
+    pristine_git_object: b0987f3ef4cf7fccbb8a0383ece7e2852d8800ef
   src/continuous/models/advance_simulation_timeop.py:
     id: 64baea32b042
     last_write_checksum: sha1:45b61171c653018ac0c456e888385fb323573fa8
@@ -524,16 +540,16 @@ trackedFiles:
     pristine_git_object: 722b6f8d676bff742f6214da1710e6c95c659b01
   src/continuous/models/buildsimulatorrequest.py:
     id: de11b8340ddc
-    last_write_checksum: sha1:78af17b1fe488bd01e394b1004a77ea9ab0cebbe
-    pristine_git_object: 61ab01773f4a22841d6faf4fa50d3e19e36404fe
+    last_write_checksum: sha1:656f3bce9a852bcc5d0d76cdb77c9bac7ba42616
+    pristine_git_object: cf65eb3df00a63aa1c06040a6e7b2d5efd013ee7
   src/continuous/models/buildtoolcall.py:
     id: c370a456dcc3
     last_write_checksum: sha1:daf93fa4249c7df907188b7b8f3e43317bcd99c0
     pristine_git_object: adad8d3f316f9006cb3958b88cbf5ee2fda39092
   src/continuous/models/buildworldrequest.py:
     id: 5cb1401e40d8
-    last_write_checksum: sha1:11ac5a20dc2cda500b693b07ea782c70f801fe5c
-    pristine_git_object: e5819b642f89b9733c0747ec826023cb28662295
+    last_write_checksum: sha1:5cf52e0d7ee4152e5904ba9a2d8f048e47a5b4d5
+    pristine_git_object: 539ded890260dda52174d4d49180512d30226256
   src/continuous/models/cancel_simulator_buildop.py:
     id: 8988645601d3
     last_write_checksum: sha1:135a059d8b3f149521f2e9eb5bb16673dc63d35a
@@ -672,16 +688,16 @@ trackedFiles:
     pristine_git_object: 6740f5782fdbde95e6238ced4c9d6e2f5e57e3f4
   src/continuous/models/simulatorbuildprogress.py:
     id: 003fbe758411
-    last_write_checksum: sha1:31919e4db855456701eccccc3ab08abcc7b9f088
-    pristine_git_object: 59e1b0c736ab3a38dc4b5ed4b3a7618b3f25f606
+    last_write_checksum: sha1:d322cb5e2b30e0c2fbdf3e300e5c46be11553a1a
+    pristine_git_object: 72ebd4f2d8a38ef5362daddd9291a40c5396e843
   src/continuous/models/simulatorerror.py:
     id: ab2c6f1ead7f
     last_write_checksum: sha1:07265a21039241504a66a0f9d7c2c7fd917d5c9f
     pristine_git_object: 73eb52646e432e365ab156d5131f2a83a23bf9b3
   src/continuous/models/specificationissue.py:
     id: e61f61eeb4e5
-    last_write_checksum: sha1:dfbbf45e68314080254f1dbd4a18d0a47c591c00
-    pristine_git_object: e97be73081eb907f062581b89953bc0a64c4efe1
+    last_write_checksum: sha1:50e3eadbd25ac09f06015242137ef682d90243e1
+    pristine_git_object: cabb042b1e92063f3934950176b4760e19305333
   src/continuous/models/specificationvalidation.py:
     id: f8564b13eaab
     last_write_checksum: sha1:5acae906708f420f70aa784630838a39ce6f0ede
@@ -716,8 +732,8 @@ trackedFiles:
     pristine_git_object: 9947cc31a011ce48aa8c8452838d2846c46fa634
   src/continuous/models/worldbuildprogress.py:
     id: 9f8af0dbff44
-    last_write_checksum: sha1:7668ef7f9b04650dde358dfdb100433af3ac8cb6
-    pristine_git_object: 4d1c8bf5def1fe3a521dfc0815fb3da65f904ec4
+    last_write_checksum: sha1:e70b2cd35bb0f027ce4b4455c8a37f34595f194c
+    pristine_git_object: ae603377a3fc032bca65bff7669e6592b889194d
   src/continuous/models/worlddatasummary.py:
     id: 78dc7cd3f55d
     last_write_checksum: sha1:e388f4655492f723ece5ae650ee89ed6d767506f
@@ -840,8 +856,8 @@ trackedFiles:
     pristine_git_object: ac217f473c5d52a454a2979b3eb35e66175d365c
   src/continuous/worlds.py:
     id: 3a95487cb08c
-    last_write_checksum: sha1:47516bd6695abde19e244610a9678fe42f43a501
-    pristine_git_object: d57b41748622f4bb748c406629b65b8e3b0dc3c0
+    last_write_checksum: sha1:1581cc875610cd6bfa74fd4781a5bc03876dd78f
+    pristine_git_object: bf5bc9a1af4bd9ed9cc8a13b7a622a848a754c2b
 examples:
   list-simulations:
     bad_request:
@@ -889,9 +905,9 @@ examples:
         "201":
           application/json: {"active_advance_id": null, "created_at": "2026-01-15T12:00:00Z", "current_time": "2024-01-01T00:00:00Z", "endpoint": "https://api.continuouslabs.ai/sim/sim_01J8Z5X4K7M2N9P0Q1R2S3T4V6", "expires_at": "2026-01-15T13:00:00Z", "id": "sim_01J8Z5X4K7M2N9P0Q1R2S3T4V6", "name": "billing-sandbox", "parent_id": "sim_01J8Z5X4K7M2N9P0Q1R2S3T4V8", "simulator_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "simulator_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "start_time": "2024-01-01T00:00:00Z", "status": "running", "token": "<redacted>"}
         "400":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "message": "<value>", "operation": "<value>", "path": "/Applications", "suggestion": "<value>"}]}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "message": "<value>", "operation": "<value>", "path": "/Applications", "suggestion": "<value>"}]}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
     bad_request_body:
       requestBody:
         application/json: {"name": "billing-sandbox", "simulator_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"}
@@ -998,9 +1014,9 @@ examples:
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "message": "<value>", "operation": "<value>", "path": "/media", "suggestion": "<value>"}]}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "message": "<value>", "operation": "<value>", "path": "/media", "suggestion": "<value>"}]}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
     auth_invalid:
       parameters:
         path:
@@ -1041,9 +1057,9 @@ examples:
         "200":
           application/json: {"next_cursor": "<value>", "steps": [{"advance_id": "<id>", "kind": "advance", "label": "<value>", "step": 499364, "time_after": "2026-03-23T14:17:05.025Z", "time_before": "2026-11-06T00:31:45.990Z"}]}
         "400":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "message": "<value>", "operation": "<value>", "path": "/usr/lib", "suggestion": "<value>"}]}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "message": "<value>", "operation": "<value>", "path": "/usr/lib", "suggestion": "<value>"}]}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
   stop-simulation:
     speakeasy-default-stop-simulation:
       parameters:
@@ -1117,7 +1133,7 @@ examples:
           limit: 50
       responses:
         "200":
-          application/json: {"next_cursor": "<value>", "simulators": [{"build": {"builder": "claude", "last_submission": "rejected", "last_tool": "<value>", "phase": "build", "recent_tools": [], "stage": "assemble", "submissions": 113509, "tool_calls": 913897, "updated_at": "2024-11-16T22:17:20.816Z"}, "created_at": "2026-01-15T12:00:00Z", "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "<value>", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "source": "workspace", "spec_kind": "wsdl", "status": "building"}]}
+          application/json: {"next_cursor": "<value>", "simulators": [{"build": {"builder": "claude", "last_submission": "rejected", "last_tool": "<value>", "model": "gpt-6-sol", "phase": "build", "recent_tools": [], "stage": "assemble", "submissions": 113509, "tool_calls": 913897, "updated_at": "2024-11-16T22:17:20.816Z"}, "created_at": "2026-01-15T12:00:00Z", "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "<value>", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "source": "workspace", "spec_kind": "wsdl", "status": "building"}]}
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
@@ -1125,7 +1141,7 @@ examples:
   build-simulator:
     simulator_unknown_parent:
       requestBody:
-        multipart/form-data: {"request": {"builder": "claude", "filter": [], "instructions": "Return stable example data for every operation.", "name": "billing-api", "spec_kind": "openapi", "timeout_seconds": 14400}}
+        multipart/form-data: {"request": {"filter": [], "instructions": "Return stable example data for every operation.", "model": "claude-fable-5-1", "name": "billing-api", "spec_kind": "openapi", "timeout_seconds": 14400}}
       responses:
         "400":
           application/problem+json: {"code": "simulator_unknown", "detail": "The parent Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace.", "validation": null}
@@ -1137,10 +1153,10 @@ examples:
           application/problem+json: {"code": "simulator_unknown", "detail": "The parent Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace.", "validation": null}
     speakeasy-default-build-simulator:
       requestBody:
-        multipart/form-data: {"request": {"builder": "claude", "filter": [], "instructions": "Return stable example data for every operation.", "name": "billing-api", "spec_kind": "openapi", "timeout_seconds": 14400}}
+        multipart/form-data: {"request": {"filter": [], "instructions": "Return stable example data for every operation.", "model": "claude-fable-5-1", "name": "billing-api", "spec_kind": "openapi", "timeout_seconds": 14400}}
       responses:
         "202":
-          application/json: {"build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "phase": "build", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "stage": "build", "submissions": 1, "tool_calls": 7, "updated_at": "2026-01-15T12:05:00Z"}, "created_at": "2026-01-15T12:00:00Z", "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "source": "workspace", "spec_kind": "openapi", "status": "building"}
+          application/json: {"build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "model": "claude-fable-5-1", "phase": "build", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "stage": "build", "submissions": 1, "tool_calls": 7, "updated_at": "2026-01-15T12:05:00Z"}, "created_at": "2026-01-15T12:00:00Z", "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "source": "workspace", "spec_kind": "openapi", "status": "building"}
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
@@ -1151,7 +1167,7 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
     bad_request_body:
       requestBody:
-        multipart/form-data: {"request": {"builder": "claude", "filter": [], "instructions": "Return stable example data for every operation.", "name": "billing-api", "spec_kind": "openapi", "timeout_seconds": 14400}}
+        multipart/form-data: {"request": {"filter": [], "instructions": "Return stable example data for every operation.", "model": "claude-fable-5-1", "name": "billing-api", "spec_kind": "openapi", "timeout_seconds": 14400}}
       responses:
         "400":
           application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
@@ -1198,7 +1214,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "phase": "build", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "stage": "build", "submissions": 1, "tool_calls": 7, "updated_at": "2026-01-15T12:05:00Z"}, "created_at": "2026-01-15T12:00:00Z", "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "source": "workspace", "spec_kind": "openapi", "status": "building"}
+          application/json: {"build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "model": "claude-fable-5-1", "phase": "build", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "stage": "build", "submissions": 1, "tool_calls": 7, "updated_at": "2026-01-15T12:05:00Z"}, "created_at": "2026-01-15T12:00:00Z", "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "source": "workspace", "spec_kind": "openapi", "status": "building"}
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
@@ -1230,13 +1246,13 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "phase": "build", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "stage": "build", "submissions": 1, "tool_calls": 7, "updated_at": "2026-01-15T12:05:00Z"}, "created_at": "2026-01-15T12:00:00Z", "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "source": "workspace", "spec_kind": "openapi", "status": "building"}
+          application/json: {"build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "model": "claude-fable-5-1", "phase": "build", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "stage": "build", "submissions": 1, "tool_calls": 7, "updated_at": "2026-01-15T12:05:00Z"}, "created_at": "2026-01-15T12:00:00Z", "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "source": "workspace", "spec_kind": "openapi", "status": "building"}
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unknown", "message": "<value>", "operation": "<value>", "path": "/var/spool", "suggestion": "<value>"}]}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unknown", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unknown", "message": "<value>", "operation": "<value>", "path": "/var/spool", "suggestion": "<value>"}]}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unknown", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
     auth_invalid:
       parameters:
         path:
@@ -1271,15 +1287,15 @@ examples:
           limit: 50
       responses:
         "200":
-          application/json: {"next_cursor": "<value>", "worlds": [{"active_advance_id": "<id>", "build": {"builder": "openai", "last_submission": "rejected", "last_tool": "<value>", "last_validation_code": "nested_proof", "phase": "finalize", "recent_tools": [], "review_status": "accepted", "stage": "validating", "submissions": 22199, "summary": null, "tests": 352213, "tool_calls": 98602}, "created_at": "2026-01-15T12:00:00Z", "current_time": "2025-09-18T08:14:47.236Z", "error": null, "id": "wld_01J8Z5X4K7M2N9P0Q1R2S3T4V7", "instructions": "Use stable example data for each Simulator.", "name": "<value>", "simulations": [], "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "start_time": "2024-07-28T13:30:18.464Z", "status": "building"}]}
+          application/json: {"next_cursor": "<value>", "worlds": [{"active_advance_id": "<id>", "build": {"builder": "openai", "last_submission": "rejected", "last_tool": "<value>", "last_validation_code": "nested_proof", "model": "claude-opus-5-5", "phase": "finalize", "recent_tools": [], "review_status": "accepted", "stage": "validating", "submissions": 22199, "summary": null, "tests": 352213, "tool_calls": 98602}, "created_at": "2026-01-15T12:00:00Z", "current_time": "2025-09-18T08:14:47.236Z", "error": null, "id": "wld_01J8Z5X4K7M2N9P0Q1R2S3T4V7", "instructions": "Use stable example data for each Simulator.", "name": "<value>", "simulations": [], "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "start_time": "2024-07-28T13:30:18.464Z", "status": "building"}]}
         "400":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "message": "<value>", "operation": "<value>", "path": "/usr/libexec", "suggestion": "<value>"}]}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "message": "<value>", "operation": "<value>", "path": "/usr/libexec", "suggestion": "<value>"}]}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
   build-world:
     simulator_unknown:
       requestBody:
-        application/json: {"builder": "claude", "instructions": "Use stable example data for each Simulator.", "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "timeout_seconds": 14400}
+        application/json: {"instructions": "Use stable example data for each Simulator.", "model": "gpt-6-astra", "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "timeout_seconds": 14400}
       responses:
         "400":
           application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace.", "validation": null}
@@ -1287,17 +1303,17 @@ examples:
           application/problem+json: {"code": "simulator_unknown", "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace.", "validation": null}
     speakeasy-default-build-world:
       requestBody:
-        application/json: {"builder": "claude", "instructions": "Use stable example data for each Simulator.", "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "timeout_seconds": 14400}
+        application/json: {"instructions": "Use stable example data for each Simulator.", "model": "gpt-6-astra", "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "timeout_seconds": 14400}
       responses:
         "202":
-          application/json: {"active_advance_id": null, "build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "last_validation_code": "request_not_satisfied", "phase": "finalize", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "review_status": "rejected", "stage": "generating", "submissions": 1, "summary": null, "tests": 2, "tool_calls": 7}, "created_at": "2026-01-15T12:00:00Z", "current_time": "2024-01-01T00:00:00Z", "error": null, "id": "wld_01J8Z5X4K7M2N9P0Q1R2S3T4V7", "instructions": "Use stable example data for each Simulator.", "name": "open-orders", "simulations": [], "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "start_time": "2024-01-01T00:00:00Z", "status": "building"}
+          application/json: {"active_advance_id": null, "build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "last_validation_code": "request_not_satisfied", "model": "claude-fable-5-1", "phase": "finalize", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "review_status": "rejected", "stage": "generating", "submissions": 1, "summary": null, "tests": 2, "tool_calls": 7}, "created_at": "2026-01-15T12:00:00Z", "current_time": "2024-01-01T00:00:00Z", "error": null, "id": "wld_01J8Z5X4K7M2N9P0Q1R2S3T4V7", "instructions": "Use stable example data for each Simulator.", "name": "open-orders", "simulations": [], "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "start_time": "2024-01-01T00:00:00Z", "status": "building"}
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
     bad_request_body:
       requestBody:
-        application/json: {"builder": "claude", "instructions": "Use stable example data for each Simulator.", "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "timeout_seconds": 14400}
+        application/json: {"instructions": "Use stable example data for each Simulator.", "model": "gpt-6-astra", "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "timeout_seconds": 14400}
       responses:
         "400":
           application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
@@ -1312,9 +1328,9 @@ examples:
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "message": "<value>", "operation": "<value>", "path": "/usr/local/src", "suggestion": "<value>"}]}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "message": "<value>", "operation": "<value>", "path": "/usr/local/src", "suggestion": "<value>"}]}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
     auth_invalid:
       parameters:
         path:
@@ -1340,13 +1356,13 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"active_advance_id": null, "build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "last_validation_code": "request_not_satisfied", "phase": "finalize", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "review_status": "rejected", "stage": "generating", "submissions": 1, "summary": null, "tests": 2, "tool_calls": 7}, "created_at": "2026-01-15T12:00:00Z", "current_time": "2024-01-01T00:00:00Z", "error": null, "id": "wld_01J8Z5X4K7M2N9P0Q1R2S3T4V7", "instructions": "Use stable example data for each Simulator.", "name": "open-orders", "simulations": [], "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "start_time": "2024-01-01T00:00:00Z", "status": "building"}
+          application/json: {"active_advance_id": null, "build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "last_validation_code": "request_not_satisfied", "model": "claude-fable-5-1", "phase": "finalize", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "review_status": "rejected", "stage": "generating", "submissions": 1, "summary": null, "tests": 2, "tool_calls": 7}, "created_at": "2026-01-15T12:00:00Z", "current_time": "2024-01-01T00:00:00Z", "error": null, "id": "wld_01J8Z5X4K7M2N9P0Q1R2S3T4V7", "instructions": "Use stable example data for each Simulator.", "name": "open-orders", "simulations": [], "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "start_time": "2024-01-01T00:00:00Z", "status": "building"}
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "message": "<value>", "operation": "<value>", "path": "/usr/include", "suggestion": "<value>"}]}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "message": "<value>", "operation": "<value>", "path": "/usr/include", "suggestion": "<value>"}]}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
     auth_invalid:
       parameters:
         path:
@@ -1372,7 +1388,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"active_advance_id": null, "build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "last_validation_code": "request_not_satisfied", "phase": "finalize", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "review_status": "rejected", "stage": "generating", "submissions": 1, "summary": null, "tests": 2, "tool_calls": 7}, "created_at": "2026-01-15T12:00:00Z", "current_time": "2024-01-01T00:00:00Z", "error": null, "id": "wld_01J8Z5X4K7M2N9P0Q1R2S3T4V7", "instructions": "Use stable example data for each Simulator.", "name": "open-orders", "simulations": [], "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "start_time": "2024-01-01T00:00:00Z", "status": "building"}
+          application/json: {"active_advance_id": null, "build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "last_validation_code": "request_not_satisfied", "model": "claude-fable-5-1", "phase": "finalize", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "review_status": "rejected", "stage": "generating", "submissions": 1, "summary": null, "tests": 2, "tool_calls": 7}, "created_at": "2026-01-15T12:00:00Z", "current_time": "2024-01-01T00:00:00Z", "error": null, "id": "wld_01J8Z5X4K7M2N9P0Q1R2S3T4V7", "instructions": "Use stable example data for each Simulator.", "name": "open-orders", "simulations": [], "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "start_time": "2024-01-01T00:00:00Z", "status": "building"}
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
@@ -1404,7 +1420,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"active_advance_id": null, "build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "last_validation_code": "request_not_satisfied", "phase": "finalize", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "review_status": "rejected", "stage": "generating", "submissions": 1, "summary": null, "tests": 2, "tool_calls": 7}, "created_at": "2026-01-15T12:00:00Z", "current_time": "2024-01-01T00:00:00Z", "error": null, "id": "wld_01J8Z5X4K7M2N9P0Q1R2S3T4V7", "instructions": "Use stable example data for each Simulator.", "name": "open-orders", "simulations": [], "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "start_time": "2024-01-01T00:00:00Z", "status": "building"}
+          application/json: {"active_advance_id": null, "build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "last_validation_code": "request_not_satisfied", "model": "claude-fable-5-1", "phase": "finalize", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "review_status": "rejected", "stage": "generating", "submissions": 1, "summary": null, "tests": 2, "tool_calls": 7}, "created_at": "2026-01-15T12:00:00Z", "current_time": "2024-01-01T00:00:00Z", "error": null, "id": "wld_01J8Z5X4K7M2N9P0Q1R2S3T4V7", "instructions": "Use stable example data for each Simulator.", "name": "open-orders", "simulations": [], "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "start_time": "2024-01-01T00:00:00Z", "status": "building"}
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
@@ -1445,7 +1461,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"active_advance_id": null, "build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "last_validation_code": "request_not_satisfied", "phase": "finalize", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "review_status": "rejected", "stage": "generating", "submissions": 1, "summary": null, "tests": 2, "tool_calls": 7}, "created_at": "2026-01-15T12:00:00Z", "current_time": "2024-01-01T00:00:00Z", "error": null, "id": "wld_01J8Z5X4K7M2N9P0Q1R2S3T4V7", "instructions": "Use stable example data for each Simulator.", "name": "open-orders", "simulations": [], "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "start_time": "2024-01-01T00:00:00Z", "status": "building"}
+          application/json: {"active_advance_id": null, "build": {"builder": "claude", "last_submission": "rejected", "last_tool": "test", "last_validation_code": "request_not_satisfied", "model": "claude-fable-5-1", "phase": "finalize", "recent_tools": [{"at": "2026-01-15T12:04:00Z", "tool": "test"}, {"at": "2026-01-15T12:05:00Z", "tool": "submit"}], "review_status": "rejected", "stage": "generating", "submissions": 1, "summary": null, "tests": 2, "tool_calls": 7}, "created_at": "2026-01-15T12:00:00Z", "current_time": "2024-01-01T00:00:00Z", "error": null, "id": "wld_01J8Z5X4K7M2N9P0Q1R2S3T4V7", "instructions": "Use stable example data for each Simulator.", "name": "open-orders", "simulations": [], "simulators": ["smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5"], "start_time": "2024-01-01T00:00:00Z", "status": "building"}
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
@@ -1496,9 +1512,9 @@ examples:
         "202":
           application/json: {"error": {"code": "<value>", "detail": "<value>"}, "event_count": 374944, "from": "2026-03-11T01:12:42.855Z", "id": "<id>", "members": [{"error": {"code": "<value>", "detail": "<value>"}, "event_count": 517513, "simulation_id": "<id>", "status": "failed", "step": 294677}], "status": "failed", "step": 316576, "to": "2026-07-19T10:10:10.879Z"}
         "400":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "message": "<value>", "operation": "<value>", "path": "/usr/include", "suggestion": "<value>"}]}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "message": "<value>", "operation": "<value>", "path": "/usr/include", "suggestion": "<value>"}]}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
   get-simulation-advance:
     auth_invalid:
       parameters:
@@ -1618,8 +1634,8 @@ examples:
         "200":
           application/json: {"error": {"code": "<value>", "detail": "<value>"}, "event_count": 918754, "from": "2024-04-27T20:39:55.215Z", "id": "<id>", "members": [], "status": "completed", "step": 59768, "to": "2026-10-01T10:19:26.413Z"}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "message": "<value>", "operation": "<value>", "path": "/home/user/dir", "suggestion": "<value>"}]}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "message": "<value>", "operation": "<value>", "path": "/home/user/dir", "suggestion": "<value>"}]}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
 examplesVersion: 1.0.2
-releaseNotes: "## Python SDK Changes:\n* `continuous.simulations.list_simulations()`: \n  *  `request.simulator_digest` **Added**\n  *  `response.simulations[]` **Changed** (Breaking ⚠️)\n* `continuous.simulations.create_simulation()`:  `response` **Changed** (Breaking ⚠️)\n* `continuous.simulations.get_simulation()`:  `response` **Changed** (Breaking ⚠️)\n* `continuous.simulations.fork_simulation()`:  `response` **Changed** (Breaking ⚠️)\n* `continuous.simulations.start_simulation()`:  `response` **Changed** (Breaking ⚠️)\n* `continuous.simulations.stop_simulation()`:  `response` **Changed** (Breaking ⚠️)\n"
+releaseNotes: "## Python SDK Changes:\n* `continuous.simulations.list_simulations()`:  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.simulations.create_simulation()`:  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.simulations.delete_simulation()`:  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.simulations.get_simulation()`:  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.simulations.advance_simulation_time()`:  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.simulations.get_simulation_advance()`:  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.simulations.list_simulation_advance_events()`:  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.simulations.fork_simulation()`:  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.simulations.start_simulation()`:  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.simulations.list_simulation_steps()`:  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.simulations.stop_simulation()`:  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.simulations.mint_simulation_token()`:  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.simulators.list_simulators()`: \n  *  `response.simulators[]` **Changed** (Breaking ⚠️)\n  *  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.simulators.build_simulator()`: \n  *  `request` **Changed**\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.simulators.delete_simulator()`:  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.simulators.get_simulator()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.simulators.cancel_simulator_build()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.worlds.list_worlds()`: \n  *  `response.worlds[].build.model` **Added**\n  *  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.worlds.build_world()`: \n  *  `request` **Changed**\n  *  `response.build.model` **Added**\n  *  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.worlds.delete_world()`:  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.worlds.get_world()`: \n  *  `response.build.model` **Added**\n  *  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.worlds.advance_world_time()`:  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.worlds.get_world_advance()`:  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.worlds.cancel_world_build()`: \n  *  `response.build.model` **Added**\n  *  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.worlds.start_world()`: \n  *  `response.build.model` **Added**\n  *  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n* `continuous.worlds.stop_world()`: \n  *  `response.build.model` **Added**\n  *  `error.validation.issues[]` **Changed** (Breaking ⚠️)\n"

@@ -12,16 +12,27 @@ BuildWorldRequestBuilder = Literal[
     "openai",
     "claude",
 ]
-r"""Model provider that builds starting data. Defaults to claude."""
+r"""Legacy provider selection. Alone it selects the provider's default model (openai is gpt-6-astra, claude is claude-fable-5-1); with model it must name the model's provider."""
+
+
+BuildWorldRequestModel = Literal[
+    "gpt-6-astra",
+    "gpt-6-sol",
+    "claude-opus-5-5",
+    "claude-fable-5-1",
+]
+r"""Model that builds and reviews starting data. Defaults to gpt-6-astra. Its provider is derived from the model."""
 
 
 class BuildWorldRequestTypedDict(TypedDict):
     simulators: List[str]
     r"""Simulator IDs for the World."""
     builder: NotRequired[BuildWorldRequestBuilder]
-    r"""Model provider that builds starting data. Defaults to claude."""
+    r"""Legacy provider selection. Alone it selects the provider's default model (openai is gpt-6-astra, claude is claude-fable-5-1); with model it must name the model's provider."""
     instructions: NotRequired[str]
     r"""Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted."""
+    model: NotRequired[BuildWorldRequestModel]
+    r"""Model that builds and reviews starting data. Defaults to gpt-6-astra. Its provider is derived from the model."""
     name: NotRequired[str]
     r"""Name for the World. Omission generates a name. The ID stays its identity, and names need not be unique."""
     start_time: NotRequired[datetime]
@@ -34,11 +45,14 @@ class BuildWorldRequest(BaseModel):
     simulators: List[str]
     r"""Simulator IDs for the World."""
 
-    builder: Optional[BuildWorldRequestBuilder] = "claude"
-    r"""Model provider that builds starting data. Defaults to claude."""
+    builder: Optional[BuildWorldRequestBuilder] = None
+    r"""Legacy provider selection. Alone it selects the provider's default model (openai is gpt-6-astra, claude is claude-fable-5-1); with model it must name the model's provider."""
 
     instructions: Optional[str] = None
     r"""Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted."""
+
+    model: Optional[BuildWorldRequestModel] = "gpt-6-astra"
+    r"""Model that builds and reviews starting data. Defaults to gpt-6-astra. Its provider is derived from the model."""
 
     name: Optional[str] = None
     r"""Name for the World. Omission generates a name. The ID stays its identity, and names need not be unique."""
@@ -52,7 +66,14 @@ class BuildWorldRequest(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["builder", "instructions", "name", "start_time", "timeout_seconds"]
+            [
+                "builder",
+                "instructions",
+                "model",
+                "name",
+                "start_time",
+                "timeout_seconds",
+            ]
         )
         serialized = handler(self)
         m = {}

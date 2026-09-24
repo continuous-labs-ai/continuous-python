@@ -249,6 +249,7 @@ with Continuous(
     res = c_client.simulators.build_simulator(request={
         "filter_": [],
         "instructions": "Return stable example data for every operation.",
+        "model": "claude-fable-5-1",
         "name": "billing-api",
         "spec_kind": "openapi",
     })
