@@ -43,6 +43,18 @@ LastValidationCode = Union[
 r"""Fixed code for the latest validation finding. Null when no finding is available. Authored details stay private."""
 
 
+WorldBuildProgressModel = Union[
+    Literal[
+        "gpt-6-astra",
+        "gpt-6-sol",
+        "claude-opus-5-5",
+        "claude-fable-5-1",
+    ],
+    UnrecognizedStr,
+]
+r"""The model the builder and reviewer run on, or null for a build created before provider selection. A build recorded before model selection reports its provider's default."""
+
+
 WorldBuildProgressPhase = Union[
     Literal[
         "build",
@@ -87,6 +99,8 @@ class WorldBuildProgressTypedDict(TypedDict):
     r"""Name of the most recent tool, or null. Tool arguments and output are private."""
     last_validation_code: Nullable[LastValidationCode]
     r"""Fixed code for the latest validation finding. Null when no finding is available. Authored details stay private."""
+    model: Nullable[WorldBuildProgressModel]
+    r"""The model the builder and reviewer run on, or null for a build created before provider selection. A build recorded before model selection reports its provider's default."""
     phase: Nullable[WorldBuildProgressPhase]
     r"""Agent phase: build for generation, review for the separate reviewer, finalize for author repair after review. Null when not recorded."""
     recent_tools: List[BuildToolCallTypedDict]
@@ -118,6 +132,9 @@ class WorldBuildProgress(BaseModel):
     last_validation_code: Nullable[LastValidationCode]
     r"""Fixed code for the latest validation finding. Null when no finding is available. Authored details stay private."""
 
+    model: Nullable[WorldBuildProgressModel]
+    r"""The model the builder and reviewer run on, or null for a build created before provider selection. A build recorded before model selection reports its provider's default."""
+
     phase: Nullable[WorldBuildProgressPhase]
     r"""Agent phase: build for generation, review for the separate reviewer, finalize for author repair after review. Null when not recorded."""
 
@@ -143,7 +160,7 @@ class WorldBuildProgress(BaseModel):
     r"""Number of agent tool calls."""
 
     @model_serializer(mode="wrap")
-    def serialize_model(self, handler):
+    def _serialize_model(self, handler):
         serialized = handler(self)
         m = {}
 

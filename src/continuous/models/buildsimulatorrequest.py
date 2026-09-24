@@ -12,7 +12,16 @@ BuildSimulatorRequestBuilder = Literal[
     "openai",
     "claude",
 ]
-r"""Model provider that builds the Simulator. Defaults to claude."""
+r"""Legacy provider selection. Alone it selects the provider's default model (openai is gpt-6-astra, claude is claude-fable-5-1); with model it must name the model's provider."""
+
+
+BuildSimulatorRequestModel = Literal[
+    "gpt-6-astra",
+    "gpt-6-sol",
+    "claude-opus-5-5",
+    "claude-fable-5-1",
+]
+r"""Model that builds and reviews the Simulator. Defaults to gpt-6-astra. Its provider is derived from the model."""
 
 
 BuildSimulatorRequestSpecKind = Literal[
@@ -24,11 +33,13 @@ r"""Source specification format. Omission detects the format."""
 
 class BuildSimulatorRequestTypedDict(TypedDict):
     builder: NotRequired[BuildSimulatorRequestBuilder]
-    r"""Model provider that builds the Simulator. Defaults to claude."""
+    r"""Legacy provider selection. Alone it selects the provider's default model (openai is gpt-6-astra, claude is claude-fable-5-1); with model it must name the model's provider."""
     filter_: NotRequired[List[str]]
     r"""Regular expressions (RE2 syntax) that select the operations to implement. Each is matched against the OpenAPI operationId or the WSDL operation name; an operation is kept when any expression matches, and an OpenAPI operation without an operationId is dropped. At most 64 expressions of at most 1,024 characters each. Omit or send an empty list to keep every operation. Not allowed for an incremental build."""
     instructions: NotRequired[str]
     r"""Instructions for the builder. Required for an incremental build. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
+    model: NotRequired[BuildSimulatorRequestModel]
+    r"""Model that builds and reviews the Simulator. Defaults to gpt-6-astra. Its provider is derived from the model."""
     name: NotRequired[str]
     r"""Name for the Simulator. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
     parent_id: NotRequired[str]
@@ -40,14 +51,17 @@ class BuildSimulatorRequestTypedDict(TypedDict):
 
 
 class BuildSimulatorRequest(BaseModel):
-    builder: Optional[BuildSimulatorRequestBuilder] = "claude"
-    r"""Model provider that builds the Simulator. Defaults to claude."""
+    builder: Optional[BuildSimulatorRequestBuilder] = None
+    r"""Legacy provider selection. Alone it selects the provider's default model (openai is gpt-6-astra, claude is claude-fable-5-1); with model it must name the model's provider."""
 
     filter_: Annotated[Optional[List[str]], pydantic.Field(alias="filter")] = None
     r"""Regular expressions (RE2 syntax) that select the operations to implement. Each is matched against the OpenAPI operationId or the WSDL operation name; an operation is kept when any expression matches, and an OpenAPI operation without an operationId is dropped. At most 64 expressions of at most 1,024 characters each. Omit or send an empty list to keep every operation. Not allowed for an incremental build."""
 
     instructions: Optional[str] = None
     r"""Instructions for the builder. Required for an incremental build. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
+
+    model: Optional[BuildSimulatorRequestModel] = "gpt-6-astra"
+    r"""Model that builds and reviews the Simulator. Defaults to gpt-6-astra. Its provider is derived from the model."""
 
     name: Optional[str] = None
     r"""Name for the Simulator. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
@@ -68,6 +82,7 @@ class BuildSimulatorRequest(BaseModel):
                 "builder",
                 "filter",
                 "instructions",
+                "model",
                 "name",
                 "parent_id",
                 "spec_kind",

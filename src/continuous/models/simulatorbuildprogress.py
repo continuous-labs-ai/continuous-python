@@ -29,6 +29,18 @@ SimulatorBuildProgressLastSubmission = Union[
 r"""Outcome of the most recent submit attempt, or null."""
 
 
+SimulatorBuildProgressModel = Union[
+    Literal[
+        "gpt-6-astra",
+        "gpt-6-sol",
+        "claude-opus-5-5",
+        "claude-fable-5-1",
+    ],
+    UnrecognizedStr,
+]
+r"""The model the builder and reviewer run on. A build recorded before model selection reports its provider's default."""
+
+
 SimulatorBuildProgressPhase = Union[
     Literal[
         "build",
@@ -58,6 +70,8 @@ class SimulatorBuildProgressTypedDict(TypedDict):
     r"""Outcome of the most recent submit attempt, or null."""
     last_tool: Nullable[str]
     r"""Name of the most recent tool call, or null."""
+    model: SimulatorBuildProgressModel
+    r"""The model the builder and reviewer run on. A build recorded before model selection reports its provider's default."""
     phase: Nullable[SimulatorBuildProgressPhase]
     r"""Agent phase: build for generation, review for the separate reviewer, finalize for author repair after review. Null when not recorded."""
     recent_tools: List[BuildToolCallTypedDict]
@@ -82,6 +96,9 @@ class SimulatorBuildProgress(BaseModel):
     last_tool: Nullable[str]
     r"""Name of the most recent tool call, or null."""
 
+    model: SimulatorBuildProgressModel
+    r"""The model the builder and reviewer run on. A build recorded before model selection reports its provider's default."""
+
     phase: Nullable[SimulatorBuildProgressPhase]
     r"""Agent phase: build for generation, review for the separate reviewer, finalize for author repair after review. Null when not recorded."""
 
@@ -101,7 +118,7 @@ class SimulatorBuildProgress(BaseModel):
     r"""Time of the last progress report."""
 
     @model_serializer(mode="wrap")
-    def serialize_model(self, handler):
+    def _serialize_model(self, handler):
         serialized = handler(self)
         m = {}
 
