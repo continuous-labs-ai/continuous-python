@@ -9,16 +9,6 @@ from typing import List, Literal, Union
 from typing_extensions import TypedDict
 
 
-SimulatorBuildProgressBuilder = Union[
-    Literal[
-        "claude",
-        "openai",
-    ],
-    UnrecognizedStr,
-]
-r"""The coding-loop provider."""
-
-
 SimulatorBuildProgressLastSubmission = Union[
     Literal[
         "accepted",
@@ -64,8 +54,6 @@ r"""derive while the effective spec, build skeleton, and sandbox are prepared; b
 
 
 class SimulatorBuildProgressTypedDict(TypedDict):
-    builder: SimulatorBuildProgressBuilder
-    r"""The coding-loop provider."""
     last_submission: Nullable[SimulatorBuildProgressLastSubmission]
     r"""Outcome of the most recent submit attempt, or null."""
     last_tool: Nullable[str]
@@ -87,9 +75,6 @@ class SimulatorBuildProgressTypedDict(TypedDict):
 
 
 class SimulatorBuildProgress(BaseModel):
-    builder: SimulatorBuildProgressBuilder
-    r"""The coding-loop provider."""
-
     last_submission: Nullable[SimulatorBuildProgressLastSubmission]
     r"""Outcome of the most recent submit attempt, or null."""
 

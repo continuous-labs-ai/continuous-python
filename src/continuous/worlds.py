@@ -221,8 +221,8 @@ class Worlds(BaseSDK):
         self,
         *,
         simulators: Iterable[str],
-        builder: Optional[models.BuildWorldRequestBuilder] = None,
         instructions: Optional[str] = None,
+        metadata: Optional[Any] = None,
         model: Optional[models.BuildWorldRequestModel] = "gpt-6-astra",
         name: Optional[str] = None,
         start_time: Optional[datetime] = None,
@@ -237,8 +237,8 @@ class Worlds(BaseSDK):
         Starts an asynchronous World build from ready Simulators and returns it in the pending state. Builds start in queue order when workspace capacity is available. Instructions generate and validate initial synthetic data. Start the World once it is ready to create its Simulations.
 
         :param simulators: Simulator IDs for the World.
-        :param builder: Legacy provider selection. Alone it selects the provider's default model (openai is gpt-6-astra, claude is claude-fable-5-1); with model it must name the model's provider.
         :param instructions: Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted.
+        :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by build, get, and list. Omission uses null.
         :param model: Model that builds and reviews starting data. Defaults to gpt-6-astra. Its provider is derived from the model.
         :param name: Name for the World. Omission generates a name. The ID stays its identity, and names need not be unique.
         :param start_time: Simulated time the World starts at, in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Saved starting data keeps its build dates.
@@ -259,8 +259,8 @@ class Worlds(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.BuildWorldRequest(
-            builder=builder,
             instructions=instructions,
+            metadata=metadata,
             model=model,
             name=name,
             simulators=utils.unmarshal(simulators, List[str]),
@@ -343,8 +343,8 @@ class Worlds(BaseSDK):
         self,
         *,
         simulators: Iterable[str],
-        builder: Optional[models.BuildWorldRequestBuilder] = None,
         instructions: Optional[str] = None,
+        metadata: Optional[Any] = None,
         model: Optional[models.BuildWorldRequestModel] = "gpt-6-astra",
         name: Optional[str] = None,
         start_time: Optional[datetime] = None,
@@ -359,8 +359,8 @@ class Worlds(BaseSDK):
         Starts an asynchronous World build from ready Simulators and returns it in the pending state. Builds start in queue order when workspace capacity is available. Instructions generate and validate initial synthetic data. Start the World once it is ready to create its Simulations.
 
         :param simulators: Simulator IDs for the World.
-        :param builder: Legacy provider selection. Alone it selects the provider's default model (openai is gpt-6-astra, claude is claude-fable-5-1); with model it must name the model's provider.
         :param instructions: Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted.
+        :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by build, get, and list. Omission uses null.
         :param model: Model that builds and reviews starting data. Defaults to gpt-6-astra. Its provider is derived from the model.
         :param name: Name for the World. Omission generates a name. The ID stays its identity, and names need not be unique.
         :param start_time: Simulated time the World starts at, in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Saved starting data keeps its build dates.
@@ -381,8 +381,8 @@ class Worlds(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.BuildWorldRequest(
-            builder=builder,
             instructions=instructions,
+            metadata=metadata,
             model=model,
             name=name,
             simulators=utils.unmarshal(simulators, List[str]),

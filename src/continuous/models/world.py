@@ -7,7 +7,7 @@ from .worldsimulation import WorldSimulation, WorldSimulationTypedDict
 from continuous.types import BaseModel, Nullable, UNSET_SENTINEL, UnrecognizedStr
 from datetime import datetime
 from pydantic import model_serializer
-from typing import List, Literal, Union
+from typing import Any, List, Literal, Union
 from typing_extensions import TypedDict
 
 
@@ -40,6 +40,8 @@ class WorldTypedDict(TypedDict):
     r"""World ID."""
     instructions: str
     r"""Instructions for the initial synthetic data and relationships."""
+    metadata: Any
+    r"""Customer JSON metadata, or null."""
     name: str
     r"""Name for the World."""
     simulations: List[WorldSimulationTypedDict]
@@ -72,6 +74,9 @@ class World(BaseModel):
 
     instructions: str
     r"""Instructions for the initial synthetic data and relationships."""
+
+    metadata: Any
+    r"""Customer JSON metadata, or null."""
 
     name: str
     r"""Name for the World."""

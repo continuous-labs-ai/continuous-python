@@ -81,7 +81,9 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.simulations.create_simulation(simulator_id="smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", name="billing-sandbox")
+    res = c_client.simulations.create_simulation(simulator_id="smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", metadata={
+        "customer_id": "cust_123",
+    }, name="billing-sandbox")
 
     # Handle response
     print(res)
@@ -99,7 +101,9 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.simulations.create_simulation(simulator_id="smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", name="billing-sandbox")
+    res = c_client.simulations.create_simulation(simulator_id="smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", metadata={
+        "customer_id": "cust_123",
+    }, name="billing-sandbox")
 
     # Handle response
     print(res)
@@ -108,12 +112,13 @@ with Continuous(
 
 ### Parameters
 
-| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `simulator_id`                                                                                               | *str*                                                                                                        | :heavy_check_mark:                                                                                           | ID of the ready Simulator.                                                                                   |
-| `name`                                                                                                       | *Optional[str]*                                                                                              | :heavy_minus_sign:                                                                                           | Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique. |
-| `start_time`                                                                                                 | [date](https://docs.python.org/3/library/datetime.html#date-objects)                                         | :heavy_minus_sign:                                                                                           | Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds.    |
-| `retries`                                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                             | :heavy_minus_sign:                                                                                           | Configuration to override the default retry behavior of the client.                                          |
+| Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `simulator_id`                                                                                                     | *str*                                                                                                              | :heavy_check_mark:                                                                                                 | ID of the ready Simulator.                                                                                         |
+| `metadata`                                                                                                         | *Optional[Any]*                                                                                                    | :heavy_minus_sign:                                                                                                 | Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null. |
+| `name`                                                                                                             | *Optional[str]*                                                                                                    | :heavy_minus_sign:                                                                                                 | Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique.       |
+| `start_time`                                                                                                       | [date](https://docs.python.org/3/library/datetime.html#date-objects)                                               | :heavy_minus_sign:                                                                                                 | Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds.          |
+| `retries`                                                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                   | :heavy_minus_sign:                                                                                                 | Configuration to override the default retry behavior of the client.                                                |
 
 ### Response
 

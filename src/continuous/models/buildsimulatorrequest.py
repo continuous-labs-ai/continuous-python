@@ -8,13 +8,6 @@ from typing import List, Literal, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-BuildSimulatorRequestBuilder = Literal[
-    "openai",
-    "claude",
-]
-r"""Legacy provider selection. Alone it selects the provider's default model (openai is gpt-6-astra, claude is claude-fable-5-1); with model it must name the model's provider."""
-
-
 BuildSimulatorRequestModel = Literal[
     "gpt-6-astra",
     "gpt-6-sol",
@@ -32,8 +25,6 @@ r"""Source specification format. Omission detects the format."""
 
 
 class BuildSimulatorRequestTypedDict(TypedDict):
-    builder: NotRequired[BuildSimulatorRequestBuilder]
-    r"""Legacy provider selection. Alone it selects the provider's default model (openai is gpt-6-astra, claude is claude-fable-5-1); with model it must name the model's provider."""
     filter_: NotRequired[List[str]]
     r"""Regular expressions (RE2 syntax) that select the operations to implement. Each is matched against the OpenAPI operationId or the WSDL operation name; an operation is kept when any expression matches, and an OpenAPI operation without an operationId is dropped. At most 64 expressions of at most 1,024 characters each. Omit or send an empty list to keep every operation. Not allowed for an incremental build."""
     instructions: NotRequired[str]
@@ -51,9 +42,6 @@ class BuildSimulatorRequestTypedDict(TypedDict):
 
 
 class BuildSimulatorRequest(BaseModel):
-    builder: Optional[BuildSimulatorRequestBuilder] = None
-    r"""Legacy provider selection. Alone it selects the provider's default model (openai is gpt-6-astra, claude is claude-fable-5-1); with model it must name the model's provider."""
-
     filter_: Annotated[Optional[List[str]], pydantic.Field(alias="filter")] = None
     r"""Regular expressions (RE2 syntax) that select the operations to implement. Each is matched against the OpenAPI operationId or the WSDL operation name; an operation is kept when any expression matches, and an OpenAPI operation without an operationId is dropped. At most 64 expressions of at most 1,024 characters each. Omit or send an empty list to keep every operation. Not allowed for an incremental build."""
 
@@ -79,7 +67,6 @@ class BuildSimulatorRequest(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
-                "builder",
                 "filter",
                 "instructions",
                 "model",
