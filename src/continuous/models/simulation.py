@@ -4,7 +4,7 @@ from __future__ import annotations
 from continuous.types import BaseModel, Nullable, UNSET_SENTINEL, UnrecognizedStr
 from datetime import datetime
 from pydantic import model_serializer
-from typing import Literal, Union
+from typing import Any, Literal, Union
 from typing_extensions import TypedDict
 
 
@@ -30,6 +30,8 @@ class SimulationTypedDict(TypedDict):
     r"""Base URL for requests to the Simulation."""
     id: str
     r"""Simulation ID."""
+    metadata: Any
+    r"""Customer JSON metadata, or null."""
     name: str
     r"""Simulation name. The ID is its identity, and names need not be unique."""
     parent_id: Nullable[str]
@@ -59,6 +61,9 @@ class Simulation(BaseModel):
 
     id: str
     r"""Simulation ID."""
+
+    metadata: Any
+    r"""Customer JSON metadata, or null."""
 
     name: str
     r"""Simulation name. The ID is its identity, and names need not be unique."""

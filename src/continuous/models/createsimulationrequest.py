@@ -4,13 +4,15 @@ from __future__ import annotations
 from continuous.types import BaseModel, UNSET_SENTINEL
 from datetime import datetime
 from pydantic import model_serializer
-from typing import Optional
+from typing import Any, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
 class CreateSimulationRequestTypedDict(TypedDict):
     simulator_id: str
     r"""ID of the ready Simulator."""
+    metadata: NotRequired[Any]
+    r"""Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null."""
     name: NotRequired[str]
     r"""Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique."""
     start_time: NotRequired[datetime]
@@ -21,6 +23,9 @@ class CreateSimulationRequest(BaseModel):
     simulator_id: str
     r"""ID of the ready Simulator."""
 
+    metadata: Optional[Any] = None
+    r"""Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null."""
+
     name: Optional[str] = None
     r"""Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique."""
 
@@ -29,7 +34,7 @@ class CreateSimulationRequest(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["name", "start_time"])
+        optional_fields = set(["metadata", "name", "start_time"])
         serialized = handler(self)
         m = {}
 

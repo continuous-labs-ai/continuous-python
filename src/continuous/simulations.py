@@ -239,6 +239,7 @@ class Simulations(BaseSDK):
         self,
         *,
         simulator_id: str,
+        metadata: Optional[Any] = None,
         name: Optional[str] = None,
         start_time: Optional[datetime] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -251,6 +252,7 @@ class Simulations(BaseSDK):
         Creates a Simulation from a ready Simulator and starts it. The response includes the Simulation endpoint and a token that expires in 1 hour. List and get do not return the token.
 
         :param simulator_id: ID of the ready Simulator.
+        :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null.
         :param name: Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique.
         :param start_time: Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds.
         :param retries: Override the default retry configuration for this method
@@ -269,6 +271,7 @@ class Simulations(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.CreateSimulationRequest(
+            metadata=metadata,
             name=name,
             simulator_id=simulator_id,
             start_time=start_time,
@@ -351,6 +354,7 @@ class Simulations(BaseSDK):
         self,
         *,
         simulator_id: str,
+        metadata: Optional[Any] = None,
         name: Optional[str] = None,
         start_time: Optional[datetime] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -363,6 +367,7 @@ class Simulations(BaseSDK):
         Creates a Simulation from a ready Simulator and starts it. The response includes the Simulation endpoint and a token that expires in 1 hour. List and get do not return the token.
 
         :param simulator_id: ID of the ready Simulator.
+        :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null.
         :param name: Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique.
         :param start_time: Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds.
         :param retries: Override the default retry configuration for this method
@@ -381,6 +386,7 @@ class Simulations(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.CreateSimulationRequest(
+            metadata=metadata,
             name=name,
             simulator_id=simulator_id,
             start_time=start_time,

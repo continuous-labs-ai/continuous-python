@@ -4,15 +4,8 @@ from __future__ import annotations
 from continuous.types import BaseModel, UNSET_SENTINEL
 from datetime import datetime
 from pydantic import model_serializer
-from typing import List, Literal, Optional
+from typing import Any, List, Literal, Optional
 from typing_extensions import NotRequired, TypedDict
-
-
-BuildWorldRequestBuilder = Literal[
-    "openai",
-    "claude",
-]
-r"""Legacy provider selection. Alone it selects the provider's default model (openai is gpt-6-astra, claude is claude-fable-5-1); with model it must name the model's provider."""
 
 
 BuildWorldRequestModel = Literal[
@@ -27,10 +20,10 @@ r"""Model that builds and reviews starting data. Defaults to gpt-6-astra. Its pr
 class BuildWorldRequestTypedDict(TypedDict):
     simulators: List[str]
     r"""Simulator IDs for the World."""
-    builder: NotRequired[BuildWorldRequestBuilder]
-    r"""Legacy provider selection. Alone it selects the provider's default model (openai is gpt-6-astra, claude is claude-fable-5-1); with model it must name the model's provider."""
     instructions: NotRequired[str]
     r"""Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted."""
+    metadata: NotRequired[Any]
+    r"""Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by build, get, and list. Omission uses null."""
     model: NotRequired[BuildWorldRequestModel]
     r"""Model that builds and reviews starting data. Defaults to gpt-6-astra. Its provider is derived from the model."""
     name: NotRequired[str]
@@ -45,11 +38,11 @@ class BuildWorldRequest(BaseModel):
     simulators: List[str]
     r"""Simulator IDs for the World."""
 
-    builder: Optional[BuildWorldRequestBuilder] = None
-    r"""Legacy provider selection. Alone it selects the provider's default model (openai is gpt-6-astra, claude is claude-fable-5-1); with model it must name the model's provider."""
-
     instructions: Optional[str] = None
     r"""Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted."""
+
+    metadata: Optional[Any] = None
+    r"""Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by build, get, and list. Omission uses null."""
 
     model: Optional[BuildWorldRequestModel] = "gpt-6-astra"
     r"""Model that builds and reviews starting data. Defaults to gpt-6-astra. Its provider is derived from the model."""
@@ -67,8 +60,8 @@ class BuildWorldRequest(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
-                "builder",
                 "instructions",
+                "metadata",
                 "model",
                 "name",
                 "start_time",

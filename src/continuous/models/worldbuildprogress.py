@@ -9,16 +9,6 @@ from typing import List, Literal, Union
 from typing_extensions import TypedDict
 
 
-WorldBuildProgressBuilder = Union[
-    Literal[
-        "openai",
-        "claude",
-    ],
-    UnrecognizedStr,
-]
-r"""Selected model provider, or null for a build created before provider selection."""
-
-
 WorldBuildProgressLastSubmission = Union[
     Literal[
         "accepted",
@@ -91,8 +81,6 @@ r"""Internal step of starting-data preparation."""
 
 
 class WorldBuildProgressTypedDict(TypedDict):
-    builder: Nullable[WorldBuildProgressBuilder]
-    r"""Selected model provider, or null for a build created before provider selection."""
     last_submission: Nullable[WorldBuildProgressLastSubmission]
     r"""Outcome of the most recent plan submission, or null."""
     last_tool: Nullable[str]
@@ -120,9 +108,6 @@ class WorldBuildProgressTypedDict(TypedDict):
 
 
 class WorldBuildProgress(BaseModel):
-    builder: Nullable[WorldBuildProgressBuilder]
-    r"""Selected model provider, or null for a build created before provider selection."""
-
     last_submission: Nullable[WorldBuildProgressLastSubmission]
     r"""Outcome of the most recent plan submission, or null."""
 
