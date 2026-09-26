@@ -34,7 +34,7 @@ class WorldTypedDict(TypedDict):
     created_at: datetime
     r"""Time when the World was created."""
     current_time: datetime
-    r"""Current shared simulated time."""
+    r"""Target of the last settled World clock request. Individual member clocks can differ."""
     error: Nullable[WorldErrorTypedDict]
     id: str
     r"""World ID."""
@@ -65,7 +65,7 @@ class World(BaseModel):
     r"""Time when the World was created."""
 
     current_time: datetime
-    r"""Current shared simulated time."""
+    r"""Target of the last settled World clock request. Individual member clocks can differ."""
 
     error: Nullable[WorldError]
 
