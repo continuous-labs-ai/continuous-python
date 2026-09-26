@@ -13,10 +13,11 @@ ClockAdvanceMemberStatus = Union[
         "pending",
         "completed",
         "failed",
+        "skipped",
     ],
     UnrecognizedStr,
 ]
-r"""Whether this member is pending, committed, or rolled back after a deterministic failure."""
+r"""Whether this member is pending, committed, failed, or skipped because it is not running."""
 
 
 class ClockAdvanceMemberTypedDict(TypedDict):
@@ -26,7 +27,7 @@ class ClockAdvanceMemberTypedDict(TypedDict):
     simulation_id: str
     r"""Member Simulation ID."""
     status: ClockAdvanceMemberStatus
-    r"""Whether this member is pending, committed, or rolled back after a deterministic failure."""
+    r"""Whether this member is pending, committed, failed, or skipped because it is not running."""
     step: Nullable[int]
     r"""Committed local step, or null for no change or a failed advance."""
 
@@ -41,7 +42,7 @@ class ClockAdvanceMember(BaseModel):
     r"""Member Simulation ID."""
 
     status: ClockAdvanceMemberStatus
-    r"""Whether this member is pending, committed, or rolled back after a deterministic failure."""
+    r"""Whether this member is pending, committed, failed, or skipped because it is not running."""
 
     step: Nullable[int]
     r"""Committed local step, or null for no change or a failed advance."""

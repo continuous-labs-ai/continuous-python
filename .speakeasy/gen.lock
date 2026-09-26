@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: 10e3e6938a095c9c364b3bd6b57366e9
+  docChecksum: 1e0ed421d29a74b5ed80460249e81974
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.1.19
-  configChecksum: df69eb0d380e96a436390dc5e0294e6d
+  releaseVersion: 0.1.20
+  configChecksum: 2148351bb49310ae53201d66b6299546
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: feb49d57-a67d-41c8-b5a1-aa5256fe8c8b
-  pristine_commit_hash: 54b7a3210a194fe379999870809d10211f0b61e3
-  pristine_tree_hash: 4d97b302460a64b87fca7c3b5d5f48def6ef222b
+  generation_id: 379ef708-2187-4067-9e2b-33ed7a09571e
+  pristine_commit_hash: 861cb138f3a83e158eba539f75c804b49e98c3d9
+  pristine_tree_hash: 0b03b4cc3298c6c9872ce9a081f50fbf37bcc3ed
 features:
   python:
     additionalDependencies: 1.1.0
@@ -116,12 +116,12 @@ trackedFiles:
     pristine_git_object: e2005cbd1dfce639954e95958f4ee4fe7a0f9508
   docs/models/clockadvancemember.md:
     id: e09635908107
-    last_write_checksum: sha1:4f7a392a5e32fefcece9155d7b30ad202d01468e
-    pristine_git_object: 069c51eb5bb38f5b64809546e3c59d18dd034c51
+    last_write_checksum: sha1:fdce75ae793354e55dde2c879b0f8c4ab8604843
+    pristine_git_object: 027535fb8e2d720c6592c458f674fe55e9985f6a
   docs/models/clockadvancememberstatus.md:
     id: 38b47f524f42
-    last_write_checksum: sha1:bcb1d72f2ea9d08bd324bc43a44274d748f95160
-    pristine_git_object: 5961d3f08e172e6b425f048c032522473d2b1032
+    last_write_checksum: sha1:42717fb0f3bd207860c0b14b91620ebbdd1c8d02
+    pristine_git_object: 1562a128ca69e1bd3cd0f6d319c80e215df75ab6
   docs/models/clockadvancestatus.md:
     id: ea12ca5c2a7a
     last_write_checksum: sha1:aa4c18dc94cce503df263a1a8ed764cd3b6e5833
@@ -368,8 +368,8 @@ trackedFiles:
     pristine_git_object: 69dd549ec7f5f885101d08dd502e25748183aebf
   docs/models/world.md:
     id: d58530de63e7
-    last_write_checksum: sha1:8b062832c9a543198cddf1ca733678f6c57bffe5
-    pristine_git_object: 5d3ba631c785429f8fcef4e5e4f109d2675666b8
+    last_write_checksum: sha1:1d0cee616f5d84497caccd9f426a849df0375a9e
+    pristine_git_object: 64e73d40dc2cc0bed3fbcfbbf69293a13558ed0c
   docs/models/worldbuildprogress.md:
     id: f51d7f90b591
     last_write_checksum: sha1:2820ec7630a0bf3e0e73d5ed6dea6dea03d9e18e
@@ -428,8 +428,8 @@ trackedFiles:
     pristine_git_object: d044287bc10c911933bdf6101652af44e7beb73d
   docs/sdks/worlds/README.md:
     id: c57d3f2ebb66
-    last_write_checksum: sha1:cffe44faebe5eb43337e50adf4b2944a6fb65dc5
-    pristine_git_object: c2c153888c5c0dabce5c4225b6f28fa466d0f085
+    last_write_checksum: sha1:13c167fe32de6c30e46df74d9f4e6c651309b1a8
+    pristine_git_object: 1af836d42b6c726de98a0073d9e56e939a596096
   py.typed:
     id: 258c3ed47ae4
     last_write_checksum: sha1:8efc425ffe830805ffcc0f3055871bdcdc542c60
@@ -440,8 +440,8 @@ trackedFiles:
     pristine_git_object: ba50994ac7aceefe62e1571a6cbff467d9a067da
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:4978bdcec99b5c23857e41ca4637a7b449c69405
-    pristine_git_object: 016c6e40c8a3bf7a4b329473dcf3acd580ec89a5
+    last_write_checksum: sha1:9d79b8a466f72a8afe7a2d2e9e56c76e54bebf02
+    pristine_git_object: dcefa09bb3c98ee17c7fecbd1f1c75aa091477ce
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -468,8 +468,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:07b21399e6f63f8cd561f9c63968736dc1575bd4
-    pristine_git_object: e521ec73d2d822b5d30c62cda0f53ec09c63653a
+    last_write_checksum: sha1:d3bfb2f25696da97547d70ded9a917c02d462ede
+    pristine_git_object: 5a28da83c874f8561987f00977c66aaa2c72d423
   src/continuous/basesdk.py:
     id: 7c7025a9c533
     last_write_checksum: sha1:c2195f8abe74c3f8baf5cb652679b710b838987d
@@ -548,8 +548,8 @@ trackedFiles:
     pristine_git_object: 16a8a8c2d275eb1ea16902d6974e37e842db30b5
   src/continuous/models/clockadvancemember.py:
     id: b7772136c876
-    last_write_checksum: sha1:b05875bfeba1eb50efbd6be851d460f33a81a717
-    pristine_git_object: db7490d877dc60a9a785fc7c70ca1555f5c9fbbc
+    last_write_checksum: sha1:6a675bf2e777d03146cdeeb61860e811a186eb78
+    pristine_git_object: f5aef78d65cb545836f68f40fb05d5834f92f0ce
   src/continuous/models/clockevent.py:
     id: 95f5ae6d2dca
     last_write_checksum: sha1:cc48572e234a89ed7ebf2f269f34c3111c6dc1b1
@@ -712,8 +712,8 @@ trackedFiles:
     pristine_git_object: 57a320f6c8ebf4bb0fc89503fe5d564a9f68b9bc
   src/continuous/models/world.py:
     id: d5b6e40ecae5
-    last_write_checksum: sha1:b94d1df62a6ac7fae825d856e083332a17f3c429
-    pristine_git_object: 34724c83bf93697ad96e8432a74a7854f1bf4328
+    last_write_checksum: sha1:57770e58951531d18f175ea92553c5e90e4b7687
+    pristine_git_object: e1cdb83074fb74acc8540cd005130f1949d94525
   src/continuous/models/worldbuildprogress.py:
     id: 9f8af0dbff44
     last_write_checksum: sha1:0c34d6aad79c8658acb3c8ed6ba49a9c348211d5
@@ -840,8 +840,8 @@ trackedFiles:
     pristine_git_object: ac217f473c5d52a454a2979b3eb35e66175d365c
   src/continuous/worlds.py:
     id: 3a95487cb08c
-    last_write_checksum: sha1:d22e0773cbdabca6c94aff63af0fc0722d0d2b78
-    pristine_git_object: 86d28b760ad36c99e9bc16092c94a137dd281e27
+    last_write_checksum: sha1:aead03a033b670d63917f01ffe99258ea1a10c47
+    pristine_git_object: f9533f375c6938f51c70e06e59cc8e3f614f0aed
 examples:
   list-simulations:
     bad_request:
@@ -1622,4 +1622,9 @@ examples:
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
 examplesVersion: 1.0.2
-releaseNotes: "## Python SDK Changes:\n* `continuous.worlds.get_world()`:  `response` **Changed** (Breaking ⚠️)\n* `continuous.worlds.list_worlds()`:  `response.worlds[]` **Changed** (Breaking ⚠️)\n* `continuous.worlds.stop_world()`:  `response` **Changed** (Breaking ⚠️)\n* `continuous.worlds.start_world()`:  `response` **Changed** (Breaking ⚠️)\n* `continuous.worlds.cancel_world_build()`:  `response` **Changed** (Breaking ⚠️)\n* `continuous.worlds.build_world()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `continuous.simulators.list_simulators()`:  `response.simulators[].build.builder` **Removed** (Breaking ⚠️)\n* `continuous.simulators.cancel_simulator_build()`:  `response.build.builder` **Removed** (Breaking ⚠️)\n* `continuous.simulators.get_simulator()`:  `response.build.builder` **Removed** (Breaking ⚠️)\n* `continuous.simulators.build_simulator()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.build.builder` **Removed** (Breaking ⚠️)\n* `continuous.simulations.create_simulation()`: \n  *  `request.metadata` **Added**\n  *  `response.metadata` **Added**\n* `continuous.simulations.stop_simulation()`:  `response.metadata` **Added**\n* `continuous.simulations.list_simulations()`:  `response.simulations[].metadata` **Added**\n* `continuous.simulations.start_simulation()`:  `response.metadata` **Added**\n* `continuous.simulations.fork_simulation()`:  `response.metadata` **Added**\n* `continuous.simulations.get_simulation()`:  `response.metadata` **Added**\n"
+releaseNotes: |
+  ## Python SDK Changes:
+  * `continuous.simulations.advance_simulation_time()`:  `response.members[].status.enum(skipped)` **Added**
+  * `continuous.simulations.get_simulation_advance()`:  `response.members[].status.enum(skipped)` **Added**
+  * `continuous.worlds.advance_world_time()`:  `response.members[].status.enum(skipped)` **Added**
+  * `continuous.worlds.get_world_advance()`:  `response.members[].status.enum(skipped)` **Added**

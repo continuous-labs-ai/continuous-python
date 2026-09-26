@@ -1,6 +1,6 @@
 # ClockAdvanceMemberStatus
 
-Whether this member is pending, committed, or rolled back after a deterministic failure.
+Whether this member is pending, committed, failed, or skipped because it is not running.
 
 ## Example Usage
 
@@ -19,3 +19,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"pending"`
 - `"completed"`
 - `"failed"`
+- `"skipped"`
