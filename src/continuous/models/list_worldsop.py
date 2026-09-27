@@ -4,11 +4,25 @@ from __future__ import annotations
 from continuous.types import BaseModel, UNSET_SENTINEL
 from continuous.utils import FieldMetadata, QueryParamMetadata
 from pydantic import model_serializer
-from typing import Optional
+from typing import Literal, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
+ListWorldsStatus = Literal[
+    "pending",
+    "building",
+    "ready",
+    "running",
+    "stopped",
+    "failed",
+    "canceled",
+]
+r"""Optional status filter."""
+
+
 class ListWorldsRequestTypedDict(TypedDict):
+    status: NotRequired[ListWorldsStatus]
+    r"""Optional status filter."""
     limit: NotRequired[int]
     r"""Page size. Values below 1 use 50. Values above 200 use 200."""
     cursor: NotRequired[str]
@@ -16,6 +30,12 @@ class ListWorldsRequestTypedDict(TypedDict):
 
 
 class ListWorldsRequest(BaseModel):
+    status: Annotated[
+        Optional[ListWorldsStatus],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
+    ] = None
+    r"""Optional status filter."""
+
     limit: Annotated[
         Optional[int],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
@@ -30,7 +50,7 @@ class ListWorldsRequest(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["limit", "cursor"])
+        optional_fields = set(["status", "limit", "cursor"])
         serialized = handler(self)
         m = {}
 

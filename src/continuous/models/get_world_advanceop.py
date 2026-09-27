@@ -8,7 +8,7 @@ from typing_extensions import Annotated, TypedDict
 
 class GetWorldAdvanceRequestTypedDict(TypedDict):
     id: str
-    r"""Simulation or World ID."""
+    r"""World ID."""
     advance_id: str
     r"""Clock advance operation ID."""
 
@@ -17,7 +17,7 @@ class GetWorldAdvanceRequest(BaseModel):
     id: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
-    r"""Simulation or World ID."""
+    r"""World ID."""
 
     advance_id: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))

@@ -10,9 +10,9 @@ Build Worlds from one or more Simulators and start or stop their Simulations tog
 * [build_world](#build_world) - Build World
 * [delete_world](#delete_world) - Delete World
 * [get_world](#get_world) - Get World
-* [advance_world_time](#advance_world_time) - Advance World Time
+* [advance_world](#advance_world) - Advance World Time
 * [get_world_advance](#get_world_advance) - Get World Clock Advance
-* [cancel_world_build](#cancel_world_build) - Cancel World Build
+* [cancel_world](#cancel_world) - Cancel World Build
 * [start_world](#start_world) - Start World
 * [stop_world](#stop_world) - Stop World
 
@@ -41,11 +41,12 @@ with Continuous(
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `limit`                                                             | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Page size. Values below 1 use 50. Values above 200 use 200.         |
-| `cursor`                                                            | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Opaque next_cursor value from a previous page.                      |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `status`                                                              | [Optional[models.ListWorldsStatus]](../../models/listworldsstatus.md) | :heavy_minus_sign:                                                    | Optional status filter.                                               |
+| `limit`                                                               | *Optional[int]*                                                       | :heavy_minus_sign:                                                    | Page size. Values below 1 use 50. Values above 200 use 200.           |
+| `cursor`                                                              | *Optional[str]*                                                       | :heavy_minus_sign:                                                    | Opaque next_cursor value from a previous page.                        |
+| `retries`                                                             | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)      | :heavy_minus_sign:                                                    | Configuration to override the default retry behavior of the client.   |
 
 ### Response
 
@@ -212,13 +213,13 @@ with Continuous(
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## advance_world_time
+## advance_world
 
 Advances each running member independently and skips paused or stopped members without waking them. Successful advances remain committed when another member fails. The World current_time records the last settled request target; member clocks can differ.
 
 ### Example Usage
 
-<!-- UsageSnippet language="python" operationID="advance-world-time" method="post" path="/v1/worlds/{id}/advance-time" example="bad_request_body" -->
+<!-- UsageSnippet language="python" operationID="advance-world" method="post" path="/v1/worlds/{id}/advance-time" example="bad_request_body" -->
 ```python
 from continuous import Continuous
 from continuous.utils import parse_datetime
@@ -229,7 +230,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.worlds.advance_world_time(id="<id>", idempotency_key="<value>", to=parse_datetime("2026-11-05T04:15:58.628Z"))
+    res = c_client.worlds.advance_world(id="<id>", idempotency_key="<value>", to=parse_datetime("2026-10-16T14:43:59.349Z"))
 
     # Handle response
     print(res)
@@ -240,7 +241,7 @@ with Continuous(
 
 | Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `id`                                                                                | *str*                                                                               | :heavy_check_mark:                                                                  | Simulation or World ID.                                                             |
+| `id`                                                                                | *str*                                                                               | :heavy_check_mark:                                                                  | World ID.                                                                           |
 | `idempotency_key`                                                                   | *str*                                                                               | :heavy_check_mark:                                                                  | Stable key for this request. Reuse with the same target returns the same operation. |
 | `to`                                                                                | [date](https://docs.python.org/3/library/datetime.html#date-objects)                | :heavy_check_mark:                                                                  | Absolute target time in RFC 3339, with at most millisecond precision.               |
 | `retries`                                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                    | :heavy_minus_sign:                                                                  | Configuration to override the default retry behavior of the client.                 |
@@ -284,7 +285,7 @@ with Continuous(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Simulation or World ID.                                             |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | World ID.                                                           |
 | `advance_id`                                                        | *str*                                                               | :heavy_check_mark:                                                  | Clock advance operation ID.                                         |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
@@ -300,13 +301,13 @@ with Continuous(
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## cancel_world_build
+## cancel_world
 
 Cancels an active World build. Repeated cancellation returns the current World.
 
 ### Example Usage
 
-<!-- UsageSnippet language="python" operationID="cancel-world-build" method="post" path="/v1/worlds/{id}/cancel" -->
+<!-- UsageSnippet language="python" operationID="cancel-world" method="post" path="/v1/worlds/{id}/cancel" -->
 ```python
 from continuous import Continuous
 import os
@@ -316,7 +317,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.worlds.cancel_world_build(id="<id>")
+    res = c_client.worlds.cancel_world(id="<id>")
 
     # Handle response
     print(res)

@@ -32,18 +32,18 @@ class WorldTypedDict(TypedDict):
     build: Nullable[WorldBuildProgressTypedDict]
     r"""The build's latest progress report and verified starting data, or null before the first report."""
     created_at: datetime
-    r"""Time when the World was created."""
+    r"""World creation time."""
     current_time: datetime
     r"""Target of the last settled World clock request. Individual member clocks can differ."""
     error: Nullable[WorldErrorTypedDict]
     id: str
     r"""World ID."""
     instructions: str
-    r"""Instructions for the initial synthetic data and relationships."""
+    r"""Instructions for the initial synthetic data and relationships, or empty when none were given."""
     metadata: Any
     r"""Customer JSON metadata, or null."""
     name: str
-    r"""Name for the World."""
+    r"""World name. The ID is its identity, and names need not be unique."""
     simulations: List[WorldSimulationTypedDict]
     r"""Created member Simulations. This list is empty before first start."""
     simulators: List[str]
@@ -62,7 +62,7 @@ class World(BaseModel):
     r"""The build's latest progress report and verified starting data, or null before the first report."""
 
     created_at: datetime
-    r"""Time when the World was created."""
+    r"""World creation time."""
 
     current_time: datetime
     r"""Target of the last settled World clock request. Individual member clocks can differ."""
@@ -73,13 +73,13 @@ class World(BaseModel):
     r"""World ID."""
 
     instructions: str
-    r"""Instructions for the initial synthetic data and relationships."""
+    r"""Instructions for the initial synthetic data and relationships, or empty when none were given."""
 
     metadata: Any
     r"""Customer JSON metadata, or null."""
 
     name: str
-    r"""Name for the World."""
+    r"""World name. The ID is its identity, and names need not be unique."""
 
     simulations: List[WorldSimulation]
     r"""Created member Simulations. This list is empty before first start."""

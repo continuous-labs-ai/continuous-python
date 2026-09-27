@@ -239,6 +239,7 @@ class Simulations(BaseSDK):
         self,
         *,
         simulator_id: str,
+        include_sample_data: Optional[bool] = None,
         metadata: Optional[Any] = None,
         name: Optional[str] = None,
         start_time: Optional[datetime] = None,
@@ -252,6 +253,7 @@ class Simulations(BaseSDK):
         Creates a Simulation from a ready Simulator and starts it. The response includes the Simulation endpoint and a token that expires in 1 hour. List and get do not return the token.
 
         :param simulator_id: ID of the ready Simulator.
+        :param include_sample_data: Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition.
         :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null.
         :param name: Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique.
         :param start_time: Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds.
@@ -271,6 +273,7 @@ class Simulations(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.CreateSimulationRequest(
+            include_sample_data=include_sample_data,
             metadata=metadata,
             name=name,
             simulator_id=simulator_id,
@@ -354,6 +357,7 @@ class Simulations(BaseSDK):
         self,
         *,
         simulator_id: str,
+        include_sample_data: Optional[bool] = None,
         metadata: Optional[Any] = None,
         name: Optional[str] = None,
         start_time: Optional[datetime] = None,
@@ -367,6 +371,7 @@ class Simulations(BaseSDK):
         Creates a Simulation from a ready Simulator and starts it. The response includes the Simulation endpoint and a token that expires in 1 hour. List and get do not return the token.
 
         :param simulator_id: ID of the ready Simulator.
+        :param include_sample_data: Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition.
         :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null.
         :param name: Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique.
         :param start_time: Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds.
@@ -386,6 +391,7 @@ class Simulations(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.CreateSimulationRequest(
+            include_sample_data=include_sample_data,
             metadata=metadata,
             name=name,
             simulator_id=simulator_id,
@@ -861,7 +867,7 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def advance_simulation_time(
+    def advance_simulation(
         self,
         *,
         id: str,
@@ -876,7 +882,7 @@ class Simulations(BaseSDK):
 
         Schedules an absolute clock advance. Each successful advance commits all due local events in one step. World members advance through their World. Poll the returned operation until it completes.
 
-        :param id: Simulation or World ID.
+        :param id: Simulation ID.
         :param idempotency_key: Stable key for this request. Reuse with the same target returns the same operation.
         :param to: Absolute target time in RFC 3339, with at most millisecond precision.
         :param retries: Override the default retry configuration for this method
@@ -894,10 +900,10 @@ class Simulations(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.AdvanceSimulationTimeRequest(
+        request = models.AdvanceSimulationRequest(
             id=id,
             idempotency_key=idempotency_key,
-            body=models.AdvanceTimeInputBody(
+            body=models.AdvanceTimeRequest(
                 to=to,
             ),
         )
@@ -916,7 +922,7 @@ class Simulations(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.body, False, False, "json", models.AdvanceTimeInputBody
+                request.body, False, False, "json", models.AdvanceTimeRequest
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -934,7 +940,7 @@ class Simulations(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="advance-simulation-time",
+                operation_id="advance-simulation",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
@@ -973,7 +979,7 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def advance_simulation_time_async(
+    async def advance_simulation_async(
         self,
         *,
         id: str,
@@ -988,7 +994,7 @@ class Simulations(BaseSDK):
 
         Schedules an absolute clock advance. Each successful advance commits all due local events in one step. World members advance through their World. Poll the returned operation until it completes.
 
-        :param id: Simulation or World ID.
+        :param id: Simulation ID.
         :param idempotency_key: Stable key for this request. Reuse with the same target returns the same operation.
         :param to: Absolute target time in RFC 3339, with at most millisecond precision.
         :param retries: Override the default retry configuration for this method
@@ -1006,10 +1012,10 @@ class Simulations(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.AdvanceSimulationTimeRequest(
+        request = models.AdvanceSimulationRequest(
             id=id,
             idempotency_key=idempotency_key,
-            body=models.AdvanceTimeInputBody(
+            body=models.AdvanceTimeRequest(
                 to=to,
             ),
         )
@@ -1028,7 +1034,7 @@ class Simulations(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.body, False, False, "json", models.AdvanceTimeInputBody
+                request.body, False, False, "json", models.AdvanceTimeRequest
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -1046,7 +1052,7 @@ class Simulations(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="advance-simulation-time",
+                operation_id="advance-simulation",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
@@ -1099,7 +1105,7 @@ class Simulations(BaseSDK):
 
         Returns durable clock progress, the event count, and the committed step or failure.
 
-        :param id: Simulation or World ID.
+        :param id: Simulation ID.
         :param advance_id: Clock advance operation ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1201,7 +1207,7 @@ class Simulations(BaseSDK):
 
         Returns durable clock progress, the event count, and the committed step or failure.
 
-        :param id: Simulation or World ID.
+        :param id: Simulation ID.
         :param advance_id: Clock advance operation ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1294,21 +1300,21 @@ class Simulations(BaseSDK):
         *,
         id: str,
         advance_id: str,
-        cursor: Optional[str] = None,
         limit: Optional[int] = 50,
+        cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.ListAdvanceEventsOutputBody:
+    ) -> models.ListClockAdvanceEventsResponse:
         r"""List Clock Advance Events
 
         Returns the ordered event trace for a committed advance. The Simulation must be running or paused. Forks retain traces in their inherited state.
 
         :param id: Simulation ID.
         :param advance_id: Advance ID. A historical fork can read inherited runtime receipts.
-        :param cursor: Cursor from the previous page.
-        :param limit: Page size, up to 200.
+        :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
+        :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1327,8 +1333,8 @@ class Simulations(BaseSDK):
         request = models.ListSimulationAdvanceEventsRequest(
             id=id,
             advance_id=advance_id,
-            cursor=cursor,
             limit=limit,
+            cursor=cursor,
         )
 
         req = self._build_request(
@@ -1375,7 +1381,9 @@ class Simulations(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.ListAdvanceEventsOutputBody, http_res)
+            return unmarshal_json_response(
+                models.ListClockAdvanceEventsResponse, http_res
+            )
         if utils.match_response(
             http_res,
             ["400", "401", "403", "404", "409", "422"],
@@ -1404,21 +1412,21 @@ class Simulations(BaseSDK):
         *,
         id: str,
         advance_id: str,
-        cursor: Optional[str] = None,
         limit: Optional[int] = 50,
+        cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.ListAdvanceEventsOutputBody:
+    ) -> models.ListClockAdvanceEventsResponse:
         r"""List Clock Advance Events
 
         Returns the ordered event trace for a committed advance. The Simulation must be running or paused. Forks retain traces in their inherited state.
 
         :param id: Simulation ID.
         :param advance_id: Advance ID. A historical fork can read inherited runtime receipts.
-        :param cursor: Cursor from the previous page.
-        :param limit: Page size, up to 200.
+        :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
+        :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1437,8 +1445,8 @@ class Simulations(BaseSDK):
         request = models.ListSimulationAdvanceEventsRequest(
             id=id,
             advance_id=advance_id,
-            cursor=cursor,
             limit=limit,
+            cursor=cursor,
         )
 
         req = self._build_request_async(
@@ -1485,7 +1493,9 @@ class Simulations(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.ListAdvanceEventsOutputBody, http_res)
+            return unmarshal_json_response(
+                models.ListClockAdvanceEventsResponse, http_res
+            )
         if utils.match_response(
             http_res,
             ["400", "401", "403", "404", "409", "422"],

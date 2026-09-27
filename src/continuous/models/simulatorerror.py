@@ -14,7 +14,7 @@ from typing_extensions import TypedDict
 SimulatorErrorCode = Union[
     Literal[
         "build_failed",
-        "build_cancelled",
+        "build_canceled",
         "specification_validation_failed",
     ],
     UnrecognizedStr,
@@ -29,13 +29,10 @@ SimulatorErrorReason = Union[
         "time_limit",
         "service_unavailable",
         "build_failed",
-        "population_unsupported",
-        "world_start_failed",
-        "world_operation_failed",
     ],
     UnrecognizedStr,
 ]
-r"""Bounded failure reason for selecting recovery guidance, or null when unavailable. Older servers can omit this field."""
+r"""Bounded failure reason for selecting recovery guidance, or null when unavailable."""
 
 
 class SimulatorErrorTypedDict(TypedDict):
@@ -46,7 +43,7 @@ class SimulatorErrorTypedDict(TypedDict):
     detail: str
     r"""Safe human-readable error detail."""
     reason: Nullable[SimulatorErrorReason]
-    r"""Bounded failure reason for selecting recovery guidance, or null when unavailable. Older servers can omit this field."""
+    r"""Bounded failure reason for selecting recovery guidance, or null when unavailable."""
     validation: Nullable[SpecificationValidationTypedDict]
 
 
@@ -61,7 +58,7 @@ class SimulatorError(BaseModel):
     r"""Safe human-readable error detail."""
 
     reason: Nullable[SimulatorErrorReason]
-    r"""Bounded failure reason for selecting recovery guidance, or null when unavailable. Older servers can omit this field."""
+    r"""Bounded failure reason for selecting recovery guidance, or null when unavailable."""
 
     validation: Nullable[SpecificationValidation]
 

@@ -6,11 +6,11 @@ from datetime import datetime
 from typing_extensions import TypedDict
 
 
-class AdvanceTimeInputBodyTypedDict(TypedDict):
+class AdvanceTimeRequestTypedDict(TypedDict):
     to: datetime
     r"""Absolute target time in RFC 3339, with at most millisecond precision."""
 
 
-class AdvanceTimeInputBody(BaseModel):
+class AdvanceTimeRequest(BaseModel):
     to: datetime
     r"""Absolute target time in RFC 3339, with at most millisecond precision."""

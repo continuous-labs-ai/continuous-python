@@ -1,4 +1,4 @@
-# ListAdvanceEventsOutputBody
+# ListClockAdvanceEventsResponse
 
 
 ## Fields

@@ -1,4 +1,4 @@
-# AdvanceTimeInputBody
+# AdvanceTimeRequest
 
 
 ## Fields

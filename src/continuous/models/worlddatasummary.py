@@ -10,8 +10,6 @@ from typing_extensions import TypedDict
 class WorldDataSummaryTypedDict(TypedDict):
     assumptions: List[str]
     r"""Defaults and inferred choices used to prepare the starting data."""
-    conditions: List[str]
-    r"""Record conditions and counts computed from a complete census of served records."""
     records: List[WorldRecordCountTypedDict]
     r"""Observed starting record counts for each member and record type."""
     relationships: List[str]
@@ -21,9 +19,6 @@ class WorldDataSummaryTypedDict(TypedDict):
 class WorldDataSummary(BaseModel):
     assumptions: List[str]
     r"""Defaults and inferred choices used to prepare the starting data."""
-
-    conditions: List[str]
-    r"""Record conditions and counts computed from a complete census of served records."""
 
     records: List[WorldRecordCount]
     r"""Observed starting record counts for each member and record type."""
