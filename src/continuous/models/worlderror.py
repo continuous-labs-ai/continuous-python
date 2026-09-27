@@ -27,7 +27,6 @@ r"""Stable World error code."""
 WorldErrorReason = Union[
     Literal[
         "canceled",
-        "specification_invalid",
         "time_limit",
         "service_unavailable",
         "build_failed",
@@ -37,7 +36,7 @@ WorldErrorReason = Union[
     ],
     UnrecognizedStr,
 ]
-r"""Bounded failure reason for selecting recovery guidance, or null when unavailable. Older servers can omit this field."""
+r"""Bounded failure reason for selecting recovery guidance, or null when unavailable."""
 
 
 class WorldErrorTypedDict(TypedDict):
@@ -46,7 +45,7 @@ class WorldErrorTypedDict(TypedDict):
     detail: str
     r"""Safe human-readable error detail."""
     reason: Nullable[WorldErrorReason]
-    r"""Bounded failure reason for selecting recovery guidance, or null when unavailable. Older servers can omit this field."""
+    r"""Bounded failure reason for selecting recovery guidance, or null when unavailable."""
 
 
 class WorldError(BaseModel):
@@ -57,7 +56,7 @@ class WorldError(BaseModel):
     r"""Safe human-readable error detail."""
 
     reason: Nullable[WorldErrorReason]
-    r"""Bounded failure reason for selecting recovery guidance, or null when unavailable. Older servers can omit this field."""
+    r"""Bounded failure reason for selecting recovery guidance, or null when unavailable."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -13,10 +13,10 @@ class ListSimulationAdvanceEventsRequestTypedDict(TypedDict):
     r"""Simulation ID."""
     advance_id: str
     r"""Advance ID. A historical fork can read inherited runtime receipts."""
-    cursor: NotRequired[str]
-    r"""Cursor from the previous page."""
     limit: NotRequired[int]
-    r"""Page size, up to 200."""
+    r"""Page size. Values below 1 use 50. Values above 200 use 200."""
+    cursor: NotRequired[str]
+    r"""Opaque next_cursor value from a previous page."""
 
 
 class ListSimulationAdvanceEventsRequest(BaseModel):
@@ -30,21 +30,21 @@ class ListSimulationAdvanceEventsRequest(BaseModel):
     ]
     r"""Advance ID. A historical fork can read inherited runtime receipts."""
 
-    cursor: Annotated[
-        Optional[str],
-        FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
-    ] = None
-    r"""Cursor from the previous page."""
-
     limit: Annotated[
         Optional[int],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
     ] = 50
-    r"""Page size, up to 200."""
+    r"""Page size. Values below 1 use 50. Values above 200 use 200."""
+
+    cursor: Annotated[
+        Optional[str],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
+    ] = None
+    r"""Opaque next_cursor value from a previous page."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["cursor", "limit"])
+        optional_fields = set(["limit", "cursor"])
         serialized = handler(self)
         m = {}
 

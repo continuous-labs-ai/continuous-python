@@ -5,18 +5,12 @@ from typing import Any, TYPE_CHECKING
 from continuous.utils.dynamic_imports import lazy_getattr, lazy_dir
 
 if TYPE_CHECKING:
-    from .advance_simulation_timeop import (
-        AdvanceSimulationTimeRequest,
-        AdvanceSimulationTimeRequestTypedDict,
+    from .advance_simulationop import (
+        AdvanceSimulationRequest,
+        AdvanceSimulationRequestTypedDict,
     )
-    from .advance_world_timeop import (
-        AdvanceWorldTimeRequest,
-        AdvanceWorldTimeRequestTypedDict,
-    )
-    from .advancetimeinputbody import (
-        AdvanceTimeInputBody,
-        AdvanceTimeInputBodyTypedDict,
-    )
+    from .advance_worldop import AdvanceWorldRequest, AdvanceWorldRequestTypedDict
+    from .advancetimerequest import AdvanceTimeRequest, AdvanceTimeRequestTypedDict
     from .build_simulatorop import (
         BuildSimulatorResponse,
         BuildSimulatorResponseTypedDict,
@@ -31,20 +25,16 @@ if TYPE_CHECKING:
         BuildSimulatorRequestSpecKind,
         BuildSimulatorRequestTypedDict,
     )
-    from .buildtoolcall import BuildToolCall, BuildToolCallTypedDict
     from .buildworldrequest import (
         BuildWorldRequest,
         BuildWorldRequestModel,
         BuildWorldRequestTypedDict,
     )
-    from .cancel_simulator_buildop import (
-        CancelSimulatorBuildRequest,
-        CancelSimulatorBuildRequestTypedDict,
+    from .cancel_simulatorop import (
+        CancelSimulatorRequest,
+        CancelSimulatorRequestTypedDict,
     )
-    from .cancel_world_buildop import (
-        CancelWorldBuildRequest,
-        CancelWorldBuildRequestTypedDict,
-    )
+    from .cancel_worldop import CancelWorldRequest, CancelWorldRequestTypedDict
     from .clockadvance import ClockAdvance, ClockAdvanceStatus, ClockAdvanceTypedDict
     from .clockadvancemember import (
         ClockAdvanceMember,
@@ -107,10 +97,14 @@ if TYPE_CHECKING:
         ListSimulatorsRequestTypedDict,
         ListSimulatorsStatus,
     )
-    from .list_worldsop import ListWorldsRequest, ListWorldsRequestTypedDict
-    from .listadvanceeventsoutputbody import (
-        ListAdvanceEventsOutputBody,
-        ListAdvanceEventsOutputBodyTypedDict,
+    from .list_worldsop import (
+        ListWorldsRequest,
+        ListWorldsRequestTypedDict,
+        ListWorldsStatus,
+    )
+    from .listclockadvanceeventsresponse import (
+        ListClockAdvanceEventsResponse,
+        ListClockAdvanceEventsResponseTypedDict,
     )
     from .listsimulationsresponse import (
         ListSimulationsResponse,
@@ -181,8 +175,6 @@ if TYPE_CHECKING:
     from .stop_worldop import StopWorldRequest, StopWorldRequestTypedDict
     from .world import World, WorldStatus, WorldTypedDict
     from .worldbuildprogress import (
-        LastValidationCode,
-        ReviewStatus,
         WorldBuildProgress,
         WorldBuildProgressLastSubmission,
         WorldBuildProgressModel,
@@ -201,27 +193,25 @@ if TYPE_CHECKING:
     from .worldsimulation import WorldSimulation, WorldSimulationTypedDict
 
 __all__ = [
-    "AdvanceSimulationTimeRequest",
-    "AdvanceSimulationTimeRequestTypedDict",
-    "AdvanceTimeInputBody",
-    "AdvanceTimeInputBodyTypedDict",
-    "AdvanceWorldTimeRequest",
-    "AdvanceWorldTimeRequestTypedDict",
+    "AdvanceSimulationRequest",
+    "AdvanceSimulationRequestTypedDict",
+    "AdvanceTimeRequest",
+    "AdvanceTimeRequestTypedDict",
+    "AdvanceWorldRequest",
+    "AdvanceWorldRequestTypedDict",
     "BuildSimulatorRequest",
     "BuildSimulatorRequestModel",
     "BuildSimulatorRequestSpecKind",
     "BuildSimulatorRequestTypedDict",
     "BuildSimulatorResponse",
     "BuildSimulatorResponseTypedDict",
-    "BuildToolCall",
-    "BuildToolCallTypedDict",
     "BuildWorldRequest",
     "BuildWorldRequestModel",
     "BuildWorldRequestTypedDict",
-    "CancelSimulatorBuildRequest",
-    "CancelSimulatorBuildRequestTypedDict",
-    "CancelWorldBuildRequest",
-    "CancelWorldBuildRequestTypedDict",
+    "CancelSimulatorRequest",
+    "CancelSimulatorRequestTypedDict",
+    "CancelWorldRequest",
+    "CancelWorldRequestTypedDict",
     "ClockAdvance",
     "ClockAdvanceMember",
     "ClockAdvanceMemberStatus",
@@ -255,9 +245,8 @@ __all__ = [
     "GetWorldAdvanceRequestTypedDict",
     "GetWorldRequest",
     "GetWorldRequestTypedDict",
-    "LastValidationCode",
-    "ListAdvanceEventsOutputBody",
-    "ListAdvanceEventsOutputBodyTypedDict",
+    "ListClockAdvanceEventsResponse",
+    "ListClockAdvanceEventsResponseTypedDict",
     "ListSimulationAdvanceEventsRequest",
     "ListSimulationAdvanceEventsRequestTypedDict",
     "ListSimulationStepsRequest",
@@ -278,13 +267,13 @@ __all__ = [
     "ListWorldsRequestTypedDict",
     "ListWorldsResponse",
     "ListWorldsResponseTypedDict",
+    "ListWorldsStatus",
     "MintSimulationTokenRequest",
     "MintSimulationTokenRequestRequest",
     "MintSimulationTokenRequestRequestTypedDict",
     "MintSimulationTokenRequestTypedDict",
     "ResourceError",
     "ResourceErrorTypedDict",
-    "ReviewStatus",
     "Security",
     "SecurityTypedDict",
     "Simulation",
@@ -351,12 +340,12 @@ __all__ = [
 ]
 
 _dynamic_imports: dict[str, str] = {
-    "AdvanceSimulationTimeRequest": ".advance_simulation_timeop",
-    "AdvanceSimulationTimeRequestTypedDict": ".advance_simulation_timeop",
-    "AdvanceWorldTimeRequest": ".advance_world_timeop",
-    "AdvanceWorldTimeRequestTypedDict": ".advance_world_timeop",
-    "AdvanceTimeInputBody": ".advancetimeinputbody",
-    "AdvanceTimeInputBodyTypedDict": ".advancetimeinputbody",
+    "AdvanceSimulationRequest": ".advance_simulationop",
+    "AdvanceSimulationRequestTypedDict": ".advance_simulationop",
+    "AdvanceWorldRequest": ".advance_worldop",
+    "AdvanceWorldRequestTypedDict": ".advance_worldop",
+    "AdvanceTimeRequest": ".advancetimerequest",
+    "AdvanceTimeRequestTypedDict": ".advancetimerequest",
     "BuildSimulatorResponse": ".build_simulatorop",
     "BuildSimulatorResponseTypedDict": ".build_simulatorop",
     "SimulatorsBuildSimulatorRequest": ".build_simulatorop",
@@ -367,15 +356,13 @@ _dynamic_imports: dict[str, str] = {
     "BuildSimulatorRequestModel": ".buildsimulatorrequest",
     "BuildSimulatorRequestSpecKind": ".buildsimulatorrequest",
     "BuildSimulatorRequestTypedDict": ".buildsimulatorrequest",
-    "BuildToolCall": ".buildtoolcall",
-    "BuildToolCallTypedDict": ".buildtoolcall",
     "BuildWorldRequest": ".buildworldrequest",
     "BuildWorldRequestModel": ".buildworldrequest",
     "BuildWorldRequestTypedDict": ".buildworldrequest",
-    "CancelSimulatorBuildRequest": ".cancel_simulator_buildop",
-    "CancelSimulatorBuildRequestTypedDict": ".cancel_simulator_buildop",
-    "CancelWorldBuildRequest": ".cancel_world_buildop",
-    "CancelWorldBuildRequestTypedDict": ".cancel_world_buildop",
+    "CancelSimulatorRequest": ".cancel_simulatorop",
+    "CancelSimulatorRequestTypedDict": ".cancel_simulatorop",
+    "CancelWorldRequest": ".cancel_worldop",
+    "CancelWorldRequestTypedDict": ".cancel_worldop",
     "ClockAdvance": ".clockadvance",
     "ClockAdvanceStatus": ".clockadvance",
     "ClockAdvanceTypedDict": ".clockadvance",
@@ -421,8 +408,9 @@ _dynamic_imports: dict[str, str] = {
     "ListSimulatorsStatus": ".list_simulatorsop",
     "ListWorldsRequest": ".list_worldsop",
     "ListWorldsRequestTypedDict": ".list_worldsop",
-    "ListAdvanceEventsOutputBody": ".listadvanceeventsoutputbody",
-    "ListAdvanceEventsOutputBodyTypedDict": ".listadvanceeventsoutputbody",
+    "ListWorldsStatus": ".list_worldsop",
+    "ListClockAdvanceEventsResponse": ".listclockadvanceeventsresponse",
+    "ListClockAdvanceEventsResponseTypedDict": ".listclockadvanceeventsresponse",
     "ListSimulationsResponse": ".listsimulationsresponse",
     "ListSimulationsResponseTypedDict": ".listsimulationsresponse",
     "ListSimulationStepsResponse": ".listsimulationstepsresponse",
@@ -480,8 +468,6 @@ _dynamic_imports: dict[str, str] = {
     "World": ".world",
     "WorldStatus": ".world",
     "WorldTypedDict": ".world",
-    "LastValidationCode": ".worldbuildprogress",
-    "ReviewStatus": ".worldbuildprogress",
     "WorldBuildProgress": ".worldbuildprogress",
     "WorldBuildProgressLastSubmission": ".worldbuildprogress",
     "WorldBuildProgressModel": ".worldbuildprogress",

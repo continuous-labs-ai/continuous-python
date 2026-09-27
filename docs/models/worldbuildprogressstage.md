@@ -1,6 +1,6 @@
 # WorldBuildProgressStage
 
-Internal step of starting-data preparation.
+planning while the build prepares; generating while the builder writes starting data; validating while the data is checked through the Simulators' APIs; reviewing while the separate reviewer checks it; complete when verified starting data is saved.
 
 ## Example Usage
 

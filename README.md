@@ -195,7 +195,7 @@ with Continuous(
 * [create_simulation](docs/sdks/simulations/README.md#create_simulation) - Create Simulation
 * [delete_simulation](docs/sdks/simulations/README.md#delete_simulation) - Delete Simulation
 * [get_simulation](docs/sdks/simulations/README.md#get_simulation) - Get Simulation
-* [advance_simulation_time](docs/sdks/simulations/README.md#advance_simulation_time) - Advance Simulation Time
+* [advance_simulation](docs/sdks/simulations/README.md#advance_simulation) - Advance Simulation Time
 * [get_simulation_advance](docs/sdks/simulations/README.md#get_simulation_advance) - Get Simulation Clock Advance
 * [list_simulation_advance_events](docs/sdks/simulations/README.md#list_simulation_advance_events) - List Clock Advance Events
 * [fork_simulation](docs/sdks/simulations/README.md#fork_simulation) - Fork Simulation
@@ -210,7 +210,7 @@ with Continuous(
 * [build_simulator](docs/sdks/simulators/README.md#build_simulator) - Build Simulator
 * [delete_simulator](docs/sdks/simulators/README.md#delete_simulator) - Delete Simulator
 * [get_simulator](docs/sdks/simulators/README.md#get_simulator) - Get Simulator
-* [cancel_simulator_build](docs/sdks/simulators/README.md#cancel_simulator_build) - Cancel Simulator Build
+* [cancel_simulator](docs/sdks/simulators/README.md#cancel_simulator) - Cancel Simulator Build
 
 ### [Worlds](docs/sdks/worlds/README.md)
 
@@ -218,9 +218,9 @@ with Continuous(
 * [build_world](docs/sdks/worlds/README.md#build_world) - Build World
 * [delete_world](docs/sdks/worlds/README.md#delete_world) - Delete World
 * [get_world](docs/sdks/worlds/README.md#get_world) - Get World
-* [advance_world_time](docs/sdks/worlds/README.md#advance_world_time) - Advance World Time
+* [advance_world](docs/sdks/worlds/README.md#advance_world) - Advance World Time
 * [get_world_advance](docs/sdks/worlds/README.md#get_world_advance) - Get World Clock Advance
-* [cancel_world_build](docs/sdks/worlds/README.md#cancel_world_build) - Cancel World Build
+* [cancel_world](docs/sdks/worlds/README.md#cancel_world) - Cancel World Build
 * [start_world](docs/sdks/worlds/README.md#start_world) - Start World
 * [stop_world](docs/sdks/worlds/README.md#stop_world) - Stop World
 

@@ -8,14 +8,14 @@ from typing import List
 from typing_extensions import TypedDict
 
 
-class ListAdvanceEventsOutputBodyTypedDict(TypedDict):
+class ListClockAdvanceEventsResponseTypedDict(TypedDict):
     events: List[ClockEventTypedDict]
     r"""Committed events in execution order."""
     next_cursor: Nullable[str]
     r"""Cursor for the next page, or null."""
 
 
-class ListAdvanceEventsOutputBody(BaseModel):
+class ListClockAdvanceEventsResponse(BaseModel):
     events: List[ClockEvent]
     r"""Committed events in execution order."""
 

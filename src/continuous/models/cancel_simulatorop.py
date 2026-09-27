@@ -6,13 +6,13 @@ from continuous.utils import FieldMetadata, PathParamMetadata
 from typing_extensions import Annotated, TypedDict
 
 
-class CancelWorldBuildRequestTypedDict(TypedDict):
+class CancelSimulatorRequestTypedDict(TypedDict):
     id: str
-    r"""World ID."""
+    r"""Simulator ID."""
 
 
-class CancelWorldBuildRequest(BaseModel):
+class CancelSimulatorRequest(BaseModel):
     id: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
-    r"""World ID."""
+    r"""Simulator ID."""

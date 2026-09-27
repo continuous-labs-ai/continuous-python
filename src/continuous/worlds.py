@@ -16,6 +16,7 @@ class Worlds(BaseSDK):
     def list_worlds(
         self,
         *,
+        status: Optional[models.ListWorldsStatus] = None,
         limit: Optional[int] = 50,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -27,6 +28,7 @@ class Worlds(BaseSDK):
 
         Returns all Worlds that the API key can access.
 
+        :param status: Optional status filter.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
@@ -45,6 +47,7 @@ class Worlds(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.ListWorldsRequest(
+            status=status,
             limit=limit,
             cursor=cursor,
         )
@@ -118,6 +121,7 @@ class Worlds(BaseSDK):
     async def list_worlds_async(
         self,
         *,
+        status: Optional[models.ListWorldsStatus] = None,
         limit: Optional[int] = 50,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -129,6 +133,7 @@ class Worlds(BaseSDK):
 
         Returns all Worlds that the API key can access.
 
+        :param status: Optional status filter.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
@@ -147,6 +152,7 @@ class Worlds(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.ListWorldsRequest(
+            status=status,
             limit=limit,
             cursor=cursor,
         )
@@ -857,7 +863,7 @@ class Worlds(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def advance_world_time(
+    def advance_world(
         self,
         *,
         id: str,
@@ -872,7 +878,7 @@ class Worlds(BaseSDK):
 
         Advances each running member independently and skips paused or stopped members without waking them. Successful advances remain committed when another member fails. The World current_time records the last settled request target; member clocks can differ.
 
-        :param id: Simulation or World ID.
+        :param id: World ID.
         :param idempotency_key: Stable key for this request. Reuse with the same target returns the same operation.
         :param to: Absolute target time in RFC 3339, with at most millisecond precision.
         :param retries: Override the default retry configuration for this method
@@ -890,10 +896,10 @@ class Worlds(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.AdvanceWorldTimeRequest(
+        request = models.AdvanceWorldRequest(
             id=id,
             idempotency_key=idempotency_key,
-            body=models.AdvanceTimeInputBody(
+            body=models.AdvanceTimeRequest(
                 to=to,
             ),
         )
@@ -912,7 +918,7 @@ class Worlds(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.body, False, False, "json", models.AdvanceTimeInputBody
+                request.body, False, False, "json", models.AdvanceTimeRequest
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -930,7 +936,7 @@ class Worlds(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="advance-world-time",
+                operation_id="advance-world",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
@@ -969,7 +975,7 @@ class Worlds(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def advance_world_time_async(
+    async def advance_world_async(
         self,
         *,
         id: str,
@@ -984,7 +990,7 @@ class Worlds(BaseSDK):
 
         Advances each running member independently and skips paused or stopped members without waking them. Successful advances remain committed when another member fails. The World current_time records the last settled request target; member clocks can differ.
 
-        :param id: Simulation or World ID.
+        :param id: World ID.
         :param idempotency_key: Stable key for this request. Reuse with the same target returns the same operation.
         :param to: Absolute target time in RFC 3339, with at most millisecond precision.
         :param retries: Override the default retry configuration for this method
@@ -1002,10 +1008,10 @@ class Worlds(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.AdvanceWorldTimeRequest(
+        request = models.AdvanceWorldRequest(
             id=id,
             idempotency_key=idempotency_key,
-            body=models.AdvanceTimeInputBody(
+            body=models.AdvanceTimeRequest(
                 to=to,
             ),
         )
@@ -1024,7 +1030,7 @@ class Worlds(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.body, False, False, "json", models.AdvanceTimeInputBody
+                request.body, False, False, "json", models.AdvanceTimeRequest
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -1042,7 +1048,7 @@ class Worlds(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="advance-world-time",
+                operation_id="advance-world",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
@@ -1095,7 +1101,7 @@ class Worlds(BaseSDK):
 
         Returns completed, failed, or skipped outcomes for each member. A failed call can have an unconfirmed runtime outcome. Reusing the request key returns the same result.
 
-        :param id: Simulation or World ID.
+        :param id: World ID.
         :param advance_id: Clock advance operation ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1197,7 +1203,7 @@ class Worlds(BaseSDK):
 
         Returns completed, failed, or skipped outcomes for each member. A failed call can have an unconfirmed runtime outcome. Reusing the request key returns the same result.
 
-        :param id: Simulation or World ID.
+        :param id: World ID.
         :param advance_id: Clock advance operation ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1285,7 +1291,7 @@ class Worlds(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def cancel_world_build(
+    def cancel_world(
         self,
         *,
         id: str,
@@ -1314,7 +1320,7 @@ class Worlds(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.CancelWorldBuildRequest(
+        request = models.CancelWorldRequest(
             id=id,
         )
 
@@ -1347,7 +1353,7 @@ class Worlds(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="cancel-world-build",
+                operation_id="cancel-world",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
@@ -1384,7 +1390,7 @@ class Worlds(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def cancel_world_build_async(
+    async def cancel_world_async(
         self,
         *,
         id: str,
@@ -1413,7 +1419,7 @@ class Worlds(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.CancelWorldBuildRequest(
+        request = models.CancelWorldRequest(
             id=id,
         )
 
@@ -1446,7 +1452,7 @@ class Worlds(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="cancel-world-build",
+                operation_id="cancel-world",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security

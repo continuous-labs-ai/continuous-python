@@ -10,7 +10,7 @@ Build Simulators from OpenAPI or WSDL documents, check or cancel a build, and de
 * [build_simulator](#build_simulator) - Build Simulator
 * [delete_simulator](#delete_simulator) - Delete Simulator
 * [get_simulator](#get_simulator) - Get Simulator
-* [cancel_simulator_build](#cancel_simulator_build) - Cancel Simulator Build
+* [cancel_simulator](#cancel_simulator) - Cancel Simulator Build
 
 ## list_simulators
 
@@ -210,13 +210,13 @@ with Continuous(
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## cancel_simulator_build
+## cancel_simulator
 
-Requests cancellation of an active Simulator build. The build can finish before cancellation takes effect.
+Requests cancellation of an active Simulator build. The build can finish before cancellation takes effect. A Simulator that is not building is returned unchanged.
 
 ### Example Usage
 
-<!-- UsageSnippet language="python" operationID="cancel-simulator-build" method="post" path="/v1/simulators/{id}/cancel" -->
+<!-- UsageSnippet language="python" operationID="cancel-simulator" method="post" path="/v1/simulators/{id}/cancel" -->
 ```python
 from continuous import Continuous
 import os
@@ -226,7 +226,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.simulators.cancel_simulator_build(id="<id>")
+    res = c_client.simulators.cancel_simulator(id="<id>")
 
     # Handle response
     print(res)

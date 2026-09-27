@@ -11,6 +11,8 @@ from typing_extensions import NotRequired, TypedDict
 class CreateSimulationRequestTypedDict(TypedDict):
     simulator_id: str
     r"""ID of the ready Simulator."""
+    include_sample_data: NotRequired[bool]
+    r"""Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition."""
     metadata: NotRequired[Any]
     r"""Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null."""
     name: NotRequired[str]
@@ -23,6 +25,9 @@ class CreateSimulationRequest(BaseModel):
     simulator_id: str
     r"""ID of the ready Simulator."""
 
+    include_sample_data: Optional[bool] = None
+    r"""Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition."""
+
     metadata: Optional[Any] = None
     r"""Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null."""
 
@@ -34,7 +39,7 @@ class CreateSimulationRequest(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["metadata", "name", "start_time"])
+        optional_fields = set(["include_sample_data", "metadata", "name", "start_time"])
         serialized = handler(self)
         m = {}
 

@@ -860,7 +860,7 @@ class Simulators(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def cancel_simulator_build(
+    def cancel_simulator(
         self,
         *,
         id: str,
@@ -871,7 +871,7 @@ class Simulators(BaseSDK):
     ) -> models.Simulator:
         r"""Cancel Simulator Build
 
-        Requests cancellation of an active Simulator build. The build can finish before cancellation takes effect.
+        Requests cancellation of an active Simulator build. The build can finish before cancellation takes effect. A Simulator that is not building is returned unchanged.
 
         :param id: Simulator ID.
         :param retries: Override the default retry configuration for this method
@@ -889,7 +889,7 @@ class Simulators(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.CancelSimulatorBuildRequest(
+        request = models.CancelSimulatorRequest(
             id=id,
         )
 
@@ -922,7 +922,7 @@ class Simulators(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="cancel-simulator-build",
+                operation_id="cancel-simulator",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
@@ -959,7 +959,7 @@ class Simulators(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def cancel_simulator_build_async(
+    async def cancel_simulator_async(
         self,
         *,
         id: str,
@@ -970,7 +970,7 @@ class Simulators(BaseSDK):
     ) -> models.Simulator:
         r"""Cancel Simulator Build
 
-        Requests cancellation of an active Simulator build. The build can finish before cancellation takes effect.
+        Requests cancellation of an active Simulator build. The build can finish before cancellation takes effect. A Simulator that is not building is returned unchanged.
 
         :param id: Simulator ID.
         :param retries: Override the default retry configuration for this method
@@ -988,7 +988,7 @@ class Simulators(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.CancelSimulatorBuildRequest(
+        request = models.CancelSimulatorRequest(
             id=id,
         )
 
@@ -1021,7 +1021,7 @@ class Simulators(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="cancel-simulator-build",
+                operation_id="cancel-simulator",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security

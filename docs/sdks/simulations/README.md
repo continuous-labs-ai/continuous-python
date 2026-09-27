@@ -10,7 +10,7 @@ Create Simulations from ready Simulators, then fork, stop, start, and delete the
 * [create_simulation](#create_simulation) - Create Simulation
 * [delete_simulation](#delete_simulation) - Delete Simulation
 * [get_simulation](#get_simulation) - Get Simulation
-* [advance_simulation_time](#advance_simulation_time) - Advance Simulation Time
+* [advance_simulation](#advance_simulation) - Advance Simulation Time
 * [get_simulation_advance](#get_simulation_advance) - Get Simulation Clock Advance
 * [list_simulation_advance_events](#list_simulation_advance_events) - List Clock Advance Events
 * [fork_simulation](#fork_simulation) - Fork Simulation
@@ -89,6 +89,26 @@ with Continuous(
     print(res)
 
 ```
+### Example Usage: bad_request_sample_data
+
+<!-- UsageSnippet language="python" operationID="create-simulation" method="post" path="/v1/simulations" example="bad_request_sample_data" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.simulations.create_simulation(simulator_id="smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", metadata={
+        "customer_id": "cust_123",
+    }, name="billing-sandbox")
+
+    # Handle response
+    print(res)
+
+```
 ### Example Usage: simulator_unknown
 
 <!-- UsageSnippet language="python" operationID="create-simulation" method="post" path="/v1/simulations" example="simulator_unknown" -->
@@ -112,13 +132,14 @@ with Continuous(
 
 ### Parameters
 
-| Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| `simulator_id`                                                                                                     | *str*                                                                                                              | :heavy_check_mark:                                                                                                 | ID of the ready Simulator.                                                                                         |
-| `metadata`                                                                                                         | *Optional[Any]*                                                                                                    | :heavy_minus_sign:                                                                                                 | Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null. |
-| `name`                                                                                                             | *Optional[str]*                                                                                                    | :heavy_minus_sign:                                                                                                 | Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique.       |
-| `start_time`                                                                                                       | [date](https://docs.python.org/3/library/datetime.html#date-objects)                                               | :heavy_minus_sign:                                                                                                 | Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds.          |
-| `retries`                                                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                   | :heavy_minus_sign:                                                                                                 | Configuration to override the default retry behavior of the client.                                                |
+| Parameter                                                                                                                                                                                                                     | Type                                                                                                                                                                                                                          | Required                                                                                                                                                                                                                      | Description                                                                                                                                                                                                                   |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `simulator_id`                                                                                                                                                                                                                | *str*                                                                                                                                                                                                                         | :heavy_check_mark:                                                                                                                                                                                                            | ID of the ready Simulator.                                                                                                                                                                                                    |
+| `include_sample_data`                                                                                                                                                                                                         | *Optional[bool]*                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                            | Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition. |
+| `metadata`                                                                                                                                                                                                                    | *Optional[Any]*                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                            | Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null.                                                                                                            |
+| `name`                                                                                                                                                                                                                        | *Optional[str]*                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                            | Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique.                                                                                                                  |
+| `start_time`                                                                                                                                                                                                                  | [date](https://docs.python.org/3/library/datetime.html#date-objects)                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                            | Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds.                                                                                                                     |
+| `retries`                                                                                                                                                                                                                     | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                            | Configuration to override the default retry behavior of the client.                                                                                                                                                           |
 
 ### Response
 
@@ -211,13 +232,13 @@ with Continuous(
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## advance_simulation_time
+## advance_simulation
 
 Schedules an absolute clock advance. Each successful advance commits all due local events in one step. World members advance through their World. Poll the returned operation until it completes.
 
 ### Example Usage
 
-<!-- UsageSnippet language="python" operationID="advance-simulation-time" method="post" path="/v1/simulations/{id}/advance-time" example="bad_request_body" -->
+<!-- UsageSnippet language="python" operationID="advance-simulation" method="post" path="/v1/simulations/{id}/advance-time" example="bad_request_body" -->
 ```python
 from continuous import Continuous
 from continuous.utils import parse_datetime
@@ -228,7 +249,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.simulations.advance_simulation_time(id="<id>", idempotency_key="<value>", to=parse_datetime("2026-11-25T01:01:24.107Z"))
+    res = c_client.simulations.advance_simulation(id="<id>", idempotency_key="<value>", to=parse_datetime("2026-01-27T00:02:09.022Z"))
 
     # Handle response
     print(res)
@@ -239,7 +260,7 @@ with Continuous(
 
 | Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `id`                                                                                | *str*                                                                               | :heavy_check_mark:                                                                  | Simulation or World ID.                                                             |
+| `id`                                                                                | *str*                                                                               | :heavy_check_mark:                                                                  | Simulation ID.                                                                      |
 | `idempotency_key`                                                                   | *str*                                                                               | :heavy_check_mark:                                                                  | Stable key for this request. Reuse with the same target returns the same operation. |
 | `to`                                                                                | [date](https://docs.python.org/3/library/datetime.html#date-objects)                | :heavy_check_mark:                                                                  | Absolute target time in RFC 3339, with at most millisecond precision.               |
 | `retries`                                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                    | :heavy_minus_sign:                                                                  | Configuration to override the default retry behavior of the client.                 |
@@ -283,7 +304,7 @@ with Continuous(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Simulation or World ID.                                             |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Simulation ID.                                                      |
 | `advance_id`                                                        | *str*                                                               | :heavy_check_mark:                                                  | Clock advance operation ID.                                         |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
@@ -328,13 +349,13 @@ with Continuous(
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Simulation ID.                                                      |
 | `advance_id`                                                        | *str*                                                               | :heavy_check_mark:                                                  | Advance ID. A historical fork can read inherited runtime receipts.  |
-| `cursor`                                                            | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Cursor from the previous page.                                      |
-| `limit`                                                             | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Page size, up to 200.                                               |
+| `limit`                                                             | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Page size. Values below 1 use 50. Values above 200 use 200.         |
+| `cursor`                                                            | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Opaque next_cursor value from a previous page.                      |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
 
-**[models.ListAdvanceEventsOutputBody](../../models/listadvanceeventsoutputbody.md)**
+**[models.ListClockAdvanceEventsResponse](../../models/listclockadvanceeventsresponse.md)**
 
 ### Errors
 

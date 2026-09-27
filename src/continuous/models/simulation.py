@@ -30,6 +30,8 @@ class SimulationTypedDict(TypedDict):
     r"""Base URL for requests to the Simulation."""
     id: str
     r"""Simulation ID."""
+    include_sample_data: bool
+    r"""Whether the Simulation started with the Simulator's sample data. A fork inherits its source's state and reports false."""
     metadata: Any
     r"""Customer JSON metadata, or null."""
     name: str
@@ -44,6 +46,8 @@ class SimulationTypedDict(TypedDict):
     r"""Initial simulated time."""
     status: SimulationStatus
     r"""Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it."""
+    world_id: Nullable[str]
+    r"""ID of the World that owns this Simulation, or null."""
 
 
 class Simulation(BaseModel):
@@ -62,6 +66,9 @@ class Simulation(BaseModel):
     id: str
     r"""Simulation ID."""
 
+    include_sample_data: bool
+    r"""Whether the Simulation started with the Simulator's sample data. A fork inherits its source's state and reports false."""
+
     metadata: Any
     r"""Customer JSON metadata, or null."""
 
@@ -82,6 +89,9 @@ class Simulation(BaseModel):
 
     status: SimulationStatus
     r"""Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it."""
+
+    world_id: Nullable[str]
+    r"""ID of the World that owns this Simulation, or null."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -32,6 +32,8 @@ class CreatedSimulationTypedDict(TypedDict):
     r"""Token expiration time."""
     id: str
     r"""Simulation ID."""
+    include_sample_data: bool
+    r"""Whether the Simulation started with the Simulator's sample data. A fork inherits its source's state and reports false."""
     metadata: Any
     r"""Customer JSON metadata, or null."""
     name: str
@@ -68,6 +70,9 @@ class CreatedSimulation(BaseModel):
 
     id: str
     r"""Simulation ID."""
+
+    include_sample_data: bool
+    r"""Whether the Simulation started with the Simulator's sample data. A fork inherits its source's state and reports false."""
 
     metadata: Any
     r"""Customer JSON metadata, or null."""
