@@ -5,40 +5,40 @@ from .currentsimulationtoken import (
     CurrentSimulationToken,
     CurrentSimulationTokenTypedDict,
 )
-from .mintsimulationtokenrequest import (
-    MintSimulationTokenRequest,
-    MintSimulationTokenRequestTypedDict,
-)
 from continuous.types import BaseModel
-from continuous.utils import FieldMetadata, PathParamMetadata, RequestMetadata
+from continuous.utils import FieldMetadata, HeaderMetadata, PathParamMetadata
+import pydantic
 from typing import Dict, List
 from typing_extensions import Annotated, TypedDict
 
 
-class MintSimulationTokenRequestRequestTypedDict(TypedDict):
+class RegenerateSimulationTokenRequestTypedDict(TypedDict):
     id: str
     r"""Simulation ID."""
-    body: MintSimulationTokenRequestTypedDict
+    idempotency_key: str
+    r"""Stable key for this regeneration request."""
 
 
-class MintSimulationTokenRequestRequest(BaseModel):
+class RegenerateSimulationTokenRequest(BaseModel):
     id: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
     r"""Simulation ID."""
 
-    body: Annotated[
-        MintSimulationTokenRequest,
-        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    idempotency_key: Annotated[
+        str,
+        pydantic.Field(alias="Idempotency-Key"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
     ]
+    r"""Stable key for this regeneration request."""
 
 
-class MintSimulationTokenResponseTypedDict(TypedDict):
+class RegenerateSimulationTokenResponseTypedDict(TypedDict):
     headers: Dict[str, List[str]]
     result: CurrentSimulationTokenTypedDict
 
 
-class MintSimulationTokenResponse(BaseModel):
+class RegenerateSimulationTokenResponse(BaseModel):
     headers: Dict[str, List[str]]
 
     result: CurrentSimulationToken

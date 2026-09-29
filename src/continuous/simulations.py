@@ -247,10 +247,10 @@ class Simulations(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.CreatedSimulation:
+    ) -> models.CreateSimulationResponse:
         r"""Create Simulation
 
-        Creates a Simulation from a ready Simulator and starts it. The response includes the Simulation endpoint and a token that expires in 1 hour. List and get do not return the token.
+        Creates a Simulation from a ready Simulator and starts it. The response includes the endpoint and a token. New persistent Simulations keep the token across stop and restart; legacy Simulations receive an expiring token.
 
         :param simulator_id: ID of the ready Simulator.
         :param include_sample_data: Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition.
@@ -327,7 +327,10 @@ class Simulations(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
-            return unmarshal_json_response(models.CreatedSimulation, http_res)
+            return models.CreateSimulationResponse(
+                result=unmarshal_json_response(models.CreatedSimulation, http_res),
+                headers=utils.get_response_headers(http_res.headers),
+            )
         if utils.match_response(
             http_res,
             ["400", "401", "408", "409", "413", "415", "422", "429"],
@@ -365,10 +368,10 @@ class Simulations(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.CreatedSimulation:
+    ) -> models.CreateSimulationResponse:
         r"""Create Simulation
 
-        Creates a Simulation from a ready Simulator and starts it. The response includes the Simulation endpoint and a token that expires in 1 hour. List and get do not return the token.
+        Creates a Simulation from a ready Simulator and starts it. The response includes the endpoint and a token. New persistent Simulations keep the token across stop and restart; legacy Simulations receive an expiring token.
 
         :param simulator_id: ID of the ready Simulator.
         :param include_sample_data: Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition.
@@ -445,7 +448,10 @@ class Simulations(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
-            return unmarshal_json_response(models.CreatedSimulation, http_res)
+            return models.CreateSimulationResponse(
+                result=unmarshal_json_response(models.CreatedSimulation, http_res),
+                headers=utils.get_response_headers(http_res.headers),
+            )
         if utils.match_response(
             http_res,
             ["400", "401", "408", "409", "413", "415", "422", "429"],
@@ -677,10 +683,10 @@ class Simulations(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.Simulation:
+    ) -> models.SimulationDetail:
         r"""Get Simulation
 
-        Returns a Simulation and its current status. The response does not include tokens.
+        Returns a Simulation, its current status, and the actors a request can act as. The response does not include tokens.
 
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
@@ -746,7 +752,7 @@ class Simulations(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.Simulation, http_res)
+            return unmarshal_json_response(models.SimulationDetail, http_res)
         if utils.match_response(
             http_res, ["401", "403", "404"], "application/problem+json"
         ):
@@ -776,10 +782,10 @@ class Simulations(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.Simulation:
+    ) -> models.SimulationDetail:
         r"""Get Simulation
 
-        Returns a Simulation and its current status. The response does not include tokens.
+        Returns a Simulation, its current status, and the actors a request can act as. The response does not include tokens.
 
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
@@ -845,7 +851,7 @@ class Simulations(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.Simulation, http_res)
+            return unmarshal_json_response(models.SimulationDetail, http_res)
         if utils.match_response(
             http_res, ["401", "403", "404"], "application/problem+json"
         ):
@@ -1529,10 +1535,10 @@ class Simulations(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.CreatedSimulation:
+    ) -> models.ForkSimulationResponse:
         r"""Fork Simulation
 
-        Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running or paused; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and a token that expires in 1 hour.
+        Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running or paused; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token. A persistent token survives stop and restart; a legacy token expires.
 
         :param id: Source Simulation ID.
         :param at_step: Completed step to fork from. Omission forks from the latest state.
@@ -1607,7 +1613,10 @@ class Simulations(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
-            return unmarshal_json_response(models.CreatedSimulation, http_res)
+            return models.ForkSimulationResponse(
+                result=unmarshal_json_response(models.CreatedSimulation, http_res),
+                headers=utils.get_response_headers(http_res.headers),
+            )
         if utils.match_response(
             http_res,
             ["400", "401", "403", "404", "408", "409", "413", "415", "422", "429"],
@@ -1643,10 +1652,10 @@ class Simulations(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.CreatedSimulation:
+    ) -> models.ForkSimulationResponse:
         r"""Fork Simulation
 
-        Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running or paused; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and a token that expires in 1 hour.
+        Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running or paused; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token. A persistent token survives stop and restart; a legacy token expires.
 
         :param id: Source Simulation ID.
         :param at_step: Completed step to fork from. Omission forks from the latest state.
@@ -1721,7 +1730,10 @@ class Simulations(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
-            return unmarshal_json_response(models.CreatedSimulation, http_res)
+            return models.ForkSimulationResponse(
+                result=unmarshal_json_response(models.CreatedSimulation, http_res),
+                headers=utils.get_response_headers(http_res.headers),
+            )
         if utils.match_response(
             http_res,
             ["400", "401", "403", "404", "408", "409", "413", "415", "422", "429"],
@@ -1755,10 +1767,10 @@ class Simulations(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.Simulation:
+    ) -> models.StartSimulationResponse:
         r"""Start Simulation
 
-        Starts a stopped Simulation from its saved state. The endpoint serves requests once the response returns. A Simulation that is already running or paused is returned unchanged.
+        Starts a stopped Simulation from its saved state and returns a usable endpoint token. An already running or paused Simulation returns its current token and status.
 
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
@@ -1824,7 +1836,10 @@ class Simulations(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.Simulation, http_res)
+            return models.StartSimulationResponse(
+                result=unmarshal_json_response(models.CreatedSimulation, http_res),
+                headers=utils.get_response_headers(http_res.headers),
+            )
         if utils.match_response(
             http_res, ["401", "403", "404", "409", "429"], "application/problem+json"
         ):
@@ -1856,10 +1871,10 @@ class Simulations(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.Simulation:
+    ) -> models.StartSimulationResponse:
         r"""Start Simulation
 
-        Starts a stopped Simulation from its saved state. The endpoint serves requests once the response returns. A Simulation that is already running or paused is returned unchanged.
+        Starts a stopped Simulation from its saved state and returns a usable endpoint token. An already running or paused Simulation returns its current token and status.
 
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
@@ -1925,7 +1940,10 @@ class Simulations(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.Simulation, http_res)
+            return models.StartSimulationResponse(
+                result=unmarshal_json_response(models.CreatedSimulation, http_res),
+                headers=utils.get_response_headers(http_res.headers),
+            )
         if utils.match_response(
             http_res, ["401", "403", "404", "409", "429"], "application/problem+json"
         ):
@@ -2361,6 +2379,428 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    def get_simulation_token(
+        self,
+        *,
+        id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.GetSimulationTokenResponse:
+        r"""Get Current Simulation Token
+
+        Returns the current persistent credential, including while stopped, without rotating it. Legacy Simulations require the deprecated token-mint endpoint or explicit regeneration.
+
+        :param id: Simulation ID.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.GetSimulationTokenRequest(
+            id=id,
+        )
+
+        req = self._build_request(
+            method="GET",
+            path="/v1/simulations/{id}/token",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="get-simulation-token",
+                oauth2_scopes=None,
+                security_source=get_security_from_env(
+                    self.sdk_configuration.security, models.Security
+                ),
+                tags=["simulations"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return models.GetSimulationTokenResponse(
+                result=unmarshal_json_response(models.CurrentSimulationToken, http_res),
+                headers=utils.get_response_headers(http_res.headers),
+            )
+        if utils.match_response(
+            http_res, ["401", "403", "404", "409"], "application/problem+json"
+        ):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(
+            http_res, ["500", "502", "503"], "application/problem+json"
+        ):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise errors.ContinuousDefaultError("Unexpected response received", http_res)
+
+    async def get_simulation_token_async(
+        self,
+        *,
+        id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.GetSimulationTokenResponse:
+        r"""Get Current Simulation Token
+
+        Returns the current persistent credential, including while stopped, without rotating it. Legacy Simulations require the deprecated token-mint endpoint or explicit regeneration.
+
+        :param id: Simulation ID.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.GetSimulationTokenRequest(
+            id=id,
+        )
+
+        req = self._build_request_async(
+            method="GET",
+            path="/v1/simulations/{id}/token",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="get-simulation-token",
+                oauth2_scopes=None,
+                security_source=get_security_from_env(
+                    self.sdk_configuration.security, models.Security
+                ),
+                tags=["simulations"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return models.GetSimulationTokenResponse(
+                result=unmarshal_json_response(models.CurrentSimulationToken, http_res),
+                headers=utils.get_response_headers(http_res.headers),
+            )
+        if utils.match_response(
+            http_res, ["401", "403", "404", "409"], "application/problem+json"
+        ):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(
+            http_res, ["500", "502", "503"], "application/problem+json"
+        ):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise errors.ContinuousDefaultError("Unexpected response received", http_res)
+
+    def regenerate_simulation_token(
+        self,
+        *,
+        id: str,
+        idempotency_key: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.RegenerateSimulationTokenResponse:
+        r"""Regenerate Simulation Token
+
+        Explicitly replaces the current Simulation credential. The previous token stops authenticating when the transaction commits. Reuse the Idempotency-Key to retry safely.
+
+        :param id: Simulation ID.
+        :param idempotency_key: Stable key for this regeneration request.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.RegenerateSimulationTokenRequest(
+            id=id,
+            idempotency_key=idempotency_key,
+        )
+
+        req = self._build_request(
+            method="POST",
+            path="/v1/simulations/{id}/token/regenerate",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="regenerate-simulation-token",
+                oauth2_scopes=None,
+                security_source=get_security_from_env(
+                    self.sdk_configuration.security, models.Security
+                ),
+                tags=["simulations"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return models.RegenerateSimulationTokenResponse(
+                result=unmarshal_json_response(models.CurrentSimulationToken, http_res),
+                headers=utils.get_response_headers(http_res.headers),
+            )
+        if utils.match_response(
+            http_res, ["401", "403", "404", "409", "422"], "application/problem+json"
+        ):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(
+            http_res, ["500", "502", "503"], "application/problem+json"
+        ):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise errors.ContinuousDefaultError("Unexpected response received", http_res)
+
+    async def regenerate_simulation_token_async(
+        self,
+        *,
+        id: str,
+        idempotency_key: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.RegenerateSimulationTokenResponse:
+        r"""Regenerate Simulation Token
+
+        Explicitly replaces the current Simulation credential. The previous token stops authenticating when the transaction commits. Reuse the Idempotency-Key to retry safely.
+
+        :param id: Simulation ID.
+        :param idempotency_key: Stable key for this regeneration request.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.RegenerateSimulationTokenRequest(
+            id=id,
+            idempotency_key=idempotency_key,
+        )
+
+        req = self._build_request_async(
+            method="POST",
+            path="/v1/simulations/{id}/token/regenerate",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="regenerate-simulation-token",
+                oauth2_scopes=None,
+                security_source=get_security_from_env(
+                    self.sdk_configuration.security, models.Security
+                ),
+                tags=["simulations"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return models.RegenerateSimulationTokenResponse(
+                result=unmarshal_json_response(models.CurrentSimulationToken, http_res),
+                headers=utils.get_response_headers(http_res.headers),
+            )
+        if utils.match_response(
+            http_res, ["401", "403", "404", "409", "422"], "application/problem+json"
+        ):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(
+            http_res, ["500", "502", "503"], "application/problem+json"
+        ):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise errors.ContinuousDefaultError("Unexpected response received", http_res)
+
     def mint_simulation_token(
         self,
         *,
@@ -2370,10 +2810,10 @@ class Simulations(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.SimulationToken:
+    ) -> models.MintSimulationTokenResponse:
         r"""Mint Simulation Token
 
-        Creates another token for requests to the Simulation endpoint. Send it in the X-Continuous-Simulation-Token header. Earlier tokens stay valid until they expire.
+        For an active legacy Simulation, creates another expiring token. For a persistent Simulation, returns its current token without rotating it, including while stopped. Send the token in the X-Continuous-Simulation-Token header.
 
         :param id: Simulation ID.
         :param ttl_seconds: Token lifetime in seconds, from 60 through 86,400.
@@ -2446,7 +2886,10 @@ class Simulations(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.SimulationToken, http_res)
+            return models.MintSimulationTokenResponse(
+                result=unmarshal_json_response(models.CurrentSimulationToken, http_res),
+                headers=utils.get_response_headers(http_res.headers),
+            )
         if utils.match_response(
             http_res,
             ["400", "401", "403", "404", "408", "409", "413", "415", "422"],
@@ -2454,7 +2897,9 @@ class Simulations(BaseSDK):
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
-        if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
+        if utils.match_response(
+            http_res, ["500", "502", "503"], "application/problem+json"
+        ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
@@ -2479,10 +2924,10 @@ class Simulations(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.SimulationToken:
+    ) -> models.MintSimulationTokenResponse:
         r"""Mint Simulation Token
 
-        Creates another token for requests to the Simulation endpoint. Send it in the X-Continuous-Simulation-Token header. Earlier tokens stay valid until they expire.
+        For an active legacy Simulation, creates another expiring token. For a persistent Simulation, returns its current token without rotating it, including while stopped. Send the token in the X-Continuous-Simulation-Token header.
 
         :param id: Simulation ID.
         :param ttl_seconds: Token lifetime in seconds, from 60 through 86,400.
@@ -2555,7 +3000,10 @@ class Simulations(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.SimulationToken, http_res)
+            return models.MintSimulationTokenResponse(
+                result=unmarshal_json_response(models.CurrentSimulationToken, http_res),
+                headers=utils.get_response_headers(http_res.headers),
+            )
         if utils.match_response(
             http_res,
             ["400", "401", "403", "404", "408", "409", "413", "415", "422"],
@@ -2563,7 +3011,9 @@ class Simulations(BaseSDK):
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
-        if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
+        if utils.match_response(
+            http_res, ["500", "502", "503"], "application/problem+json"
+        ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
