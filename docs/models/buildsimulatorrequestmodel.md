@@ -1,6 +1,6 @@
 # BuildSimulatorRequestModel
 
-Model that builds and reviews the Simulator. Defaults to gpt-6-astra. Its provider is derived from the model.
+Model that builds and reviews the Simulator. Defaults to claude-opus-5-5. Its provider is derived from the model.
 
 ## Example Usage
 

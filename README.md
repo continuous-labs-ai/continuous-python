@@ -202,6 +202,8 @@ with Continuous(
 * [start_simulation](docs/sdks/simulations/README.md#start_simulation) - Start Simulation
 * [list_simulation_steps](docs/sdks/simulations/README.md#list_simulation_steps) - List Simulation Steps
 * [stop_simulation](docs/sdks/simulations/README.md#stop_simulation) - Stop Simulation
+* [get_simulation_token](docs/sdks/simulations/README.md#get_simulation_token) - Get Current Simulation Token
+* [regenerate_simulation_token](docs/sdks/simulations/README.md#regenerate_simulation_token) - Regenerate Simulation Token
 * [mint_simulation_token](docs/sdks/simulations/README.md#mint_simulation_token) - Mint Simulation Token
 
 ### [Simulators](docs/sdks/simulators/README.md)

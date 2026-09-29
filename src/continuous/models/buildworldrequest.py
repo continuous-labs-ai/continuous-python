@@ -14,7 +14,7 @@ BuildWorldRequestModel = Literal[
     "claude-opus-5-5",
     "claude-fable-5-1",
 ]
-r"""Model that builds and reviews starting data. Defaults to gpt-6-astra. Its provider is derived from the model."""
+r"""Model that builds and reviews starting data. Defaults to claude-opus-5-5. Its provider is derived from the model."""
 
 
 class BuildWorldRequestTypedDict(TypedDict):
@@ -25,7 +25,7 @@ class BuildWorldRequestTypedDict(TypedDict):
     metadata: NotRequired[Any]
     r"""Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by build, get, and list. Omission uses null."""
     model: NotRequired[BuildWorldRequestModel]
-    r"""Model that builds and reviews starting data. Defaults to gpt-6-astra. Its provider is derived from the model."""
+    r"""Model that builds and reviews starting data. Defaults to claude-opus-5-5. Its provider is derived from the model."""
     name: NotRequired[str]
     r"""Name for the World. Omission generates a name. The ID stays its identity, and names need not be unique."""
     start_time: NotRequired[datetime]
@@ -44,8 +44,8 @@ class BuildWorldRequest(BaseModel):
     metadata: Optional[Any] = None
     r"""Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by build, get, and list. Omission uses null."""
 
-    model: Optional[BuildWorldRequestModel] = "gpt-6-astra"
-    r"""Model that builds and reviews starting data. Defaults to gpt-6-astra. Its provider is derived from the model."""
+    model: Optional[BuildWorldRequestModel] = "claude-opus-5-5"
+    r"""Model that builds and reviews starting data. Defaults to claude-opus-5-5. Its provider is derived from the model."""
 
     name: Optional[str] = None
     r"""Name for the World. Omission generates a name. The ID stays its identity, and names need not be unique."""

@@ -42,6 +42,10 @@ if TYPE_CHECKING:
         ClockAdvanceMemberTypedDict,
     )
     from .clockevent import ClockEvent, ClockEventTypedDict
+    from .create_simulationop import (
+        CreateSimulationResponse,
+        CreateSimulationResponseTypedDict,
+    )
     from .createdsimulation import (
         CreatedSimulation,
         CreatedSimulationStatus,
@@ -50,6 +54,10 @@ if TYPE_CHECKING:
     from .createsimulationrequest import (
         CreateSimulationRequest,
         CreateSimulationRequestTypedDict,
+    )
+    from .currentsimulationtoken import (
+        CurrentSimulationToken,
+        CurrentSimulationTokenTypedDict,
     )
     from .delete_simulationop import (
         DeleteSimulationRequest,
@@ -63,6 +71,8 @@ if TYPE_CHECKING:
     from .fork_simulationop import (
         ForkSimulationRequestRequest,
         ForkSimulationRequestRequestTypedDict,
+        ForkSimulationResponse,
+        ForkSimulationResponseTypedDict,
     )
     from .forksimulationrequest import (
         ForkSimulationRequest,
@@ -71,6 +81,12 @@ if TYPE_CHECKING:
     from .get_simulation_advanceop import (
         GetSimulationAdvanceRequest,
         GetSimulationAdvanceRequestTypedDict,
+    )
+    from .get_simulation_tokenop import (
+        GetSimulationTokenRequest,
+        GetSimulationTokenRequestTypedDict,
+        GetSimulationTokenResponse,
+        GetSimulationTokenResponseTypedDict,
     )
     from .get_simulationop import GetSimulationRequest, GetSimulationRequestTypedDict
     from .get_simulatorop import GetSimulatorRequest, GetSimulatorRequestTypedDict
@@ -122,15 +138,27 @@ if TYPE_CHECKING:
     from .mint_simulation_tokenop import (
         MintSimulationTokenRequestRequest,
         MintSimulationTokenRequestRequestTypedDict,
+        MintSimulationTokenResponse,
+        MintSimulationTokenResponseTypedDict,
     )
     from .mintsimulationtokenrequest import (
         MintSimulationTokenRequest,
         MintSimulationTokenRequestTypedDict,
     )
+    from .regenerate_simulation_tokenop import (
+        RegenerateSimulationTokenRequest,
+        RegenerateSimulationTokenRequestTypedDict,
+        RegenerateSimulationTokenResponse,
+        RegenerateSimulationTokenResponseTypedDict,
+    )
     from .resourceerror import ResourceError, ResourceErrorTypedDict
     from .security import Security, SecurityTypedDict
     from .simulation import Simulation, SimulationStatus, SimulationTypedDict
-    from .simulationtoken import SimulationToken, SimulationTokenTypedDict
+    from .simulationdetail import (
+        SimulationDetail,
+        SimulationDetailStatus,
+        SimulationDetailTypedDict,
+    )
     from .simulator import (
         Simulator,
         SimulatorSpecKind,
@@ -138,6 +166,7 @@ if TYPE_CHECKING:
         SimulatorTypedDict,
         Source,
     )
+    from .simulatoractor import SimulatorActor, SimulatorActorTypedDict
     from .simulatorbuildprogress import (
         SimulatorBuildProgress,
         SimulatorBuildProgressLastSubmission,
@@ -161,9 +190,16 @@ if TYPE_CHECKING:
         SpecificationValidation,
         SpecificationValidationTypedDict,
     )
+    from .specificationwarning import (
+        SpecificationWarning,
+        SpecificationWarningCode,
+        SpecificationWarningTypedDict,
+    )
     from .start_simulationop import (
         StartSimulationRequest,
         StartSimulationRequestTypedDict,
+        StartSimulationResponse,
+        StartSimulationResponseTypedDict,
     )
     from .start_worldop import (
         StartWorldRequestRequest,
@@ -222,9 +258,13 @@ __all__ = [
     "ClockEventTypedDict",
     "CreateSimulationRequest",
     "CreateSimulationRequestTypedDict",
+    "CreateSimulationResponse",
+    "CreateSimulationResponseTypedDict",
     "CreatedSimulation",
     "CreatedSimulationStatus",
     "CreatedSimulationTypedDict",
+    "CurrentSimulationToken",
+    "CurrentSimulationTokenTypedDict",
     "DeleteSimulationRequest",
     "DeleteSimulationRequestTypedDict",
     "DeleteSimulatorRequest",
@@ -235,10 +275,16 @@ __all__ = [
     "ForkSimulationRequestRequest",
     "ForkSimulationRequestRequestTypedDict",
     "ForkSimulationRequestTypedDict",
+    "ForkSimulationResponse",
+    "ForkSimulationResponseTypedDict",
     "GetSimulationAdvanceRequest",
     "GetSimulationAdvanceRequestTypedDict",
     "GetSimulationRequest",
     "GetSimulationRequestTypedDict",
+    "GetSimulationTokenRequest",
+    "GetSimulationTokenRequestTypedDict",
+    "GetSimulationTokenResponse",
+    "GetSimulationTokenResponseTypedDict",
     "GetSimulatorRequest",
     "GetSimulatorRequestTypedDict",
     "GetWorldAdvanceRequest",
@@ -272,16 +318,25 @@ __all__ = [
     "MintSimulationTokenRequestRequest",
     "MintSimulationTokenRequestRequestTypedDict",
     "MintSimulationTokenRequestTypedDict",
+    "MintSimulationTokenResponse",
+    "MintSimulationTokenResponseTypedDict",
+    "RegenerateSimulationTokenRequest",
+    "RegenerateSimulationTokenRequestTypedDict",
+    "RegenerateSimulationTokenResponse",
+    "RegenerateSimulationTokenResponseTypedDict",
     "ResourceError",
     "ResourceErrorTypedDict",
     "Security",
     "SecurityTypedDict",
     "Simulation",
+    "SimulationDetail",
+    "SimulationDetailStatus",
+    "SimulationDetailTypedDict",
     "SimulationStatus",
-    "SimulationToken",
-    "SimulationTokenTypedDict",
     "SimulationTypedDict",
     "Simulator",
+    "SimulatorActor",
+    "SimulatorActorTypedDict",
     "SimulatorBuildProgress",
     "SimulatorBuildProgressLastSubmission",
     "SimulatorBuildProgressModel",
@@ -305,8 +360,13 @@ __all__ = [
     "SpecificationIssueTypedDict",
     "SpecificationValidation",
     "SpecificationValidationTypedDict",
+    "SpecificationWarning",
+    "SpecificationWarningCode",
+    "SpecificationWarningTypedDict",
     "StartSimulationRequest",
     "StartSimulationRequestTypedDict",
+    "StartSimulationResponse",
+    "StartSimulationResponseTypedDict",
     "StartWorldRequest",
     "StartWorldRequestRequest",
     "StartWorldRequestRequestTypedDict",
@@ -371,11 +431,15 @@ _dynamic_imports: dict[str, str] = {
     "ClockAdvanceMemberTypedDict": ".clockadvancemember",
     "ClockEvent": ".clockevent",
     "ClockEventTypedDict": ".clockevent",
+    "CreateSimulationResponse": ".create_simulationop",
+    "CreateSimulationResponseTypedDict": ".create_simulationop",
     "CreatedSimulation": ".createdsimulation",
     "CreatedSimulationStatus": ".createdsimulation",
     "CreatedSimulationTypedDict": ".createdsimulation",
     "CreateSimulationRequest": ".createsimulationrequest",
     "CreateSimulationRequestTypedDict": ".createsimulationrequest",
+    "CurrentSimulationToken": ".currentsimulationtoken",
+    "CurrentSimulationTokenTypedDict": ".currentsimulationtoken",
     "DeleteSimulationRequest": ".delete_simulationop",
     "DeleteSimulationRequestTypedDict": ".delete_simulationop",
     "DeleteSimulatorRequest": ".delete_simulatorop",
@@ -384,10 +448,16 @@ _dynamic_imports: dict[str, str] = {
     "DeleteWorldRequestTypedDict": ".delete_worldop",
     "ForkSimulationRequestRequest": ".fork_simulationop",
     "ForkSimulationRequestRequestTypedDict": ".fork_simulationop",
+    "ForkSimulationResponse": ".fork_simulationop",
+    "ForkSimulationResponseTypedDict": ".fork_simulationop",
     "ForkSimulationRequest": ".forksimulationrequest",
     "ForkSimulationRequestTypedDict": ".forksimulationrequest",
     "GetSimulationAdvanceRequest": ".get_simulation_advanceop",
     "GetSimulationAdvanceRequestTypedDict": ".get_simulation_advanceop",
+    "GetSimulationTokenRequest": ".get_simulation_tokenop",
+    "GetSimulationTokenRequestTypedDict": ".get_simulation_tokenop",
+    "GetSimulationTokenResponse": ".get_simulation_tokenop",
+    "GetSimulationTokenResponseTypedDict": ".get_simulation_tokenop",
     "GetSimulationRequest": ".get_simulationop",
     "GetSimulationRequestTypedDict": ".get_simulationop",
     "GetSimulatorRequest": ".get_simulatorop",
@@ -421,8 +491,14 @@ _dynamic_imports: dict[str, str] = {
     "ListWorldsResponseTypedDict": ".listworldsresponse",
     "MintSimulationTokenRequestRequest": ".mint_simulation_tokenop",
     "MintSimulationTokenRequestRequestTypedDict": ".mint_simulation_tokenop",
+    "MintSimulationTokenResponse": ".mint_simulation_tokenop",
+    "MintSimulationTokenResponseTypedDict": ".mint_simulation_tokenop",
     "MintSimulationTokenRequest": ".mintsimulationtokenrequest",
     "MintSimulationTokenRequestTypedDict": ".mintsimulationtokenrequest",
+    "RegenerateSimulationTokenRequest": ".regenerate_simulation_tokenop",
+    "RegenerateSimulationTokenRequestTypedDict": ".regenerate_simulation_tokenop",
+    "RegenerateSimulationTokenResponse": ".regenerate_simulation_tokenop",
+    "RegenerateSimulationTokenResponseTypedDict": ".regenerate_simulation_tokenop",
     "ResourceError": ".resourceerror",
     "ResourceErrorTypedDict": ".resourceerror",
     "Security": ".security",
@@ -430,13 +506,16 @@ _dynamic_imports: dict[str, str] = {
     "Simulation": ".simulation",
     "SimulationStatus": ".simulation",
     "SimulationTypedDict": ".simulation",
-    "SimulationToken": ".simulationtoken",
-    "SimulationTokenTypedDict": ".simulationtoken",
+    "SimulationDetail": ".simulationdetail",
+    "SimulationDetailStatus": ".simulationdetail",
+    "SimulationDetailTypedDict": ".simulationdetail",
     "Simulator": ".simulator",
     "SimulatorSpecKind": ".simulator",
     "SimulatorStatus": ".simulator",
     "SimulatorTypedDict": ".simulator",
     "Source": ".simulator",
+    "SimulatorActor": ".simulatoractor",
+    "SimulatorActorTypedDict": ".simulatoractor",
     "SimulatorBuildProgress": ".simulatorbuildprogress",
     "SimulatorBuildProgressLastSubmission": ".simulatorbuildprogress",
     "SimulatorBuildProgressModel": ".simulatorbuildprogress",
@@ -452,8 +531,13 @@ _dynamic_imports: dict[str, str] = {
     "SpecificationIssueTypedDict": ".specificationissue",
     "SpecificationValidation": ".specificationvalidation",
     "SpecificationValidationTypedDict": ".specificationvalidation",
+    "SpecificationWarning": ".specificationwarning",
+    "SpecificationWarningCode": ".specificationwarning",
+    "SpecificationWarningTypedDict": ".specificationwarning",
     "StartSimulationRequest": ".start_simulationop",
     "StartSimulationRequestTypedDict": ".start_simulationop",
+    "StartSimulationResponse": ".start_simulationop",
+    "StartSimulationResponseTypedDict": ".start_simulationop",
     "StartWorldRequestRequest": ".start_worldop",
     "StartWorldRequestRequestTypedDict": ".start_worldop",
     "StartWorldRequest": ".startworldrequest",

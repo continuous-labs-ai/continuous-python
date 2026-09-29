@@ -14,7 +14,7 @@ BuildSimulatorRequestModel = Literal[
     "claude-opus-5-5",
     "claude-fable-5-1",
 ]
-r"""Model that builds and reviews the Simulator. Defaults to gpt-6-astra. Its provider is derived from the model."""
+r"""Model that builds and reviews the Simulator. Defaults to claude-opus-5-5. Its provider is derived from the model."""
 
 
 BuildSimulatorRequestSpecKind = Literal[
@@ -30,7 +30,7 @@ class BuildSimulatorRequestTypedDict(TypedDict):
     instructions: NotRequired[str]
     r"""Instructions for the builder. Required for an incremental build. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
     model: NotRequired[BuildSimulatorRequestModel]
-    r"""Model that builds and reviews the Simulator. Defaults to gpt-6-astra. Its provider is derived from the model."""
+    r"""Model that builds and reviews the Simulator. Defaults to claude-opus-5-5. Its provider is derived from the model."""
     name: NotRequired[str]
     r"""Name for the Simulator. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
     parent_id: NotRequired[str]
@@ -48,8 +48,8 @@ class BuildSimulatorRequest(BaseModel):
     instructions: Optional[str] = None
     r"""Instructions for the builder. Required for an incremental build. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
 
-    model: Optional[BuildSimulatorRequestModel] = "gpt-6-astra"
-    r"""Model that builds and reviews the Simulator. Defaults to gpt-6-astra. Its provider is derived from the model."""
+    model: Optional[BuildSimulatorRequestModel] = "claude-opus-5-5"
+    r"""Model that builds and reviews the Simulator. Defaults to claude-opus-5-5. Its provider is derived from the model."""
 
     name: Optional[str] = None
     r"""Name for the Simulator. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
