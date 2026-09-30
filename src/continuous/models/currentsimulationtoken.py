@@ -3,23 +3,29 @@
 from __future__ import annotations
 from continuous.types import BaseModel, Nullable, UNSET_SENTINEL
 from datetime import datetime
+import pydantic
 from pydantic import model_serializer
-from typing_extensions import TypedDict
+from typing_extensions import Annotated, TypedDict
 
 
 class CurrentSimulationTokenTypedDict(TypedDict):
     expires_at: Nullable[datetime]
-    r"""Null for a lifetime credential."""
+    r"""Always null; Simulation tokens do not expire. Deprecated; will be removed."""
     token: str
-    r"""Current Simulation endpoint credential."""
+    r"""The Simulation's current token for requests to its endpoint. Send it in the X-Continuous-Simulation-Token header."""
 
 
 class CurrentSimulationToken(BaseModel):
-    expires_at: Nullable[datetime]
-    r"""Null for a lifetime credential."""
+    expires_at: Annotated[
+        Nullable[datetime],
+        pydantic.Field(
+            deprecated="warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
+        ),
+    ]
+    r"""Always null; Simulation tokens do not expire. Deprecated; will be removed."""
 
     token: str
-    r"""Current Simulation endpoint credential."""
+    r"""The Simulation's current token for requests to its endpoint. Send it in the X-Continuous-Simulation-Token header."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

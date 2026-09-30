@@ -19,7 +19,7 @@ Create Simulations from ready Simulators, then fork, stop, start, and delete the
 * [stop_simulation](#stop_simulation) - Stop Simulation
 * [get_simulation_token](#get_simulation_token) - Get Current Simulation Token
 * [regenerate_simulation_token](#regenerate_simulation_token) - Regenerate Simulation Token
-* [mint_simulation_token](#mint_simulation_token) - Mint Simulation Token
+* [~~mint_simulation_token~~](#mint_simulation_token) - Mint Simulation Token :warning: **Deprecated**
 
 ## list_simulations
 
@@ -69,7 +69,7 @@ with Continuous(
 
 ## create_simulation
 
-Creates a Simulation from a ready Simulator and starts it. The response includes the endpoint and a token. New persistent Simulations keep the token across stop and restart; legacy Simulations receive an expiring token.
+Creates a Simulation from a ready Simulator and starts it. The response includes the endpoint and the Simulation's token, which does not expire.
 
 ### Example Usage: bad_request_body
 
@@ -369,7 +369,7 @@ with Continuous(
 
 ## fork_simulation
 
-Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running or paused; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token. A persistent token survives stop and restart; a legacy token expires.
+Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running or paused; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token, which does not expire.
 
 ### Example Usage
 
@@ -413,7 +413,7 @@ with Continuous(
 
 ## start_simulation
 
-Starts a stopped Simulation from its saved state and returns a usable endpoint token. An already running or paused Simulation returns its current token and status.
+Starts a stopped Simulation from its saved state. The response includes the Simulation's token, which stop and start do not change. An already running or paused Simulation returns its current token and status.
 
 ### Example Usage
 
@@ -541,7 +541,7 @@ with Continuous(
 
 ## get_simulation_token
 
-Returns the current persistent credential, including while stopped, without rotating it. Legacy Simulations require the deprecated token-mint endpoint or explicit regeneration.
+Returns the Simulation's current token without rotating it, including while the Simulation is stopped.
 
 ### Example Usage
 
@@ -583,7 +583,7 @@ with Continuous(
 
 ## regenerate_simulation_token
 
-Explicitly replaces the current Simulation credential. The previous token stops authenticating when the transaction commits. Reuse the Idempotency-Key to retry safely.
+Replaces the Simulation's token, including while the Simulation is stopped. When the replacement commits, requests with the previous token return 401 auth_invalid with X-Continuous-Simulation-Token-Rejected: true. Reuse the Idempotency-Key to retry safely.
 
 ### Example Usage
 
@@ -624,9 +624,11 @@ with Continuous(
 | errors.Error                  | 500, 502, 503                 | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## mint_simulation_token
+## ~~mint_simulation_token~~
 
-For an active legacy Simulation, creates another expiring token. For a persistent Simulation, returns its current token without rotating it, including while stopped. Send the token in the X-Continuous-Simulation-Token header.
+Deprecated compatibility alias for GET /v1/simulations/{id}/token. Returns the Simulation's current token without rotating it, including while the Simulation is stopped. ttl_seconds is validated but does not change the token's lifetime.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -649,11 +651,11 @@ with Continuous(
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Simulation ID.                                                      |
-| `ttl_seconds`                                                       | *int*                                                               | :heavy_check_mark:                                                  | Token lifetime in seconds, from 60 through 86,400.                  |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `id`                                                                                         | *str*                                                                                        | :heavy_check_mark:                                                                           | Simulation ID.                                                                               |
+| `ttl_seconds`                                                                                | *int*                                                                                        | :heavy_check_mark:                                                                           | Accepted for compatibility, from 60 through 86,400. It does not change the token's lifetime. |
+| `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
 
 ### Response
 

@@ -3,9 +3,10 @@
 from __future__ import annotations
 from continuous.types import BaseModel, Nullable, UNSET_SENTINEL, UnrecognizedStr
 from datetime import datetime
+import pydantic
 from pydantic import model_serializer
 from typing import Any, Literal, Union
-from typing_extensions import TypedDict
+from typing_extensions import Annotated, TypedDict
 
 
 CreatedSimulationStatus = Union[
@@ -29,7 +30,7 @@ class CreatedSimulationTypedDict(TypedDict):
     endpoint: str
     r"""Base URL for requests to the Simulation."""
     expires_at: Nullable[datetime]
-    r"""Token expiration time for a legacy token, or null for a persistent token. This field remains through the compatibility release."""
+    r"""Always null; Simulation tokens do not expire. Deprecated; will be removed."""
     id: str
     r"""Simulation ID."""
     include_sample_data: bool
@@ -49,7 +50,7 @@ class CreatedSimulationTypedDict(TypedDict):
     status: CreatedSimulationStatus
     r"""Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it."""
     token: str
-    r"""Current token for requests to the Simulation endpoint. Send it in the X-Continuous-Simulation-Token header, with an actor's id from GET /v1/simulations/{id} in X-Continuous-Actor to act as that caller. Retrieve it later with GET /v1/simulations/{id}/token."""
+    r"""The Simulation's token for requests to its endpoint. It does not expire. Send it in the X-Continuous-Simulation-Token header, with an actor's id from GET /v1/simulations/{id} in X-Continuous-Actor to act as that caller. Retrieve it later with GET /v1/simulations/{id}/token."""
 
 
 class CreatedSimulation(BaseModel):
@@ -65,8 +66,13 @@ class CreatedSimulation(BaseModel):
     endpoint: str
     r"""Base URL for requests to the Simulation."""
 
-    expires_at: Nullable[datetime]
-    r"""Token expiration time for a legacy token, or null for a persistent token. This field remains through the compatibility release."""
+    expires_at: Annotated[
+        Nullable[datetime],
+        pydantic.Field(
+            deprecated="warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
+        ),
+    ]
+    r"""Always null; Simulation tokens do not expire. Deprecated; will be removed."""
 
     id: str
     r"""Simulation ID."""
@@ -96,7 +102,7 @@ class CreatedSimulation(BaseModel):
     r"""Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it."""
 
     token: str
-    r"""Current token for requests to the Simulation endpoint. Send it in the X-Continuous-Simulation-Token header, with an actor's id from GET /v1/simulations/{id} in X-Continuous-Actor to act as that caller. Retrieve it later with GET /v1/simulations/{id}/token."""
+    r"""The Simulation's token for requests to its endpoint. It does not expire. Send it in the X-Continuous-Simulation-Token header, with an actor's id from GET /v1/simulations/{id} in X-Continuous-Actor to act as that caller. Retrieve it later with GET /v1/simulations/{id}/token."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

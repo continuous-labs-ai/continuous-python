@@ -8,6 +8,7 @@ from continuous.utils import get_security_from_env
 from continuous.utils.unmarshal_json_response import unmarshal_json_response
 from datetime import datetime
 from typing import Any, Mapping, Optional
+from typing_extensions import deprecated
 
 
 class Simulations(BaseSDK):
@@ -250,7 +251,7 @@ class Simulations(BaseSDK):
     ) -> models.CreateSimulationResponse:
         r"""Create Simulation
 
-        Creates a Simulation from a ready Simulator and starts it. The response includes the endpoint and a token. New persistent Simulations keep the token across stop and restart; legacy Simulations receive an expiring token.
+        Creates a Simulation from a ready Simulator and starts it. The response includes the endpoint and the Simulation's token, which does not expire.
 
         :param simulator_id: ID of the ready Simulator.
         :param include_sample_data: Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition.
@@ -371,7 +372,7 @@ class Simulations(BaseSDK):
     ) -> models.CreateSimulationResponse:
         r"""Create Simulation
 
-        Creates a Simulation from a ready Simulator and starts it. The response includes the endpoint and a token. New persistent Simulations keep the token across stop and restart; legacy Simulations receive an expiring token.
+        Creates a Simulation from a ready Simulator and starts it. The response includes the endpoint and the Simulation's token, which does not expire.
 
         :param simulator_id: ID of the ready Simulator.
         :param include_sample_data: Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition.
@@ -1538,7 +1539,7 @@ class Simulations(BaseSDK):
     ) -> models.ForkSimulationResponse:
         r"""Fork Simulation
 
-        Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running or paused; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token. A persistent token survives stop and restart; a legacy token expires.
+        Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running or paused; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token, which does not expire.
 
         :param id: Source Simulation ID.
         :param at_step: Completed step to fork from. Omission forks from the latest state.
@@ -1655,7 +1656,7 @@ class Simulations(BaseSDK):
     ) -> models.ForkSimulationResponse:
         r"""Fork Simulation
 
-        Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running or paused; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token. A persistent token survives stop and restart; a legacy token expires.
+        Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running or paused; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token, which does not expire.
 
         :param id: Source Simulation ID.
         :param at_step: Completed step to fork from. Omission forks from the latest state.
@@ -1770,7 +1771,7 @@ class Simulations(BaseSDK):
     ) -> models.StartSimulationResponse:
         r"""Start Simulation
 
-        Starts a stopped Simulation from its saved state and returns a usable endpoint token. An already running or paused Simulation returns its current token and status.
+        Starts a stopped Simulation from its saved state. The response includes the Simulation's token, which stop and start do not change. An already running or paused Simulation returns its current token and status.
 
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
@@ -1874,7 +1875,7 @@ class Simulations(BaseSDK):
     ) -> models.StartSimulationResponse:
         r"""Start Simulation
 
-        Starts a stopped Simulation from its saved state and returns a usable endpoint token. An already running or paused Simulation returns its current token and status.
+        Starts a stopped Simulation from its saved state. The response includes the Simulation's token, which stop and start do not change. An already running or paused Simulation returns its current token and status.
 
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
@@ -2390,7 +2391,7 @@ class Simulations(BaseSDK):
     ) -> models.GetSimulationTokenResponse:
         r"""Get Current Simulation Token
 
-        Returns the current persistent credential, including while stopped, without rotating it. Legacy Simulations require the deprecated token-mint endpoint or explicit regeneration.
+        Returns the Simulation's current token without rotating it, including while the Simulation is stopped.
 
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
@@ -2494,7 +2495,7 @@ class Simulations(BaseSDK):
     ) -> models.GetSimulationTokenResponse:
         r"""Get Current Simulation Token
 
-        Returns the current persistent credential, including while stopped, without rotating it. Legacy Simulations require the deprecated token-mint endpoint or explicit regeneration.
+        Returns the Simulation's current token without rotating it, including while the Simulation is stopped.
 
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
@@ -2599,7 +2600,7 @@ class Simulations(BaseSDK):
     ) -> models.RegenerateSimulationTokenResponse:
         r"""Regenerate Simulation Token
 
-        Explicitly replaces the current Simulation credential. The previous token stops authenticating when the transaction commits. Reuse the Idempotency-Key to retry safely.
+        Replaces the Simulation's token, including while the Simulation is stopped. When the replacement commits, requests with the previous token return 401 auth_invalid with X-Continuous-Simulation-Token-Rejected: true. Reuse the Idempotency-Key to retry safely.
 
         :param id: Simulation ID.
         :param idempotency_key: Stable key for this regeneration request.
@@ -2706,7 +2707,7 @@ class Simulations(BaseSDK):
     ) -> models.RegenerateSimulationTokenResponse:
         r"""Regenerate Simulation Token
 
-        Explicitly replaces the current Simulation credential. The previous token stops authenticating when the transaction commits. Reuse the Idempotency-Key to retry safely.
+        Replaces the Simulation's token, including while the Simulation is stopped. When the replacement commits, requests with the previous token return 401 auth_invalid with X-Continuous-Simulation-Token-Rejected: true. Reuse the Idempotency-Key to retry safely.
 
         :param id: Simulation ID.
         :param idempotency_key: Stable key for this regeneration request.
@@ -2801,6 +2802,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
+    )
     def mint_simulation_token(
         self,
         *,
@@ -2813,10 +2817,10 @@ class Simulations(BaseSDK):
     ) -> models.MintSimulationTokenResponse:
         r"""Mint Simulation Token
 
-        For an active legacy Simulation, creates another expiring token. For a persistent Simulation, returns its current token without rotating it, including while stopped. Send the token in the X-Continuous-Simulation-Token header.
+        Deprecated compatibility alias for GET /v1/simulations/{id}/token. Returns the Simulation's current token without rotating it, including while the Simulation is stopped. ttl_seconds is validated but does not change the token's lifetime.
 
         :param id: Simulation ID.
-        :param ttl_seconds: Token lifetime in seconds, from 60 through 86,400.
+        :param ttl_seconds: Accepted for compatibility, from 60 through 86,400. It does not change the token's lifetime.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -2915,6 +2919,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
+    )
     async def mint_simulation_token_async(
         self,
         *,
@@ -2927,10 +2934,10 @@ class Simulations(BaseSDK):
     ) -> models.MintSimulationTokenResponse:
         r"""Mint Simulation Token
 
-        For an active legacy Simulation, creates another expiring token. For a persistent Simulation, returns its current token without rotating it, including while stopped. Send the token in the X-Continuous-Simulation-Token header.
+        Deprecated compatibility alias for GET /v1/simulations/{id}/token. Returns the Simulation's current token without rotating it, including while the Simulation is stopped. ttl_seconds is validated but does not change the token's lifetime.
 
         :param id: Simulation ID.
-        :param ttl_seconds: Token lifetime in seconds, from 60 through 86,400.
+        :param ttl_seconds: Accepted for compatibility, from 60 through 86,400. It does not change the token's lifetime.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds

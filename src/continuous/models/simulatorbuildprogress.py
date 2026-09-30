@@ -21,9 +21,10 @@ r"""Outcome of the most recent submit attempt, or null."""
 SimulatorBuildProgressModel = Union[
     Literal[
         "gpt-6-astra",
-        "gpt-6-sol",
+        "gpt-6.1-sol",
         "claude-opus-5-5",
         "claude-fable-5-1",
+        "gpt-6-sol",
     ],
     UnrecognizedStr,
 ]
