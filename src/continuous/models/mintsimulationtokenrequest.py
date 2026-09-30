@@ -7,9 +7,9 @@ from typing_extensions import TypedDict
 
 class MintSimulationTokenRequestTypedDict(TypedDict):
     ttl_seconds: int
-    r"""Token lifetime in seconds, from 60 through 86,400."""
+    r"""Accepted for compatibility, from 60 through 86,400. It does not change the token's lifetime."""
 
 
 class MintSimulationTokenRequest(BaseModel):
     ttl_seconds: int
-    r"""Token lifetime in seconds, from 60 through 86,400."""
+    r"""Accepted for compatibility, from 60 through 86,400. It does not change the token's lifetime."""

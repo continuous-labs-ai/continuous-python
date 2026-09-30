@@ -24,7 +24,7 @@ class SimulationDetailTypedDict(TypedDict):
     active_advance_id: Nullable[str]
     r"""Current clock advance operation ID, or null."""
     actors: List[SimulatorActorTypedDict]
-    r"""The callers a request can act as by sending an actor's id in the X-Continuous-Actor header. Without the header, a request acts as the default actor. Empty when the Simulator's build names none or its artifact cannot be read now."""
+    r"""The callers a request can act as by sending an actor's id in the X-Continuous-Actor header. Without the header, a request acts as the default actor. Lists the actors the seed holds, plus actors only the sample holds when the Simulation includes sample data. Empty when the Simulator's build names none or its artifact cannot be read now."""
     created_at: datetime
     r"""Simulation creation time."""
     current_time: datetime
@@ -58,7 +58,7 @@ class SimulationDetail(BaseModel):
     r"""Current clock advance operation ID, or null."""
 
     actors: List[SimulatorActor]
-    r"""The callers a request can act as by sending an actor's id in the X-Continuous-Actor header. Without the header, a request acts as the default actor. Empty when the Simulator's build names none or its artifact cannot be read now."""
+    r"""The callers a request can act as by sending an actor's id in the X-Continuous-Actor header. Without the header, a request acts as the default actor. Lists the actors the seed holds, plus actors only the sample holds when the Simulation includes sample data. Empty when the Simulator's build names none or its artifact cannot be read now."""
 
     created_at: datetime
     r"""Simulation creation time."""

@@ -10,7 +10,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 BuildSimulatorRequestModel = Literal[
     "gpt-6-astra",
-    "gpt-6-sol",
+    "gpt-6.1-sol",
     "claude-opus-5-5",
     "claude-fable-5-1",
 ]
