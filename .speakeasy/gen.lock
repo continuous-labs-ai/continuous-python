@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: ab8da733a2e81edb12011ff8dd602b4c
+  docChecksum: e116c367da999ff679fe2671c422f178
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.2.0
-  configChecksum: 457f5a74c88356bdf6bfb5c984464693
+  releaseVersion: 0.2.1
+  configChecksum: 14dfb5bfd88f19cb5ee0b294d3fac214
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: 21ee6a50-cf51-4f17-ac13-c0daa0a3876b
-  pristine_commit_hash: c75be586234bb82d246647befb7c67d0a911cf11
-  pristine_tree_hash: efa11fc99132db728280c324da9d3d6db301f5c6
+  generation_id: 54fe3699-29cc-48bc-ab15-0e23de155720
+  pristine_commit_hash: d27f99f41a8990dfe448e61e613728507fcc31ea
+  pristine_tree_hash: 8a8bd3b81ecfafa65069d8ced1081b75b6488576
 features:
   python:
     additionalDependencies: 1.1.0
@@ -485,8 +485,8 @@ trackedFiles:
     pristine_git_object: ba50994ac7aceefe62e1571a6cbff467d9a067da
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:7645326e0d8dd5f360658ebcada6332cd9c009b6
-    pristine_git_object: 960c9ca61da8b0f28d107d44bfdf94dfc445a65a
+    last_write_checksum: sha1:42b8cd5a3f122632586c34ec45912ea92e62977a
+    pristine_git_object: 97c2a0c1c22303293147dbf882072bd072462657
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -513,8 +513,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:a8e3ec2882c4a3db896de51ed885a1fad3dbbec4
-    pristine_git_object: 199a7c0cdc504656cfb2d5a0619b2630495387b1
+    last_write_checksum: sha1:e26a1bfd3ab454cd2c48efff6222ce95300d3666
+    pristine_git_object: ec3cc3cef5f46d3980a6df1d523a6a496dc1ade3
   src/continuous/basesdk.py:
     id: 7c7025a9c533
     last_write_checksum: sha1:c2195f8abe74c3f8baf5cb652679b710b838987d
@@ -1879,4 +1879,3 @@ examples:
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
 examplesVersion: 1.0.2
-releaseNotes: "## Python SDK Changes:\n* `continuous.simulators.build_simulator()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.build.model.enum(gpt_6.1_sol)` **Added**\n* `continuous.worlds.build_world()`: \n  *  `request.model` **Changed** (Breaking ⚠️)\n  *  `response.build.model.enum(gpt_6.1_sol)` **Added**\n* `continuous.simulations.mint_simulation_token()`: **Deprecated**\n* `continuous.simulators.list_simulators()`:  `response.simulators[].build.model.enum(gpt_6.1_sol)` **Added**\n* `continuous.simulators.get_simulator()`:  `response.build.model.enum(gpt_6.1_sol)` **Added**\n* `continuous.simulators.cancel_simulator()`:  `response.build.model.enum(gpt_6.1_sol)` **Added**\n* `continuous.worlds.list_worlds()`:  `response.worlds[].build.model.enum(gpt_6.1_sol)` **Added**\n* `continuous.worlds.get_world()`:  `response.build.model.enum(gpt_6.1_sol)` **Added**\n* `continuous.worlds.cancel_world()`:  `response.build.model.enum(gpt_6.1_sol)` **Added**\n* `continuous.worlds.start_world()`:  `response.build.model.enum(gpt_6.1_sol)` **Added**\n* `continuous.worlds.stop_world()`:  `response.build.model.enum(gpt_6.1_sol)` **Added**\n"
