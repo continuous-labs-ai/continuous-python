@@ -13,16 +13,20 @@ SpecificationWarningCode = Union[
         "spec.default_invalid",
         "spec.response_untyped",
         "spec.schema_limit",
+        "spec.operation_unservable",
+        "spec.version_ambiguous",
+        "spec.example_null",
         "build.limitation",
+        "build.unrepaired",
     ],
     UnrecognizedStr,
 ]
-r"""Stable warning code. build.limitation marks behavior the Simulator does not serve like the real system."""
+r"""Stable warning code. build.limitation marks behavior the Simulator does not serve like the real system. build.unrepaired marks such behavior that review did not mark a limit of the pinned contract or the scaffold, or that the build declared after review."""
 
 
 class SpecificationWarningTypedDict(TypedDict):
     code: SpecificationWarningCode
-    r"""Stable warning code. build.limitation marks behavior the Simulator does not serve like the real system."""
+    r"""Stable warning code. build.limitation marks behavior the Simulator does not serve like the real system. build.unrepaired marks such behavior that review did not mark a limit of the pinned contract or the scaffold, or that the build declared after review."""
     location: str
     r"""Readable endpoint or field affected by this warning, or the affected operations for a limitation."""
     message: str
@@ -33,7 +37,7 @@ class SpecificationWarningTypedDict(TypedDict):
 
 class SpecificationWarning(BaseModel):
     code: SpecificationWarningCode
-    r"""Stable warning code. build.limitation marks behavior the Simulator does not serve like the real system."""
+    r"""Stable warning code. build.limitation marks behavior the Simulator does not serve like the real system. build.unrepaired marks such behavior that review did not mark a limit of the pinned contract or the scaffold, or that the build declared after review."""
 
     location: str
     r"""Readable endpoint or field affected by this warning, or the affected operations for a limitation."""

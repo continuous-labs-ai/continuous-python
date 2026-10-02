@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: e116c367da999ff679fe2671c422f178
+  docChecksum: 92f7bf267cdd3f24011082dfd1e66842
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.2.1
-  configChecksum: 14dfb5bfd88f19cb5ee0b294d3fac214
+  releaseVersion: 0.2.2
+  configChecksum: 974e1cdf28905526abc06fe140c288e3
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: 54fe3699-29cc-48bc-ab15-0e23de155720
-  pristine_commit_hash: d27f99f41a8990dfe448e61e613728507fcc31ea
-  pristine_tree_hash: 8a8bd3b81ecfafa65069d8ced1081b75b6488576
+  generation_id: f07adeb7-0199-4c0d-a75d-bd254d6ab425
+  pristine_commit_hash: 157d0c32610e96b13d516fda4fa23d9890cbdfca
+  pristine_tree_hash: fe5ab66fed77aa3416ce238eead6ee0612ec8784
 features:
   python:
     additionalDependencies: 1.1.0
@@ -113,8 +113,8 @@ trackedFiles:
     pristine_git_object: e2005cbd1dfce639954e95958f4ee4fe7a0f9508
   docs/models/clockadvancemember.md:
     id: e09635908107
-    last_write_checksum: sha1:fdce75ae793354e55dde2c879b0f8c4ab8604843
-    pristine_git_object: 027535fb8e2d720c6592c458f674fe55e9985f6a
+    last_write_checksum: sha1:3750b5948d28324c4f6f6ee62b346ee815c7a7c3
+    pristine_git_object: 404dc1b7200fa779f5135a227eb8c7aaa0927dfa
   docs/models/clockadvancememberstatus.md:
     id: 38b47f524f42
     last_write_checksum: sha1:42717fb0f3bd207860c0b14b91620ebbdd1c8d02
@@ -251,18 +251,6 @@ trackedFiles:
     id: c8d202671452
     last_write_checksum: sha1:48f30c44a64ca6192a10d490e80744097a93e2d3
     pristine_git_object: dd6708e5ca0841085319ad0c780ec52c983b054e
-  docs/models/mintsimulationtokenrequest.md:
-    id: 838097ce6f3d
-    last_write_checksum: sha1:7724d4f3003fa1ba3e8b71dc48178ac098f7274f
-    pristine_git_object: 69427e2e81b79b978f495e4d1ff961eff347c481
-  docs/models/mintsimulationtokenrequestrequest.md:
-    id: 40e14718aadf
-    last_write_checksum: sha1:7361fd54bc9e7ebde8534559a04d218201e5ab47
-    pristine_git_object: 16024770974a49a111e5f6cbdffba25636fa34c9
-  docs/models/mintsimulationtokenresponse.md:
-    id: 5dcd9465d614
-    last_write_checksum: sha1:faddc651f5b1bfc615354b52f327512d5cb8a17d
-    pristine_git_object: 4d407dbcfcfff9db013b3b8d969b28df28f5168b
   docs/models/regeneratesimulationtokenrequest.md:
     id: fc59105f27bf
     last_write_checksum: sha1:7c6df386f6d340968eae1b5398b3454a0114d04a
@@ -369,12 +357,12 @@ trackedFiles:
     pristine_git_object: 949148956b617f27b6570574e5db94d998a08c0a
   docs/models/specificationwarning.md:
     id: b528d30ef2e9
-    last_write_checksum: sha1:d157aba03ad7067f8c072b34f6ef76c600027a51
-    pristine_git_object: 24428e40967bb7eecb26b4bdc910820e1da00232
+    last_write_checksum: sha1:d5c81c1f475fb230b9b4239a893e370a17ffd30a
+    pristine_git_object: 2b3011a3d6d16eb6a1a1a4504aa38e48d08b4c8e
   docs/models/specificationwarningcode.md:
     id: dc3b3b217506
-    last_write_checksum: sha1:717e438c8726099a05e9426737d9e180125d4fce
-    pristine_git_object: 80a2f381ba11b9f1ee0d208896ab7619500457b5
+    last_write_checksum: sha1:a1738279067463b69b97e52bfd0d4824b9ede376
+    pristine_git_object: 1012ff741cd50780ebce23e44fa1dc95f5fe8a25
   docs/models/startsimulationrequest.md:
     id: 03d5466c921f
     last_write_checksum: sha1:7b6857c2e69218a6047e8a17c1b397415fa59ecb
@@ -465,8 +453,8 @@ trackedFiles:
     pristine_git_object: 229a1f6a7f76132118db8ea46bc480486adaaf99
   docs/sdks/simulations/README.md:
     id: a9e027fcb2b0
-    last_write_checksum: sha1:eff8f9e9b8718c61e1a5676d536e6d452d67a13d
-    pristine_git_object: f7d2ea8d28bf66c3cb3a466c6f5e54a5ec27fadb
+    last_write_checksum: sha1:6e11748f8857a2b595c016f39c5e92fe1fb37885
+    pristine_git_object: fbbb9adc951188862d7cea3314696d1a8bd132a3
   docs/sdks/simulators/README.md:
     id: 55eacdd8fa62
     last_write_checksum: sha1:9a5d588c879964060dd5b5e1463e5795708e0e8f
@@ -485,8 +473,8 @@ trackedFiles:
     pristine_git_object: ba50994ac7aceefe62e1571a6cbff467d9a067da
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:42b8cd5a3f122632586c34ec45912ea92e62977a
-    pristine_git_object: 97c2a0c1c22303293147dbf882072bd072462657
+    last_write_checksum: sha1:193e2c83bd2b8ae2fdf1d1b50fd6f401bff81ff2
+    pristine_git_object: d7d27f97e323038fdc12f4b8ade3da990d7f6286
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -513,8 +501,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:e26a1bfd3ab454cd2c48efff6222ce95300d3666
-    pristine_git_object: ec3cc3cef5f46d3980a6df1d523a6a496dc1ade3
+    last_write_checksum: sha1:1b419f089f57bf15cef031238e4c151ba0ff88da
+    pristine_git_object: 44c004a63921b5d5ba0e589c6ab2aaf4d8f204dd
   src/continuous/basesdk.py:
     id: 7c7025a9c533
     last_write_checksum: sha1:c2195f8abe74c3f8baf5cb652679b710b838987d
@@ -549,8 +537,8 @@ trackedFiles:
     pristine_git_object: 89560b566073785535643e694c112bedbd3db13d
   src/continuous/models/__init__.py:
     id: 53b8497bf08d
-    last_write_checksum: sha1:66b9a9e584cbde58f6cc024e62393cad2398dff3
-    pristine_git_object: fb5fbb76e9746a5e49619b9a7c5675e157799c40
+    last_write_checksum: sha1:20ed8ac30602c0bf8967f9c21cb6ea149a5f0023
+    pristine_git_object: b6eadbbd88f3de8ee8bce32886316c9777c3f141
   src/continuous/models/advance_simulationop.py:
     id: ac5671eb2223
     last_write_checksum: sha1:40c0944d2f379c0929c691408872f285cf69df95
@@ -589,8 +577,8 @@ trackedFiles:
     pristine_git_object: 16a8a8c2d275eb1ea16902d6974e37e842db30b5
   src/continuous/models/clockadvancemember.py:
     id: b7772136c876
-    last_write_checksum: sha1:6a675bf2e777d03146cdeeb61860e811a186eb78
-    pristine_git_object: f5aef78d65cb545836f68f40fb05d5834f92f0ce
+    last_write_checksum: sha1:c67e7828e304bd7bcbd3ecd9c08594c45538c231
+    pristine_git_object: 114e2186cd2cd611a3f9966bce0337fa805b99ce
   src/continuous/models/clockevent.py:
     id: 95f5ae6d2dca
     last_write_checksum: sha1:cc48572e234a89ed7ebf2f269f34c3111c6dc1b1
@@ -695,14 +683,6 @@ trackedFiles:
     id: 38fcffdfaaea
     last_write_checksum: sha1:c81361f493476c6629c3d1449e4d5a9ab22ad67f
     pristine_git_object: 086356cef006502d2accb952219f1f2dcb8e85c9
-  src/continuous/models/mint_simulation_tokenop.py:
-    id: dd3f45c6c75b
-    last_write_checksum: sha1:0d5e33ccfd3dd4f3acf884a7096ddef66369a490
-    pristine_git_object: f01b7ea439b45b38591f9816a44638001e1c90c2
-  src/continuous/models/mintsimulationtokenrequest.py:
-    id: 8139d192ef67
-    last_write_checksum: sha1:ab96577e88ded43a3cb35d142e7239dfb2c01310
-    pristine_git_object: a29f47302d69a385d9b05a07fe65614ffbc3d082
   src/continuous/models/regenerate_simulation_tokenop.py:
     id: 0d7cc6e9e28d
     last_write_checksum: sha1:9f38a715c45d16ef88bfa759b2aef92970d4648b
@@ -749,8 +729,8 @@ trackedFiles:
     pristine_git_object: 32edd08960dc6170d510f08cf012b479cafb3a56
   src/continuous/models/specificationwarning.py:
     id: e273914fa8c1
-    last_write_checksum: sha1:9d1f330e7d1b2c71967ead432057923d072c73e6
-    pristine_git_object: 0cf9d9ad04d8dca4829ebb98674b57b3d8564e6a
+    last_write_checksum: sha1:8d6e4888022ff260e17b4d5b6d598294533f9e4b
+    pristine_git_object: bbed5c7bd0c937c46c48d2b735d86c2c64e3264c
   src/continuous/models/start_simulationop.py:
     id: 4445d5f93f9d
     last_write_checksum: sha1:950c7a778c3e146430bab3165ee5a421a5522c21
@@ -813,8 +793,8 @@ trackedFiles:
     pristine_git_object: 0aeeb029c5da501204fe4215cc60c55401147511
   src/continuous/simulations.py:
     id: 7cec67d30787
-    last_write_checksum: sha1:016788699294b3062feb83ca1d36c8e65630146c
-    pristine_git_object: 677d7a2ddc53045b1b8c5ef5a2000f2ae560fded
+    last_write_checksum: sha1:a8be852374d113a7d6d07d50d04ae70c256f0ab8
+    pristine_git_object: 29a8b73dc770473f1ab253ee5befdd071b267edd
   src/continuous/simulators.py:
     id: f782f4a769f3
     last_write_checksum: sha1:a34665dba003f336c5d31871cbb818295d04cefe
@@ -1879,3 +1859,14 @@ examples:
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
 examplesVersion: 1.0.2
+releaseNotes: |
+  ## Python SDK Changes:
+  * `continuous.simulations.mint_simulation_token()`: **Removed** (Breaking ⚠️)
+  * `continuous.simulations.advance_simulation()`:  `response.members[].reached` **Added**
+  * `continuous.simulations.get_simulation_advance()`:  `response.members[].reached` **Added**
+  * `continuous.simulators.list_simulators()`:  `response.simulators[].build.warnings[].code` **Changed**
+  * `continuous.simulators.build_simulator()`:  `response.build.warnings[].code` **Changed**
+  * `continuous.simulators.get_simulator()`:  `response.build.warnings[].code` **Changed**
+  * `continuous.simulators.cancel_simulator()`:  `response.build.warnings[].code` **Changed**
+  * `continuous.worlds.advance_world()`:  `response.members[].reached` **Added**
+  * `continuous.worlds.get_world_advance()`:  `response.members[].reached` **Added**
