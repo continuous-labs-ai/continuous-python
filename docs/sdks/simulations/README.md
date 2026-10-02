@@ -19,7 +19,6 @@ Create Simulations from ready Simulators, then fork, stop, start, and delete the
 * [stop_simulation](#stop_simulation) - Stop Simulation
 * [get_simulation_token](#get_simulation_token) - Get Current Simulation Token
 * [regenerate_simulation_token](#regenerate_simulation_token) - Regenerate Simulation Token
-* [~~mint_simulation_token~~](#mint_simulation_token) - Mint Simulation Token :warning: **Deprecated**
 
 ## list_simulations
 
@@ -236,7 +235,7 @@ with Continuous(
 
 ## advance_simulation
 
-Schedules an absolute clock advance. Each successful advance commits all due local events in one step. World members advance through their World. Poll the returned operation until it completes.
+Schedules an absolute clock advance. An advance commits due local events in ordered batches, one step each; a failure keeps the batches already committed. World members advance through their World. Poll the returned operation until it completes.
 
 ### Example Usage
 
@@ -623,48 +622,3 @@ with Continuous(
 | errors.Error                  | 401, 403, 404, 409, 422       | application/problem+json      |
 | errors.Error                  | 500, 502, 503                 | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
-
-## ~~mint_simulation_token~~
-
-Deprecated compatibility alias for GET /v1/simulations/{id}/token. Returns the Simulation's current token without rotating it, including while the Simulation is stopped. ttl_seconds is validated but does not change the token's lifetime.
-
-> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="mint-simulation-token" method="post" path="/v1/simulations/{id}/tokens" example="bad_request_body" -->
-```python
-from continuous import Continuous
-import os
-
-
-with Continuous(
-    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
-) as c_client:
-
-    res = c_client.simulations.mint_simulation_token(id="<id>", ttl_seconds=3600)
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `id`                                                                                         | *str*                                                                                        | :heavy_check_mark:                                                                           | Simulation ID.                                                                               |
-| `ttl_seconds`                                                                                | *int*                                                                                        | :heavy_check_mark:                                                                           | Accepted for compatibility, from 60 through 86,400. It does not change the token's lifetime. |
-| `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
-
-### Response
-
-**[models.MintSimulationTokenResponse](../../models/mintsimulationtokenresponse.md)**
-
-### Errors
-
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| errors.Error                                | 400, 401, 403, 404, 408, 409, 413, 415, 422 | application/problem+json                    |
-| errors.Error                                | 500, 502, 503                               | application/problem+json                    |
-| errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |

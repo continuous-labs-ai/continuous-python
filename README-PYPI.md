@@ -204,7 +204,6 @@ with Continuous(
 * [stop_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#stop_simulation) - Stop Simulation
 * [get_simulation_token](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#get_simulation_token) - Get Current Simulation Token
 * [regenerate_simulation_token](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#regenerate_simulation_token) - Regenerate Simulation Token
-* [~~mint_simulation_token~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#mint_simulation_token) - Mint Simulation Token :warning: **Deprecated**
 
 ### [Simulators](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md)
 

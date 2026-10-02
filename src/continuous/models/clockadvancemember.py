@@ -3,9 +3,10 @@
 from __future__ import annotations
 from .resourceerror import ResourceError, ResourceErrorTypedDict
 from continuous.types import BaseModel, Nullable, UNSET_SENTINEL, UnrecognizedStr
+from datetime import datetime
 from pydantic import model_serializer
-from typing import Literal, Union
-from typing_extensions import TypedDict
+from typing import Literal, Optional, Union
+from typing_extensions import NotRequired, TypedDict
 
 
 ClockAdvanceMemberStatus = Union[
@@ -29,7 +30,9 @@ class ClockAdvanceMemberTypedDict(TypedDict):
     status: ClockAdvanceMemberStatus
     r"""Whether this member is pending, committed, failed, or skipped because it is not running."""
     step: Nullable[int]
-    r"""Committed local step, or null for no change or a failed advance."""
+    r"""Last committed local step, or null when the advance committed none."""
+    reached: NotRequired[datetime]
+    r"""Clock time a failed advance reached with the batches it kept committed."""
 
 
 class ClockAdvanceMember(BaseModel):
@@ -45,18 +48,32 @@ class ClockAdvanceMember(BaseModel):
     r"""Whether this member is pending, committed, failed, or skipped because it is not running."""
 
     step: Nullable[int]
-    r"""Committed local step, or null for no change or a failed advance."""
+    r"""Last committed local step, or null when the advance committed none."""
+
+    reached: Optional[datetime] = None
+    r"""Clock time a failed advance reached with the batches it kept committed."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
+        optional_fields = set(["reached"])
+        nullable_fields = set(["error", "step"])
         serialized = handler(self)
         m = {}
 
         for n, f in type(self).model_fields.items():
             k = f.alias or n
             val = serialized.get(k, serialized.get(n))
+            is_nullable_and_explicitly_set = (
+                k in nullable_fields
+                and (self.__pydantic_fields_set__.intersection({n}))  # pylint: disable=no-member
+            )
 
             if val != UNSET_SENTINEL:
-                m[k] = val
+                if (
+                    val is not None
+                    or k not in optional_fields
+                    or is_nullable_and_explicitly_set
+                ):
+                    m[k] = val
 
         return m
