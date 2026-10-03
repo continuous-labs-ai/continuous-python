@@ -95,6 +95,7 @@ if TYPE_CHECKING:
         GetWorldAdvanceRequestTypedDict,
     )
     from .get_worldop import GetWorldRequest, GetWorldRequestTypedDict
+    from .limitation import Limitation, LimitationTypedDict
     from .list_simulation_advance_eventsop import (
         ListSimulationAdvanceEventsRequest,
         ListSimulationAdvanceEventsRequestTypedDict,
@@ -281,6 +282,8 @@ __all__ = [
     "GetWorldAdvanceRequestTypedDict",
     "GetWorldRequest",
     "GetWorldRequestTypedDict",
+    "Limitation",
+    "LimitationTypedDict",
     "ListClockAdvanceEventsResponse",
     "ListClockAdvanceEventsResponseTypedDict",
     "ListSimulationAdvanceEventsRequest",
@@ -450,6 +453,8 @@ _dynamic_imports: dict[str, str] = {
     "GetWorldAdvanceRequestTypedDict": ".get_world_advanceop",
     "GetWorldRequest": ".get_worldop",
     "GetWorldRequestTypedDict": ".get_worldop",
+    "Limitation": ".limitation",
+    "LimitationTypedDict": ".limitation",
     "ListSimulationAdvanceEventsRequest": ".list_simulation_advance_eventsop",
     "ListSimulationAdvanceEventsRequestTypedDict": ".list_simulation_advance_eventsop",
     "ListSimulationStepsRequest": ".list_simulation_stepsop",

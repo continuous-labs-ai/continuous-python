@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: 92f7bf267cdd3f24011082dfd1e66842
+  docChecksum: ae92c6f38f45ea30acc2e5af0fed9a9d
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.2.2
-  configChecksum: 974e1cdf28905526abc06fe140c288e3
+  releaseVersion: 0.2.3
+  configChecksum: d21f3df51636847768adb78714147643
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: f07adeb7-0199-4c0d-a75d-bd254d6ab425
-  pristine_commit_hash: 157d0c32610e96b13d516fda4fa23d9890cbdfca
-  pristine_tree_hash: fe5ab66fed77aa3416ce238eead6ee0612ec8784
+  generation_id: 4580734f-7197-401f-a3d8-fe5c0626f74a
+  pristine_commit_hash: 822c444b2faf309bdc6fdf8046f7b17136868666
+  pristine_tree_hash: b4027e80de5ce6c12fa9a60084785523977c1973
 features:
   python:
     additionalDependencies: 1.1.0
@@ -89,8 +89,8 @@ trackedFiles:
     pristine_git_object: 640bf526cc57f230782cc978fe59ceba564cdca5
   docs/models/buildsimulatorresponse.md:
     id: 7bb7eff50b23
-    last_write_checksum: sha1:dd978817b3b93c442f09ccfa5f8b8cfd9c1e5446
-    pristine_git_object: 8d690f6db0c695cf5a4b550d21dcf03662d8f295
+    last_write_checksum: sha1:ba80ed68ff84a557f3e9a1f7504209978f51a9af
+    pristine_git_object: 57484baf0ef35a910b4cbade634a24e70d1a86b2
   docs/models/buildworldrequest.md:
     id: afb04a6b7322
     last_write_checksum: sha1:3d7ce130b6beaba1ea3ce0047ed76f46f7b05977
@@ -199,6 +199,10 @@ trackedFiles:
     id: d46db60a194e
     last_write_checksum: sha1:72d7b804ec6f6244bd661cebca6f219ac266f4f0
     pristine_git_object: 6b3741787eb215b91be1f8c288838c706b29e877
+  docs/models/limitation.md:
+    id: 9dc9889267c6
+    last_write_checksum: sha1:54e16021da4c57bc8f9ab33f3ea3b837a0486abb
+    pristine_git_object: 731250b87413303d465560b8cb29080f44f674bc
   docs/models/listclockadvanceeventsresponse.md:
     id: a4f241a983f2
     last_write_checksum: sha1:021ff9b012856081102f61697d5c78c0eacde03f
@@ -293,8 +297,8 @@ trackedFiles:
     pristine_git_object: e1433aceaac867c9d9bc15f64a3802a3cd22603b
   docs/models/simulatorbuildprogress.md:
     id: ddb5f0b1cc58
-    last_write_checksum: sha1:a669fabae9fcfca88dc9437654b1a9e956e5e2a2
-    pristine_git_object: dac614a188719b217ea3602c11536dfc8131a48e
+    last_write_checksum: sha1:d261920a30134fefbe385228a14d0b4c88a24903
+    pristine_git_object: 791272bd6981dd0abcf456910b742d50c6defed7
   docs/models/simulatorbuildprogresslastsubmission.md:
     id: 8b1682fab21d
     last_write_checksum: sha1:b3aa17f85a66e8333e657edf65a6f9f8e509b88c
@@ -357,12 +361,12 @@ trackedFiles:
     pristine_git_object: 949148956b617f27b6570574e5db94d998a08c0a
   docs/models/specificationwarning.md:
     id: b528d30ef2e9
-    last_write_checksum: sha1:d5c81c1f475fb230b9b4239a893e370a17ffd30a
-    pristine_git_object: 2b3011a3d6d16eb6a1a1a4504aa38e48d08b4c8e
+    last_write_checksum: sha1:93cd9e9912d8ba20937205d87d29d6640fc43c48
+    pristine_git_object: 2333be97baff67309fed9618153487554a580f06
   docs/models/specificationwarningcode.md:
     id: dc3b3b217506
-    last_write_checksum: sha1:a1738279067463b69b97e52bfd0d4824b9ede376
-    pristine_git_object: 1012ff741cd50780ebce23e44fa1dc95f5fe8a25
+    last_write_checksum: sha1:46d51dd60e0d8c4a7f9fe7e677a321e6ed08ab7e
+    pristine_git_object: d43f5239653a045b2b032e8dd3f9ada2e3d86efc
   docs/models/startsimulationrequest.md:
     id: 03d5466c921f
     last_write_checksum: sha1:7b6857c2e69218a6047e8a17c1b397415fa59ecb
@@ -473,8 +477,8 @@ trackedFiles:
     pristine_git_object: ba50994ac7aceefe62e1571a6cbff467d9a067da
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:193e2c83bd2b8ae2fdf1d1b50fd6f401bff81ff2
-    pristine_git_object: d7d27f97e323038fdc12f4b8ade3da990d7f6286
+    last_write_checksum: sha1:078ca39ebb45f6d527754049140dfaebe06641c3
+    pristine_git_object: 4b4239ec1a4f85c8d88ad2b646b54463cd79733b
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -501,8 +505,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:1b419f089f57bf15cef031238e4c151ba0ff88da
-    pristine_git_object: 44c004a63921b5d5ba0e589c6ab2aaf4d8f204dd
+    last_write_checksum: sha1:2d86ef09ce990bfe14fa60db90fe41209b43cba8
+    pristine_git_object: 3604ad56e3443f55bd7dd9cbdba3bfcb89fe3bbe
   src/continuous/basesdk.py:
     id: 7c7025a9c533
     last_write_checksum: sha1:c2195f8abe74c3f8baf5cb652679b710b838987d
@@ -537,8 +541,8 @@ trackedFiles:
     pristine_git_object: 89560b566073785535643e694c112bedbd3db13d
   src/continuous/models/__init__.py:
     id: 53b8497bf08d
-    last_write_checksum: sha1:20ed8ac30602c0bf8967f9c21cb6ea149a5f0023
-    pristine_git_object: b6eadbbd88f3de8ee8bce32886316c9777c3f141
+    last_write_checksum: sha1:b4e2abcfeb1e55796402d8d275d3a3384fdd9280
+    pristine_git_object: 9d12d1e046775a9f2eebfffd0cbc98a6418c3a49
   src/continuous/models/advance_simulationop.py:
     id: ac5671eb2223
     last_write_checksum: sha1:40c0944d2f379c0929c691408872f285cf69df95
@@ -643,6 +647,10 @@ trackedFiles:
     id: 07192d4bd3c0
     last_write_checksum: sha1:1ac97856a3890a88f28932cd54cb6771bb586c72
     pristine_git_object: ba9d310f6fd205f38e79102e97af2eac6127a138
+  src/continuous/models/limitation.py:
+    id: 4e108b9a9404
+    last_write_checksum: sha1:3fef12d2b831d22674428ed38832d81c047f4326
+    pristine_git_object: 0f9f8ab2698020159b22f7f0a4fa778a47a7f1a7
   src/continuous/models/list_simulation_advance_eventsop.py:
     id: f16a71b46b7b
     last_write_checksum: sha1:3a2c0bc9e5d01b3a4c1992f8dbaf48cdb0b93588
@@ -713,8 +721,8 @@ trackedFiles:
     pristine_git_object: 3982c1f1fd8bf0fcbcfca263905591cbea7f6bf9
   src/continuous/models/simulatorbuildprogress.py:
     id: 003fbe758411
-    last_write_checksum: sha1:c9a7d26c7c3e5ad22f17b5a448b865fb88fbe881
-    pristine_git_object: df82b0d3507a0724ed7cc0e862964de27a7e041c
+    last_write_checksum: sha1:0fe241888f233778d7323cd224946119a66c1c89
+    pristine_git_object: 4ea002c2eebc1006ec1991d0ede59c8f23ac121e
   src/continuous/models/simulatorerror.py:
     id: ab2c6f1ead7f
     last_write_checksum: sha1:afc5009ff7f4efc969700ee30826771e3dd35e0d
@@ -729,8 +737,8 @@ trackedFiles:
     pristine_git_object: 32edd08960dc6170d510f08cf012b479cafb3a56
   src/continuous/models/specificationwarning.py:
     id: e273914fa8c1
-    last_write_checksum: sha1:8d6e4888022ff260e17b4d5b6d598294533f9e4b
-    pristine_git_object: bbed5c7bd0c937c46c48d2b735d86c2c64e3264c
+    last_write_checksum: sha1:550f5e8d9fa7a55ce61cc3c8e542d6eea997af37
+    pristine_git_object: 5f0e0089072d1c021ae16f3c064a4a4633e48b9e
   src/continuous/models/start_simulationop.py:
     id: 4445d5f93f9d
     last_write_checksum: sha1:950c7a778c3e146430bab3165ee5a421a5522c21
@@ -1170,7 +1178,7 @@ examples:
           limit: 50
       responses:
         "200":
-          application/json: {"next_cursor": "<value>", "simulators": [{"build": {"last_submission": "rejected", "last_tool": "<value>", "model": "gpt-6-sol", "phase": "build", "stage": "assemble", "submissions": 113509, "tool_calls": 913897, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "<value>", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "source": "workspace", "spec_kind": "wsdl", "status": "building"}]}
+          application/json: {"next_cursor": "<value>", "simulators": [{"build": {"hidden_limitations": 353850, "last_submission": "rejected", "last_tool": "<value>", "limitations": [], "model": "gpt-6-sol", "phase": "build", "stage": "assemble", "submissions": 113509, "tool_calls": 913897, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "<value>", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "source": "workspace", "spec_kind": "wsdl", "status": "building"}]}
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
@@ -1193,7 +1201,7 @@ examples:
         multipart/form-data: {"request": {"filter": [], "instructions": "Return stable example data for every operation.", "model": "claude-fable-5-1", "name": "billing-api", "spec_kind": "openapi", "timeout_seconds": 14400}}
       responses:
         "202":
-          application/json: {"build": {"last_submission": "rejected", "last_tool": "test", "model": "claude-fable-5-1", "phase": "build", "stage": "build", "submissions": 1, "tool_calls": 7, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "source": "workspace", "spec_kind": "openapi", "status": "building"}
+          application/json: {"build": {"hidden_limitations": 0, "last_submission": "rejected", "last_tool": "test", "limitations": [], "model": "claude-fable-5-1", "phase": "build", "stage": "build", "submissions": 1, "tool_calls": 7, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "source": "workspace", "spec_kind": "openapi", "status": "building"}
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
@@ -1251,7 +1259,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"build": {"last_submission": "rejected", "last_tool": "test", "model": "claude-fable-5-1", "phase": "build", "stage": "build", "submissions": 1, "tool_calls": 7, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "source": "workspace", "spec_kind": "openapi", "status": "building"}
+          application/json: {"build": {"hidden_limitations": 0, "last_submission": "rejected", "last_tool": "test", "limitations": [], "model": "claude-fable-5-1", "phase": "build", "stage": "build", "submissions": 1, "tool_calls": 7, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "source": "workspace", "spec_kind": "openapi", "status": "building"}
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
@@ -1728,7 +1736,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"build": {"last_submission": "rejected", "last_tool": "test", "model": "claude-fable-5-1", "phase": "build", "stage": "build", "submissions": 1, "tool_calls": 7, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "source": "workspace", "spec_kind": "openapi", "status": "building"}
+          application/json: {"build": {"hidden_limitations": 0, "last_submission": "rejected", "last_tool": "test", "limitations": [], "model": "claude-fable-5-1", "phase": "build", "stage": "build", "submissions": 1, "tool_calls": 7, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "source": "workspace", "spec_kind": "openapi", "status": "building"}
         "401":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
@@ -1861,12 +1869,7 @@ examples:
 examplesVersion: 1.0.2
 releaseNotes: |
   ## Python SDK Changes:
-  * `continuous.simulations.mint_simulation_token()`: **Removed** (Breaking ⚠️)
-  * `continuous.simulations.advance_simulation()`:  `response.members[].reached` **Added**
-  * `continuous.simulations.get_simulation_advance()`:  `response.members[].reached` **Added**
-  * `continuous.simulators.list_simulators()`:  `response.simulators[].build.warnings[].code` **Changed**
-  * `continuous.simulators.build_simulator()`:  `response.build.warnings[].code` **Changed**
-  * `continuous.simulators.get_simulator()`:  `response.build.warnings[].code` **Changed**
-  * `continuous.simulators.cancel_simulator()`:  `response.build.warnings[].code` **Changed**
-  * `continuous.worlds.advance_world()`:  `response.members[].reached` **Added**
-  * `continuous.worlds.get_world_advance()`:  `response.members[].reached` **Added**
+  * `continuous.simulators.list_simulators()`:  `response.simulators[].build` **Changed** (Breaking ⚠️)
+  * `continuous.simulators.build_simulator()`:  `response.build` **Changed** (Breaking ⚠️)
+  * `continuous.simulators.get_simulator()`:  `response.build` **Changed** (Breaking ⚠️)
+  * `continuous.simulators.cancel_simulator()`:  `response.build` **Changed** (Breaking ⚠️)
