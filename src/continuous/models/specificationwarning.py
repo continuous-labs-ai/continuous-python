@@ -16,34 +16,32 @@ SpecificationWarningCode = Union[
         "spec.operation_unservable",
         "spec.version_ambiguous",
         "spec.example_null",
-        "build.limitation",
-        "build.unrepaired",
     ],
     UnrecognizedStr,
 ]
-r"""Stable warning code. build.limitation marks behavior the Simulator does not serve like the real system. build.unrepaired marks such behavior that review did not mark a limit of the pinned contract or the scaffold, or that the build declared after review."""
+r"""Stable warning code."""
 
 
 class SpecificationWarningTypedDict(TypedDict):
     code: SpecificationWarningCode
-    r"""Stable warning code. build.limitation marks behavior the Simulator does not serve like the real system. build.unrepaired marks such behavior that review did not mark a limit of the pinned contract or the scaffold, or that the build declared after review."""
+    r"""Stable warning code."""
     location: str
-    r"""Readable endpoint or field affected by this warning, or the affected operations for a limitation."""
+    r"""Readable endpoint or field affected by this warning."""
     message: str
-    r"""What the specification declares and how the build handles it, or what the limitation is."""
+    r"""What the specification declares and how the build handles it."""
     operations: List[str]
-    r"""Operation IDs a limitation affects, or empty when the warning names none."""
+    r"""Always empty."""
 
 
 class SpecificationWarning(BaseModel):
     code: SpecificationWarningCode
-    r"""Stable warning code. build.limitation marks behavior the Simulator does not serve like the real system. build.unrepaired marks such behavior that review did not mark a limit of the pinned contract or the scaffold, or that the build declared after review."""
+    r"""Stable warning code."""
 
     location: str
-    r"""Readable endpoint or field affected by this warning, or the affected operations for a limitation."""
+    r"""Readable endpoint or field affected by this warning."""
 
     message: str
-    r"""What the specification declares and how the build handles it, or what the limitation is."""
+    r"""What the specification declares and how the build handles it."""
 
     operations: List[str]
-    r"""Operation IDs a limitation affects, or empty when the warning names none."""
+    r"""Always empty."""
