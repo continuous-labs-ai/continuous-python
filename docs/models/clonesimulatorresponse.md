@@ -1,0 +1,11 @@
+# CloneSimulatorResponse
+
+
+## Fields
+
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `digest`                                                                         | *str*                                                                            | :heavy_check_mark:                                                               | OCI manifest digest, unchanged from the source.                                  |
+| `id`                                                                             | *str*                                                                            | :heavy_check_mark:                                                               | New Simulator ID in the target workspace, or the same ID on an idempotent retry. |
+| `name`                                                                           | *str*                                                                            | :heavy_check_mark:                                                               | Display name of the clone.                                                       |
+| `workspace_id`                                                                   | *str*                                                                            | :heavy_check_mark:                                                               | Target workspace.                                                                |

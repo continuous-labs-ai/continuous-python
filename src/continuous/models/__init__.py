@@ -42,6 +42,18 @@ if TYPE_CHECKING:
         ClockAdvanceMemberTypedDict,
     )
     from .clockevent import ClockEvent, ClockEventTypedDict
+    from .clone_simulatorop import (
+        CloneSimulatorRequestRequest,
+        CloneSimulatorRequestRequestTypedDict,
+    )
+    from .clonesimulatorrequest import (
+        CloneSimulatorRequest,
+        CloneSimulatorRequestTypedDict,
+    )
+    from .clonesimulatorresponse import (
+        CloneSimulatorResponse,
+        CloneSimulatorResponseTypedDict,
+    )
     from .create_simulationop import (
         CreateSimulationResponse,
         CreateSimulationResponseTypedDict,
@@ -247,6 +259,12 @@ __all__ = [
     "ClockAdvanceTypedDict",
     "ClockEvent",
     "ClockEventTypedDict",
+    "CloneSimulatorRequest",
+    "CloneSimulatorRequestRequest",
+    "CloneSimulatorRequestRequestTypedDict",
+    "CloneSimulatorRequestTypedDict",
+    "CloneSimulatorResponse",
+    "CloneSimulatorResponseTypedDict",
     "CreateSimulationRequest",
     "CreateSimulationRequestTypedDict",
     "CreateSimulationResponse",
@@ -418,6 +436,12 @@ _dynamic_imports: dict[str, str] = {
     "ClockAdvanceMemberTypedDict": ".clockadvancemember",
     "ClockEvent": ".clockevent",
     "ClockEventTypedDict": ".clockevent",
+    "CloneSimulatorRequestRequest": ".clone_simulatorop",
+    "CloneSimulatorRequestRequestTypedDict": ".clone_simulatorop",
+    "CloneSimulatorRequest": ".clonesimulatorrequest",
+    "CloneSimulatorRequestTypedDict": ".clonesimulatorrequest",
+    "CloneSimulatorResponse": ".clonesimulatorresponse",
+    "CloneSimulatorResponseTypedDict": ".clonesimulatorresponse",
     "CreateSimulationResponse": ".create_simulationop",
     "CreateSimulationResponseTypedDict": ".create_simulationop",
     "CreatedSimulation": ".createdsimulation",
