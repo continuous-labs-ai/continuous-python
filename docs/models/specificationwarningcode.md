@@ -22,5 +22,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"spec.response_untyped"`
 - `"spec.schema_limit"`
 - `"spec.operation_unservable"`
-- `"spec.version_ambiguous"`
 - `"spec.example_null"`

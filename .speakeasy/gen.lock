@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: ae92c6f38f45ea30acc2e5af0fed9a9d
+  docChecksum: c89742f574666e3ff7a19a8d9fe3e926
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.2.3
-  configChecksum: d21f3df51636847768adb78714147643
+  releaseVersion: 0.2.4
+  configChecksum: f933cc9292a95bb27437c989966383eb
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: 4580734f-7197-401f-a3d8-fe5c0626f74a
-  pristine_commit_hash: 822c444b2faf309bdc6fdf8046f7b17136868666
-  pristine_tree_hash: b4027e80de5ce6c12fa9a60084785523977c1973
+  generation_id: 7bd21a7f-1dde-4f86-9fe9-7b12d39b579c
+  pristine_commit_hash: a0c5a410b73b21043f5f83adc2f9b539217116fa
+  pristine_tree_hash: babf713d91a01e54ac0696d5de1966f5383a1d7b
 features:
   python:
     additionalDependencies: 1.1.0
@@ -127,6 +127,18 @@ trackedFiles:
     id: 14f71d26cdea
     last_write_checksum: sha1:2ec00c72da5ed2c9ea137ee269beb19863f53a1d
     pristine_git_object: ff3df81ab13930aa3ea92a544b2ddab160d5a692
+  docs/models/clonesimulatorrequest.md:
+    id: 5c6c91eff3b7
+    last_write_checksum: sha1:ffb67aab4841be895e44b9150d3529f314c2169f
+    pristine_git_object: ea2c3aadd84c69ba433af516d15067892cc39087
+  docs/models/clonesimulatorrequestrequest.md:
+    id: 90316b6539f9
+    last_write_checksum: sha1:b87bc950d4b356f38f5d217d3354463537a0b160
+    pristine_git_object: 8dabd7bf23b248faabd0c274f1d60d5c4b31a6ba
+  docs/models/clonesimulatorresponse.md:
+    id: 46b9ef685b47
+    last_write_checksum: sha1:cd00708b536b385c909c4be26fdbd31d05c6bf1b
+    pristine_git_object: 631b59112965e79906623307cab48bfc1d8c6249
   docs/models/createdsimulation.md:
     id: 9f6d7f718545
     last_write_checksum: sha1:65365a09ecdb9852c3d22def938a071b0082c928
@@ -365,8 +377,8 @@ trackedFiles:
     pristine_git_object: 2333be97baff67309fed9618153487554a580f06
   docs/models/specificationwarningcode.md:
     id: dc3b3b217506
-    last_write_checksum: sha1:46d51dd60e0d8c4a7f9fe7e677a321e6ed08ab7e
-    pristine_git_object: d43f5239653a045b2b032e8dd3f9ada2e3d86efc
+    last_write_checksum: sha1:bbea83f123003b3515733da4771d1f49c8b238f8
+    pristine_git_object: 81e3a67a351f36c91229f4f37ca5a1d3090ed637
   docs/models/startsimulationrequest.md:
     id: 03d5466c921f
     last_write_checksum: sha1:7b6857c2e69218a6047e8a17c1b397415fa59ecb
@@ -461,8 +473,8 @@ trackedFiles:
     pristine_git_object: fbbb9adc951188862d7cea3314696d1a8bd132a3
   docs/sdks/simulators/README.md:
     id: 55eacdd8fa62
-    last_write_checksum: sha1:9a5d588c879964060dd5b5e1463e5795708e0e8f
-    pristine_git_object: 59c625c6725dbb43be275cfffb8cb9281e9b2f7a
+    last_write_checksum: sha1:ad20e768547c80212be3a85aeec0c60d364cd740
+    pristine_git_object: 47c6c932b27af9797f8c0d5ff6ea07fe7f081cb7
   docs/sdks/worlds/README.md:
     id: c57d3f2ebb66
     last_write_checksum: sha1:05d98736c754f354db1be89491ebfc99b273d4ed
@@ -477,8 +489,8 @@ trackedFiles:
     pristine_git_object: ba50994ac7aceefe62e1571a6cbff467d9a067da
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:078ca39ebb45f6d527754049140dfaebe06641c3
-    pristine_git_object: 4b4239ec1a4f85c8d88ad2b646b54463cd79733b
+    last_write_checksum: sha1:aab61bc4a40e9b3992d6a1b5906029ba3e5c1dd3
+    pristine_git_object: b8602746eb0cec02b784204983ee47341251b5f0
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -505,8 +517,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:2d86ef09ce990bfe14fa60db90fe41209b43cba8
-    pristine_git_object: 3604ad56e3443f55bd7dd9cbdba3bfcb89fe3bbe
+    last_write_checksum: sha1:8a80865550dd2a035e3ec9fa1a4d073aa176ada8
+    pristine_git_object: 6fd96bf68427fcf74d5a6a97a79f16125fcfa9d6
   src/continuous/basesdk.py:
     id: 7c7025a9c533
     last_write_checksum: sha1:c2195f8abe74c3f8baf5cb652679b710b838987d
@@ -541,8 +553,8 @@ trackedFiles:
     pristine_git_object: 89560b566073785535643e694c112bedbd3db13d
   src/continuous/models/__init__.py:
     id: 53b8497bf08d
-    last_write_checksum: sha1:b4e2abcfeb1e55796402d8d275d3a3384fdd9280
-    pristine_git_object: 9d12d1e046775a9f2eebfffd0cbc98a6418c3a49
+    last_write_checksum: sha1:b825502576db8412077080ed9cf0d14680c86481
+    pristine_git_object: 54aa1deb45be440f16867b0467c0303f5b840e72
   src/continuous/models/advance_simulationop.py:
     id: ac5671eb2223
     last_write_checksum: sha1:40c0944d2f379c0929c691408872f285cf69df95
@@ -587,6 +599,18 @@ trackedFiles:
     id: 95f5ae6d2dca
     last_write_checksum: sha1:cc48572e234a89ed7ebf2f269f34c3111c6dc1b1
     pristine_git_object: d5e17aeeb4e6c203849365f6dfcd8eb179c85e4d
+  src/continuous/models/clone_simulatorop.py:
+    id: 4157eafc4dd8
+    last_write_checksum: sha1:64a5f5dacb8c836874a7d10f0b57082c0b7d4dbf
+    pristine_git_object: 4b04f81eb7517628e8c7b6a1d8cdfcd05516151e
+  src/continuous/models/clonesimulatorrequest.py:
+    id: a64d567ff23f
+    last_write_checksum: sha1:6f43f9cdc172876c0f2992a9e34269480d7fc6c6
+    pristine_git_object: d6fecbc663023965d2ca7229830010b7c4040f04
+  src/continuous/models/clonesimulatorresponse.py:
+    id: fe1f051b8c7d
+    last_write_checksum: sha1:5f25b6ad190cafcc9ee81e41937ab4a20d15fc2c
+    pristine_git_object: 81439b6d7b097258bc0c7721b0b93b77d1c7982e
   src/continuous/models/create_simulationop.py:
     id: 4de473b0effd
     last_write_checksum: sha1:172c9728f3218a4341d89cbd4e7ba9ba2d01fc13
@@ -737,8 +761,8 @@ trackedFiles:
     pristine_git_object: 32edd08960dc6170d510f08cf012b479cafb3a56
   src/continuous/models/specificationwarning.py:
     id: e273914fa8c1
-    last_write_checksum: sha1:550f5e8d9fa7a55ce61cc3c8e542d6eea997af37
-    pristine_git_object: 5f0e0089072d1c021ae16f3c064a4a4633e48b9e
+    last_write_checksum: sha1:4c89feffeec7a3f41c6401737bb71ade08a1d93b
+    pristine_git_object: 44937d9b128df0fb239de0000f5d3ce1f1b18eb6
   src/continuous/models/start_simulationop.py:
     id: 4445d5f93f9d
     last_write_checksum: sha1:950c7a778c3e146430bab3165ee5a421a5522c21
@@ -793,8 +817,8 @@ trackedFiles:
     pristine_git_object: 3e38f1a929f7d6b1d6de74604aa87e3d8f010544
   src/continuous/sdk.py:
     id: 31204b02efee
-    last_write_checksum: sha1:8615af157d4aff30097c065f34d78d25edfa89a2
-    pristine_git_object: 79447a9ba374640cbf95a501e131001b3c8f2f28
+    last_write_checksum: sha1:8e1d4d9114f0d44cc0444958fa95c61e8a7d1067
+    pristine_git_object: e57a19c22de09c6d9161d5b224c1d6ad67dc58b0
   src/continuous/sdkconfiguration.py:
     id: 702ed2be51f5
     last_write_checksum: sha1:c068c945940eeeb56ec45179cc215c3780be3a8e
@@ -805,8 +829,8 @@ trackedFiles:
     pristine_git_object: 29a8b73dc770473f1ab253ee5befdd071b267edd
   src/continuous/simulators.py:
     id: f782f4a769f3
-    last_write_checksum: sha1:a34665dba003f336c5d31871cbb818295d04cefe
-    pristine_git_object: 2d2ae9501d1f6cf05ba4012ca29e013b3b8921d2
+    last_write_checksum: sha1:c65214dccdba494d2030c98947e4f1b5491582e5
+    pristine_git_object: 78a9e37f5d47db9c6c42260616c97e9072a00661
   src/continuous/types/__init__.py:
     id: c9ee84986773
     last_write_checksum: sha1:f9ad14217f832e74f594285960125add50324be9
@@ -1866,10 +1890,47 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
+  clone-simulator:
+    bad_request_body:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"idempotency_key": "<value>", "target_workspace_id": "<id>"}
+      responses:
+        "400":
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
+        "500":
+          application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
+    bad_request_clone_target:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"idempotency_key": "<value>", "target_workspace_id": "<id>"}
+      responses:
+        "400":
+          application/problem+json: {"code": "bad_request", "detail": "target_workspace_id must differ from the source workspace", "validation": null}
+        "500":
+          application/problem+json: {"code": "bad_request", "detail": "target_workspace_id must differ from the source workspace", "validation": null}
+    speakeasy-default-clone-simulator:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"idempotency_key": "<value>", "target_workspace_id": "<id>"}
+      responses:
+        "201":
+          application/json: {"digest": "<value>", "id": "<id>", "name": "<value>", "workspace_id": "<id>"}
+        "400":
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
+        "500":
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
 examplesVersion: 1.0.2
 releaseNotes: |
   ## Python SDK Changes:
-  * `continuous.simulators.list_simulators()`:  `response.simulators[].build` **Changed** (Breaking ⚠️)
-  * `continuous.simulators.build_simulator()`:  `response.build` **Changed** (Breaking ⚠️)
-  * `continuous.simulators.get_simulator()`:  `response.build` **Changed** (Breaking ⚠️)
-  * `continuous.simulators.cancel_simulator()`:  `response.build` **Changed** (Breaking ⚠️)
+  * `continuous.simulators.list_simulators()`:  `response.simulators[].build.warnings[].code.enum(spec.version_ambiguous)` **Removed** (Breaking ⚠️)
+  * `continuous.simulators.build_simulator()`:  `response.build.warnings[].code.enum(spec.version_ambiguous)` **Removed** (Breaking ⚠️)
+  * `continuous.simulators.get_simulator()`:  `response.build.warnings[].code.enum(spec.version_ambiguous)` **Removed** (Breaking ⚠️)
+  * `continuous.simulators.cancel_simulator()`:  `response.build.warnings[].code.enum(spec.version_ambiguous)` **Removed** (Breaking ⚠️)
+  * `continuous.simulators.clone_simulator()`: **Added**

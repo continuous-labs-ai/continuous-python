@@ -2,7 +2,7 @@
 
 ## Overview
 
-Build Simulators from OpenAPI or WSDL documents, check or cancel a build, and delete Simulators.
+Build Simulators from OpenAPI or WSDL documents, check or cancel a build, clone Simulators into other workspaces, and delete Simulators.
 
 ### Available Operations
 
@@ -11,6 +11,7 @@ Build Simulators from OpenAPI or WSDL documents, check or cancel a build, and de
 * [delete_simulator](#delete_simulator) - Delete Simulator
 * [get_simulator](#get_simulator) - Get Simulator
 * [cancel_simulator](#cancel_simulator) - Cancel Simulator Build
+* [clone_simulator](#clone_simulator) - Clone Simulator
 
 ## list_simulators
 
@@ -251,3 +252,66 @@ with Continuous(
 | errors.Error                  | 401, 403, 404, 422            | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
+
+## clone_simulator
+
+Creates a ready copy of a ready Simulator in another workspace. The clone has a new ID and the source's image digest; the source is unchanged. The source is the caller's workspace: an API key's own workspace, or X-Workspace-Id for a session. An API key may clone into any other workspace of its organization.
+
+### Example Usage: bad_request_body
+
+<!-- UsageSnippet language="python" operationID="clone-simulator" method="post" path="/v1/simulators/{id}/clone" example="bad_request_body" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.simulators.clone_simulator(id="<id>", idempotency_key="<value>", target_workspace_id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+### Example Usage: bad_request_clone_target
+
+<!-- UsageSnippet language="python" operationID="clone-simulator" method="post" path="/v1/simulators/{id}/clone" example="bad_request_clone_target" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.simulators.clone_simulator(id="<id>", idempotency_key="<value>", target_workspace_id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `id`                                                                         | *str*                                                                        | :heavy_check_mark:                                                           | Source Simulator ID.                                                         |
+| `idempotency_key`                                                            | *str*                                                                        | :heavy_check_mark:                                                           | Stable key for retrying this clone into the target workspace.                |
+| `target_workspace_id`                                                        | *str*                                                                        | :heavy_check_mark:                                                           | Workspace that receives the clone. It must differ from the source workspace. |
+| `name`                                                                       | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | Display name for the clone. Defaults to the source Simulator's name.         |
+| `retries`                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)             | :heavy_minus_sign:                                                           | Configuration to override the default retry behavior of the client.          |
+
+### Response
+
+**[models.CloneSimulatorResponse](../../models/clonesimulatorresponse.md)**
+
+### Errors
+
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| errors.Error                                | 400, 401, 403, 404, 408, 409, 413, 415, 422 | application/problem+json                    |
+| errors.Error                                | 500, 503                                    | application/problem+json                    |
+| errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |

@@ -26,7 +26,7 @@ class Continuous(BaseSDK):
     simulations: "Simulations"
     r"""Create Simulations from ready Simulators, then fork, stop, start, and delete them."""
     simulators: "Simulators"
-    r"""Build Simulators from OpenAPI or WSDL documents, check or cancel a build, and delete Simulators."""
+    r"""Build Simulators from OpenAPI or WSDL documents, check or cancel a build, clone Simulators into other workspaces, and delete Simulators."""
     worlds: "Worlds"
     r"""Build Worlds from one or more Simulators and start or stop their Simulations together."""
     _sub_sdk_map = {

@@ -14,7 +14,6 @@ SpecificationWarningCode = Union[
         "spec.response_untyped",
         "spec.schema_limit",
         "spec.operation_unservable",
-        "spec.version_ambiguous",
         "spec.example_null",
     ],
     UnrecognizedStr,

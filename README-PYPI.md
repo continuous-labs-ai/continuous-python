@@ -212,6 +212,7 @@ with Continuous(
 * [delete_simulator](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#delete_simulator) - Delete Simulator
 * [get_simulator](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#get_simulator) - Get Simulator
 * [cancel_simulator](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#cancel_simulator) - Cancel Simulator Build
+* [clone_simulator](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#clone_simulator) - Clone Simulator
 
 ### [Worlds](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md)
 
