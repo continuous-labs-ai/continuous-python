@@ -26,10 +26,11 @@ SimulatorBuildProgressModel = Union[
         "claude-opus-5-5",
         "claude-fable-5-1",
         "gpt-6-sol",
+        "combined",
     ],
     UnrecognizedStr,
 ]
-r"""The model the builder and reviewer run on. A build recorded before model selection reports its provider's default."""
+r"""The model the builder and reviewer run on, or combined for a build with two reviewers. A build recorded before model selection reports its provider's default."""
 
 
 SimulatorBuildProgressPhase = Union[
@@ -64,7 +65,7 @@ class SimulatorBuildProgressTypedDict(TypedDict):
     limitations: List[LimitationTypedDict]
     r"""Behavior the accepted build does not serve like the real system, most important first, set when the build is accepted. Empty when none."""
     model: SimulatorBuildProgressModel
-    r"""The model the builder and reviewer run on. A build recorded before model selection reports its provider's default."""
+    r"""The model the builder and reviewer run on, or combined for a build with two reviewers. A build recorded before model selection reports its provider's default."""
     phase: Nullable[SimulatorBuildProgressPhase]
     r"""Agent phase: build for generation, review for the separate reviewer, finalize for author repair after review. Null when not recorded."""
     stage: SimulatorBuildProgressStage
@@ -91,7 +92,7 @@ class SimulatorBuildProgress(BaseModel):
     r"""Behavior the accepted build does not serve like the real system, most important first, set when the build is accepted. Empty when none."""
 
     model: SimulatorBuildProgressModel
-    r"""The model the builder and reviewer run on. A build recorded before model selection reports its provider's default."""
+    r"""The model the builder and reviewer run on, or combined for a build with two reviewers. A build recorded before model selection reports its provider's default."""
 
     phase: Nullable[SimulatorBuildProgressPhase]
     r"""Agent phase: build for generation, review for the separate reviewer, finalize for author repair after review. Null when not recorded."""

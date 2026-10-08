@@ -1,6 +1,6 @@
 # SimulatorBuildProgressModel
 
-The model the builder and reviewer run on. A build recorded before model selection reports its provider's default.
+The model the builder and reviewer run on, or combined for a build with two reviewers. A build recorded before model selection reports its provider's default.
 
 ## Example Usage
 
@@ -21,3 +21,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"claude-opus-5-5"`
 - `"claude-fable-5-1"`
 - `"gpt-6-sol"`
+- `"combined"`
