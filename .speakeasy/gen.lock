@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: c89742f574666e3ff7a19a8d9fe3e926
+  docChecksum: 1127bf99b34500b18b93576044c0adb7
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.2.4
-  configChecksum: f933cc9292a95bb27437c989966383eb
+  releaseVersion: 0.2.5
+  configChecksum: e8fc515a5fb259c083201a85e083cae2
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: 7bd21a7f-1dde-4f86-9fe9-7b12d39b579c
-  pristine_commit_hash: a0c5a410b73b21043f5f83adc2f9b539217116fa
-  pristine_tree_hash: babf713d91a01e54ac0696d5de1966f5383a1d7b
+  generation_id: 04b63165-5474-47a7-9171-ab8bc8216644
+  pristine_commit_hash: 266c1c39204982d8904ce11ccf70e359e0e7d4c4
+  pristine_tree_hash: 8748faac9745f0226c897f842a21a417600f8fa1
 features:
   python:
     additionalDependencies: 1.1.0
@@ -77,12 +77,12 @@ trackedFiles:
     pristine_git_object: 969fe52bde2a5e0ead0a359fba05b0cc4005ae25
   docs/models/buildsimulatorrequest.md:
     id: ec6d01a38d98
-    last_write_checksum: sha1:dcbc08434f067d95fc33eb3ffedce791aafea1c7
-    pristine_git_object: e84d46882af4e2abe73d2ffa46a5c1e42db02920
+    last_write_checksum: sha1:ccf106d19ca201fdbc9bebbb881b637916862e0c
+    pristine_git_object: 1db346f2a9c51d3763f8a31bcefb0381b47f74b7
   docs/models/buildsimulatorrequestmodel.md:
     id: 45b3242a15cf
-    last_write_checksum: sha1:48681fa59567173d68bce661a4e9df5d23ad4599
-    pristine_git_object: e37819c5c80cd3a4164d8b52762538f2ce336a80
+    last_write_checksum: sha1:3e52aace76497088f75b998f59ffa3b6fdbd19ab
+    pristine_git_object: 5910c709c9aa5f5bb73899a7a80a56e8759343d6
   docs/models/buildsimulatorrequestspeckind.md:
     id: e3b58303d033
     last_write_checksum: sha1:3245de88d1838fdb6e315581600dde49b6dbf34c
@@ -309,16 +309,16 @@ trackedFiles:
     pristine_git_object: e1433aceaac867c9d9bc15f64a3802a3cd22603b
   docs/models/simulatorbuildprogress.md:
     id: ddb5f0b1cc58
-    last_write_checksum: sha1:d261920a30134fefbe385228a14d0b4c88a24903
-    pristine_git_object: 791272bd6981dd0abcf456910b742d50c6defed7
+    last_write_checksum: sha1:275fd08d402e954997fbf6b29f944034b50e42ba
+    pristine_git_object: 61cdb95772f1a7964320a074fa89fe76903076cc
   docs/models/simulatorbuildprogresslastsubmission.md:
     id: 8b1682fab21d
     last_write_checksum: sha1:b3aa17f85a66e8333e657edf65a6f9f8e509b88c
     pristine_git_object: ca043c973761ed077180604010e7bef83d156a69
   docs/models/simulatorbuildprogressmodel.md:
     id: 138d6a550e28
-    last_write_checksum: sha1:81b1ecc6a03a7f23eeba9b76b4d9b1885d0474cf
-    pristine_git_object: 29b16af8433787023cbf1fa66ecf8dac912e046e
+    last_write_checksum: sha1:3aa2a0b763911721158dfc2d3d429fe694bf18a3
+    pristine_git_object: 91e37c70f48ce93efbb56a31550ba38cc53afe07
   docs/models/simulatorbuildprogressphase.md:
     id: 51abcbb82bfa
     last_write_checksum: sha1:9127fdcbea0215b56c3bfa02126e8472542a3f22
@@ -489,8 +489,8 @@ trackedFiles:
     pristine_git_object: ba50994ac7aceefe62e1571a6cbff467d9a067da
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:aab61bc4a40e9b3992d6a1b5906029ba3e5c1dd3
-    pristine_git_object: b8602746eb0cec02b784204983ee47341251b5f0
+    last_write_checksum: sha1:b082135bc2de15dfa0ba731695b8246cf72dbad8
+    pristine_git_object: f25356b4b1f6aa6acd569fe917d167770b52c65a
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -517,8 +517,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:8a80865550dd2a035e3ec9fa1a4d073aa176ada8
-    pristine_git_object: 6fd96bf68427fcf74d5a6a97a79f16125fcfa9d6
+    last_write_checksum: sha1:3b9307a449853f743e6aae0f605914fcbec8b197
+    pristine_git_object: 52992fc7125c99b18321b4dc612ecf39e3b55a35
   src/continuous/basesdk.py:
     id: 7c7025a9c533
     last_write_checksum: sha1:c2195f8abe74c3f8baf5cb652679b710b838987d
@@ -573,8 +573,8 @@ trackedFiles:
     pristine_git_object: 722b6f8d676bff742f6214da1710e6c95c659b01
   src/continuous/models/buildsimulatorrequest.py:
     id: de11b8340ddc
-    last_write_checksum: sha1:eecf24688f6e46dd48638609b1dda64909ced66c
-    pristine_git_object: 8d9b44c23e21015a3af7c088fe4c34ab641cbd5a
+    last_write_checksum: sha1:704e3a63cdc311e6e0dd986152038f4cc9b61b35
+    pristine_git_object: 2890f4c268940c8f1b217781745fa3d5b8bcda70
   src/continuous/models/buildworldrequest.py:
     id: 5cb1401e40d8
     last_write_checksum: sha1:66b5ee5d0f121882da41362352ca6c2b3108fa49
@@ -745,8 +745,8 @@ trackedFiles:
     pristine_git_object: 3982c1f1fd8bf0fcbcfca263905591cbea7f6bf9
   src/continuous/models/simulatorbuildprogress.py:
     id: 003fbe758411
-    last_write_checksum: sha1:0fe241888f233778d7323cd224946119a66c1c89
-    pristine_git_object: 4ea002c2eebc1006ec1991d0ede59c8f23ac121e
+    last_write_checksum: sha1:f4b571b1c7c7f71eed628ef16798f5fc631519b1
+    pristine_git_object: 996fb7afaa7d6f9c9d831a1fc8d36b38d82131f4
   src/continuous/models/simulatorerror.py:
     id: ab2c6f1ead7f
     last_write_checksum: sha1:afc5009ff7f4efc969700ee30826771e3dd35e0d
@@ -1927,10 +1927,4 @@ examples:
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
 examplesVersion: 1.0.2
-releaseNotes: |
-  ## Python SDK Changes:
-  * `continuous.simulators.list_simulators()`:  `response.simulators[].build.warnings[].code.enum(spec.version_ambiguous)` **Removed** (Breaking ⚠️)
-  * `continuous.simulators.build_simulator()`:  `response.build.warnings[].code.enum(spec.version_ambiguous)` **Removed** (Breaking ⚠️)
-  * `continuous.simulators.get_simulator()`:  `response.build.warnings[].code.enum(spec.version_ambiguous)` **Removed** (Breaking ⚠️)
-  * `continuous.simulators.cancel_simulator()`:  `response.build.warnings[].code.enum(spec.version_ambiguous)` **Removed** (Breaking ⚠️)
-  * `continuous.simulators.clone_simulator()`: **Added**
+releaseNotes: "## Python SDK Changes:\n* `continuous.simulators.list_simulators()`:  `response.simulators[].build.model.enum(combined)` **Added**\n* `continuous.simulators.build_simulator()`: \n  *  `request` **Changed**\n  *  `response.build.model.enum(combined)` **Added**\n* `continuous.simulators.get_simulator()`:  `response.build.model.enum(combined)` **Added**\n* `continuous.simulators.cancel_simulator()`:  `response.build.model.enum(combined)` **Added**\n"
