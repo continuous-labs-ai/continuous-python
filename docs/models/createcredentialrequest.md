@@ -1,0 +1,11 @@
+# CreateCredentialRequest
+
+
+## Fields
+
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `base_url`                                                                               | *str*                                                                                    | :heavy_check_mark:                                                                       | The https URL of the real system. Requests go to paths under it.                         |
+| `header`                                                                                 | *Optional[str]*                                                                          | :heavy_minus_sign:                                                                       | The HTTP header that carries the value.                                                  |
+| `name`                                                                                   | *str*                                                                                    | :heavy_check_mark:                                                                       | Credential name.                                                                         |
+| `value`                                                                                  | *str*                                                                                    | :heavy_check_mark:                                                                       | The full header value, for example Bearer followed by a token. The API never returns it. |

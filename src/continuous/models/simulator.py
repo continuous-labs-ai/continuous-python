@@ -9,7 +9,7 @@ from .simulatorerror import SimulatorError, SimulatorErrorTypedDict
 from continuous.types import BaseModel, Nullable, UNSET_SENTINEL, UnrecognizedStr
 from datetime import datetime
 from pydantic import model_serializer
-from typing import Literal, Union
+from typing import List, Literal, Union
 from typing_extensions import TypedDict
 
 
@@ -51,6 +51,8 @@ class SimulatorTypedDict(TypedDict):
     r"""The build's latest progress report, or null before the first report. A terminal Simulator keeps its last report."""
     created_at: datetime
     r"""Simulator creation time."""
+    credential_ids: List[str]
+    r"""Workspace credentials the build was allowed to call real systems with. Empty when none."""
     error: Nullable[SimulatorErrorTypedDict]
     id: str
     r"""Simulator ID."""
@@ -74,6 +76,9 @@ class Simulator(BaseModel):
 
     created_at: datetime
     r"""Simulator creation time."""
+
+    credential_ids: List[str]
+    r"""Workspace credentials the build was allowed to call real systems with. Empty when none."""
 
     error: Nullable[SimulatorError]
 

@@ -58,6 +58,10 @@ if TYPE_CHECKING:
         CreateSimulationResponse,
         CreateSimulationResponseTypedDict,
     )
+    from .createcredentialrequest import (
+        CreateCredentialRequest,
+        CreateCredentialRequestTypedDict,
+    )
     from .createdsimulation import (
         CreatedSimulation,
         CreatedSimulationStatus,
@@ -67,9 +71,14 @@ if TYPE_CHECKING:
         CreateSimulationRequest,
         CreateSimulationRequestTypedDict,
     )
+    from .credential import Credential, CredentialTypedDict
     from .currentsimulationtoken import (
         CurrentSimulationToken,
         CurrentSimulationTokenTypedDict,
+    )
+    from .delete_credentialop import (
+        DeleteCredentialRequest,
+        DeleteCredentialRequestTypedDict,
     )
     from .delete_simulationop import (
         DeleteSimulationRequest,
@@ -90,6 +99,7 @@ if TYPE_CHECKING:
         ForkSimulationRequest,
         ForkSimulationRequestTypedDict,
     )
+    from .get_credentialop import GetCredentialRequest, GetCredentialRequestTypedDict
     from .get_simulation_advanceop import (
         GetSimulationAdvanceRequest,
         GetSimulationAdvanceRequestTypedDict,
@@ -108,6 +118,10 @@ if TYPE_CHECKING:
     )
     from .get_worldop import GetWorldRequest, GetWorldRequestTypedDict
     from .limitation import Limitation, LimitationTypedDict
+    from .list_credentialsop import (
+        ListCredentialsRequest,
+        ListCredentialsRequestTypedDict,
+    )
     from .list_simulation_advance_eventsop import (
         ListSimulationAdvanceEventsRequest,
         ListSimulationAdvanceEventsRequestTypedDict,
@@ -134,6 +148,10 @@ if TYPE_CHECKING:
     from .listclockadvanceeventsresponse import (
         ListClockAdvanceEventsResponse,
         ListClockAdvanceEventsResponseTypedDict,
+    )
+    from .listcredentialsresponse import (
+        ListCredentialsResponse,
+        ListCredentialsResponseTypedDict,
     )
     from .listsimulationsresponse import (
         ListSimulationsResponse,
@@ -212,6 +230,14 @@ if TYPE_CHECKING:
     from .step import Step, StepKind, StepTypedDict
     from .stop_simulationop import StopSimulationRequest, StopSimulationRequestTypedDict
     from .stop_worldop import StopWorldRequest, StopWorldRequestTypedDict
+    from .update_credentialop import (
+        UpdateCredentialRequestRequest,
+        UpdateCredentialRequestRequestTypedDict,
+    )
+    from .updatecredentialrequest import (
+        UpdateCredentialRequest,
+        UpdateCredentialRequestTypedDict,
+    )
     from .world import World, WorldStatus, WorldTypedDict
     from .worldbuildprogress import (
         WorldBuildProgress,
@@ -265,6 +291,8 @@ __all__ = [
     "CloneSimulatorRequestTypedDict",
     "CloneSimulatorResponse",
     "CloneSimulatorResponseTypedDict",
+    "CreateCredentialRequest",
+    "CreateCredentialRequestTypedDict",
     "CreateSimulationRequest",
     "CreateSimulationRequestTypedDict",
     "CreateSimulationResponse",
@@ -272,8 +300,12 @@ __all__ = [
     "CreatedSimulation",
     "CreatedSimulationStatus",
     "CreatedSimulationTypedDict",
+    "Credential",
+    "CredentialTypedDict",
     "CurrentSimulationToken",
     "CurrentSimulationTokenTypedDict",
+    "DeleteCredentialRequest",
+    "DeleteCredentialRequestTypedDict",
     "DeleteSimulationRequest",
     "DeleteSimulationRequestTypedDict",
     "DeleteSimulatorRequest",
@@ -286,6 +318,8 @@ __all__ = [
     "ForkSimulationRequestTypedDict",
     "ForkSimulationResponse",
     "ForkSimulationResponseTypedDict",
+    "GetCredentialRequest",
+    "GetCredentialRequestTypedDict",
     "GetSimulationAdvanceRequest",
     "GetSimulationAdvanceRequestTypedDict",
     "GetSimulationRequest",
@@ -304,6 +338,10 @@ __all__ = [
     "LimitationTypedDict",
     "ListClockAdvanceEventsResponse",
     "ListClockAdvanceEventsResponseTypedDict",
+    "ListCredentialsRequest",
+    "ListCredentialsRequestTypedDict",
+    "ListCredentialsResponse",
+    "ListCredentialsResponseTypedDict",
     "ListSimulationAdvanceEventsRequest",
     "ListSimulationAdvanceEventsRequestTypedDict",
     "ListSimulationStepsRequest",
@@ -383,6 +421,10 @@ __all__ = [
     "StopSimulationRequestTypedDict",
     "StopWorldRequest",
     "StopWorldRequestTypedDict",
+    "UpdateCredentialRequest",
+    "UpdateCredentialRequestRequest",
+    "UpdateCredentialRequestRequestTypedDict",
+    "UpdateCredentialRequestTypedDict",
     "World",
     "WorldBuildProgress",
     "WorldBuildProgressLastSubmission",
@@ -444,13 +486,19 @@ _dynamic_imports: dict[str, str] = {
     "CloneSimulatorResponseTypedDict": ".clonesimulatorresponse",
     "CreateSimulationResponse": ".create_simulationop",
     "CreateSimulationResponseTypedDict": ".create_simulationop",
+    "CreateCredentialRequest": ".createcredentialrequest",
+    "CreateCredentialRequestTypedDict": ".createcredentialrequest",
     "CreatedSimulation": ".createdsimulation",
     "CreatedSimulationStatus": ".createdsimulation",
     "CreatedSimulationTypedDict": ".createdsimulation",
     "CreateSimulationRequest": ".createsimulationrequest",
     "CreateSimulationRequestTypedDict": ".createsimulationrequest",
+    "Credential": ".credential",
+    "CredentialTypedDict": ".credential",
     "CurrentSimulationToken": ".currentsimulationtoken",
     "CurrentSimulationTokenTypedDict": ".currentsimulationtoken",
+    "DeleteCredentialRequest": ".delete_credentialop",
+    "DeleteCredentialRequestTypedDict": ".delete_credentialop",
     "DeleteSimulationRequest": ".delete_simulationop",
     "DeleteSimulationRequestTypedDict": ".delete_simulationop",
     "DeleteSimulatorRequest": ".delete_simulatorop",
@@ -463,6 +511,8 @@ _dynamic_imports: dict[str, str] = {
     "ForkSimulationResponseTypedDict": ".fork_simulationop",
     "ForkSimulationRequest": ".forksimulationrequest",
     "ForkSimulationRequestTypedDict": ".forksimulationrequest",
+    "GetCredentialRequest": ".get_credentialop",
+    "GetCredentialRequestTypedDict": ".get_credentialop",
     "GetSimulationAdvanceRequest": ".get_simulation_advanceop",
     "GetSimulationAdvanceRequestTypedDict": ".get_simulation_advanceop",
     "GetSimulationTokenRequest": ".get_simulation_tokenop",
@@ -479,6 +529,8 @@ _dynamic_imports: dict[str, str] = {
     "GetWorldRequestTypedDict": ".get_worldop",
     "Limitation": ".limitation",
     "LimitationTypedDict": ".limitation",
+    "ListCredentialsRequest": ".list_credentialsop",
+    "ListCredentialsRequestTypedDict": ".list_credentialsop",
     "ListSimulationAdvanceEventsRequest": ".list_simulation_advance_eventsop",
     "ListSimulationAdvanceEventsRequestTypedDict": ".list_simulation_advance_eventsop",
     "ListSimulationStepsRequest": ".list_simulation_stepsop",
@@ -494,6 +546,8 @@ _dynamic_imports: dict[str, str] = {
     "ListWorldsStatus": ".list_worldsop",
     "ListClockAdvanceEventsResponse": ".listclockadvanceeventsresponse",
     "ListClockAdvanceEventsResponseTypedDict": ".listclockadvanceeventsresponse",
+    "ListCredentialsResponse": ".listcredentialsresponse",
+    "ListCredentialsResponseTypedDict": ".listcredentialsresponse",
     "ListSimulationsResponse": ".listsimulationsresponse",
     "ListSimulationsResponseTypedDict": ".listsimulationsresponse",
     "ListSimulationStepsResponse": ".listsimulationstepsresponse",
@@ -556,6 +610,10 @@ _dynamic_imports: dict[str, str] = {
     "StopSimulationRequestTypedDict": ".stop_simulationop",
     "StopWorldRequest": ".stop_worldop",
     "StopWorldRequestTypedDict": ".stop_worldop",
+    "UpdateCredentialRequestRequest": ".update_credentialop",
+    "UpdateCredentialRequestRequestTypedDict": ".update_credentialop",
+    "UpdateCredentialRequest": ".updatecredentialrequest",
+    "UpdateCredentialRequestTypedDict": ".updatecredentialrequest",
     "World": ".world",
     "WorldStatus": ".world",
     "WorldTypedDict": ".world",

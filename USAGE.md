@@ -9,7 +9,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.simulations.list_simulations(limit=50)
+    res = c_client.credentials.list_credentials(limit=50)
 
     # Handle response
     print(res)
@@ -31,7 +31,7 @@ async def main():
         api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
     ) as c_client:
 
-        res = await c_client.simulations.list_simulations_async(limit=50)
+        res = await c_client.credentials.list_credentials_async(limit=50)
 
         # Handle response
         print(res)
