@@ -123,7 +123,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.simulations.list_simulations(limit=50)
+    res = c_client.credentials.list_credentials(limit=50)
 
     # Handle response
     print(res)
@@ -145,7 +145,7 @@ async def main():
         api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
     ) as c_client:
 
-        res = await c_client.simulations.list_simulations_async(limit=50)
+        res = await c_client.credentials.list_credentials_async(limit=50)
 
         # Handle response
         print(res)
@@ -175,7 +175,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.simulations.list_simulations(limit=50)
+    res = c_client.credentials.list_credentials(limit=50)
 
     # Handle response
     print(res)
@@ -188,6 +188,14 @@ with Continuous(
 
 <details open>
 <summary>Available methods</summary>
+
+### [Credentials](docs/sdks/credentials/README.md)
+
+* [list_credentials](docs/sdks/credentials/README.md#list_credentials) - List credentials
+* [create_credential](docs/sdks/credentials/README.md#create_credential) - Create credential
+* [delete_credential](docs/sdks/credentials/README.md#delete_credential) - Delete credential
+* [get_credential](docs/sdks/credentials/README.md#get_credential) - Get credential
+* [update_credential](docs/sdks/credentials/README.md#update_credential) - Update credential
 
 ### [Simulations](docs/sdks/simulations/README.md)
 
@@ -278,7 +286,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.simulations.list_simulations(limit=50,
+    res = c_client.credentials.list_credentials(limit=50,
         RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False))
 
     # Handle response
@@ -298,7 +306,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.simulations.list_simulations(limit=50)
+    res = c_client.credentials.list_credentials(limit=50)
 
     # Handle response
     print(res)
@@ -332,7 +340,7 @@ with Continuous(
     res = None
     try:
 
-        res = c_client.simulations.list_simulations(limit=50)
+        res = c_client.credentials.list_credentials(limit=50)
 
         # Handle response
         print(res)
@@ -390,7 +398,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.simulations.list_simulations(limit=50)
+    res = c_client.credentials.list_credentials(limit=50)
 
     # Handle response
     print(res)

@@ -15,6 +15,7 @@ from typing import Any, Callable, Dict, Optional, TYPE_CHECKING, Union, cast
 import weakref
 
 if TYPE_CHECKING:
+    from continuous.credentials import Credentials
     from continuous.simulations import Simulations
     from continuous.simulators import Simulators
     from continuous.worlds import Worlds
@@ -23,6 +24,8 @@ if TYPE_CHECKING:
 class Continuous(BaseSDK):
     r"""Continuous Simulation API: Build Simulators from OpenAPI or WSDL documents, create Simulations from them, and build Worlds that run Simulations together. Authenticate every request with an API key sent as a Bearer token."""
 
+    credentials: "Credentials"
+    r"""Store connections to real systems: a base URL, the header that carries the credential, and its value. The API never returns a value."""
     simulations: "Simulations"
     r"""Create Simulations from ready Simulators, then fork, stop, start, and delete them."""
     simulators: "Simulators"
@@ -30,6 +33,7 @@ class Continuous(BaseSDK):
     worlds: "Worlds"
     r"""Build Worlds from one or more Simulators and start or stop their Simulations together."""
     _sub_sdk_map = {
+        "credentials": ("continuous.credentials", "Credentials"),
         "simulations": ("continuous.simulations", "Simulations"),
         "simulators": ("continuous.simulators", "Simulators"),
         "worlds": ("continuous.worlds", "Worlds"),
