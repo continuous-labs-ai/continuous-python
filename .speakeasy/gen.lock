@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: e0977c2d55fe7757ca82f15c532ca484
+  docChecksum: dd7640cefd38485f495fdd5f7dc90745
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.2.6
-  configChecksum: 9908b51252f96b7043175b0bf329b4b9
+  releaseVersion: 0.2.7
+  configChecksum: 497bb3dff221de8c6997cce57fb70a87
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: b8756b67-8979-4741-956f-4f237b8b84dd
-  pristine_commit_hash: 66f9022dd6bd9190f24bad3d6f31fd5fad148f78
-  pristine_tree_hash: 99ccdb9d92c0e105e5dabaafb76057b8062447b1
+  generation_id: e4ef06f9-fd2e-4a01-91d2-b4fc56e91090
+  pristine_commit_hash: a19025cb3cbb628cfac54b2cd89a1ded1eb4b7f0
+  pristine_tree_hash: 192a1492c7afa1b12b3b7b2a4b5c4df3f2c23e34
 features:
   python:
     additionalDependencies: 1.1.0
@@ -77,12 +77,12 @@ trackedFiles:
     pristine_git_object: 969fe52bde2a5e0ead0a359fba05b0cc4005ae25
   docs/models/buildsimulatorrequest.md:
     id: ec6d01a38d98
-    last_write_checksum: sha1:cd8b8f54f4f08cc4c0f73e4a55dfe6f78ae3b1fb
-    pristine_git_object: eac57c66ba473d50cafc743742d4fbd8bc5611a9
+    last_write_checksum: sha1:de390423f9e73cf2645c61ccb77899cc9d94bb0d
+    pristine_git_object: 9ca89d6efde88a6c5478b1cec6f1376ec291b845
   docs/models/buildsimulatorrequestmodel.md:
     id: 45b3242a15cf
-    last_write_checksum: sha1:3e52aace76497088f75b998f59ffa3b6fdbd19ab
-    pristine_git_object: 5910c709c9aa5f5bb73899a7a80a56e8759343d6
+    last_write_checksum: sha1:a9056dfab74139cf510e34565e2b95c27c108b5f
+    pristine_git_object: f253a22475065f3dab379eae8afc78857ea05e17
   docs/models/buildsimulatorrequestspeckind.md:
     id: e3b58303d033
     last_write_checksum: sha1:3245de88d1838fdb6e315581600dde49b6dbf34c
@@ -525,8 +525,8 @@ trackedFiles:
     pristine_git_object: ba50994ac7aceefe62e1571a6cbff467d9a067da
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:0d67ee93b16b549215d179867e9c22261695470c
-    pristine_git_object: 25364b89307eb00ce21afb59e8febb904b08e365
+    last_write_checksum: sha1:bed728129756444c14b7e20769e0456a3d4c4e9d
+    pristine_git_object: 2e0eda2840e54a1931271ebdfa9589267e3894fe
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -553,8 +553,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:0dc11261ed85caaf1599b7eabd19cb43d64630a7
-    pristine_git_object: 43ccae3559e4153a1cccc258ed8c8ed3b1cf727e
+    last_write_checksum: sha1:db46e343927c79714853d8fec5cfc5999537357a
+    pristine_git_object: 0a6b92678d7799d3dc5b2cbee015ca839d9bdda1
   src/continuous/basesdk.py:
     id: 7c7025a9c533
     last_write_checksum: sha1:c2195f8abe74c3f8baf5cb652679b710b838987d
@@ -613,8 +613,8 @@ trackedFiles:
     pristine_git_object: 722b6f8d676bff742f6214da1710e6c95c659b01
   src/continuous/models/buildsimulatorrequest.py:
     id: de11b8340ddc
-    last_write_checksum: sha1:a35d4ed5c90ba49d5266ec2c83138de6edf90cea
-    pristine_git_object: 45280558305efedecb7d51ee6d6cdd4eb7c392ab
+    last_write_checksum: sha1:015155269b1e30a8efb139f89d894e98f6e97624
+    pristine_git_object: 4d5c4ac8da63ae6876f33e51cf6b225d7d0589e8
   src/continuous/models/buildworldrequest.py:
     id: 5cb1401e40d8
     last_write_checksum: sha1:66b5ee5d0f121882da41362352ca6c2b3108fa49
@@ -2122,4 +2122,3 @@ examples:
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
 examplesVersion: 1.0.2
-releaseNotes: "## Python SDK Changes:\n* `continuous.credentials.list_credentials()`: **Added**\n* `continuous.credentials.create_credential()`: **Added**\n* `continuous.credentials.delete_credential()`: **Added**\n* `continuous.credentials.get_credential()`: **Added**\n* `continuous.credentials.update_credential()`: **Added**\n* `continuous.simulators.list_simulators()`:  `response.simulators[].credential_ids` **Added**\n* `continuous.simulators.build_simulator()`: \n  *  `request` **Changed**\n  *  `response.credential_ids` **Added**\n* `continuous.simulators.get_simulator()`:  `response.credential_ids` **Added**\n* `continuous.simulators.cancel_simulator()`:  `response.credential_ids` **Added**\n"
