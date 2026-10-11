@@ -38,6 +38,8 @@ class BuildSimulatorRequestTypedDict(TypedDict):
     r"""Name for the Simulator. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
     parent_id: NotRequired[str]
     r"""Parent Simulator ID. With instructions and no spec this starts an incremental build: the parent must be ready, and the request takes no filter or spec_kind."""
+    review_rounds: NotRequired[int]
+    r"""Review rounds, from 1 to 10. Defaults to 1. Each round is a review and a repair of its findings, by the same builder and reviewers. The rounds stop early when every reviewer reports no findings."""
     spec_kind: NotRequired[BuildSimulatorRequestSpecKind]
     r"""Source specification format. Omission detects the format."""
     timeout_seconds: NotRequired[int]
@@ -63,6 +65,9 @@ class BuildSimulatorRequest(BaseModel):
     parent_id: Optional[str] = None
     r"""Parent Simulator ID. With instructions and no spec this starts an incremental build: the parent must be ready, and the request takes no filter or spec_kind."""
 
+    review_rounds: Optional[int] = 1
+    r"""Review rounds, from 1 to 10. Defaults to 1. Each round is a review and a repair of its findings, by the same builder and reviewers. The rounds stop early when every reviewer reports no findings."""
+
     spec_kind: Optional[BuildSimulatorRequestSpecKind] = None
     r"""Source specification format. Omission detects the format."""
 
@@ -79,6 +84,7 @@ class BuildSimulatorRequest(BaseModel):
                 "model",
                 "name",
                 "parent_id",
+                "review_rounds",
                 "spec_kind",
                 "timeout_seconds",
             ]
