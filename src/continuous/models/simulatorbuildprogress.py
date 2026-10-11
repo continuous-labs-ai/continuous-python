@@ -68,6 +68,10 @@ class SimulatorBuildProgressTypedDict(TypedDict):
     r"""The model the builder and reviewer run on, or combined for a build with two reviewers. A build recorded before model selection reports its provider's default."""
     phase: Nullable[SimulatorBuildProgressPhase]
     r"""Agent phase: build for generation, review for the separate reviewer, finalize for author repair after review. Null when not recorded."""
+    review_round: int
+    r"""Review round that phase review or finalize belongs to, from 1. 0 before the first review."""
+    review_rounds: int
+    r"""Review rounds the build runs at most. Fewer run when the reviewers agree early."""
     stage: SimulatorBuildProgressStage
     r"""derive while the effective spec, build skeleton, and sandbox are prepared; build while the coding loop runs; assemble while an accepted artifact publishes."""
     submissions: int
@@ -96,6 +100,12 @@ class SimulatorBuildProgress(BaseModel):
 
     phase: Nullable[SimulatorBuildProgressPhase]
     r"""Agent phase: build for generation, review for the separate reviewer, finalize for author repair after review. Null when not recorded."""
+
+    review_round: int
+    r"""Review round that phase review or finalize belongs to, from 1. 0 before the first review."""
+
+    review_rounds: int
+    r"""Review rounds the build runs at most. Fewer run when the reviewers agree early."""
 
     stage: SimulatorBuildProgressStage
     r"""derive while the effective spec, build skeleton, and sandbox are prepared; build while the coding loop runs; assemble while an accepted artifact publishes."""

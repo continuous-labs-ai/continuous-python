@@ -12,6 +12,46 @@ from typing import Dict, IO, List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
+class DocumentTypedDict(TypedDict):
+    file_name: str
+    content: Union[bytes, IO[bytes], io.IOBase]
+    content_type: NotRequired[str]
+
+
+class Document(BaseModel):
+    file_name: Annotated[
+        str, pydantic.Field(alias="fileName"), FieldMetadata(multipart=True)
+    ]
+
+    content: Annotated[
+        Union[bytes, IO[bytes], io.IOBase],
+        pydantic.Field(alias=""),
+        FieldMetadata(multipart=MultipartFormMetadata(content=True)),
+    ]
+
+    content_type: Annotated[
+        Optional[str],
+        pydantic.Field(alias="Content-Type"),
+        FieldMetadata(multipart=True),
+    ] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["contentType"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
+
 class SpecTypedDict(TypedDict):
     file_name: str
     content: Union[bytes, IO[bytes], io.IOBase]
@@ -54,6 +94,8 @@ class Spec(BaseModel):
 
 class SimulatorsBuildSimulatorRequestTypedDict(TypedDict):
     request: BuildSimulatorRequestTypedDict
+    document: NotRequired[List[DocumentTypedDict]]
+    r"""Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. A parent's documents are not inherited."""
     spec: NotRequired[SpecTypedDict]
     r"""OpenAPI or WSDL document, UTF-8 encoded, at most 64 MiB. Required unless the request is an incremental build (parent_id and instructions, no spec)."""
 
@@ -63,6 +105,12 @@ class SimulatorsBuildSimulatorRequest(BaseModel):
         BuildSimulatorRequest, FieldMetadata(multipart=MultipartFormMetadata(json=True))
     ]
 
+    document: Annotated[
+        Optional[List[Document]],
+        FieldMetadata(multipart=MultipartFormMetadata(file=True)),
+    ] = None
+    r"""Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. A parent's documents are not inherited."""
+
     spec: Annotated[
         Optional[Spec], FieldMetadata(multipart=MultipartFormMetadata(file=True))
     ] = None
@@ -70,7 +118,7 @@ class SimulatorsBuildSimulatorRequest(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["spec"])
+        optional_fields = set(["document", "spec"])
         serialized = handler(self)
         m = {}
 

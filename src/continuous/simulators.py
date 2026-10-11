@@ -6,7 +6,7 @@ from continuous._hooks import HookContext
 from continuous.types import OptionalNullable, UNSET
 from continuous.utils import get_security_from_env
 from continuous.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Mapping, Optional, Union
+from typing import Any, Iterable, List, Mapping, Optional, Union
 
 
 class Simulators(BaseSDK):
@@ -228,6 +228,9 @@ class Simulators(BaseSDK):
         request: Union[
             models.BuildSimulatorRequest, models.BuildSimulatorRequestTypedDict
         ],
+        document: Optional[
+            Union[Iterable[models.Document], Iterable[models.DocumentTypedDict]]
+        ] = None,
         spec: Optional[Union[models.Spec, models.SpecTypedDict]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -236,9 +239,10 @@ class Simulators(BaseSDK):
     ) -> models.BuildSimulatorResponse:
         r"""Build Simulator
 
-        Starts an asynchronous Simulator build and returns the Simulator with status pending. Builds start in queue order when workspace capacity is available. Send multipart/form-data with a JSON part named request. To build from a document, add a file part named spec with the OpenAPI or WSDL document. For an incremental build, omit spec and set parent_id and instructions.
+        Starts an asynchronous Simulator build and returns the Simulator with status pending. Builds start in queue order when workspace capacity is available. Send multipart/form-data with a JSON part named request. To build from a document, add a file part named spec with the OpenAPI or WSDL document. For an incremental build, omit spec and set parent_id and instructions. Add file parts named document to give the builder and reviewer vendor documentation.
 
         :param request: The request object to send.
+        :param document: Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. A parent's documents are not inherited.
         :param spec: OpenAPI or WSDL document, UTF-8 encoded, at most 64 MiB. Required unless the request is an incremental build (parent_id and instructions, no spec).
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -256,6 +260,9 @@ class Simulators(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request_ = models.SimulatorsBuildSimulatorRequest(
+            document=utils.get_pydantic_model(
+                document, Optional[List[models.Document]]
+            ),
             request=utils.get_pydantic_model(request, models.BuildSimulatorRequest),
             spec=utils.get_pydantic_model(spec, Optional[models.Spec]),
         )
@@ -349,6 +356,9 @@ class Simulators(BaseSDK):
         request: Union[
             models.BuildSimulatorRequest, models.BuildSimulatorRequestTypedDict
         ],
+        document: Optional[
+            Union[Iterable[models.Document], Iterable[models.DocumentTypedDict]]
+        ] = None,
         spec: Optional[Union[models.Spec, models.SpecTypedDict]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -357,9 +367,10 @@ class Simulators(BaseSDK):
     ) -> models.BuildSimulatorResponse:
         r"""Build Simulator
 
-        Starts an asynchronous Simulator build and returns the Simulator with status pending. Builds start in queue order when workspace capacity is available. Send multipart/form-data with a JSON part named request. To build from a document, add a file part named spec with the OpenAPI or WSDL document. For an incremental build, omit spec and set parent_id and instructions.
+        Starts an asynchronous Simulator build and returns the Simulator with status pending. Builds start in queue order when workspace capacity is available. Send multipart/form-data with a JSON part named request. To build from a document, add a file part named spec with the OpenAPI or WSDL document. For an incremental build, omit spec and set parent_id and instructions. Add file parts named document to give the builder and reviewer vendor documentation.
 
         :param request: The request object to send.
+        :param document: Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. A parent's documents are not inherited.
         :param spec: OpenAPI or WSDL document, UTF-8 encoded, at most 64 MiB. Required unless the request is an incremental build (parent_id and instructions, no spec).
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -377,6 +388,9 @@ class Simulators(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request_ = models.SimulatorsBuildSimulatorRequest(
+            document=utils.get_pydantic_model(
+                document, Optional[List[models.Document]]
+            ),
             request=utils.get_pydantic_model(request, models.BuildSimulatorRequest),
             spec=utils.get_pydantic_model(spec, Optional[models.Spec]),
         )
