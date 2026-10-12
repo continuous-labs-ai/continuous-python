@@ -37,7 +37,7 @@ r"""Bounded failure reason for selecting recovery guidance, or null when unavail
 
 class SimulatorErrorTypedDict(TypedDict):
     agent_message: Nullable[str]
-    r"""Plain-text explanation from the build agent, when it could not continue. At most 4096 UTF-8 bytes."""
+    r"""Plain-text explanation from the build agent when it could not continue, or the problems the check of the documents' INDEX.md found. At most 4096 UTF-8 bytes."""
     code: SimulatorErrorCode
     r"""Stable Simulator build error code."""
     detail: str
@@ -49,7 +49,7 @@ class SimulatorErrorTypedDict(TypedDict):
 
 class SimulatorError(BaseModel):
     agent_message: Nullable[str]
-    r"""Plain-text explanation from the build agent, when it could not continue. At most 4096 UTF-8 bytes."""
+    r"""Plain-text explanation from the build agent when it could not continue, or the problems the check of the documents' INDEX.md found. At most 4096 UTF-8 bytes."""
 
     code: SimulatorErrorCode
     r"""Stable Simulator build error code."""
