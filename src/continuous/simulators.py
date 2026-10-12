@@ -242,7 +242,7 @@ class Simulators(BaseSDK):
         Starts an asynchronous Simulator build and returns the Simulator with status pending. Builds start in queue order when workspace capacity is available. Send multipart/form-data with a JSON part named request. To build from a document, add a file part named spec with the OpenAPI or WSDL document. For an incremental build, omit spec and set parent_id and instructions. Add file parts named document to give the builder and reviewer vendor documentation.
 
         :param request: The request object to send.
-        :param document: Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. A parent's documents are not inherited.
+        :param document: Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. A parent's documents are not inherited. A document named INDEX.md indexes the others and skips research; the build fails if it names a document not sent or leaves out a selected operation.
         :param spec: OpenAPI or WSDL document, UTF-8 encoded, at most 64 MiB. Required unless the request is an incremental build (parent_id and instructions, no spec).
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -370,7 +370,7 @@ class Simulators(BaseSDK):
         Starts an asynchronous Simulator build and returns the Simulator with status pending. Builds start in queue order when workspace capacity is available. Send multipart/form-data with a JSON part named request. To build from a document, add a file part named spec with the OpenAPI or WSDL document. For an incremental build, omit spec and set parent_id and instructions. Add file parts named document to give the builder and reviewer vendor documentation.
 
         :param request: The request object to send.
-        :param document: Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. A parent's documents are not inherited.
+        :param document: Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. A parent's documents are not inherited. A document named INDEX.md indexes the others and skips research; the build fails if it names a document not sent or leaves out a selected operation.
         :param spec: OpenAPI or WSDL document, UTF-8 encoded, at most 64 MiB. Required unless the request is an incremental build (parent_id and instructions, no spec).
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method

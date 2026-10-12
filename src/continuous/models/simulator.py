@@ -6,6 +6,7 @@ from .simulatorbuildprogress import (
     SimulatorBuildProgressTypedDict,
 )
 from .simulatorerror import SimulatorError, SimulatorErrorTypedDict
+from .simulatorresearch import SimulatorResearch, SimulatorResearchTypedDict
 from continuous.types import BaseModel, Nullable, UNSET_SENTINEL, UnrecognizedStr
 from datetime import datetime
 from pydantic import model_serializer
@@ -62,6 +63,8 @@ class SimulatorTypedDict(TypedDict):
     r"""Simulator name. The ID is its identity, and names need not be unique."""
     parent_id: Nullable[str]
     r"""Parent Simulator ID, or null."""
+    research: Nullable[SimulatorResearchTypedDict]
+    r"""The build's research stage, or null for a Simulator built before research ran on every build."""
     source: Source
     r"""workspace for a Simulator your workspace built; catalog for a read-only Simulator that Continuous publishes."""
     spec_kind: Nullable[SimulatorSpecKind]
@@ -93,6 +96,9 @@ class Simulator(BaseModel):
 
     parent_id: Nullable[str]
     r"""Parent Simulator ID, or null."""
+
+    research: Nullable[SimulatorResearch]
+    r"""The build's research stage, or null for a Simulator built before research ran on every build."""
 
     source: Source
     r"""workspace for a Simulator your workspace built; catalog for a read-only Simulator that Continuous publishes."""
