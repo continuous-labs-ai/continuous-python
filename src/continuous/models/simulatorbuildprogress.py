@@ -43,7 +43,7 @@ SimulatorBuildProgressPhase = Union[
     ],
     UnrecognizedStr,
 ]
-r"""Agent phase: research while the research agent indexes the documents and saves the vendor pages they lack; build for generation, review for the separate reviewer, qa while QA tests the running Simulator from outside, after the last review round, finalize for author repair after review or QA. Null when not recorded."""
+r"""Agent phase: research while the research agent indexes the documents and saves the vendor pages they lack; build for generation, review for the separate reviewer, qa while QA tests the running Simulator from outside, after the last review round of a build with credential_ids, finalize for author repair after review or QA. Null when not recorded."""
 
 
 SimulatorBuildProgressStage = Union[
@@ -69,9 +69,9 @@ class SimulatorBuildProgressTypedDict(TypedDict):
     model: SimulatorBuildProgressModel
     r"""The model the builder and reviewer run on, or combined for a build with two reviewers. A build recorded before model selection reports its provider's default."""
     phase: Nullable[SimulatorBuildProgressPhase]
-    r"""Agent phase: research while the research agent indexes the documents and saves the vendor pages they lack; build for generation, review for the separate reviewer, qa while QA tests the running Simulator from outside, after the last review round, finalize for author repair after review or QA. Null when not recorded."""
+    r"""Agent phase: research while the research agent indexes the documents and saves the vendor pages they lack; build for generation, review for the separate reviewer, qa while QA tests the running Simulator from outside, after the last review round of a build with credential_ids, finalize for author repair after review or QA. Null when not recorded."""
     review_round: int
-    r"""Review round that phase review, qa, or finalize belongs to, from 1. QA and the repair after it are in round review_rounds + 1. 0 before the first review."""
+    r"""Review round that phase review, qa, or finalize belongs to, from 1. In a build with credential_ids, QA and the repair after it are in round review_rounds + 1. 0 before the first review."""
     review_rounds: int
     r"""Review rounds the build runs at most. Fewer run when the reviewers agree early."""
     stage: SimulatorBuildProgressStage
@@ -101,10 +101,10 @@ class SimulatorBuildProgress(BaseModel):
     r"""The model the builder and reviewer run on, or combined for a build with two reviewers. A build recorded before model selection reports its provider's default."""
 
     phase: Nullable[SimulatorBuildProgressPhase]
-    r"""Agent phase: research while the research agent indexes the documents and saves the vendor pages they lack; build for generation, review for the separate reviewer, qa while QA tests the running Simulator from outside, after the last review round, finalize for author repair after review or QA. Null when not recorded."""
+    r"""Agent phase: research while the research agent indexes the documents and saves the vendor pages they lack; build for generation, review for the separate reviewer, qa while QA tests the running Simulator from outside, after the last review round of a build with credential_ids, finalize for author repair after review or QA. Null when not recorded."""
 
     review_round: int
-    r"""Review round that phase review, qa, or finalize belongs to, from 1. QA and the repair after it are in round review_rounds + 1. 0 before the first review."""
+    r"""Review round that phase review, qa, or finalize belongs to, from 1. In a build with credential_ids, QA and the repair after it are in round review_rounds + 1. 0 before the first review."""
 
     review_rounds: int
     r"""Review rounds the build runs at most. Fewer run when the reviewers agree early."""
