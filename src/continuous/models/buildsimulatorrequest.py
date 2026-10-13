@@ -27,7 +27,7 @@ r"""Source specification format. Omission detects the format."""
 
 class BuildSimulatorRequestTypedDict(TypedDict):
     credential_ids: NotRequired[List[str]]
-    r"""Workspace credentials QA and the builder can call real systems with, to compare the Simulator with them. At most 5. Each must belong to the workspace and have a base_url. QA may create test objects in the live system and deletes them or, where the API cannot, leaves them in a final state; the builder sends only reads. Use a sandbox or test account."""
+    r"""Workspace credentials QA and the builder can call real systems with, to compare the Simulator with them. A build with credentials runs QA after its review rounds. At most 5. Each must belong to the workspace and have a base_url. QA may create test objects in the live system and deletes them or, where the API cannot, leaves them in a final state; the builder sends only reads. Use a sandbox or test account."""
     filter_: NotRequired[List[str]]
     r"""Regular expressions (RE2 syntax) that select the operations to implement. Each is matched against the OpenAPI operationId or the WSDL operation name; an operation is kept when any expression matches, and an OpenAPI operation without an operationId is dropped. At most 64 expressions of at most 1,024 characters each. Omit or send an empty list to keep every operation. Not allowed for an incremental build."""
     instructions: NotRequired[str]
@@ -48,7 +48,7 @@ class BuildSimulatorRequestTypedDict(TypedDict):
 
 class BuildSimulatorRequest(BaseModel):
     credential_ids: Optional[List[str]] = None
-    r"""Workspace credentials QA and the builder can call real systems with, to compare the Simulator with them. At most 5. Each must belong to the workspace and have a base_url. QA may create test objects in the live system and deletes them or, where the API cannot, leaves them in a final state; the builder sends only reads. Use a sandbox or test account."""
+    r"""Workspace credentials QA and the builder can call real systems with, to compare the Simulator with them. A build with credentials runs QA after its review rounds. At most 5. Each must belong to the workspace and have a base_url. QA may create test objects in the live system and deletes them or, where the API cannot, leaves them in a final state; the builder sends only reads. Use a sandbox or test account."""
 
     filter_: Annotated[Optional[List[str]], pydantic.Field(alias="filter")] = None
     r"""Regular expressions (RE2 syntax) that select the operations to implement. Each is matched against the OpenAPI operationId or the WSDL operation name; an operation is kept when any expression matches, and an OpenAPI operation without an operationId is dropped. At most 64 expressions of at most 1,024 characters each. Omit or send an empty list to keep every operation. Not allowed for an incremental build."""
