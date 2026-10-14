@@ -30,7 +30,7 @@ SimulatorBuildProgressModel = Union[
     ],
     UnrecognizedStr,
 ]
-r"""The model the builder and reviewer run on, or combined for a build with two reviewers. A build recorded before model selection reports its provider's default."""
+r"""The model the builder and reviewer run on, or combined, which currently runs as claude-opus-5-5. A build recorded before model selection reports its provider's default."""
 
 
 SimulatorBuildProgressPhase = Union[
@@ -67,13 +67,13 @@ class SimulatorBuildProgressTypedDict(TypedDict):
     limitations: List[LimitationTypedDict]
     r"""Behavior the accepted build does not serve like the real system, most important first, set when the build is accepted. Empty when none."""
     model: SimulatorBuildProgressModel
-    r"""The model the builder and reviewer run on, or combined for a build with two reviewers. A build recorded before model selection reports its provider's default."""
+    r"""The model the builder and reviewer run on, or combined, which currently runs as claude-opus-5-5. A build recorded before model selection reports its provider's default."""
     phase: Nullable[SimulatorBuildProgressPhase]
     r"""Agent phase: research while the research agent indexes the documents and saves the vendor pages they lack; build for generation, review for the separate reviewer, qa while QA tests the running Simulator from outside, after the last review round of a build with credential_ids, finalize for author repair after review or QA. Null when not recorded."""
     review_round: int
     r"""Review round that phase review, qa, or finalize belongs to, from 1. In a build with credential_ids, QA and the repair after it are in round review_rounds + 1. 0 before the first review."""
     review_rounds: int
-    r"""Review rounds the build runs at most. Fewer run when the reviewers agree early."""
+    r"""Review rounds the build runs at most. Fewer run when the reviewer agrees early."""
     stage: SimulatorBuildProgressStage
     r"""derive while the effective spec, build skeleton, and sandbox are prepared; build while the coding loop runs; assemble while an accepted artifact publishes."""
     submissions: int
@@ -98,7 +98,7 @@ class SimulatorBuildProgress(BaseModel):
     r"""Behavior the accepted build does not serve like the real system, most important first, set when the build is accepted. Empty when none."""
 
     model: SimulatorBuildProgressModel
-    r"""The model the builder and reviewer run on, or combined for a build with two reviewers. A build recorded before model selection reports its provider's default."""
+    r"""The model the builder and reviewer run on, or combined, which currently runs as claude-opus-5-5. A build recorded before model selection reports its provider's default."""
 
     phase: Nullable[SimulatorBuildProgressPhase]
     r"""Agent phase: research while the research agent indexes the documents and saves the vendor pages they lack; build for generation, review for the separate reviewer, qa while QA tests the running Simulator from outside, after the last review round of a build with credential_ids, finalize for author repair after review or QA. Null when not recorded."""
@@ -107,7 +107,7 @@ class SimulatorBuildProgress(BaseModel):
     r"""Review round that phase review, qa, or finalize belongs to, from 1. In a build with credential_ids, QA and the repair after it are in round review_rounds + 1. 0 before the first review."""
 
     review_rounds: int
-    r"""Review rounds the build runs at most. Fewer run when the reviewers agree early."""
+    r"""Review rounds the build runs at most. Fewer run when the reviewer agrees early."""
 
     stage: SimulatorBuildProgressStage
     r"""derive while the effective spec, build skeleton, and sandbox are prepared; build while the coding loop runs; assemble while an accepted artifact publishes."""
