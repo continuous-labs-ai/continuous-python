@@ -1,6 +1,6 @@
 # SimulatorBuildProgressModel
 
-The model the builder and reviewer run on, or combined for a build with two reviewers. A build recorded before model selection reports its provider's default.
+The model the builder and reviewer run on, or combined, which currently runs as claude-opus-5-5. A build recorded before model selection reports its provider's default.
 
 ## Example Usage
 

@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: 4ce0745d4e19d03261683d9f5295d865
+  docChecksum: 0750c2d0ab7d3bb090095fe7987acd3d
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.2.10
-  configChecksum: 021625aa0d25cc6820c391d9f5282644
+  releaseVersion: 0.2.11
+  configChecksum: 3266e0548014065e629d5cd2dec379a9
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: 4335fb3a-71c8-4729-9510-5e39a209916e
-  pristine_commit_hash: b677d53cc83d93f0840f2a2cb8e11efa619d9c77
-  pristine_tree_hash: 621ff4c7cd92c78993d07520b073061c628aab7f
+  generation_id: 6caacf77-a0e3-4c08-9639-7dc1906c6168
+  pristine_commit_hash: ccf4e1789a51109c260467f17a3ff0cf2c763dc9
+  pristine_tree_hash: 14b5fdb3389eb30748b426e12944ce36bcd51a4b
 features:
   python:
     additionalDependencies: 1.1.0
@@ -77,12 +77,12 @@ trackedFiles:
     pristine_git_object: 969fe52bde2a5e0ead0a359fba05b0cc4005ae25
   docs/models/buildsimulatorrequest.md:
     id: ec6d01a38d98
-    last_write_checksum: sha1:f70e8d71b2e31c1fc5b19e34af90d0457c52c0b5
-    pristine_git_object: 94cca0f6529fafc617aeef0d84a52453f733201c
+    last_write_checksum: sha1:473becc477337b5adc93eef821cfaf7b1ed178bb
+    pristine_git_object: 361bb6545ff72c188e174c57a1c0c059d0a65aa2
   docs/models/buildsimulatorrequestmodel.md:
     id: 45b3242a15cf
-    last_write_checksum: sha1:a9056dfab74139cf510e34565e2b95c27c108b5f
-    pristine_git_object: f253a22475065f3dab379eae8afc78857ea05e17
+    last_write_checksum: sha1:8c763d5b8a7d4567f20a41073683e59c9d1eb221
+    pristine_git_object: 78ede553c7b8fc4003689711a7dc3d99be73bf20
   docs/models/buildsimulatorrequestspeckind.md:
     id: e3b58303d033
     last_write_checksum: sha1:3245de88d1838fdb6e315581600dde49b6dbf34c
@@ -337,16 +337,16 @@ trackedFiles:
     pristine_git_object: e1433aceaac867c9d9bc15f64a3802a3cd22603b
   docs/models/simulatorbuildprogress.md:
     id: ddb5f0b1cc58
-    last_write_checksum: sha1:3dabbb26bae49b76703cbd307963ed936f6f3143
-    pristine_git_object: 902d436d4bd25a10a75e49aeb645b437b6ebacbf
+    last_write_checksum: sha1:8da83ba8d9630eb67f559e0464bfd646cdd192ac
+    pristine_git_object: 98b17132a3bc49767eaafcc05c8d8368ecbbe830
   docs/models/simulatorbuildprogresslastsubmission.md:
     id: 8b1682fab21d
     last_write_checksum: sha1:b3aa17f85a66e8333e657edf65a6f9f8e509b88c
     pristine_git_object: ca043c973761ed077180604010e7bef83d156a69
   docs/models/simulatorbuildprogressmodel.md:
     id: 138d6a550e28
-    last_write_checksum: sha1:3aa2a0b763911721158dfc2d3d429fe694bf18a3
-    pristine_git_object: 91e37c70f48ce93efbb56a31550ba38cc53afe07
+    last_write_checksum: sha1:63a19773cc5b1405a6c8d7cd079261db555f6094
+    pristine_git_object: 59ddbfb62b0b2e2e25311c8186779cf3fe4ff577
   docs/models/simulatorbuildprogressphase.md:
     id: 51abcbb82bfa
     last_write_checksum: sha1:8ea12e5260b3a09e62a63daaaaf00be40ad9aa3b
@@ -537,8 +537,8 @@ trackedFiles:
     pristine_git_object: ba50994ac7aceefe62e1571a6cbff467d9a067da
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:75256fd2c79904ab7fc8e9640cc56458e25a254d
-    pristine_git_object: e9e00347a1967ee4a33b3ccb711e658de558634a
+    last_write_checksum: sha1:5178ca615c25b7f6d2066881ce0d2cc4c0a7199b
+    pristine_git_object: 0b8c46bb85b25f33402f1e339dc97dbb263d12ff
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -565,8 +565,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:100a8429f0e0123cac70394db3b8339a09d1bee2
-    pristine_git_object: 614d0dec35ab3eccd8f1e822b7b6ee5400fabb9f
+    last_write_checksum: sha1:14f47ff2e46978c5fe3f4c347497e2d5e13af35f
+    pristine_git_object: d2820510e9bbb2c7d7033426572975532967fc1e
   src/continuous/basesdk.py:
     id: 7c7025a9c533
     last_write_checksum: sha1:c2195f8abe74c3f8baf5cb652679b710b838987d
@@ -625,8 +625,8 @@ trackedFiles:
     pristine_git_object: ac87c0b4095210cf1b5995277437a22d7777cfbd
   src/continuous/models/buildsimulatorrequest.py:
     id: de11b8340ddc
-    last_write_checksum: sha1:a4851413b905f7b2b570766858d86e67893d4094
-    pristine_git_object: 2e971529e1912bce8968b82116d8a9c5ce35f3da
+    last_write_checksum: sha1:b6e6f6b92e4dbb8099c57c6e5eae1605638d43b1
+    pristine_git_object: 806056eb5a6df6b64241853bff4286d35b8570fc
   src/continuous/models/buildworldrequest.py:
     id: 5cb1401e40d8
     last_write_checksum: sha1:66b5ee5d0f121882da41362352ca6c2b3108fa49
@@ -821,8 +821,8 @@ trackedFiles:
     pristine_git_object: 3982c1f1fd8bf0fcbcfca263905591cbea7f6bf9
   src/continuous/models/simulatorbuildprogress.py:
     id: 003fbe758411
-    last_write_checksum: sha1:eea115f648aa86dc24136fddf05dcc3eacd0a350
-    pristine_git_object: bdd2f1c030f852d6a5da57ec5ae65aa3fb288721
+    last_write_checksum: sha1:95018fcbade52e3b8b39b8c3cc1ecdab1b1fcd67
+    pristine_git_object: f12275ad69fc19f1478af3c153a26dd7983563c9
   src/continuous/models/simulatorerror.py:
     id: ab2c6f1ead7f
     last_write_checksum: sha1:d01ae31ba21f308a9b0c8c28534eb041998a2b0d
