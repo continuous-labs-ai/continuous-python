@@ -28,7 +28,9 @@ class CreatedSimulationTypedDict(TypedDict):
     current_time: datetime
     r"""Current simulated time."""
     endpoint: str
-    r"""Base URL for requests to the Simulation."""
+    r"""Base URL for requests to the Simulation. For a Simulation in your own runtime environment it is that environment's proxy, and the Continuous /sim/{id} URL answers 421 simulation_endpoint_external."""
+    endpoint_external: bool
+    r"""True when the endpoint is your own runtime environment's proxy rather than Continuous's, so a client calls it directly."""
     expires_at: Nullable[datetime]
     r"""Always null; Simulation tokens do not expire. Deprecated; will be removed."""
     id: str
@@ -64,7 +66,10 @@ class CreatedSimulation(BaseModel):
     r"""Current simulated time."""
 
     endpoint: str
-    r"""Base URL for requests to the Simulation."""
+    r"""Base URL for requests to the Simulation. For a Simulation in your own runtime environment it is that environment's proxy, and the Continuous /sim/{id} URL answers 421 simulation_endpoint_external."""
+
+    endpoint_external: bool
+    r"""True when the endpoint is your own runtime environment's proxy rather than Continuous's, so a client calls it directly."""
 
     expires_at: Annotated[
         Nullable[datetime],
