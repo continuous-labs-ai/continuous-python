@@ -29,6 +29,8 @@ r"""pending while waiting for capacity; building while the build runs; ready whe
 class WorldTypedDict(TypedDict):
     active_advance_id: Nullable[str]
     r"""Current clock advance operation ID, or null."""
+    active_change_id: Nullable[str]
+    r"""Current membership change ID, or null."""
     build: Nullable[WorldBuildProgressTypedDict]
     r"""The build's latest progress report and verified starting data, or null before the first report."""
     created_at: datetime
@@ -57,6 +59,9 @@ class WorldTypedDict(TypedDict):
 class World(BaseModel):
     active_advance_id: Nullable[str]
     r"""Current clock advance operation ID, or null."""
+
+    active_change_id: Nullable[str]
+    r"""Current membership change ID, or null."""
 
     build: Nullable[WorldBuildProgress]
     r"""The build's latest progress report and verified starting data, or null before the first report."""
