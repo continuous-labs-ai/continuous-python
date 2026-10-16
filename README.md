@@ -231,6 +231,9 @@ with Continuous(
 * [advance_world](docs/sdks/worlds/README.md#advance_world) - Advance World Time
 * [get_world_advance](docs/sdks/worlds/README.md#get_world_advance) - Get World Clock Advance
 * [cancel_world](docs/sdks/worlds/README.md#cancel_world) - Cancel World Build
+* [get_world_change](docs/sdks/worlds/README.md#get_world_change) - Get World Change
+* [add_world_simulation](docs/sdks/worlds/README.md#add_world_simulation) - Add World Simulation
+* [remove_world_simulation](docs/sdks/worlds/README.md#remove_world_simulation) - Remove World Simulation
 * [start_world](docs/sdks/worlds/README.md#start_world) - Start World
 * [stop_world](docs/sdks/worlds/README.md#stop_world) - Stop World
 

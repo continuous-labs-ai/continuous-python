@@ -231,6 +231,9 @@ with Continuous(
 * [advance_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#advance_world) - Advance World Time
 * [get_world_advance](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#get_world_advance) - Get World Clock Advance
 * [cancel_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#cancel_world) - Cancel World Build
+* [get_world_change](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#get_world_change) - Get World Change
+* [add_world_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#add_world_simulation) - Add World Simulation
+* [remove_world_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#remove_world_simulation) - Remove World Simulation
 * [start_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#start_world) - Start World
 * [stop_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#stop_world) - Stop World
 

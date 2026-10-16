@@ -13,6 +13,9 @@ Build Worlds from one or more Simulators and start or stop their Simulations tog
 * [advance_world](#advance_world) - Advance World Time
 * [get_world_advance](#get_world_advance) - Get World Clock Advance
 * [cancel_world](#cancel_world) - Cancel World Build
+* [get_world_change](#get_world_change) - Get World Change
+* [add_world_simulation](#add_world_simulation) - Add World Simulation
+* [remove_world_simulation](#remove_world_simulation) - Remove World Simulation
 * [start_world](#start_world) - Start World
 * [stop_world](#stop_world) - Stop World
 
@@ -342,6 +345,156 @@ with Continuous(
 | errors.Error                  | 401, 403, 404                 | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
+
+## get_world_change
+
+Returns a membership change and its outcome.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="get-world-change" method="get" path="/v1/worlds/{id}/changes/{change_id}" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.worlds.get_world_change(id="<id>", change_id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | World ID.                                                           |
+| `change_id`                                                         | *str*                                                               | :heavy_check_mark:                                                  | Membership change ID.                                               |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WorldChange](../../models/worldchange.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| errors.Error                  | 401, 403, 404                 | application/problem+json      |
+| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
+
+## add_world_simulation
+
+Adds a ready Simulator to a ready, running, or stopped World as a new member, starting from its Simulator's default data, and returns the change. A running World starts the member at the World's current time; a stopped World creates it at its next start. Poll the change until it completes.
+
+### Example Usage: bad_request_body
+
+<!-- UsageSnippet language="python" operationID="add-world-simulation" method="post" path="/v1/worlds/{id}/simulations" example="bad_request_body" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.worlds.add_world_simulation(id="<id>", idempotency_key="<value>", simulator="smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5")
+
+    # Handle response
+    print(res)
+
+```
+### Example Usage: simulator_unknown
+
+<!-- UsageSnippet language="python" operationID="add-world-simulation" method="post" path="/v1/worlds/{id}/simulations" example="simulator_unknown" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.worlds.add_world_simulation(id="<id>", idempotency_key="<value>", simulator="smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `id`                                                                           | *str*                                                                          | :heavy_check_mark:                                                             | World ID.                                                                      |
+| `idempotency_key`                                                              | *str*                                                                          | :heavy_check_mark:                                                             | Stable key for this request. Reuse with the same body returns the same change. |
+| `simulator`                                                                    | *str*                                                                          | :heavy_check_mark:                                                             | ID of the ready Simulator to add as a new member.                              |
+| `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
+
+### Response
+
+**[models.WorldChange](../../models/worldchange.md)**
+
+### Errors
+
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| errors.Error                                     | 400, 401, 403, 404, 408, 409, 413, 415, 422, 429 | application/problem+json                         |
+| errors.Error                                     | 500, 503                                         | application/problem+json                         |
+| errors.ContinuousDefaultError                    | 4XX, 5XX                                         | \*/\*                                            |
+
+## remove_world_simulation
+
+Removes a member from a running or stopped World and returns the change. By default the member is detached and keeps running as a standalone Simulation; delete removes it and its saved state. A World keeps at least one member.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="remove-world-simulation" method="post" path="/v1/worlds/{id}/simulations/{simulation_id}/remove" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.worlds.remove_world_simulation(id="<id>", simulation_id="<id>", idempotency_key="<value>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                             | Type                                                                                                                                                                  | Required                                                                                                                                                              | Description                                                                                                                                                           |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                                                                                                                                                                  | *str*                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                    | World ID.                                                                                                                                                             |
+| `simulation_id`                                                                                                                                                       | *str*                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                    | ID of the member Simulation to remove.                                                                                                                                |
+| `idempotency_key`                                                                                                                                                     | *str*                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                    | Stable key for this request. Reuse with the same body returns the same change.                                                                                        |
+| `delete`                                                                                                                                                              | *Optional[bool]*                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                    | true stops and deletes the member and its saved state. false, the default, detaches it: it keeps its ID, endpoint, token, clock, and data as a standalone Simulation. |
+| `retries`                                                                                                                                                             | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                      | :heavy_minus_sign:                                                                                                                                                    | Configuration to override the default retry behavior of the client.                                                                                                   |
+
+### Response
+
+**[models.WorldChange](../../models/worldchange.md)**
+
+### Errors
+
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| errors.Error                                | 400, 401, 403, 404, 408, 409, 413, 415, 422 | application/problem+json                    |
+| errors.Error                                | 500, 503                                    | application/problem+json                    |
+| errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
 
 ## start_world
 

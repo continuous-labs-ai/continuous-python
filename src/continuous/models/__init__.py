@@ -5,6 +5,14 @@ from typing import Any, TYPE_CHECKING
 from continuous.utils.dynamic_imports import lazy_getattr, lazy_dir
 
 if TYPE_CHECKING:
+    from .add_world_simulationop import (
+        AddWorldSimulationRequestRequest,
+        AddWorldSimulationRequestRequestTypedDict,
+    )
+    from .addworldsimulationrequest import (
+        AddWorldSimulationRequest,
+        AddWorldSimulationRequestTypedDict,
+    )
     from .advance_simulationop import (
         AdvanceSimulationRequest,
         AdvanceSimulationRequestTypedDict,
@@ -118,6 +126,10 @@ if TYPE_CHECKING:
         GetWorldAdvanceRequest,
         GetWorldAdvanceRequestTypedDict,
     )
+    from .get_world_changeop import (
+        GetWorldChangeRequest,
+        GetWorldChangeRequestTypedDict,
+    )
     from .get_worldop import GetWorldRequest, GetWorldRequestTypedDict
     from .limitation import Limitation, LimitationTypedDict
     from .list_credentialsop import (
@@ -173,6 +185,14 @@ if TYPE_CHECKING:
         RegenerateSimulationTokenRequestTypedDict,
         RegenerateSimulationTokenResponse,
         RegenerateSimulationTokenResponseTypedDict,
+    )
+    from .remove_world_simulationop import (
+        RemoveWorldSimulationRequestRequest,
+        RemoveWorldSimulationRequestRequestTypedDict,
+    )
+    from .removeworldsimulationrequest import (
+        RemoveWorldSimulationRequest,
+        RemoveWorldSimulationRequestTypedDict,
     )
     from .resourceerror import ResourceError, ResourceErrorTypedDict
     from .security import Security, SecurityTypedDict
@@ -254,6 +274,12 @@ if TYPE_CHECKING:
         WorldBuildProgressStage,
         WorldBuildProgressTypedDict,
     )
+    from .worldchange import (
+        WorldChange,
+        WorldChangeKind,
+        WorldChangeStatus,
+        WorldChangeTypedDict,
+    )
     from .worlddatasummary import WorldDataSummary, WorldDataSummaryTypedDict
     from .worlderror import (
         WorldError,
@@ -265,6 +291,10 @@ if TYPE_CHECKING:
     from .worldsimulation import WorldSimulation, WorldSimulationTypedDict
 
 __all__ = [
+    "AddWorldSimulationRequest",
+    "AddWorldSimulationRequestRequest",
+    "AddWorldSimulationRequestRequestTypedDict",
+    "AddWorldSimulationRequestTypedDict",
     "AdvanceSimulationRequest",
     "AdvanceSimulationRequestTypedDict",
     "AdvanceTimeRequest",
@@ -341,6 +371,8 @@ __all__ = [
     "GetSimulatorRequestTypedDict",
     "GetWorldAdvanceRequest",
     "GetWorldAdvanceRequestTypedDict",
+    "GetWorldChangeRequest",
+    "GetWorldChangeRequestTypedDict",
     "GetWorldRequest",
     "GetWorldRequestTypedDict",
     "Limitation",
@@ -376,6 +408,10 @@ __all__ = [
     "RegenerateSimulationTokenRequestTypedDict",
     "RegenerateSimulationTokenResponse",
     "RegenerateSimulationTokenResponseTypedDict",
+    "RemoveWorldSimulationRequest",
+    "RemoveWorldSimulationRequestRequest",
+    "RemoveWorldSimulationRequestRequestTypedDict",
+    "RemoveWorldSimulationRequestTypedDict",
     "ResourceError",
     "ResourceErrorTypedDict",
     "Security",
@@ -444,6 +480,10 @@ __all__ = [
     "WorldBuildProgressPhase",
     "WorldBuildProgressStage",
     "WorldBuildProgressTypedDict",
+    "WorldChange",
+    "WorldChangeKind",
+    "WorldChangeStatus",
+    "WorldChangeTypedDict",
     "WorldDataSummary",
     "WorldDataSummaryTypedDict",
     "WorldError",
@@ -459,6 +499,10 @@ __all__ = [
 ]
 
 _dynamic_imports: dict[str, str] = {
+    "AddWorldSimulationRequestRequest": ".add_world_simulationop",
+    "AddWorldSimulationRequestRequestTypedDict": ".add_world_simulationop",
+    "AddWorldSimulationRequest": ".addworldsimulationrequest",
+    "AddWorldSimulationRequestTypedDict": ".addworldsimulationrequest",
     "AdvanceSimulationRequest": ".advance_simulationop",
     "AdvanceSimulationRequestTypedDict": ".advance_simulationop",
     "AdvanceWorldRequest": ".advance_worldop",
@@ -539,6 +583,8 @@ _dynamic_imports: dict[str, str] = {
     "GetSimulatorRequestTypedDict": ".get_simulatorop",
     "GetWorldAdvanceRequest": ".get_world_advanceop",
     "GetWorldAdvanceRequestTypedDict": ".get_world_advanceop",
+    "GetWorldChangeRequest": ".get_world_changeop",
+    "GetWorldChangeRequestTypedDict": ".get_world_changeop",
     "GetWorldRequest": ".get_worldop",
     "GetWorldRequestTypedDict": ".get_worldop",
     "Limitation": ".limitation",
@@ -574,6 +620,10 @@ _dynamic_imports: dict[str, str] = {
     "RegenerateSimulationTokenRequestTypedDict": ".regenerate_simulation_tokenop",
     "RegenerateSimulationTokenResponse": ".regenerate_simulation_tokenop",
     "RegenerateSimulationTokenResponseTypedDict": ".regenerate_simulation_tokenop",
+    "RemoveWorldSimulationRequestRequest": ".remove_world_simulationop",
+    "RemoveWorldSimulationRequestRequestTypedDict": ".remove_world_simulationop",
+    "RemoveWorldSimulationRequest": ".removeworldsimulationrequest",
+    "RemoveWorldSimulationRequestTypedDict": ".removeworldsimulationrequest",
     "ResourceError": ".resourceerror",
     "ResourceErrorTypedDict": ".resourceerror",
     "Security": ".security",
@@ -640,6 +690,10 @@ _dynamic_imports: dict[str, str] = {
     "WorldBuildProgressPhase": ".worldbuildprogress",
     "WorldBuildProgressStage": ".worldbuildprogress",
     "WorldBuildProgressTypedDict": ".worldbuildprogress",
+    "WorldChange": ".worldchange",
+    "WorldChangeKind": ".worldchange",
+    "WorldChangeStatus": ".worldchange",
+    "WorldChangeTypedDict": ".worldchange",
     "WorldDataSummary": ".worlddatasummary",
     "WorldDataSummaryTypedDict": ".worlddatasummary",
     "WorldError": ".worlderror",
