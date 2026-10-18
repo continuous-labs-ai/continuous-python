@@ -455,7 +455,7 @@ components:
           type: array
         filter:
           default: []
-          description: Regular expressions (RE2 syntax) that select the operations to implement. Each is matched against the OpenAPI operationId or the WSDL operation name; an operation is kept when any expression matches, and an OpenAPI operation without an operationId is dropped. At most 64 expressions of at most 1,024 characters each. Omit or send an empty list to keep every operation. Not allowed for an incremental build.
+          description: Regular expressions (RE2 syntax) that select the operations to implement. Each is matched against the OpenAPI operationId, the WSDL operation name, or the GraphQL Query or Mutation field name; an operation is kept when any expression matches, and an OpenAPI operation without an operationId is dropped. At most 64 expressions of at most 1,024 characters each. Omit or send an empty list to keep every operation. Not allowed for an incremental build.
           items:
             maxLength: 1024
             type: string
@@ -492,10 +492,11 @@ components:
           minimum: 1
           type: integer
         spec_kind:
-          description: Source specification format. Omission detects the format.
+          description: Source specification format. Omission detects the format; GraphQL SDL needs graphql, and a GraphQL introspection result is stored as SDL.
           enum:
             - openapi
             - wsdl
+            - graphql
           type: string
         timeout_seconds:
           default: 14400
@@ -701,6 +702,11 @@ components:
         name:
           description: Display name of the clone.
           type: string
+        publication:
+          description: The attempt to publish the image into the target workspace's default customer runtime environment, or null when it has none. A failure leaves the clone ready; creating a Simulation tries again.
+          oneOf:
+            - $ref: "#/components/schemas/SimulatorPublication"
+            - type: "null"
         workspace_id:
           description: Target workspace.
           type: string
@@ -709,6 +715,7 @@ components:
         - workspace_id
         - digest
         - name
+        - publication
       type: object
     CreateCredentialRequest:
       additionalProperties: false
@@ -1334,6 +1341,7 @@ components:
           instructions: Return stable example data for every operation.
           name: billing-api
           parent_id: smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9
+          publication: null
           research: null
           source: workspace
           spec_kind: openapi
@@ -1373,6 +1381,11 @@ components:
           type:
             - string
             - "null"
+        publication:
+          description: The latest attempt to publish the Simulator's image into the workspace's default customer runtime environment, or null when the workspace has none, no attempt is recorded, or the response does not report it. Get and list report it.
+          oneOf:
+            - $ref: "#/components/schemas/SimulatorPublication"
+            - type: "null"
         research:
           description: The build's research stage, or null for a Simulator built before research ran on every build.
           oneOf:
@@ -1389,6 +1402,7 @@ components:
           enum:
             - openapi
             - wsdl
+            - graphql
             - null
           type:
             - string
@@ -1415,6 +1429,7 @@ components:
         - credential_ids
         - build
         - research
+        - publication
       type: object
     SimulatorActor:
       additionalProperties: false
@@ -1583,6 +1598,35 @@ components:
       type:
         - object
         - "null"
+    SimulatorPublication:
+      additionalProperties: false
+      properties:
+        environment_id:
+          description: The workspace's default customer runtime environment.
+          type: string
+        error:
+          description: Why the last attempt failed, naming the role and repository it used, or null.
+          type:
+            - string
+            - "null"
+        published_at:
+          description: When the image was published, or null.
+          format: date-time
+          type:
+            - string
+            - "null"
+        status:
+          description: published once the Simulator's image is in the environment's own registry; failed when the last attempt failed. Creating a Simulation in the environment tries again.
+          enum:
+            - published
+            - failed
+          type: string
+      required:
+        - environment_id
+        - status
+        - error
+        - published_at
+      type: object
     SimulatorResearch:
       additionalProperties: false
       properties:
@@ -2123,7 +2167,7 @@ components:
       scheme: bearer
       type: http
 info:
-  description: Build Simulators from OpenAPI or WSDL documents, create Simulations from them, and build Worlds that run Simulations together. Authenticate every request with an API key sent as a Bearer token.
+  description: Build Simulators from OpenAPI, WSDL or GraphQL documents, create Simulations from them, and build Worlds that run Simulations together. Authenticate every request with an API key sent as a Bearer token.
   title: Continuous Simulation API
   version: v1
 openapi: 3.1.0
@@ -2629,6 +2673,8 @@ paths:
                   $ref: "#/components/examples/auth_provider_unavailable"
                 internal_unavailable:
                   $ref: "#/components/examples/internal_unavailable"
+                simulation_environment_offline_request:
+                  $ref: "#/components/examples/simulation_environment_offline_request"
                 simulation_provider_unavailable:
                   $ref: "#/components/examples/simulation_provider_unavailable"
               schema:
@@ -3744,7 +3790,7 @@ paths:
       tags:
         - simulators
     post:
-      description: Starts an asynchronous Simulator build and returns the Simulator with status pending. Builds start in queue order when workspace capacity is available. Send multipart/form-data with a JSON part named request. To build from a document, add a file part named spec with the OpenAPI or WSDL document. For an incremental build, omit spec and set parent_id and instructions. Add file parts named document to give the builder and reviewer vendor documentation.
+      description: Starts an asynchronous Simulator build and returns the Simulator with status pending. Builds start in queue order when workspace capacity is available. Send multipart/form-data with a JSON part named request. To build from a document, add a file part named spec with the OpenAPI, WSDL or GraphQL document. For an incremental build, omit spec and set parent_id and instructions. Add file parts named document to give the builder and reviewer vendor documentation.
       operationId: build-simulator
       requestBody:
         content:
@@ -3773,7 +3819,7 @@ paths:
                 spec:
                   contentEncoding: binary
                   contentMediaType: application/octet-stream
-                  description: OpenAPI or WSDL document, UTF-8 encoded, at most 64 MiB. Required unless the request is an incremental build (parent_id and instructions, no spec).
+                  description: OpenAPI, WSDL or GraphQL document, UTF-8 encoded, at most 64 MiB. Required unless the request is an incremental build (parent_id and instructions, no spec).
                   format: binary
                   type: string
               required:
@@ -4326,6 +4372,10 @@ paths:
                   $ref: "#/components/examples/auth_provider_unavailable"
                 internal_unavailable:
                   $ref: "#/components/examples/internal_unavailable"
+                simulation_environment_offline_request:
+                  $ref: "#/components/examples/simulation_environment_offline_request"
+                simulation_provider_unavailable:
+                  $ref: "#/components/examples/simulation_provider_unavailable"
               schema:
                 $ref: "#/components/schemas/Error"
           description: Service Unavailable
@@ -5156,7 +5206,7 @@ servers:
   - description: Continuous production API.
     url: https://api.continuouslabs.ai
 tags:
-  - description: Build Simulators from OpenAPI or WSDL documents, check or cancel a build, clone Simulators into other workspaces, and delete Simulators.
+  - description: Build Simulators from OpenAPI, WSDL or GraphQL documents, check or cancel a build, clone Simulators into other workspaces, and delete Simulators.
     name: simulators
     x-group: Simulators
   - description: Create Simulations from ready Simulators, then fork, stop, start, and delete them.

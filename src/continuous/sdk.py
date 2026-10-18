@@ -22,14 +22,14 @@ if TYPE_CHECKING:
 
 
 class Continuous(BaseSDK):
-    r"""Continuous Simulation API: Build Simulators from OpenAPI or WSDL documents, create Simulations from them, and build Worlds that run Simulations together. Authenticate every request with an API key sent as a Bearer token."""
+    r"""Continuous Simulation API: Build Simulators from OpenAPI, WSDL or GraphQL documents, create Simulations from them, and build Worlds that run Simulations together. Authenticate every request with an API key sent as a Bearer token."""
 
     credentials: "Credentials"
     r"""Store connections to real systems: a base URL, the header that carries the credential, and its value. The API never returns a value."""
     simulations: "Simulations"
     r"""Create Simulations from ready Simulators, then fork, stop, start, and delete them."""
     simulators: "Simulators"
-    r"""Build Simulators from OpenAPI or WSDL documents, check or cancel a build, clone Simulators into other workspaces, and delete Simulators."""
+    r"""Build Simulators from OpenAPI, WSDL or GraphQL documents, check or cancel a build, clone Simulators into other workspaces, and delete Simulators."""
     worlds: "Worlds"
     r"""Build Worlds from one or more Simulators and start or stop their Simulations together."""
     _sub_sdk_map = {

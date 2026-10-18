@@ -6,6 +6,7 @@ from .simulatorbuildprogress import (
     SimulatorBuildProgressTypedDict,
 )
 from .simulatorerror import SimulatorError, SimulatorErrorTypedDict
+from .simulatorpublication import SimulatorPublication, SimulatorPublicationTypedDict
 from .simulatorresearch import SimulatorResearch, SimulatorResearchTypedDict
 from continuous.types import BaseModel, Nullable, UNSET_SENTINEL, UnrecognizedStr
 from datetime import datetime
@@ -28,6 +29,7 @@ SimulatorSpecKind = Union[
     Literal[
         "openapi",
         "wsdl",
+        "graphql",
     ],
     UnrecognizedStr,
 ]
@@ -63,6 +65,8 @@ class SimulatorTypedDict(TypedDict):
     r"""Simulator name. The ID is its identity, and names need not be unique."""
     parent_id: Nullable[str]
     r"""Parent Simulator ID, or null."""
+    publication: Nullable[SimulatorPublicationTypedDict]
+    r"""The latest attempt to publish the Simulator's image into the workspace's default customer runtime environment, or null when the workspace has none, no attempt is recorded, or the response does not report it. Get and list report it."""
     research: Nullable[SimulatorResearchTypedDict]
     r"""The build's research stage, or null for a Simulator built before research ran on every build."""
     source: Source
@@ -96,6 +100,9 @@ class Simulator(BaseModel):
 
     parent_id: Nullable[str]
     r"""Parent Simulator ID, or null."""
+
+    publication: Nullable[SimulatorPublication]
+    r"""The latest attempt to publish the Simulator's image into the workspace's default customer runtime environment, or null when the workspace has none, no attempt is recorded, or the response does not report it. Get and list report it."""
 
     research: Nullable[SimulatorResearch]
     r"""The build's research stage, or null for a Simulator built before research ran on every build."""
