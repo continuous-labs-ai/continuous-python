@@ -7,7 +7,7 @@ Speakeasy generates this SDK from the public Continuous Simulation API contract.
 <!-- Start Summary [summary] -->
 ## Summary
 
-Continuous Simulation API: Build Simulators from OpenAPI or WSDL documents, create Simulations from them, and build Worlds that run Simulations together. Authenticate every request with an API key sent as a Bearer token.
+Continuous Simulation API: Build Simulators from OpenAPI, WSDL or GraphQL documents, create Simulations from them, and build Worlds that run Simulations together. Authenticate every request with an API key sent as a Bearer token.
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->

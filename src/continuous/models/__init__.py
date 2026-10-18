@@ -224,6 +224,11 @@ if TYPE_CHECKING:
         SimulatorErrorReason,
         SimulatorErrorTypedDict,
     )
+    from .simulatorpublication import (
+        SimulatorPublication,
+        SimulatorPublicationStatus,
+        SimulatorPublicationTypedDict,
+    )
     from .simulatorresearch import (
         SimulatorResearch,
         SimulatorResearchStatus,
@@ -435,6 +440,9 @@ __all__ = [
     "SimulatorErrorCode",
     "SimulatorErrorReason",
     "SimulatorErrorTypedDict",
+    "SimulatorPublication",
+    "SimulatorPublicationStatus",
+    "SimulatorPublicationTypedDict",
     "SimulatorResearch",
     "SimulatorResearchStatus",
     "SimulatorResearchTypedDict",
@@ -651,6 +659,9 @@ _dynamic_imports: dict[str, str] = {
     "SimulatorErrorCode": ".simulatorerror",
     "SimulatorErrorReason": ".simulatorerror",
     "SimulatorErrorTypedDict": ".simulatorerror",
+    "SimulatorPublication": ".simulatorpublication",
+    "SimulatorPublicationStatus": ".simulatorpublication",
+    "SimulatorPublicationTypedDict": ".simulatorpublication",
     "SimulatorResearch": ".simulatorresearch",
     "SimulatorResearchStatus": ".simulatorresearch",
     "SimulatorResearchTypedDict": ".simulatorresearch",
