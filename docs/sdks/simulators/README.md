@@ -164,11 +164,12 @@ with Continuous(
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 403, 404, 409, 422       | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
-| errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| errors.SimulatorDeleteConflictError | 409                                 | application/problem+json            |
+| errors.Error                        | 401, 403, 404, 422                  | application/problem+json            |
+| errors.Error                        | 500, 503                            | application/problem+json            |
+| errors.ContinuousDefaultError       | 4XX, 5XX                            | \*/\*                               |
 
 ## get_simulator
 

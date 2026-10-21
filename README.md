@@ -369,7 +369,7 @@ with Continuous(
 * [`ContinuousError`](./src/continuous/errors/continuouserror.py): The base class for HTTP error responses.
   * [`Error`](./src/continuous/errors/error.py): Generic error.
 
-<details><summary>Less common errors (5)</summary>
+<details><summary>Less common errors (6)</summary>
 
 <br />
 
@@ -380,9 +380,12 @@ with Continuous(
 
 
 **Inherit from [`ContinuousError`](./src/continuous/errors/continuouserror.py)**:
+* [`SimulatorDeleteConflictError`](./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 36 methods.*
 * [`ResponseValidationError`](./src/continuous/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>
+
+\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->

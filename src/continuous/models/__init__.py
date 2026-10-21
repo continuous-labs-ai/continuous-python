@@ -218,6 +218,7 @@ if TYPE_CHECKING:
         SimulatorBuildProgressStage,
         SimulatorBuildProgressTypedDict,
     )
+    from .simulatordependents import SimulatorDependents, SimulatorDependentsTypedDict
     from .simulatorerror import (
         SimulatorError,
         SimulatorErrorCode,
@@ -436,6 +437,8 @@ __all__ = [
     "SimulatorBuildProgressPhase",
     "SimulatorBuildProgressStage",
     "SimulatorBuildProgressTypedDict",
+    "SimulatorDependents",
+    "SimulatorDependentsTypedDict",
     "SimulatorError",
     "SimulatorErrorCode",
     "SimulatorErrorReason",
@@ -655,6 +658,8 @@ _dynamic_imports: dict[str, str] = {
     "SimulatorBuildProgressPhase": ".simulatorbuildprogress",
     "SimulatorBuildProgressStage": ".simulatorbuildprogress",
     "SimulatorBuildProgressTypedDict": ".simulatorbuildprogress",
+    "SimulatorDependents": ".simulatordependents",
+    "SimulatorDependentsTypedDict": ".simulatordependents",
     "SimulatorError": ".simulatorerror",
     "SimulatorErrorCode": ".simulatorerror",
     "SimulatorErrorReason": ".simulatorerror",

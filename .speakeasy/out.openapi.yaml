@@ -223,6 +223,12 @@ components:
     simulator_in_use:
       value:
         code: simulator_in_use
+        dependents:
+          simulations:
+            - sim_01J8Z5X4K7M2N9P0Q1R2S3T4V6
+          worlds:
+            - wld_01J8Z5X4K7M2N9P0Q1R2S3T4V7
+          child_simulators: []
         detail: The Simulator with ID "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5" has dependent Worlds, Simulations, or child Simulators. Delete those resources before you delete this Simulator.
         validation: null
     simulator_not_found:
@@ -1554,6 +1560,52 @@ components:
         - warnings
         - limitations
         - hidden_limitations
+      type: object
+    SimulatorDeleteConflict:
+      additionalProperties: false
+      properties:
+        code:
+          description: Stable machine-readable error code.
+          minLength: 1
+          type: string
+        dependents:
+          $ref: "#/components/schemas/SimulatorDependents"
+          description: Every resource that blocks the delete. Delete them, then retry.
+        detail:
+          description: Safe human-readable error detail.
+          minLength: 1
+          type: string
+        validation:
+          $ref: "#/components/schemas/SpecificationValidation"
+          description: Safe specification diagnostics for a rejected build request, when available.
+      required:
+        - dependents
+        - validation
+        - code
+        - detail
+      type: object
+    SimulatorDependents:
+      additionalProperties: false
+      properties:
+        child_simulators:
+          description: IDs of Simulators built from the Simulator.
+          items:
+            type: string
+          type: array
+        simulations:
+          description: IDs of Simulations created from the Simulator, including World members.
+          items:
+            type: string
+          type: array
+        worlds:
+          description: IDs of Worlds that include the Simulator.
+          items:
+            type: string
+          type: array
+      required:
+        - simulations
+        - worlds
+        - child_simulators
       type: object
     SimulatorError:
       additionalProperties: false
@@ -3959,7 +4011,7 @@ paths:
                 simulator_in_use:
                   $ref: "#/components/examples/simulator_in_use"
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: "#/components/schemas/SimulatorDeleteConflict"
           description: Conflict
         "422":
           content:
