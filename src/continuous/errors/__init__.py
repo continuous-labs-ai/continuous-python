@@ -10,6 +10,10 @@ if TYPE_CHECKING:
     from .error import Error, ErrorData
     from .no_response_error import NoResponseError
     from .responsevalidationerror import ResponseValidationError
+    from .simulatordeleteconflict_error import (
+        SimulatorDeleteConflictError,
+        SimulatorDeleteConflictErrorData,
+    )
 
 __all__ = [
     "ContinuousDefaultError",
@@ -18,6 +22,8 @@ __all__ = [
     "ErrorData",
     "NoResponseError",
     "ResponseValidationError",
+    "SimulatorDeleteConflictError",
+    "SimulatorDeleteConflictErrorData",
 ]
 
 _dynamic_imports: dict[str, str] = {
@@ -26,6 +32,8 @@ _dynamic_imports: dict[str, str] = {
     "ErrorData": ".error",
     "NoResponseError": ".no_response_error",
     "ResponseValidationError": ".responsevalidationerror",
+    "SimulatorDeleteConflictError": ".simulatordeleteconflict_error",
+    "SimulatorDeleteConflictErrorData": ".simulatordeleteconflict_error",
 }
 
 

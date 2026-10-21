@@ -556,8 +556,13 @@ class Simulators(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return
+        if utils.match_response(http_res, "409", "application/problem+json"):
+            response_data = unmarshal_json_response(
+                errors.SimulatorDeleteConflictErrorData, http_res
+            )
+            raise errors.SimulatorDeleteConflictError(response_data, http_res)
         if utils.match_response(
-            http_res, ["401", "403", "404", "409", "422"], "application/problem+json"
+            http_res, ["401", "403", "404", "422"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -655,8 +660,13 @@ class Simulators(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return
+        if utils.match_response(http_res, "409", "application/problem+json"):
+            response_data = unmarshal_json_response(
+                errors.SimulatorDeleteConflictErrorData, http_res
+            )
+            raise errors.SimulatorDeleteConflictError(response_data, http_res)
         if utils.match_response(
-            http_res, ["401", "403", "404", "409", "422"], "application/problem+json"
+            http_res, ["401", "403", "404", "422"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)

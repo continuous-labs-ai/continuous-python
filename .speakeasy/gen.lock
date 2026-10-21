@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: 3aac2c964e8c6577633622af48b14afc
+  docChecksum: 658625eb2d1e8535d07d12488f780a1a
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.2.14
-  configChecksum: 655e284240edaf3a9f2835e688dfc791
+  releaseVersion: 0.2.15
+  configChecksum: 2690634c4b42ae1d7258a84485b3f6df
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: ec52c9f6-01af-4040-b503-8b6cfaa5a702
-  pristine_commit_hash: e6649b2971024dda9be09c70a823c7822c60da0c
-  pristine_tree_hash: 46a6dee21344e78d644e0718f4f980977e7d11fd
+  generation_id: 9cb27cfe-e6c5-4ef7-bdc5-2127a6a3a5c5
+  pristine_commit_hash: 9119209f6efe769e7409ba25a4de3e78b13be2d6
+  pristine_tree_hash: efdf060818e0da76a07d95ebbd1bb23f70584542
 features:
   python:
     additionalDependencies: 1.1.0
@@ -63,6 +63,10 @@ trackedFiles:
     id: 098e4ba23534
     last_write_checksum: sha1:898e37e34b9bb9b9990c38cde0aed12f81894ca8
     pristine_git_object: 0df9bca29f1648e86537b9d150f6935924393411
+  docs/errors/simulatordeleteconflicterror.md:
+    id: 4da6d386b1bb
+    last_write_checksum: sha1:cfdc7ad6a7e3eeca35e7091e1e4133c7d39c790d
+    pristine_git_object: 69a21ad0aa3a979867d2e296c67d46fe27bb1719
   docs/models/addworldsimulationrequest.md:
     id: 363b4045bc11
     last_write_checksum: sha1:6e94f3029ed7970f9b837155cc3346a06d169376
@@ -375,6 +379,10 @@ trackedFiles:
     id: cb7de6f24503
     last_write_checksum: sha1:3c3ba1f9115f9eb8fe4c95cc3bc7b14a1c88df1c
     pristine_git_object: d4fb85ed91035192cce44f95a7b3890a18822ca4
+  docs/models/simulatordependents.md:
+    id: 13be820d29db
+    last_write_checksum: sha1:23a682f086473179817decaf04602cbbd4a6b8d0
+    pristine_git_object: 5d69bd207ef7056ab74746a7d24b11541cb040a4
   docs/models/simulatorerror.md:
     id: cf50547f0511
     last_write_checksum: sha1:55e6ab4e5164e2abf7bf3fab172f7c69ffd7470c
@@ -561,8 +569,8 @@ trackedFiles:
     pristine_git_object: fbbb9adc951188862d7cea3314696d1a8bd132a3
   docs/sdks/simulators/README.md:
     id: 55eacdd8fa62
-    last_write_checksum: sha1:478ff8415f9c9792cfdc7ba7c2a7418ca3df937b
-    pristine_git_object: d9d4ca68f75a81e621591e730a0a0d12460f1f96
+    last_write_checksum: sha1:7436e2693e93be42f06f983ab022ff624d9d917f
+    pristine_git_object: e1956a349b6d3dfa79ab61c20166364a4b0bdc75
   docs/sdks/worlds/README.md:
     id: c57d3f2ebb66
     last_write_checksum: sha1:0590304b2895987312f974f11e47ac29c3143645
@@ -577,8 +585,8 @@ trackedFiles:
     pristine_git_object: ba50994ac7aceefe62e1571a6cbff467d9a067da
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:3f72c7c90bf50823b2672259bc62c5ef70c1401f
-    pristine_git_object: bc4c66c36334435debb01fe7079741883f931933
+    last_write_checksum: sha1:55d84cb92464fb74e9c230eb78cf3e50b207f69f
+    pristine_git_object: 5184506b74d935a47ce93e7bb4f222684af057ca
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -605,8 +613,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:89c2ed0ebe29ed521eba3d64fb15503eabcb8bf5
-    pristine_git_object: 594239451e1e322df50f22d24115a3ae48d1143d
+    last_write_checksum: sha1:574de1f7308c18ce53a0a702a503653707074f15
+    pristine_git_object: 5ea39835519ddb7aeba431f928cf6acb62f7f9f9
   src/continuous/basesdk.py:
     id: 7c7025a9c533
     last_write_checksum: sha1:c2195f8abe74c3f8baf5cb652679b710b838987d
@@ -617,8 +625,8 @@ trackedFiles:
     pristine_git_object: b19b59117b672ef2e3e9d2e225162a0a1d4ff713
   src/continuous/errors/__init__.py:
     id: 521959dbf78a
-    last_write_checksum: sha1:e6a6e6f2dc586fbcf0f716ba87d0066aa73080aa
-    pristine_git_object: 659f52aea398bed465b5671a138fc75d1e7c0b97
+    last_write_checksum: sha1:5a7e8af7b28067a4ab58f84c0b56743d94534505
+    pristine_git_object: 39328fb8f0b02dec40dd85ec90139dc732a6ccfd
   src/continuous/errors/continuousdefaulterror.py:
     id: 55132010a206
     last_write_checksum: sha1:58d3838992f1b5c5ea6501de3d75f14150fbcdea
@@ -639,14 +647,18 @@ trackedFiles:
     id: e41fe35dc95c
     last_write_checksum: sha1:375b2dd5ad18ced858ad3abdbf9878ca37b06468
     pristine_git_object: ce282fc5ffc7ad9ae4ca9340afd9e46c90f82a03
+  src/continuous/errors/simulatordeleteconflict_error.py:
+    id: 060e6d2402de
+    last_write_checksum: sha1:abcdde8bad7325438e49cfc2d2e205bb19914751
+    pristine_git_object: c8eb24999c069e6fd44b4f24349cefe98cf6d2d1
   src/continuous/httpclient.py:
     id: 594b2ece832e
     last_write_checksum: sha1:5e55338d6ee9f01ab648cad4380201a8a3da7dd7
     pristine_git_object: 89560b566073785535643e694c112bedbd3db13d
   src/continuous/models/__init__.py:
     id: 53b8497bf08d
-    last_write_checksum: sha1:64d60c89cf60aa8a102533a539ae96e690d5fea8
-    pristine_git_object: 060d8612b367ef7ec6b4000923c9b3f83935958e
+    last_write_checksum: sha1:a0da18c40f7ca1b752cf5af76d674b797729c28a
+    pristine_git_object: c03b2a4ac699c10a24745c4839c07b23f22aed47
   src/continuous/models/add_world_simulationop.py:
     id: af9674f60800
     last_write_checksum: sha1:f38c06bca5a4162aa7cda26d5fce347822c1b127
@@ -883,6 +895,10 @@ trackedFiles:
     id: 003fbe758411
     last_write_checksum: sha1:95018fcbade52e3b8b39b8c3cc1ecdab1b1fcd67
     pristine_git_object: f12275ad69fc19f1478af3c153a26dd7983563c9
+  src/continuous/models/simulatordependents.py:
+    id: a5a4e148583f
+    last_write_checksum: sha1:f4833c3146e3fa79c5036d8de0fdedf30ef9ee34
+    pristine_git_object: 82a6b5e6354e85921478939f50d39c7392b9208f
   src/continuous/models/simulatorerror.py:
     id: ab2c6f1ead7f
     last_write_checksum: sha1:d01ae31ba21f308a9b0c8c28534eb041998a2b0d
@@ -985,8 +1001,8 @@ trackedFiles:
     pristine_git_object: 29a8b73dc770473f1ab253ee5befdd071b267edd
   src/continuous/simulators.py:
     id: f782f4a769f3
-    last_write_checksum: sha1:ddf21f15fcf264cd51c7d20c78725822914e061c
-    pristine_git_object: 442d238164f7730ad7940232d59b87d111f62162
+    last_write_checksum: sha1:d508c91be5042c4821d10b99793225b2a3c635ec
+    pristine_git_object: 27c3f007b3c4c323d1281c95e14c1626f989f15e
   src/continuous/types/__init__.py:
     id: c9ee84986773
     last_write_checksum: sha1:f9ad14217f832e74f594285960125add50324be9
@@ -1411,9 +1427,11 @@ examples:
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "401":
-          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
+          application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
+        "409":
+          application/problem+json: {"code": "<value>", "dependents": {"child_simulators": ["<value 1>", "<value 2>"], "simulations": [], "worlds": []}, "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
     auth_invalid:
       parameters:
         path:
@@ -1432,6 +1450,13 @@ examples:
           application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
         "500":
           application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+    simulator_in_use:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "409":
+          application/problem+json: {"code": "simulator_in_use", "dependents": {"child_simulators": [], "simulations": ["sim_01J8Z5X4K7M2N9P0Q1R2S3T4V6"], "worlds": ["wld_01J8Z5X4K7M2N9P0Q1R2S3T4V7"]}, "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" has dependent Worlds, Simulations, or child Simulators. Delete those resources before you delete this Simulator.", "validation": null}
   get-simulator:
     speakeasy-default-get-simulator:
       parameters:
@@ -2308,4 +2333,6 @@ examples:
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unknown", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
 examplesVersion: 1.0.2
-releaseNotes: "## Python SDK Changes:\n* `continuous.simulators.list_simulators()`:  `response.simulators[]` **Changed**\n* `continuous.simulators.build_simulator()`: \n  *  `request` **Changed**\n  *  `response` **Changed**\n* `continuous.simulators.get_simulator()`:  `response` **Changed**\n* `continuous.simulators.cancel_simulator()`:  `response` **Changed**\n* `continuous.simulators.clone_simulator()`:  `response.publication` **Added**\n"
+releaseNotes: |
+  ## Python SDK Changes:
+  * `continuous.simulators.delete_simulator()`:  `error.dependents` **Added**
