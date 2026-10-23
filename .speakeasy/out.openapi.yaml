@@ -452,7 +452,7 @@ components:
           spec_kind: openapi
       properties:
         credential_ids:
-          description: Workspace credentials QA and the builder can call real systems with, to compare the Simulator with them. A build with credentials runs QA after its review rounds. At most 5. Each must belong to the workspace and have a base_url. QA may create test objects in the live system and deletes them or, where the API cannot, leaves them in a final state; the builder sends only reads. Use a sandbox or test account.
+          description: Workspace credentials QA and the builder can call real systems with, to compare the Simulator with them. A build with credentials runs QA after its review rounds. At most 5. Each must belong to the workspace and have a base_url, except the one Web App login a Web App build needs, which its Discovery, Build and QA stages use. QA, and the builder of a Web App build, may create test objects in the live system and delete them or, where the API cannot, leave them in a final state; otherwise the builder sends only reads. Use a sandbox or test account.
           items:
             maxLength: 30
             pattern: ^crd_[0-9A-HJKMNP-TV-Z]{26}$
@@ -471,6 +471,13 @@ components:
           description: Instructions for the builder. Required for an incremental build. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000.
           maxLength: 16384
           type: string
+        mode:
+          default: api
+          description: "What the Simulator simulates. api, the default, builds the vendor's API from a spec, or from a parent with instructions. web_app builds the vendor's logged-in web app and the private API behind it: it takes no spec, spec_kind or filter, needs exactly one Web App login credential in credential_ids, runs on a Claude model or combined, and starts with a Discovery stage that logs in and captures the app. With parent_id and instructions, it builds from a ready web_app Simulator and starts with that Simulator's captures instead of Discovery."
+          enum:
+            - api
+            - web_app
+          type: string
         model:
           default: combined
           description: Model that builds and reviews the Simulator. Defaults to combined. Its provider is derived from the model. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does.
@@ -486,7 +493,7 @@ components:
           maxLength: 128
           type: string
         parent_id:
-          description: "Parent Simulator ID. With instructions and no spec this starts an incremental build: the parent must be ready, and the request takes no filter or spec_kind."
+          description: "Parent Simulator ID. With instructions and no spec this starts an incremental build: the parent must be ready and in the build's mode, and the request takes no filter or spec_kind."
           maxLength: 30
           pattern: ^smr_[0-9A-HJKMNP-TV-Z]{26}$
           type: string
@@ -732,24 +739,25 @@ components:
           value: Bearer <redacted>
       properties:
         base_url:
-          description: The https URL of the real system. Requests go to paths under it.
+          description: The https URL of the real system. Requests go to paths under it. Send exactly one of base_url and login.
           type: string
         header:
-          default: Authorization
-          description: The HTTP header that carries the value.
+          description: The HTTP header that carries the value. Defaults to Authorization. Not allowed with login.
           type: string
+        login:
+          $ref: "#/components/schemas/CredentialLoginRequest"
+          description: A Web App login. Send exactly one of base_url and login.
         name:
           description: Credential name.
           minLength: 1
           type: string
         value:
-          description: The full header value, for example Bearer followed by a token. The API never returns it.
+          description: The full header value, for example Bearer followed by a token, or the login password. The API never returns it.
           minLength: 1
           type: string
           writeOnly: true
       required:
         - name
-        - base_url
         - value
       type: object
     CreateSimulationRequest:
@@ -897,10 +905,11 @@ components:
           created_at: "2026-01-15T12:00:00Z"
           header: Authorization
           id: crd_01J8Z5X4K7M2N9P0Q1R2S3T4VA
+          login: null
           name: stripe-test
       properties:
         base_url:
-          description: The https URL of the real system, or null for a credential created without one. A build can use only a credential with a base URL.
+          description: The https URL of the real system, or null for a login credential or one created without a URL. An API build can use only a credential with a base URL.
           type:
             - string
             - "null"
@@ -909,12 +918,15 @@ components:
           format: date-time
           type: string
         header:
-          description: The HTTP header that carries the value.
+          description: The HTTP header that carries the value, or empty for a login credential.
           type: string
         id:
           description: Credential ID.
           pattern: ^crd_[0-9A-HJKMNP-TV-Z]{26}$
           type: string
+        login:
+          $ref: "#/components/schemas/CredentialLogin"
+          description: The Web App login of a login credential, or null. Only a Web App build uses a login credential, and it needs exactly one.
         name:
           description: Credential name. Names need not be unique.
           type: string
@@ -923,7 +935,67 @@ components:
         - name
         - base_url
         - header
+        - login
         - created_at
+      type: object
+    CredentialLogin:
+      additionalProperties: false
+      properties:
+        hosts:
+          description: Further literal host names or IP addresses the app loads from, such as its API or CDN host.
+          items:
+            type: string
+          type: array
+        url:
+          description: The https URL of the app's sign-in page.
+          type: string
+        username:
+          description: The user name to sign in with.
+          type: string
+      required:
+        - url
+        - username
+        - hosts
+      type:
+        - object
+        - "null"
+    CredentialLoginRequest:
+      additionalProperties: false
+      properties:
+        hosts:
+          description: Further literal host names or IP addresses the app loads from, such as its API or CDN host. Send an empty list for none.
+          items:
+            type: string
+          type: array
+        url:
+          description: The https URL of the app's sign-in page, with a literal host name or IP address and no user information.
+          type: string
+        username:
+          description: The user name to sign in with.
+          minLength: 1
+          type: string
+      required:
+        - url
+        - username
+        - hosts
+      type: object
+    CredentialLoginUpdate:
+      additionalProperties: false
+      properties:
+        hosts:
+          description: The full list of further hosts the app loads from, which replaces the current list. Send the current list to keep it.
+          items:
+            type: string
+          type: array
+        url:
+          description: New https URL of the app's sign-in page.
+          type: string
+        username:
+          description: New user name.
+          minLength: 1
+          type: string
+      required:
+        - hosts
       type: object
     CurrentSimulationToken:
       additionalProperties: false
@@ -1345,6 +1417,7 @@ components:
           error: null
           id: smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5
           instructions: Return stable example data for every operation.
+          mode: api
           name: billing-api
           parent_id: smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9
           publication: null
@@ -1377,6 +1450,12 @@ components:
         instructions:
           description: The instructions the build followed, or empty when none were given.
           type: string
+        mode:
+          description: api for a Simulator of the vendor's API; web_app for one of its logged-in web app.
+          enum:
+            - api
+            - web_app
+          type: string
         name:
           description: Simulator name. The ID is its identity, and names need not be unique.
           maxLength: 128
@@ -1404,11 +1483,12 @@ components:
             - catalog
           type: string
         spec_kind:
-          description: The specification the Simulator was built from, or null until a build has read it.
+          description: "The specification the Simulator was built from, or null until a build has read it. recorded is a Web App Simulator's: the calls its discovery journeys captured."
           enum:
             - openapi
             - wsdl
             - graphql
+            - recorded
             - null
           type:
             - string
@@ -1433,6 +1513,7 @@ components:
         - error
         - created_at
         - credential_ids
+        - mode
         - build
         - research
         - publication
@@ -1501,8 +1582,9 @@ components:
             - combined
           type: string
         phase:
-          description: "Agent phase: research while the research agent indexes the documents and saves the vendor pages they lack; build for generation, review for the separate reviewer, qa while QA tests the running Simulator from outside, after the last review round of a build with credential_ids, finalize for author repair after review or QA. Null when not recorded."
+          description: "Agent phase: discovery while the discovery agent logs in to the vendor's web app and captures it, in a Web App build; research while the research agent indexes the documents and saves the vendor pages they lack; build for generation, review for the separate reviewer, qa while QA tests the running Simulator from outside, after the last review round of a build with credential_ids, finalize for author repair after review or QA. Null when not recorded."
           enum:
+            - discovery
             - research
             - build
             - review
@@ -1848,12 +1930,15 @@ components:
         header:
           description: New HTTP header that carries the value.
           type: string
+        login:
+          $ref: "#/components/schemas/CredentialLoginUpdate"
+          description: New login fields of a login credential. An omitted url or username keeps its value; hosts is always the full list.
         name:
           description: New credential name.
           minLength: 1
           type: string
         value:
-          description: New full header value. Required when base_url or header changes. Builds that start an agent after the change use it. The API never returns it.
+          description: New full header value or login password. Required when base_url, header, login.url, or login.hosts changes. Builds that start an agent after the change use it. The API never returns it.
           minLength: 1
           type: string
           writeOnly: true
@@ -2289,7 +2374,7 @@ paths:
       tags:
         - credentials
     post:
-      description: "Stores a connection to a real system: its base URL, the header that carries the credential, and the header value. Returns the credential without its value."
+      description: "Stores a connection to a real system: either an API base URL, the header that carries the credential, and the header value, or an app login with its sign-in URL, username, and password. Returns the credential without its value."
       operationId: create-credential
       requestBody:
         content:
@@ -2456,7 +2541,7 @@ paths:
       tags:
         - credentials
     patch:
-      description: Renames a credential, changes its base URL or header, or replaces its value. Omitted fields keep their current values.
+      description: Renames a credential, changes its base URL and header or its login, or replaces its value. A credential keeps its kind. Omitted fields keep their current values.
       operationId: update-credential
       parameters:
         - description: Credential ID.

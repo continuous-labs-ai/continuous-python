@@ -8,6 +8,13 @@ from typing import List, Literal, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
+BuildSimulatorRequestMode = Literal[
+    "api",
+    "web_app",
+]
+r"""What the Simulator simulates. api, the default, builds the vendor's API from a spec, or from a parent with instructions. web_app builds the vendor's logged-in web app and the private API behind it: it takes no spec, spec_kind or filter, needs exactly one Web App login credential in credential_ids, runs on a Claude model or combined, and starts with a Discovery stage that logs in and captures the app. With parent_id and instructions, it builds from a ready web_app Simulator and starts with that Simulator's captures instead of Discovery."""
+
+
 BuildSimulatorRequestModel = Literal[
     "gpt-6-astra",
     "gpt-6.1-sol",
@@ -28,17 +35,19 @@ r"""Source specification format. Omission detects the format; GraphQL SDL needs 
 
 class BuildSimulatorRequestTypedDict(TypedDict):
     credential_ids: NotRequired[List[str]]
-    r"""Workspace credentials QA and the builder can call real systems with, to compare the Simulator with them. A build with credentials runs QA after its review rounds. At most 5. Each must belong to the workspace and have a base_url. QA may create test objects in the live system and deletes them or, where the API cannot, leaves them in a final state; the builder sends only reads. Use a sandbox or test account."""
+    r"""Workspace credentials QA and the builder can call real systems with, to compare the Simulator with them. A build with credentials runs QA after its review rounds. At most 5. Each must belong to the workspace and have a base_url, except the one Web App login a Web App build needs, which its Discovery, Build and QA stages use. QA, and the builder of a Web App build, may create test objects in the live system and delete them or, where the API cannot, leave them in a final state; otherwise the builder sends only reads. Use a sandbox or test account."""
     filter_: NotRequired[List[str]]
     r"""Regular expressions (RE2 syntax) that select the operations to implement. Each is matched against the OpenAPI operationId, the WSDL operation name, or the GraphQL Query or Mutation field name; an operation is kept when any expression matches, and an OpenAPI operation without an operationId is dropped. At most 64 expressions of at most 1,024 characters each. Omit or send an empty list to keep every operation. Not allowed for an incremental build."""
     instructions: NotRequired[str]
     r"""Instructions for the builder. Required for an incremental build. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
+    mode: NotRequired[BuildSimulatorRequestMode]
+    r"""What the Simulator simulates. api, the default, builds the vendor's API from a spec, or from a parent with instructions. web_app builds the vendor's logged-in web app and the private API behind it: it takes no spec, spec_kind or filter, needs exactly one Web App login credential in credential_ids, runs on a Claude model or combined, and starts with a Discovery stage that logs in and captures the app. With parent_id and instructions, it builds from a ready web_app Simulator and starts with that Simulator's captures instead of Discovery."""
     model: NotRequired[BuildSimulatorRequestModel]
     r"""Model that builds and reviews the Simulator. Defaults to combined. Its provider is derived from the model. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does."""
     name: NotRequired[str]
     r"""Name for the Simulator. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
     parent_id: NotRequired[str]
-    r"""Parent Simulator ID. With instructions and no spec this starts an incremental build: the parent must be ready, and the request takes no filter or spec_kind."""
+    r"""Parent Simulator ID. With instructions and no spec this starts an incremental build: the parent must be ready and in the build's mode, and the request takes no filter or spec_kind."""
     review_rounds: NotRequired[int]
     r"""Review rounds, from 1 to 10. Defaults to 1. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
     spec_kind: NotRequired[BuildSimulatorRequestSpecKind]
@@ -49,13 +58,16 @@ class BuildSimulatorRequestTypedDict(TypedDict):
 
 class BuildSimulatorRequest(BaseModel):
     credential_ids: Optional[List[str]] = None
-    r"""Workspace credentials QA and the builder can call real systems with, to compare the Simulator with them. A build with credentials runs QA after its review rounds. At most 5. Each must belong to the workspace and have a base_url. QA may create test objects in the live system and deletes them or, where the API cannot, leaves them in a final state; the builder sends only reads. Use a sandbox or test account."""
+    r"""Workspace credentials QA and the builder can call real systems with, to compare the Simulator with them. A build with credentials runs QA after its review rounds. At most 5. Each must belong to the workspace and have a base_url, except the one Web App login a Web App build needs, which its Discovery, Build and QA stages use. QA, and the builder of a Web App build, may create test objects in the live system and delete them or, where the API cannot, leave them in a final state; otherwise the builder sends only reads. Use a sandbox or test account."""
 
     filter_: Annotated[Optional[List[str]], pydantic.Field(alias="filter")] = None
     r"""Regular expressions (RE2 syntax) that select the operations to implement. Each is matched against the OpenAPI operationId, the WSDL operation name, or the GraphQL Query or Mutation field name; an operation is kept when any expression matches, and an OpenAPI operation without an operationId is dropped. At most 64 expressions of at most 1,024 characters each. Omit or send an empty list to keep every operation. Not allowed for an incremental build."""
 
     instructions: Optional[str] = None
     r"""Instructions for the builder. Required for an incremental build. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
+
+    mode: Optional[BuildSimulatorRequestMode] = "api"
+    r"""What the Simulator simulates. api, the default, builds the vendor's API from a spec, or from a parent with instructions. web_app builds the vendor's logged-in web app and the private API behind it: it takes no spec, spec_kind or filter, needs exactly one Web App login credential in credential_ids, runs on a Claude model or combined, and starts with a Discovery stage that logs in and captures the app. With parent_id and instructions, it builds from a ready web_app Simulator and starts with that Simulator's captures instead of Discovery."""
 
     model: Optional[BuildSimulatorRequestModel] = "combined"
     r"""Model that builds and reviews the Simulator. Defaults to combined. Its provider is derived from the model. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does."""
@@ -64,7 +76,7 @@ class BuildSimulatorRequest(BaseModel):
     r"""Name for the Simulator. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
 
     parent_id: Optional[str] = None
-    r"""Parent Simulator ID. With instructions and no spec this starts an incremental build: the parent must be ready, and the request takes no filter or spec_kind."""
+    r"""Parent Simulator ID. With instructions and no spec this starts an incremental build: the parent must be ready and in the build's mode, and the request takes no filter or spec_kind."""
 
     review_rounds: Optional[int] = 1
     r"""Review rounds, from 1 to 10. Defaults to 1. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
@@ -82,6 +94,7 @@ class BuildSimulatorRequest(BaseModel):
                 "credential_ids",
                 "filter",
                 "instructions",
+                "mode",
                 "model",
                 "name",
                 "parent_id",

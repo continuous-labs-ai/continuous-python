@@ -15,6 +15,16 @@ from typing import List, Literal, Union
 from typing_extensions import TypedDict
 
 
+SimulatorMode = Union[
+    Literal[
+        "api",
+        "web_app",
+    ],
+    UnrecognizedStr,
+]
+r"""api for a Simulator of the vendor's API; web_app for one of its logged-in web app."""
+
+
 Source = Union[
     Literal[
         "workspace",
@@ -30,10 +40,11 @@ SimulatorSpecKind = Union[
         "openapi",
         "wsdl",
         "graphql",
+        "recorded",
     ],
     UnrecognizedStr,
 ]
-r"""The specification the Simulator was built from, or null until a build has read it."""
+r"""The specification the Simulator was built from, or null until a build has read it. recorded is a Web App Simulator's: the calls its discovery journeys captured."""
 
 
 SimulatorStatus = Union[
@@ -61,6 +72,8 @@ class SimulatorTypedDict(TypedDict):
     r"""Simulator ID."""
     instructions: str
     r"""The instructions the build followed, or empty when none were given."""
+    mode: SimulatorMode
+    r"""api for a Simulator of the vendor's API; web_app for one of its logged-in web app."""
     name: str
     r"""Simulator name. The ID is its identity, and names need not be unique."""
     parent_id: Nullable[str]
@@ -72,7 +85,7 @@ class SimulatorTypedDict(TypedDict):
     source: Source
     r"""workspace for a Simulator your workspace built; catalog for a read-only Simulator that Continuous publishes."""
     spec_kind: Nullable[SimulatorSpecKind]
-    r"""The specification the Simulator was built from, or null until a build has read it."""
+    r"""The specification the Simulator was built from, or null until a build has read it. recorded is a Web App Simulator's: the calls its discovery journeys captured."""
     status: SimulatorStatus
     r"""pending while waiting for capacity; building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
 
@@ -95,6 +108,9 @@ class Simulator(BaseModel):
     instructions: str
     r"""The instructions the build followed, or empty when none were given."""
 
+    mode: SimulatorMode
+    r"""api for a Simulator of the vendor's API; web_app for one of its logged-in web app."""
+
     name: str
     r"""Simulator name. The ID is its identity, and names need not be unique."""
 
@@ -111,7 +127,7 @@ class Simulator(BaseModel):
     r"""workspace for a Simulator your workspace built; catalog for a read-only Simulator that Continuous publishes."""
 
     spec_kind: Nullable[SimulatorSpecKind]
-    r"""The specification the Simulator was built from, or null until a build has read it."""
+    r"""The specification the Simulator was built from, or null until a build has read it. recorded is a Web App Simulator's: the calls its discovery journeys captured."""
 
     status: SimulatorStatus
     r"""pending while waiting for capacity; building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
