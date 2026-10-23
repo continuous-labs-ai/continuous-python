@@ -6,7 +6,7 @@ from continuous._hooks import HookContext
 from continuous.types import OptionalNullable, UNSET
 from continuous.utils import get_security_from_env
 from continuous.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Mapping, Optional
+from typing import Any, Mapping, Optional, Union
 
 
 class Credentials(BaseSDK):
@@ -219,10 +219,13 @@ class Credentials(BaseSDK):
     def create_credential(
         self,
         *,
-        base_url: str,
         name: str,
         value: str,
-        header: Optional[str] = "Authorization",
+        base_url: Optional[str] = None,
+        header: Optional[str] = None,
+        login: Optional[
+            Union[models.CredentialLoginRequest, models.CredentialLoginRequestTypedDict]
+        ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -230,12 +233,13 @@ class Credentials(BaseSDK):
     ) -> models.Credential:
         r"""Create credential
 
-        Stores a connection to a real system: its base URL, the header that carries the credential, and the header value. Returns the credential without its value.
+        Stores a connection to a real system: either an API base URL, the header that carries the credential, and the header value, or an app login with its sign-in URL, username, and password. Returns the credential without its value.
 
-        :param base_url: The https URL of the real system. Requests go to paths under it.
         :param name: Credential name.
-        :param value: The full header value, for example Bearer followed by a token. The API never returns it.
-        :param header: The HTTP header that carries the value.
+        :param value: The full header value, for example Bearer followed by a token, or the login password. The API never returns it.
+        :param base_url: The https URL of the real system. Requests go to paths under it. Send exactly one of base_url and login.
+        :param header: The HTTP header that carries the value. Defaults to Authorization. Not allowed with login.
+        :param login:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -254,6 +258,9 @@ class Credentials(BaseSDK):
         request = models.CreateCredentialRequest(
             base_url=base_url,
             header=header,
+            login=utils.get_pydantic_model(
+                login, Optional[models.CredentialLoginRequest]
+            ),
             name=name,
             value=value,
         )
@@ -332,10 +339,13 @@ class Credentials(BaseSDK):
     async def create_credential_async(
         self,
         *,
-        base_url: str,
         name: str,
         value: str,
-        header: Optional[str] = "Authorization",
+        base_url: Optional[str] = None,
+        header: Optional[str] = None,
+        login: Optional[
+            Union[models.CredentialLoginRequest, models.CredentialLoginRequestTypedDict]
+        ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -343,12 +353,13 @@ class Credentials(BaseSDK):
     ) -> models.Credential:
         r"""Create credential
 
-        Stores a connection to a real system: its base URL, the header that carries the credential, and the header value. Returns the credential without its value.
+        Stores a connection to a real system: either an API base URL, the header that carries the credential, and the header value, or an app login with its sign-in URL, username, and password. Returns the credential without its value.
 
-        :param base_url: The https URL of the real system. Requests go to paths under it.
         :param name: Credential name.
-        :param value: The full header value, for example Bearer followed by a token. The API never returns it.
-        :param header: The HTTP header that carries the value.
+        :param value: The full header value, for example Bearer followed by a token, or the login password. The API never returns it.
+        :param base_url: The https URL of the real system. Requests go to paths under it. Send exactly one of base_url and login.
+        :param header: The HTTP header that carries the value. Defaults to Authorization. Not allowed with login.
+        :param login:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -367,6 +378,9 @@ class Credentials(BaseSDK):
         request = models.CreateCredentialRequest(
             base_url=base_url,
             header=header,
+            login=utils.get_pydantic_model(
+                login, Optional[models.CredentialLoginRequest]
+            ),
             name=name,
             value=value,
         )
@@ -844,6 +858,9 @@ class Credentials(BaseSDK):
         id: str,
         base_url: Optional[str] = None,
         header: Optional[str] = None,
+        login: Optional[
+            Union[models.CredentialLoginUpdate, models.CredentialLoginUpdateTypedDict]
+        ] = None,
         name: Optional[str] = None,
         value: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -853,13 +870,14 @@ class Credentials(BaseSDK):
     ) -> models.Credential:
         r"""Update credential
 
-        Renames a credential, changes its base URL or header, or replaces its value. Omitted fields keep their current values.
+        Renames a credential, changes its base URL and header or its login, or replaces its value. A credential keeps its kind. Omitted fields keep their current values.
 
         :param id: Credential ID.
         :param base_url: New https URL of the real system.
         :param header: New HTTP header that carries the value.
+        :param login:
         :param name: New credential name.
-        :param value: New full header value. Required when base_url or header changes. Builds that start an agent after the change use it. The API never returns it.
+        :param value: New full header value or login password. Required when base_url, header, login.url, or login.hosts changes. Builds that start an agent after the change use it. The API never returns it.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -880,6 +898,9 @@ class Credentials(BaseSDK):
             body=models.UpdateCredentialRequest(
                 base_url=base_url,
                 header=header,
+                login=utils.get_pydantic_model(
+                    login, Optional[models.CredentialLoginUpdate]
+                ),
                 name=name,
                 value=value,
             ),
@@ -962,6 +983,9 @@ class Credentials(BaseSDK):
         id: str,
         base_url: Optional[str] = None,
         header: Optional[str] = None,
+        login: Optional[
+            Union[models.CredentialLoginUpdate, models.CredentialLoginUpdateTypedDict]
+        ] = None,
         name: Optional[str] = None,
         value: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -971,13 +995,14 @@ class Credentials(BaseSDK):
     ) -> models.Credential:
         r"""Update credential
 
-        Renames a credential, changes its base URL or header, or replaces its value. Omitted fields keep their current values.
+        Renames a credential, changes its base URL and header or its login, or replaces its value. A credential keeps its kind. Omitted fields keep their current values.
 
         :param id: Credential ID.
         :param base_url: New https URL of the real system.
         :param header: New HTTP header that carries the value.
+        :param login:
         :param name: New credential name.
-        :param value: New full header value. Required when base_url or header changes. Builds that start an agent after the change use it. The API never returns it.
+        :param value: New full header value or login password. Required when base_url, header, login.url, or login.hosts changes. Builds that start an agent after the change use it. The API never returns it.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -998,6 +1023,9 @@ class Credentials(BaseSDK):
             body=models.UpdateCredentialRequest(
                 base_url=base_url,
                 header=header,
+                login=utils.get_pydantic_model(
+                    login, Optional[models.CredentialLoginUpdate]
+                ),
                 name=name,
                 value=value,
             ),

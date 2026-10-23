@@ -1,6 +1,6 @@
 # SimulatorSpecKind
 
-The specification the Simulator was built from, or null until a build has read it.
+The specification the Simulator was built from, or null until a build has read it. recorded is a Web App Simulator's: the calls its discovery journeys captured.
 
 ## Example Usage
 
@@ -19,3 +19,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"openapi"`
 - `"wsdl"`
 - `"graphql"`
+- `"recorded"`

@@ -31,6 +31,7 @@ if TYPE_CHECKING:
     )
     from .buildsimulatorrequest import (
         BuildSimulatorRequest,
+        BuildSimulatorRequestMode,
         BuildSimulatorRequestModel,
         BuildSimulatorRequestSpecKind,
         BuildSimulatorRequestTypedDict,
@@ -82,6 +83,15 @@ if TYPE_CHECKING:
         CreateSimulationRequestTypedDict,
     )
     from .credential import Credential, CredentialTypedDict
+    from .credentiallogin import CredentialLogin, CredentialLoginTypedDict
+    from .credentialloginrequest import (
+        CredentialLoginRequest,
+        CredentialLoginRequestTypedDict,
+    )
+    from .credentialloginupdate import (
+        CredentialLoginUpdate,
+        CredentialLoginUpdateTypedDict,
+    )
     from .currentsimulationtoken import (
         CurrentSimulationToken,
         CurrentSimulationTokenTypedDict,
@@ -204,6 +214,7 @@ if TYPE_CHECKING:
     )
     from .simulator import (
         Simulator,
+        SimulatorMode,
         SimulatorSpecKind,
         SimulatorStatus,
         SimulatorTypedDict,
@@ -308,6 +319,7 @@ __all__ = [
     "AdvanceWorldRequest",
     "AdvanceWorldRequestTypedDict",
     "BuildSimulatorRequest",
+    "BuildSimulatorRequestMode",
     "BuildSimulatorRequestModel",
     "BuildSimulatorRequestSpecKind",
     "BuildSimulatorRequestTypedDict",
@@ -344,6 +356,12 @@ __all__ = [
     "CreatedSimulationStatus",
     "CreatedSimulationTypedDict",
     "Credential",
+    "CredentialLogin",
+    "CredentialLoginRequest",
+    "CredentialLoginRequestTypedDict",
+    "CredentialLoginTypedDict",
+    "CredentialLoginUpdate",
+    "CredentialLoginUpdateTypedDict",
     "CredentialTypedDict",
     "CurrentSimulationToken",
     "CurrentSimulationTokenTypedDict",
@@ -443,6 +461,7 @@ __all__ = [
     "SimulatorErrorCode",
     "SimulatorErrorReason",
     "SimulatorErrorTypedDict",
+    "SimulatorMode",
     "SimulatorPublication",
     "SimulatorPublicationStatus",
     "SimulatorPublicationTypedDict",
@@ -529,6 +548,7 @@ _dynamic_imports: dict[str, str] = {
     "Spec": ".build_simulatorop",
     "SpecTypedDict": ".build_simulatorop",
     "BuildSimulatorRequest": ".buildsimulatorrequest",
+    "BuildSimulatorRequestMode": ".buildsimulatorrequest",
     "BuildSimulatorRequestModel": ".buildsimulatorrequest",
     "BuildSimulatorRequestSpecKind": ".buildsimulatorrequest",
     "BuildSimulatorRequestTypedDict": ".buildsimulatorrequest",
@@ -564,6 +584,12 @@ _dynamic_imports: dict[str, str] = {
     "CreateSimulationRequestTypedDict": ".createsimulationrequest",
     "Credential": ".credential",
     "CredentialTypedDict": ".credential",
+    "CredentialLogin": ".credentiallogin",
+    "CredentialLoginTypedDict": ".credentiallogin",
+    "CredentialLoginRequest": ".credentialloginrequest",
+    "CredentialLoginRequestTypedDict": ".credentialloginrequest",
+    "CredentialLoginUpdate": ".credentialloginupdate",
+    "CredentialLoginUpdateTypedDict": ".credentialloginupdate",
     "CurrentSimulationToken": ".currentsimulationtoken",
     "CurrentSimulationTokenTypedDict": ".currentsimulationtoken",
     "DeleteCredentialRequest": ".delete_credentialop",
@@ -646,6 +672,7 @@ _dynamic_imports: dict[str, str] = {
     "SimulationDetailStatus": ".simulationdetail",
     "SimulationDetailTypedDict": ".simulationdetail",
     "Simulator": ".simulator",
+    "SimulatorMode": ".simulator",
     "SimulatorSpecKind": ".simulator",
     "SimulatorStatus": ".simulator",
     "SimulatorTypedDict": ".simulator",
