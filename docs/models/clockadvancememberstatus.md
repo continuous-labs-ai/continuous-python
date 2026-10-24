@@ -1,6 +1,6 @@
 # ClockAdvanceMemberStatus
 
-Whether this member is pending, committed, failed, or skipped because it is not running.
+Whether this member is pending, committed, failed, or skipped.
 
 ## Example Usage
 

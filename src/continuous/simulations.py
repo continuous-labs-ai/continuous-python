@@ -30,7 +30,7 @@ class Simulations(BaseSDK):
 
         Returns all Simulations that the API key can access. Results can be filtered by status, Simulator ID, or pinned Simulator digest.
 
-        :param status: Optional status filter.
+        :param status: Optional status filter. paused is deprecated and matches the same Simulations as running.
         :param simulator_id: Optional Simulator ID filter.
         :param simulator_digest: Optional exact pinned OCI manifest digest filter.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
@@ -141,7 +141,7 @@ class Simulations(BaseSDK):
 
         Returns all Simulations that the API key can access. Results can be filtered by status, Simulator ID, or pinned Simulator digest.
 
-        :param status: Optional status filter.
+        :param status: Optional status filter. paused is deprecated and matches the same Simulations as running.
         :param simulator_id: Optional Simulator ID filter.
         :param simulator_digest: Optional exact pinned OCI manifest digest filter.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
@@ -1315,7 +1315,7 @@ class Simulations(BaseSDK):
     ) -> models.ListClockAdvanceEventsResponse:
         r"""List Clock Advance Events
 
-        Returns the ordered event trace for a committed advance. The Simulation must be running or paused. Forks retain traces in their inherited state.
+        Returns the ordered event trace for a committed advance. The Simulation must be running. Forks retain traces in their inherited state.
 
         :param id: Simulation ID.
         :param advance_id: Advance ID. A historical fork can read inherited runtime receipts.
@@ -1427,7 +1427,7 @@ class Simulations(BaseSDK):
     ) -> models.ListClockAdvanceEventsResponse:
         r"""List Clock Advance Events
 
-        Returns the ordered event trace for a committed advance. The Simulation must be running or paused. Forks retain traces in their inherited state.
+        Returns the ordered event trace for a committed advance. The Simulation must be running. Forks retain traces in their inherited state.
 
         :param id: Simulation ID.
         :param advance_id: Advance ID. A historical fork can read inherited runtime receipts.
@@ -1538,7 +1538,7 @@ class Simulations(BaseSDK):
     ) -> models.ForkSimulationResponse:
         r"""Fork Simulation
 
-        Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running or paused; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token, which does not expire.
+        Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token, which does not expire.
 
         :param id: Source Simulation ID.
         :param at_step: Completed step to fork from. Omission forks from the latest state.
@@ -1655,7 +1655,7 @@ class Simulations(BaseSDK):
     ) -> models.ForkSimulationResponse:
         r"""Fork Simulation
 
-        Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running or paused; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token, which does not expire.
+        Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token, which does not expire.
 
         :param id: Source Simulation ID.
         :param at_step: Completed step to fork from. Omission forks from the latest state.
@@ -1770,7 +1770,7 @@ class Simulations(BaseSDK):
     ) -> models.StartSimulationResponse:
         r"""Start Simulation
 
-        Starts a stopped Simulation from its saved state. The response includes the Simulation's token, which stop and start do not change. An already running or paused Simulation returns its current token and status.
+        Starts a stopped Simulation from its saved state. The response includes the Simulation's token, which stop and start do not change. An already running Simulation returns its current token and status.
 
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
@@ -1874,7 +1874,7 @@ class Simulations(BaseSDK):
     ) -> models.StartSimulationResponse:
         r"""Start Simulation
 
-        Starts a stopped Simulation from its saved state. The response includes the Simulation's token, which stop and start do not change. An already running or paused Simulation returns its current token and status.
+        Starts a stopped Simulation from its saved state. The response includes the Simulation's token, which stop and start do not change. An already running Simulation returns its current token and status.
 
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
@@ -2461,7 +2461,7 @@ class Simulations(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(
-            http_res, ["401", "403", "404", "409"], "application/problem+json"
+            http_res, ["401", "403", "404"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -2565,7 +2565,7 @@ class Simulations(BaseSDK):
                 headers=utils.get_response_headers(http_res.headers),
             )
         if utils.match_response(
-            http_res, ["401", "403", "404", "409"], "application/problem+json"
+            http_res, ["401", "403", "404"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)

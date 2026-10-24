@@ -12,12 +12,11 @@ from typing_extensions import TypedDict
 SimulationDetailStatus = Union[
     Literal[
         "running",
-        "paused",
         "stopped",
     ],
     UnrecognizedStr,
 ]
-r"""Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it."""
+r"""Current status. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopped means its state is saved and requests return 409 until you start it."""
 
 
 class SimulationDetailTypedDict(TypedDict):
@@ -50,7 +49,7 @@ class SimulationDetailTypedDict(TypedDict):
     start_time: datetime
     r"""Initial simulated time."""
     status: SimulationDetailStatus
-    r"""Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it."""
+    r"""Current status. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopped means its state is saved and requests return 409 until you start it."""
     world_id: Nullable[str]
     r"""ID of the World that owns this Simulation, or null."""
 
@@ -99,7 +98,7 @@ class SimulationDetail(BaseModel):
     r"""Initial simulated time."""
 
     status: SimulationDetailStatus
-    r"""Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it."""
+    r"""Current status. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopped means its state is saved and requests return 409 until you start it."""
 
     world_id: Nullable[str]
     r"""ID of the World that owns this Simulation, or null."""

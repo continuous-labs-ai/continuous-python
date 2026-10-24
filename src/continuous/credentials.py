@@ -877,7 +877,7 @@ class Credentials(BaseSDK):
         :param header: New HTTP header that carries the value.
         :param login:
         :param name: New credential name.
-        :param value: New full header value or login password. Required when base_url, header, login.url, or login.hosts changes. Builds that start an agent after the change use it. The API never returns it.
+        :param value: New full header value or login password. Required when base_url, header, or login.url changes. Builds that start an agent after the change use it. The API never returns it.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1002,7 +1002,7 @@ class Credentials(BaseSDK):
         :param header: New HTTP header that carries the value.
         :param login:
         :param name: New credential name.
-        :param value: New full header value or login password. Required when base_url, header, login.url, or login.hosts changes. Builds that start an agent after the change use it. The API never returns it.
+        :param value: New full header value or login password. Required when base_url, header, or login.url changes. Builds that start an agent after the change use it. The API never returns it.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds

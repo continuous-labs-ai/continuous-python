@@ -12,12 +12,11 @@ from typing_extensions import Annotated, TypedDict
 CreatedSimulationStatus = Union[
     Literal[
         "running",
-        "paused",
         "stopped",
     ],
     UnrecognizedStr,
 ]
-r"""Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it."""
+r"""Current status. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopped means its state is saved and requests return 409 until you start it."""
 
 
 class CreatedSimulationTypedDict(TypedDict):
@@ -50,7 +49,7 @@ class CreatedSimulationTypedDict(TypedDict):
     start_time: datetime
     r"""Initial simulated time."""
     status: CreatedSimulationStatus
-    r"""Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it."""
+    r"""Current status. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopped means its state is saved and requests return 409 until you start it."""
     token: str
     r"""The Simulation's token for requests to its endpoint. It does not expire. Send it in the X-Continuous-Simulation-Token header, with an actor's id from GET /v1/simulations/{id} in X-Continuous-Actor to act as that caller. Retrieve it later with GET /v1/simulations/{id}/token."""
 
@@ -104,7 +103,7 @@ class CreatedSimulation(BaseModel):
     r"""Initial simulated time."""
 
     status: CreatedSimulationStatus
-    r"""Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it."""
+    r"""Current status. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopped means its state is saved and requests return 409 until you start it."""
 
     token: str
     r"""The Simulation's token for requests to its endpoint. It does not expire. Send it in the X-Continuous-Simulation-Token header, with an actor's id from GET /v1/simulations/{id} in X-Continuous-Actor to act as that caller. Retrieve it later with GET /v1/simulations/{id}/token."""

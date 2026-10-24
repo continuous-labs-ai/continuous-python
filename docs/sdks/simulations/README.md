@@ -45,14 +45,14 @@ with Continuous(
 
 ### Parameters
 
-| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `status`                                                                        | [Optional[models.ListSimulationsStatus]](../../models/listsimulationsstatus.md) | :heavy_minus_sign:                                                              | Optional status filter.                                                         |
-| `simulator_id`                                                                  | *Optional[str]*                                                                 | :heavy_minus_sign:                                                              | Optional Simulator ID filter.                                                   |
-| `simulator_digest`                                                              | *Optional[str]*                                                                 | :heavy_minus_sign:                                                              | Optional exact pinned OCI manifest digest filter.                               |
-| `limit`                                                                         | *Optional[int]*                                                                 | :heavy_minus_sign:                                                              | Page size. Values below 1 use 50. Values above 200 use 200.                     |
-| `cursor`                                                                        | *Optional[str]*                                                                 | :heavy_minus_sign:                                                              | Opaque next_cursor value from a previous page.                                  |
-| `retries`                                                                       | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                | :heavy_minus_sign:                                                              | Configuration to override the default retry behavior of the client.             |
+| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `status`                                                                                  | [Optional[models.ListSimulationsStatus]](../../models/listsimulationsstatus.md)           | :heavy_minus_sign:                                                                        | Optional status filter. paused is deprecated and matches the same Simulations as running. |
+| `simulator_id`                                                                            | *Optional[str]*                                                                           | :heavy_minus_sign:                                                                        | Optional Simulator ID filter.                                                             |
+| `simulator_digest`                                                                        | *Optional[str]*                                                                           | :heavy_minus_sign:                                                                        | Optional exact pinned OCI manifest digest filter.                                         |
+| `limit`                                                                                   | *Optional[int]*                                                                           | :heavy_minus_sign:                                                                        | Page size. Values below 1 use 50. Values above 200 use 200.                               |
+| `cursor`                                                                                  | *Optional[str]*                                                                           | :heavy_minus_sign:                                                                        | Opaque next_cursor value from a previous page.                                            |
+| `retries`                                                                                 | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                          | :heavy_minus_sign:                                                                        | Configuration to override the default retry behavior of the client.                       |
 
 ### Response
 
@@ -323,7 +323,7 @@ with Continuous(
 
 ## list_simulation_advance_events
 
-Returns the ordered event trace for a committed advance. The Simulation must be running or paused. Forks retain traces in their inherited state.
+Returns the ordered event trace for a committed advance. The Simulation must be running. Forks retain traces in their inherited state.
 
 ### Example Usage
 
@@ -368,7 +368,7 @@ with Continuous(
 
 ## fork_simulation
 
-Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running or paused; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token, which does not expire.
+Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token, which does not expire.
 
 ### Example Usage
 
@@ -412,7 +412,7 @@ with Continuous(
 
 ## start_simulation
 
-Starts a stopped Simulation from its saved state. The response includes the Simulation's token, which stop and start do not change. An already running or paused Simulation returns its current token and status.
+Starts a stopped Simulation from its saved state. The response includes the Simulation's token, which stop and start do not change. An already running Simulation returns its current token and status.
 
 ### Example Usage
 
@@ -576,7 +576,7 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 403, 404, 409            | application/problem+json      |
+| errors.Error                  | 401, 403, 404                 | application/problem+json      |
 | errors.Error                  | 500, 502, 503                 | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 

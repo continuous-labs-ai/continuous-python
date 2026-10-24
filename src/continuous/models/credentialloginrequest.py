@@ -2,13 +2,10 @@
 
 from __future__ import annotations
 from continuous.types import BaseModel
-from typing import List
 from typing_extensions import TypedDict
 
 
 class CredentialLoginRequestTypedDict(TypedDict):
-    hosts: List[str]
-    r"""Further literal host names or IP addresses the app loads from, such as its API or CDN host. Send an empty list for none."""
     url: str
     r"""The https URL of the app's sign-in page, with a literal host name or IP address and no user information."""
     username: str
@@ -16,9 +13,6 @@ class CredentialLoginRequestTypedDict(TypedDict):
 
 
 class CredentialLoginRequest(BaseModel):
-    hosts: List[str]
-    r"""Further literal host names or IP addresses the app loads from, such as its API or CDN host. Send an empty list for none."""
-
     url: str
     r"""The https URL of the app's sign-in page, with a literal host name or IP address and no user information."""
 

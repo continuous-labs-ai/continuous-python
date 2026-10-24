@@ -876,7 +876,7 @@ class Worlds(BaseSDK):
     ) -> models.ClockAdvance:
         r"""Advance World Time
 
-        Advances each running member independently and skips paused or stopped members without waking them. Successful advances remain committed when another member fails. The World current_time records the last settled request target; member clocks can differ.
+        Advances each member independently, waking an idle member first, and skips stopped members. Successful advances remain committed when another member fails. The World current_time records the last settled request target; member clocks can differ.
 
         :param id: World ID.
         :param idempotency_key: Stable key for this request. Reuse with the same target returns the same operation.
@@ -988,7 +988,7 @@ class Worlds(BaseSDK):
     ) -> models.ClockAdvance:
         r"""Advance World Time
 
-        Advances each running member independently and skips paused or stopped members without waking them. Successful advances remain committed when another member fails. The World current_time records the last settled request target; member clocks can differ.
+        Advances each member independently, waking an idle member first, and skips stopped members. Successful advances remain committed when another member fails. The World current_time records the last settled request target; member clocks can differ.
 
         :param id: World ID.
         :param idempotency_key: Stable key for this request. Reuse with the same target returns the same operation.
