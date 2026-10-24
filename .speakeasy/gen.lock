@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: 2c538398365d56c94606e8b3be8fa36c
+  docChecksum: 1bec24509bdb0f0c3a844efb1c86ee84
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.2.17
-  configChecksum: 0c7fce852d9714e70ec864228c941471
+  releaseVersion: 0.2.18
+  configChecksum: fefa967f65f46720afca11ac2c360853
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: 79ce441b-0f51-4642-91a7-0bd74f7174ad
-  pristine_commit_hash: d9a0d5096df9d48e76e3798fad651b232009e87c
-  pristine_tree_hash: 0771559e1e77310b6dc7a3dc733ece06389a854d
+  generation_id: 2b0db1de-43a9-4914-8433-d99faab2f23c
+  pristine_commit_hash: bf414d45053066fdc340ed712fcc9dc7c24b6fcf
+  pristine_tree_hash: 08b96c4207b8287c28345187d95961f42eeddfbf
 features:
   python:
     additionalDependencies: 1.1.0
@@ -285,16 +285,16 @@ trackedFiles:
     pristine_git_object: d39078e178ba7f6cec85ac14835e95e03136dba8
   docs/models/listsimulationsrequest.md:
     id: 88da7ffb48ac
-    last_write_checksum: sha1:60982b25abf572cc0b38eff890edb2039e455f5e
-    pristine_git_object: ba734f0d4de02623c7a0fdb6687d28609c9c613f
+    last_write_checksum: sha1:f37407c9be73b30d13deeefaca1d60a1226d673b
+    pristine_git_object: 8ef73196baacb297980e6698809145bb2caadf8f
   docs/models/listsimulationsresponse.md:
     id: 7fc24879a267
     last_write_checksum: sha1:7fb7767ebdaf260fc658188469dec0c614833b66
     pristine_git_object: 79041ed9d98a80b4cfbf0b7d92a960a6e15c4af1
   docs/models/listsimulationsstatus.md:
     id: ff1744a39bed
-    last_write_checksum: sha1:1e6e071880a068ca942d076db49baa931ca6cec5
-    pristine_git_object: 4ec2dc1c5daef938e12ee29175a8b53f315075e6
+    last_write_checksum: sha1:bc6094c01b88c7affc541b296d7f67817b76d12b
+    pristine_git_object: 480e0252e064e62da9870078a27fe483f547f715
   docs/models/listsimulationstepsrequest.md:
     id: 2bbea985ad7a
     last_write_checksum: sha1:37741e1f359a0046e87112e3d7a5fc7796ca8b22
@@ -585,8 +585,8 @@ trackedFiles:
     pristine_git_object: ab3923fe9cc18554e7920b3da489c43814d31083
   docs/sdks/simulations/README.md:
     id: a9e027fcb2b0
-    last_write_checksum: sha1:9ab5343adb7906989c4c3688696568bf55746306
-    pristine_git_object: 5359579af3a62dd9ed22e39085d044cc0b3fe9b6
+    last_write_checksum: sha1:896ccc7e665bd4295766bcddc087a2101fdc44a5
+    pristine_git_object: 83c7ddd2780c735cc0d73160dc5ac6ee3c466c45
   docs/sdks/simulators/README.md:
     id: 55eacdd8fa62
     last_write_checksum: sha1:7436e2693e93be42f06f983ab022ff624d9d917f
@@ -605,8 +605,8 @@ trackedFiles:
     pristine_git_object: ba50994ac7aceefe62e1571a6cbff467d9a067da
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:5d6403cce16926b7261654c96858b27d9a4f8ee3
-    pristine_git_object: 30493b972ca03e8fc134ef4e742a953986556362
+    last_write_checksum: sha1:155a3ce6cdf34080d0e2cf9878bcd84f1f1d3c59
+    pristine_git_object: f90c60146f4fb3d87a0763d615d15bab6bc6a797
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -633,8 +633,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:e8a01bda8733424025c6e4c5a1b01b86bb7c7ce3
-    pristine_git_object: b64219cdccd3a0e366afece3b188a19f09611a63
+    last_write_checksum: sha1:a9fb0ba9ce8833957f1f2eceb48909516ba2179c
+    pristine_git_object: 8d9423daa2d93ccbfdb05ee6ef1f784404717348
   src/continuous/basesdk.py:
     id: 7c7025a9c533
     last_write_checksum: sha1:c2195f8abe74c3f8baf5cb652679b710b838987d
@@ -853,8 +853,8 @@ trackedFiles:
     pristine_git_object: 370b991ac76bdcb93b4fb57a7bf3343f3df1ca11
   src/continuous/models/list_simulationsop.py:
     id: fda536b60060
-    last_write_checksum: sha1:22952903f25a8c2aee400bfe9764a046c7158aa1
-    pristine_git_object: acc91f6fbb3f2f3585af1c039a8ab4c02afd4538
+    last_write_checksum: sha1:03dfae8e9ce6ece81f78b93a68678bc23f630a58
+    pristine_git_object: 8966b3dab587d418b695a169f59ad4c3df10b682
   src/continuous/models/list_simulatorsop.py:
     id: "622975033005"
     last_write_checksum: sha1:1586a5cfdb38d225420e78544489055ef834bc8d
@@ -1029,8 +1029,8 @@ trackedFiles:
     pristine_git_object: 0aeeb029c5da501204fe4215cc60c55401147511
   src/continuous/simulations.py:
     id: 7cec67d30787
-    last_write_checksum: sha1:eaf67c05ed457ee59b6f2f46d25c2bca3b759409
-    pristine_git_object: 1893fb8251560da404dfe634cd5b986a00962d4b
+    last_write_checksum: sha1:e29770dedb4616648f049b864db5fd404bfb708c
+    pristine_git_object: a2ff84eca0331fce694987343563fe27bbe81f0a
   src/continuous/simulators.py:
     id: f782f4a769f3
     last_write_checksum: sha1:d508c91be5042c4821d10b99793225b2a3c635ec
@@ -2365,4 +2365,6 @@ examples:
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unknown", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
 examplesVersion: 1.0.2
-releaseNotes: "## Python SDK Changes:\n* `continuous.credentials.list_credentials()`:  `response.credentials[].login.hosts` **Removed** (Breaking ⚠️)\n* `continuous.credentials.create_credential()`: \n  *  `request.login.hosts` **Removed** (Breaking ⚠️)\n  *  `response.login.hosts` **Removed** (Breaking ⚠️)\n* `continuous.credentials.get_credential()`:  `response.login.hosts` **Removed** (Breaking ⚠️)\n* `continuous.credentials.update_credential()`: \n  *  `request.login.hosts` **Removed** (Breaking ⚠️)\n  *  `response.login.hosts` **Removed** (Breaking ⚠️)\n* `continuous.simulations.list_simulations()`:  `response.simulations[].status.enum(paused)` **Removed** (Breaking ⚠️)\n* `continuous.simulations.create_simulation()`:  `response.status.enum(paused)` **Removed** (Breaking ⚠️)\n* `continuous.simulations.get_simulation()`:  `response.status.enum(paused)` **Removed** (Breaking ⚠️)\n* `continuous.simulations.fork_simulation()`:  `response.status.enum(paused)` **Removed** (Breaking ⚠️)\n* `continuous.simulations.start_simulation()`:  `response.status.enum(paused)` **Removed** (Breaking ⚠️)\n* `continuous.simulations.stop_simulation()`:  `response.status.enum(paused)` **Removed** (Breaking ⚠️)\n* `continuous.simulations.get_simulation_token()`:  `error.status[409]` **Removed** (Breaking ⚠️)\n"
+releaseNotes: |
+  ## Python SDK Changes:
+  * `continuous.simulations.list_simulations()`:  `request.status` **Changed** (Breaking ⚠️)

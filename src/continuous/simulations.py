@@ -30,7 +30,7 @@ class Simulations(BaseSDK):
 
         Returns all Simulations that the API key can access. Results can be filtered by status, Simulator ID, or pinned Simulator digest.
 
-        :param status: Optional status filter. paused is deprecated and matches the same Simulations as running.
+        :param status: Optional status filter.
         :param simulator_id: Optional Simulator ID filter.
         :param simulator_digest: Optional exact pinned OCI manifest digest filter.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
@@ -141,7 +141,7 @@ class Simulations(BaseSDK):
 
         Returns all Simulations that the API key can access. Results can be filtered by status, Simulator ID, or pinned Simulator digest.
 
-        :param status: Optional status filter. paused is deprecated and matches the same Simulations as running.
+        :param status: Optional status filter.
         :param simulator_id: Optional Simulator ID filter.
         :param simulator_digest: Optional exact pinned OCI manifest digest filter.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.

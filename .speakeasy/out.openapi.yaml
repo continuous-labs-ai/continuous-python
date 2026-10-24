@@ -2605,14 +2605,13 @@ paths:
       description: Returns all Simulations that the API key can access. Results can be filtered by status, Simulator ID, or pinned Simulator digest.
       operationId: list-simulations
       parameters:
-        - description: Optional status filter. paused is deprecated and matches the same Simulations as running.
+        - description: Optional status filter.
           explode: false
           in: query
           name: status
           schema:
             enum:
               - running
-              - paused
               - stopped
             type: string
         - description: Optional Simulator ID filter.
