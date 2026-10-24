@@ -10,15 +10,14 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 ListSimulationsStatus = Literal[
     "running",
-    "paused",
     "stopped",
 ]
-r"""Optional status filter. paused is deprecated and matches the same Simulations as running."""
+r"""Optional status filter."""
 
 
 class ListSimulationsRequestTypedDict(TypedDict):
     status: NotRequired[ListSimulationsStatus]
-    r"""Optional status filter. paused is deprecated and matches the same Simulations as running."""
+    r"""Optional status filter."""
     simulator_id: NotRequired[str]
     r"""Optional Simulator ID filter."""
     simulator_digest: NotRequired[str]
@@ -34,7 +33,7 @@ class ListSimulationsRequest(BaseModel):
         Optional[ListSimulationsStatus],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
     ] = None
-    r"""Optional status filter. paused is deprecated and matches the same Simulations as running."""
+    r"""Optional status filter."""
 
     simulator_id: Annotated[
         Optional[str],
