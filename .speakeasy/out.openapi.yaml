@@ -160,11 +160,6 @@ components:
         code: simulation_observation_external
         detail: The Simulation with ID "sim_01J8Z5X4K7M2N9P0Q1R2S3T4V6" runs in a customer environment. Continuous does not read or copy its state, so this operation is unavailable.
         validation: null
-    simulation_platform_owned:
-      value:
-        code: simulation_platform_owned
-        detail: The Simulation with ID "sim_01J8Z5X4K7M2N9P0Q1R2S3T4V6" is in use by the platform and cannot be changed.
-        validation: null
     simulation_provider_unavailable:
       value:
         code: simulation_provider_unavailable
@@ -640,7 +635,7 @@ components:
           pattern: ^sim_[0-9A-HJKMNP-TV-Z]{26}$
           type: string
         status:
-          description: Whether this member is pending, committed, failed, or skipped because it is not running.
+          description: Whether this member is pending, committed, failed, or skipped.
           enum:
             - pending
             - completed
@@ -870,10 +865,9 @@ components:
           format: date-time
           type: string
         status:
-          description: Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it.
+          description: Current status. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopped means its state is saved and requests return 409 until you start it.
           enum:
             - running
-            - paused
             - stopped
           type: string
         token:
@@ -941,11 +935,6 @@ components:
     CredentialLogin:
       additionalProperties: false
       properties:
-        hosts:
-          description: Further literal host names or IP addresses the app loads from, such as its API or CDN host.
-          items:
-            type: string
-          type: array
         url:
           description: The https URL of the app's sign-in page.
           type: string
@@ -955,18 +944,12 @@ components:
       required:
         - url
         - username
-        - hosts
       type:
         - object
         - "null"
     CredentialLoginRequest:
       additionalProperties: false
       properties:
-        hosts:
-          description: Further literal host names or IP addresses the app loads from, such as its API or CDN host. Send an empty list for none.
-          items:
-            type: string
-          type: array
         url:
           description: The https URL of the app's sign-in page, with a literal host name or IP address and no user information.
           type: string
@@ -977,16 +960,10 @@ components:
       required:
         - url
         - username
-        - hosts
       type: object
     CredentialLoginUpdate:
       additionalProperties: false
       properties:
-        hosts:
-          description: The full list of further hosts the app loads from, which replaces the current list. Send the current list to keep it.
-          items:
-            type: string
-          type: array
         url:
           description: New https URL of the app's sign-in page.
           type: string
@@ -994,8 +971,6 @@ components:
           description: New user name.
           minLength: 1
           type: string
-      required:
-        - hosts
       type: object
     CurrentSimulationToken:
       additionalProperties: false
@@ -1276,10 +1251,9 @@ components:
           format: date-time
           type: string
         status:
-          description: Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it.
+          description: Current status. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopped means its state is saved and requests return 409 until you start it.
           enum:
             - running
-            - paused
             - stopped
           type: string
         world_id:
@@ -1366,10 +1340,9 @@ components:
           format: date-time
           type: string
         status:
-          description: Current status. running serves requests. paused means the Simulation was idle and the platform paused it; the next request wakes it. stopped means its state is saved and requests return 409 until you start it.
+          description: Current status. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopped means its state is saved and requests return 409 until you start it.
           enum:
             - running
-            - paused
             - stopped
           type: string
         world_id:
@@ -1932,13 +1905,13 @@ components:
           type: string
         login:
           $ref: "#/components/schemas/CredentialLoginUpdate"
-          description: New login fields of a login credential. An omitted url or username keeps its value; hosts is always the full list.
+          description: New login fields of a login credential. An omitted url or username keeps its value.
         name:
           description: New credential name.
           minLength: 1
           type: string
         value:
-          description: New full header value or login password. Required when base_url, header, login.url, or login.hosts changes. Builds that start an agent after the change use it. The API never returns it.
+          description: New full header value or login password. Required when base_url, header, or login.url changes. Builds that start an agent after the change use it. The API never returns it.
           minLength: 1
           type: string
           writeOnly: true
@@ -2632,7 +2605,7 @@ paths:
       description: Returns all Simulations that the API key can access. Results can be filtered by status, Simulator ID, or pinned Simulator digest.
       operationId: list-simulations
       parameters:
-        - description: Optional status filter.
+        - description: Optional status filter. paused is deprecated and matches the same Simulations as running.
           explode: false
           in: query
           name: status
@@ -2872,8 +2845,6 @@ paths:
               examples:
                 clock_conflict:
                   $ref: "#/components/examples/clock_conflict"
-                simulation_platform_owned:
-                  $ref: "#/components/examples/simulation_platform_owned"
                 simulation_world_owned:
                   $ref: "#/components/examples/simulation_world_owned"
               schema:
@@ -3025,8 +2996,6 @@ paths:
               examples:
                 clock_conflict:
                   $ref: "#/components/examples/clock_conflict"
-                simulation_platform_owned:
-                  $ref: "#/components/examples/simulation_platform_owned"
                 simulation_stopped:
                   $ref: "#/components/examples/simulation_stopped"
                 simulation_world_owned:
@@ -3144,7 +3113,7 @@ paths:
         - simulations
   /v1/simulations/{id}/advances/{advance_id}/events:
     get:
-      description: Returns the ordered event trace for a committed advance. The Simulation must be running or paused. Forks retain traces in their inherited state.
+      description: Returns the ordered event trace for a committed advance. The Simulation must be running. Forks retain traces in their inherited state.
       operationId: list-simulation-advance-events
       parameters:
         - description: Simulation ID.
@@ -3253,7 +3222,7 @@ paths:
         - simulations
   /v1/simulations/{id}/fork:
     post:
-      description: Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running or paused; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token, which does not expire.
+      description: Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token, which does not expire.
       operationId: fork-simulation
       parameters:
         - description: Source Simulation ID.
@@ -3390,7 +3359,7 @@ paths:
         - simulations
   /v1/simulations/{id}/start:
     post:
-      description: Starts a stopped Simulation from its saved state. The response includes the Simulation's token, which stop and start do not change. An already running or paused Simulation returns its current token and status.
+      description: Starts a stopped Simulation from its saved state. The response includes the Simulation's token, which stop and start do not change. An already running Simulation returns its current token and status.
       operationId: start-simulation
       parameters:
         - description: Simulation ID.
@@ -3437,8 +3406,6 @@ paths:
               examples:
                 clock_conflict:
                   $ref: "#/components/examples/clock_conflict"
-                simulation_platform_owned:
-                  $ref: "#/components/examples/simulation_platform_owned"
                 simulation_world_owned:
                   $ref: "#/components/examples/simulation_world_owned"
               schema:
@@ -3640,8 +3607,6 @@ paths:
               examples:
                 clock_conflict:
                   $ref: "#/components/examples/clock_conflict"
-                simulation_platform_owned:
-                  $ref: "#/components/examples/simulation_platform_owned"
                 simulation_runtime_lost:
                   $ref: "#/components/examples/simulation_runtime_lost"
                 simulation_world_owned:
@@ -3712,15 +3677,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
           description: Not Found
-        "409":
-          content:
-            application/problem+json:
-              examples:
-                simulation_platform_owned:
-                  $ref: "#/components/examples/simulation_platform_owned"
-              schema:
-                $ref: "#/components/schemas/Error"
-          description: Conflict
         "500":
           $ref: "#/components/responses/InternalServerError"
         "502":
@@ -3803,8 +3759,6 @@ paths:
           content:
             application/problem+json:
               examples:
-                simulation_platform_owned:
-                  $ref: "#/components/examples/simulation_platform_owned"
                 simulation_token_regeneration_superseded:
                   $ref: "#/components/examples/simulation_token_regeneration_superseded"
               schema:
@@ -4634,7 +4588,7 @@ paths:
         - worlds
   /v1/worlds/{id}/advance-time:
     post:
-      description: Advances each running member independently and skips paused or stopped members without waking them. Successful advances remain committed when another member fails. The World current_time records the last settled request target; member clocks can differ.
+      description: Advances each member independently, waking an idle member first, and skips stopped members. Successful advances remain committed when another member fails. The World current_time records the last settled request target; member clocks can differ.
       operationId: advance-world
       parameters:
         - description: World ID.

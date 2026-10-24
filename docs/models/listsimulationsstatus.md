@@ -1,6 +1,6 @@
 # ListSimulationsStatus
 
-Optional status filter.
+Optional status filter. paused is deprecated and matches the same Simulations as running.
 
 ## Example Usage
 

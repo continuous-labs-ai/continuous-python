@@ -3,13 +3,11 @@
 from __future__ import annotations
 from continuous.types import BaseModel, UNSET_SENTINEL
 from pydantic import model_serializer
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
 
 class CredentialLoginUpdateTypedDict(TypedDict):
-    hosts: List[str]
-    r"""The full list of further hosts the app loads from, which replaces the current list. Send the current list to keep it."""
     url: NotRequired[str]
     r"""New https URL of the app's sign-in page."""
     username: NotRequired[str]
@@ -17,9 +15,6 @@ class CredentialLoginUpdateTypedDict(TypedDict):
 
 
 class CredentialLoginUpdate(BaseModel):
-    hosts: List[str]
-    r"""The full list of further hosts the app loads from, which replaces the current list. Send the current list to keep it."""
-
     url: Optional[str] = None
     r"""New https URL of the app's sign-in page."""
 

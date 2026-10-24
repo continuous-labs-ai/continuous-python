@@ -13,12 +13,12 @@ ListSimulationsStatus = Literal[
     "paused",
     "stopped",
 ]
-r"""Optional status filter."""
+r"""Optional status filter. paused is deprecated and matches the same Simulations as running."""
 
 
 class ListSimulationsRequestTypedDict(TypedDict):
     status: NotRequired[ListSimulationsStatus]
-    r"""Optional status filter."""
+    r"""Optional status filter. paused is deprecated and matches the same Simulations as running."""
     simulator_id: NotRequired[str]
     r"""Optional Simulator ID filter."""
     simulator_digest: NotRequired[str]
@@ -34,7 +34,7 @@ class ListSimulationsRequest(BaseModel):
         Optional[ListSimulationsStatus],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
     ] = None
-    r"""Optional status filter."""
+    r"""Optional status filter. paused is deprecated and matches the same Simulations as running."""
 
     simulator_id: Annotated[
         Optional[str],

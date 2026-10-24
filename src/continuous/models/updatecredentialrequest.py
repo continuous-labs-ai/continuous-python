@@ -17,7 +17,7 @@ class UpdateCredentialRequestTypedDict(TypedDict):
     name: NotRequired[str]
     r"""New credential name."""
     value: NotRequired[str]
-    r"""New full header value or login password. Required when base_url, header, login.url, or login.hosts changes. Builds that start an agent after the change use it. The API never returns it."""
+    r"""New full header value or login password. Required when base_url, header, or login.url changes. Builds that start an agent after the change use it. The API never returns it."""
 
 
 class UpdateCredentialRequest(BaseModel):
@@ -33,7 +33,7 @@ class UpdateCredentialRequest(BaseModel):
     r"""New credential name."""
 
     value: Optional[str] = None
-    r"""New full header value or login password. Required when base_url, header, login.url, or login.hosts changes. Builds that start an agent after the change use it. The API never returns it."""
+    r"""New full header value or login password. Required when base_url, header, or login.url changes. Builds that start an agent after the change use it. The API never returns it."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
