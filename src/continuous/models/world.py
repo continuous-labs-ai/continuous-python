@@ -16,14 +16,16 @@ WorldStatus = Union[
         "pending",
         "building",
         "ready",
+        "starting",
         "running",
+        "stopping",
         "stopped",
         "failed",
         "canceled",
     ],
     UnrecognizedStr,
 ]
-r"""pending while waiting for capacity; building while the build runs; ready when it can be started; running or stopped once its Simulations exist; failed when building or first start fails; canceled when the build was canceled."""
+r"""pending while waiting for capacity; building while the build runs; ready when it can be started; starting while its Simulations start; running or stopped once its Simulations exist; stopping while they stop; failed when building or first start fails; canceled when the build was canceled."""
 
 
 class WorldTypedDict(TypedDict):
@@ -53,7 +55,7 @@ class WorldTypedDict(TypedDict):
     start_time: datetime
     r"""Simulated time the World starts at: chosen at build, and changeable on the first Start."""
     status: WorldStatus
-    r"""pending while waiting for capacity; building while the build runs; ready when it can be started; running or stopped once its Simulations exist; failed when building or first start fails; canceled when the build was canceled."""
+    r"""pending while waiting for capacity; building while the build runs; ready when it can be started; starting while its Simulations start; running or stopped once its Simulations exist; stopping while they stop; failed when building or first start fails; canceled when the build was canceled."""
 
 
 class World(BaseModel):
@@ -96,7 +98,7 @@ class World(BaseModel):
     r"""Simulated time the World starts at: chosen at build, and changeable on the first Start."""
 
     status: WorldStatus
-    r"""pending while waiting for capacity; building while the build runs; ready when it can be started; running or stopped once its Simulations exist; failed when building or first start fails; canceled when the build was canceled."""
+    r"""pending while waiting for capacity; building while the build runs; ready when it can be started; starting while its Simulations start; running or stopped once its Simulations exist; stopping while they stop; failed when building or first start fails; canceled when the build was canceled."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -15,7 +15,9 @@ value: ListWorldsStatus = "pending"
 - `"pending"`
 - `"building"`
 - `"ready"`
+- `"starting"`
 - `"running"`
+- `"stopping"`
 - `"stopped"`
 - `"failed"`
 - `"canceled"`

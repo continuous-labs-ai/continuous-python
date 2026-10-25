@@ -2,15 +2,25 @@
 
 from __future__ import annotations
 from .clonesimulatorrequest import CloneSimulatorRequest, CloneSimulatorRequestTypedDict
-from continuous.types import BaseModel
-from continuous.utils import FieldMetadata, PathParamMetadata, RequestMetadata
-from typing_extensions import Annotated, TypedDict
+from continuous.types import BaseModel, UNSET_SENTINEL
+from continuous.utils import (
+    FieldMetadata,
+    HeaderMetadata,
+    PathParamMetadata,
+    RequestMetadata,
+)
+import pydantic
+from pydantic import model_serializer
+from typing import Optional
+from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class CloneSimulatorRequestRequestTypedDict(TypedDict):
     id: str
     r"""Source Simulator ID."""
     body: CloneSimulatorRequestTypedDict
+    idempotency_key: NotRequired[str]
+    r"""Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource. Keys are scoped to the target workspace."""
 
 
 class CloneSimulatorRequestRequest(BaseModel):
@@ -23,3 +33,26 @@ class CloneSimulatorRequestRequest(BaseModel):
         CloneSimulatorRequest,
         FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ]
+
+    idempotency_key: Annotated[
+        Optional[str],
+        pydantic.Field(alias="Idempotency-Key"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = None
+    r"""Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource. Keys are scoped to the target workspace."""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["Idempotency-Key"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

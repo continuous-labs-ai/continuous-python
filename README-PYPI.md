@@ -210,6 +210,7 @@ with Continuous(
 * [create_simulation_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulationsnapshots/README.md#create_simulation_snapshot) - Create Simulation Snapshot
 * [delete_simulation_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulationsnapshots/README.md#delete_simulation_snapshot) - Delete Simulation Snapshot
 * [get_simulation_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulationsnapshots/README.md#get_simulation_snapshot) - Get Simulation Snapshot
+* [update_simulation_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulationsnapshots/README.md#update_simulation_snapshot) - Update Simulation Snapshot
 
 ### [Simulations](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md)
 
@@ -217,6 +218,7 @@ with Continuous(
 * [create_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#create_simulation) - Create Simulation
 * [delete_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#delete_simulation) - Delete Simulation
 * [get_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#get_simulation) - Get Simulation
+* [update_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#update_simulation) - Update Simulation
 * [create_simulation_advance](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#create_simulation_advance) - Advance Simulation Time
 * [get_simulation_advance](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#get_simulation_advance) - Get Simulation Clock Advance
 * [list_simulation_advance_events](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#list_simulation_advance_events) - List Clock Advance Events
@@ -232,6 +234,7 @@ with Continuous(
 * [build_simulator](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#build_simulator) - Build Simulator
 * [delete_simulator](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#delete_simulator) - Delete Simulator
 * [get_simulator](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#get_simulator) - Get Simulator
+* [update_simulator](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#update_simulator) - Update Simulator
 * [cancel_simulator](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#cancel_simulator) - Cancel Simulator Build
 * [clone_simulator](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#clone_simulator) - Clone Simulator
 
@@ -241,6 +244,7 @@ with Continuous(
 * [build_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#build_world) - Build World
 * [delete_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#delete_world) - Delete World
 * [get_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#get_world) - Get World
+* [update_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#update_world) - Update World
 * [create_world_advance](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#create_world_advance) - Advance World Time
 * [get_world_advance](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#get_world_advance) - Get World Clock Advance
 * [cancel_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#cancel_world) - Cancel World Build
@@ -426,7 +430,7 @@ with Continuous(
 
 
 **Inherit from [`ContinuousError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/continuouserror.py)**:
-* [`SimulatorDeleteConflictError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 39 methods.*
+* [`SimulatorDeleteConflictError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 43 methods.*
 * [`ResponseValidationError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>

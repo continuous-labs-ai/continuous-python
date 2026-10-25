@@ -11,12 +11,14 @@ from typing_extensions import TypedDict
 
 SimulationDetailStatus = Union[
     Literal[
+        "starting",
         "running",
+        "stopping",
         "stopped",
     ],
     UnrecognizedStr,
 ]
-r"""Current status. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopped means its state is saved and requests return 409 until you start it."""
+r"""Current status. starting means its runtime is booting; read the Simulation until it is running. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopping means its state is being saved, and stopped means it is saved; requests return 409 in both until you start it."""
 
 
 class SimulationDetailTypedDict(TypedDict):
@@ -51,7 +53,7 @@ class SimulationDetailTypedDict(TypedDict):
     start_time: datetime
     r"""Initial simulated time."""
     status: SimulationDetailStatus
-    r"""Current status. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopped means its state is saved and requests return 409 until you start it."""
+    r"""Current status. starting means its runtime is booting; read the Simulation until it is running. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopping means its state is being saved, and stopped means it is saved; requests return 409 in both until you start it."""
     world_id: Nullable[str]
     r"""ID of the World that owns this Simulation, or null."""
 
@@ -103,7 +105,7 @@ class SimulationDetail(BaseModel):
     r"""Initial simulated time."""
 
     status: SimulationDetailStatus
-    r"""Current status. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopped means its state is saved and requests return 409 until you start it."""
+    r"""Current status. starting means its runtime is booting; read the Simulation until it is running. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopping means its state is being saved, and stopped means it is saved; requests return 409 in both until you start it."""
 
     world_id: Nullable[str]
     r"""ID of the World that owns this Simulation, or null."""

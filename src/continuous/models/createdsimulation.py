@@ -11,12 +11,14 @@ from typing_extensions import Annotated, TypedDict
 
 CreatedSimulationStatus = Union[
     Literal[
+        "starting",
         "running",
+        "stopping",
         "stopped",
     ],
     UnrecognizedStr,
 ]
-r"""Current status. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopped means its state is saved and requests return 409 until you start it."""
+r"""Current status. starting means its runtime is booting; read the Simulation until it is running. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopping means its state is being saved, and stopped means it is saved; requests return 409 in both until you start it."""
 
 
 class CreatedSimulationTypedDict(TypedDict):
@@ -51,7 +53,7 @@ class CreatedSimulationTypedDict(TypedDict):
     start_time: datetime
     r"""Initial simulated time."""
     status: CreatedSimulationStatus
-    r"""Current status. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopped means its state is saved and requests return 409 until you start it."""
+    r"""Current status. starting means its runtime is booting; read the Simulation until it is running. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopping means its state is being saved, and stopped means it is saved; requests return 409 in both until you start it."""
     token: str
     r"""The Simulation's token for requests to its endpoint. It does not expire. Send it in the X-Continuous-Simulation-Token header, with an actor's id from GET /v1/simulations/{id} in X-Continuous-Actor to act as that caller. Retrieve it later with GET /v1/simulations/{id}/token."""
 
@@ -108,7 +110,7 @@ class CreatedSimulation(BaseModel):
     r"""Initial simulated time."""
 
     status: CreatedSimulationStatus
-    r"""Current status. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopped means its state is saved and requests return 409 until you start it."""
+    r"""Current status. starting means its runtime is booting; read the Simulation until it is running. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopping means its state is being saved, and stopped means it is saved; requests return 409 in both until you start it."""
 
     token: str
     r"""The Simulation's token for requests to its endpoint. It does not expire. Send it in the X-Continuous-Simulation-Token header, with an actor's id from GET /v1/simulations/{id} in X-Continuous-Actor to act as that caller. Retrieve it later with GET /v1/simulations/{id}/token."""
