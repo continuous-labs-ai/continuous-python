@@ -14,21 +14,18 @@ from typing_extensions import NotRequired, TypedDict
 class CreateCredentialRequestTypedDict(TypedDict):
     name: str
     r"""Credential name."""
-    value: str
-    r"""The full header value, for example Bearer followed by a token, or the login password. The API never returns it."""
     base_url: NotRequired[str]
     r"""The https URL of the real system. Requests go to paths under it. Send exactly one of base_url and login."""
     header: NotRequired[str]
     r"""The HTTP header that carries the value. Defaults to Authorization. Not allowed with login."""
     login: NotRequired[CredentialLoginRequestTypedDict]
+    value: NotRequired[str]
+    r"""The full header value, for example Bearer followed by a token. Required with base_url; not allowed with login, which a person signs in to by hand after the credential exists. The API never returns it."""
 
 
 class CreateCredentialRequest(BaseModel):
     name: str
     r"""Credential name."""
-
-    value: str
-    r"""The full header value, for example Bearer followed by a token, or the login password. The API never returns it."""
 
     base_url: Optional[str] = None
     r"""The https URL of the real system. Requests go to paths under it. Send exactly one of base_url and login."""
@@ -38,9 +35,12 @@ class CreateCredentialRequest(BaseModel):
 
     login: Optional[CredentialLoginRequest] = None
 
+    value: Optional[str] = None
+    r"""The full header value, for example Bearer followed by a token. Required with base_url; not allowed with login, which a person signs in to by hand after the credential exists. The API never returns it."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["base_url", "header", "login"])
+        optional_fields = set(["base_url", "header", "login", "value"])
         serialized = handler(self)
         m = {}
 

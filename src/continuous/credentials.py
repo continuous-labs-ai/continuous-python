@@ -6,7 +6,8 @@ from continuous._hooks import HookContext
 from continuous.types import OptionalNullable, UNSET
 from continuous.utils import get_security_from_env
 from continuous.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Mapping, Optional, Union
+from jsonpath import JSONPath
+from typing import Any, Awaitable, Dict, List, Mapping, Optional, Union
 
 
 class Credentials(BaseSDK):
@@ -21,7 +22,7 @@ class Credentials(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.ListCredentialsResponse:
+    ) -> Optional[models.ListCredentialsResponseResponse]:
         r"""List credentials
 
         Returns the workspace's credentials, newest first. Credential values are never returned.
@@ -68,10 +69,14 @@ class Credentials(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = self.do_request(
             hook_ctx=HookContext(
@@ -90,9 +95,35 @@ class Credentials(BaseSDK):
             retry_config=retry_config,
         )
 
+        def next_func() -> Optional[models.ListCredentialsResponseResponse]:
+            body = utils.unmarshal_json(http_res.text, Union[Dict[Any, Any], List[Any]])
+
+            next_cursor = JSONPath("$.next_cursor").parse(body)
+
+            if len(next_cursor) == 0:
+                return None
+
+            next_cursor = next_cursor[0]
+            if next_cursor is None or str(next_cursor).strip() == "":
+                return None
+
+            return self.list_credentials(
+                limit=limit,
+                cursor=next_cursor,
+                retries=retries,
+                server_url=server_url,
+                timeout_ms=timeout_ms,
+                http_headers=http_headers,
+            )
+
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.ListCredentialsResponse, http_res)
+            return models.ListCredentialsResponseResponse(
+                result=unmarshal_json_response(
+                    models.ListCredentialsResponse, http_res
+                ),
+                next=next_func,
+            )
         if utils.match_response(
             http_res, ["400", "401", "422"], "application/problem+json"
         ):
@@ -123,7 +154,7 @@ class Credentials(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.ListCredentialsResponse:
+    ) -> Optional[models.ListCredentialsResponseResponse]:
         r"""List credentials
 
         Returns the workspace's credentials, newest first. Credential values are never returned.
@@ -170,10 +201,14 @@ class Credentials(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
@@ -192,9 +227,38 @@ class Credentials(BaseSDK):
             retry_config=retry_config,
         )
 
+        def next_func() -> Awaitable[Optional[models.ListCredentialsResponseResponse]]:
+            body = utils.unmarshal_json(http_res.text, Union[Dict[Any, Any], List[Any]])
+
+            async def empty_result():
+                return None
+
+            next_cursor = JSONPath("$.next_cursor").parse(body)
+
+            if len(next_cursor) == 0:
+                return empty_result()
+
+            next_cursor = next_cursor[0]
+            if next_cursor is None or str(next_cursor).strip() == "":
+                return empty_result()
+
+            return self.list_credentials_async(
+                limit=limit,
+                cursor=next_cursor,
+                retries=retries,
+                server_url=server_url,
+                timeout_ms=timeout_ms,
+                http_headers=http_headers,
+            )
+
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.ListCredentialsResponse, http_res)
+            return models.ListCredentialsResponseResponse(
+                result=unmarshal_json_response(
+                    models.ListCredentialsResponse, http_res
+                ),
+                next=next_func,
+            )
         if utils.match_response(
             http_res, ["400", "401", "422"], "application/problem+json"
         ):
@@ -220,12 +284,12 @@ class Credentials(BaseSDK):
         self,
         *,
         name: str,
-        value: str,
         base_url: Optional[str] = None,
         header: Optional[str] = None,
         login: Optional[
             Union[models.CredentialLoginRequest, models.CredentialLoginRequestTypedDict]
         ] = None,
+        value: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -233,13 +297,13 @@ class Credentials(BaseSDK):
     ) -> models.Credential:
         r"""Create credential
 
-        Stores a connection to a real system: either an API base URL, the header that carries the credential, and the header value, or an app login with its sign-in URL, username, and password. Returns the credential without its value.
+        Stores a connection to a real system: either an API base URL, the header that carries the credential, and the header value, or a Web App login with its sign-in URL, which a person then signs in to by hand in the console. Returns the credential without its value.
 
         :param name: Credential name.
-        :param value: The full header value, for example Bearer followed by a token, or the login password. The API never returns it.
         :param base_url: The https URL of the real system. Requests go to paths under it. Send exactly one of base_url and login.
         :param header: The HTTP header that carries the value. Defaults to Authorization. Not allowed with login.
         :param login:
+        :param value: The full header value, for example Bearer followed by a token. Required with base_url; not allowed with login, which a person signs in to by hand after the credential exists. The API never returns it.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -340,12 +404,12 @@ class Credentials(BaseSDK):
         self,
         *,
         name: str,
-        value: str,
         base_url: Optional[str] = None,
         header: Optional[str] = None,
         login: Optional[
             Union[models.CredentialLoginRequest, models.CredentialLoginRequestTypedDict]
         ] = None,
+        value: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -353,13 +417,13 @@ class Credentials(BaseSDK):
     ) -> models.Credential:
         r"""Create credential
 
-        Stores a connection to a real system: either an API base URL, the header that carries the credential, and the header value, or an app login with its sign-in URL, username, and password. Returns the credential without its value.
+        Stores a connection to a real system: either an API base URL, the header that carries the credential, and the header value, or a Web App login with its sign-in URL, which a person then signs in to by hand in the console. Returns the credential without its value.
 
         :param name: Credential name.
-        :param value: The full header value, for example Bearer followed by a token, or the login password. The API never returns it.
         :param base_url: The https URL of the real system. Requests go to paths under it. Send exactly one of base_url and login.
         :param header: The HTTP header that carries the value. Defaults to Authorization. Not allowed with login.
         :param login:
+        :param value: The full header value, for example Bearer followed by a token. Required with base_url; not allowed with login, which a person signs in to by hand after the credential exists. The API never returns it.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -707,10 +771,14 @@ class Credentials(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = self.do_request(
             hook_ctx=HookContext(
@@ -806,10 +874,14 @@ class Credentials(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
@@ -877,7 +949,7 @@ class Credentials(BaseSDK):
         :param header: New HTTP header that carries the value.
         :param login:
         :param name: New credential name.
-        :param value: New full header value or login password. Required when base_url, header, or login.url changes. Builds that start an agent after the change use it. The API never returns it.
+        :param value: New full header value. Required when base_url or header changes; not allowed for a login credential. Builds that start an agent after the change use it. The API never returns it.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1002,7 +1074,7 @@ class Credentials(BaseSDK):
         :param header: New HTTP header that carries the value.
         :param login:
         :param name: New credential name.
-        :param value: New full header value or login password. Required when base_url, header, or login.url changes. Builds that start an agent after the change use it. The API never returns it.
+        :param value: New full header value. Required when base_url or header changes; not allowed for a login credential. Builds that start an agent after the change use it. The API never returns it.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds

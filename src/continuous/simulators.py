@@ -6,7 +6,8 @@ from continuous._hooks import HookContext
 from continuous.types import OptionalNullable, UNSET
 from continuous.utils import get_security_from_env
 from continuous.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Iterable, List, Mapping, Optional, Union
+from jsonpath import JSONPath
+from typing import Any, Awaitable, Dict, Iterable, List, Mapping, Optional, Union
 
 
 class Simulators(BaseSDK):
@@ -22,7 +23,7 @@ class Simulators(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.ListSimulatorsResponse:
+    ) -> Optional[models.ListSimulatorsResponseResponse]:
         r"""List Simulators
 
         Returns all Simulators that the API key can access. Results can be filtered by status.
@@ -71,10 +72,14 @@ class Simulators(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = self.do_request(
             hook_ctx=HookContext(
@@ -93,9 +98,34 @@ class Simulators(BaseSDK):
             retry_config=retry_config,
         )
 
+        def next_func() -> Optional[models.ListSimulatorsResponseResponse]:
+            body = utils.unmarshal_json(http_res.text, Union[Dict[Any, Any], List[Any]])
+
+            next_cursor = JSONPath("$.next_cursor").parse(body)
+
+            if len(next_cursor) == 0:
+                return None
+
+            next_cursor = next_cursor[0]
+            if next_cursor is None or str(next_cursor).strip() == "":
+                return None
+
+            return self.list_simulators(
+                status=status,
+                limit=limit,
+                cursor=next_cursor,
+                retries=retries,
+                server_url=server_url,
+                timeout_ms=timeout_ms,
+                http_headers=http_headers,
+            )
+
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.ListSimulatorsResponse, http_res)
+            return models.ListSimulatorsResponseResponse(
+                result=unmarshal_json_response(models.ListSimulatorsResponse, http_res),
+                next=next_func,
+            )
         if utils.match_response(
             http_res, ["400", "401", "422"], "application/problem+json"
         ):
@@ -127,7 +157,7 @@ class Simulators(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.ListSimulatorsResponse:
+    ) -> Optional[models.ListSimulatorsResponseResponse]:
         r"""List Simulators
 
         Returns all Simulators that the API key can access. Results can be filtered by status.
@@ -176,10 +206,14 @@ class Simulators(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
@@ -198,9 +232,37 @@ class Simulators(BaseSDK):
             retry_config=retry_config,
         )
 
+        def next_func() -> Awaitable[Optional[models.ListSimulatorsResponseResponse]]:
+            body = utils.unmarshal_json(http_res.text, Union[Dict[Any, Any], List[Any]])
+
+            async def empty_result():
+                return None
+
+            next_cursor = JSONPath("$.next_cursor").parse(body)
+
+            if len(next_cursor) == 0:
+                return empty_result()
+
+            next_cursor = next_cursor[0]
+            if next_cursor is None or str(next_cursor).strip() == "":
+                return empty_result()
+
+            return self.list_simulators_async(
+                status=status,
+                limit=limit,
+                cursor=next_cursor,
+                retries=retries,
+                server_url=server_url,
+                timeout_ms=timeout_ms,
+                http_headers=http_headers,
+            )
+
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.ListSimulatorsResponse, http_res)
+            return models.ListSimulatorsResponseResponse(
+                result=unmarshal_json_response(models.ListSimulatorsResponse, http_res),
+                next=next_func,
+            )
         if utils.match_response(
             http_res, ["400", "401", "422"], "application/problem+json"
         ):
@@ -739,10 +801,14 @@ class Simulators(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = self.do_request(
             hook_ctx=HookContext(
@@ -838,10 +904,14 @@ class Simulators(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(

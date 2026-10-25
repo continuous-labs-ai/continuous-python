@@ -19,6 +19,7 @@ Continuous Simulation API: Build Simulators from OpenAPI, WSDL or GraphQL docume
   * [SDK Example Usage](https://github.com/continuous-labs-ai/continuous-python/blob/master/#sdk-example-usage)
   * [Authentication](https://github.com/continuous-labs-ai/continuous-python/blob/master/#authentication)
   * [Available Resources and Operations](https://github.com/continuous-labs-ai/continuous-python/blob/master/#available-resources-and-operations)
+  * [Pagination](https://github.com/continuous-labs-ai/continuous-python/blob/master/#pagination)
   * [File uploads](https://github.com/continuous-labs-ai/continuous-python/blob/master/#file-uploads)
   * [Retries](https://github.com/continuous-labs-ai/continuous-python/blob/master/#retries)
   * [Error Handling](https://github.com/continuous-labs-ai/continuous-python/blob/master/#error-handling)
@@ -125,8 +126,10 @@ with Continuous(
 
     res = c_client.credentials.list_credentials(limit=50)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 ```
 
 </br>
@@ -147,8 +150,10 @@ async def main():
 
         res = await c_client.credentials.list_credentials_async(limit=50)
 
-        # Handle response
-        print(res)
+        while res is not None:
+            # Handle items
+
+            res = res.next()
 
 asyncio.run(main())
 ```
@@ -177,8 +182,10 @@ with Continuous(
 
     res = c_client.credentials.list_credentials(limit=50)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 
 ```
 <!-- End Authentication [security] -->
@@ -197,16 +204,22 @@ with Continuous(
 * [get_credential](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/credentials/README.md#get_credential) - Get credential
 * [update_credential](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/credentials/README.md#update_credential) - Update credential
 
+### [SimulationSnapshots](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulationsnapshots/README.md)
+
+* [list_simulation_snapshots](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulationsnapshots/README.md#list_simulation_snapshots) - List Simulation Snapshots
+* [create_simulation_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulationsnapshots/README.md#create_simulation_snapshot) - Create Simulation Snapshot
+* [delete_simulation_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulationsnapshots/README.md#delete_simulation_snapshot) - Delete Simulation Snapshot
+* [get_simulation_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulationsnapshots/README.md#get_simulation_snapshot) - Get Simulation Snapshot
+
 ### [Simulations](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md)
 
 * [list_simulations](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#list_simulations) - List Simulations
 * [create_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#create_simulation) - Create Simulation
 * [delete_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#delete_simulation) - Delete Simulation
 * [get_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#get_simulation) - Get Simulation
-* [advance_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#advance_simulation) - Advance Simulation Time
+* [create_simulation_advance](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#create_simulation_advance) - Advance Simulation Time
 * [get_simulation_advance](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#get_simulation_advance) - Get Simulation Clock Advance
 * [list_simulation_advance_events](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#list_simulation_advance_events) - List Clock Advance Events
-* [fork_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#fork_simulation) - Fork Simulation
 * [start_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#start_simulation) - Start Simulation
 * [list_simulation_steps](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#list_simulation_steps) - List Simulation Steps
 * [stop_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#stop_simulation) - Stop Simulation
@@ -228,7 +241,7 @@ with Continuous(
 * [build_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#build_world) - Build World
 * [delete_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#delete_world) - Delete World
 * [get_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#get_world) - Get World
-* [advance_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#advance_world) - Advance World Time
+* [create_world_advance](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#create_world_advance) - Advance World Time
 * [get_world_advance](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#get_world_advance) - Get World Clock Advance
 * [cancel_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#cancel_world) - Cancel World Build
 * [get_world_change](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#get_world_change) - Get World Change
@@ -239,6 +252,33 @@ with Continuous(
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
+
+<!-- Start Pagination [pagination] -->
+## Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
+returned response object will have a `Next` method that can be called to pull down the next group of results. If the
+return value of `Next` is `None`, then there are no more pages to be fetched.
+
+Here's an example of one such pagination call:
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.credentials.list_credentials(limit=50)
+
+    while res is not None:
+        # Handle items
+
+        res = res.next()
+
+```
+<!-- End Pagination [pagination] -->
 
 <!-- Start File uploads [file-upload] -->
 ## File uploads
@@ -292,8 +332,10 @@ with Continuous(
     res = c_client.credentials.list_credentials(limit=50,
         RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False))
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 
 ```
 
@@ -311,8 +353,10 @@ with Continuous(
 
     res = c_client.credentials.list_credentials(limit=50)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 
 ```
 <!-- End Retries [retries] -->
@@ -345,8 +389,10 @@ with Continuous(
 
         res = c_client.credentials.list_credentials(limit=50)
 
-        # Handle response
-        print(res)
+        while res is not None:
+            # Handle items
+
+            res = res.next()
 
 
     except errors.ContinuousError as e:
@@ -380,7 +426,7 @@ with Continuous(
 
 
 **Inherit from [`ContinuousError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/continuouserror.py)**:
-* [`SimulatorDeleteConflictError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 36 methods.*
+* [`SimulatorDeleteConflictError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 39 methods.*
 * [`ResponseValidationError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>
@@ -406,8 +452,10 @@ with Continuous(
 
     res = c_client.credentials.list_credentials(limit=50)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 
 ```
 <!-- End Server Selection [server] -->

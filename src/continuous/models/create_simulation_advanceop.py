@@ -13,7 +13,7 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
-class AdvanceSimulationRequestTypedDict(TypedDict):
+class CreateSimulationAdvanceRequestTypedDict(TypedDict):
     id: str
     r"""Simulation ID."""
     idempotency_key: str
@@ -21,7 +21,7 @@ class AdvanceSimulationRequestTypedDict(TypedDict):
     body: AdvanceTimeRequestTypedDict
 
 
-class AdvanceSimulationRequest(BaseModel):
+class CreateSimulationAdvanceRequest(BaseModel):
     id: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]

@@ -7,18 +7,28 @@ from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
 
-class RemoveWorldSimulationRequestTypedDict(TypedDict):
-    delete: NotRequired[bool]
-    r"""true stops and deletes the member and its saved state. false, the default, detaches it: it keeps its ID, endpoint, token, clock, and data as a standalone Simulation."""
+class CreateSimulationSnapshotRequestTypedDict(TypedDict):
+    name: str
+    r"""Snapshot name."""
+    simulation_id: str
+    r"""ID of the running Simulation to save."""
+    at_step: NotRequired[int]
+    r"""Completed step to save the state after. Omission saves the latest state."""
 
 
-class RemoveWorldSimulationRequest(BaseModel):
-    delete: Optional[bool] = None
-    r"""true stops and deletes the member and its saved state. false, the default, detaches it: it keeps its ID, endpoint, token, clock, and data as a standalone Simulation."""
+class CreateSimulationSnapshotRequest(BaseModel):
+    name: str
+    r"""Snapshot name."""
+
+    simulation_id: str
+    r"""ID of the running Simulation to save."""
+
+    at_step: Optional[int] = None
+    r"""Completed step to save the state after. Omission saves the latest state."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["delete"])
+        optional_fields = set(["at_step"])
         serialized = handler(self)
         m = {}
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-Create Simulations from ready Simulators, then fork, stop, start, and delete them.
+Create Simulations from ready Simulators or Snapshots, then stop, start, and delete them.
 
 ### Available Operations
 
@@ -10,10 +10,9 @@ Create Simulations from ready Simulators, then fork, stop, start, and delete the
 * [create_simulation](#create_simulation) - Create Simulation
 * [delete_simulation](#delete_simulation) - Delete Simulation
 * [get_simulation](#get_simulation) - Get Simulation
-* [advance_simulation](#advance_simulation) - Advance Simulation Time
+* [create_simulation_advance](#create_simulation_advance) - Advance Simulation Time
 * [get_simulation_advance](#get_simulation_advance) - Get Simulation Clock Advance
 * [list_simulation_advance_events](#list_simulation_advance_events) - List Clock Advance Events
-* [fork_simulation](#fork_simulation) - Fork Simulation
 * [start_simulation](#start_simulation) - Start Simulation
 * [list_simulation_steps](#list_simulation_steps) - List Simulation Steps
 * [stop_simulation](#stop_simulation) - Stop Simulation
@@ -38,8 +37,10 @@ with Continuous(
 
     res = c_client.simulations.list_simulations(limit=50)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 
 ```
 
@@ -56,7 +57,7 @@ with Continuous(
 
 ### Response
 
-**[models.ListSimulationsResponse](../../models/listsimulationsresponse.md)**
+**[models.ListSimulationsResponseResponse](../../models/listsimulationsresponseresponse.md)**
 
 ### Errors
 
@@ -68,7 +69,7 @@ with Continuous(
 
 ## create_simulation
 
-Creates a Simulation from a ready Simulator and starts it. The response includes the endpoint and the Simulation's token, which does not expire.
+Creates a Simulation from a ready Simulator, or from a Snapshot with its saved state, and starts it. The response includes the endpoint and the Simulation's token, which does not expire.
 
 ### Example Usage: bad_request_body
 
@@ -82,9 +83,9 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.simulations.create_simulation(simulator_id="smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", metadata={
+    res = c_client.simulations.create_simulation(metadata={
         "customer_id": "cust_123",
-    }, name="billing-sandbox")
+    }, name="billing-sandbox", simulator_id="smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5")
 
     # Handle response
     print(res)
@@ -102,9 +103,9 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.simulations.create_simulation(simulator_id="smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", metadata={
+    res = c_client.simulations.create_simulation(metadata={
         "customer_id": "cust_123",
-    }, name="billing-sandbox")
+    }, name="billing-sandbox", simulator_id="smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5")
 
     # Handle response
     print(res)
@@ -122,9 +123,9 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.simulations.create_simulation(simulator_id="smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", metadata={
+    res = c_client.simulations.create_simulation(metadata={
         "customer_id": "cust_123",
-    }, name="billing-sandbox")
+    }, name="billing-sandbox", simulator_id="smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5")
 
     # Handle response
     print(res)
@@ -133,14 +134,15 @@ with Continuous(
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                     | Type                                                                                                                                                                                                                          | Required                                                                                                                                                                                                                      | Description                                                                                                                                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `simulator_id`                                                                                                                                                                                                                | *str*                                                                                                                                                                                                                         | :heavy_check_mark:                                                                                                                                                                                                            | ID of the ready Simulator.                                                                                                                                                                                                    |
-| `include_sample_data`                                                                                                                                                                                                         | *Optional[bool]*                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                            | Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition. |
-| `metadata`                                                                                                                                                                                                                    | *Optional[Any]*                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                            | Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null.                                                                                                            |
-| `name`                                                                                                                                                                                                                        | *Optional[str]*                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                            | Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique.                                                                                                                  |
-| `start_time`                                                                                                                                                                                                                  | [date](https://docs.python.org/3/library/datetime.html#date-objects)                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                            | Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds.                                                                                                                     |
-| `retries`                                                                                                                                                                                                                     | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                            | Configuration to override the default retry behavior of the client.                                                                                                                                                           |
+| Parameter                                                                                                                                                                                                                                                   | Type                                                                                                                                                                                                                                                        | Required                                                                                                                                                                                                                                                    | Description                                                                                                                                                                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `include_sample_data`                                                                                                                                                                                                                                       | *Optional[bool]*                                                                                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                                                                          | Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition. Not allowed with snapshot_id. |
+| `metadata`                                                                                                                                                                                                                                                  | *Optional[Any]*                                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                          | Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null.                                                                                                                                          |
+| `name`                                                                                                                                                                                                                                                      | *Optional[str]*                                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                          | Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique.                                                                                                                                                |
+| `simulator_id`                                                                                                                                                                                                                                              | *Optional[str]*                                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                          | ID of the ready Simulator. Set exactly one of simulator_id and snapshot_id.                                                                                                                                                                                 |
+| `snapshot_id`                                                                                                                                                                                                                                               | *Optional[str]*                                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                          | ID of the Snapshot to start from. The Simulation takes its state, clock, Simulator digest and runtime placement. Set exactly one of simulator_id and snapshot_id.                                                                                           |
+| `start_time`                                                                                                                                                                                                                                                | [date](https://docs.python.org/3/library/datetime.html#date-objects)                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                                                                          | Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds. Not allowed with snapshot_id.                                                                                                                     |
+| `retries`                                                                                                                                                                                                                                                   | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                                                                          | Configuration to override the default retry behavior of the client.                                                                                                                                                                                         |
 
 ### Response
 
@@ -148,11 +150,11 @@ with Continuous(
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.Error                           | 400, 401, 408, 409, 413, 415, 422, 429 | application/problem+json               |
-| errors.Error                           | 500, 503, 504                          | application/problem+json               |
-| errors.ContinuousDefaultError          | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| errors.Error                                | 400, 401, 404, 408, 409, 413, 415, 422, 429 | application/problem+json                    |
+| errors.Error                                | 500, 503, 504                               | application/problem+json                    |
+| errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
 
 ## delete_simulation
 
@@ -233,13 +235,13 @@ with Continuous(
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## advance_simulation
+## create_simulation_advance
 
 Schedules an absolute clock advance. An advance commits due local events in ordered batches, one step each; a failure keeps the batches already committed. World members advance through their World. Poll the returned operation until it completes.
 
 ### Example Usage
 
-<!-- UsageSnippet language="python" operationID="advance-simulation" method="post" path="/v1/simulations/{id}/advance-time" example="bad_request_body" -->
+<!-- UsageSnippet language="python" operationID="create-simulation-advance" method="post" path="/v1/simulations/{id}/advances" example="bad_request_body" -->
 ```python
 from continuous import Continuous
 from continuous.utils import parse_datetime
@@ -250,7 +252,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.simulations.advance_simulation(id="<id>", idempotency_key="<value>", to=parse_datetime("2026-01-27T00:02:09.022Z"))
+    res = c_client.simulations.create_simulation_advance(id="<id>", idempotency_key="<value>", to=parse_datetime("2026-07-12T00:40:22.318Z"))
 
     # Handle response
     print(res)
@@ -323,7 +325,7 @@ with Continuous(
 
 ## list_simulation_advance_events
 
-Returns the ordered event trace for a committed advance. The Simulation must be running. Forks retain traces in their inherited state.
+Returns the ordered event trace for a committed advance. The Simulation must be running. A Simulation created from a Snapshot keeps the traces in the state it started from.
 
 ### Example Usage
 
@@ -339,24 +341,26 @@ with Continuous(
 
     res = c_client.simulations.list_simulation_advance_events(id="<id>", advance_id="<id>", limit=50)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 
 ```
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Simulation ID.                                                      |
-| `advance_id`                                                        | *str*                                                               | :heavy_check_mark:                                                  | Advance ID. A historical fork can read inherited runtime receipts.  |
-| `limit`                                                             | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Page size. Values below 1 use 50. Values above 200 use 200.         |
-| `cursor`                                                            | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Opaque next_cursor value from a previous page.                      |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `id`                                                                                                         | *str*                                                                                                        | :heavy_check_mark:                                                                                           | Simulation ID.                                                                                               |
+| `advance_id`                                                                                                 | *str*                                                                                                        | :heavy_check_mark:                                                                                           | Advance ID. A Simulation created from a Snapshot can read the runtime receipts in the state it started from. |
+| `limit`                                                                                                      | *Optional[int]*                                                                                              | :heavy_minus_sign:                                                                                           | Page size. Values below 1 use 50. Values above 200 use 200.                                                  |
+| `cursor`                                                                                                     | *Optional[str]*                                                                                              | :heavy_minus_sign:                                                                                           | Opaque next_cursor value from a previous page.                                                               |
+| `retries`                                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                             | :heavy_minus_sign:                                                                                           | Configuration to override the default retry behavior of the client.                                          |
 
 ### Response
 
-**[models.ListClockAdvanceEventsResponse](../../models/listclockadvanceeventsresponse.md)**
+**[models.ListSimulationAdvanceEventsResponse](../../models/listsimulationadvanceeventsresponse.md)**
 
 ### Errors
 
@@ -365,50 +369,6 @@ with Continuous(
 | errors.Error                  | 400, 401, 403, 404, 409, 422  | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
-
-## fork_simulation
-
-Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token, which does not expire.
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="fork-simulation" method="post" path="/v1/simulations/{id}/fork" example="bad_request_body" -->
-```python
-from continuous import Continuous
-import os
-
-
-with Continuous(
-    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
-) as c_client:
-
-    res = c_client.simulations.fork_simulation(id="<id>", at_step=42, name="billing-fork")
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| `id`                                                                                                               | *str*                                                                                                              | :heavy_check_mark:                                                                                                 | Source Simulation ID.                                                                                              |
-| `at_step`                                                                                                          | *Optional[int]*                                                                                                    | :heavy_minus_sign:                                                                                                 | Completed step to fork from. Omission forks from the latest state.                                                 |
-| `name`                                                                                                             | *Optional[str]*                                                                                                    | :heavy_minus_sign:                                                                                                 | Name for the child Simulation. Omission generates a name. The ID stays its identity, and names need not be unique. |
-| `retries`                                                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                   | :heavy_minus_sign:                                                                                                 | Configuration to override the default retry behavior of the client.                                                |
-
-### Response
-
-**[models.ForkSimulationResponse](../../models/forksimulationresponse.md)**
-
-### Errors
-
-| Error Type                                       | Status Code                                      | Content Type                                     |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| errors.Error                                     | 400, 401, 403, 404, 408, 409, 413, 415, 422, 429 | application/problem+json                         |
-| errors.Error                                     | 500, 503, 504                                    | application/problem+json                         |
-| errors.ContinuousDefaultError                    | 4XX, 5XX                                         | \*/\*                                            |
 
 ## start_simulation
 
@@ -454,7 +414,7 @@ with Continuous(
 
 ## list_simulation_steps
 
-Lists the Simulation's steps in order. Each request that changed state is one step; a request that only reads registers none. Pass a step number as at_step when you fork to start the child from the state after that step. A stopped Simulation returns 409 simulation_stopped; start it first.
+Lists the Simulation's steps in order. Each request that changed state is one step; a request that only reads registers none. Pass a step number as at_step when you save a Snapshot to save the state after that step. A stopped Simulation returns 409 simulation_stopped; start it first.
 
 ### Example Usage
 
@@ -470,8 +430,10 @@ with Continuous(
 
     res = c_client.simulations.list_simulation_steps(id="<id>", limit=50)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 
 ```
 
@@ -486,7 +448,7 @@ with Continuous(
 
 ### Response
 
-**[models.ListSimulationStepsResponse](../../models/listsimulationstepsresponse.md)**
+**[models.ListSimulationStepsResponseResponse](../../models/listsimulationstepsresponseresponse.md)**
 
 ### Errors
 

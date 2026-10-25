@@ -7,11 +7,12 @@ from continuous.types import OptionalNullable, UNSET
 from continuous.utils import get_security_from_env
 from continuous.utils.unmarshal_json_response import unmarshal_json_response
 from datetime import datetime
-from typing import Any, Mapping, Optional
+from jsonpath import JSONPath
+from typing import Any, Awaitable, Dict, List, Mapping, Optional, Union
 
 
 class Simulations(BaseSDK):
-    r"""Create Simulations from ready Simulators, then fork, stop, start, and delete them."""
+    r"""Create Simulations from ready Simulators or Snapshots, then stop, start, and delete them."""
 
     def list_simulations(
         self,
@@ -25,7 +26,7 @@ class Simulations(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.ListSimulationsResponse:
+    ) -> Optional[models.ListSimulationsResponseResponse]:
         r"""List Simulations
 
         Returns all Simulations that the API key can access. Results can be filtered by status, Simulator ID, or pinned Simulator digest.
@@ -78,10 +79,14 @@ class Simulations(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = self.do_request(
             hook_ctx=HookContext(
@@ -100,9 +105,38 @@ class Simulations(BaseSDK):
             retry_config=retry_config,
         )
 
+        def next_func() -> Optional[models.ListSimulationsResponseResponse]:
+            body = utils.unmarshal_json(http_res.text, Union[Dict[Any, Any], List[Any]])
+
+            next_cursor = JSONPath("$.next_cursor").parse(body)
+
+            if len(next_cursor) == 0:
+                return None
+
+            next_cursor = next_cursor[0]
+            if next_cursor is None or str(next_cursor).strip() == "":
+                return None
+
+            return self.list_simulations(
+                status=status,
+                simulator_id=simulator_id,
+                simulator_digest=simulator_digest,
+                limit=limit,
+                cursor=next_cursor,
+                retries=retries,
+                server_url=server_url,
+                timeout_ms=timeout_ms,
+                http_headers=http_headers,
+            )
+
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.ListSimulationsResponse, http_res)
+            return models.ListSimulationsResponseResponse(
+                result=unmarshal_json_response(
+                    models.ListSimulationsResponse, http_res
+                ),
+                next=next_func,
+            )
         if utils.match_response(
             http_res, ["400", "401", "422"], "application/problem+json"
         ):
@@ -136,7 +170,7 @@ class Simulations(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.ListSimulationsResponse:
+    ) -> Optional[models.ListSimulationsResponseResponse]:
         r"""List Simulations
 
         Returns all Simulations that the API key can access. Results can be filtered by status, Simulator ID, or pinned Simulator digest.
@@ -189,10 +223,14 @@ class Simulations(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
@@ -211,9 +249,41 @@ class Simulations(BaseSDK):
             retry_config=retry_config,
         )
 
+        def next_func() -> Awaitable[Optional[models.ListSimulationsResponseResponse]]:
+            body = utils.unmarshal_json(http_res.text, Union[Dict[Any, Any], List[Any]])
+
+            async def empty_result():
+                return None
+
+            next_cursor = JSONPath("$.next_cursor").parse(body)
+
+            if len(next_cursor) == 0:
+                return empty_result()
+
+            next_cursor = next_cursor[0]
+            if next_cursor is None or str(next_cursor).strip() == "":
+                return empty_result()
+
+            return self.list_simulations_async(
+                status=status,
+                simulator_id=simulator_id,
+                simulator_digest=simulator_digest,
+                limit=limit,
+                cursor=next_cursor,
+                retries=retries,
+                server_url=server_url,
+                timeout_ms=timeout_ms,
+                http_headers=http_headers,
+            )
+
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.ListSimulationsResponse, http_res)
+            return models.ListSimulationsResponseResponse(
+                result=unmarshal_json_response(
+                    models.ListSimulationsResponse, http_res
+                ),
+                next=next_func,
+            )
         if utils.match_response(
             http_res, ["400", "401", "422"], "application/problem+json"
         ):
@@ -238,10 +308,11 @@ class Simulations(BaseSDK):
     def create_simulation(
         self,
         *,
-        simulator_id: str,
         include_sample_data: Optional[bool] = None,
         metadata: Optional[Any] = None,
         name: Optional[str] = None,
+        simulator_id: Optional[str] = None,
+        snapshot_id: Optional[str] = None,
         start_time: Optional[datetime] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -250,13 +321,14 @@ class Simulations(BaseSDK):
     ) -> models.CreateSimulationResponse:
         r"""Create Simulation
 
-        Creates a Simulation from a ready Simulator and starts it. The response includes the endpoint and the Simulation's token, which does not expire.
+        Creates a Simulation from a ready Simulator, or from a Snapshot with its saved state, and starts it. The response includes the endpoint and the Simulation's token, which does not expire.
 
-        :param simulator_id: ID of the ready Simulator.
-        :param include_sample_data: Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition.
+        :param include_sample_data: Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition. Not allowed with snapshot_id.
         :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null.
         :param name: Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique.
-        :param start_time: Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds.
+        :param simulator_id: ID of the ready Simulator. Set exactly one of simulator_id and snapshot_id.
+        :param snapshot_id: ID of the Snapshot to start from. The Simulation takes its state, clock, Simulator digest and runtime placement. Set exactly one of simulator_id and snapshot_id.
+        :param start_time: Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds. Not allowed with snapshot_id.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -277,6 +349,7 @@ class Simulations(BaseSDK):
             metadata=metadata,
             name=name,
             simulator_id=simulator_id,
+            snapshot_id=snapshot_id,
             start_time=start_time,
         )
 
@@ -333,7 +406,7 @@ class Simulations(BaseSDK):
             )
         if utils.match_response(
             http_res,
-            ["400", "401", "408", "409", "413", "415", "422", "429"],
+            ["400", "401", "404", "408", "409", "413", "415", "422", "429"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -359,10 +432,11 @@ class Simulations(BaseSDK):
     async def create_simulation_async(
         self,
         *,
-        simulator_id: str,
         include_sample_data: Optional[bool] = None,
         metadata: Optional[Any] = None,
         name: Optional[str] = None,
+        simulator_id: Optional[str] = None,
+        snapshot_id: Optional[str] = None,
         start_time: Optional[datetime] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -371,13 +445,14 @@ class Simulations(BaseSDK):
     ) -> models.CreateSimulationResponse:
         r"""Create Simulation
 
-        Creates a Simulation from a ready Simulator and starts it. The response includes the endpoint and the Simulation's token, which does not expire.
+        Creates a Simulation from a ready Simulator, or from a Snapshot with its saved state, and starts it. The response includes the endpoint and the Simulation's token, which does not expire.
 
-        :param simulator_id: ID of the ready Simulator.
-        :param include_sample_data: Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition.
+        :param include_sample_data: Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition. Not allowed with snapshot_id.
         :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null.
         :param name: Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique.
-        :param start_time: Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds.
+        :param simulator_id: ID of the ready Simulator. Set exactly one of simulator_id and snapshot_id.
+        :param snapshot_id: ID of the Snapshot to start from. The Simulation takes its state, clock, Simulator digest and runtime placement. Set exactly one of simulator_id and snapshot_id.
+        :param start_time: Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds. Not allowed with snapshot_id.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -398,6 +473,7 @@ class Simulations(BaseSDK):
             metadata=metadata,
             name=name,
             simulator_id=simulator_id,
+            snapshot_id=snapshot_id,
             start_time=start_time,
         )
 
@@ -454,7 +530,7 @@ class Simulations(BaseSDK):
             )
         if utils.match_response(
             http_res,
-            ["400", "401", "408", "409", "413", "415", "422", "429"],
+            ["400", "401", "404", "408", "409", "413", "415", "422", "429"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -728,10 +804,14 @@ class Simulations(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = self.do_request(
             hook_ctx=HookContext(
@@ -827,10 +907,14 @@ class Simulations(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
@@ -873,7 +957,7 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def advance_simulation(
+    def create_simulation_advance(
         self,
         *,
         id: str,
@@ -906,7 +990,7 @@ class Simulations(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.AdvanceSimulationRequest(
+        request = models.CreateSimulationAdvanceRequest(
             id=id,
             idempotency_key=idempotency_key,
             body=models.AdvanceTimeRequest(
@@ -916,7 +1000,7 @@ class Simulations(BaseSDK):
 
         req = self._build_request(
             method="POST",
-            path="/v1/simulations/{id}/advance-time",
+            path="/v1/simulations/{id}/advances",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -946,7 +1030,7 @@ class Simulations(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="advance-simulation",
+                operation_id="create-simulation-advance",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
@@ -985,7 +1069,7 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def advance_simulation_async(
+    async def create_simulation_advance_async(
         self,
         *,
         id: str,
@@ -1018,7 +1102,7 @@ class Simulations(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.AdvanceSimulationRequest(
+        request = models.CreateSimulationAdvanceRequest(
             id=id,
             idempotency_key=idempotency_key,
             body=models.AdvanceTimeRequest(
@@ -1028,7 +1112,7 @@ class Simulations(BaseSDK):
 
         req = self._build_request_async(
             method="POST",
-            path="/v1/simulations/{id}/advance-time",
+            path="/v1/simulations/{id}/advances",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1058,7 +1142,7 @@ class Simulations(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="advance-simulation",
+                operation_id="create-simulation-advance",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
@@ -1153,10 +1237,14 @@ class Simulations(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = self.do_request(
             hook_ctx=HookContext(
@@ -1255,10 +1343,14 @@ class Simulations(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
@@ -1312,13 +1404,13 @@ class Simulations(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.ListClockAdvanceEventsResponse:
+    ) -> Optional[models.ListSimulationAdvanceEventsResponse]:
         r"""List Clock Advance Events
 
-        Returns the ordered event trace for a committed advance. The Simulation must be running. Forks retain traces in their inherited state.
+        Returns the ordered event trace for a committed advance. The Simulation must be running. A Simulation created from a Snapshot keeps the traces in the state it started from.
 
         :param id: Simulation ID.
-        :param advance_id: Advance ID. A historical fork can read inherited runtime receipts.
+        :param advance_id: Advance ID. A Simulation created from a Snapshot can read the runtime receipts in the state it started from.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
@@ -1363,10 +1455,14 @@ class Simulations(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = self.do_request(
             hook_ctx=HookContext(
@@ -1385,10 +1481,36 @@ class Simulations(BaseSDK):
             retry_config=retry_config,
         )
 
+        def next_func() -> Optional[models.ListSimulationAdvanceEventsResponse]:
+            body = utils.unmarshal_json(http_res.text, Union[Dict[Any, Any], List[Any]])
+
+            next_cursor = JSONPath("$.next_cursor").parse(body)
+
+            if len(next_cursor) == 0:
+                return None
+
+            next_cursor = next_cursor[0]
+            if next_cursor is None or str(next_cursor).strip() == "":
+                return None
+
+            return self.list_simulation_advance_events(
+                id=id,
+                advance_id=advance_id,
+                limit=limit,
+                cursor=next_cursor,
+                retries=retries,
+                server_url=server_url,
+                timeout_ms=timeout_ms,
+                http_headers=http_headers,
+            )
+
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(
-                models.ListClockAdvanceEventsResponse, http_res
+            return models.ListSimulationAdvanceEventsResponse(
+                result=unmarshal_json_response(
+                    models.ListClockAdvanceEventsResponse, http_res
+                ),
+                next=next_func,
             )
         if utils.match_response(
             http_res,
@@ -1424,13 +1546,13 @@ class Simulations(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.ListClockAdvanceEventsResponse:
+    ) -> Optional[models.ListSimulationAdvanceEventsResponse]:
         r"""List Clock Advance Events
 
-        Returns the ordered event trace for a committed advance. The Simulation must be running. Forks retain traces in their inherited state.
+        Returns the ordered event trace for a committed advance. The Simulation must be running. A Simulation created from a Snapshot keeps the traces in the state it started from.
 
         :param id: Simulation ID.
-        :param advance_id: Advance ID. A historical fork can read inherited runtime receipts.
+        :param advance_id: Advance ID. A Simulation created from a Snapshot can read the runtime receipts in the state it started from.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
@@ -1475,10 +1597,14 @@ class Simulations(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
@@ -1497,10 +1623,41 @@ class Simulations(BaseSDK):
             retry_config=retry_config,
         )
 
+        def next_func() -> (
+            Awaitable[Optional[models.ListSimulationAdvanceEventsResponse]]
+        ):
+            body = utils.unmarshal_json(http_res.text, Union[Dict[Any, Any], List[Any]])
+
+            async def empty_result():
+                return None
+
+            next_cursor = JSONPath("$.next_cursor").parse(body)
+
+            if len(next_cursor) == 0:
+                return empty_result()
+
+            next_cursor = next_cursor[0]
+            if next_cursor is None or str(next_cursor).strip() == "":
+                return empty_result()
+
+            return self.list_simulation_advance_events_async(
+                id=id,
+                advance_id=advance_id,
+                limit=limit,
+                cursor=next_cursor,
+                retries=retries,
+                server_url=server_url,
+                timeout_ms=timeout_ms,
+                http_headers=http_headers,
+            )
+
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(
-                models.ListClockAdvanceEventsResponse, http_res
+            return models.ListSimulationAdvanceEventsResponse(
+                result=unmarshal_json_response(
+                    models.ListClockAdvanceEventsResponse, http_res
+                ),
+                next=next_func,
             )
         if utils.match_response(
             http_res,
@@ -1510,240 +1667,6 @@ class Simulations(BaseSDK):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
-        if utils.match_response(http_res, "4XX", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.ContinuousDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-        if utils.match_response(http_res, "5XX", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.ContinuousDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-
-        raise errors.ContinuousDefaultError("Unexpected response received", http_res)
-
-    def fork_simulation(
-        self,
-        *,
-        id: str,
-        at_step: Optional[int] = None,
-        name: Optional[str] = None,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.ForkSimulationResponse:
-        r"""Fork Simulation
-
-        Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token, which does not expire.
-
-        :param id: Source Simulation ID.
-        :param at_step: Completed step to fork from. Omission forks from the latest state.
-        :param name: Name for the child Simulation. Omission generates a name. The ID stays its identity, and names need not be unique.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-
-        request = models.ForkSimulationRequestRequest(
-            id=id,
-            body=models.ForkSimulationRequest(
-                at_step=at_step,
-                name=name,
-            ),
-        )
-
-        req = self._build_request(
-            method="POST",
-            path="/v1/simulations/{id}/fork",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=True,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.body, False, False, "json", models.ForkSimulationRequest
-            ),
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="fork-simulation",
-                oauth2_scopes=None,
-                security_source=get_security_from_env(
-                    self.sdk_configuration.security, models.Security
-                ),
-                tags=["simulations"],
-                extensions=None,
-            ),
-            request=req,
-            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
-            retry_config=retry_config,
-        )
-
-        response_data: Any = None
-        if utils.match_response(http_res, "201", "application/json"):
-            return models.ForkSimulationResponse(
-                result=unmarshal_json_response(models.CreatedSimulation, http_res),
-                headers=utils.get_response_headers(http_res.headers),
-            )
-        if utils.match_response(
-            http_res,
-            ["400", "401", "403", "404", "408", "409", "413", "415", "422", "429"],
-            "application/problem+json",
-        ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
-        if utils.match_response(
-            http_res, ["500", "503", "504"], "application/problem+json"
-        ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
-        if utils.match_response(http_res, "4XX", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise errors.ContinuousDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-        if utils.match_response(http_res, "5XX", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise errors.ContinuousDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-
-        raise errors.ContinuousDefaultError("Unexpected response received", http_res)
-
-    async def fork_simulation_async(
-        self,
-        *,
-        id: str,
-        at_step: Optional[int] = None,
-        name: Optional[str] = None,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.ForkSimulationResponse:
-        r"""Fork Simulation
-
-        Creates a new Simulation from the source Simulation's current state, or from an earlier recorded step when you set at_step. The source must be running; a stopped source returns 409 simulation_stopped. Forking does not change the source. The response includes the new endpoint and the fork's own token, which does not expire.
-
-        :param id: Source Simulation ID.
-        :param at_step: Completed step to fork from. Omission forks from the latest state.
-        :param name: Name for the child Simulation. Omission generates a name. The ID stays its identity, and names need not be unique.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-
-        request = models.ForkSimulationRequestRequest(
-            id=id,
-            body=models.ForkSimulationRequest(
-                at_step=at_step,
-                name=name,
-            ),
-        )
-
-        req = self._build_request_async(
-            method="POST",
-            path="/v1/simulations/{id}/fork",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=True,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.body, False, False, "json", models.ForkSimulationRequest
-            ),
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="fork-simulation",
-                oauth2_scopes=None,
-                security_source=get_security_from_env(
-                    self.sdk_configuration.security, models.Security
-                ),
-                tags=["simulations"],
-                extensions=None,
-            ),
-            request=req,
-            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
-            retry_config=retry_config,
-        )
-
-        response_data: Any = None
-        if utils.match_response(http_res, "201", "application/json"):
-            return models.ForkSimulationResponse(
-                result=unmarshal_json_response(models.CreatedSimulation, http_res),
-                headers=utils.get_response_headers(http_res.headers),
-            )
-        if utils.match_response(
-            http_res,
-            ["400", "401", "403", "404", "408", "409", "413", "415", "422", "429"],
-            "application/problem+json",
-        ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
-        if utils.match_response(
-            http_res, ["500", "503", "504"], "application/problem+json"
-        ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
@@ -1977,10 +1900,10 @@ class Simulations(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.ListSimulationStepsResponse:
+    ) -> Optional[models.ListSimulationStepsResponseResponse]:
         r"""List Simulation Steps
 
-        Lists the Simulation's steps in order. Each request that changed state is one step; a request that only reads registers none. Pass a step number as at_step when you fork to start the child from the state after that step. A stopped Simulation returns 409 simulation_stopped; start it first.
+        Lists the Simulation's steps in order. Each request that changed state is one step; a request that only reads registers none. Pass a step number as at_step when you save a Snapshot to save the state after that step. A stopped Simulation returns 409 simulation_stopped; start it first.
 
         :param id: Simulation ID.
         :param cursor: Opaque next_cursor value from a previous page.
@@ -2026,10 +1949,14 @@ class Simulations(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = self.do_request(
             hook_ctx=HookContext(
@@ -2048,9 +1975,36 @@ class Simulations(BaseSDK):
             retry_config=retry_config,
         )
 
+        def next_func() -> Optional[models.ListSimulationStepsResponseResponse]:
+            body = utils.unmarshal_json(http_res.text, Union[Dict[Any, Any], List[Any]])
+
+            next_cursor = JSONPath("$.next_cursor").parse(body)
+
+            if len(next_cursor) == 0:
+                return None
+
+            next_cursor = next_cursor[0]
+            if next_cursor is None or str(next_cursor).strip() == "":
+                return None
+
+            return self.list_simulation_steps(
+                id=id,
+                cursor=next_cursor,
+                limit=limit,
+                retries=retries,
+                server_url=server_url,
+                timeout_ms=timeout_ms,
+                http_headers=http_headers,
+            )
+
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.ListSimulationStepsResponse, http_res)
+            return models.ListSimulationStepsResponseResponse(
+                result=unmarshal_json_response(
+                    models.ListSimulationStepsResponse, http_res
+                ),
+                next=next_func,
+            )
         if utils.match_response(
             http_res,
             ["400", "401", "403", "404", "409", "422"],
@@ -2084,10 +2038,10 @@ class Simulations(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.ListSimulationStepsResponse:
+    ) -> Optional[models.ListSimulationStepsResponseResponse]:
         r"""List Simulation Steps
 
-        Lists the Simulation's steps in order. Each request that changed state is one step; a request that only reads registers none. Pass a step number as at_step when you fork to start the child from the state after that step. A stopped Simulation returns 409 simulation_stopped; start it first.
+        Lists the Simulation's steps in order. Each request that changed state is one step; a request that only reads registers none. Pass a step number as at_step when you save a Snapshot to save the state after that step. A stopped Simulation returns 409 simulation_stopped; start it first.
 
         :param id: Simulation ID.
         :param cursor: Opaque next_cursor value from a previous page.
@@ -2133,10 +2087,14 @@ class Simulations(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
@@ -2155,9 +2113,41 @@ class Simulations(BaseSDK):
             retry_config=retry_config,
         )
 
+        def next_func() -> (
+            Awaitable[Optional[models.ListSimulationStepsResponseResponse]]
+        ):
+            body = utils.unmarshal_json(http_res.text, Union[Dict[Any, Any], List[Any]])
+
+            async def empty_result():
+                return None
+
+            next_cursor = JSONPath("$.next_cursor").parse(body)
+
+            if len(next_cursor) == 0:
+                return empty_result()
+
+            next_cursor = next_cursor[0]
+            if next_cursor is None or str(next_cursor).strip() == "":
+                return empty_result()
+
+            return self.list_simulation_steps_async(
+                id=id,
+                cursor=next_cursor,
+                limit=limit,
+                retries=retries,
+                server_url=server_url,
+                timeout_ms=timeout_ms,
+                http_headers=http_headers,
+            )
+
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.ListSimulationStepsResponse, http_res)
+            return models.ListSimulationStepsResponseResponse(
+                result=unmarshal_json_response(
+                    models.ListSimulationStepsResponse, http_res
+                ),
+                next=next_func,
+            )
         if utils.match_response(
             http_res,
             ["400", "401", "403", "404", "409", "422"],
@@ -2432,10 +2422,14 @@ class Simulations(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = self.do_request(
             hook_ctx=HookContext(
@@ -2536,10 +2530,14 @@ class Simulations(BaseSDK):
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
+            else:
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(500, 5000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
+            retry_config = (retries, ["502", "503", "504"])
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(

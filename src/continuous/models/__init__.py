@@ -13,11 +13,6 @@ if TYPE_CHECKING:
         AddWorldSimulationRequest,
         AddWorldSimulationRequestTypedDict,
     )
-    from .advance_simulationop import (
-        AdvanceSimulationRequest,
-        AdvanceSimulationRequestTypedDict,
-    )
-    from .advance_worldop import AdvanceWorldRequest, AdvanceWorldRequestTypedDict
     from .advancetimerequest import AdvanceTimeRequest, AdvanceTimeRequestTypedDict
     from .build_simulatorop import (
         BuildSimulatorResponse,
@@ -65,9 +60,21 @@ if TYPE_CHECKING:
         CloneSimulatorResponse,
         CloneSimulatorResponseTypedDict,
     )
+    from .create_simulation_advanceop import (
+        CreateSimulationAdvanceRequest,
+        CreateSimulationAdvanceRequestTypedDict,
+    )
+    from .create_simulation_snapshotop import (
+        CreateSimulationSnapshotRequestRequest,
+        CreateSimulationSnapshotRequestRequestTypedDict,
+    )
     from .create_simulationop import (
         CreateSimulationResponse,
         CreateSimulationResponseTypedDict,
+    )
+    from .create_world_advanceop import (
+        CreateWorldAdvanceRequest,
+        CreateWorldAdvanceRequestTypedDict,
     )
     from .createcredentialrequest import (
         CreateCredentialRequest,
@@ -81,6 +88,10 @@ if TYPE_CHECKING:
     from .createsimulationrequest import (
         CreateSimulationRequest,
         CreateSimulationRequestTypedDict,
+    )
+    from .createsimulationsnapshotrequest import (
+        CreateSimulationSnapshotRequest,
+        CreateSimulationSnapshotRequestTypedDict,
     )
     from .credential import Credential, CredentialTypedDict
     from .credentiallogin import CredentialLogin, CredentialLoginTypedDict
@@ -100,6 +111,10 @@ if TYPE_CHECKING:
         DeleteCredentialRequest,
         DeleteCredentialRequestTypedDict,
     )
+    from .delete_simulation_snapshotop import (
+        DeleteSimulationSnapshotRequest,
+        DeleteSimulationSnapshotRequestTypedDict,
+    )
     from .delete_simulationop import (
         DeleteSimulationRequest,
         DeleteSimulationRequestTypedDict,
@@ -109,20 +124,14 @@ if TYPE_CHECKING:
         DeleteSimulatorRequestTypedDict,
     )
     from .delete_worldop import DeleteWorldRequest, DeleteWorldRequestTypedDict
-    from .fork_simulationop import (
-        ForkSimulationRequestRequest,
-        ForkSimulationRequestRequestTypedDict,
-        ForkSimulationResponse,
-        ForkSimulationResponseTypedDict,
-    )
-    from .forksimulationrequest import (
-        ForkSimulationRequest,
-        ForkSimulationRequestTypedDict,
-    )
     from .get_credentialop import GetCredentialRequest, GetCredentialRequestTypedDict
     from .get_simulation_advanceop import (
         GetSimulationAdvanceRequest,
         GetSimulationAdvanceRequestTypedDict,
+    )
+    from .get_simulation_snapshotop import (
+        GetSimulationSnapshotRequest,
+        GetSimulationSnapshotRequestTypedDict,
     )
     from .get_simulation_tokenop import (
         GetSimulationTokenRequest,
@@ -145,28 +154,46 @@ if TYPE_CHECKING:
     from .list_credentialsop import (
         ListCredentialsRequest,
         ListCredentialsRequestTypedDict,
+        ListCredentialsResponseResponse,
+        ListCredentialsResponseResponseTypedDict,
     )
     from .list_simulation_advance_eventsop import (
         ListSimulationAdvanceEventsRequest,
         ListSimulationAdvanceEventsRequestTypedDict,
+        ListSimulationAdvanceEventsResponse,
+        ListSimulationAdvanceEventsResponseTypedDict,
+    )
+    from .list_simulation_snapshotsop import (
+        ListSimulationSnapshotsRequest,
+        ListSimulationSnapshotsRequestTypedDict,
+        ListSimulationSnapshotsResponseResponse,
+        ListSimulationSnapshotsResponseResponseTypedDict,
     )
     from .list_simulation_stepsop import (
         ListSimulationStepsRequest,
         ListSimulationStepsRequestTypedDict,
+        ListSimulationStepsResponseResponse,
+        ListSimulationStepsResponseResponseTypedDict,
     )
     from .list_simulationsop import (
         ListSimulationsRequest,
         ListSimulationsRequestTypedDict,
+        ListSimulationsResponseResponse,
+        ListSimulationsResponseResponseTypedDict,
         ListSimulationsStatus,
     )
     from .list_simulatorsop import (
         ListSimulatorsRequest,
         ListSimulatorsRequestTypedDict,
+        ListSimulatorsResponseResponse,
+        ListSimulatorsResponseResponseTypedDict,
         ListSimulatorsStatus,
     )
     from .list_worldsop import (
         ListWorldsRequest,
         ListWorldsRequestTypedDict,
+        ListWorldsResponseResponse,
+        ListWorldsResponseResponseTypedDict,
         ListWorldsStatus,
     )
     from .listclockadvanceeventsresponse import (
@@ -176,6 +203,10 @@ if TYPE_CHECKING:
     from .listcredentialsresponse import (
         ListCredentialsResponse,
         ListCredentialsResponseTypedDict,
+    )
+    from .listsimulationsnapshotsresponse import (
+        ListSimulationSnapshotsResponse,
+        ListSimulationSnapshotsResponseTypedDict,
     )
     from .listsimulationsresponse import (
         ListSimulationsResponse,
@@ -197,10 +228,6 @@ if TYPE_CHECKING:
         RegenerateSimulationTokenResponseTypedDict,
     )
     from .remove_world_simulationop import (
-        RemoveWorldSimulationRequestRequest,
-        RemoveWorldSimulationRequestRequestTypedDict,
-    )
-    from .removeworldsimulationrequest import (
         RemoveWorldSimulationRequest,
         RemoveWorldSimulationRequestTypedDict,
     )
@@ -212,6 +239,7 @@ if TYPE_CHECKING:
         SimulationDetailStatus,
         SimulationDetailTypedDict,
     )
+    from .simulationsnapshot import SimulationSnapshot, SimulationSnapshotTypedDict
     from .simulator import (
         Simulator,
         SimulatorMode,
@@ -312,12 +340,8 @@ __all__ = [
     "AddWorldSimulationRequestRequest",
     "AddWorldSimulationRequestRequestTypedDict",
     "AddWorldSimulationRequestTypedDict",
-    "AdvanceSimulationRequest",
-    "AdvanceSimulationRequestTypedDict",
     "AdvanceTimeRequest",
     "AdvanceTimeRequestTypedDict",
-    "AdvanceWorldRequest",
-    "AdvanceWorldRequestTypedDict",
     "BuildSimulatorRequest",
     "BuildSimulatorRequestMode",
     "BuildSimulatorRequestModel",
@@ -348,10 +372,18 @@ __all__ = [
     "CloneSimulatorResponseTypedDict",
     "CreateCredentialRequest",
     "CreateCredentialRequestTypedDict",
+    "CreateSimulationAdvanceRequest",
+    "CreateSimulationAdvanceRequestTypedDict",
     "CreateSimulationRequest",
     "CreateSimulationRequestTypedDict",
     "CreateSimulationResponse",
     "CreateSimulationResponseTypedDict",
+    "CreateSimulationSnapshotRequest",
+    "CreateSimulationSnapshotRequestRequest",
+    "CreateSimulationSnapshotRequestRequestTypedDict",
+    "CreateSimulationSnapshotRequestTypedDict",
+    "CreateWorldAdvanceRequest",
+    "CreateWorldAdvanceRequestTypedDict",
     "CreatedSimulation",
     "CreatedSimulationStatus",
     "CreatedSimulationTypedDict",
@@ -369,24 +401,22 @@ __all__ = [
     "DeleteCredentialRequestTypedDict",
     "DeleteSimulationRequest",
     "DeleteSimulationRequestTypedDict",
+    "DeleteSimulationSnapshotRequest",
+    "DeleteSimulationSnapshotRequestTypedDict",
     "DeleteSimulatorRequest",
     "DeleteSimulatorRequestTypedDict",
     "DeleteWorldRequest",
     "DeleteWorldRequestTypedDict",
     "Document",
     "DocumentTypedDict",
-    "ForkSimulationRequest",
-    "ForkSimulationRequestRequest",
-    "ForkSimulationRequestRequestTypedDict",
-    "ForkSimulationRequestTypedDict",
-    "ForkSimulationResponse",
-    "ForkSimulationResponseTypedDict",
     "GetCredentialRequest",
     "GetCredentialRequestTypedDict",
     "GetSimulationAdvanceRequest",
     "GetSimulationAdvanceRequestTypedDict",
     "GetSimulationRequest",
     "GetSimulationRequestTypedDict",
+    "GetSimulationSnapshotRequest",
+    "GetSimulationSnapshotRequestTypedDict",
     "GetSimulationTokenRequest",
     "GetSimulationTokenRequestTypedDict",
     "GetSimulationTokenResponse",
@@ -406,26 +436,44 @@ __all__ = [
     "ListCredentialsRequest",
     "ListCredentialsRequestTypedDict",
     "ListCredentialsResponse",
+    "ListCredentialsResponseResponse",
+    "ListCredentialsResponseResponseTypedDict",
     "ListCredentialsResponseTypedDict",
     "ListSimulationAdvanceEventsRequest",
     "ListSimulationAdvanceEventsRequestTypedDict",
+    "ListSimulationAdvanceEventsResponse",
+    "ListSimulationAdvanceEventsResponseTypedDict",
+    "ListSimulationSnapshotsRequest",
+    "ListSimulationSnapshotsRequestTypedDict",
+    "ListSimulationSnapshotsResponse",
+    "ListSimulationSnapshotsResponseResponse",
+    "ListSimulationSnapshotsResponseResponseTypedDict",
+    "ListSimulationSnapshotsResponseTypedDict",
     "ListSimulationStepsRequest",
     "ListSimulationStepsRequestTypedDict",
     "ListSimulationStepsResponse",
+    "ListSimulationStepsResponseResponse",
+    "ListSimulationStepsResponseResponseTypedDict",
     "ListSimulationStepsResponseTypedDict",
     "ListSimulationsRequest",
     "ListSimulationsRequestTypedDict",
     "ListSimulationsResponse",
+    "ListSimulationsResponseResponse",
+    "ListSimulationsResponseResponseTypedDict",
     "ListSimulationsResponseTypedDict",
     "ListSimulationsStatus",
     "ListSimulatorsRequest",
     "ListSimulatorsRequestTypedDict",
     "ListSimulatorsResponse",
+    "ListSimulatorsResponseResponse",
+    "ListSimulatorsResponseResponseTypedDict",
     "ListSimulatorsResponseTypedDict",
     "ListSimulatorsStatus",
     "ListWorldsRequest",
     "ListWorldsRequestTypedDict",
     "ListWorldsResponse",
+    "ListWorldsResponseResponse",
+    "ListWorldsResponseResponseTypedDict",
     "ListWorldsResponseTypedDict",
     "ListWorldsStatus",
     "RegenerateSimulationTokenRequest",
@@ -433,8 +481,6 @@ __all__ = [
     "RegenerateSimulationTokenResponse",
     "RegenerateSimulationTokenResponseTypedDict",
     "RemoveWorldSimulationRequest",
-    "RemoveWorldSimulationRequestRequest",
-    "RemoveWorldSimulationRequestRequestTypedDict",
     "RemoveWorldSimulationRequestTypedDict",
     "ResourceError",
     "ResourceErrorTypedDict",
@@ -444,6 +490,8 @@ __all__ = [
     "SimulationDetail",
     "SimulationDetailStatus",
     "SimulationDetailTypedDict",
+    "SimulationSnapshot",
+    "SimulationSnapshotTypedDict",
     "SimulationStatus",
     "SimulationTypedDict",
     "Simulator",
@@ -533,10 +581,6 @@ _dynamic_imports: dict[str, str] = {
     "AddWorldSimulationRequestRequestTypedDict": ".add_world_simulationop",
     "AddWorldSimulationRequest": ".addworldsimulationrequest",
     "AddWorldSimulationRequestTypedDict": ".addworldsimulationrequest",
-    "AdvanceSimulationRequest": ".advance_simulationop",
-    "AdvanceSimulationRequestTypedDict": ".advance_simulationop",
-    "AdvanceWorldRequest": ".advance_worldop",
-    "AdvanceWorldRequestTypedDict": ".advance_worldop",
     "AdvanceTimeRequest": ".advancetimerequest",
     "AdvanceTimeRequestTypedDict": ".advancetimerequest",
     "BuildSimulatorResponse": ".build_simulatorop",
@@ -573,8 +617,14 @@ _dynamic_imports: dict[str, str] = {
     "CloneSimulatorRequestTypedDict": ".clonesimulatorrequest",
     "CloneSimulatorResponse": ".clonesimulatorresponse",
     "CloneSimulatorResponseTypedDict": ".clonesimulatorresponse",
+    "CreateSimulationAdvanceRequest": ".create_simulation_advanceop",
+    "CreateSimulationAdvanceRequestTypedDict": ".create_simulation_advanceop",
+    "CreateSimulationSnapshotRequestRequest": ".create_simulation_snapshotop",
+    "CreateSimulationSnapshotRequestRequestTypedDict": ".create_simulation_snapshotop",
     "CreateSimulationResponse": ".create_simulationop",
     "CreateSimulationResponseTypedDict": ".create_simulationop",
+    "CreateWorldAdvanceRequest": ".create_world_advanceop",
+    "CreateWorldAdvanceRequestTypedDict": ".create_world_advanceop",
     "CreateCredentialRequest": ".createcredentialrequest",
     "CreateCredentialRequestTypedDict": ".createcredentialrequest",
     "CreatedSimulation": ".createdsimulation",
@@ -582,6 +632,8 @@ _dynamic_imports: dict[str, str] = {
     "CreatedSimulationTypedDict": ".createdsimulation",
     "CreateSimulationRequest": ".createsimulationrequest",
     "CreateSimulationRequestTypedDict": ".createsimulationrequest",
+    "CreateSimulationSnapshotRequest": ".createsimulationsnapshotrequest",
+    "CreateSimulationSnapshotRequestTypedDict": ".createsimulationsnapshotrequest",
     "Credential": ".credential",
     "CredentialTypedDict": ".credential",
     "CredentialLogin": ".credentiallogin",
@@ -594,22 +646,20 @@ _dynamic_imports: dict[str, str] = {
     "CurrentSimulationTokenTypedDict": ".currentsimulationtoken",
     "DeleteCredentialRequest": ".delete_credentialop",
     "DeleteCredentialRequestTypedDict": ".delete_credentialop",
+    "DeleteSimulationSnapshotRequest": ".delete_simulation_snapshotop",
+    "DeleteSimulationSnapshotRequestTypedDict": ".delete_simulation_snapshotop",
     "DeleteSimulationRequest": ".delete_simulationop",
     "DeleteSimulationRequestTypedDict": ".delete_simulationop",
     "DeleteSimulatorRequest": ".delete_simulatorop",
     "DeleteSimulatorRequestTypedDict": ".delete_simulatorop",
     "DeleteWorldRequest": ".delete_worldop",
     "DeleteWorldRequestTypedDict": ".delete_worldop",
-    "ForkSimulationRequestRequest": ".fork_simulationop",
-    "ForkSimulationRequestRequestTypedDict": ".fork_simulationop",
-    "ForkSimulationResponse": ".fork_simulationop",
-    "ForkSimulationResponseTypedDict": ".fork_simulationop",
-    "ForkSimulationRequest": ".forksimulationrequest",
-    "ForkSimulationRequestTypedDict": ".forksimulationrequest",
     "GetCredentialRequest": ".get_credentialop",
     "GetCredentialRequestTypedDict": ".get_credentialop",
     "GetSimulationAdvanceRequest": ".get_simulation_advanceop",
     "GetSimulationAdvanceRequestTypedDict": ".get_simulation_advanceop",
+    "GetSimulationSnapshotRequest": ".get_simulation_snapshotop",
+    "GetSimulationSnapshotRequestTypedDict": ".get_simulation_snapshotop",
     "GetSimulationTokenRequest": ".get_simulation_tokenop",
     "GetSimulationTokenRequestTypedDict": ".get_simulation_tokenop",
     "GetSimulationTokenResponse": ".get_simulation_tokenop",
@@ -628,23 +678,41 @@ _dynamic_imports: dict[str, str] = {
     "LimitationTypedDict": ".limitation",
     "ListCredentialsRequest": ".list_credentialsop",
     "ListCredentialsRequestTypedDict": ".list_credentialsop",
+    "ListCredentialsResponseResponse": ".list_credentialsop",
+    "ListCredentialsResponseResponseTypedDict": ".list_credentialsop",
     "ListSimulationAdvanceEventsRequest": ".list_simulation_advance_eventsop",
     "ListSimulationAdvanceEventsRequestTypedDict": ".list_simulation_advance_eventsop",
+    "ListSimulationAdvanceEventsResponse": ".list_simulation_advance_eventsop",
+    "ListSimulationAdvanceEventsResponseTypedDict": ".list_simulation_advance_eventsop",
+    "ListSimulationSnapshotsRequest": ".list_simulation_snapshotsop",
+    "ListSimulationSnapshotsRequestTypedDict": ".list_simulation_snapshotsop",
+    "ListSimulationSnapshotsResponseResponse": ".list_simulation_snapshotsop",
+    "ListSimulationSnapshotsResponseResponseTypedDict": ".list_simulation_snapshotsop",
     "ListSimulationStepsRequest": ".list_simulation_stepsop",
     "ListSimulationStepsRequestTypedDict": ".list_simulation_stepsop",
+    "ListSimulationStepsResponseResponse": ".list_simulation_stepsop",
+    "ListSimulationStepsResponseResponseTypedDict": ".list_simulation_stepsop",
     "ListSimulationsRequest": ".list_simulationsop",
     "ListSimulationsRequestTypedDict": ".list_simulationsop",
+    "ListSimulationsResponseResponse": ".list_simulationsop",
+    "ListSimulationsResponseResponseTypedDict": ".list_simulationsop",
     "ListSimulationsStatus": ".list_simulationsop",
     "ListSimulatorsRequest": ".list_simulatorsop",
     "ListSimulatorsRequestTypedDict": ".list_simulatorsop",
+    "ListSimulatorsResponseResponse": ".list_simulatorsop",
+    "ListSimulatorsResponseResponseTypedDict": ".list_simulatorsop",
     "ListSimulatorsStatus": ".list_simulatorsop",
     "ListWorldsRequest": ".list_worldsop",
     "ListWorldsRequestTypedDict": ".list_worldsop",
+    "ListWorldsResponseResponse": ".list_worldsop",
+    "ListWorldsResponseResponseTypedDict": ".list_worldsop",
     "ListWorldsStatus": ".list_worldsop",
     "ListClockAdvanceEventsResponse": ".listclockadvanceeventsresponse",
     "ListClockAdvanceEventsResponseTypedDict": ".listclockadvanceeventsresponse",
     "ListCredentialsResponse": ".listcredentialsresponse",
     "ListCredentialsResponseTypedDict": ".listcredentialsresponse",
+    "ListSimulationSnapshotsResponse": ".listsimulationsnapshotsresponse",
+    "ListSimulationSnapshotsResponseTypedDict": ".listsimulationsnapshotsresponse",
     "ListSimulationsResponse": ".listsimulationsresponse",
     "ListSimulationsResponseTypedDict": ".listsimulationsresponse",
     "ListSimulationStepsResponse": ".listsimulationstepsresponse",
@@ -657,10 +725,8 @@ _dynamic_imports: dict[str, str] = {
     "RegenerateSimulationTokenRequestTypedDict": ".regenerate_simulation_tokenop",
     "RegenerateSimulationTokenResponse": ".regenerate_simulation_tokenop",
     "RegenerateSimulationTokenResponseTypedDict": ".regenerate_simulation_tokenop",
-    "RemoveWorldSimulationRequestRequest": ".remove_world_simulationop",
-    "RemoveWorldSimulationRequestRequestTypedDict": ".remove_world_simulationop",
-    "RemoveWorldSimulationRequest": ".removeworldsimulationrequest",
-    "RemoveWorldSimulationRequestTypedDict": ".removeworldsimulationrequest",
+    "RemoveWorldSimulationRequest": ".remove_world_simulationop",
+    "RemoveWorldSimulationRequestTypedDict": ".remove_world_simulationop",
     "ResourceError": ".resourceerror",
     "ResourceErrorTypedDict": ".resourceerror",
     "Security": ".security",
@@ -671,6 +737,8 @@ _dynamic_imports: dict[str, str] = {
     "SimulationDetail": ".simulationdetail",
     "SimulationDetailStatus": ".simulationdetail",
     "SimulationDetailTypedDict": ".simulationdetail",
+    "SimulationSnapshot": ".simulationsnapshot",
+    "SimulationSnapshotTypedDict": ".simulationsnapshot",
     "Simulator": ".simulator",
     "SimulatorMode": ".simulator",
     "SimulatorSpecKind": ".simulator",

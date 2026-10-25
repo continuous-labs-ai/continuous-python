@@ -8,13 +8,8 @@ from typing_extensions import TypedDict
 class CredentialLoginRequestTypedDict(TypedDict):
     url: str
     r"""The https URL of the app's sign-in page, with a literal host name or IP address and no user information."""
-    username: str
-    r"""The user name to sign in with."""
 
 
 class CredentialLoginRequest(BaseModel):
     url: str
     r"""The https URL of the app's sign-in page, with a literal host name or IP address and no user information."""
-
-    username: str
-    r"""The user name to sign in with."""

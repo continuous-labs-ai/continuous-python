@@ -13,7 +13,7 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
-class AdvanceWorldRequestTypedDict(TypedDict):
+class CreateWorldAdvanceRequestTypedDict(TypedDict):
     id: str
     r"""World ID."""
     idempotency_key: str
@@ -21,7 +21,7 @@ class AdvanceWorldRequestTypedDict(TypedDict):
     body: AdvanceTimeRequestTypedDict
 
 
-class AdvanceWorldRequest(BaseModel):
+class CreateWorldAdvanceRequest(BaseModel):
     id: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
