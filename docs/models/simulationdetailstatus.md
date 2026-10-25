@@ -1,6 +1,6 @@
 # SimulationDetailStatus
 
-Current status. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopped means its state is saved and requests return 409 until you start it.
+Current status. starting means its runtime is booting; read the Simulation until it is running. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopping means its state is being saved, and stopped means it is saved; requests return 409 in both until you start it.
 
 ## Example Usage
 
@@ -8,7 +8,7 @@ Current status. running serves requests; after a period without requests, the fi
 from continuous.models import SimulationDetailStatus
 
 # Open enum: unrecognized values are captured as UnrecognizedStr
-value: SimulationDetailStatus = "running"
+value: SimulationDetailStatus = "starting"
 ```
 
 
@@ -16,5 +16,7 @@ value: SimulationDetailStatus = "running"
 
 This is an open enum. Unrecognized values will not fail type checks.
 
+- `"starting"`
 - `"running"`
+- `"stopping"`
 - `"stopped"`

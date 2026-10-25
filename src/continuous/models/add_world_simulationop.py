@@ -20,7 +20,7 @@ class AddWorldSimulationRequestRequestTypedDict(TypedDict):
     id: str
     r"""World ID."""
     idempotency_key: str
-    r"""Stable key for this request. Reuse with the same body returns the same change."""
+    r"""Stable key for this request. Reuse with the same body returns the same change; reuse with a different body returns 409 idempotency_conflict."""
     body: AddWorldSimulationRequestTypedDict
 
 
@@ -35,7 +35,7 @@ class AddWorldSimulationRequestRequest(BaseModel):
         pydantic.Field(alias="Idempotency-Key"),
         FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
     ]
-    r"""Stable key for this request. Reuse with the same body returns the same change."""
+    r"""Stable key for this request. Reuse with the same body returns the same change; reuse with a different body returns 409 idempotency_conflict."""
 
     body: Annotated[
         AddWorldSimulationRequest,

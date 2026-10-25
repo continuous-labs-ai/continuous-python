@@ -2,9 +2,52 @@
 
 from __future__ import annotations
 from .createdsimulation import CreatedSimulation, CreatedSimulationTypedDict
-from continuous.types import BaseModel
-from typing import Dict, List
-from typing_extensions import TypedDict
+from .createsimulationrequest import (
+    CreateSimulationRequest,
+    CreateSimulationRequestTypedDict,
+)
+from continuous.types import BaseModel, UNSET_SENTINEL
+from continuous.utils import FieldMetadata, HeaderMetadata, RequestMetadata
+import pydantic
+from pydantic import model_serializer
+from typing import Dict, List, Optional
+from typing_extensions import Annotated, NotRequired, TypedDict
+
+
+class CreateSimulationRequestRequestTypedDict(TypedDict):
+    body: CreateSimulationRequestTypedDict
+    idempotency_key: NotRequired[str]
+    r"""Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource."""
+
+
+class CreateSimulationRequestRequest(BaseModel):
+    body: Annotated[
+        CreateSimulationRequest,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+
+    idempotency_key: Annotated[
+        Optional[str],
+        pydantic.Field(alias="Idempotency-Key"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = None
+    r"""Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource."""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["Idempotency-Key"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class CreateSimulationResponseTypedDict(TypedDict):

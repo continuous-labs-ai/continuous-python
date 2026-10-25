@@ -11,6 +11,8 @@ class SimulatorDependentsTypedDict(TypedDict):
     r"""IDs of Simulators built from the Simulator."""
     simulations: List[str]
     r"""IDs of Simulations created from the Simulator, including World members."""
+    snapshots: List[str]
+    r"""IDs of Simulation Snapshots of Simulations created from the Simulator."""
     worlds: List[str]
     r"""IDs of Worlds that include the Simulator."""
 
@@ -21,6 +23,9 @@ class SimulatorDependents(BaseModel):
 
     simulations: List[str]
     r"""IDs of Simulations created from the Simulator, including World members."""
+
+    snapshots: List[str]
+    r"""IDs of Simulation Snapshots of Simulations created from the Simulator."""
 
     worlds: List[str]
     r"""IDs of Worlds that include the Simulator."""

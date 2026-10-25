@@ -11,7 +11,7 @@ from typing import Any, Awaitable, Dict, List, Mapping, Optional, Union
 
 
 class SimulationSnapshots(BaseSDK):
-    r"""Save a running Simulation's state as a Snapshot, create Simulations from it, and delete it."""
+    r"""Save a running Simulation's state as a Snapshot, create Simulations from it, and rename and delete it."""
 
     def list_simulation_snapshots(
         self,
@@ -293,10 +293,9 @@ class SimulationSnapshots(BaseSDK):
     def create_simulation_snapshot(
         self,
         *,
-        idempotency_key: str,
         name: str,
         simulation_id: str,
-        at_step: Optional[int] = None,
+        idempotency_key: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -304,12 +303,11 @@ class SimulationSnapshots(BaseSDK):
     ) -> models.SimulationSnapshot:
         r"""Create Simulation Snapshot
 
-        Saves a running Simulation's current state, or its state after an earlier recorded step when you set at_step, and returns the Snapshot once the state is stored. Saving does not change the Simulation. Create Simulations from the Snapshot with snapshot_id; it outlives its Simulation. A stopped Simulation returns 409 simulation_stopped. Reuse the Idempotency-Key to retry safely.
+        Saves a running Simulation's current state and returns the Snapshot once the state is stored. Saving closes the Simulation's open event streams and WebSockets and does not change its state. Create Simulations from the Snapshot with snapshot_id; it outlives its Simulation. A stopped Simulation returns 409 simulation_stopped. Reuse the Idempotency-Key to retry safely.
 
-        :param idempotency_key: Stable key for this request. A retry with the same key returns the original Snapshot.
         :param name: Snapshot name.
         :param simulation_id: ID of the running Simulation to save.
-        :param at_step: Completed step to save the state after. Omission saves the latest state.
+        :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -328,7 +326,6 @@ class SimulationSnapshots(BaseSDK):
         request = models.CreateSimulationSnapshotRequestRequest(
             idempotency_key=idempotency_key,
             body=models.CreateSimulationSnapshotRequest(
-                at_step=at_step,
                 name=name,
                 simulation_id=simulation_id,
             ),
@@ -412,10 +409,9 @@ class SimulationSnapshots(BaseSDK):
     async def create_simulation_snapshot_async(
         self,
         *,
-        idempotency_key: str,
         name: str,
         simulation_id: str,
-        at_step: Optional[int] = None,
+        idempotency_key: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -423,12 +419,11 @@ class SimulationSnapshots(BaseSDK):
     ) -> models.SimulationSnapshot:
         r"""Create Simulation Snapshot
 
-        Saves a running Simulation's current state, or its state after an earlier recorded step when you set at_step, and returns the Snapshot once the state is stored. Saving does not change the Simulation. Create Simulations from the Snapshot with snapshot_id; it outlives its Simulation. A stopped Simulation returns 409 simulation_stopped. Reuse the Idempotency-Key to retry safely.
+        Saves a running Simulation's current state and returns the Snapshot once the state is stored. Saving closes the Simulation's open event streams and WebSockets and does not change its state. Create Simulations from the Snapshot with snapshot_id; it outlives its Simulation. A stopped Simulation returns 409 simulation_stopped. Reuse the Idempotency-Key to retry safely.
 
-        :param idempotency_key: Stable key for this request. A retry with the same key returns the original Snapshot.
         :param name: Snapshot name.
         :param simulation_id: ID of the running Simulation to save.
-        :param at_step: Completed step to save the state after. Omission saves the latest state.
+        :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -447,7 +442,6 @@ class SimulationSnapshots(BaseSDK):
         request = models.CreateSimulationSnapshotRequestRequest(
             idempotency_key=idempotency_key,
             body=models.CreateSimulationSnapshotRequest(
-                at_step=at_step,
                 name=name,
                 simulation_id=simulation_id,
             ),
@@ -539,7 +533,7 @@ class SimulationSnapshots(BaseSDK):
     ):
         r"""Delete Simulation Snapshot
 
-        Deletes a Snapshot and its saved state. Simulations created from it keep running, and their snapshot_id becomes null.
+        Deletes a Snapshot and its saved state. Simulations created from it keep running, and their snapshot_id becomes null. While it is creating, the response is 409 snapshot_not_ready; while a Simulation is starting from it, 409 snapshot_in_use.
 
         :param id: Snapshot ID.
         :param retries: Override the default retry configuration for this method
@@ -638,7 +632,7 @@ class SimulationSnapshots(BaseSDK):
     ):
         r"""Delete Simulation Snapshot
 
-        Deletes a Snapshot and its saved state. Simulations created from it keep running, and their snapshot_id becomes null.
+        Deletes a Snapshot and its saved state. Simulations created from it keep running, and their snapshot_id becomes null. While it is creating, the response is 409 snapshot_not_ready; while a Simulation is starting from it, 409 snapshot_in_use.
 
         :param id: Snapshot ID.
         :param retries: Override the default retry configuration for this method
@@ -910,6 +904,232 @@ class SimulationSnapshots(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.SimulationSnapshot, http_res)
         if utils.match_response(http_res, ["401", "404"], "application/problem+json"):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise errors.ContinuousDefaultError("Unexpected response received", http_res)
+
+    def update_simulation_snapshot(
+        self,
+        *,
+        id: str,
+        name: Optional[str] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.SimulationSnapshot:
+        r"""Update Simulation Snapshot
+
+        Renames a Snapshot. Omitted fields keep their current values.
+
+        :param id: Snapshot ID.
+        :param name: New Snapshot name.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.UpdateSimulationSnapshotRequestRequest(
+            id=id,
+            body=models.UpdateSimulationSnapshotRequest(
+                name=name,
+            ),
+        )
+
+        req = self._build_request(
+            method="PATCH",
+            path="/v1/simulation-snapshots/{id}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body,
+                False,
+                False,
+                "json",
+                models.UpdateSimulationSnapshotRequest,
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="update-simulation-snapshot",
+                oauth2_scopes=None,
+                security_source=get_security_from_env(
+                    self.sdk_configuration.security, models.Security
+                ),
+                tags=["simulation-snapshots"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.SimulationSnapshot, http_res)
+        if utils.match_response(
+            http_res,
+            ["400", "401", "404", "408", "413", "415", "422"],
+            "application/problem+json",
+        ):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise errors.ContinuousDefaultError("Unexpected response received", http_res)
+
+    async def update_simulation_snapshot_async(
+        self,
+        *,
+        id: str,
+        name: Optional[str] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.SimulationSnapshot:
+        r"""Update Simulation Snapshot
+
+        Renames a Snapshot. Omitted fields keep their current values.
+
+        :param id: Snapshot ID.
+        :param name: New Snapshot name.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.UpdateSimulationSnapshotRequestRequest(
+            id=id,
+            body=models.UpdateSimulationSnapshotRequest(
+                name=name,
+            ),
+        )
+
+        req = self._build_request_async(
+            method="PATCH",
+            path="/v1/simulation-snapshots/{id}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body,
+                False,
+                False,
+                "json",
+                models.UpdateSimulationSnapshotRequest,
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="update-simulation-snapshot",
+                oauth2_scopes=None,
+                security_source=get_security_from_env(
+                    self.sdk_configuration.security, models.Security
+                ),
+                tags=["simulation-snapshots"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.SimulationSnapshot, http_res)
+        if utils.match_response(
+            http_res,
+            ["400", "401", "404", "408", "413", "415", "422"],
+            "application/problem+json",
+        ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):

@@ -12,7 +12,7 @@ from typing import Any, Awaitable, Dict, Iterable, List, Mapping, Optional, Unio
 
 
 class Worlds(BaseSDK):
-    r"""Build Worlds from one or more Simulators and start or stop their Simulations together."""
+    r"""Build Worlds from one or more Simulators, rename them, and start or stop their Simulations together."""
 
     def list_worlds(
         self,
@@ -289,6 +289,7 @@ class Worlds(BaseSDK):
         self,
         *,
         simulators: Iterable[str],
+        idempotency_key: Optional[str] = None,
         instructions: Optional[str] = None,
         metadata: Optional[Any] = None,
         model: Optional[models.BuildWorldRequestModel] = "claude-opus-5-5",
@@ -305,6 +306,7 @@ class Worlds(BaseSDK):
         Starts an asynchronous World build from ready Simulators and returns it in the pending state. Builds start in queue order when workspace capacity is available. Instructions generate and validate initial synthetic data. Start the World once it is ready to create its Simulations.
 
         :param simulators: Simulator IDs for the World.
+        :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource.
         :param instructions: Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted.
         :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by build, get, and list. Omission uses null.
         :param model: Model that builds and reviews starting data. Defaults to claude-opus-5-5. Its provider is derived from the model.
@@ -326,14 +328,17 @@ class Worlds(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.BuildWorldRequest(
-            instructions=instructions,
-            metadata=metadata,
-            model=model,
-            name=name,
-            simulators=utils.unmarshal(simulators, List[str]),
-            start_time=start_time,
-            timeout_seconds=timeout_seconds,
+        request = models.BuildWorldRequestRequest(
+            idempotency_key=idempotency_key,
+            body=models.BuildWorldRequest(
+                instructions=instructions,
+                metadata=metadata,
+                model=model,
+                name=name,
+                simulators=utils.unmarshal(simulators, List[str]),
+                start_time=start_time,
+                timeout_seconds=timeout_seconds,
+            ),
         )
 
         req = self._build_request(
@@ -350,7 +355,7 @@ class Worlds(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.BuildWorldRequest
+                request.body, False, False, "json", models.BuildWorldRequest
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -411,6 +416,7 @@ class Worlds(BaseSDK):
         self,
         *,
         simulators: Iterable[str],
+        idempotency_key: Optional[str] = None,
         instructions: Optional[str] = None,
         metadata: Optional[Any] = None,
         model: Optional[models.BuildWorldRequestModel] = "claude-opus-5-5",
@@ -427,6 +433,7 @@ class Worlds(BaseSDK):
         Starts an asynchronous World build from ready Simulators and returns it in the pending state. Builds start in queue order when workspace capacity is available. Instructions generate and validate initial synthetic data. Start the World once it is ready to create its Simulations.
 
         :param simulators: Simulator IDs for the World.
+        :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource.
         :param instructions: Describe the initial data, scenario, and relationships. Populated Worlds support up to 8 selected Simulators and 1,000 starting records in total. Named record types replace their default data. At most 16,384 characters and 65,536 UTF-8 bytes. U+0000 is not permitted.
         :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by build, get, and list. Omission uses null.
         :param model: Model that builds and reviews starting data. Defaults to claude-opus-5-5. Its provider is derived from the model.
@@ -448,14 +455,17 @@ class Worlds(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.BuildWorldRequest(
-            instructions=instructions,
-            metadata=metadata,
-            model=model,
-            name=name,
-            simulators=utils.unmarshal(simulators, List[str]),
-            start_time=start_time,
-            timeout_seconds=timeout_seconds,
+        request = models.BuildWorldRequestRequest(
+            idempotency_key=idempotency_key,
+            body=models.BuildWorldRequest(
+                instructions=instructions,
+                metadata=metadata,
+                model=model,
+                name=name,
+                simulators=utils.unmarshal(simulators, List[str]),
+                start_time=start_time,
+                timeout_seconds=timeout_seconds,
+            ),
         )
 
         req = self._build_request_async(
@@ -472,7 +482,7 @@ class Worlds(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.BuildWorldRequest
+                request.body, False, False, "json", models.BuildWorldRequest
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -933,6 +943,230 @@ class Worlds(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    def update_world(
+        self,
+        *,
+        id: str,
+        metadata: Optional[Any] = None,
+        name: Optional[str] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.World:
+        r"""Update World
+
+        Renames a World or replaces its metadata. Omitted fields keep their current values.
+
+        :param id: World ID.
+        :param metadata: Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it.
+        :param name: New World name.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.UpdateWorldRequestRequest(
+            id=id,
+            body=models.UpdateWorldRequest(
+                metadata=metadata,
+                name=name,
+            ),
+        )
+
+        req = self._build_request(
+            method="PATCH",
+            path="/v1/worlds/{id}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.UpdateWorldRequest
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="update-world",
+                oauth2_scopes=None,
+                security_source=get_security_from_env(
+                    self.sdk_configuration.security, models.Security
+                ),
+                tags=["worlds"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.World, http_res)
+        if utils.match_response(
+            http_res,
+            ["400", "401", "403", "404", "408", "413", "415", "422"],
+            "application/problem+json",
+        ):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise errors.ContinuousDefaultError("Unexpected response received", http_res)
+
+    async def update_world_async(
+        self,
+        *,
+        id: str,
+        metadata: Optional[Any] = None,
+        name: Optional[str] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.World:
+        r"""Update World
+
+        Renames a World or replaces its metadata. Omitted fields keep their current values.
+
+        :param id: World ID.
+        :param metadata: Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it.
+        :param name: New World name.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.UpdateWorldRequestRequest(
+            id=id,
+            body=models.UpdateWorldRequest(
+                metadata=metadata,
+                name=name,
+            ),
+        )
+
+        req = self._build_request_async(
+            method="PATCH",
+            path="/v1/worlds/{id}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.UpdateWorldRequest
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="update-world",
+                oauth2_scopes=None,
+                security_source=get_security_from_env(
+                    self.sdk_configuration.security, models.Security
+                ),
+                tags=["worlds"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.World, http_res)
+        if utils.match_response(
+            http_res,
+            ["400", "401", "403", "404", "408", "413", "415", "422"],
+            "application/problem+json",
+        ):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise errors.ContinuousDefaultError("Unexpected response received", http_res)
+
     def create_world_advance(
         self,
         *,
@@ -949,7 +1183,7 @@ class Worlds(BaseSDK):
         Advances each member independently, waking an idle member first, and skips stopped members. Successful advances remain committed when another member fails. The World current_time records the last settled request target; member clocks can differ.
 
         :param id: World ID.
-        :param idempotency_key: Stable key for this request. Reuse with the same target returns the same operation.
+        :param idempotency_key: Stable key for this request. Reuse with the same target returns the same operation; reuse with a different target returns 409 idempotency_conflict.
         :param to: Absolute target time in RFC 3339, with at most millisecond precision.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1061,7 +1295,7 @@ class Worlds(BaseSDK):
         Advances each member independently, waking an idle member first, and skips stopped members. Successful advances remain committed when another member fails. The World current_time records the last settled request target; member clocks can differ.
 
         :param id: World ID.
-        :param idempotency_key: Stable key for this request. Reuse with the same target returns the same operation.
+        :param idempotency_key: Stable key for this request. Reuse with the same target returns the same operation; reuse with a different target returns 409 idempotency_conflict.
         :param to: Absolute target time in RFC 3339, with at most millisecond precision.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1380,7 +1614,7 @@ class Worlds(BaseSDK):
     ) -> models.World:
         r"""Cancel World Build
 
-        Cancels an active World build. Repeated cancellation returns the current World.
+        Requests cancellation of a pending or active World build and returns the World without waiting for the build to stop. Get the World until its status leaves pending or building. The build can finish before cancellation takes effect. A World whose build has settled is returned unchanged.
 
         :param id: World ID.
         :param retries: Override the default retry configuration for this method
@@ -1445,7 +1679,7 @@ class Worlds(BaseSDK):
         )
 
         response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
+        if utils.match_response(http_res, "202", "application/json"):
             return unmarshal_json_response(models.World, http_res)
         if utils.match_response(
             http_res, ["401", "403", "404"], "application/problem+json"
@@ -1479,7 +1713,7 @@ class Worlds(BaseSDK):
     ) -> models.World:
         r"""Cancel World Build
 
-        Cancels an active World build. Repeated cancellation returns the current World.
+        Requests cancellation of a pending or active World build and returns the World without waiting for the build to stop. Get the World until its status leaves pending or building. The build can finish before cancellation takes effect. A World whose build has settled is returned unchanged.
 
         :param id: World ID.
         :param retries: Override the default retry configuration for this method
@@ -1544,7 +1778,7 @@ class Worlds(BaseSDK):
         )
 
         response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
+        if utils.match_response(http_res, "202", "application/json"):
             return unmarshal_json_response(models.World, http_res)
         if utils.match_response(
             http_res, ["401", "403", "404"], "application/problem+json"
@@ -1795,7 +2029,7 @@ class Worlds(BaseSDK):
         Adds a ready Simulator to a ready, running, or stopped World as a new member, starting from its Simulator's default data, and returns the change. A running World starts the member at the World's current time; a stopped World creates it at its next start. Poll the change until it completes.
 
         :param id: World ID.
-        :param idempotency_key: Stable key for this request. Reuse with the same body returns the same change.
+        :param idempotency_key: Stable key for this request. Reuse with the same body returns the same change; reuse with a different body returns 409 idempotency_conflict.
         :param simulator: ID of the ready Simulator to add as a new member.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1907,7 +2141,7 @@ class Worlds(BaseSDK):
         Adds a ready Simulator to a ready, running, or stopped World as a new member, starting from its Simulator's default data, and returns the change. A running World starts the member at the World's current time; a stopped World creates it at its next start. Poll the change until it completes.
 
         :param id: World ID.
-        :param idempotency_key: Stable key for this request. Reuse with the same body returns the same change.
+        :param idempotency_key: Stable key for this request. Reuse with the same body returns the same change; reuse with a different body returns 409 idempotency_conflict.
         :param simulator: ID of the ready Simulator to add as a new member.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2021,7 +2255,7 @@ class Worlds(BaseSDK):
 
         :param id: World ID.
         :param simulation_id: ID of the member Simulation to remove.
-        :param idempotency_key: Stable key for this request. Reuse with the same delete value returns the same change.
+        :param idempotency_key: Stable key for this request. Reuse with the same member and delete value returns the same change; reuse with a different request returns 409 idempotency_conflict.
         :param delete: true stops and deletes the member and its saved state. false, the default, detaches it: it keeps its ID, endpoint, token, clock, and data as a standalone Simulation.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2129,7 +2363,7 @@ class Worlds(BaseSDK):
 
         :param id: World ID.
         :param simulation_id: ID of the member Simulation to remove.
-        :param idempotency_key: Stable key for this request. Reuse with the same delete value returns the same change.
+        :param idempotency_key: Stable key for this request. Reuse with the same member and delete value returns the same change; reuse with a different request returns 409 idempotency_conflict.
         :param delete: true stops and deletes the member and its saved state. false, the default, detaches it: it keeps its ID, endpoint, token, clock, and data as a standalone Simulation.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2231,7 +2465,7 @@ class Worlds(BaseSDK):
     ) -> models.World:
         r"""Start World
 
-        Starts every Simulation in the World. The first start creates the Simulations; later starts restore them from saved state. The World must be ready or stopped, and the workspace must have room for all members under its active-Simulation limit. A running World is returned unchanged.
+        Starts every Simulation in the World. The first start creates the Simulations; later starts restore them from saved state. The World must be ready or stopped, and the workspace must have room for all members under its active-Simulation limit. The response returns once the start is accepted, with status starting; read the World until it is running. A running or starting World is returned unchanged.
 
         :param id: World ID.
         :param start_time: Simulated time for the first Start, in RFC 3339 format. Omission keeps the clock chosen at build. Saved business dates remain unchanged. Later starts preserve the clock.
@@ -2307,7 +2541,7 @@ class Worlds(BaseSDK):
         )
 
         response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
+        if utils.match_response(http_res, "202", "application/json"):
             return unmarshal_json_response(models.World, http_res)
         if utils.match_response(
             http_res,
@@ -2344,7 +2578,7 @@ class Worlds(BaseSDK):
     ) -> models.World:
         r"""Start World
 
-        Starts every Simulation in the World. The first start creates the Simulations; later starts restore them from saved state. The World must be ready or stopped, and the workspace must have room for all members under its active-Simulation limit. A running World is returned unchanged.
+        Starts every Simulation in the World. The first start creates the Simulations; later starts restore them from saved state. The World must be ready or stopped, and the workspace must have room for all members under its active-Simulation limit. The response returns once the start is accepted, with status starting; read the World until it is running. A running or starting World is returned unchanged.
 
         :param id: World ID.
         :param start_time: Simulated time for the first Start, in RFC 3339 format. Omission keeps the clock chosen at build. Saved business dates remain unchanged. Later starts preserve the clock.
@@ -2420,7 +2654,7 @@ class Worlds(BaseSDK):
         )
 
         response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
+        if utils.match_response(http_res, "202", "application/json"):
             return unmarshal_json_response(models.World, http_res)
         if utils.match_response(
             http_res,
@@ -2456,7 +2690,7 @@ class Worlds(BaseSDK):
     ) -> models.World:
         r"""Stop World
 
-        Stops a World and saves each Simulation state. You can start the World later from the saved states.
+        Stops a World and saves each Simulation state. You can start the World later from the saved states. The response returns once the stop is accepted, with status stopping; read the World until it is stopped. A stopped or stopping World is returned unchanged.
 
         :param id: World ID.
         :param retries: Override the default retry configuration for this method
@@ -2521,7 +2755,7 @@ class Worlds(BaseSDK):
         )
 
         response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
+        if utils.match_response(http_res, "202", "application/json"):
             return unmarshal_json_response(models.World, http_res)
         if utils.match_response(
             http_res, ["401", "403", "404", "409"], "application/problem+json"
@@ -2555,7 +2789,7 @@ class Worlds(BaseSDK):
     ) -> models.World:
         r"""Stop World
 
-        Stops a World and saves each Simulation state. You can start the World later from the saved states.
+        Stops a World and saves each Simulation state. You can start the World later from the saved states. The response returns once the stop is accepted, with status stopping; read the World until it is stopped. A stopped or stopping World is returned unchanged.
 
         :param id: World ID.
         :param retries: Override the default retry configuration for this method
@@ -2620,7 +2854,7 @@ class Worlds(BaseSDK):
         )
 
         response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
+        if utils.match_response(http_res, "202", "application/json"):
             return unmarshal_json_response(models.World, http_res)
         if utils.match_response(
             http_res, ["401", "403", "404", "409"], "application/problem+json"

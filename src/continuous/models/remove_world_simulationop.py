@@ -20,7 +20,7 @@ class RemoveWorldSimulationRequestTypedDict(TypedDict):
     simulation_id: str
     r"""ID of the member Simulation to remove."""
     idempotency_key: str
-    r"""Stable key for this request. Reuse with the same delete value returns the same change."""
+    r"""Stable key for this request. Reuse with the same member and delete value returns the same change; reuse with a different request returns 409 idempotency_conflict."""
     delete: NotRequired[bool]
     r"""true stops and deletes the member and its saved state. false, the default, detaches it: it keeps its ID, endpoint, token, clock, and data as a standalone Simulation."""
 
@@ -41,7 +41,7 @@ class RemoveWorldSimulationRequest(BaseModel):
         pydantic.Field(alias="Idempotency-Key"),
         FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
     ]
-    r"""Stable key for this request. Reuse with the same delete value returns the same change."""
+    r"""Stable key for this request. Reuse with the same member and delete value returns the same change; reuse with a different request returns 409 idempotency_conflict."""
 
     delete: Annotated[
         Optional[bool],

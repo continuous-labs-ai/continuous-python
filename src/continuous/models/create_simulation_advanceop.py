@@ -17,7 +17,7 @@ class CreateSimulationAdvanceRequestTypedDict(TypedDict):
     id: str
     r"""Simulation ID."""
     idempotency_key: str
-    r"""Stable key for this request. Reuse with the same target returns the same operation."""
+    r"""Stable key for this request. Reuse with the same target returns the same operation; reuse with a different target returns 409 idempotency_conflict."""
     body: AdvanceTimeRequestTypedDict
 
 
@@ -32,7 +32,7 @@ class CreateSimulationAdvanceRequest(BaseModel):
         pydantic.Field(alias="Idempotency-Key"),
         FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
     ]
-    r"""Stable key for this request. Reuse with the same target returns the same operation."""
+    r"""Stable key for this request. Reuse with the same target returns the same operation; reuse with a different target returns 409 idempotency_conflict."""
 
     body: Annotated[
         AdvanceTimeRequest,

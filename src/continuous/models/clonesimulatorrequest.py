@@ -8,8 +8,6 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class CloneSimulatorRequestTypedDict(TypedDict):
-    idempotency_key: str
-    r"""Stable key for retrying this clone into the target workspace."""
     target_workspace_id: str
     r"""Workspace that receives the clone. It must differ from the source workspace."""
     name: NotRequired[str]
@@ -17,9 +15,6 @@ class CloneSimulatorRequestTypedDict(TypedDict):
 
 
 class CloneSimulatorRequest(BaseModel):
-    idempotency_key: str
-    r"""Stable key for retrying this clone into the target workspace."""
-
     target_workspace_id: str
     r"""Workspace that receives the clone. It must differ from the source workspace."""
 

@@ -26,6 +26,8 @@ class ListSimulationsRequestTypedDict(TypedDict):
     r"""Optional Simulator ID filter."""
     simulator_digest: NotRequired[str]
     r"""Optional exact pinned OCI manifest digest filter."""
+    snapshot_id: NotRequired[str]
+    r"""Optional filter for the Simulations started from this Snapshot."""
     limit: NotRequired[int]
     r"""Page size. Values below 1 use 50. Values above 200 use 200."""
     cursor: NotRequired[str]
@@ -51,6 +53,12 @@ class ListSimulationsRequest(BaseModel):
     ] = None
     r"""Optional exact pinned OCI manifest digest filter."""
 
+    snapshot_id: Annotated[
+        Optional[str],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
+    ] = None
+    r"""Optional filter for the Simulations started from this Snapshot."""
+
     limit: Annotated[
         Optional[int],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
@@ -66,7 +74,14 @@ class ListSimulationsRequest(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["status", "simulator_id", "simulator_digest", "limit", "cursor"]
+            [
+                "status",
+                "simulator_id",
+                "simulator_digest",
+                "snapshot_id",
+                "limit",
+                "cursor",
+            ]
         )
         serialized = handler(self)
         m = {}

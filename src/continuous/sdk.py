@@ -28,13 +28,13 @@ class Continuous(BaseSDK):
     credentials: "Credentials"
     r"""Store connections to real systems: a base URL, the header that carries the credential, and its value. The API never returns a value."""
     simulation_snapshots: "SimulationSnapshots"
-    r"""Save a running Simulation's state as a Snapshot, create Simulations from it, and delete it."""
+    r"""Save a running Simulation's state as a Snapshot, create Simulations from it, and rename and delete it."""
     simulations: "Simulations"
-    r"""Create Simulations from ready Simulators or Snapshots, then stop, start, and delete them."""
+    r"""Create Simulations from ready Simulators or Snapshots, then rename, stop, start, and delete them."""
     simulators: "Simulators"
-    r"""Build Simulators from OpenAPI, WSDL or GraphQL documents, check or cancel a build, clone Simulators into other workspaces, and delete Simulators."""
+    r"""Build Simulators from OpenAPI, WSDL or GraphQL documents, check or cancel a build, clone Simulators into other workspaces, and rename and delete Simulators."""
     worlds: "Worlds"
-    r"""Build Worlds from one or more Simulators and start or stop their Simulations together."""
+    r"""Build Worlds from one or more Simulators, rename them, and start or stop their Simulations together."""
     _sub_sdk_map = {
         "credentials": ("continuous.credentials", "Credentials"),
         "simulation_snapshots": (
