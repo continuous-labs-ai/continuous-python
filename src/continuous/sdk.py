@@ -16,6 +16,7 @@ import weakref
 
 if TYPE_CHECKING:
     from continuous.credentials import Credentials
+    from continuous.simulation_snapshots import SimulationSnapshots
     from continuous.simulations import Simulations
     from continuous.simulators import Simulators
     from continuous.worlds import Worlds
@@ -26,14 +27,20 @@ class Continuous(BaseSDK):
 
     credentials: "Credentials"
     r"""Store connections to real systems: a base URL, the header that carries the credential, and its value. The API never returns a value."""
+    simulation_snapshots: "SimulationSnapshots"
+    r"""Save a running Simulation's state as a Snapshot, create Simulations from it, and delete it."""
     simulations: "Simulations"
-    r"""Create Simulations from ready Simulators, then fork, stop, start, and delete them."""
+    r"""Create Simulations from ready Simulators or Snapshots, then stop, start, and delete them."""
     simulators: "Simulators"
     r"""Build Simulators from OpenAPI, WSDL or GraphQL documents, check or cancel a build, clone Simulators into other workspaces, and delete Simulators."""
     worlds: "Worlds"
     r"""Build Worlds from one or more Simulators and start or stop their Simulations together."""
     _sub_sdk_map = {
         "credentials": ("continuous.credentials", "Credentials"),
+        "simulation_snapshots": (
+            "continuous.simulation_snapshots",
+            "SimulationSnapshots",
+        ),
         "simulations": ("continuous.simulations", "Simulations"),
         "simulators": ("continuous.simulators", "Simulators"),
         "worlds": ("continuous.worlds", "Worlds"),

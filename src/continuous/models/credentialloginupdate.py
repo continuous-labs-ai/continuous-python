@@ -9,21 +9,16 @@ from typing_extensions import NotRequired, TypedDict
 
 class CredentialLoginUpdateTypedDict(TypedDict):
     url: NotRequired[str]
-    r"""New https URL of the app's sign-in page."""
-    username: NotRequired[str]
-    r"""New user name."""
+    r"""New https URL of the app's sign-in page. A new URL ends the saved sign-in."""
 
 
 class CredentialLoginUpdate(BaseModel):
     url: Optional[str] = None
-    r"""New https URL of the app's sign-in page."""
-
-    username: Optional[str] = None
-    r"""New user name."""
+    r"""New https URL of the app's sign-in page. A new URL ends the saved sign-in."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["url", "username"])
+        optional_fields = set(["url"])
         serialized = handler(self)
         m = {}
 

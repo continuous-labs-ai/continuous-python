@@ -35,17 +35,19 @@ class SimulationDetailTypedDict(TypedDict):
     id: str
     r"""Simulation ID."""
     include_sample_data: bool
-    r"""Whether the Simulation started with the Simulator's sample data. A fork inherits its source's state and reports false."""
+    r"""Whether the Simulation started with the Simulator's sample data. A Simulation created from a Snapshot takes the Snapshot's state and reports false."""
     metadata: Any
     r"""Customer JSON metadata, or null."""
     name: str
     r"""Simulation name. The ID is its identity, and names need not be unique."""
     parent_id: Nullable[str]
-    r"""Source Simulation ID for a fork, or null."""
+    r"""ID of the Simulation whose Snapshot this Simulation started from, or null."""
     simulator_digest: str
     r"""OCI manifest digest pinned when the Simulation was created."""
     simulator_id: str
     r"""ID of the Simulator bound to this Simulation."""
+    snapshot_id: Nullable[str]
+    r"""ID of the Snapshot the Simulation started from, or null once that Snapshot is deleted."""
     start_time: datetime
     r"""Initial simulated time."""
     status: SimulationDetailStatus
@@ -77,7 +79,7 @@ class SimulationDetail(BaseModel):
     r"""Simulation ID."""
 
     include_sample_data: bool
-    r"""Whether the Simulation started with the Simulator's sample data. A fork inherits its source's state and reports false."""
+    r"""Whether the Simulation started with the Simulator's sample data. A Simulation created from a Snapshot takes the Snapshot's state and reports false."""
 
     metadata: Any
     r"""Customer JSON metadata, or null."""
@@ -86,13 +88,16 @@ class SimulationDetail(BaseModel):
     r"""Simulation name. The ID is its identity, and names need not be unique."""
 
     parent_id: Nullable[str]
-    r"""Source Simulation ID for a fork, or null."""
+    r"""ID of the Simulation whose Snapshot this Simulation started from, or null."""
 
     simulator_digest: str
     r"""OCI manifest digest pinned when the Simulation was created."""
 
     simulator_id: str
     r"""ID of the Simulator bound to this Simulation."""
+
+    snapshot_id: Nullable[str]
+    r"""ID of the Snapshot the Simulation started from, or null once that Snapshot is deleted."""
 
     start_time: datetime
     r"""Initial simulated time."""

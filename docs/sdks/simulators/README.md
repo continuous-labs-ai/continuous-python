@@ -31,8 +31,10 @@ with Continuous(
 
     res = c_client.simulators.list_simulators(limit=50)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 
 ```
 
@@ -47,7 +49,7 @@ with Continuous(
 
 ### Response
 
-**[models.ListSimulatorsResponse](../../models/listsimulatorsresponse.md)**
+**[models.ListSimulatorsResponseResponse](../../models/listsimulatorsresponseresponse.md)**
 
 ### Errors
 

@@ -1,6 +1,6 @@
 [project]
 name = "continuous-labs"
-version = "0.2.18"
+version = "0.3.0"
 description = "Python SDK for the Continuous Simulation API."
 authors = [{ name = "Continuous Labs" },]
 readme = "README-PYPI.md"
@@ -8,6 +8,7 @@ requires-python = ">=3.10"
 dependencies = [
     "httpcore >=1.0.9",
     "httpx >=0.28.1",
+    "jsonpath-python >=1.0.6",
     "pydantic >=2.11.2",
 ]
 urls.repository = "https://github.com/continuous-labs-ai/continuous-python.git"

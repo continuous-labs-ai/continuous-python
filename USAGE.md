@@ -11,8 +11,10 @@ with Continuous(
 
     res = c_client.credentials.list_credentials(limit=50)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 ```
 
 </br>
@@ -33,8 +35,10 @@ async def main():
 
         res = await c_client.credentials.list_credentials_async(limit=50)
 
-        # Handle response
-        print(res)
+        while res is not None:
+            # Handle items
+
+            res = res.next()
 
 asyncio.run(main())
 ```

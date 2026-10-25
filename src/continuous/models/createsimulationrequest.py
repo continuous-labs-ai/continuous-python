@@ -9,24 +9,23 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class CreateSimulationRequestTypedDict(TypedDict):
-    simulator_id: str
-    r"""ID of the ready Simulator."""
     include_sample_data: NotRequired[bool]
-    r"""Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition."""
+    r"""Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition. Not allowed with snapshot_id."""
     metadata: NotRequired[Any]
     r"""Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null."""
     name: NotRequired[str]
     r"""Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique."""
+    simulator_id: NotRequired[str]
+    r"""ID of the ready Simulator. Set exactly one of simulator_id and snapshot_id."""
+    snapshot_id: NotRequired[str]
+    r"""ID of the Snapshot to start from. The Simulation takes its state, clock, Simulator digest and runtime placement. Set exactly one of simulator_id and snapshot_id."""
     start_time: NotRequired[datetime]
-    r"""Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds."""
+    r"""Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds. Not allowed with snapshot_id."""
 
 
 class CreateSimulationRequest(BaseModel):
-    simulator_id: str
-    r"""ID of the ready Simulator."""
-
     include_sample_data: Optional[bool] = None
-    r"""Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition."""
+    r"""Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition. Not allowed with snapshot_id."""
 
     metadata: Optional[Any] = None
     r"""Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null."""
@@ -34,12 +33,27 @@ class CreateSimulationRequest(BaseModel):
     name: Optional[str] = None
     r"""Name for the Simulation. Omission generates a name. The ID stays its identity, and names need not be unique."""
 
+    simulator_id: Optional[str] = None
+    r"""ID of the ready Simulator. Set exactly one of simulator_id and snapshot_id."""
+
+    snapshot_id: Optional[str] = None
+    r"""ID of the Snapshot to start from. The Simulation takes its state, clock, Simulator digest and runtime placement. Set exactly one of simulator_id and snapshot_id."""
+
     start_time: Optional[datetime] = None
-    r"""Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds."""
+    r"""Initial simulated time in RFC 3339 format. Omission uses 2024-01-01T00:00:00Z. Precision is milliseconds. Not allowed with snapshot_id."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["include_sample_data", "metadata", "name", "start_time"])
+        optional_fields = set(
+            [
+                "include_sample_data",
+                "metadata",
+                "name",
+                "simulator_id",
+                "snapshot_id",
+                "start_time",
+            ]
+        )
         serialized = handler(self)
         m = {}
 

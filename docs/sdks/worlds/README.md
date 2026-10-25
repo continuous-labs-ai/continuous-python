@@ -10,7 +10,7 @@ Build Worlds from one or more Simulators and start or stop their Simulations tog
 * [build_world](#build_world) - Build World
 * [delete_world](#delete_world) - Delete World
 * [get_world](#get_world) - Get World
-* [advance_world](#advance_world) - Advance World Time
+* [create_world_advance](#create_world_advance) - Advance World Time
 * [get_world_advance](#get_world_advance) - Get World Clock Advance
 * [cancel_world](#cancel_world) - Cancel World Build
 * [get_world_change](#get_world_change) - Get World Change
@@ -37,8 +37,10 @@ with Continuous(
 
     res = c_client.worlds.list_worlds(limit=50)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 
 ```
 
@@ -53,7 +55,7 @@ with Continuous(
 
 ### Response
 
-**[models.ListWorldsResponse](../../models/listworldsresponse.md)**
+**[models.ListWorldsResponseResponse](../../models/listworldsresponseresponse.md)**
 
 ### Errors
 
@@ -216,13 +218,13 @@ with Continuous(
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## advance_world
+## create_world_advance
 
 Advances each member independently, waking an idle member first, and skips stopped members. Successful advances remain committed when another member fails. The World current_time records the last settled request target; member clocks can differ.
 
 ### Example Usage
 
-<!-- UsageSnippet language="python" operationID="advance-world" method="post" path="/v1/worlds/{id}/advance-time" example="bad_request_body" -->
+<!-- UsageSnippet language="python" operationID="create-world-advance" method="post" path="/v1/worlds/{id}/advances" example="bad_request_body" -->
 ```python
 from continuous import Continuous
 from continuous.utils import parse_datetime
@@ -233,7 +235,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.worlds.advance_world(id="<id>", idempotency_key="<value>", to=parse_datetime("2026-10-16T14:43:59.349Z"))
+    res = c_client.worlds.create_world_advance(id="<id>", idempotency_key="<value>", to=parse_datetime("2024-03-26T21:37:05.744Z"))
 
     # Handle response
     print(res)
@@ -453,11 +455,11 @@ with Continuous(
 
 ## remove_world_simulation
 
-Removes a member from a running or stopped World and returns the change. By default the member is detached and keeps running as a standalone Simulation; delete removes it and its saved state. A World keeps at least one member.
+Removes a member from a running or stopped World and returns the change. By default the member is detached and keeps running as a standalone Simulation; delete=true removes it and its saved state. A World keeps at least one member.
 
 ### Example Usage
 
-<!-- UsageSnippet language="python" operationID="remove-world-simulation" method="post" path="/v1/worlds/{id}/simulations/{simulation_id}/remove" -->
+<!-- UsageSnippet language="python" operationID="remove-world-simulation" method="delete" path="/v1/worlds/{id}/simulations/{simulation_id}" -->
 ```python
 from continuous import Continuous
 import os
@@ -480,7 +482,7 @@ with Continuous(
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                                                                                                                                                                  | *str*                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                    | World ID.                                                                                                                                                             |
 | `simulation_id`                                                                                                                                                       | *str*                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                    | ID of the member Simulation to remove.                                                                                                                                |
-| `idempotency_key`                                                                                                                                                     | *str*                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                    | Stable key for this request. Reuse with the same body returns the same change.                                                                                        |
+| `idempotency_key`                                                                                                                                                     | *str*                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                    | Stable key for this request. Reuse with the same delete value returns the same change.                                                                                |
 | `delete`                                                                                                                                                              | *Optional[bool]*                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                    | true stops and deletes the member and its saved state. false, the default, detaches it: it keeps its ID, endpoint, token, clock, and data as a standalone Simulation. |
 | `retries`                                                                                                                                                             | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                      | :heavy_minus_sign:                                                                                                                                                    | Configuration to override the default retry behavior of the client.                                                                                                   |
 
@@ -490,11 +492,11 @@ with Continuous(
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| errors.Error                                | 400, 401, 403, 404, 408, 409, 413, 415, 422 | application/problem+json                    |
-| errors.Error                                | 500, 503                                    | application/problem+json                    |
-| errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| errors.Error                  | 401, 403, 404, 409, 422       | application/problem+json      |
+| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
 ## start_world
 

@@ -26,7 +26,7 @@ class StepTypedDict(TypedDict):
     label: str
     r"""HTTP method and path of the request that produced this step, without the query string, for example POST /v1/widgets."""
     step: int
-    r"""Step number. Use it as at_step when you fork."""
+    r"""Step number. Use it as at_step when you save a Snapshot."""
     time_after: Nullable[datetime]
     r"""Clock after the step."""
     time_before: Nullable[datetime]
@@ -44,7 +44,7 @@ class Step(BaseModel):
     r"""HTTP method and path of the request that produced this step, without the query string, for example POST /v1/widgets."""
 
     step: int
-    r"""Step number. Use it as at_step when you fork."""
+    r"""Step number. Use it as at_step when you save a Snapshot."""
 
     time_after: Nullable[datetime]
     r"""Clock after the step."""
