@@ -60,7 +60,7 @@ with Continuous(
 
 ## create_simulation_snapshot
 
-Saves a running Simulation's current state and returns the Snapshot once the state is stored. Saving closes the Simulation's open event streams and WebSockets and does not change its state. Create Simulations from the Snapshot with snapshot_id; it outlives its Simulation. A stopped Simulation returns 409 simulation_stopped. Reuse the Idempotency-Key to retry safely.
+Starts saving a running Simulation's current state and returns the Snapshot with status creating. Poll it until it is ready, or failed with an error. Saving closes the Simulation's open event streams and WebSockets and does not change its state; while it saves, an advance returns 409 clock_conflict, and a stop waits for it. Create Simulations from a ready Snapshot with snapshot_id; it outlives its Simulation. A stopped Simulation returns 409 simulation_stopped. Reuse the Idempotency-Key to retry safely.
 
 ### Example Usage
 

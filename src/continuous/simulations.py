@@ -8,7 +8,7 @@ from continuous.utils import get_security_from_env
 from continuous.utils.unmarshal_json_response import unmarshal_json_response
 from datetime import datetime
 from jsonpath import JSONPath
-from typing import Any, Awaitable, Dict, List, Mapping, Optional, Union
+from typing import Any, Awaitable, Dict, Iterable, List, Mapping, Optional, Union
 
 
 class Simulations(BaseSDK):
@@ -21,6 +21,8 @@ class Simulations(BaseSDK):
         simulator_id: Optional[str] = None,
         simulator_digest: Optional[str] = None,
         snapshot_id: Optional[str] = None,
+        id: Optional[Iterable[str]] = None,
+        world_id: Optional[str] = None,
         limit: Optional[int] = 50,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -36,6 +38,8 @@ class Simulations(BaseSDK):
         :param simulator_id: Optional Simulator ID filter.
         :param simulator_digest: Optional exact pinned OCI manifest digest filter.
         :param snapshot_id: Optional filter for the Simulations started from this Snapshot.
+        :param id: Optional Simulation ID filter; repeat it to list up to 200 Simulations by ID. Absent lists every Simulation.
+        :param world_id: Optional filter for the Simulations this World owns.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
@@ -58,6 +62,8 @@ class Simulations(BaseSDK):
             simulator_id=simulator_id,
             simulator_digest=simulator_digest,
             snapshot_id=snapshot_id,
+            id=utils.unmarshal(id, Optional[List[str]]),
+            world_id=world_id,
             limit=limit,
             cursor=cursor,
         )
@@ -125,6 +131,8 @@ class Simulations(BaseSDK):
                 simulator_id=simulator_id,
                 simulator_digest=simulator_digest,
                 snapshot_id=snapshot_id,
+                id=id,
+                world_id=world_id,
                 limit=limit,
                 cursor=next_cursor,
                 retries=retries,
@@ -169,6 +177,8 @@ class Simulations(BaseSDK):
         simulator_id: Optional[str] = None,
         simulator_digest: Optional[str] = None,
         snapshot_id: Optional[str] = None,
+        id: Optional[Iterable[str]] = None,
+        world_id: Optional[str] = None,
         limit: Optional[int] = 50,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -184,6 +194,8 @@ class Simulations(BaseSDK):
         :param simulator_id: Optional Simulator ID filter.
         :param simulator_digest: Optional exact pinned OCI manifest digest filter.
         :param snapshot_id: Optional filter for the Simulations started from this Snapshot.
+        :param id: Optional Simulation ID filter; repeat it to list up to 200 Simulations by ID. Absent lists every Simulation.
+        :param world_id: Optional filter for the Simulations this World owns.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
@@ -206,6 +218,8 @@ class Simulations(BaseSDK):
             simulator_id=simulator_id,
             simulator_digest=simulator_digest,
             snapshot_id=snapshot_id,
+            id=utils.unmarshal(id, Optional[List[str]]),
+            world_id=world_id,
             limit=limit,
             cursor=cursor,
         )
@@ -276,6 +290,8 @@ class Simulations(BaseSDK):
                 simulator_id=simulator_id,
                 simulator_digest=simulator_digest,
                 snapshot_id=snapshot_id,
+                id=id,
+                world_id=world_id,
                 limit=limit,
                 cursor=next_cursor,
                 retries=retries,
