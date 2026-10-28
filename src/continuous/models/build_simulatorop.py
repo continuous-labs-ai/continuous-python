@@ -100,7 +100,7 @@ class Spec(BaseModel):
 class BuildSimulatorRequestBodyTypedDict(TypedDict):
     request: BuildSimulatorRequestTypedDict
     document: NotRequired[List[DocumentTypedDict]]
-    r"""Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. An incremental build inherits its parent's documents and index; a document sent with the same name replaces the parent's. A document named INDEX.md indexes the others and skips research; the build fails if it names a document the build does not have, leaves a document unnamed, or leaves out a selected operation; an incremental build's documents include the inherited ones."""
+    r"""Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. An incremental build inherits its parent's documents; a document sent with the same name replaces the parent's."""
     spec: NotRequired[SpecTypedDict]
     r"""OpenAPI, WSDL or GraphQL document, UTF-8 encoded, at most 64 MiB. Required unless the request is an incremental build (parent_id and instructions, no spec)."""
 
@@ -114,7 +114,7 @@ class BuildSimulatorRequestBody(BaseModel):
         Optional[List[Document]],
         FieldMetadata(multipart=MultipartFormMetadata(file=True)),
     ] = None
-    r"""Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. An incremental build inherits its parent's documents and index; a document sent with the same name replaces the parent's. A document named INDEX.md indexes the others and skips research; the build fails if it names a document the build does not have, leaves a document unnamed, or leaves out a selected operation; an incremental build's documents include the inherited ones."""
+    r"""Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. An incremental build inherits its parent's documents; a document sent with the same name replaces the parent's."""
 
     spec: Annotated[
         Optional[Spec], FieldMetadata(multipart=MultipartFormMetadata(file=True))

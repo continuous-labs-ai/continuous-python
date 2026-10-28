@@ -17,7 +17,7 @@ SimulatorResearchStatus = Union[
     ],
     UnrecognizedStr,
 ]
-r"""pending until the stage starts; running while the research agent indexes the documents and saves the vendor pages they lack; complete when it wrote an index that names every document; failed when it could not finish, which fails the build, or when the build ended first; provided when the documents included INDEX.md, so research did not run."""
+r"""pending until the stage starts; running while the research agent indexes the documents and saves the vendor pages they lack; complete when it wrote an index that names every document; failed when it could not finish, which fails the build, or when the build ended first; provided when research did not run because the build already had an index."""
 
 
 class SimulatorResearchTypedDict(TypedDict):
@@ -26,7 +26,7 @@ class SimulatorResearchTypedDict(TypedDict):
     pages: int
     r"""Vendor pages research saved for the build."""
     status: SimulatorResearchStatus
-    r"""pending until the stage starts; running while the research agent indexes the documents and saves the vendor pages they lack; complete when it wrote an index that names every document; failed when it could not finish, which fails the build, or when the build ended first; provided when the documents included INDEX.md, so research did not run."""
+    r"""pending until the stage starts; running while the research agent indexes the documents and saves the vendor pages they lack; complete when it wrote an index that names every document; failed when it could not finish, which fails the build, or when the build ended first; provided when research did not run because the build already had an index."""
 
 
 class SimulatorResearch(BaseModel):
@@ -37,7 +37,7 @@ class SimulatorResearch(BaseModel):
     r"""Vendor pages research saved for the build."""
 
     status: SimulatorResearchStatus
-    r"""pending until the stage starts; running while the research agent indexes the documents and saves the vendor pages they lack; complete when it wrote an index that names every document; failed when it could not finish, which fails the build, or when the build ended first; provided when the documents included INDEX.md, so research did not run."""
+    r"""pending until the stage starts; running while the research agent indexes the documents and saves the vendor pages they lack; complete when it wrote an index that names every document; failed when it could not finish, which fails the build, or when the build ended first; provided when research did not run because the build already had an index."""
 
 
 try:
