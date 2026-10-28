@@ -1,6 +1,6 @@
 # SimulatorSpecKind
 
-The specification the Simulator was built from, or null until a build has read it. recorded is a Web App Simulator's: the calls its discovery journeys captured.
+The specification the Simulator was built from, or null until a build has read it. recorded is a Web App Simulator's: the app's origin.
 
 ## Example Usage
 

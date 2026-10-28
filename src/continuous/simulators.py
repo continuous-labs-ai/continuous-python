@@ -306,7 +306,7 @@ class Simulators(BaseSDK):
 
         :param request: The request object to send.
         :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource. The key is recorded before the build starts, so a retry never starts a second build.
-        :param document: Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. An incremental build inherits its parent's documents and index; a document sent with the same name replaces the parent's. A document named INDEX.md indexes the others and skips research; the build fails if it names a document the build does not have, leaves a document unnamed, or leaves out a selected operation; an incremental build's documents include the inherited ones.
+        :param document: Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. An incremental build inherits its parent's documents; a document sent with the same name replaces the parent's.
         :param spec: OpenAPI, WSDL or GraphQL document, UTF-8 encoded, at most 64 MiB. Required unless the request is an incremental build (parent_id and instructions, no spec).
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -439,7 +439,7 @@ class Simulators(BaseSDK):
 
         :param request: The request object to send.
         :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource. The key is recorded before the build starts, so a retry never starts a second build.
-        :param document: Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. An incremental build inherits its parent's documents and index; a document sent with the same name replaces the parent's. A document named INDEX.md indexes the others and skips research; the build fails if it names a document the build does not have, leaves a document unnamed, or leaves out a selected operation; an incremental build's documents include the inherited ones.
+        :param document: Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. An incremental build inherits its parent's documents; a document sent with the same name replaces the parent's.
         :param spec: OpenAPI, WSDL or GraphQL document, UTF-8 encoded, at most 64 MiB. Required unless the request is an incremental build (parent_id and instructions, no spec).
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method

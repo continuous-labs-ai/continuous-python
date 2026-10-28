@@ -44,7 +44,7 @@ SimulatorSpecKind = Union[
     ],
     UnrecognizedStr,
 ]
-r"""The specification the Simulator was built from, or null until a build has read it. recorded is a Web App Simulator's: the calls its discovery journeys captured."""
+r"""The specification the Simulator was built from, or null until a build has read it. recorded is a Web App Simulator's: the app's origin."""
 
 
 SimulatorStatus = Union[
@@ -85,7 +85,7 @@ class SimulatorTypedDict(TypedDict):
     source: Source
     r"""workspace for a Simulator your workspace built; catalog for a read-only Simulator that Continuous publishes."""
     spec_kind: Nullable[SimulatorSpecKind]
-    r"""The specification the Simulator was built from, or null until a build has read it. recorded is a Web App Simulator's: the calls its discovery journeys captured."""
+    r"""The specification the Simulator was built from, or null until a build has read it. recorded is a Web App Simulator's: the app's origin."""
     status: SimulatorStatus
     r"""pending while waiting for capacity; building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
 
@@ -127,7 +127,7 @@ class Simulator(BaseModel):
     r"""workspace for a Simulator your workspace built; catalog for a read-only Simulator that Continuous publishes."""
 
     spec_kind: Nullable[SimulatorSpecKind]
-    r"""The specification the Simulator was built from, or null until a build has read it. recorded is a Web App Simulator's: the calls its discovery journeys captured."""
+    r"""The specification the Simulator was built from, or null until a build has read it. recorded is a Web App Simulator's: the app's origin."""
 
     status: SimulatorStatus
     r"""pending while waiting for capacity; building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
