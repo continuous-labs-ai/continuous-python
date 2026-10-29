@@ -561,7 +561,7 @@ class Simulators(BaseSDK):
     ):
         r"""Delete Simulator
 
-        Deletes a Simulator that has no dependent Worlds, Simulations, child Simulators, or Simulation Snapshots.
+        Deletes a Simulator that has no dependent Simulations, child Simulators, or Simulation Snapshots.
 
         :param id: Simulator ID.
         :param retries: Override the default retry configuration for this method
@@ -665,7 +665,7 @@ class Simulators(BaseSDK):
     ):
         r"""Delete Simulator
 
-        Deletes a Simulator that has no dependent Worlds, Simulations, child Simulators, or Simulation Snapshots.
+        Deletes a Simulator that has no dependent Simulations, child Simulators, or Simulation Snapshots.
 
         :param id: Simulator ID.
         :param retries: Override the default retry configuration for this method

@@ -57,7 +57,7 @@ SimulatorStatus = Union[
     ],
     UnrecognizedStr,
 ]
-r"""pending while waiting for capacity; building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
+r"""pending while waiting for capacity; building while the build runs; ready when Simulations and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
 
 
 class SimulatorTypedDict(TypedDict):
@@ -87,7 +87,7 @@ class SimulatorTypedDict(TypedDict):
     spec_kind: Nullable[SimulatorSpecKind]
     r"""The specification the Simulator was built from, or null until a build has read it. recorded is a Web App Simulator's: the app's origin."""
     status: SimulatorStatus
-    r"""pending while waiting for capacity; building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
+    r"""pending while waiting for capacity; building while the build runs; ready when Simulations and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
 
 
 class Simulator(BaseModel):
@@ -130,7 +130,7 @@ class Simulator(BaseModel):
     r"""The specification the Simulator was built from, or null until a build has read it. recorded is a Web App Simulator's: the app's origin."""
 
     status: SimulatorStatus
-    r"""pending while waiting for capacity; building while the build runs; ready when Simulations, Worlds, and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
+    r"""pending while waiting for capacity; building while the build runs; ready when Simulations and incremental builds can use it; failed when the build failed; canceled when a cancel request took effect."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -36,7 +36,7 @@ class ClockAdvanceTypedDict(TypedDict):
     status: ClockAdvanceStatus
     r"""Durable operation state. Poll while pending or running."""
     step: Nullable[int]
-    r"""Committed local step, or null for no change or a World operation."""
+    r"""Committed local step, or null for no change."""
     to: datetime
     r"""Requested absolute target time."""
 
@@ -60,7 +60,7 @@ class ClockAdvance(BaseModel):
     r"""Durable operation state. Poll while pending or running."""
 
     step: Nullable[int]
-    r"""Committed local step, or null for no change or a World operation."""
+    r"""Committed local step, or null for no change."""
 
     to: datetime
     r"""Requested absolute target time."""

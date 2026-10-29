@@ -22,7 +22,7 @@ SimulatorErrorCode = Union[
 r"""Stable Simulator build error code."""
 
 
-SimulatorErrorReason = Union[
+Reason = Union[
     Literal[
         "canceled",
         "specification_invalid",
@@ -42,7 +42,7 @@ class SimulatorErrorTypedDict(TypedDict):
     r"""Stable Simulator build error code."""
     detail: str
     r"""Safe human-readable error detail."""
-    reason: Nullable[SimulatorErrorReason]
+    reason: Nullable[Reason]
     r"""Bounded failure reason for selecting recovery guidance, or null when unavailable."""
     validation: Nullable[SpecificationValidationTypedDict]
 
@@ -57,7 +57,7 @@ class SimulatorError(BaseModel):
     detail: str
     r"""Safe human-readable error detail."""
 
-    reason: Nullable[SimulatorErrorReason]
+    reason: Nullable[Reason]
     r"""Bounded failure reason for selecting recovery guidance, or null when unavailable."""
 
     validation: Nullable[SpecificationValidation]

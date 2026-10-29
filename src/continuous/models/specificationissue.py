@@ -11,18 +11,19 @@ SpecificationIssueKind = Union[
         "invalid",
         "unsupported",
         "incomplete",
+        "limit",
         "unknown",
     ],
     UnrecognizedStr,
 ]
-r"""Whether the input is invalid, unsupported, incomplete, or has no specific diagnosis."""
+r"""Whether the input is invalid, unsupported, incomplete, exceeds a build limit, or has no specific diagnosis."""
 
 
 class SpecificationIssueTypedDict(TypedDict):
     code: str
     r"""Stable validation rule code."""
     kind: SpecificationIssueKind
-    r"""Whether the input is invalid, unsupported, incomplete, or has no specific diagnosis."""
+    r"""Whether the input is invalid, unsupported, incomplete, exceeds a build limit, or has no specific diagnosis."""
     location: str
     r"""Readable endpoint or field affected by this issue."""
     message: str
@@ -38,7 +39,7 @@ class SpecificationIssue(BaseModel):
     r"""Stable validation rule code."""
 
     kind: SpecificationIssueKind
-    r"""Whether the input is invalid, unsupported, incomplete, or has no specific diagnosis."""
+    r"""Whether the input is invalid, unsupported, incomplete, exceeds a build limit, or has no specific diagnosis."""
 
     location: str
     r"""Readable endpoint or field affected by this issue."""
