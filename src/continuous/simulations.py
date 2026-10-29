@@ -22,7 +22,6 @@ class Simulations(BaseSDK):
         simulator_digest: Optional[str] = None,
         snapshot_id: Optional[str] = None,
         id: Optional[Iterable[str]] = None,
-        world_id: Optional[str] = None,
         limit: Optional[int] = 50,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -39,7 +38,6 @@ class Simulations(BaseSDK):
         :param simulator_digest: Optional exact pinned OCI manifest digest filter.
         :param snapshot_id: Optional filter for the Simulations started from this Snapshot.
         :param id: Optional Simulation ID filter; repeat it to list up to 200 Simulations by ID. Absent lists every Simulation.
-        :param world_id: Optional filter for the Simulations this World owns.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
@@ -63,7 +61,6 @@ class Simulations(BaseSDK):
             simulator_digest=simulator_digest,
             snapshot_id=snapshot_id,
             id=utils.unmarshal(id, Optional[List[str]]),
-            world_id=world_id,
             limit=limit,
             cursor=cursor,
         )
@@ -132,7 +129,6 @@ class Simulations(BaseSDK):
                 simulator_digest=simulator_digest,
                 snapshot_id=snapshot_id,
                 id=id,
-                world_id=world_id,
                 limit=limit,
                 cursor=next_cursor,
                 retries=retries,
@@ -178,7 +174,6 @@ class Simulations(BaseSDK):
         simulator_digest: Optional[str] = None,
         snapshot_id: Optional[str] = None,
         id: Optional[Iterable[str]] = None,
-        world_id: Optional[str] = None,
         limit: Optional[int] = 50,
         cursor: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -195,7 +190,6 @@ class Simulations(BaseSDK):
         :param simulator_digest: Optional exact pinned OCI manifest digest filter.
         :param snapshot_id: Optional filter for the Simulations started from this Snapshot.
         :param id: Optional Simulation ID filter; repeat it to list up to 200 Simulations by ID. Absent lists every Simulation.
-        :param world_id: Optional filter for the Simulations this World owns.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
@@ -219,7 +213,6 @@ class Simulations(BaseSDK):
             simulator_digest=simulator_digest,
             snapshot_id=snapshot_id,
             id=utils.unmarshal(id, Optional[List[str]]),
-            world_id=world_id,
             limit=limit,
             cursor=cursor,
         )
@@ -291,7 +284,6 @@ class Simulations(BaseSDK):
                 simulator_digest=simulator_digest,
                 snapshot_id=snapshot_id,
                 id=id,
-                world_id=world_id,
                 limit=limit,
                 cursor=next_cursor,
                 retries=retries,
@@ -594,7 +586,7 @@ class Simulations(BaseSDK):
     ):
         r"""Delete Simulation
 
-        Deletes a Simulation and its saved runtime state, and cancels an active advance. Delete World-owned Simulations through their World.
+        Deletes a Simulation and its saved runtime state, and cancels an active advance.
 
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
@@ -662,7 +654,7 @@ class Simulations(BaseSDK):
         if utils.match_response(http_res, "204", "*"):
             return
         if utils.match_response(
-            http_res, ["401", "403", "404", "409"], "application/problem+json"
+            http_res, ["401", "403", "404"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -693,7 +685,7 @@ class Simulations(BaseSDK):
     ):
         r"""Delete Simulation
 
-        Deletes a Simulation and its saved runtime state, and cancels an active advance. Delete World-owned Simulations through their World.
+        Deletes a Simulation and its saved runtime state, and cancels an active advance.
 
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
@@ -761,7 +753,7 @@ class Simulations(BaseSDK):
         if utils.match_response(http_res, "204", "*"):
             return
         if utils.match_response(
-            http_res, ["401", "403", "404", "409"], "application/problem+json"
+            http_res, ["401", "403", "404"], "application/problem+json"
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -1000,7 +992,7 @@ class Simulations(BaseSDK):
     ) -> models.Simulation:
         r"""Update Simulation
 
-        Renames a Simulation or replaces its metadata. Omitted fields keep their current values. Update World-owned Simulations through their World.
+        Renames a Simulation or replaces its metadata. Omitted fields keep their current values.
 
         :param id: Simulation ID.
         :param metadata: Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it.
@@ -1078,7 +1070,7 @@ class Simulations(BaseSDK):
             return unmarshal_json_response(models.Simulation, http_res)
         if utils.match_response(
             http_res,
-            ["400", "401", "403", "404", "408", "409", "413", "415", "422"],
+            ["400", "401", "403", "404", "408", "413", "415", "422"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -1112,7 +1104,7 @@ class Simulations(BaseSDK):
     ) -> models.Simulation:
         r"""Update Simulation
 
-        Renames a Simulation or replaces its metadata. Omitted fields keep their current values. Update World-owned Simulations through their World.
+        Renames a Simulation or replaces its metadata. Omitted fields keep their current values.
 
         :param id: Simulation ID.
         :param metadata: Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it.
@@ -1190,7 +1182,7 @@ class Simulations(BaseSDK):
             return unmarshal_json_response(models.Simulation, http_res)
         if utils.match_response(
             http_res,
-            ["400", "401", "403", "404", "408", "409", "413", "415", "422"],
+            ["400", "401", "403", "404", "408", "413", "415", "422"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -1224,7 +1216,7 @@ class Simulations(BaseSDK):
     ) -> models.ClockAdvance:
         r"""Advance Simulation Time
 
-        Schedules an absolute clock advance. An advance commits due local events in ordered batches, one step each; a failure keeps the batches already committed. World members advance through their World. Poll the returned operation until it completes.
+        Schedules an absolute clock advance. An advance commits due local events in ordered batches, one step each; a failure keeps the batches already committed. Poll the returned operation until it completes.
 
         :param id: Simulation ID.
         :param idempotency_key: Stable key for this request. Reuse with the same target returns the same operation; reuse with a different target returns 409 idempotency_conflict.
@@ -1336,7 +1328,7 @@ class Simulations(BaseSDK):
     ) -> models.ClockAdvance:
         r"""Advance Simulation Time
 
-        Schedules an absolute clock advance. An advance commits due local events in ordered batches, one step each; a failure keeps the batches already committed. World members advance through their World. Poll the returned operation until it completes.
+        Schedules an absolute clock advance. An advance commits due local events in ordered batches, one step each; a failure keeps the batches already committed. Poll the returned operation until it completes.
 
         :param id: Simulation ID.
         :param idempotency_key: Stable key for this request. Reuse with the same target returns the same operation; reuse with a different target returns 409 idempotency_conflict.

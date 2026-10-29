@@ -19,11 +19,10 @@ if TYPE_CHECKING:
     from continuous.simulation_snapshots import SimulationSnapshots
     from continuous.simulations import Simulations
     from continuous.simulators import Simulators
-    from continuous.worlds import Worlds
 
 
 class Continuous(BaseSDK):
-    r"""Continuous Simulation API: Build Simulators from OpenAPI, WSDL or GraphQL documents, create Simulations from them, and build Worlds that run Simulations together. Authenticate every request with an API key sent as a Bearer token."""
+    r"""Continuous Simulation API: Build Simulators from OpenAPI, WSDL or GraphQL documents and create Simulations from them. Authenticate every request with an API key sent as a Bearer token."""
 
     credentials: "Credentials"
     r"""Store connections to real systems: a base URL, the header that carries the credential, and its value. The API never returns a value."""
@@ -33,8 +32,6 @@ class Continuous(BaseSDK):
     r"""Create Simulations from ready Simulators or Snapshots, then rename, stop, start, and delete them."""
     simulators: "Simulators"
     r"""Build Simulators from OpenAPI, WSDL or GraphQL documents, check or cancel a build, clone Simulators into other workspaces, and rename and delete Simulators."""
-    worlds: "Worlds"
-    r"""Build Worlds from one or more Simulators, rename them, and start or stop their Simulations together."""
     _sub_sdk_map = {
         "credentials": ("continuous.credentials", "Credentials"),
         "simulation_snapshots": (
@@ -43,7 +40,6 @@ class Continuous(BaseSDK):
         ),
         "simulations": ("continuous.simulations", "Simulations"),
         "simulators": ("continuous.simulators", "Simulators"),
-        "worlds": ("continuous.worlds", "Worlds"),
     }
 
     def __init__(

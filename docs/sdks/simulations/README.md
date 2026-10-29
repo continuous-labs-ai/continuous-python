@@ -54,7 +54,6 @@ with Continuous(
 | `simulator_digest`                                                                                           | *Optional[str]*                                                                                              | :heavy_minus_sign:                                                                                           | Optional exact pinned OCI manifest digest filter.                                                            |
 | `snapshot_id`                                                                                                | *Optional[str]*                                                                                              | :heavy_minus_sign:                                                                                           | Optional filter for the Simulations started from this Snapshot.                                              |
 | `id`                                                                                                         | List[*str*]                                                                                                  | :heavy_minus_sign:                                                                                           | Optional Simulation ID filter; repeat it to list up to 200 Simulations by ID. Absent lists every Simulation. |
-| `world_id`                                                                                                   | *Optional[str]*                                                                                              | :heavy_minus_sign:                                                                                           | Optional filter for the Simulations this World owns.                                                         |
 | `limit`                                                                                                      | *Optional[int]*                                                                                              | :heavy_minus_sign:                                                                                           | Page size. Values below 1 use 50. Values above 200 use 200.                                                  |
 | `cursor`                                                                                                     | *Optional[str]*                                                                                              | :heavy_minus_sign:                                                                                           | Opaque next_cursor value from a previous page.                                                               |
 | `retries`                                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                             | :heavy_minus_sign:                                                                                           | Configuration to override the default retry behavior of the client.                                          |
@@ -163,7 +162,7 @@ with Continuous(
 
 ## delete_simulation
 
-Deletes a Simulation and its saved runtime state, and cancels an active advance. Delete World-owned Simulations through their World.
+Deletes a Simulation and its saved runtime state, and cancels an active advance.
 
 ### Example Usage
 
@@ -194,7 +193,7 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 403, 404, 409            | application/problem+json      |
+| errors.Error                  | 401, 403, 404                 | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
@@ -242,7 +241,7 @@ with Continuous(
 
 ## update_simulation
 
-Renames a Simulation or replaces its metadata. Omitted fields keep their current values. Update World-owned Simulations through their World.
+Renames a Simulation or replaces its metadata. Omitted fields keep their current values.
 
 ### Example Usage
 
@@ -278,15 +277,15 @@ with Continuous(
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| errors.Error                                | 400, 401, 403, 404, 408, 409, 413, 415, 422 | application/problem+json                    |
-| errors.Error                                | 500, 503                                    | application/problem+json                    |
-| errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.Error                           | 400, 401, 403, 404, 408, 413, 415, 422 | application/problem+json               |
+| errors.Error                           | 500, 503                               | application/problem+json               |
+| errors.ContinuousDefaultError          | 4XX, 5XX                               | \*/\*                                  |
 
 ## create_simulation_advance
 
-Schedules an absolute clock advance. An advance commits due local events in ordered batches, one step each; a failure keeps the batches already committed. World members advance through their World. Poll the returned operation until it completes.
+Schedules an absolute clock advance. An advance commits due local events in ordered batches, one step each; a failure keeps the batches already committed. Poll the returned operation until it completes.
 
 ### Example Usage
 

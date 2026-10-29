@@ -30,8 +30,6 @@ class ListSimulationsRequestTypedDict(TypedDict):
     r"""Optional filter for the Simulations started from this Snapshot."""
     id: NotRequired[List[str]]
     r"""Optional Simulation ID filter; repeat it to list up to 200 Simulations by ID. Absent lists every Simulation."""
-    world_id: NotRequired[str]
-    r"""Optional filter for the Simulations this World owns."""
     limit: NotRequired[int]
     r"""Page size. Values below 1 use 50. Values above 200 use 200."""
     cursor: NotRequired[str]
@@ -69,12 +67,6 @@ class ListSimulationsRequest(BaseModel):
     ] = None
     r"""Optional Simulation ID filter; repeat it to list up to 200 Simulations by ID. Absent lists every Simulation."""
 
-    world_id: Annotated[
-        Optional[str],
-        FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
-    ] = None
-    r"""Optional filter for the Simulations this World owns."""
-
     limit: Annotated[
         Optional[int],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
@@ -96,7 +88,6 @@ class ListSimulationsRequest(BaseModel):
                 "simulator_digest",
                 "snapshot_id",
                 "id",
-                "world_id",
                 "limit",
                 "cursor",
             ]

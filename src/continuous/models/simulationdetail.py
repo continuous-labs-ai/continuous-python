@@ -54,8 +54,6 @@ class SimulationDetailTypedDict(TypedDict):
     r"""Initial simulated time."""
     status: SimulationDetailStatus
     r"""Current status. starting means its runtime is booting; read the Simulation until it is running. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopping means its state is being saved, and stopped means it is saved; requests return 409 in both until you start it."""
-    world_id: Nullable[str]
-    r"""ID of the World that owns this Simulation, or null."""
 
 
 class SimulationDetail(BaseModel):
@@ -106,9 +104,6 @@ class SimulationDetail(BaseModel):
 
     status: SimulationDetailStatus
     r"""Current status. starting means its runtime is booting; read the Simulation until it is running. running serves requests; after a period without requests, the first request can take longer while the Simulation resumes. stopping means its state is being saved, and stopped means it is saved; requests return 409 in both until you start it."""
-
-    world_id: Nullable[str]
-    r"""ID of the World that owns this Simulation, or null."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

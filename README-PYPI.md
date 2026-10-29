@@ -7,7 +7,7 @@ Speakeasy generates this SDK from the public Continuous Simulation API contract.
 <!-- Start Summary [summary] -->
 ## Summary
 
-Continuous Simulation API: Build Simulators from OpenAPI, WSDL or GraphQL documents, create Simulations from them, and build Worlds that run Simulations together. Authenticate every request with an API key sent as a Bearer token.
+Continuous Simulation API: Build Simulators from OpenAPI, WSDL or GraphQL documents and create Simulations from them. Authenticate every request with an API key sent as a Bearer token.
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
@@ -238,22 +238,6 @@ with Continuous(
 * [cancel_simulator](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#cancel_simulator) - Cancel Simulator Build
 * [clone_simulator](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#clone_simulator) - Clone Simulator
 
-### [Worlds](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md)
-
-* [list_worlds](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#list_worlds) - List Worlds
-* [build_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#build_world) - Build World
-* [delete_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#delete_world) - Delete World
-* [get_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#get_world) - Get World
-* [update_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#update_world) - Update World
-* [create_world_advance](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#create_world_advance) - Advance World Time
-* [get_world_advance](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#get_world_advance) - Get World Clock Advance
-* [cancel_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#cancel_world) - Cancel World Build
-* [get_world_change](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#get_world_change) - Get World Change
-* [add_world_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#add_world_simulation) - Add World Simulation
-* [remove_world_simulation](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#remove_world_simulation) - Remove World Simulation
-* [start_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#start_world) - Start World
-* [stop_world](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/worlds/README.md#stop_world) - Stop World
-
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
@@ -430,7 +414,7 @@ with Continuous(
 
 
 **Inherit from [`ContinuousError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/continuouserror.py)**:
-* [`SimulatorDeleteConflictError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 43 methods.*
+* [`SimulatorDeleteConflictError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 30 methods.*
 * [`ResponseValidationError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>

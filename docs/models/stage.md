@@ -1,14 +1,14 @@
-# SimulatorBuildProgressStage
+# Stage
 
 derive while the effective spec, build skeleton, and sandbox are prepared; build while the coding loop runs; assemble while an accepted artifact publishes.
 
 ## Example Usage
 
 ```python
-from continuous.models import SimulatorBuildProgressStage
+from continuous.models import Stage
 
 # Open enum: unrecognized values are captured as UnrecognizedStr
-value: SimulatorBuildProgressStage = "derive"
+value: Stage = "derive"
 ```
 
 

@@ -9,7 +9,7 @@ from typing import List, Literal, Union
 from typing_extensions import TypedDict
 
 
-SimulatorBuildProgressLastSubmission = Union[
+LastSubmission = Union[
     Literal[
         "accepted",
         "rejected",
@@ -33,7 +33,7 @@ SimulatorBuildProgressModel = Union[
 r"""The model the builder and reviewer run on, or combined, which currently runs as claude-opus-5-5. A build recorded before model selection reports its provider's default."""
 
 
-SimulatorBuildProgressPhase = Union[
+Phase = Union[
     Literal[
         "research",
         "build",
@@ -46,7 +46,7 @@ SimulatorBuildProgressPhase = Union[
 r"""Agent phase: research while the research agent indexes the documents and saves the vendor pages they lack; build for generation, review for the separate reviewer, qa while QA tests the running Simulator from outside, after the last review round of a build with credential_ids, finalize for author repair after review or QA. Null when not recorded."""
 
 
-SimulatorBuildProgressStage = Union[
+Stage = Union[
     Literal[
         "derive",
         "build",
@@ -60,7 +60,7 @@ r"""derive while the effective spec, build skeleton, and sandbox are prepared; b
 class SimulatorBuildProgressTypedDict(TypedDict):
     hidden_limitations: int
     r"""Limitations the accepted build records beyond those listed in limitations."""
-    last_submission: Nullable[SimulatorBuildProgressLastSubmission]
+    last_submission: Nullable[LastSubmission]
     r"""Outcome of the most recent submit attempt, or null."""
     last_tool: Nullable[str]
     r"""Name of the most recent tool call, or null. Tool arguments and output are private."""
@@ -68,13 +68,13 @@ class SimulatorBuildProgressTypedDict(TypedDict):
     r"""Behavior the accepted build does not serve like the real system, most important first, set when the build is accepted. Empty when none."""
     model: SimulatorBuildProgressModel
     r"""The model the builder and reviewer run on, or combined, which currently runs as claude-opus-5-5. A build recorded before model selection reports its provider's default."""
-    phase: Nullable[SimulatorBuildProgressPhase]
+    phase: Nullable[Phase]
     r"""Agent phase: research while the research agent indexes the documents and saves the vendor pages they lack; build for generation, review for the separate reviewer, qa while QA tests the running Simulator from outside, after the last review round of a build with credential_ids, finalize for author repair after review or QA. Null when not recorded."""
     review_round: int
     r"""Review round that phase review, qa, or finalize belongs to, from 1. In a build with credential_ids, QA and the repair after it are in round review_rounds + 1. 0 before the first review."""
     review_rounds: int
     r"""Review rounds the build runs at most. Fewer run when the reviewer agrees early."""
-    stage: SimulatorBuildProgressStage
+    stage: Stage
     r"""derive while the effective spec, build skeleton, and sandbox are prepared; build while the coding loop runs; assemble while an accepted artifact publishes."""
     submissions: int
     r"""Submit attempts."""
@@ -88,7 +88,7 @@ class SimulatorBuildProgress(BaseModel):
     hidden_limitations: int
     r"""Limitations the accepted build records beyond those listed in limitations."""
 
-    last_submission: Nullable[SimulatorBuildProgressLastSubmission]
+    last_submission: Nullable[LastSubmission]
     r"""Outcome of the most recent submit attempt, or null."""
 
     last_tool: Nullable[str]
@@ -100,7 +100,7 @@ class SimulatorBuildProgress(BaseModel):
     model: SimulatorBuildProgressModel
     r"""The model the builder and reviewer run on, or combined, which currently runs as claude-opus-5-5. A build recorded before model selection reports its provider's default."""
 
-    phase: Nullable[SimulatorBuildProgressPhase]
+    phase: Nullable[Phase]
     r"""Agent phase: research while the research agent indexes the documents and saves the vendor pages they lack; build for generation, review for the separate reviewer, qa while QA tests the running Simulator from outside, after the last review round of a build with credential_ids, finalize for author repair after review or QA. Null when not recorded."""
 
     review_round: int
@@ -109,7 +109,7 @@ class SimulatorBuildProgress(BaseModel):
     review_rounds: int
     r"""Review rounds the build runs at most. Fewer run when the reviewer agrees early."""
 
-    stage: SimulatorBuildProgressStage
+    stage: Stage
     r"""derive while the effective spec, build skeleton, and sandbox are prepared; build while the coding loop runs; assemble while an accepted artifact publishes."""
 
     submissions: int

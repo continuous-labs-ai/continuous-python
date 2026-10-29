@@ -139,7 +139,7 @@ with Continuous(
 
 ## delete_simulator
 
-Deletes a Simulator that has no dependent Worlds, Simulations, child Simulators, or Simulation Snapshots.
+Deletes a Simulator that has no dependent Simulations, child Simulators, or Simulation Snapshots.
 
 ### Example Usage
 
