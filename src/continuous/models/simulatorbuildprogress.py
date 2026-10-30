@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .limitation import Limitation, LimitationTypedDict
+from .simulatorbuildwaiting import SimulatorBuildWaiting, SimulatorBuildWaitingTypedDict
 from .specificationwarning import SpecificationWarning, SpecificationWarningTypedDict
 from continuous.types import BaseModel, Nullable, UNSET_SENTINEL, UnrecognizedStr
 from pydantic import model_serializer
@@ -80,6 +81,8 @@ class SimulatorBuildProgressTypedDict(TypedDict):
     r"""Submit attempts."""
     tool_calls: int
     r"""Tool calls the coding loop executed."""
+    waiting: Nullable[SimulatorBuildWaitingTypedDict]
+    r"""Set while the build waits at QA because the live systems rejected its credentials; refresh them, then resume the build with its resource's resume operation, such as POST /v1/simulators/{id}/resume. Null otherwise."""
     warnings: List[SpecificationWarningTypedDict]
     r"""Specification defects the build tolerated without changing the specification, set when the build prepares its specification. Empty when none."""
 
@@ -117,6 +120,9 @@ class SimulatorBuildProgress(BaseModel):
 
     tool_calls: int
     r"""Tool calls the coding loop executed."""
+
+    waiting: Nullable[SimulatorBuildWaiting]
+    r"""Set while the build waits at QA because the live systems rejected its credentials; refresh them, then resume the build with its resource's resume operation, such as POST /v1/simulators/{id}/resume. Null otherwise."""
 
     warnings: List[SpecificationWarning]
     r"""Specification defects the build tolerated without changing the specification, set when the build prepares its specification. Empty when none."""

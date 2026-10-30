@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .credentiallogin import CredentialLogin, CredentialLoginTypedDict
+from .credentialoauth import CredentialOAuth, CredentialOAuthTypedDict
 from continuous.types import BaseModel, Nullable, UNSET_SENTINEL
 from datetime import datetime
 from pydantic import model_serializer
@@ -20,6 +21,7 @@ class CredentialTypedDict(TypedDict):
     login: Nullable[CredentialLoginTypedDict]
     name: str
     r"""Credential name. Names need not be unique."""
+    oauth: Nullable[CredentialOAuthTypedDict]
 
 
 class Credential(BaseModel):
@@ -39,6 +41,8 @@ class Credential(BaseModel):
 
     name: str
     r"""Credential name. Names need not be unique."""
+
+    oauth: Nullable[CredentialOAuth]
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

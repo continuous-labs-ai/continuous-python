@@ -1,6 +1,6 @@
 # SimulatorErrorCode
 
-Stable Simulator build error code.
+Stable Simulator build error code. live_credential_rejected is a build that waited at QA for its rejected live credentials and was not resumed within 7 days.
 
 ## Example Usage
 
@@ -19,3 +19,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"build_failed"`
 - `"build_canceled"`
 - `"specification_validation_failed"`
+- `"live_credential_rejected"`
