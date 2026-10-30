@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 from .credentialloginupdate import CredentialLoginUpdate, CredentialLoginUpdateTypedDict
+from .credentialoauthrequest import (
+    CredentialOAuthRequest,
+    CredentialOAuthRequestTypedDict,
+)
 from continuous.types import BaseModel, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Optional
@@ -16,8 +20,9 @@ class UpdateCredentialRequestTypedDict(TypedDict):
     login: NotRequired[CredentialLoginUpdateTypedDict]
     name: NotRequired[str]
     r"""New credential name."""
+    oauth: NotRequired[CredentialOAuthRequestTypedDict]
     value: NotRequired[str]
-    r"""New full header value. Required when base_url or header changes; not allowed for a login credential. Builds that start an agent after the change use it. The API never returns it."""
+    r"""New full header value, in place of any OAuth client. Value or oauth is required when base_url or header changes; not allowed for a login credential. Builds that start an agent after the change use it. The API never returns it."""
 
 
 class UpdateCredentialRequest(BaseModel):
@@ -32,12 +37,14 @@ class UpdateCredentialRequest(BaseModel):
     name: Optional[str] = None
     r"""New credential name."""
 
+    oauth: Optional[CredentialOAuthRequest] = None
+
     value: Optional[str] = None
-    r"""New full header value. Required when base_url or header changes; not allowed for a login credential. Builds that start an agent after the change use it. The API never returns it."""
+    r"""New full header value, in place of any OAuth client. Value or oauth is required when base_url or header changes; not allowed for a login credential. Builds that start an agent after the change use it. The API never returns it."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["base_url", "header", "login", "name", "value"])
+        optional_fields = set(["base_url", "header", "login", "name", "oauth", "value"])
         serialized = handler(self)
         m = {}
 

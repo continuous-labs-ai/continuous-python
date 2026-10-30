@@ -89,6 +89,11 @@ if TYPE_CHECKING:
         CredentialLoginUpdate,
         CredentialLoginUpdateTypedDict,
     )
+    from .credentialoauth import AuthMethod, CredentialOAuth, CredentialOAuthTypedDict
+    from .credentialoauthrequest import (
+        CredentialOAuthRequest,
+        CredentialOAuthRequestTypedDict,
+    )
     from .currentsimulationtoken import (
         CurrentSimulationToken,
         CurrentSimulationTokenTypedDict,
@@ -196,6 +201,10 @@ if TYPE_CHECKING:
         RegenerateSimulationTokenResponseTypedDict,
     )
     from .resourceerror import ResourceError, ResourceErrorTypedDict
+    from .resume_simulatorop import (
+        ResumeSimulatorRequest,
+        ResumeSimulatorRequestTypedDict,
+    )
     from .security import Security, SecurityTypedDict
     from .simulation import Simulation, SimulationStatus, SimulationTypedDict
     from .simulationdetail import (
@@ -224,6 +233,10 @@ if TYPE_CHECKING:
         SimulatorBuildProgressModel,
         SimulatorBuildProgressTypedDict,
         Stage,
+    )
+    from .simulatorbuildwaiting import (
+        SimulatorBuildWaiting,
+        SimulatorBuildWaitingTypedDict,
     )
     from .simulatordependents import SimulatorDependents, SimulatorDependentsTypedDict
     from .simulatorerror import (
@@ -298,6 +311,7 @@ if TYPE_CHECKING:
 __all__ = [
     "AdvanceTimeRequest",
     "AdvanceTimeRequestTypedDict",
+    "AuthMethod",
     "BuildSimulatorRequest",
     "BuildSimulatorRequestBody",
     "BuildSimulatorRequestBodyTypedDict",
@@ -349,6 +363,10 @@ __all__ = [
     "CredentialLoginTypedDict",
     "CredentialLoginUpdate",
     "CredentialLoginUpdateTypedDict",
+    "CredentialOAuth",
+    "CredentialOAuthRequest",
+    "CredentialOAuthRequestTypedDict",
+    "CredentialOAuthTypedDict",
     "CredentialTypedDict",
     "CurrentSimulationToken",
     "CurrentSimulationTokenTypedDict",
@@ -425,6 +443,8 @@ __all__ = [
     "RegenerateSimulationTokenResponseTypedDict",
     "ResourceError",
     "ResourceErrorTypedDict",
+    "ResumeSimulatorRequest",
+    "ResumeSimulatorRequestTypedDict",
     "Security",
     "SecurityTypedDict",
     "Simulation",
@@ -442,6 +462,8 @@ __all__ = [
     "SimulatorBuildProgress",
     "SimulatorBuildProgressModel",
     "SimulatorBuildProgressTypedDict",
+    "SimulatorBuildWaiting",
+    "SimulatorBuildWaitingTypedDict",
     "SimulatorDependents",
     "SimulatorDependentsTypedDict",
     "SimulatorError",
@@ -553,6 +575,11 @@ _dynamic_imports: dict[str, str] = {
     "CredentialLoginRequestTypedDict": ".credentialloginrequest",
     "CredentialLoginUpdate": ".credentialloginupdate",
     "CredentialLoginUpdateTypedDict": ".credentialloginupdate",
+    "AuthMethod": ".credentialoauth",
+    "CredentialOAuth": ".credentialoauth",
+    "CredentialOAuthTypedDict": ".credentialoauth",
+    "CredentialOAuthRequest": ".credentialoauthrequest",
+    "CredentialOAuthRequestTypedDict": ".credentialoauthrequest",
     "CurrentSimulationToken": ".currentsimulationtoken",
     "CurrentSimulationTokenTypedDict": ".currentsimulationtoken",
     "DeleteCredentialRequest": ".delete_credentialop",
@@ -623,6 +650,8 @@ _dynamic_imports: dict[str, str] = {
     "RegenerateSimulationTokenResponseTypedDict": ".regenerate_simulation_tokenop",
     "ResourceError": ".resourceerror",
     "ResourceErrorTypedDict": ".resourceerror",
+    "ResumeSimulatorRequest": ".resume_simulatorop",
+    "ResumeSimulatorRequestTypedDict": ".resume_simulatorop",
     "Security": ".security",
     "SecurityTypedDict": ".security",
     "Simulation": ".simulation",
@@ -648,6 +677,8 @@ _dynamic_imports: dict[str, str] = {
     "SimulatorBuildProgressModel": ".simulatorbuildprogress",
     "SimulatorBuildProgressTypedDict": ".simulatorbuildprogress",
     "Stage": ".simulatorbuildprogress",
+    "SimulatorBuildWaiting": ".simulatorbuildwaiting",
+    "SimulatorBuildWaitingTypedDict": ".simulatorbuildwaiting",
     "SimulatorDependents": ".simulatordependents",
     "SimulatorDependentsTypedDict": ".simulatordependents",
     "Reason": ".simulatorerror",

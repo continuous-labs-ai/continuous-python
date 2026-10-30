@@ -5,6 +5,10 @@ from .credentialloginrequest import (
     CredentialLoginRequest,
     CredentialLoginRequestTypedDict,
 )
+from .credentialoauthrequest import (
+    CredentialOAuthRequest,
+    CredentialOAuthRequestTypedDict,
+)
 from continuous.types import BaseModel, UNSET_SENTINEL
 from pydantic import model_serializer
 from typing import Optional
@@ -19,8 +23,9 @@ class CreateCredentialRequestTypedDict(TypedDict):
     header: NotRequired[str]
     r"""The HTTP header that carries the value. Defaults to Authorization. Not allowed with login."""
     login: NotRequired[CredentialLoginRequestTypedDict]
+    oauth: NotRequired[CredentialOAuthRequestTypedDict]
     value: NotRequired[str]
-    r"""The full header value, for example Bearer followed by a token. Required with base_url; not allowed with login, which a person signs in to by hand after the credential exists. The API never returns it."""
+    r"""The full header value, for example Bearer followed by a token. Required with base_url unless oauth is sent; not allowed with login, which a person signs in to by hand after the credential exists. The API never returns it."""
 
 
 class CreateCredentialRequest(BaseModel):
@@ -35,12 +40,14 @@ class CreateCredentialRequest(BaseModel):
 
     login: Optional[CredentialLoginRequest] = None
 
+    oauth: Optional[CredentialOAuthRequest] = None
+
     value: Optional[str] = None
-    r"""The full header value, for example Bearer followed by a token. Required with base_url; not allowed with login, which a person signs in to by hand after the credential exists. The API never returns it."""
+    r"""The full header value, for example Bearer followed by a token. Required with base_url unless oauth is sent; not allowed with login, which a person signs in to by hand after the credential exists. The API never returns it."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["base_url", "header", "login", "value"])
+        optional_fields = set(["base_url", "header", "login", "oauth", "value"])
         serialized = handler(self)
         m = {}
 

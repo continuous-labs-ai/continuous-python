@@ -237,6 +237,7 @@ with Continuous(
 * [update_simulator](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#update_simulator) - Update Simulator
 * [cancel_simulator](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#cancel_simulator) - Cancel Simulator Build
 * [clone_simulator](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#clone_simulator) - Clone Simulator
+* [resume_simulator](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#resume_simulator) - Resume Simulator Build
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -414,7 +415,7 @@ with Continuous(
 
 
 **Inherit from [`ContinuousError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/continuouserror.py)**:
-* [`SimulatorDeleteConflictError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 30 methods.*
+* [`SimulatorDeleteConflictError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 31 methods.*
 * [`ResponseValidationError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>

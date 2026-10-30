@@ -25,6 +25,11 @@ components:
         code: auth_forbidden
         detail: Only the workspace that owns the Simulator with ID "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5" can cancel its build.
         validation: null
+    auth_forbidden_owner_resume:
+      value:
+        code: auth_forbidden
+        detail: Only the workspace that owns the Simulator with ID "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5" can resume its build.
+        validation: null
     auth_forbidden_simulation:
       value:
         code: auth_forbidden
@@ -225,6 +230,11 @@ components:
         code: simulator_not_ready
         detail: source Simulator has no ready image
         validation: null
+    simulator_not_waiting:
+      value:
+        code: simulator_not_waiting
+        detail: The build of the Simulator with ID "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5" is not waiting for its live credentials.
+        validation: null
     simulator_unknown:
       value:
         code: simulator_unknown
@@ -283,7 +293,7 @@ components:
     validation_credential_value:
       value:
         code: validation
-        detail: value is required when base_url or header changes
+        detail: value or oauth is required when base_url or header changes
         validation: null
     validation_idempotency_key:
       value:
@@ -454,8 +464,8 @@ components:
             - graphql
           type: string
         timeout_seconds:
-          default: 14400
-          description: Time limit for generation and validation in seconds, from 1 to 72000. Defaults to 14400 (four hours). Excludes queue wait and finalization. Retries share the same deadline.
+          default: 28800
+          description: Time limit for generation and validation in seconds, from 1 to 72000. Defaults to 28800 (eight hours). Excludes queue wait, finalization, and any wait for live credentials. Retries share the same deadline.
           format: int64
           maximum: 72000
           minimum: 1
@@ -638,8 +648,11 @@ components:
           description: Credential name.
           minLength: 1
           type: string
+        oauth:
+          $ref: "#/components/schemas/CredentialOAuthRequest"
+          description: An OAuth 2.0 client that gets the header value with the client credentials grant, in place of value. Only with base_url. The API requests a token before it stores the credential and refuses a client the token URL refuses.
         value:
-          description: The full header value, for example Bearer followed by a token. Required with base_url; not allowed with login, which a person signs in to by hand after the credential exists. The API never returns it.
+          description: The full header value, for example Bearer followed by a token. Required with base_url unless oauth is sent; not allowed with login, which a person signs in to by hand after the credential exists. The API never returns it.
           type: string
           writeOnly: true
       required:
@@ -825,6 +838,7 @@ components:
           id: crd_01J8Z5X4K7M2N9P0Q1R2S3T4VA
           login: null
           name: stripe-test
+          oauth: null
       properties:
         base_url:
           description: The https URL of the real system, or null for a login credential or one created without a URL. An API build can use only a credential with a base URL.
@@ -848,12 +862,16 @@ components:
         name:
           description: Credential name. Names need not be unique.
           type: string
+        oauth:
+          $ref: "#/components/schemas/CredentialOAuth"
+          description: The OAuth 2.0 client whose access token is the header value, as Bearer followed by the token, or null. Each build agent gets a token with at least 15 minutes left, or half the token's lifetime when that is shorter.
       required:
         - id
         - name
         - base_url
         - header
         - login
+        - oauth
         - created_at
       type: object
     CredentialLogin:
@@ -889,6 +907,71 @@ components:
         url:
           description: New https URL of the app's sign-in page. A new URL ends the saved sign-in.
           type: string
+      type: object
+    CredentialOAuth:
+      additionalProperties: false
+      properties:
+        algorithm:
+          description: The JWS algorithm of a private_key_jwt client's assertion, or empty.
+          type: string
+        auth_method:
+          description: "How the client authenticates: client_secret, or private_key_jwt, a JWT assertion signed with its private key."
+          enum:
+            - client_secret
+            - private_key_jwt
+          type: string
+        client_id:
+          description: The OAuth 2.0 client ID.
+          type: string
+        key_id:
+          description: The kid of a private_key_jwt client's key, such as a NetSuite certificate ID, or empty.
+          type: string
+        scope:
+          description: The space-separated scopes the token is requested with, or empty for the client's default.
+          type: string
+        token_url:
+          description: The https URL of the OAuth 2.0 token endpoint.
+          type: string
+      required:
+        - token_url
+        - client_id
+        - scope
+        - auth_method
+        - algorithm
+        - key_id
+      type:
+        - object
+        - "null"
+    CredentialOAuthRequest:
+      additionalProperties: false
+      properties:
+        algorithm:
+          description: "The JWS algorithm that signs the assertion: PS256 (the default), PS384, PS512, RS256, RS384, RS512, ES256, ES384 or ES512. Only with private_key."
+          type: string
+        client_id:
+          description: The OAuth 2.0 client ID.
+          minLength: 1
+          type: string
+        client_secret:
+          description: The client secret. Send exactly one of client_secret and private_key. The API never returns it.
+          type: string
+          writeOnly: true
+        key_id:
+          description: The kid header of the assertion, such as the certificate ID NetSuite shows for the uploaded certificate. Only with private_key.
+          type: string
+        private_key:
+          description: "The client's PEM private key (PKCS #8, PKCS #1 or SEC 1), which signs a JWT assertion for each token. Send exactly one of client_secret and private_key. The API never returns it."
+          type: string
+          writeOnly: true
+        scope:
+          description: Space-separated scopes to request. A private_key_jwt client sends them in its assertion's scope claim, as NetSuite reads them.
+          type: string
+        token_url:
+          description: The https URL of the OAuth 2.0 token endpoint, with a literal host name or IP address and no user information. Its host must resolve to a public address.
+          type: string
+      required:
+        - token_url
+        - client_id
       type: object
     CurrentSimulationToken:
       additionalProperties: false
@@ -1359,6 +1442,7 @@ components:
             stage: build
             submissions: 1
             tool_calls: 7
+            waiting: null
             warnings: []
           created_at: "2026-01-15T12:00:00Z"
           credential_ids: []
@@ -1570,6 +1654,11 @@ components:
           format: int64
           minimum: 0
           type: integer
+        waiting:
+          description: Set while the build waits at QA because the live systems rejected its credentials; refresh them, then resume the build with its resource's resume operation, such as POST /v1/simulators/{id}/resume. Null otherwise.
+          oneOf:
+            - $ref: "#/components/schemas/SimulatorBuildWaiting"
+            - type: "null"
         warnings:
           description: Specification defects the build tolerated without changing the specification, set when the build prepares its specification. Empty when none.
           items:
@@ -1589,6 +1678,32 @@ components:
         - warnings
         - limitations
         - hidden_limitations
+        - waiting
+      type: object
+    SimulatorBuildWaiting:
+      additionalProperties: false
+      properties:
+        credential_ids:
+          description: The credentials to refresh with PATCH /v1/credentials/{id} before resuming the build.
+          items:
+            type: string
+          type: array
+        deadline:
+          description: "When the wait ends, 7 days after it began: a build not resumed by then fails with error code live_credential_rejected. The wait does not count toward the build's time limit."
+          format: date-time
+          type: string
+        reason:
+          description: "Why the build waits: the status and detail of the live reply that rejected QA's authenticated read."
+          type: string
+        since:
+          description: When the build started waiting.
+          format: date-time
+          type: string
+      required:
+        - reason
+        - credential_ids
+        - since
+        - deadline
       type: object
     SimulatorDeleteConflict:
       additionalProperties: false
@@ -1646,11 +1761,12 @@ components:
             - string
             - "null"
         code:
-          description: Stable Simulator build error code.
+          description: Stable Simulator build error code. live_credential_rejected is a build that waited at QA for its rejected live credentials and was not resumed within 7 days.
           enum:
             - build_failed
             - build_canceled
             - specification_validation_failed
+            - live_credential_rejected
           type: string
         detail:
           description: Safe human-readable error detail.
@@ -1877,8 +1993,11 @@ components:
           description: New credential name.
           minLength: 1
           type: string
+        oauth:
+          $ref: "#/components/schemas/CredentialOAuthRequest"
+          description: A new OAuth 2.0 client, as a whole with its secret, in place of the value. Not allowed with value or for a login credential.
         value:
-          description: New full header value. Required when base_url or header changes; not allowed for a login credential. Builds that start an agent after the change use it. The API never returns it.
+          description: New full header value, in place of any OAuth client. Value or oauth is required when base_url or header changes; not allowed for a login credential. Builds that start an agent after the change use it. The API never returns it.
           minLength: 1
           type: string
           writeOnly: true
@@ -2009,7 +2128,7 @@ paths:
           - "504"
         strategy: backoff
     post:
-      description: "Stores a connection to a real system: either an API base URL, the header that carries the credential, and the header value, or a Web App login with its sign-in URL, which a person then signs in to by hand in the console. Returns the credential without its value."
+      description: "Stores a connection to a real system: an API base URL and the header that carries the credential, with either the header value or an OAuth 2.0 client whose access token the API gets and renews; or a Web App login with its sign-in URL, which a person then signs in to by hand in the console. Returns the credential without its value."
       operationId: create-credential
       requestBody:
         content:
@@ -2188,7 +2307,7 @@ paths:
           - "504"
         strategy: backoff
     patch:
-      description: Renames a credential, changes its base URL and header or its login, or replaces its value. A credential keeps its kind. Omitted fields keep their current values.
+      description: Renames a credential, changes its base URL and header or its login, or replaces its value or its OAuth 2.0 client. An API credential can move between a value and an OAuth client; a login stays a login. Omitted fields keep their current values.
       operationId: update-credential
       parameters:
         - description: Credential ID.
@@ -4561,6 +4680,83 @@ paths:
       security:
         - apiKeyAuth: []
       summary: Clone Simulator
+      tags:
+        - simulators
+  /v1/simulators/{id}/resume:
+    post:
+      description: "Resumes a build that waits at QA because its live credentials were rejected, as build.waiting reports. Refresh each credential it names with PATCH /v1/credentials/{id} first: QA then runs again with their current values, and the build goes on to finalize. Returns the Simulator, still building. The wait does not count toward the build's time limit: the build resumes with the time it had left when it began waiting. A build that is not waiting returns 409 simulator_not_waiting."
+      operationId: resume-simulator
+      parameters:
+        - description: Simulator ID.
+          in: path
+          name: id
+          required: true
+          schema:
+            pattern: ^smr_[0-9A-HJKMNP-TV-Z]{26}$
+            type: string
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Simulator"
+          description: Accepted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/problem+json:
+              examples:
+                auth_forbidden_owner_resume:
+                  $ref: "#/components/examples/auth_forbidden_owner_resume"
+                auth_forbidden_simulator:
+                  $ref: "#/components/examples/auth_forbidden_simulator"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Forbidden
+        "404":
+          content:
+            application/problem+json:
+              examples:
+                simulator_not_found:
+                  $ref: "#/components/examples/simulator_not_found"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Not Found
+        "409":
+          content:
+            application/problem+json:
+              examples:
+                simulator_not_waiting:
+                  $ref: "#/components/examples/simulator_not_waiting"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Conflict
+        "422":
+          content:
+            application/problem+json:
+              examples:
+                validation_simulator_id:
+                  $ref: "#/components/examples/validation_simulator_id"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unprocessable Entity
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+        "503":
+          content:
+            application/problem+json:
+              examples:
+                auth_provider_unavailable:
+                  $ref: "#/components/examples/auth_provider_unavailable"
+                internal_unavailable:
+                  $ref: "#/components/examples/internal_unavailable"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Service Unavailable
+      security:
+        - apiKeyAuth: []
+      summary: Resume Simulator Build
       tags:
         - simulators
 servers:

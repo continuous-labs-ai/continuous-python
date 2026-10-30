@@ -237,6 +237,7 @@ with Continuous(
 * [update_simulator](docs/sdks/simulators/README.md#update_simulator) - Update Simulator
 * [cancel_simulator](docs/sdks/simulators/README.md#cancel_simulator) - Cancel Simulator Build
 * [clone_simulator](docs/sdks/simulators/README.md#clone_simulator) - Clone Simulator
+* [resume_simulator](docs/sdks/simulators/README.md#resume_simulator) - Resume Simulator Build
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -414,7 +415,7 @@ with Continuous(
 
 
 **Inherit from [`ContinuousError`](./src/continuous/errors/continuouserror.py)**:
-* [`SimulatorDeleteConflictError`](./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 30 methods.*
+* [`SimulatorDeleteConflictError`](./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 31 methods.*
 * [`ResponseValidationError`](./src/continuous/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>

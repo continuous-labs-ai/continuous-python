@@ -289,6 +289,9 @@ class Credentials(BaseSDK):
         login: Optional[
             Union[models.CredentialLoginRequest, models.CredentialLoginRequestTypedDict]
         ] = None,
+        oauth: Optional[
+            Union[models.CredentialOAuthRequest, models.CredentialOAuthRequestTypedDict]
+        ] = None,
         value: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -297,13 +300,14 @@ class Credentials(BaseSDK):
     ) -> models.Credential:
         r"""Create credential
 
-        Stores a connection to a real system: either an API base URL, the header that carries the credential, and the header value, or a Web App login with its sign-in URL, which a person then signs in to by hand in the console. Returns the credential without its value.
+        Stores a connection to a real system: an API base URL and the header that carries the credential, with either the header value or an OAuth 2.0 client whose access token the API gets and renews; or a Web App login with its sign-in URL, which a person then signs in to by hand in the console. Returns the credential without its value.
 
         :param name: Credential name.
         :param base_url: The https URL of the real system. Requests go to paths under it. Send exactly one of base_url and login.
         :param header: The HTTP header that carries the value. Defaults to Authorization. Not allowed with login.
         :param login:
-        :param value: The full header value, for example Bearer followed by a token. Required with base_url; not allowed with login, which a person signs in to by hand after the credential exists. The API never returns it.
+        :param oauth:
+        :param value: The full header value, for example Bearer followed by a token. Required with base_url unless oauth is sent; not allowed with login, which a person signs in to by hand after the credential exists. The API never returns it.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -326,6 +330,9 @@ class Credentials(BaseSDK):
                 login, Optional[models.CredentialLoginRequest]
             ),
             name=name,
+            oauth=utils.get_pydantic_model(
+                oauth, Optional[models.CredentialOAuthRequest]
+            ),
             value=value,
         )
 
@@ -409,6 +416,9 @@ class Credentials(BaseSDK):
         login: Optional[
             Union[models.CredentialLoginRequest, models.CredentialLoginRequestTypedDict]
         ] = None,
+        oauth: Optional[
+            Union[models.CredentialOAuthRequest, models.CredentialOAuthRequestTypedDict]
+        ] = None,
         value: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -417,13 +427,14 @@ class Credentials(BaseSDK):
     ) -> models.Credential:
         r"""Create credential
 
-        Stores a connection to a real system: either an API base URL, the header that carries the credential, and the header value, or a Web App login with its sign-in URL, which a person then signs in to by hand in the console. Returns the credential without its value.
+        Stores a connection to a real system: an API base URL and the header that carries the credential, with either the header value or an OAuth 2.0 client whose access token the API gets and renews; or a Web App login with its sign-in URL, which a person then signs in to by hand in the console. Returns the credential without its value.
 
         :param name: Credential name.
         :param base_url: The https URL of the real system. Requests go to paths under it. Send exactly one of base_url and login.
         :param header: The HTTP header that carries the value. Defaults to Authorization. Not allowed with login.
         :param login:
-        :param value: The full header value, for example Bearer followed by a token. Required with base_url; not allowed with login, which a person signs in to by hand after the credential exists. The API never returns it.
+        :param oauth:
+        :param value: The full header value, for example Bearer followed by a token. Required with base_url unless oauth is sent; not allowed with login, which a person signs in to by hand after the credential exists. The API never returns it.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -446,6 +457,9 @@ class Credentials(BaseSDK):
                 login, Optional[models.CredentialLoginRequest]
             ),
             name=name,
+            oauth=utils.get_pydantic_model(
+                oauth, Optional[models.CredentialOAuthRequest]
+            ),
             value=value,
         )
 
@@ -934,6 +948,9 @@ class Credentials(BaseSDK):
             Union[models.CredentialLoginUpdate, models.CredentialLoginUpdateTypedDict]
         ] = None,
         name: Optional[str] = None,
+        oauth: Optional[
+            Union[models.CredentialOAuthRequest, models.CredentialOAuthRequestTypedDict]
+        ] = None,
         value: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -942,14 +959,15 @@ class Credentials(BaseSDK):
     ) -> models.Credential:
         r"""Update credential
 
-        Renames a credential, changes its base URL and header or its login, or replaces its value. A credential keeps its kind. Omitted fields keep their current values.
+        Renames a credential, changes its base URL and header or its login, or replaces its value or its OAuth 2.0 client. An API credential can move between a value and an OAuth client; a login stays a login. Omitted fields keep their current values.
 
         :param id: Credential ID.
         :param base_url: New https URL of the real system.
         :param header: New HTTP header that carries the value.
         :param login:
         :param name: New credential name.
-        :param value: New full header value. Required when base_url or header changes; not allowed for a login credential. Builds that start an agent after the change use it. The API never returns it.
+        :param oauth:
+        :param value: New full header value, in place of any OAuth client. Value or oauth is required when base_url or header changes; not allowed for a login credential. Builds that start an agent after the change use it. The API never returns it.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -974,6 +992,9 @@ class Credentials(BaseSDK):
                     login, Optional[models.CredentialLoginUpdate]
                 ),
                 name=name,
+                oauth=utils.get_pydantic_model(
+                    oauth, Optional[models.CredentialOAuthRequest]
+                ),
                 value=value,
             ),
         )
@@ -1059,6 +1080,9 @@ class Credentials(BaseSDK):
             Union[models.CredentialLoginUpdate, models.CredentialLoginUpdateTypedDict]
         ] = None,
         name: Optional[str] = None,
+        oauth: Optional[
+            Union[models.CredentialOAuthRequest, models.CredentialOAuthRequestTypedDict]
+        ] = None,
         value: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1067,14 +1091,15 @@ class Credentials(BaseSDK):
     ) -> models.Credential:
         r"""Update credential
 
-        Renames a credential, changes its base URL and header or its login, or replaces its value. A credential keeps its kind. Omitted fields keep their current values.
+        Renames a credential, changes its base URL and header or its login, or replaces its value or its OAuth 2.0 client. An API credential can move between a value and an OAuth client; a login stays a login. Omitted fields keep their current values.
 
         :param id: Credential ID.
         :param base_url: New https URL of the real system.
         :param header: New HTTP header that carries the value.
         :param login:
         :param name: New credential name.
-        :param value: New full header value. Required when base_url or header changes; not allowed for a login credential. Builds that start an agent after the change use it. The API never returns it.
+        :param oauth:
+        :param value: New full header value, in place of any OAuth client. Value or oauth is required when base_url or header changes; not allowed for a login credential. Builds that start an agent after the change use it. The API never returns it.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1099,6 +1124,9 @@ class Credentials(BaseSDK):
                     login, Optional[models.CredentialLoginUpdate]
                 ),
                 name=name,
+                oauth=utils.get_pydantic_model(
+                    oauth, Optional[models.CredentialOAuthRequest]
+                ),
                 value=value,
             ),
         )

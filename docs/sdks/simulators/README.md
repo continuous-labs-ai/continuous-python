@@ -13,6 +13,7 @@ Build Simulators from OpenAPI, WSDL or GraphQL documents, check or cancel a buil
 * [update_simulator](#update_simulator) - Update Simulator
 * [cancel_simulator](#cancel_simulator) - Cancel Simulator Build
 * [clone_simulator](#clone_simulator) - Clone Simulator
+* [resume_simulator](#resume_simulator) - Resume Simulator Build
 
 ## list_simulators
 
@@ -364,3 +365,45 @@ with Continuous(
 | errors.Error                                | 400, 401, 403, 404, 408, 409, 413, 415, 422 | application/problem+json                    |
 | errors.Error                                | 500, 503                                    | application/problem+json                    |
 | errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
+
+## resume_simulator
+
+Resumes a build that waits at QA because its live credentials were rejected, as build.waiting reports. Refresh each credential it names with PATCH /v1/credentials/{id} first: QA then runs again with their current values, and the build goes on to finalize. Returns the Simulator, still building. The wait does not count toward the build's time limit: the build resumes with the time it had left when it began waiting. A build that is not waiting returns 409 simulator_not_waiting.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="resume-simulator" method="post" path="/v1/simulators/{id}/resume" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.simulators.resume_simulator(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Simulator ID.                                                       |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.Simulator](../../models/simulator.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| errors.Error                  | 401, 403, 404, 409, 422       | application/problem+json      |
+| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
