@@ -15,31 +15,55 @@ from typing import Any, Callable, Dict, Optional, TYPE_CHECKING, Union, cast
 import weakref
 
 if TYPE_CHECKING:
+    from continuous.apibox_sdk import ApiboxSDK
+    from continuous.apibox_snapshots import ApiboxSnapshots
     from continuous.credentials import Credentials
+    from continuous.mcpbox_sdk import McpboxSDK
+    from continuous.mcpbox_snapshots import McpboxSnapshots
     from continuous.simulation_snapshots import SimulationSnapshots
     from continuous.simulations import Simulations
     from continuous.simulators import Simulators
+    from continuous.webbox_sdk import WebboxSDK
+    from continuous.webbox_snapshots import WebboxSnapshots
 
 
 class Continuous(BaseSDK):
-    r"""Continuous Simulation API: Build Simulators from OpenAPI, WSDL or GraphQL documents and create Simulations from them. Authenticate every request with an API key sent as a Bearer token."""
+    r"""Continuous API: Start API Boxes, Web Boxes and MCP Boxes from Snapshots. Authenticate every request with an API key sent as a Bearer token."""
 
+    apibox: "ApiboxSDK"
+    r"""Start API Boxes from API Box Snapshots. Each API Box serves its Snapshot's API at its own endpoint, with its own state, in real time. Stop, start and delete them."""
+    apibox_snapshots: "ApiboxSnapshots"
+    r"""Build API Box Snapshots from an OpenAPI, WSDL or GraphQL document, or use the catalog's. API Boxes start from a ready Snapshot."""
     credentials: "Credentials"
     r"""Store connections to real systems: a base URL, the header that carries the credential, and its value. The API never returns a value."""
+    mcpbox: "McpboxSDK"
+    r"""Start MCP Boxes from MCP Box Snapshots. Each MCP Box serves its Snapshot's tools over MCP in front of an API Box. Stop, start and delete them."""
+    mcpbox_snapshots: "McpboxSnapshots"
+    r"""List, rename and delete the MCP Box Snapshots that Continuous publishes into your workspace. Each holds an MCP server's tools, built against an API Box Snapshot."""
     simulation_snapshots: "SimulationSnapshots"
-    r"""Save a running Simulation's state as a Snapshot, create Simulations from it, and rename and delete it."""
+    r"""Deprecated. Use API Box for APIs and Web Box for web apps. Save a running Simulation's state as a Snapshot, create Simulations from it, and rename and delete it."""
     simulations: "Simulations"
-    r"""Create Simulations from ready Simulators or Snapshots, then rename, stop, start, and delete them."""
+    r"""Deprecated. Use API Box for APIs and Web Box for web apps. Create Simulations from ready Simulators or Snapshots, then rename, stop, start, and delete them."""
     simulators: "Simulators"
-    r"""Build Simulators from OpenAPI, WSDL or GraphQL documents, check or cancel a build, clone Simulators into other workspaces, and rename and delete Simulators."""
+    r"""Deprecated. Use API Box for APIs and Web Box for web apps. Build Simulators from OpenAPI, WSDL or GraphQL documents, check or cancel a build, clone Simulators into other workspaces, and rename and delete Simulators."""
+    webbox: "WebboxSDK"
+    r"""Start Web Boxes from Web Box Snapshots. Each Web Box serves its Snapshot's web app at a host of its own, with its own state, in real time. Stop, start and delete them."""
+    webbox_snapshots: "WebboxSnapshots"
+    r"""Build Web Box Snapshots from a vendor's live web app, or use the catalog's. Web Boxes start from a ready Snapshot."""
     _sub_sdk_map = {
+        "apibox": ("continuous.apibox_sdk", "ApiboxSDK"),
+        "apibox_snapshots": ("continuous.apibox_snapshots", "ApiboxSnapshots"),
         "credentials": ("continuous.credentials", "Credentials"),
+        "mcpbox": ("continuous.mcpbox_sdk", "McpboxSDK"),
+        "mcpbox_snapshots": ("continuous.mcpbox_snapshots", "McpboxSnapshots"),
         "simulation_snapshots": (
             "continuous.simulation_snapshots",
             "SimulationSnapshots",
         ),
         "simulations": ("continuous.simulations", "Simulations"),
         "simulators": ("continuous.simulators", "Simulators"),
+        "webbox": ("continuous.webbox_sdk", "WebboxSDK"),
+        "webbox_snapshots": ("continuous.webbox_snapshots", "WebboxSnapshots"),
     }
 
     def __init__(

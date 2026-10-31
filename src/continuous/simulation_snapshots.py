@@ -8,11 +8,15 @@ from continuous.utils import get_security_from_env
 from continuous.utils.unmarshal_json_response import unmarshal_json_response
 from jsonpath import JSONPath
 from typing import Any, Awaitable, Dict, List, Mapping, Optional, Union
+from typing_extensions import deprecated
 
 
 class SimulationSnapshots(BaseSDK):
-    r"""Save a running Simulation's state as a Snapshot, create Simulations from it, and rename and delete it."""
+    r"""Deprecated. Use API Box for APIs and Web Box for web apps. Save a running Simulation's state as a Snapshot, create Simulations from it, and rename and delete it."""
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def list_simulation_snapshots(
         self,
         *,
@@ -27,6 +31,8 @@ class SimulationSnapshots(BaseSDK):
         r"""List Simulation Snapshots
 
         Returns the workspace's Snapshots, newest first. Filter by simulation_id for the Snapshots of one Simulation.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param simulation_id: Optional filter for the Snapshots saved from this Simulation.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
@@ -149,6 +155,9 @@ class SimulationSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def list_simulation_snapshots_async(
         self,
         *,
@@ -163,6 +172,8 @@ class SimulationSnapshots(BaseSDK):
         r"""List Simulation Snapshots
 
         Returns the workspace's Snapshots, newest first. Filter by simulation_id for the Snapshots of one Simulation.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param simulation_id: Optional filter for the Snapshots saved from this Simulation.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
@@ -290,6 +301,9 @@ class SimulationSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def create_simulation_snapshot(
         self,
         *,
@@ -305,6 +319,8 @@ class SimulationSnapshots(BaseSDK):
 
         Starts saving a running Simulation's current state and returns the Snapshot with status creating. Poll it until it is ready, or failed with an error. Saving closes the Simulation's open event streams and WebSockets and does not change its state; while it saves, an advance returns 409 clock_conflict, and a stop waits for it. Create Simulations from a ready Snapshot with snapshot_id; it outlives its Simulation. A stopped Simulation returns 409 simulation_stopped. Reuse the Idempotency-Key to retry safely.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param name: Snapshot name.
         :param simulation_id: ID of the running Simulation to save.
         :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource.
@@ -406,6 +422,9 @@ class SimulationSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def create_simulation_snapshot_async(
         self,
         *,
@@ -421,6 +440,8 @@ class SimulationSnapshots(BaseSDK):
 
         Starts saving a running Simulation's current state and returns the Snapshot with status creating. Poll it until it is ready, or failed with an error. Saving closes the Simulation's open event streams and WebSockets and does not change its state; while it saves, an advance returns 409 clock_conflict, and a stop waits for it. Create Simulations from a ready Snapshot with snapshot_id; it outlives its Simulation. A stopped Simulation returns 409 simulation_stopped. Reuse the Idempotency-Key to retry safely.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param name: Snapshot name.
         :param simulation_id: ID of the running Simulation to save.
         :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource.
@@ -522,6 +543,9 @@ class SimulationSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def delete_simulation_snapshot(
         self,
         *,
@@ -535,6 +559,8 @@ class SimulationSnapshots(BaseSDK):
 
         Deletes a Snapshot and its saved state. Simulations created from it keep running, and their snapshot_id becomes null. While it is creating, the response is 409 snapshot_not_ready; while a Simulation is starting from it, 409 snapshot_in_use.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param id: Snapshot ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -621,6 +647,9 @@ class SimulationSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def delete_simulation_snapshot_async(
         self,
         *,
@@ -634,6 +663,8 @@ class SimulationSnapshots(BaseSDK):
 
         Deletes a Snapshot and its saved state. Simulations created from it keep running, and their snapshot_id becomes null. While it is creating, the response is 409 snapshot_not_ready; while a Simulation is starting from it, 409 snapshot_in_use.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param id: Snapshot ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -720,6 +751,9 @@ class SimulationSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def get_simulation_snapshot(
         self,
         *,
@@ -732,6 +766,8 @@ class SimulationSnapshots(BaseSDK):
         r"""Get Simulation Snapshot
 
         Returns a Snapshot.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Snapshot ID.
         :param retries: Override the default retry configuration for this method
@@ -821,6 +857,9 @@ class SimulationSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def get_simulation_snapshot_async(
         self,
         *,
@@ -833,6 +872,8 @@ class SimulationSnapshots(BaseSDK):
         r"""Get Simulation Snapshot
 
         Returns a Snapshot.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Snapshot ID.
         :param retries: Override the default retry configuration for this method
@@ -922,6 +963,9 @@ class SimulationSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def update_simulation_snapshot(
         self,
         *,
@@ -935,6 +979,8 @@ class SimulationSnapshots(BaseSDK):
         r"""Update Simulation Snapshot
 
         Renames a Snapshot. Omitted fields keep their current values.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Snapshot ID.
         :param name: New Snapshot name.
@@ -1035,6 +1081,9 @@ class SimulationSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def update_simulation_snapshot_async(
         self,
         *,
@@ -1048,6 +1097,8 @@ class SimulationSnapshots(BaseSDK):
         r"""Update Simulation Snapshot
 
         Renames a Snapshot. Omitted fields keep their current values.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Snapshot ID.
         :param name: New Snapshot name.

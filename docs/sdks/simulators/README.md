@@ -1,23 +1,30 @@
-# Simulators
+# ~~Simulators~~
+
+> [!WARNING]
+> This SDK is **DEPRECATED**
 
 ## Overview
 
-Build Simulators from OpenAPI, WSDL or GraphQL documents, check or cancel a build, clone Simulators into other workspaces, and rename and delete Simulators.
+Deprecated. Use API Box for APIs and Web Box for web apps. Build Simulators from OpenAPI, WSDL or GraphQL documents, check or cancel a build, clone Simulators into other workspaces, and rename and delete Simulators.
 
 ### Available Operations
 
-* [list_simulators](#list_simulators) - List Simulators
-* [build_simulator](#build_simulator) - Build Simulator
-* [delete_simulator](#delete_simulator) - Delete Simulator
-* [get_simulator](#get_simulator) - Get Simulator
-* [update_simulator](#update_simulator) - Update Simulator
-* [cancel_simulator](#cancel_simulator) - Cancel Simulator Build
-* [clone_simulator](#clone_simulator) - Clone Simulator
-* [resume_simulator](#resume_simulator) - Resume Simulator Build
+* [~~list_simulators~~](#list_simulators) - List Simulators :warning: **Deprecated**
+* [~~build_simulator~~](#build_simulator) - Build Simulator :warning: **Deprecated**
+* [~~delete_simulator~~](#delete_simulator) - Delete Simulator :warning: **Deprecated**
+* [~~get_simulator~~](#get_simulator) - Get Simulator :warning: **Deprecated**
+* [~~update_simulator~~](#update_simulator) - Update Simulator :warning: **Deprecated**
+* [~~cancel_simulator~~](#cancel_simulator) - Cancel Simulator Build :warning: **Deprecated**
+* [~~clone_simulator~~](#clone_simulator) - Clone Simulator :warning: **Deprecated**
+* [~~resume_simulator~~](#resume_simulator) - Resume Simulator Build :warning: **Deprecated**
 
-## list_simulators
+## ~~list_simulators~~
 
 Returns all Simulators that the API key can access. Results can be filtered by status.
+
+Deprecated. Use API Box for APIs and Web Box for web apps.
+
+> :warning: **DEPRECATED**: Use API Box for APIs and Web Box for web apps.
 
 ### Example Usage
 
@@ -61,9 +68,13 @@ with Continuous(
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## build_simulator
+## ~~build_simulator~~
 
 Starts an asynchronous Simulator build and returns the Simulator with status pending. Builds start in queue order when workspace capacity is available. Send multipart/form-data with a JSON part named request. To build from a document, add a file part named spec with the OpenAPI, WSDL or GraphQL document. For an incremental build, omit spec and set parent_id and instructions. Add file parts named document to give the builder and reviewer vendor documentation.
+
+Deprecated. Use API Box for APIs and Web Box for web apps.
+
+> :warning: **DEPRECATED**: Use API Box for APIs and Web Box for web apps.
 
 ### Example Usage: bad_request_body
 
@@ -120,8 +131,8 @@ with Continuous(
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                                                                                                                                                                                                                                         | [models.BuildSimulatorRequest](../../models/buildsimulatorrequest.md)                                                                                                                                                                                                                                                                             | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                | N/A                                                                                                                                                                                                                                                                                                                                               | {<br/>"filter": [],<br/>"instructions": "Return stable example data for every operation.",<br/>"model": "claude-fable-5-1",<br/>"name": "billing-api",<br/>"spec_kind": "openapi"<br/>}                                                                                                                                                           |
 | `idempotency_key`                                                                                                                                                                                                                                                                                                                                 | *Optional[str]*                                                                                                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                | Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource. The key is recorded before the build starts, so a retry never starts a second build. |                                                                                                                                                                                                                                                                                                                                                   |
-| `document`                                                                                                                                                                                                                                                                                                                                        | List[[models.Document](../../models/document.md)]                                                                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                | Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. An incremental build inherits its parent's documents; a document sent with the same name replaces the parent's.    |                                                                                                                                                                                                                                                                                                                                                   |
-| `spec`                                                                                                                                                                                                                                                                                                                                            | [Optional[models.Spec]](../../models/spec.md)                                                                                                                                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                | OpenAPI, WSDL or GraphQL document, UTF-8 encoded, at most 64 MiB. Required unless the request is an incremental build (parent_id and instructions, no spec).                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                   |
+| `document`                                                                                                                                                                                                                                                                                                                                        | List[[models.BuildSimulatorDocument](../../models/buildsimulatordocument.md)]                                                                                                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                | Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. An incremental build inherits its parent's documents; a document sent with the same name replaces the parent's.    |                                                                                                                                                                                                                                                                                                                                                   |
+| `spec`                                                                                                                                                                                                                                                                                                                                            | [Optional[models.BuildSimulatorSpec]](../../models/buildsimulatorspec.md)                                                                                                                                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                | OpenAPI, WSDL or GraphQL document, UTF-8 encoded, at most 64 MiB. Required unless the request is an incremental build (parent_id and instructions, no spec).                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                   |
 | `retries`                                                                                                                                                                                                                                                                                                                                         | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                | Configuration to override the default retry behavior of the client.                                                                                                                                                                                                                                                                               |                                                                                                                                                                                                                                                                                                                                                   |
 
 ### Response
@@ -138,9 +149,13 @@ with Continuous(
 | errors.Error                      | 503                               | application/problem+json          |
 | errors.ContinuousDefaultError     | 4XX, 5XX                          | \*/\*                             |
 
-## delete_simulator
+## ~~delete_simulator~~
 
 Deletes a Simulator that has no dependent Simulations, child Simulators, or Simulation Snapshots.
+
+Deprecated. Use API Box for APIs and Web Box for web apps.
+
+> :warning: **DEPRECATED**: Use API Box for APIs and Web Box for web apps.
 
 ### Example Usage
 
@@ -176,9 +191,13 @@ with Continuous(
 | errors.Error                        | 500, 503                            | application/problem+json            |
 | errors.ContinuousDefaultError       | 4XX, 5XX                            | \*/\*                               |
 
-## get_simulator
+## ~~get_simulator~~
 
 Returns a Simulator and its current build status.
+
+Deprecated. Use API Box for APIs and Web Box for web apps.
+
+> :warning: **DEPRECATED**: Use API Box for APIs and Web Box for web apps.
 
 ### Example Usage
 
@@ -218,9 +237,13 @@ with Continuous(
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## update_simulator
+## ~~update_simulator~~
 
 Renames a Simulator. Omitted fields keep their current values. Continuous catalog Simulators cannot be changed.
+
+Deprecated. Use API Box for APIs and Web Box for web apps.
+
+> :warning: **DEPRECATED**: Use API Box for APIs and Web Box for web apps.
 
 ### Example Usage
 
@@ -261,9 +284,13 @@ with Continuous(
 | errors.Error                           | 500, 503                               | application/problem+json               |
 | errors.ContinuousDefaultError          | 4XX, 5XX                               | \*/\*                                  |
 
-## cancel_simulator
+## ~~cancel_simulator~~
 
 Requests cancellation of a pending or active Simulator build and returns the Simulator without waiting for the build to stop. Get the Simulator until its status leaves pending or building. The build can finish before cancellation takes effect. A Simulator whose build has settled is returned unchanged.
+
+Deprecated. Use API Box for APIs and Web Box for web apps.
+
+> :warning: **DEPRECATED**: Use API Box for APIs and Web Box for web apps.
 
 ### Example Usage
 
@@ -303,9 +330,13 @@ with Continuous(
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## clone_simulator
+## ~~clone_simulator~~
 
 Creates a ready copy of a ready Simulator in another workspace. The clone has a new ID and the source's image digest; the source is unchanged. The source is the caller's workspace: an API key's own workspace, or X-Workspace-Id for a session. An API key may clone into any other workspace of its organization.
+
+Deprecated. Use API Box for APIs and Web Box for web apps.
+
+> :warning: **DEPRECATED**: Use API Box for APIs and Web Box for web apps.
 
 ### Example Usage: bad_request_body
 
@@ -366,9 +397,13 @@ with Continuous(
 | errors.Error                                | 500, 503                                    | application/problem+json                    |
 | errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
 
-## resume_simulator
+## ~~resume_simulator~~
 
 Resumes a build that waits at QA because its live credentials were rejected, as build.waiting reports. Refresh each credential it names with PATCH /v1/credentials/{id} first: QA then runs again with their current values, and the build goes on to finalize. Returns the Simulator, still building. The wait does not count toward the build's time limit: the build resumes with the time it had left when it began waiting. A build that is not waiting returns 409 simulator_not_waiting.
+
+Deprecated. Use API Box for APIs and Web Box for web apps.
+
+> :warning: **DEPRECATED**: Use API Box for APIs and Web Box for web apps.
 
 ### Example Usage
 

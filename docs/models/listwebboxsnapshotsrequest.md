@@ -1,0 +1,11 @@
+# ListWebboxSnapshotsRequest
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `status`                                                                             | [Optional[models.ListWebboxSnapshotsStatus]](../models/listwebboxsnapshotsstatus.md) | :heavy_minus_sign:                                                                   | Optional build status filter.                                                        |
+| `limit`                                                                              | *Optional[int]*                                                                      | :heavy_minus_sign:                                                                   | Page size. Values below 1 use 50. Values above 200 use 200.                          |
+| `cursor`                                                                             | *Optional[str]*                                                                      | :heavy_minus_sign:                                                                   | Opaque next_cursor value from a previous page.                                       |
+| `source`                                                                             | [Optional[models.ListWebboxSnapshotsSource]](../models/listwebboxsnapshotssource.md) | :heavy_minus_sign:                                                                   | Optional source filter.                                                              |

@@ -9,7 +9,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.credentials.list_credentials(limit=50)
+    res = c_client.apibox.list_apiboxes(limit=50)
 
     while res is not None:
         # Handle items
@@ -33,7 +33,7 @@ async def main():
         api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
     ) as c_client:
 
-        res = await c_client.credentials.list_credentials_async(limit=50)
+        res = await c_client.apibox.list_apiboxes_async(limit=50)
 
         while res is not None:
             # Handle items

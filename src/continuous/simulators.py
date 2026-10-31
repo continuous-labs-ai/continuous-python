@@ -8,11 +8,15 @@ from continuous.utils import get_security_from_env
 from continuous.utils.unmarshal_json_response import unmarshal_json_response
 from jsonpath import JSONPath
 from typing import Any, Awaitable, Dict, Iterable, List, Mapping, Optional, Union
+from typing_extensions import deprecated
 
 
 class Simulators(BaseSDK):
-    r"""Build Simulators from OpenAPI, WSDL or GraphQL documents, check or cancel a build, clone Simulators into other workspaces, and rename and delete Simulators."""
+    r"""Deprecated. Use API Box for APIs and Web Box for web apps. Build Simulators from OpenAPI, WSDL or GraphQL documents, check or cancel a build, clone Simulators into other workspaces, and rename and delete Simulators."""
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def list_simulators(
         self,
         *,
@@ -27,6 +31,8 @@ class Simulators(BaseSDK):
         r"""List Simulators
 
         Returns all Simulators that the API key can access. Results can be filtered by status.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param status: Optional build status filter.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
@@ -147,6 +153,9 @@ class Simulators(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def list_simulators_async(
         self,
         *,
@@ -161,6 +170,8 @@ class Simulators(BaseSDK):
         r"""List Simulators
 
         Returns all Simulators that the API key can access. Results can be filtered by status.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param status: Optional build status filter.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
@@ -284,6 +295,9 @@ class Simulators(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def build_simulator(
         self,
         *,
@@ -292,9 +306,14 @@ class Simulators(BaseSDK):
         ],
         idempotency_key: Optional[str] = None,
         document: Optional[
-            Union[Iterable[models.Document], Iterable[models.DocumentTypedDict]]
+            Union[
+                Iterable[models.BuildSimulatorDocument],
+                Iterable[models.BuildSimulatorDocumentTypedDict],
+            ]
         ] = None,
-        spec: Optional[Union[models.Spec, models.SpecTypedDict]] = None,
+        spec: Optional[
+            Union[models.BuildSimulatorSpec, models.BuildSimulatorSpecTypedDict]
+        ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -303,6 +322,8 @@ class Simulators(BaseSDK):
         r"""Build Simulator
 
         Starts an asynchronous Simulator build and returns the Simulator with status pending. Builds start in queue order when workspace capacity is available. Send multipart/form-data with a JSON part named request. To build from a document, add a file part named spec with the OpenAPI, WSDL or GraphQL document. For an incremental build, omit spec and set parent_id and instructions. Add file parts named document to give the builder and reviewer vendor documentation.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param request: The request object to send.
         :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource. The key is recorded before the build starts, so a retry never starts a second build.
@@ -327,10 +348,12 @@ class Simulators(BaseSDK):
             idempotency_key=idempotency_key,
             body=models.BuildSimulatorRequestBody(
                 document=utils.get_pydantic_model(
-                    document, Optional[List[models.Document]]
+                    document, Optional[List[models.BuildSimulatorDocument]]
                 ),
                 request=utils.get_pydantic_model(request, models.BuildSimulatorRequest),
-                spec=utils.get_pydantic_model(spec, Optional[models.Spec]),
+                spec=utils.get_pydantic_model(
+                    spec, Optional[models.BuildSimulatorSpec]
+                ),
             ),
         )
 
@@ -417,6 +440,9 @@ class Simulators(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def build_simulator_async(
         self,
         *,
@@ -425,9 +451,14 @@ class Simulators(BaseSDK):
         ],
         idempotency_key: Optional[str] = None,
         document: Optional[
-            Union[Iterable[models.Document], Iterable[models.DocumentTypedDict]]
+            Union[
+                Iterable[models.BuildSimulatorDocument],
+                Iterable[models.BuildSimulatorDocumentTypedDict],
+            ]
         ] = None,
-        spec: Optional[Union[models.Spec, models.SpecTypedDict]] = None,
+        spec: Optional[
+            Union[models.BuildSimulatorSpec, models.BuildSimulatorSpecTypedDict]
+        ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -436,6 +467,8 @@ class Simulators(BaseSDK):
         r"""Build Simulator
 
         Starts an asynchronous Simulator build and returns the Simulator with status pending. Builds start in queue order when workspace capacity is available. Send multipart/form-data with a JSON part named request. To build from a document, add a file part named spec with the OpenAPI, WSDL or GraphQL document. For an incremental build, omit spec and set parent_id and instructions. Add file parts named document to give the builder and reviewer vendor documentation.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param request: The request object to send.
         :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource. The key is recorded before the build starts, so a retry never starts a second build.
@@ -460,10 +493,12 @@ class Simulators(BaseSDK):
             idempotency_key=idempotency_key,
             body=models.BuildSimulatorRequestBody(
                 document=utils.get_pydantic_model(
-                    document, Optional[List[models.Document]]
+                    document, Optional[List[models.BuildSimulatorDocument]]
                 ),
                 request=utils.get_pydantic_model(request, models.BuildSimulatorRequest),
-                spec=utils.get_pydantic_model(spec, Optional[models.Spec]),
+                spec=utils.get_pydantic_model(
+                    spec, Optional[models.BuildSimulatorSpec]
+                ),
             ),
         )
 
@@ -550,6 +585,9 @@ class Simulators(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def delete_simulator(
         self,
         *,
@@ -563,6 +601,8 @@ class Simulators(BaseSDK):
 
         Deletes a Simulator that has no dependent Simulations, child Simulators, or Simulation Snapshots.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param id: Simulator ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -654,6 +694,9 @@ class Simulators(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def delete_simulator_async(
         self,
         *,
@@ -667,6 +710,8 @@ class Simulators(BaseSDK):
 
         Deletes a Simulator that has no dependent Simulations, child Simulators, or Simulation Snapshots.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param id: Simulator ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -758,6 +803,9 @@ class Simulators(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def get_simulator(
         self,
         *,
@@ -770,6 +818,8 @@ class Simulators(BaseSDK):
         r"""Get Simulator
 
         Returns a Simulator and its current build status.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulator ID.
         :param retries: Override the default retry configuration for this method
@@ -861,6 +911,9 @@ class Simulators(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def get_simulator_async(
         self,
         *,
@@ -873,6 +926,8 @@ class Simulators(BaseSDK):
         r"""Get Simulator
 
         Returns a Simulator and its current build status.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulator ID.
         :param retries: Override the default retry configuration for this method
@@ -964,6 +1019,9 @@ class Simulators(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def update_simulator(
         self,
         *,
@@ -978,6 +1036,8 @@ class Simulators(BaseSDK):
 
         Renames a Simulator. Omitted fields keep their current values. Continuous catalog Simulators cannot be changed.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param id: Simulator ID.
         :param name: New Simulator name.
         :param retries: Override the default retry configuration for this method
@@ -1073,6 +1133,9 @@ class Simulators(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def update_simulator_async(
         self,
         *,
@@ -1087,6 +1150,8 @@ class Simulators(BaseSDK):
 
         Renames a Simulator. Omitted fields keep their current values. Continuous catalog Simulators cannot be changed.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param id: Simulator ID.
         :param name: New Simulator name.
         :param retries: Override the default retry configuration for this method
@@ -1182,6 +1247,9 @@ class Simulators(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def cancel_simulator(
         self,
         *,
@@ -1194,6 +1262,8 @@ class Simulators(BaseSDK):
         r"""Cancel Simulator Build
 
         Requests cancellation of a pending or active Simulator build and returns the Simulator without waiting for the build to stop. Get the Simulator until its status leaves pending or building. The build can finish before cancellation takes effect. A Simulator whose build has settled is returned unchanged.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulator ID.
         :param retries: Override the default retry configuration for this method
@@ -1281,6 +1351,9 @@ class Simulators(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def cancel_simulator_async(
         self,
         *,
@@ -1293,6 +1366,8 @@ class Simulators(BaseSDK):
         r"""Cancel Simulator Build
 
         Requests cancellation of a pending or active Simulator build and returns the Simulator without waiting for the build to stop. Get the Simulator until its status leaves pending or building. The build can finish before cancellation takes effect. A Simulator whose build has settled is returned unchanged.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulator ID.
         :param retries: Override the default retry configuration for this method
@@ -1380,6 +1455,9 @@ class Simulators(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def clone_simulator(
         self,
         *,
@@ -1396,6 +1474,8 @@ class Simulators(BaseSDK):
 
         Creates a ready copy of a ready Simulator in another workspace. The clone has a new ID and the source's image digest; the source is unchanged. The source is the caller's workspace: an API key's own workspace, or X-Workspace-Id for a session. An API key may clone into any other workspace of its organization.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param id: Source Simulator ID.
         :param target_workspace_id: Workspace that receives the clone. It must differ from the source workspace.
         :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource. Keys are scoped to the target workspace.
@@ -1495,6 +1575,9 @@ class Simulators(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def clone_simulator_async(
         self,
         *,
@@ -1510,6 +1593,8 @@ class Simulators(BaseSDK):
         r"""Clone Simulator
 
         Creates a ready copy of a ready Simulator in another workspace. The clone has a new ID and the source's image digest; the source is unchanged. The source is the caller's workspace: an API key's own workspace, or X-Workspace-Id for a session. An API key may clone into any other workspace of its organization.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Source Simulator ID.
         :param target_workspace_id: Workspace that receives the clone. It must differ from the source workspace.
@@ -1610,6 +1695,9 @@ class Simulators(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def resume_simulator(
         self,
         *,
@@ -1622,6 +1710,8 @@ class Simulators(BaseSDK):
         r"""Resume Simulator Build
 
         Resumes a build that waits at QA because its live credentials were rejected, as build.waiting reports. Refresh each credential it names with PATCH /v1/credentials/{id} first: QA then runs again with their current values, and the build goes on to finalize. Returns the Simulator, still building. The wait does not count toward the build's time limit: the build resumes with the time it had left when it began waiting. A build that is not waiting returns 409 simulator_not_waiting.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulator ID.
         :param retries: Override the default retry configuration for this method
@@ -1709,6 +1799,9 @@ class Simulators(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def resume_simulator_async(
         self,
         *,
@@ -1721,6 +1814,8 @@ class Simulators(BaseSDK):
         r"""Resume Simulator Build
 
         Resumes a build that waits at QA because its live credentials were rejected, as build.waiting reports. Refresh each credential it names with PATCH /v1/credentials/{id} first: QA then runs again with their current values, and the build goes on to finalize. Returns the Simulator, still building. The wait does not count toward the build's time limit: the build resumes with the time it had left when it began waiting. A build that is not waiting returns 409 simulator_not_waiting.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulator ID.
         :param retries: Override the default retry configuration for this method
