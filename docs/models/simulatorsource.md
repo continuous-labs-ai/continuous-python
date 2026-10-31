@@ -1,14 +1,14 @@
-# Source
+# SimulatorSource
 
 workspace for a Simulator your workspace built; catalog for a read-only Simulator that Continuous publishes.
 
 ## Example Usage
 
 ```python
-from continuous.models import Source
+from continuous.models import SimulatorSource
 
 # Open enum: unrecognized values are captured as UnrecognizedStr
-value: Source = "workspace"
+value: SimulatorSource = "workspace"
 ```
 
 

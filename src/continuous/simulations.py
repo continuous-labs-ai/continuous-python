@@ -9,11 +9,15 @@ from continuous.utils.unmarshal_json_response import unmarshal_json_response
 from datetime import datetime
 from jsonpath import JSONPath
 from typing import Any, Awaitable, Dict, Iterable, List, Mapping, Optional, Union
+from typing_extensions import deprecated
 
 
 class Simulations(BaseSDK):
-    r"""Create Simulations from ready Simulators or Snapshots, then rename, stop, start, and delete them."""
+    r"""Deprecated. Use API Box for APIs and Web Box for web apps. Create Simulations from ready Simulators or Snapshots, then rename, stop, start, and delete them."""
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def list_simulations(
         self,
         *,
@@ -32,6 +36,8 @@ class Simulations(BaseSDK):
         r"""List Simulations
 
         Returns all Simulations that the API key can access. Results can be filtered by status, Simulator ID, pinned Simulator digest, or the Snapshot they started from.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param status: Optional status filter.
         :param simulator_id: Optional Simulator ID filter.
@@ -166,6 +172,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def list_simulations_async(
         self,
         *,
@@ -184,6 +193,8 @@ class Simulations(BaseSDK):
         r"""List Simulations
 
         Returns all Simulations that the API key can access. Results can be filtered by status, Simulator ID, pinned Simulator digest, or the Snapshot they started from.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param status: Optional status filter.
         :param simulator_id: Optional Simulator ID filter.
@@ -321,6 +332,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def create_simulation(
         self,
         *,
@@ -340,6 +354,8 @@ class Simulations(BaseSDK):
 
         Creates a Simulation from a ready Simulator, or from a Snapshot with its saved state, and starts it. The response returns once the Simulation is admitted, with status starting; read it until it is running. The response includes the endpoint and the Simulation's token, which does not expire. If its runtime cannot start, the Simulation is deleted.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource.
         :param include_sample_data: Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition. Not allowed with snapshot_id.
         :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null.
@@ -448,6 +464,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def create_simulation_async(
         self,
         *,
@@ -467,6 +486,8 @@ class Simulations(BaseSDK):
 
         Creates a Simulation from a ready Simulator, or from a Snapshot with its saved state, and starts it. The response returns once the Simulation is admitted, with status starting; read it until it is running. The response includes the endpoint and the Simulation's token, which does not expire. If its runtime cannot start, the Simulation is deleted.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource.
         :param include_sample_data: Start with the Simulator's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Simulator that carries sample data; see its composition. Not allowed with snapshot_id.
         :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels. Returned by create, get, and list. Omission uses null.
@@ -575,6 +596,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def delete_simulation(
         self,
         *,
@@ -588,6 +612,8 @@ class Simulations(BaseSDK):
 
         Deletes a Simulation and its saved runtime state, and cancels an active advance.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -674,6 +700,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def delete_simulation_async(
         self,
         *,
@@ -687,6 +716,8 @@ class Simulations(BaseSDK):
 
         Deletes a Simulation and its saved runtime state, and cancels an active advance.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -773,6 +804,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def get_simulation(
         self,
         *,
@@ -785,6 +819,8 @@ class Simulations(BaseSDK):
         r"""Get Simulation
 
         Returns a Simulation, its current status, and the actors a request can act as. The response does not include tokens.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
@@ -876,6 +912,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def get_simulation_async(
         self,
         *,
@@ -888,6 +927,8 @@ class Simulations(BaseSDK):
         r"""Get Simulation
 
         Returns a Simulation, its current status, and the actors a request can act as. The response does not include tokens.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
@@ -979,6 +1020,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def update_simulation(
         self,
         *,
@@ -994,6 +1038,8 @@ class Simulations(BaseSDK):
 
         Renames a Simulation or replaces its metadata. Omitted fields keep their current values.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param id: Simulation ID.
         :param metadata: Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it.
         :param name: New Simulation name.
@@ -1091,6 +1137,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def update_simulation_async(
         self,
         *,
@@ -1106,6 +1155,8 @@ class Simulations(BaseSDK):
 
         Renames a Simulation or replaces its metadata. Omitted fields keep their current values.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param id: Simulation ID.
         :param metadata: Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it.
         :param name: New Simulation name.
@@ -1203,6 +1254,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def create_simulation_advance(
         self,
         *,
@@ -1218,6 +1272,8 @@ class Simulations(BaseSDK):
 
         Schedules an absolute clock advance. An advance commits due local events in ordered batches, one step each; a failure keeps the batches already committed. Poll the returned operation until it completes.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param id: Simulation ID.
         :param idempotency_key: Stable key for this request. Reuse with the same target returns the same operation; reuse with a different target returns 409 idempotency_conflict.
         :param to: Absolute target time in RFC 3339, with at most millisecond precision.
@@ -1315,6 +1371,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def create_simulation_advance_async(
         self,
         *,
@@ -1330,6 +1389,8 @@ class Simulations(BaseSDK):
 
         Schedules an absolute clock advance. An advance commits due local events in ordered batches, one step each; a failure keeps the batches already committed. Poll the returned operation until it completes.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param id: Simulation ID.
         :param idempotency_key: Stable key for this request. Reuse with the same target returns the same operation; reuse with a different target returns 409 idempotency_conflict.
         :param to: Absolute target time in RFC 3339, with at most millisecond precision.
@@ -1427,6 +1488,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def get_simulation_advance(
         self,
         *,
@@ -1440,6 +1504,8 @@ class Simulations(BaseSDK):
         r"""Get Simulation Clock Advance
 
         Returns durable clock progress, the event count, and the committed step or failure.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulation ID.
         :param advance_id: Clock advance operation ID.
@@ -1533,6 +1599,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def get_simulation_advance_async(
         self,
         *,
@@ -1546,6 +1615,8 @@ class Simulations(BaseSDK):
         r"""Get Simulation Clock Advance
 
         Returns durable clock progress, the event count, and the committed step or failure.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulation ID.
         :param advance_id: Clock advance operation ID.
@@ -1639,6 +1710,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def list_simulation_advance_events(
         self,
         *,
@@ -1654,6 +1728,8 @@ class Simulations(BaseSDK):
         r"""List Clock Advance Events
 
         Returns the ordered event trace for a committed advance. The Simulation must be running. A Simulation created from a Snapshot keeps the traces in the state it started from.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulation ID.
         :param advance_id: Advance ID. A Simulation created from a Snapshot can read the runtime receipts in the state it started from.
@@ -1781,6 +1857,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def list_simulation_advance_events_async(
         self,
         *,
@@ -1796,6 +1875,8 @@ class Simulations(BaseSDK):
         r"""List Clock Advance Events
 
         Returns the ordered event trace for a committed advance. The Simulation must be running. A Simulation created from a Snapshot keeps the traces in the state it started from.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulation ID.
         :param advance_id: Advance ID. A Simulation created from a Snapshot can read the runtime receipts in the state it started from.
@@ -1928,6 +2009,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def start_simulation(
         self,
         *,
@@ -1940,6 +2024,8 @@ class Simulations(BaseSDK):
         r"""Start Simulation
 
         Starts a stopped Simulation from its saved state. The response returns once the start is admitted, with status starting; read the Simulation until it is running. If its runtime cannot start, it returns to stopped. Stop and start do not change its token; read it with GET /v1/simulations/{id}/token. A running or starting Simulation is returned unchanged.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
@@ -2027,6 +2113,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def start_simulation_async(
         self,
         *,
@@ -2039,6 +2128,8 @@ class Simulations(BaseSDK):
         r"""Start Simulation
 
         Starts a stopped Simulation from its saved state. The response returns once the start is admitted, with status starting; read the Simulation until it is running. If its runtime cannot start, it returns to stopped. Stop and start do not change its token; read it with GET /v1/simulations/{id}/token. A running or starting Simulation is returned unchanged.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
@@ -2126,6 +2217,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def list_simulation_steps(
         self,
         *,
@@ -2140,6 +2234,8 @@ class Simulations(BaseSDK):
         r"""List Simulation Steps
 
         Lists the Simulation's steps in order. Each request that changed state is one step; a request that only reads registers none. A stopped Simulation returns 409 simulation_stopped; start it first.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulation ID.
         :param cursor: Opaque next_cursor value from a previous page.
@@ -2264,6 +2360,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def list_simulation_steps_async(
         self,
         *,
@@ -2278,6 +2377,8 @@ class Simulations(BaseSDK):
         r"""List Simulation Steps
 
         Lists the Simulation's steps in order. Each request that changed state is one step; a request that only reads registers none. A stopped Simulation returns 409 simulation_stopped; start it first.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulation ID.
         :param cursor: Opaque next_cursor value from a previous page.
@@ -2407,6 +2508,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def stop_simulation(
         self,
         *,
@@ -2420,6 +2524,8 @@ class Simulations(BaseSDK):
 
         Stops a Simulation and saves its state. The response returns once the stop is accepted, with status stopping; read the Simulation until it is stopped. Requests to its endpoint are refused while it stops, and return 409 simulation_stopped once it is stopped, until you start it again. A stopped or stopping Simulation is returned unchanged.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2506,6 +2612,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def stop_simulation_async(
         self,
         *,
@@ -2519,6 +2628,8 @@ class Simulations(BaseSDK):
 
         Stops a Simulation and saves its state. The response returns once the stop is accepted, with status stopping; read the Simulation until it is stopped. Requests to its endpoint are refused while it stops, and return 409 simulation_stopped once it is stopped, until you start it again. A stopped or stopping Simulation is returned unchanged.
 
+        Deprecated. Use API Box for APIs and Web Box for web apps.
+
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2605,6 +2716,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def get_simulation_token(
         self,
         *,
@@ -2617,6 +2731,8 @@ class Simulations(BaseSDK):
         r"""Get Current Simulation Token
 
         Returns the Simulation's current token without rotating it, including while the Simulation is stopped.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
@@ -2711,6 +2827,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def get_simulation_token_async(
         self,
         *,
@@ -2723,6 +2842,8 @@ class Simulations(BaseSDK):
         r"""Get Current Simulation Token
 
         Returns the Simulation's current token without rotating it, including while the Simulation is stopped.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulation ID.
         :param retries: Override the default retry configuration for this method
@@ -2817,6 +2938,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     def regenerate_simulation_token(
         self,
         *,
@@ -2829,7 +2953,9 @@ class Simulations(BaseSDK):
     ) -> models.RegenerateSimulationTokenResponse:
         r"""Regenerate Simulation Token
 
-        Replaces the Simulation's token, including while the Simulation is stopped. When the replacement commits, requests with the previous token return 401 auth_invalid with X-Continuous-Simulation-Token-Rejected: true. Reuse the Idempotency-Key to retry safely.
+        Replaces the Simulation's token, including while the Simulation is stopped. Within 5 seconds of the replacement committing, requests with the previous token return 401 auth_invalid with X-Continuous-Simulation-Token-Rejected: true. Reuse the Idempotency-Key to retry safely.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulation ID.
         :param idempotency_key: Stable key for this regeneration request.
@@ -2924,6 +3050,9 @@ class Simulations(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - Use API Box for APIs and Web Box for web apps."
+    )
     async def regenerate_simulation_token_async(
         self,
         *,
@@ -2936,7 +3065,9 @@ class Simulations(BaseSDK):
     ) -> models.RegenerateSimulationTokenResponse:
         r"""Regenerate Simulation Token
 
-        Replaces the Simulation's token, including while the Simulation is stopped. When the replacement commits, requests with the previous token return 401 auth_invalid with X-Continuous-Simulation-Token-Rejected: true. Reuse the Idempotency-Key to retry safely.
+        Replaces the Simulation's token, including while the Simulation is stopped. Within 5 seconds of the replacement committing, requests with the previous token return 401 auth_invalid with X-Continuous-Simulation-Token-Rejected: true. Reuse the Idempotency-Key to retry safely.
+
+        Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulation ID.
         :param idempotency_key: Stable key for this regeneration request.

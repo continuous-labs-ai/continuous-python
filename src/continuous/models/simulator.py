@@ -25,7 +25,7 @@ SimulatorMode = Union[
 r"""api for a Simulator of the vendor's API; web_app for one of its logged-in web app."""
 
 
-Source = Union[
+SimulatorSource = Union[
     Literal[
         "workspace",
         "catalog",
@@ -82,7 +82,7 @@ class SimulatorTypedDict(TypedDict):
     r"""The latest attempt to publish the Simulator's image into the workspace's default customer runtime environment, or null when the workspace has none, no attempt is recorded, or the response does not report it. Get and list report it."""
     research: Nullable[SimulatorResearchTypedDict]
     r"""The build's research stage, or null for a Simulator built before research ran on every build."""
-    source: Source
+    source: SimulatorSource
     r"""workspace for a Simulator your workspace built; catalog for a read-only Simulator that Continuous publishes."""
     spec_kind: Nullable[SimulatorSpecKind]
     r"""The specification the Simulator was built from, or null until a build has read it. recorded is a Web App Simulator's: the app's origin."""
@@ -123,7 +123,7 @@ class Simulator(BaseModel):
     research: Nullable[SimulatorResearch]
     r"""The build's research stage, or null for a Simulator built before research ran on every build."""
 
-    source: Source
+    source: SimulatorSource
     r"""workspace for a Simulator your workspace built; catalog for a read-only Simulator that Continuous publishes."""
 
     spec_kind: Nullable[SimulatorSpecKind]

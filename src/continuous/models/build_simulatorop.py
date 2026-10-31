@@ -17,13 +17,13 @@ from typing import Dict, IO, List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class DocumentTypedDict(TypedDict):
+class BuildSimulatorDocumentTypedDict(TypedDict):
     file_name: str
     content: Union[bytes, IO[bytes], io.IOBase]
     content_type: NotRequired[str]
 
 
-class Document(BaseModel):
+class BuildSimulatorDocument(BaseModel):
     file_name: Annotated[
         str, pydantic.Field(alias="fileName"), FieldMetadata(multipart=True)
     ]
@@ -57,13 +57,13 @@ class Document(BaseModel):
         return m
 
 
-class SpecTypedDict(TypedDict):
+class BuildSimulatorSpecTypedDict(TypedDict):
     file_name: str
     content: Union[bytes, IO[bytes], io.IOBase]
     content_type: NotRequired[str]
 
 
-class Spec(BaseModel):
+class BuildSimulatorSpec(BaseModel):
     file_name: Annotated[
         str, pydantic.Field(alias="fileName"), FieldMetadata(multipart=True)
     ]
@@ -99,9 +99,9 @@ class Spec(BaseModel):
 
 class BuildSimulatorRequestBodyTypedDict(TypedDict):
     request: BuildSimulatorRequestTypedDict
-    document: NotRequired[List[DocumentTypedDict]]
+    document: NotRequired[List[BuildSimulatorDocumentTypedDict]]
     r"""Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. An incremental build inherits its parent's documents; a document sent with the same name replaces the parent's."""
-    spec: NotRequired[SpecTypedDict]
+    spec: NotRequired[BuildSimulatorSpecTypedDict]
     r"""OpenAPI, WSDL or GraphQL document, UTF-8 encoded, at most 64 MiB. Required unless the request is an incremental build (parent_id and instructions, no spec)."""
 
 
@@ -111,13 +111,14 @@ class BuildSimulatorRequestBody(BaseModel):
     ]
 
     document: Annotated[
-        Optional[List[Document]],
+        Optional[List[BuildSimulatorDocument]],
         FieldMetadata(multipart=MultipartFormMetadata(file=True)),
     ] = None
     r"""Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec. An incremental build inherits its parent's documents; a document sent with the same name replaces the parent's."""
 
     spec: Annotated[
-        Optional[Spec], FieldMetadata(multipart=MultipartFormMetadata(file=True))
+        Optional[BuildSimulatorSpec],
+        FieldMetadata(multipart=MultipartFormMetadata(file=True)),
     ] = None
     r"""OpenAPI, WSDL or GraphQL document, UTF-8 encoded, at most 64 MiB. Required unless the request is an incremental build (parent_id and instructions, no spec)."""
 
