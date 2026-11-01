@@ -7,7 +7,7 @@ from pydantic import model_serializer
 from typing_extensions import TypedDict
 
 
-class ApiboxStepTypedDict(TypedDict):
+class BoxStepTypedDict(TypedDict):
     label: str
     r"""The request that made the step."""
     step: int
@@ -16,7 +16,7 @@ class ApiboxStepTypedDict(TypedDict):
     r"""When the request ran, or null when the runtime did not record it."""
 
 
-class ApiboxStep(BaseModel):
+class BoxStep(BaseModel):
     label: str
     r"""The request that made the step."""
 

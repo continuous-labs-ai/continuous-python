@@ -8,6 +8,7 @@ from continuous.utils import get_security_from_env
 from continuous.utils.unmarshal_json_response import unmarshal_json_response
 from jsonpath import JSONPath
 from typing import Any, Awaitable, Dict, List, Mapping, Optional, Union
+from typing_extensions import deprecated
 
 
 class McpboxSDK(BaseSDK):
@@ -304,13 +305,13 @@ class McpboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.McpboxTokenResponse:
+    ) -> models.MCPBoxTokenResponse:
         r"""Create MCP Box
 
         Creates an MCP Box that serves an MCP Box Snapshot's tools over MCP in front of an API Box, and starts it. The API Box must be in the workspace and started from the API Box Snapshot the MCP Box Snapshot was built against. It returns at once with status starting and the MCP Box's token; get the MCP Box until it is running. Send MCP requests to its endpoint followed by /mcp, with the token in X-Continuous-Token. The MCP Box keeps no state: its tools read and change the API Box, and a tool call while the API Box is stopped returns the API Box's refusal as a tool error.
 
         :param apibox_id: An API Box of the workspace, started from the API Box Snapshot the MCP Box Snapshot was built against.
-        :param snapshot_id: An MCP Box Snapshot of the workspace.
+        :param snapshot_id: A ready MCP Box Snapshot of the workspace or the catalog.
         :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the same MCP Box and token. The same key with a different request returns 409 idempotency_conflict.
         :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels.
         :param name: Name for the MCP Box. Omission generates a name.
@@ -386,7 +387,7 @@ class McpboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
-            return unmarshal_json_response(models.McpboxTokenResponse, http_res)
+            return unmarshal_json_response(models.MCPBoxTokenResponse, http_res)
         if utils.match_response(
             http_res,
             ["400", "401", "404", "408", "409", "413", "415", "422", "429"],
@@ -422,13 +423,13 @@ class McpboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.McpboxTokenResponse:
+    ) -> models.MCPBoxTokenResponse:
         r"""Create MCP Box
 
         Creates an MCP Box that serves an MCP Box Snapshot's tools over MCP in front of an API Box, and starts it. The API Box must be in the workspace and started from the API Box Snapshot the MCP Box Snapshot was built against. It returns at once with status starting and the MCP Box's token; get the MCP Box until it is running. Send MCP requests to its endpoint followed by /mcp, with the token in X-Continuous-Token. The MCP Box keeps no state: its tools read and change the API Box, and a tool call while the API Box is stopped returns the API Box's refusal as a tool error.
 
         :param apibox_id: An API Box of the workspace, started from the API Box Snapshot the MCP Box Snapshot was built against.
-        :param snapshot_id: An MCP Box Snapshot of the workspace.
+        :param snapshot_id: A ready MCP Box Snapshot of the workspace or the catalog.
         :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the same MCP Box and token. The same key with a different request returns 409 idempotency_conflict.
         :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels.
         :param name: Name for the MCP Box. Omission generates a name.
@@ -504,7 +505,7 @@ class McpboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
-            return unmarshal_json_response(models.McpboxTokenResponse, http_res)
+            return unmarshal_json_response(models.MCPBoxTokenResponse, http_res)
         if utils.match_response(
             http_res,
             ["400", "401", "404", "408", "409", "413", "415", "422", "429"],
@@ -730,10 +731,10 @@ class McpboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.MCPBox:
+    ) -> models.GetMCPBoxResponse:
         r"""Get MCP Box
 
-        Returns an MCP Box and its status.
+        Returns an MCP Box, its status and its connection: its endpoint and token, whether it is running or stopped. Requests reach it only while it is running.
 
         :param id: MCP Box ID.
         :param retries: Override the default retry configuration for this method
@@ -803,7 +804,7 @@ class McpboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.MCPBox, http_res)
+            return unmarshal_json_response(models.GetMCPBoxResponse, http_res)
         if utils.match_response(http_res, ["401", "404"], "application/problem+json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -831,10 +832,10 @@ class McpboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.MCPBox:
+    ) -> models.GetMCPBoxResponse:
         r"""Get MCP Box
 
-        Returns an MCP Box and its status.
+        Returns an MCP Box, its status and its connection: its endpoint and token, whether it is running or stopped. Requests reach it only while it is running.
 
         :param id: MCP Box ID.
         :param retries: Override the default retry configuration for this method
@@ -904,7 +905,7 @@ class McpboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.MCPBox, http_res)
+            return unmarshal_json_response(models.GetMCPBoxResponse, http_res)
         if utils.match_response(http_res, ["401", "404"], "application/problem+json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -941,7 +942,7 @@ class McpboxSDK(BaseSDK):
 
         :param id: MCP Box ID.
         :param metadata: Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it.
-        :param name: New API Box name.
+        :param name: New name.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1015,7 +1016,7 @@ class McpboxSDK(BaseSDK):
             return unmarshal_json_response(models.MCPBox, http_res)
         if utils.match_response(
             http_res,
-            ["400", "401", "404", "408", "413", "415"],
+            ["400", "401", "404", "408", "413", "415", "422"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -1053,7 +1054,7 @@ class McpboxSDK(BaseSDK):
 
         :param id: MCP Box ID.
         :param metadata: Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it.
-        :param name: New API Box name.
+        :param name: New name.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1127,7 +1128,7 @@ class McpboxSDK(BaseSDK):
             return unmarshal_json_response(models.MCPBox, http_res)
         if utils.match_response(
             http_res,
-            ["400", "401", "404", "408", "413", "415"],
+            ["400", "401", "404", "408", "413", "415", "422"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -1148,6 +1149,9 @@ class McpboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
+    )
     def get_mcpbox_connection(
         self,
         *,
@@ -1156,10 +1160,10 @@ class McpboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.McpboxConnection:
+    ) -> models.MCPBoxConnection:
         r"""Get MCP Box connection
 
-        Returns the MCP Box's endpoint and token, whether it is running or stopped. Requests reach it only while it is running. An MCP Box with no stored token returns 409 mcpbox_token_unavailable; its next start issues one.
+        Deprecated: get the MCP Box, whose connection this returns. Returns the MCP Box's endpoint and token, whether it is running or stopped. An MCP Box with no stored token returns 409 mcpbox_token_unavailable; its next start issues one.
 
         :param id: MCP Box ID.
         :param retries: Override the default retry configuration for this method
@@ -1229,7 +1233,7 @@ class McpboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.McpboxConnection, http_res)
+            return unmarshal_json_response(models.MCPBoxConnection, http_res)
         if utils.match_response(
             http_res, ["401", "404", "409"], "application/problem+json"
         ):
@@ -1251,6 +1255,9 @@ class McpboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
+    )
     async def get_mcpbox_connection_async(
         self,
         *,
@@ -1259,10 +1266,10 @@ class McpboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.McpboxConnection:
+    ) -> models.MCPBoxConnection:
         r"""Get MCP Box connection
 
-        Returns the MCP Box's endpoint and token, whether it is running or stopped. Requests reach it only while it is running. An MCP Box with no stored token returns 409 mcpbox_token_unavailable; its next start issues one.
+        Deprecated: get the MCP Box, whose connection this returns. Returns the MCP Box's endpoint and token, whether it is running or stopped. An MCP Box with no stored token returns 409 mcpbox_token_unavailable; its next start issues one.
 
         :param id: MCP Box ID.
         :param retries: Override the default retry configuration for this method
@@ -1332,9 +1339,247 @@ class McpboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.McpboxConnection, http_res)
+            return unmarshal_json_response(models.MCPBoxConnection, http_res)
         if utils.match_response(
             http_res, ["401", "404", "409"], "application/problem+json"
+        ):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise errors.ContinuousDefaultError("Unexpected response received", http_res)
+
+    def save_mcpbox_snapshot(
+        self,
+        *,
+        id: str,
+        idempotency_key: Optional[str] = None,
+        metadata: Optional[Any] = None,
+        name: Optional[str] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.MCPBoxSnapshot:
+        r"""Save MCP Box as Snapshot
+
+        Saves an MCP Box and the API Box it fronts as a new MCP Box Snapshot and a new API Box Snapshot, both ready when the response returns, or neither. The API Box must be running; a paused one is woken, and it keeps running. The MCP Box Snapshot serves the MCP Box's tools and is built against the API Box Snapshot, which holds the API Box's service and current state. Create an API Box from apibox_snapshot_id, then an MCP Box from the MCP Box Snapshot in front of it. Both Snapshots outlive the Boxes. An MCP Box whose API Box was deleted returns 409 mcpbox_apibox_gone; a starting API Box returns 409 apibox_starting; a stopping or stopped one returns 409 apibox_stopped; one whose runtime cannot save its state returns 409 mcpbox_rebuild_required.
+
+        :param id: ID of the Box to save.
+        :param idempotency_key: Optional key for retrying this save safely. A retry with the same key and request returns the Snapshot the first save created. The same key with a different request returns 409 idempotency_conflict.
+        :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels.
+        :param name: Name for the Snapshot. Omission generates a name.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.SaveMcpboxSnapshotRequest(
+            id=id,
+            idempotency_key=idempotency_key,
+            body=models.SaveBoxSnapshotRequest(
+                metadata=metadata,
+                name=name,
+            ),
+        )
+
+        req = self._build_request(
+            method="POST",
+            path="/v1/mcpbox/{id}/snapshot",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[models.SaveBoxSnapshotRequest],
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="save-mcpbox-snapshot",
+                oauth2_scopes=None,
+                security_source=get_security_from_env(
+                    self.sdk_configuration.security, models.Security
+                ),
+                tags=["mcpbox"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "201", "application/json"):
+            return unmarshal_json_response(models.MCPBoxSnapshot, http_res)
+        if utils.match_response(
+            http_res,
+            ["400", "401", "404", "408", "409", "413", "415", "422"],
+            "application/problem+json",
+        ):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise errors.ContinuousDefaultError("Unexpected response received", http_res)
+
+    async def save_mcpbox_snapshot_async(
+        self,
+        *,
+        id: str,
+        idempotency_key: Optional[str] = None,
+        metadata: Optional[Any] = None,
+        name: Optional[str] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.MCPBoxSnapshot:
+        r"""Save MCP Box as Snapshot
+
+        Saves an MCP Box and the API Box it fronts as a new MCP Box Snapshot and a new API Box Snapshot, both ready when the response returns, or neither. The API Box must be running; a paused one is woken, and it keeps running. The MCP Box Snapshot serves the MCP Box's tools and is built against the API Box Snapshot, which holds the API Box's service and current state. Create an API Box from apibox_snapshot_id, then an MCP Box from the MCP Box Snapshot in front of it. Both Snapshots outlive the Boxes. An MCP Box whose API Box was deleted returns 409 mcpbox_apibox_gone; a starting API Box returns 409 apibox_starting; a stopping or stopped one returns 409 apibox_stopped; one whose runtime cannot save its state returns 409 mcpbox_rebuild_required.
+
+        :param id: ID of the Box to save.
+        :param idempotency_key: Optional key for retrying this save safely. A retry with the same key and request returns the Snapshot the first save created. The same key with a different request returns 409 idempotency_conflict.
+        :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels.
+        :param name: Name for the Snapshot. Omission generates a name.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.SaveMcpboxSnapshotRequest(
+            id=id,
+            idempotency_key=idempotency_key,
+            body=models.SaveBoxSnapshotRequest(
+                metadata=metadata,
+                name=name,
+            ),
+        )
+
+        req = self._build_request_async(
+            method="POST",
+            path="/v1/mcpbox/{id}/snapshot",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[models.SaveBoxSnapshotRequest],
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="save-mcpbox-snapshot",
+                oauth2_scopes=None,
+                security_source=get_security_from_env(
+                    self.sdk_configuration.security, models.Security
+                ),
+                tags=["mcpbox"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "201", "application/json"):
+            return unmarshal_json_response(models.MCPBoxSnapshot, http_res)
+        if utils.match_response(
+            http_res,
+            ["400", "401", "404", "408", "409", "413", "415", "422"],
+            "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -1362,10 +1607,10 @@ class McpboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.McpboxTokenResponse:
+    ) -> models.MCPBox:
         r"""Start MCP Box
 
-        Starts a stopped MCP Box in front of its API Box, and returns at once with status starting and the MCP Box's token, the same one each start. A running, starting or stopping MCP Box returns 409 mcpbox_not_stopped.
+        Starts a stopped MCP Box in front of its API Box, and returns at once with status starting; get the MCP Box until it is running. Its token stays the same; its get returns it. A running, starting or stopping MCP Box returns 409 mcpbox_not_stopped, and one whose API Box was deleted 409 mcpbox_apibox_gone.
 
         :param id: MCP Box ID.
         :param retries: Override the default retry configuration for this method
@@ -1431,7 +1676,7 @@ class McpboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
-            return unmarshal_json_response(models.McpboxTokenResponse, http_res)
+            return unmarshal_json_response(models.MCPBox, http_res)
         if utils.match_response(
             http_res, ["401", "404", "409", "429"], "application/problem+json"
         ):
@@ -1461,10 +1706,10 @@ class McpboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.McpboxTokenResponse:
+    ) -> models.MCPBox:
         r"""Start MCP Box
 
-        Starts a stopped MCP Box in front of its API Box, and returns at once with status starting and the MCP Box's token, the same one each start. A running, starting or stopping MCP Box returns 409 mcpbox_not_stopped.
+        Starts a stopped MCP Box in front of its API Box, and returns at once with status starting; get the MCP Box until it is running. Its token stays the same; its get returns it. A running, starting or stopping MCP Box returns 409 mcpbox_not_stopped, and one whose API Box was deleted 409 mcpbox_apibox_gone.
 
         :param id: MCP Box ID.
         :param retries: Override the default retry configuration for this method
@@ -1530,7 +1775,7 @@ class McpboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
-            return unmarshal_json_response(models.McpboxTokenResponse, http_res)
+            return unmarshal_json_response(models.MCPBox, http_res)
         if utils.match_response(
             http_res, ["401", "404", "409", "429"], "application/problem+json"
         ):

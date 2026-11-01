@@ -1,4 +1,4 @@
-# ApiboxConnection
+# APIBoxConnection
 
 
 ## Fields

@@ -25,6 +25,7 @@ r"""Optional build status filter."""
 ListWebboxSnapshotsSource = Literal[
     "catalog",
     "build",
+    "box",
 ]
 r"""Optional source filter."""
 

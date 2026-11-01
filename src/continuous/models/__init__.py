@@ -7,7 +7,7 @@ from continuous.utils.dynamic_imports import lazy_getattr, lazy_dir
 if TYPE_CHECKING:
     from .advancetimerequest import AdvanceTimeRequest, AdvanceTimeRequestTypedDict
     from .apibox import APIBox, APIBoxStatus, APIBoxTypedDict
-    from .apiboxconnection import ApiboxConnection, ApiboxConnectionTypedDict
+    from .apiboxconnection import APIBoxConnection, APIBoxConnectionTypedDict
     from .apiboxsnapshot import (
         APIBoxSnapshot,
         APIBoxSnapshotSource,
@@ -15,8 +15,9 @@ if TYPE_CHECKING:
         APIBoxSnapshotStatus,
         APIBoxSnapshotTypedDict,
     )
-    from .apiboxstep import ApiboxStep, ApiboxStepTypedDict
-    from .apiboxtokenresponse import ApiboxTokenResponse, ApiboxTokenResponseTypedDict
+    from .apiboxtokenresponse import APIBoxTokenResponse, APIBoxTokenResponseTypedDict
+    from .boxerror import BoxError, BoxErrorCode, BoxErrorTypedDict
+    from .boxstep import BoxStep, BoxStepTypedDict
     from .build_simulatorop import (
         BuildSimulatorDocument,
         BuildSimulatorDocumentTypedDict,
@@ -162,6 +163,10 @@ if TYPE_CHECKING:
         CreateSimulationSnapshotRequestTypedDict,
     )
     from .createwebboxrequest import CreateWebBoxRequest, CreateWebBoxRequestTypedDict
+    from .createwebboxresponse import (
+        CreateWebBoxResponse,
+        CreateWebBoxResponseTypedDict,
+    )
     from .credential import Credential, CredentialTypedDict
     from .credentiallogin import CredentialLogin, CredentialLoginTypedDict
     from .credentialloginrequest import (
@@ -256,6 +261,21 @@ if TYPE_CHECKING:
         GetWebboxSnapshotRequestTypedDict,
     )
     from .get_webboxop import GetWebboxRequest, GetWebboxRequestTypedDict
+    from .getapiboxresponse import (
+        GetAPIBoxResponse,
+        GetAPIBoxResponseStatus,
+        GetAPIBoxResponseTypedDict,
+    )
+    from .getmcpboxresponse import (
+        GetMCPBoxResponse,
+        GetMCPBoxResponseStatus,
+        GetMCPBoxResponseTypedDict,
+    )
+    from .getwebboxresponse import (
+        GetWebBoxResponse,
+        GetWebBoxResponseStatus,
+        GetWebBoxResponseTypedDict,
+    )
     from .limitation import Limitation, LimitationTypedDict
     from .list_apibox_snapshotsop import (
         ListApiboxSnapshotsRequest,
@@ -268,8 +288,8 @@ if TYPE_CHECKING:
     from .list_apibox_stepsop import (
         ListApiboxStepsRequest,
         ListApiboxStepsRequestTypedDict,
-        ListApiboxStepsResponseResponse,
-        ListApiboxStepsResponseResponseTypedDict,
+        ListApiboxStepsResponse,
+        ListApiboxStepsResponseTypedDict,
     )
     from .list_apiboxesop import (
         ListApiboxesRequest,
@@ -289,6 +309,8 @@ if TYPE_CHECKING:
         ListMcpboxSnapshotsRequestTypedDict,
         ListMcpboxSnapshotsResponseResponse,
         ListMcpboxSnapshotsResponseResponseTypedDict,
+        ListMcpboxSnapshotsSource,
+        ListMcpboxSnapshotsStatus,
     )
     from .list_mcpboxesop import (
         ListMcpboxesRequest,
@@ -358,9 +380,9 @@ if TYPE_CHECKING:
         ListAPIBoxSnapshotsResponse,
         ListAPIBoxSnapshotsResponseTypedDict,
     )
-    from .listapiboxstepsresponse import (
-        ListAPIBoxStepsResponse,
-        ListAPIBoxStepsResponseTypedDict,
+    from .listboxstepsresponse import (
+        ListBoxStepsResponse,
+        ListBoxStepsResponseTypedDict,
     )
     from .listclockadvanceeventsresponse import (
         ListClockAdvanceEventsResponse,
@@ -403,13 +425,14 @@ if TYPE_CHECKING:
         ListWebBoxSnapshotsResponseTypedDict,
     )
     from .mcpbox import MCPBox, MCPBoxStatus, MCPBoxTypedDict
-    from .mcpboxconnection import McpboxConnection, McpboxConnectionTypedDict
+    from .mcpboxconnection import MCPBoxConnection, MCPBoxConnectionTypedDict
     from .mcpboxsnapshot import (
         MCPBoxSnapshot,
+        MCPBoxSnapshotSource,
         MCPBoxSnapshotStatus,
         MCPBoxSnapshotTypedDict,
     )
-    from .mcpboxtokenresponse import McpboxTokenResponse, McpboxTokenResponseTypedDict
+    from .mcpboxtokenresponse import MCPBoxTokenResponse, MCPBoxTokenResponseTypedDict
     from .regenerate_simulation_tokenop import (
         RegenerateSimulationTokenRequest,
         RegenerateSimulationTokenRequestTypedDict,
@@ -432,6 +455,23 @@ if TYPE_CHECKING:
     from .resume_webbox_snapshotop import (
         ResumeWebboxSnapshotRequest,
         ResumeWebboxSnapshotRequestTypedDict,
+    )
+    from .resumebuildrequest import ResumeBuildRequest, ResumeBuildRequestTypedDict
+    from .save_apibox_snapshotop import (
+        SaveApiboxSnapshotRequest,
+        SaveApiboxSnapshotRequestTypedDict,
+    )
+    from .save_mcpbox_snapshotop import (
+        SaveMcpboxSnapshotRequest,
+        SaveMcpboxSnapshotRequestTypedDict,
+    )
+    from .save_webbox_snapshotop import (
+        SaveWebboxSnapshotRequest,
+        SaveWebboxSnapshotRequestTypedDict,
+    )
+    from .saveboxsnapshotrequest import (
+        SaveBoxSnapshotRequest,
+        SaveBoxSnapshotRequestTypedDict,
     )
     from .security import Security, SecurityTypedDict
     from .simulation import Simulation, SimulationStatus, SimulationTypedDict
@@ -465,6 +505,7 @@ if TYPE_CHECKING:
     from .simulatorbuildwaiting import (
         SimulatorBuildWaiting,
         SimulatorBuildWaitingTypedDict,
+        Type,
     )
     from .simulatorcomposition import (
         SimulatorComposition,
@@ -585,7 +626,7 @@ if TYPE_CHECKING:
         UpdateWebBoxSnapshotRequestTypedDict,
     )
     from .webbox import WebBox, WebBoxStatus, WebBoxTypedDict
-    from .webboxconnection import WebboxConnection, WebboxConnectionTypedDict
+    from .webboxconnection import WebBoxConnection, WebBoxConnectionTypedDict
     from .webboxsnapshot import (
         WebBoxSnapshot,
         WebBoxSnapshotSource,
@@ -595,22 +636,25 @@ if TYPE_CHECKING:
 
 __all__ = [
     "APIBox",
+    "APIBoxConnection",
+    "APIBoxConnectionTypedDict",
     "APIBoxSnapshot",
     "APIBoxSnapshotSource",
     "APIBoxSnapshotSpecKind",
     "APIBoxSnapshotStatus",
     "APIBoxSnapshotTypedDict",
     "APIBoxStatus",
+    "APIBoxTokenResponse",
+    "APIBoxTokenResponseTypedDict",
     "APIBoxTypedDict",
     "AdvanceTimeRequest",
     "AdvanceTimeRequestTypedDict",
-    "ApiboxConnection",
-    "ApiboxConnectionTypedDict",
-    "ApiboxStep",
-    "ApiboxStepTypedDict",
-    "ApiboxTokenResponse",
-    "ApiboxTokenResponseTypedDict",
     "AuthMethod",
+    "BoxError",
+    "BoxErrorCode",
+    "BoxErrorTypedDict",
+    "BoxStep",
+    "BoxStepTypedDict",
     "BuildAPIBoxSnapshotRequest",
     "BuildAPIBoxSnapshotRequestSpecKind",
     "BuildAPIBoxSnapshotRequestTypedDict",
@@ -697,6 +741,8 @@ __all__ = [
     "CreateSimulationSnapshotRequestTypedDict",
     "CreateWebBoxRequest",
     "CreateWebBoxRequestTypedDict",
+    "CreateWebBoxResponse",
+    "CreateWebBoxResponseTypedDict",
     "CreateWebboxRequestRequest",
     "CreateWebboxRequestRequestTypedDict",
     "CreateWebboxSnapshotDocument",
@@ -744,6 +790,9 @@ __all__ = [
     "DeleteWebboxRequestTypedDict",
     "DeleteWebboxSnapshotRequest",
     "DeleteWebboxSnapshotRequestTypedDict",
+    "GetAPIBoxResponse",
+    "GetAPIBoxResponseStatus",
+    "GetAPIBoxResponseTypedDict",
     "GetApiboxConnectionRequest",
     "GetApiboxConnectionRequestTypedDict",
     "GetApiboxRequest",
@@ -752,6 +801,9 @@ __all__ = [
     "GetApiboxSnapshotRequestTypedDict",
     "GetCredentialRequest",
     "GetCredentialRequestTypedDict",
+    "GetMCPBoxResponse",
+    "GetMCPBoxResponseStatus",
+    "GetMCPBoxResponseTypedDict",
     "GetMcpboxConnectionRequest",
     "GetMcpboxConnectionRequestTypedDict",
     "GetMcpboxRequest",
@@ -770,6 +822,9 @@ __all__ = [
     "GetSimulationTokenResponseTypedDict",
     "GetSimulatorRequest",
     "GetSimulatorRequestTypedDict",
+    "GetWebBoxResponse",
+    "GetWebBoxResponseStatus",
+    "GetWebBoxResponseTypedDict",
     "GetWebboxConnectionRequest",
     "GetWebboxConnectionRequestTypedDict",
     "GetWebboxRequest",
@@ -781,8 +836,6 @@ __all__ = [
     "LimitationTypedDict",
     "ListAPIBoxSnapshotsResponse",
     "ListAPIBoxSnapshotsResponseTypedDict",
-    "ListAPIBoxStepsResponse",
-    "ListAPIBoxStepsResponseTypedDict",
     "ListAPIBoxesResponse",
     "ListAPIBoxesResponseTypedDict",
     "ListApiboxSnapshotsRequest",
@@ -793,13 +846,15 @@ __all__ = [
     "ListApiboxSnapshotsStatus",
     "ListApiboxStepsRequest",
     "ListApiboxStepsRequestTypedDict",
-    "ListApiboxStepsResponseResponse",
-    "ListApiboxStepsResponseResponseTypedDict",
+    "ListApiboxStepsResponse",
+    "ListApiboxStepsResponseTypedDict",
     "ListApiboxesRequest",
     "ListApiboxesRequestTypedDict",
     "ListApiboxesResponseResponse",
     "ListApiboxesResponseResponseTypedDict",
     "ListApiboxesStatus",
+    "ListBoxStepsResponse",
+    "ListBoxStepsResponseTypedDict",
     "ListClockAdvanceEventsResponse",
     "ListClockAdvanceEventsResponseTypedDict",
     "ListCredentialsRequest",
@@ -816,6 +871,8 @@ __all__ = [
     "ListMcpboxSnapshotsRequestTypedDict",
     "ListMcpboxSnapshotsResponseResponse",
     "ListMcpboxSnapshotsResponseResponseTypedDict",
+    "ListMcpboxSnapshotsSource",
+    "ListMcpboxSnapshotsStatus",
     "ListMcpboxesRequest",
     "ListMcpboxesRequestTypedDict",
     "ListMcpboxesResponseResponse",
@@ -871,15 +928,16 @@ __all__ = [
     "ListWebboxesResponseResponseTypedDict",
     "ListWebboxesStatus",
     "MCPBox",
+    "MCPBoxConnection",
+    "MCPBoxConnectionTypedDict",
     "MCPBoxSnapshot",
+    "MCPBoxSnapshotSource",
     "MCPBoxSnapshotStatus",
     "MCPBoxSnapshotTypedDict",
     "MCPBoxStatus",
+    "MCPBoxTokenResponse",
+    "MCPBoxTokenResponseTypedDict",
     "MCPBoxTypedDict",
-    "McpboxConnection",
-    "McpboxConnectionTypedDict",
-    "McpboxTokenResponse",
-    "McpboxTokenResponseTypedDict",
     "Phase",
     "Reason",
     "RegenerateSimulationTokenRequest",
@@ -890,12 +948,22 @@ __all__ = [
     "ResourceErrorTypedDict",
     "ResumeApiboxSnapshotRequest",
     "ResumeApiboxSnapshotRequestTypedDict",
+    "ResumeBuildRequest",
+    "ResumeBuildRequestTypedDict",
     "ResumeMcpboxSnapshotRequest",
     "ResumeMcpboxSnapshotRequestTypedDict",
     "ResumeSimulatorRequest",
     "ResumeSimulatorRequestTypedDict",
     "ResumeWebboxSnapshotRequest",
     "ResumeWebboxSnapshotRequestTypedDict",
+    "SaveApiboxSnapshotRequest",
+    "SaveApiboxSnapshotRequestTypedDict",
+    "SaveBoxSnapshotRequest",
+    "SaveBoxSnapshotRequestTypedDict",
+    "SaveMcpboxSnapshotRequest",
+    "SaveMcpboxSnapshotRequestTypedDict",
+    "SaveWebboxSnapshotRequest",
+    "SaveWebboxSnapshotRequestTypedDict",
     "Security",
     "SecurityTypedDict",
     "Simulation",
@@ -961,6 +1029,7 @@ __all__ = [
     "StopSimulationRequestTypedDict",
     "StopWebboxRequest",
     "StopWebboxRequestTypedDict",
+    "Type",
     "UpdateAPIBoxRequest",
     "UpdateAPIBoxRequestTypedDict",
     "UpdateAPIBoxSnapshotRequest",
@@ -1002,14 +1071,14 @@ __all__ = [
     "UpdateWebboxSnapshotRequestRequest",
     "UpdateWebboxSnapshotRequestRequestTypedDict",
     "WebBox",
+    "WebBoxConnection",
+    "WebBoxConnectionTypedDict",
     "WebBoxSnapshot",
     "WebBoxSnapshotSource",
     "WebBoxSnapshotStatus",
     "WebBoxSnapshotTypedDict",
     "WebBoxStatus",
     "WebBoxTypedDict",
-    "WebboxConnection",
-    "WebboxConnectionTypedDict",
 ]
 
 _dynamic_imports: dict[str, str] = {
@@ -1018,17 +1087,20 @@ _dynamic_imports: dict[str, str] = {
     "APIBox": ".apibox",
     "APIBoxStatus": ".apibox",
     "APIBoxTypedDict": ".apibox",
-    "ApiboxConnection": ".apiboxconnection",
-    "ApiboxConnectionTypedDict": ".apiboxconnection",
+    "APIBoxConnection": ".apiboxconnection",
+    "APIBoxConnectionTypedDict": ".apiboxconnection",
     "APIBoxSnapshot": ".apiboxsnapshot",
     "APIBoxSnapshotSource": ".apiboxsnapshot",
     "APIBoxSnapshotSpecKind": ".apiboxsnapshot",
     "APIBoxSnapshotStatus": ".apiboxsnapshot",
     "APIBoxSnapshotTypedDict": ".apiboxsnapshot",
-    "ApiboxStep": ".apiboxstep",
-    "ApiboxStepTypedDict": ".apiboxstep",
-    "ApiboxTokenResponse": ".apiboxtokenresponse",
-    "ApiboxTokenResponseTypedDict": ".apiboxtokenresponse",
+    "APIBoxTokenResponse": ".apiboxtokenresponse",
+    "APIBoxTokenResponseTypedDict": ".apiboxtokenresponse",
+    "BoxError": ".boxerror",
+    "BoxErrorCode": ".boxerror",
+    "BoxErrorTypedDict": ".boxerror",
+    "BoxStep": ".boxstep",
+    "BoxStepTypedDict": ".boxstep",
     "BuildSimulatorDocument": ".build_simulatorop",
     "BuildSimulatorDocumentTypedDict": ".build_simulatorop",
     "BuildSimulatorRequestBody": ".build_simulatorop",
@@ -1128,6 +1200,8 @@ _dynamic_imports: dict[str, str] = {
     "CreateSimulationSnapshotRequestTypedDict": ".createsimulationsnapshotrequest",
     "CreateWebBoxRequest": ".createwebboxrequest",
     "CreateWebBoxRequestTypedDict": ".createwebboxrequest",
+    "CreateWebBoxResponse": ".createwebboxresponse",
+    "CreateWebBoxResponseTypedDict": ".createwebboxresponse",
     "Credential": ".credential",
     "CredentialTypedDict": ".credential",
     "CredentialLogin": ".credentiallogin",
@@ -1195,6 +1269,15 @@ _dynamic_imports: dict[str, str] = {
     "GetWebboxSnapshotRequestTypedDict": ".get_webbox_snapshotop",
     "GetWebboxRequest": ".get_webboxop",
     "GetWebboxRequestTypedDict": ".get_webboxop",
+    "GetAPIBoxResponse": ".getapiboxresponse",
+    "GetAPIBoxResponseStatus": ".getapiboxresponse",
+    "GetAPIBoxResponseTypedDict": ".getapiboxresponse",
+    "GetMCPBoxResponse": ".getmcpboxresponse",
+    "GetMCPBoxResponseStatus": ".getmcpboxresponse",
+    "GetMCPBoxResponseTypedDict": ".getmcpboxresponse",
+    "GetWebBoxResponse": ".getwebboxresponse",
+    "GetWebBoxResponseStatus": ".getwebboxresponse",
+    "GetWebBoxResponseTypedDict": ".getwebboxresponse",
     "Limitation": ".limitation",
     "LimitationTypedDict": ".limitation",
     "ListApiboxSnapshotsRequest": ".list_apibox_snapshotsop",
@@ -1205,8 +1288,8 @@ _dynamic_imports: dict[str, str] = {
     "ListApiboxSnapshotsStatus": ".list_apibox_snapshotsop",
     "ListApiboxStepsRequest": ".list_apibox_stepsop",
     "ListApiboxStepsRequestTypedDict": ".list_apibox_stepsop",
-    "ListApiboxStepsResponseResponse": ".list_apibox_stepsop",
-    "ListApiboxStepsResponseResponseTypedDict": ".list_apibox_stepsop",
+    "ListApiboxStepsResponse": ".list_apibox_stepsop",
+    "ListApiboxStepsResponseTypedDict": ".list_apibox_stepsop",
     "ListApiboxesRequest": ".list_apiboxesop",
     "ListApiboxesRequestTypedDict": ".list_apiboxesop",
     "ListApiboxesResponseResponse": ".list_apiboxesop",
@@ -1220,6 +1303,8 @@ _dynamic_imports: dict[str, str] = {
     "ListMcpboxSnapshotsRequestTypedDict": ".list_mcpbox_snapshotsop",
     "ListMcpboxSnapshotsResponseResponse": ".list_mcpbox_snapshotsop",
     "ListMcpboxSnapshotsResponseResponseTypedDict": ".list_mcpbox_snapshotsop",
+    "ListMcpboxSnapshotsSource": ".list_mcpbox_snapshotsop",
+    "ListMcpboxSnapshotsStatus": ".list_mcpbox_snapshotsop",
     "ListMcpboxesRequest": ".list_mcpboxesop",
     "ListMcpboxesRequestTypedDict": ".list_mcpboxesop",
     "ListMcpboxesResponseResponse": ".list_mcpboxesop",
@@ -1266,8 +1351,8 @@ _dynamic_imports: dict[str, str] = {
     "ListAPIBoxesResponseTypedDict": ".listapiboxesresponse",
     "ListAPIBoxSnapshotsResponse": ".listapiboxsnapshotsresponse",
     "ListAPIBoxSnapshotsResponseTypedDict": ".listapiboxsnapshotsresponse",
-    "ListAPIBoxStepsResponse": ".listapiboxstepsresponse",
-    "ListAPIBoxStepsResponseTypedDict": ".listapiboxstepsresponse",
+    "ListBoxStepsResponse": ".listboxstepsresponse",
+    "ListBoxStepsResponseTypedDict": ".listboxstepsresponse",
     "ListClockAdvanceEventsResponse": ".listclockadvanceeventsresponse",
     "ListClockAdvanceEventsResponseTypedDict": ".listclockadvanceeventsresponse",
     "ListCredentialsResponse": ".listcredentialsresponse",
@@ -1291,13 +1376,14 @@ _dynamic_imports: dict[str, str] = {
     "MCPBox": ".mcpbox",
     "MCPBoxStatus": ".mcpbox",
     "MCPBoxTypedDict": ".mcpbox",
-    "McpboxConnection": ".mcpboxconnection",
-    "McpboxConnectionTypedDict": ".mcpboxconnection",
+    "MCPBoxConnection": ".mcpboxconnection",
+    "MCPBoxConnectionTypedDict": ".mcpboxconnection",
     "MCPBoxSnapshot": ".mcpboxsnapshot",
+    "MCPBoxSnapshotSource": ".mcpboxsnapshot",
     "MCPBoxSnapshotStatus": ".mcpboxsnapshot",
     "MCPBoxSnapshotTypedDict": ".mcpboxsnapshot",
-    "McpboxTokenResponse": ".mcpboxtokenresponse",
-    "McpboxTokenResponseTypedDict": ".mcpboxtokenresponse",
+    "MCPBoxTokenResponse": ".mcpboxtokenresponse",
+    "MCPBoxTokenResponseTypedDict": ".mcpboxtokenresponse",
     "RegenerateSimulationTokenRequest": ".regenerate_simulation_tokenop",
     "RegenerateSimulationTokenRequestTypedDict": ".regenerate_simulation_tokenop",
     "RegenerateSimulationTokenResponse": ".regenerate_simulation_tokenop",
@@ -1312,6 +1398,16 @@ _dynamic_imports: dict[str, str] = {
     "ResumeSimulatorRequestTypedDict": ".resume_simulatorop",
     "ResumeWebboxSnapshotRequest": ".resume_webbox_snapshotop",
     "ResumeWebboxSnapshotRequestTypedDict": ".resume_webbox_snapshotop",
+    "ResumeBuildRequest": ".resumebuildrequest",
+    "ResumeBuildRequestTypedDict": ".resumebuildrequest",
+    "SaveApiboxSnapshotRequest": ".save_apibox_snapshotop",
+    "SaveApiboxSnapshotRequestTypedDict": ".save_apibox_snapshotop",
+    "SaveMcpboxSnapshotRequest": ".save_mcpbox_snapshotop",
+    "SaveMcpboxSnapshotRequestTypedDict": ".save_mcpbox_snapshotop",
+    "SaveWebboxSnapshotRequest": ".save_webbox_snapshotop",
+    "SaveWebboxSnapshotRequestTypedDict": ".save_webbox_snapshotop",
+    "SaveBoxSnapshotRequest": ".saveboxsnapshotrequest",
+    "SaveBoxSnapshotRequestTypedDict": ".saveboxsnapshotrequest",
     "Security": ".security",
     "SecurityTypedDict": ".security",
     "Simulation": ".simulation",
@@ -1339,6 +1435,7 @@ _dynamic_imports: dict[str, str] = {
     "Stage": ".simulatorbuildprogress",
     "SimulatorBuildWaiting": ".simulatorbuildwaiting",
     "SimulatorBuildWaitingTypedDict": ".simulatorbuildwaiting",
+    "Type": ".simulatorbuildwaiting",
     "SimulatorComposition": ".simulatorcomposition",
     "SimulatorCompositionTypedDict": ".simulatorcomposition",
     "SimulatorDependents": ".simulatordependents",
@@ -1423,8 +1520,8 @@ _dynamic_imports: dict[str, str] = {
     "WebBox": ".webbox",
     "WebBoxStatus": ".webbox",
     "WebBoxTypedDict": ".webbox",
-    "WebboxConnection": ".webboxconnection",
-    "WebboxConnectionTypedDict": ".webboxconnection",
+    "WebBoxConnection": ".webboxconnection",
+    "WebBoxConnectionTypedDict": ".webboxconnection",
     "WebBoxSnapshot": ".webboxsnapshot",
     "WebBoxSnapshotSource": ".webboxsnapshot",
     "WebBoxSnapshotStatus": ".webboxsnapshot",

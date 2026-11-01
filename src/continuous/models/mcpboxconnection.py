@@ -5,14 +5,14 @@ from continuous.types import BaseModel
 from typing_extensions import TypedDict
 
 
-class McpboxConnectionTypedDict(TypedDict):
+class MCPBoxConnectionTypedDict(TypedDict):
     endpoint: str
     r"""Base URL of the MCP Box; its MCP endpoint is this URL followed by /mcp."""
     token: str
     r"""The MCP Box's token. Send it in X-Continuous-Token on each request."""
 
 
-class McpboxConnection(BaseModel):
+class MCPBoxConnection(BaseModel):
     endpoint: str
     r"""Base URL of the MCP Box; its MCP endpoint is this URL followed by /mcp."""
 

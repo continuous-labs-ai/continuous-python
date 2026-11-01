@@ -39,7 +39,7 @@ class Continuous(BaseSDK):
     mcpbox: "McpboxSDK"
     r"""Start MCP Boxes from MCP Box Snapshots. Each MCP Box serves its Snapshot's tools over MCP in front of an API Box. Stop, start and delete them."""
     mcpbox_snapshots: "McpboxSnapshots"
-    r"""List, rename and delete the MCP Box Snapshots that Continuous publishes into your workspace. Each holds an MCP server's tools, built against an API Box Snapshot."""
+    r"""Build MCP Box Snapshots of an MCP server's tools against a ready API Box Snapshot. MCP Boxes serve a ready Snapshot."""
     simulation_snapshots: "SimulationSnapshots"
     r"""Deprecated. Use API Box for APIs and Web Box for web apps. Save a running Simulation's state as a Snapshot, create Simulations from it, and rename and delete it."""
     simulations: "Simulations"

@@ -5,14 +5,14 @@ from continuous.types import BaseModel
 from typing_extensions import TypedDict
 
 
-class ApiboxConnectionTypedDict(TypedDict):
+class APIBoxConnectionTypedDict(TypedDict):
     endpoint: str
     r"""Base URL of the API Box's API."""
     token: str
     r"""The API Box's token. Send it in X-Continuous-Token on each request to the endpoint."""
 
 
-class ApiboxConnection(BaseModel):
+class APIBoxConnection(BaseModel):
     endpoint: str
     r"""Base URL of the API Box's API."""
 

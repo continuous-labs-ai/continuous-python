@@ -1,4 +1,4 @@
-# McpboxConnection
+# MCPBoxConnection
 
 
 ## Fields

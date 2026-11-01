@@ -7,17 +7,17 @@ from pydantic import model_serializer
 from typing_extensions import TypedDict
 
 
-class McpboxTokenResponseTypedDict(TypedDict):
+class MCPBoxTokenResponseTypedDict(TypedDict):
     mcpbox: MCPBoxTypedDict
     token: Nullable[str]
-    r"""The MCP Box's token, which lasts until the MCP Box is deleted. It is null only on a retried create whose first attempt stored no token; a start then issues one."""
+    r"""The MCP Box's token, which lasts until the MCP Box is deleted. It is null only on a retried create whose first attempt stored no token; a start then issues one, which the MCP Box's get returns."""
 
 
-class McpboxTokenResponse(BaseModel):
+class MCPBoxTokenResponse(BaseModel):
     mcpbox: MCPBox
 
     token: Nullable[str]
-    r"""The MCP Box's token, which lasts until the MCP Box is deleted. It is null only on a retried create whose first attempt stored no token; a start then issues one."""
+    r"""The MCP Box's token, which lasts until the MCP Box is deleted. It is null only on a retried create whose first attempt stored no token; a start then issues one, which the MCP Box's get returns."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

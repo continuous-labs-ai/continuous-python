@@ -203,9 +203,10 @@ with Continuous(
 * [delete_apibox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#delete_apibox) - Delete API Box
 * [get_apibox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#get_apibox) - Get API Box
 * [update_apibox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#update_apibox) - Update API Box
-* [get_apibox_connection](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#get_apibox_connection) - Get API Box connection
+* [~~get_apibox_connection~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#get_apibox_connection) - Get API Box connection :warning: **Deprecated**
+* [save_apibox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#save_apibox_snapshot) - Save API Box as Snapshot
 * [start_apibox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#start_apibox) - Start API Box
-* [list_apibox_steps](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#list_apibox_steps) - List API Box Steps
+* [list_apibox_steps](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#list_apibox_steps) - List API Box steps
 * [stop_apibox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#stop_apibox) - Stop API Box
 
 ### [ApiboxSnapshots](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md)
@@ -215,8 +216,8 @@ with Continuous(
 * [delete_apibox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#delete_apibox_snapshot) - Delete API Box Snapshot
 * [get_apibox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#get_apibox_snapshot) - Get API Box Snapshot
 * [update_apibox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#update_apibox_snapshot) - Update API Box Snapshot
-* [cancel_apibox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#cancel_apibox_snapshot) - Cancel Snapshot build
-* [resume_apibox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#resume_apibox_snapshot) - Resume Snapshot build
+* [cancel_apibox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#cancel_apibox_snapshot) - Cancel API Box Snapshot build
+* [resume_apibox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#resume_apibox_snapshot) - Resume API Box Snapshot build
 
 ### [Credentials](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/credentials/README.md)
 
@@ -233,7 +234,8 @@ with Continuous(
 * [delete_mcpbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsdk/README.md#delete_mcpbox) - Delete MCP Box
 * [get_mcpbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsdk/README.md#get_mcpbox) - Get MCP Box
 * [update_mcpbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsdk/README.md#update_mcpbox) - Update MCP Box
-* [get_mcpbox_connection](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsdk/README.md#get_mcpbox_connection) - Get MCP Box connection
+* [~~get_mcpbox_connection~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsdk/README.md#get_mcpbox_connection) - Get MCP Box connection :warning: **Deprecated**
+* [save_mcpbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsdk/README.md#save_mcpbox_snapshot) - Save MCP Box as Snapshot
 * [start_mcpbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsdk/README.md#start_mcpbox) - Start MCP Box
 * [stop_mcpbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsdk/README.md#stop_mcpbox) - Stop MCP Box
 
@@ -244,8 +246,8 @@ with Continuous(
 * [delete_mcpbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#delete_mcpbox_snapshot) - Delete MCP Box Snapshot
 * [get_mcpbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#get_mcpbox_snapshot) - Get MCP Box Snapshot
 * [update_mcpbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#update_mcpbox_snapshot) - Update MCP Box Snapshot
-* [cancel_mcpbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#cancel_mcpbox_snapshot) - Cancel Snapshot build
-* [resume_mcpbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#resume_mcpbox_snapshot) - Resume Snapshot build
+* [cancel_mcpbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#cancel_mcpbox_snapshot) - Cancel MCP Box Snapshot build
+* [resume_mcpbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#resume_mcpbox_snapshot) - Resume MCP Box Snapshot build
 
 ### [~~SimulationSnapshots~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulationsnapshots/README.md)
 
@@ -289,9 +291,10 @@ with Continuous(
 * [delete_webbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#delete_webbox) - Delete Web Box
 * [get_webbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#get_webbox) - Get Web Box
 * [update_webbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#update_webbox) - Update Web Box
-* [get_webbox_connection](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#get_webbox_connection) - Get Web Box connection
+* [~~get_webbox_connection~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#get_webbox_connection) - Get Web Box connection :warning: **Deprecated**
+* [save_webbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#save_webbox_snapshot) - Save Web Box as Snapshot
 * [start_webbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#start_webbox) - Start Web Box
-* [list_webbox_steps](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#list_webbox_steps) - List Web Box Steps
+* [list_webbox_steps](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#list_webbox_steps) - List Web Box steps
 * [stop_webbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#stop_webbox) - Stop Web Box
 
 ### [WebboxSnapshots](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md)
@@ -301,8 +304,8 @@ with Continuous(
 * [delete_webbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#delete_webbox_snapshot) - Delete Web Box Snapshot
 * [get_webbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#get_webbox_snapshot) - Get Web Box Snapshot
 * [update_webbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#update_webbox_snapshot) - Update Web Box Snapshot
-* [cancel_webbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#cancel_webbox_snapshot) - Cancel Snapshot build
-* [resume_webbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#resume_webbox_snapshot) - Resume Snapshot build
+* [cancel_webbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#cancel_webbox_snapshot) - Cancel Web Box Snapshot build
+* [resume_webbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#resume_webbox_snapshot) - Resume Web Box Snapshot build
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -474,7 +477,7 @@ with Continuous(
 
 
 **Inherit from [`ContinuousError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/continuouserror.py)**:
-* [`SimulatorDeleteConflictError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 78 methods.*
+* [`SimulatorDeleteConflictError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 81 methods.*
 * [`ResponseValidationError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>

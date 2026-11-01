@@ -20,10 +20,11 @@ APIBoxSnapshotSource = Union[
     Literal[
         "catalog",
         "build",
+        "box",
     ],
     UnrecognizedStr,
 ]
-r"""catalog for a Snapshot Continuous publishes, build for one built or published into the workspace."""
+r"""catalog for a Snapshot Continuous publishes, build for one built or published into the workspace, box for one saved from an API Box."""
 
 
 APIBoxSnapshotSpecKind = Union[
@@ -47,18 +48,18 @@ APIBoxSnapshotStatus = Union[
     ],
     UnrecognizedStr,
 ]
-r"""pending while waiting for capacity; building while the build runs; ready when API Boxes can start from it; failed when the build failed; canceled when a cancel request took effect."""
+r"""pending while waiting for capacity; building while the build runs; ready when boxes can start from it; failed when the build failed; canceled when a cancel request took effect."""
 
 
 class APIBoxSnapshotTypedDict(TypedDict):
     build: Nullable[SimulatorBuildProgressTypedDict]
-    r"""The build's latest progress report, or null before the first report. A settled Snapshot keeps its last report. A build waiting for its live credentials resumes with POST /v1/apibox-snapshots/{id}/resume."""
+    r"""The build's latest progress report, or null before the first report. A settled Snapshot keeps its last report. A build waiting for its live credentials resumes when the Snapshot's resume is requested."""
     composition: Nullable[SimulatorCompositionTypedDict]
     r"""What a ready Snapshot serves, or null."""
     created_at: datetime
     r"""Snapshot creation time."""
     credential_ids: List[str]
-    r"""Workspace credentials the build was allowed to call real systems with. Empty when none."""
+    r"""Workspace credentials the build used, such as a web app login or credentials it was allowed to call real systems with. Empty when none."""
     error: Nullable[SimulatorErrorTypedDict]
     hidden_limitations: int
     r"""Limitations the Snapshot records beyond those listed in limitations."""
@@ -67,7 +68,7 @@ class APIBoxSnapshotTypedDict(TypedDict):
     instructions: str
     r"""The instructions the build followed, or empty when none were given."""
     limitations: List[LimitationTypedDict]
-    r"""Behavior the Snapshot does not serve like the real system, most important first, whether it was built or published. Empty when none."""
+    r"""Behavior the Snapshot does not serve like the real system, most important first. Empty when none."""
     metadata: Any
     r"""Customer JSON metadata, or null."""
     name: str
@@ -75,16 +76,16 @@ class APIBoxSnapshotTypedDict(TypedDict):
     research: Nullable[SimulatorResearchTypedDict]
     r"""The build's research stage, or null when research did not run."""
     source: APIBoxSnapshotSource
-    r"""catalog for a Snapshot Continuous publishes, build for one built or published into the workspace."""
+    r"""catalog for a Snapshot Continuous publishes, build for one built or published into the workspace, box for one saved from an API Box."""
     spec_kind: Nullable[APIBoxSnapshotSpecKind]
     r"""The specification the Snapshot was built from, or null until the build has read it."""
     status: APIBoxSnapshotStatus
-    r"""pending while waiting for capacity; building while the build runs; ready when API Boxes can start from it; failed when the build failed; canceled when a cancel request took effect."""
+    r"""pending while waiting for capacity; building while the build runs; ready when boxes can start from it; failed when the build failed; canceled when a cancel request took effect."""
 
 
 class APIBoxSnapshot(BaseModel):
     build: Nullable[SimulatorBuildProgress]
-    r"""The build's latest progress report, or null before the first report. A settled Snapshot keeps its last report. A build waiting for its live credentials resumes with POST /v1/apibox-snapshots/{id}/resume."""
+    r"""The build's latest progress report, or null before the first report. A settled Snapshot keeps its last report. A build waiting for its live credentials resumes when the Snapshot's resume is requested."""
 
     composition: Nullable[SimulatorComposition]
     r"""What a ready Snapshot serves, or null."""
@@ -93,7 +94,7 @@ class APIBoxSnapshot(BaseModel):
     r"""Snapshot creation time."""
 
     credential_ids: List[str]
-    r"""Workspace credentials the build was allowed to call real systems with. Empty when none."""
+    r"""Workspace credentials the build used, such as a web app login or credentials it was allowed to call real systems with. Empty when none."""
 
     error: Nullable[SimulatorError]
 
@@ -107,7 +108,7 @@ class APIBoxSnapshot(BaseModel):
     r"""The instructions the build followed, or empty when none were given."""
 
     limitations: List[Limitation]
-    r"""Behavior the Snapshot does not serve like the real system, most important first, whether it was built or published. Empty when none."""
+    r"""Behavior the Snapshot does not serve like the real system, most important first. Empty when none."""
 
     metadata: Any
     r"""Customer JSON metadata, or null."""
@@ -119,13 +120,13 @@ class APIBoxSnapshot(BaseModel):
     r"""The build's research stage, or null when research did not run."""
 
     source: APIBoxSnapshotSource
-    r"""catalog for a Snapshot Continuous publishes, build for one built or published into the workspace."""
+    r"""catalog for a Snapshot Continuous publishes, build for one built or published into the workspace, box for one saved from an API Box."""
 
     spec_kind: Nullable[APIBoxSnapshotSpecKind]
     r"""The specification the Snapshot was built from, or null until the build has read it."""
 
     status: APIBoxSnapshotStatus
-    r"""pending while waiting for capacity; building while the build runs; ready when API Boxes can start from it; failed when the build failed; canceled when a cancel request took effect."""
+    r"""pending while waiting for capacity; building while the build runs; ready when boxes can start from it; failed when the build failed; canceled when a cancel request took effect."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

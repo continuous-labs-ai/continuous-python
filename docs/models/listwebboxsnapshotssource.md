@@ -14,3 +14,4 @@ value: ListWebboxSnapshotsSource = "catalog"
 
 - `"catalog"`
 - `"build"`
+- `"box"`
