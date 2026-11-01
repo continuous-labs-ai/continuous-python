@@ -1083,7 +1083,7 @@ class ApiboxSnapshots(BaseSDK):
             return unmarshal_json_response(models.APIBoxSnapshot, http_res)
         if utils.match_response(
             http_res,
-            ["400", "401", "403", "404", "408", "413", "415"],
+            ["400", "401", "403", "404", "408", "413", "415", "422"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -1195,7 +1195,7 @@ class ApiboxSnapshots(BaseSDK):
             return unmarshal_json_response(models.APIBoxSnapshot, http_res)
         if utils.match_response(
             http_res,
-            ["400", "401", "403", "404", "408", "413", "415"],
+            ["400", "401", "403", "404", "408", "413", "415", "422"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -1225,7 +1225,7 @@ class ApiboxSnapshots(BaseSDK):
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> models.APIBoxSnapshot:
-        r"""Cancel Snapshot build
+        r"""Cancel API Box Snapshot build
 
         Requests cancellation of a pending or active build and returns the Snapshot without waiting for the build to stop. Get the Snapshot until its status leaves pending or building. The build can finish before cancellation takes effect. A Snapshot whose build has settled is returned unchanged.
 
@@ -1324,7 +1324,7 @@ class ApiboxSnapshots(BaseSDK):
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> models.APIBoxSnapshot:
-        r"""Cancel Snapshot build
+        r"""Cancel API Box Snapshot build
 
         Requests cancellation of a pending or active build and returns the Snapshot without waiting for the build to stop. Get the Snapshot until its status leaves pending or building. The build can finish before cancellation takes effect. A Snapshot whose build has settled is returned unchanged.
 
@@ -1418,16 +1418,18 @@ class ApiboxSnapshots(BaseSDK):
         self,
         *,
         id: str,
+        add_seconds: Optional[int] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> models.APIBoxSnapshot:
-        r"""Resume Snapshot build
+        r"""Resume API Box Snapshot build
 
-        Resumes a build that waits at QA because its live credentials were rejected, as build.waiting reports. Refresh each credential it names with PATCH /v1/credentials/{id} first: QA then runs again with their current values, and the build goes on to finalize. Returns the Snapshot, still building. The wait does not count toward the build's time limit: the build resumes with the time it had left when it began waiting. A build that is not waiting returns 409 simulator_not_waiting.
+        Resumes a build that waits, as build.waiting reports: at QA because its live credentials were rejected, or for more time after it used its time limit. For a credential wait, refresh each credential it names with PATCH /v1/credentials/{id} first: QA then runs again with their current values, and the build goes on to finalize. For a wait for more time, send add_seconds: the build continues where it stopped, with that much time from the resume. Returns the Snapshot, still building. A wait does not count toward the build's time limit: a build resumed from a credential wait has the time it had left when it began waiting. A build that is not waiting returns 409 apibox_snapshot_not_waiting.
 
-        :param id: API Box Snapshot ID.
+        :param id: Snapshot ID.
+        :param add_seconds: Seconds to add to a build that waits for more time, from 1 to the largest timeout_seconds a build request accepts. Required for a build whose build.waiting.type is time_limit, and refused for one waiting for live credentials. The build's time limit with every addition is at most 259200 seconds (72 hours).
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1445,6 +1447,9 @@ class ApiboxSnapshots(BaseSDK):
 
         request = models.ResumeApiboxSnapshotRequest(
             id=id,
+            body=models.ResumeBuildRequest(
+                add_seconds=add_seconds,
+            ),
         )
 
         req = self._build_request(
@@ -1460,6 +1465,13 @@ class ApiboxSnapshots(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[models.ResumeBuildRequest],
+            ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
@@ -1493,7 +1505,9 @@ class ApiboxSnapshots(BaseSDK):
         if utils.match_response(http_res, "202", "application/json"):
             return unmarshal_json_response(models.APIBoxSnapshot, http_res)
         if utils.match_response(
-            http_res, ["401", "403", "404", "409"], "application/problem+json"
+            http_res,
+            ["400", "401", "403", "404", "408", "409", "413", "415"],
+            "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -1517,16 +1531,18 @@ class ApiboxSnapshots(BaseSDK):
         self,
         *,
         id: str,
+        add_seconds: Optional[int] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> models.APIBoxSnapshot:
-        r"""Resume Snapshot build
+        r"""Resume API Box Snapshot build
 
-        Resumes a build that waits at QA because its live credentials were rejected, as build.waiting reports. Refresh each credential it names with PATCH /v1/credentials/{id} first: QA then runs again with their current values, and the build goes on to finalize. Returns the Snapshot, still building. The wait does not count toward the build's time limit: the build resumes with the time it had left when it began waiting. A build that is not waiting returns 409 simulator_not_waiting.
+        Resumes a build that waits, as build.waiting reports: at QA because its live credentials were rejected, or for more time after it used its time limit. For a credential wait, refresh each credential it names with PATCH /v1/credentials/{id} first: QA then runs again with their current values, and the build goes on to finalize. For a wait for more time, send add_seconds: the build continues where it stopped, with that much time from the resume. Returns the Snapshot, still building. A wait does not count toward the build's time limit: a build resumed from a credential wait has the time it had left when it began waiting. A build that is not waiting returns 409 apibox_snapshot_not_waiting.
 
-        :param id: API Box Snapshot ID.
+        :param id: Snapshot ID.
+        :param add_seconds: Seconds to add to a build that waits for more time, from 1 to the largest timeout_seconds a build request accepts. Required for a build whose build.waiting.type is time_limit, and refused for one waiting for live credentials. The build's time limit with every addition is at most 259200 seconds (72 hours).
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1544,6 +1560,9 @@ class ApiboxSnapshots(BaseSDK):
 
         request = models.ResumeApiboxSnapshotRequest(
             id=id,
+            body=models.ResumeBuildRequest(
+                add_seconds=add_seconds,
+            ),
         )
 
         req = self._build_request_async(
@@ -1559,6 +1578,13 @@ class ApiboxSnapshots(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[models.ResumeBuildRequest],
+            ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
@@ -1592,7 +1618,9 @@ class ApiboxSnapshots(BaseSDK):
         if utils.match_response(http_res, "202", "application/json"):
             return unmarshal_json_response(models.APIBoxSnapshot, http_res)
         if utils.match_response(
-            http_res, ["401", "403", "404", "409"], "application/problem+json"
+            http_res,
+            ["400", "401", "403", "404", "408", "409", "413", "415"],
+            "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)

@@ -11,7 +11,7 @@ class UpdateAPIBoxRequestTypedDict(TypedDict):
     metadata: NotRequired[Any]
     r"""Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it."""
     name: NotRequired[str]
-    r"""New API Box name."""
+    r"""New name."""
 
 
 class UpdateAPIBoxRequest(BaseModel):
@@ -19,7 +19,7 @@ class UpdateAPIBoxRequest(BaseModel):
     r"""Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it."""
 
     name: Optional[str] = None
-    r"""New API Box name."""
+    r"""New name."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

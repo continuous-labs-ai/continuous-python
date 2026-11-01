@@ -14,3 +14,4 @@ value: ListApiboxSnapshotsSource = "catalog"
 
 - `"catalog"`
 - `"build"`
+- `"box"`

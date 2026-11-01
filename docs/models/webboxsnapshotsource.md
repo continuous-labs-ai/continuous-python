@@ -1,6 +1,6 @@
 # WebBoxSnapshotSource
 
-catalog for a Snapshot Continuous publishes, build for one built into the workspace.
+catalog for a Snapshot Continuous publishes, build for one built into the workspace, box for one saved from a Web Box.
 
 ## Example Usage
 
@@ -18,3 +18,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 
 - `"catalog"`
 - `"build"`
+- `"box"`

@@ -8,6 +8,7 @@ from continuous.utils import get_security_from_env
 from continuous.utils.unmarshal_json_response import unmarshal_json_response
 from jsonpath import JSONPath
 from typing import Any, Awaitable, Dict, List, Mapping, Optional, Union
+from typing_extensions import deprecated
 
 
 class WebboxSDK(BaseSDK):
@@ -304,7 +305,7 @@ class WebboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.WebBox:
+    ) -> models.CreateWebBoxResponse:
         r"""Create Web Box
 
         Creates a Web Box from a ready Web Box Snapshot and starts it. It returns at once with status starting; get the Web Box until it is running. Open its url in a browser: the app is served at a host of its own, open to anyone with the URL. Each Web Box has its own state, and runs in real time.
@@ -386,10 +387,10 @@ class WebboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
-            return unmarshal_json_response(models.WebBox, http_res)
+            return unmarshal_json_response(models.CreateWebBoxResponse, http_res)
         if utils.match_response(
             http_res,
-            ["400", "401", "404", "408", "409", "413", "415", "429"],
+            ["400", "401", "404", "408", "409", "413", "415", "422", "429"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -422,7 +423,7 @@ class WebboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.WebBox:
+    ) -> models.CreateWebBoxResponse:
         r"""Create Web Box
 
         Creates a Web Box from a ready Web Box Snapshot and starts it. It returns at once with status starting; get the Web Box until it is running. Open its url in a browser: the app is served at a host of its own, open to anyone with the URL. Each Web Box has its own state, and runs in real time.
@@ -504,10 +505,10 @@ class WebboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
-            return unmarshal_json_response(models.WebBox, http_res)
+            return unmarshal_json_response(models.CreateWebBoxResponse, http_res)
         if utils.match_response(
             http_res,
-            ["400", "401", "404", "408", "409", "413", "415", "429"],
+            ["400", "401", "404", "408", "409", "413", "415", "422", "429"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -730,10 +731,10 @@ class WebboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.WebBox:
+    ) -> models.GetWebBoxResponse:
         r"""Get Web Box
 
-        Returns a Web Box and its status.
+        Returns a Web Box, its status and its connection: the URL that opens its app, whether it is running or stopped. The app answers only while the Web Box is running.
 
         :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
@@ -803,7 +804,7 @@ class WebboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.WebBox, http_res)
+            return unmarshal_json_response(models.GetWebBoxResponse, http_res)
         if utils.match_response(http_res, ["401", "404"], "application/problem+json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -831,10 +832,10 @@ class WebboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.WebBox:
+    ) -> models.GetWebBoxResponse:
         r"""Get Web Box
 
-        Returns a Web Box and its status.
+        Returns a Web Box, its status and its connection: the URL that opens its app, whether it is running or stopped. The app answers only while the Web Box is running.
 
         :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
@@ -904,7 +905,7 @@ class WebboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.WebBox, http_res)
+            return unmarshal_json_response(models.GetWebBoxResponse, http_res)
         if utils.match_response(http_res, ["401", "404"], "application/problem+json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -941,7 +942,7 @@ class WebboxSDK(BaseSDK):
 
         :param id: Web Box ID.
         :param metadata: Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it.
-        :param name: New Web Box name.
+        :param name: New name.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1015,7 +1016,7 @@ class WebboxSDK(BaseSDK):
             return unmarshal_json_response(models.WebBox, http_res)
         if utils.match_response(
             http_res,
-            ["400", "401", "404", "408", "413", "415"],
+            ["400", "401", "404", "408", "413", "415", "422"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -1053,7 +1054,7 @@ class WebboxSDK(BaseSDK):
 
         :param id: Web Box ID.
         :param metadata: Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it.
-        :param name: New Web Box name.
+        :param name: New name.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1127,7 +1128,7 @@ class WebboxSDK(BaseSDK):
             return unmarshal_json_response(models.WebBox, http_res)
         if utils.match_response(
             http_res,
-            ["400", "401", "404", "408", "413", "415"],
+            ["400", "401", "404", "408", "413", "415", "422"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -1148,6 +1149,9 @@ class WebboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
+    )
     def get_webbox_connection(
         self,
         *,
@@ -1156,10 +1160,10 @@ class WebboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.WebboxConnection:
+    ) -> models.WebBoxConnection:
         r"""Get Web Box connection
 
-        Returns the URL that opens the Web Box's app, whether it is running or stopped. The app answers only while the Web Box is running.
+        Deprecated: get the Web Box, whose connection this returns. Returns the URL that opens the Web Box's app, whether it is running or stopped.
 
         :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
@@ -1229,7 +1233,7 @@ class WebboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.WebboxConnection, http_res)
+            return unmarshal_json_response(models.WebBoxConnection, http_res)
         if utils.match_response(http_res, ["401", "404"], "application/problem+json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -1249,6 +1253,9 @@ class WebboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
+    )
     async def get_webbox_connection_async(
         self,
         *,
@@ -1257,10 +1264,10 @@ class WebboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.WebboxConnection:
+    ) -> models.WebBoxConnection:
         r"""Get Web Box connection
 
-        Returns the URL that opens the Web Box's app, whether it is running or stopped. The app answers only while the Web Box is running.
+        Deprecated: get the Web Box, whose connection this returns. Returns the URL that opens the Web Box's app, whether it is running or stopped.
 
         :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
@@ -1330,8 +1337,246 @@ class WebboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.WebboxConnection, http_res)
+            return unmarshal_json_response(models.WebBoxConnection, http_res)
         if utils.match_response(http_res, ["401", "404"], "application/problem+json"):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise errors.ContinuousDefaultError("Unexpected response received", http_res)
+
+    def save_webbox_snapshot(
+        self,
+        *,
+        id: str,
+        idempotency_key: Optional[str] = None,
+        metadata: Optional[Any] = None,
+        name: Optional[str] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.WebBoxSnapshot:
+        r"""Save Web Box as Snapshot
+
+        Saves a running Web Box's app and current state as a Web Box Snapshot, ready when the response returns. The Web Box keeps running, and a paused one is woken. Web Boxes created from the Snapshot start with the saved state instead of a new workspace, so they refuse include_sample_data. The Snapshot outlives the Web Box. A starting Web Box returns 409 webbox_starting; a stopping or stopped one returns 409 webbox_stopped; one whose runtime cannot save its state returns 409 webbox_rebuild_required.
+
+        :param id: ID of the Box to save.
+        :param idempotency_key: Optional key for retrying this save safely. A retry with the same key and request returns the Snapshot the first save created. The same key with a different request returns 409 idempotency_conflict.
+        :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels.
+        :param name: Name for the Snapshot. Omission generates a name.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.SaveWebboxSnapshotRequest(
+            id=id,
+            idempotency_key=idempotency_key,
+            body=models.SaveBoxSnapshotRequest(
+                metadata=metadata,
+                name=name,
+            ),
+        )
+
+        req = self._build_request(
+            method="POST",
+            path="/v1/webbox/{id}/snapshot",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[models.SaveBoxSnapshotRequest],
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="save-webbox-snapshot",
+                oauth2_scopes=None,
+                security_source=get_security_from_env(
+                    self.sdk_configuration.security, models.Security
+                ),
+                tags=["webbox"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "201", "application/json"):
+            return unmarshal_json_response(models.WebBoxSnapshot, http_res)
+        if utils.match_response(
+            http_res,
+            ["400", "401", "404", "408", "409", "413", "415", "422"],
+            "application/problem+json",
+        ):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.ContinuousDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise errors.ContinuousDefaultError("Unexpected response received", http_res)
+
+    async def save_webbox_snapshot_async(
+        self,
+        *,
+        id: str,
+        idempotency_key: Optional[str] = None,
+        metadata: Optional[Any] = None,
+        name: Optional[str] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.WebBoxSnapshot:
+        r"""Save Web Box as Snapshot
+
+        Saves a running Web Box's app and current state as a Web Box Snapshot, ready when the response returns. The Web Box keeps running, and a paused one is woken. Web Boxes created from the Snapshot start with the saved state instead of a new workspace, so they refuse include_sample_data. The Snapshot outlives the Web Box. A starting Web Box returns 409 webbox_starting; a stopping or stopped one returns 409 webbox_stopped; one whose runtime cannot save its state returns 409 webbox_rebuild_required.
+
+        :param id: ID of the Box to save.
+        :param idempotency_key: Optional key for retrying this save safely. A retry with the same key and request returns the Snapshot the first save created. The same key with a different request returns 409 idempotency_conflict.
+        :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels.
+        :param name: Name for the Snapshot. Omission generates a name.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.SaveWebboxSnapshotRequest(
+            id=id,
+            idempotency_key=idempotency_key,
+            body=models.SaveBoxSnapshotRequest(
+                metadata=metadata,
+                name=name,
+            ),
+        )
+
+        req = self._build_request_async(
+            method="POST",
+            path="/v1/webbox/{id}/snapshot",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[models.SaveBoxSnapshotRequest],
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="save-webbox-snapshot",
+                oauth2_scopes=None,
+                security_source=get_security_from_env(
+                    self.sdk_configuration.security, models.Security
+                ),
+                tags=["webbox"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "201", "application/json"):
+            return unmarshal_json_response(models.WebBoxSnapshot, http_res)
+        if utils.match_response(
+            http_res,
+            ["400", "401", "404", "408", "409", "413", "415", "422"],
+            "application/problem+json",
+        ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
@@ -1559,7 +1804,7 @@ class WebboxSDK(BaseSDK):
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> Optional[models.ListWebboxStepsResponse]:
-        r"""List Web Box Steps
+        r"""List Web Box steps
 
         Lists the Web Box's steps in order. Each request that changed state is one step; a request that only reads registers none. A Web Box that is not running returns 409 webbox_stopped.
 
@@ -1658,9 +1903,7 @@ class WebboxSDK(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return models.ListWebboxStepsResponse(
-                result=unmarshal_json_response(
-                    models.ListAPIBoxStepsResponse, http_res
-                ),
+                result=unmarshal_json_response(models.ListBoxStepsResponse, http_res),
                 next=next_func,
             )
         if utils.match_response(
@@ -1695,7 +1938,7 @@ class WebboxSDK(BaseSDK):
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> Optional[models.ListWebboxStepsResponse]:
-        r"""List Web Box Steps
+        r"""List Web Box steps
 
         Lists the Web Box's steps in order. Each request that changed state is one step; a request that only reads registers none. A Web Box that is not running returns 409 webbox_stopped.
 
@@ -1797,9 +2040,7 @@ class WebboxSDK(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return models.ListWebboxStepsResponse(
-                result=unmarshal_json_response(
-                    models.ListAPIBoxStepsResponse, http_res
-                ),
+                result=unmarshal_json_response(models.ListBoxStepsResponse, http_res),
                 next=next_func,
             )
         if utils.match_response(

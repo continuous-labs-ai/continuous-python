@@ -11,9 +11,10 @@ Start Web Boxes from Web Box Snapshots. Each Web Box serves its Snapshot's web a
 * [delete_webbox](#delete_webbox) - Delete Web Box
 * [get_webbox](#get_webbox) - Get Web Box
 * [update_webbox](#update_webbox) - Update Web Box
-* [get_webbox_connection](#get_webbox_connection) - Get Web Box connection
+* [~~get_webbox_connection~~](#get_webbox_connection) - Get Web Box connection :warning: **Deprecated**
+* [save_webbox_snapshot](#save_webbox_snapshot) - Save Web Box as Snapshot
 * [start_webbox](#start_webbox) - Start Web Box
-* [list_webbox_steps](#list_webbox_steps) - List Web Box Steps
+* [list_webbox_steps](#list_webbox_steps) - List Web Box steps
 * [stop_webbox](#stop_webbox) - Stop Web Box
 
 ## list_webboxes
@@ -99,15 +100,15 @@ with Continuous(
 
 ### Response
 
-**[models.WebBox](../../models/webbox.md)**
+**[models.CreateWebBoxResponse](../../models/createwebboxresponse.md)**
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.Error                           | 400, 401, 404, 408, 409, 413, 415, 429 | application/problem+json               |
-| errors.Error                           | 500, 503                               | application/problem+json               |
-| errors.ContinuousDefaultError          | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| errors.Error                                | 400, 401, 404, 408, 409, 413, 415, 422, 429 | application/problem+json                    |
+| errors.Error                                | 500, 503                                    | application/problem+json                    |
+| errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
 
 ## delete_webbox
 
@@ -148,7 +149,7 @@ with Continuous(
 
 ## get_webbox
 
-Returns a Web Box and its status.
+Returns a Web Box, its status and its connection: the URL that opens its app, whether it is running or stopped. The app answers only while the Web Box is running.
 
 ### Example Usage
 
@@ -178,7 +179,7 @@ with Continuous(
 
 ### Response
 
-**[models.WebBox](../../models/webbox.md)**
+**[models.GetWebBoxResponse](../../models/getwebboxresponse.md)**
 
 ### Errors
 
@@ -217,7 +218,7 @@ with Continuous(
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `id`                                                                                         | *str*                                                                                        | :heavy_check_mark:                                                                           | Web Box ID.                                                                                  |
 | `metadata`                                                                                   | *Optional[Any]*                                                                              | :heavy_minus_sign:                                                                           | Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it. |
-| `name`                                                                                       | *Optional[str]*                                                                              | :heavy_minus_sign:                                                                           | New Web Box name.                                                                            |
+| `name`                                                                                       | *Optional[str]*                                                                              | :heavy_minus_sign:                                                                           | New name.                                                                                    |
 | `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
 
 ### Response
@@ -226,15 +227,17 @@ with Continuous(
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 404, 408, 413, 415  | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
-| errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| errors.Error                      | 400, 401, 404, 408, 413, 415, 422 | application/problem+json          |
+| errors.Error                      | 500, 503                          | application/problem+json          |
+| errors.ContinuousDefaultError     | 4XX, 5XX                          | \*/\*                             |
 
-## get_webbox_connection
+## ~~get_webbox_connection~~
 
-Returns the URL that opens the Web Box's app, whether it is running or stopped. The app answers only while the Web Box is running.
+Deprecated: get the Web Box, whose connection this returns. Returns the URL that opens the Web Box's app, whether it is running or stopped.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -264,7 +267,7 @@ with Continuous(
 
 ### Response
 
-**[models.WebboxConnection](../../models/webboxconnection.md)**
+**[models.WebBoxConnection](../../models/webboxconnection.md)**
 
 ### Errors
 
@@ -273,6 +276,51 @@ with Continuous(
 | errors.Error                  | 401, 404                      | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
+
+## save_webbox_snapshot
+
+Saves a running Web Box's app and current state as a Web Box Snapshot, ready when the response returns. The Web Box keeps running, and a paused one is woken. Web Boxes created from the Snapshot start with the saved state instead of a new workspace, so they refuse include_sample_data. The Snapshot outlives the Web Box. A starting Web Box returns 409 webbox_starting; a stopping or stopped one returns 409 webbox_stopped; one whose runtime cannot save its state returns 409 webbox_rebuild_required.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="save-webbox-snapshot" method="post" path="/v1/webbox/{id}/snapshot" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.webbox.save_webbox_snapshot(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                              | Type                                                                                                                                                                                                   | Required                                                                                                                                                                                               | Description                                                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `id`                                                                                                                                                                                                   | *str*                                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                     | ID of the Box to save.                                                                                                                                                                                 |
+| `idempotency_key`                                                                                                                                                                                      | *Optional[str]*                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                     | Optional key for retrying this save safely. A retry with the same key and request returns the Snapshot the first save created. The same key with a different request returns 409 idempotency_conflict. |
+| `metadata`                                                                                                                                                                                             | *Optional[Any]*                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                     | Customer JSON metadata, up to 16 KiB and 64 nesting levels.                                                                                                                                            |
+| `name`                                                                                                                                                                                                 | *Optional[str]*                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                     | Name for the Snapshot. Omission generates a name.                                                                                                                                                      |
+| `retries`                                                                                                                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                     | Configuration to override the default retry behavior of the client.                                                                                                                                    |
+
+### Response
+
+**[models.WebBoxSnapshot](../../models/webboxsnapshot.md)**
+
+### Errors
+
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.Error                           | 400, 401, 404, 408, 409, 413, 415, 422 | application/problem+json               |
+| errors.Error                           | 500, 503                               | application/problem+json               |
+| errors.ContinuousDefaultError          | 4XX, 5XX                               | \*/\*                                  |
 
 ## start_webbox
 

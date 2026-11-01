@@ -7,17 +7,17 @@ from pydantic import model_serializer
 from typing_extensions import TypedDict
 
 
-class ApiboxTokenResponseTypedDict(TypedDict):
+class APIBoxTokenResponseTypedDict(TypedDict):
     apibox: APIBoxTypedDict
     token: Nullable[str]
-    r"""The API Box's token, which lasts until the API Box is deleted. It is null only on a retried create whose first attempt stored no token; a start then issues one."""
+    r"""The API Box's token, which lasts until the API Box is deleted. It is null only on a retried create whose first attempt stored no token; a start then issues one, which the API Box's get returns."""
 
 
-class ApiboxTokenResponse(BaseModel):
+class APIBoxTokenResponse(BaseModel):
     apibox: APIBox
 
     token: Nullable[str]
-    r"""The API Box's token, which lasts until the API Box is deleted. It is null only on a retried create whose first attempt stored no token; a start then issues one."""
+    r"""The API Box's token, which lasts until the API Box is deleted. It is null only on a retried create whose first attempt stored no token; a start then issues one, which the API Box's get returns."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

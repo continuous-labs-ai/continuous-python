@@ -11,7 +11,7 @@ class UpdateWebBoxRequestTypedDict(TypedDict):
     metadata: NotRequired[Any]
     r"""Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it."""
     name: NotRequired[str]
-    r"""New Web Box name."""
+    r"""New name."""
 
 
 class UpdateWebBoxRequest(BaseModel):
@@ -19,7 +19,7 @@ class UpdateWebBoxRequest(BaseModel):
     r"""Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it."""
 
     name: Optional[str] = None
-    r"""New Web Box name."""
+    r"""New name."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

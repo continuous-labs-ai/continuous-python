@@ -11,7 +11,7 @@ class CreateMCPBoxRequestTypedDict(TypedDict):
     apibox_id: str
     r"""An API Box of the workspace, started from the API Box Snapshot the MCP Box Snapshot was built against."""
     snapshot_id: str
-    r"""An MCP Box Snapshot of the workspace."""
+    r"""A ready MCP Box Snapshot of the workspace or the catalog."""
     metadata: NotRequired[Any]
     r"""Customer JSON metadata, up to 16 KiB and 64 nesting levels."""
     name: NotRequired[str]
@@ -23,7 +23,7 @@ class CreateMCPBoxRequest(BaseModel):
     r"""An API Box of the workspace, started from the API Box Snapshot the MCP Box Snapshot was built against."""
 
     snapshot_id: str
-    r"""An MCP Box Snapshot of the workspace."""
+    r"""A ready MCP Box Snapshot of the workspace or the catalog."""
 
     metadata: Optional[Any] = None
     r"""Customer JSON metadata, up to 16 KiB and 64 nesting levels."""

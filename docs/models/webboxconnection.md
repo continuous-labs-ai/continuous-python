@@ -1,4 +1,4 @@
-# WebboxConnection
+# WebBoxConnection
 
 
 ## Fields

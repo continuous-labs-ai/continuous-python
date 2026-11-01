@@ -11,7 +11,8 @@ Start MCP Boxes from MCP Box Snapshots. Each MCP Box serves its Snapshot's tools
 * [delete_mcpbox](#delete_mcpbox) - Delete MCP Box
 * [get_mcpbox](#get_mcpbox) - Get MCP Box
 * [update_mcpbox](#update_mcpbox) - Update MCP Box
-* [get_mcpbox_connection](#get_mcpbox_connection) - Get MCP Box connection
+* [~~get_mcpbox_connection~~](#get_mcpbox_connection) - Get MCP Box connection :warning: **Deprecated**
+* [save_mcpbox_snapshot](#save_mcpbox_snapshot) - Save MCP Box as Snapshot
 * [start_mcpbox](#start_mcpbox) - Start MCP Box
 * [stop_mcpbox](#stop_mcpbox) - Stop MCP Box
 
@@ -90,7 +91,7 @@ with Continuous(
 | Parameter                                                                                                                                                                                       | Type                                                                                                                                                                                            | Required                                                                                                                                                                                        | Description                                                                                                                                                                                     |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `apibox_id`                                                                                                                                                                                     | *str*                                                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                                              | An API Box of the workspace, started from the API Box Snapshot the MCP Box Snapshot was built against.                                                                                          |
-| `snapshot_id`                                                                                                                                                                                   | *str*                                                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                                              | An MCP Box Snapshot of the workspace.                                                                                                                                                           |
+| `snapshot_id`                                                                                                                                                                                   | *str*                                                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                                              | A ready MCP Box Snapshot of the workspace or the catalog.                                                                                                                                       |
 | `idempotency_key`                                                                                                                                                                               | *Optional[str]*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                              | Optional key for retrying this create safely. A retry with the same key and request returns the same MCP Box and token. The same key with a different request returns 409 idempotency_conflict. |
 | `metadata`                                                                                                                                                                                      | *Optional[Any]*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                              | Customer JSON metadata, up to 16 KiB and 64 nesting levels.                                                                                                                                     |
 | `name`                                                                                                                                                                                          | *Optional[str]*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                              | Name for the MCP Box. Omission generates a name.                                                                                                                                                |
@@ -98,7 +99,7 @@ with Continuous(
 
 ### Response
 
-**[models.McpboxTokenResponse](../../models/mcpboxtokenresponse.md)**
+**[models.MCPBoxTokenResponse](../../models/mcpboxtokenresponse.md)**
 
 ### Errors
 
@@ -147,7 +148,7 @@ with Continuous(
 
 ## get_mcpbox
 
-Returns an MCP Box and its status.
+Returns an MCP Box, its status and its connection: its endpoint and token, whether it is running or stopped. Requests reach it only while it is running.
 
 ### Example Usage
 
@@ -177,7 +178,7 @@ with Continuous(
 
 ### Response
 
-**[models.MCPBox](../../models/mcpbox.md)**
+**[models.GetMCPBoxResponse](../../models/getmcpboxresponse.md)**
 
 ### Errors
 
@@ -216,7 +217,7 @@ with Continuous(
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `id`                                                                                         | *str*                                                                                        | :heavy_check_mark:                                                                           | MCP Box ID.                                                                                  |
 | `metadata`                                                                                   | *Optional[Any]*                                                                              | :heavy_minus_sign:                                                                           | Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it. |
-| `name`                                                                                       | *Optional[str]*                                                                              | :heavy_minus_sign:                                                                           | New API Box name.                                                                            |
+| `name`                                                                                       | *Optional[str]*                                                                              | :heavy_minus_sign:                                                                           | New name.                                                                                    |
 | `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
 
 ### Response
@@ -225,15 +226,17 @@ with Continuous(
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 404, 408, 413, 415  | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
-| errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| errors.Error                      | 400, 401, 404, 408, 413, 415, 422 | application/problem+json          |
+| errors.Error                      | 500, 503                          | application/problem+json          |
+| errors.ContinuousDefaultError     | 4XX, 5XX                          | \*/\*                             |
 
-## get_mcpbox_connection
+## ~~get_mcpbox_connection~~
 
-Returns the MCP Box's endpoint and token, whether it is running or stopped. Requests reach it only while it is running. An MCP Box with no stored token returns 409 mcpbox_token_unavailable; its next start issues one.
+Deprecated: get the MCP Box, whose connection this returns. Returns the MCP Box's endpoint and token, whether it is running or stopped. An MCP Box with no stored token returns 409 mcpbox_token_unavailable; its next start issues one.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -263,7 +266,7 @@ with Continuous(
 
 ### Response
 
-**[models.McpboxConnection](../../models/mcpboxconnection.md)**
+**[models.MCPBoxConnection](../../models/mcpboxconnection.md)**
 
 ### Errors
 
@@ -273,9 +276,54 @@ with Continuous(
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
+## save_mcpbox_snapshot
+
+Saves an MCP Box and the API Box it fronts as a new MCP Box Snapshot and a new API Box Snapshot, both ready when the response returns, or neither. The API Box must be running; a paused one is woken, and it keeps running. The MCP Box Snapshot serves the MCP Box's tools and is built against the API Box Snapshot, which holds the API Box's service and current state. Create an API Box from apibox_snapshot_id, then an MCP Box from the MCP Box Snapshot in front of it. Both Snapshots outlive the Boxes. An MCP Box whose API Box was deleted returns 409 mcpbox_apibox_gone; a starting API Box returns 409 apibox_starting; a stopping or stopped one returns 409 apibox_stopped; one whose runtime cannot save its state returns 409 mcpbox_rebuild_required.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="save-mcpbox-snapshot" method="post" path="/v1/mcpbox/{id}/snapshot" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.mcpbox.save_mcpbox_snapshot(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                              | Type                                                                                                                                                                                                   | Required                                                                                                                                                                                               | Description                                                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `id`                                                                                                                                                                                                   | *str*                                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                                     | ID of the Box to save.                                                                                                                                                                                 |
+| `idempotency_key`                                                                                                                                                                                      | *Optional[str]*                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                     | Optional key for retrying this save safely. A retry with the same key and request returns the Snapshot the first save created. The same key with a different request returns 409 idempotency_conflict. |
+| `metadata`                                                                                                                                                                                             | *Optional[Any]*                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                     | Customer JSON metadata, up to 16 KiB and 64 nesting levels.                                                                                                                                            |
+| `name`                                                                                                                                                                                                 | *Optional[str]*                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                     | Name for the Snapshot. Omission generates a name.                                                                                                                                                      |
+| `retries`                                                                                                                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                     | Configuration to override the default retry behavior of the client.                                                                                                                                    |
+
+### Response
+
+**[models.MCPBoxSnapshot](../../models/mcpboxsnapshot.md)**
+
+### Errors
+
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.Error                           | 400, 401, 404, 408, 409, 413, 415, 422 | application/problem+json               |
+| errors.Error                           | 500, 503                               | application/problem+json               |
+| errors.ContinuousDefaultError          | 4XX, 5XX                               | \*/\*                                  |
+
 ## start_mcpbox
 
-Starts a stopped MCP Box in front of its API Box, and returns at once with status starting and the MCP Box's token, the same one each start. A running, starting or stopping MCP Box returns 409 mcpbox_not_stopped.
+Starts a stopped MCP Box in front of its API Box, and returns at once with status starting; get the MCP Box until it is running. Its token stays the same; its get returns it. A running, starting or stopping MCP Box returns 409 mcpbox_not_stopped, and one whose API Box was deleted 409 mcpbox_apibox_gone.
 
 ### Example Usage
 
@@ -305,7 +353,7 @@ with Continuous(
 
 ### Response
 
-**[models.McpboxTokenResponse](../../models/mcpboxtokenresponse.md)**
+**[models.MCPBox](../../models/mcpbox.md)**
 
 ### Errors
 

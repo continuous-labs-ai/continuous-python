@@ -1,6 +1,6 @@
 # APIBoxSnapshotSource
 
-catalog for a Snapshot Continuous publishes, build for one built or published into the workspace.
+catalog for a Snapshot Continuous publishes, build for one built or published into the workspace, box for one saved from an API Box.
 
 ## Example Usage
 
@@ -18,3 +18,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 
 - `"catalog"`
 - `"build"`
+- `"box"`

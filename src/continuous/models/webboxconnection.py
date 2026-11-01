@@ -5,11 +5,11 @@ from continuous.types import BaseModel
 from typing_extensions import TypedDict
 
 
-class WebboxConnectionTypedDict(TypedDict):
+class WebBoxConnectionTypedDict(TypedDict):
     url: str
     r"""URL that opens the Web Box's app."""
 
 
-class WebboxConnection(BaseModel):
+class WebBoxConnection(BaseModel):
     url: str
     r"""URL that opens the Web Box's app."""

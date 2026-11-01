@@ -8,18 +8,46 @@ from .listmcpboxsnapshotsresponse import (
 from continuous.types import BaseModel, UNSET_SENTINEL
 from continuous.utils import FieldMetadata, QueryParamMetadata
 from pydantic import model_serializer
-from typing import Awaitable, Callable, Optional, Union
+from typing import Awaitable, Callable, Literal, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
+ListMcpboxSnapshotsStatus = Literal[
+    "pending",
+    "building",
+    "ready",
+    "failed",
+    "canceled",
+]
+r"""Optional build status filter."""
+
+
+ListMcpboxSnapshotsSource = Literal[
+    "catalog",
+    "build",
+    "box",
+]
+r"""Optional source filter."""
+
+
 class ListMcpboxSnapshotsRequestTypedDict(TypedDict):
+    status: NotRequired[ListMcpboxSnapshotsStatus]
+    r"""Optional build status filter."""
     limit: NotRequired[int]
     r"""Page size. Values below 1 use 50. Values above 200 use 200."""
     cursor: NotRequired[str]
     r"""Opaque next_cursor value from a previous page."""
+    source: NotRequired[ListMcpboxSnapshotsSource]
+    r"""Optional source filter."""
 
 
 class ListMcpboxSnapshotsRequest(BaseModel):
+    status: Annotated[
+        Optional[ListMcpboxSnapshotsStatus],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
+    ] = None
+    r"""Optional build status filter."""
+
     limit: Annotated[
         Optional[int],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
@@ -32,9 +60,15 @@ class ListMcpboxSnapshotsRequest(BaseModel):
     ] = None
     r"""Opaque next_cursor value from a previous page."""
 
+    source: Annotated[
+        Optional[ListMcpboxSnapshotsSource],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
+    ] = None
+    r"""Optional source filter."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["limit", "cursor"])
+        optional_fields = set(["status", "limit", "cursor", "source"])
         serialized = handler(self)
         m = {}
 
