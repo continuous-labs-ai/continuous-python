@@ -985,7 +985,7 @@ class McpboxSnapshots(BaseSDK):
     ) -> models.MCPBoxSnapshot:
         r"""Update MCP Box Snapshot
 
-        Renames an MCP Box Snapshot or replaces its metadata. Omitted fields keep their current values. Its tools do not change.
+        Renames an MCP Box Snapshot or replaces its metadata. Omitted fields keep their current values. Its tools do not change. Catalog Snapshots cannot be updated.
 
         :param id: MCP Box Snapshot ID.
         :param metadata: Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it.
@@ -1097,7 +1097,7 @@ class McpboxSnapshots(BaseSDK):
     ) -> models.MCPBoxSnapshot:
         r"""Update MCP Box Snapshot
 
-        Renames an MCP Box Snapshot or replaces its metadata. Omitted fields keep their current values. Its tools do not change.
+        Renames an MCP Box Snapshot or replaces its metadata. Omitted fields keep their current values. Its tools do not change. Catalog Snapshots cannot be updated.
 
         :param id: MCP Box Snapshot ID.
         :param metadata: Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it.

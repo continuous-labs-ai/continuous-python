@@ -11,7 +11,6 @@ Start MCP Boxes from MCP Box Snapshots. Each MCP Box serves its Snapshot's tools
 * [delete_mcpbox](#delete_mcpbox) - Delete MCP Box
 * [get_mcpbox](#get_mcpbox) - Get MCP Box
 * [update_mcpbox](#update_mcpbox) - Update MCP Box
-* [~~get_mcpbox_connection~~](#get_mcpbox_connection) - Get MCP Box connection :warning: **Deprecated**
 * [save_mcpbox_snapshot](#save_mcpbox_snapshot) - Save MCP Box as Snapshot
 * [start_mcpbox](#start_mcpbox) - Start MCP Box
 * [stop_mcpbox](#stop_mcpbox) - Stop MCP Box
@@ -231,50 +230,6 @@ with Continuous(
 | errors.Error                      | 400, 401, 404, 408, 413, 415, 422 | application/problem+json          |
 | errors.Error                      | 500, 503                          | application/problem+json          |
 | errors.ContinuousDefaultError     | 4XX, 5XX                          | \*/\*                             |
-
-## ~~get_mcpbox_connection~~
-
-Deprecated: get the MCP Box, whose connection this returns. Returns the MCP Box's endpoint and token, whether it is running or stopped. An MCP Box with no stored token returns 409 mcpbox_token_unavailable; its next start issues one.
-
-> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="get-mcpbox-connection" method="get" path="/v1/mcpbox/{id}/connection" -->
-```python
-from continuous import Continuous
-import os
-
-
-with Continuous(
-    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
-) as c_client:
-
-    res = c_client.mcpbox.get_mcpbox_connection(id="<id>")
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | MCP Box ID.                                                         |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
-
-### Response
-
-**[models.MCPBoxConnection](../../models/mcpboxconnection.md)**
-
-### Errors
-
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 404, 409                 | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
-| errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
 ## save_mcpbox_snapshot
 

@@ -203,7 +203,6 @@ with Continuous(
 * [delete_apibox](docs/sdks/apiboxsdk/README.md#delete_apibox) - Delete API Box
 * [get_apibox](docs/sdks/apiboxsdk/README.md#get_apibox) - Get API Box
 * [update_apibox](docs/sdks/apiboxsdk/README.md#update_apibox) - Update API Box
-* [~~get_apibox_connection~~](docs/sdks/apiboxsdk/README.md#get_apibox_connection) - Get API Box connection :warning: **Deprecated**
 * [save_apibox_snapshot](docs/sdks/apiboxsdk/README.md#save_apibox_snapshot) - Save API Box as Snapshot
 * [start_apibox](docs/sdks/apiboxsdk/README.md#start_apibox) - Start API Box
 * [list_apibox_steps](docs/sdks/apiboxsdk/README.md#list_apibox_steps) - List API Box steps
@@ -234,7 +233,6 @@ with Continuous(
 * [delete_mcpbox](docs/sdks/mcpboxsdk/README.md#delete_mcpbox) - Delete MCP Box
 * [get_mcpbox](docs/sdks/mcpboxsdk/README.md#get_mcpbox) - Get MCP Box
 * [update_mcpbox](docs/sdks/mcpboxsdk/README.md#update_mcpbox) - Update MCP Box
-* [~~get_mcpbox_connection~~](docs/sdks/mcpboxsdk/README.md#get_mcpbox_connection) - Get MCP Box connection :warning: **Deprecated**
 * [save_mcpbox_snapshot](docs/sdks/mcpboxsdk/README.md#save_mcpbox_snapshot) - Save MCP Box as Snapshot
 * [start_mcpbox](docs/sdks/mcpboxsdk/README.md#start_mcpbox) - Start MCP Box
 * [stop_mcpbox](docs/sdks/mcpboxsdk/README.md#stop_mcpbox) - Stop MCP Box
@@ -291,7 +289,6 @@ with Continuous(
 * [delete_webbox](docs/sdks/webboxsdk/README.md#delete_webbox) - Delete Web Box
 * [get_webbox](docs/sdks/webboxsdk/README.md#get_webbox) - Get Web Box
 * [update_webbox](docs/sdks/webboxsdk/README.md#update_webbox) - Update Web Box
-* [~~get_webbox_connection~~](docs/sdks/webboxsdk/README.md#get_webbox_connection) - Get Web Box connection :warning: **Deprecated**
 * [save_webbox_snapshot](docs/sdks/webboxsdk/README.md#save_webbox_snapshot) - Save Web Box as Snapshot
 * [start_webbox](docs/sdks/webboxsdk/README.md#start_webbox) - Start Web Box
 * [list_webbox_steps](docs/sdks/webboxsdk/README.md#list_webbox_steps) - List Web Box steps
@@ -477,7 +474,7 @@ with Continuous(
 
 
 **Inherit from [`ContinuousError`](./src/continuous/errors/continuouserror.py)**:
-* [`SimulatorDeleteConflictError`](./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 81 methods.*
+* [`SimulatorDeleteConflictError`](./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 78 methods.*
 * [`ResponseValidationError`](./src/continuous/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>

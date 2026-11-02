@@ -11,7 +11,6 @@ Start API Boxes from API Box Snapshots. Each API Box serves its Snapshot's API a
 * [delete_apibox](#delete_apibox) - Delete API Box
 * [get_apibox](#get_apibox) - Get API Box
 * [update_apibox](#update_apibox) - Update API Box
-* [~~get_apibox_connection~~](#get_apibox_connection) - Get API Box connection :warning: **Deprecated**
 * [save_apibox_snapshot](#save_apibox_snapshot) - Save API Box as Snapshot
 * [start_apibox](#start_apibox) - Start API Box
 * [list_apibox_steps](#list_apibox_steps) - List API Box steps
@@ -234,50 +233,6 @@ with Continuous(
 | errors.Error                      | 400, 401, 404, 408, 413, 415, 422 | application/problem+json          |
 | errors.Error                      | 500, 503                          | application/problem+json          |
 | errors.ContinuousDefaultError     | 4XX, 5XX                          | \*/\*                             |
-
-## ~~get_apibox_connection~~
-
-Deprecated: get the API Box, whose connection this returns. Returns the API Box's endpoint and token, whether it is running or stopped. An API Box with no stored token returns 409 apibox_token_unavailable; its next start issues one.
-
-> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="get-apibox-connection" method="get" path="/v1/apibox/{id}/connection" -->
-```python
-from continuous import Continuous
-import os
-
-
-with Continuous(
-    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
-) as c_client:
-
-    res = c_client.apibox.get_apibox_connection(id="<id>")
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | API Box ID.                                                         |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
-
-### Response
-
-**[models.APIBoxConnection](../../models/apiboxconnection.md)**
-
-### Errors
-
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 404, 409                 | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
-| errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
 ## save_apibox_snapshot
 
