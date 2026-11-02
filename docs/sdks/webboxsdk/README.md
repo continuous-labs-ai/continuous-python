@@ -11,7 +11,6 @@ Start Web Boxes from Web Box Snapshots. Each Web Box serves its Snapshot's web a
 * [delete_webbox](#delete_webbox) - Delete Web Box
 * [get_webbox](#get_webbox) - Get Web Box
 * [update_webbox](#update_webbox) - Update Web Box
-* [~~get_webbox_connection~~](#get_webbox_connection) - Get Web Box connection :warning: **Deprecated**
 * [save_webbox_snapshot](#save_webbox_snapshot) - Save Web Box as Snapshot
 * [start_webbox](#start_webbox) - Start Web Box
 * [list_webbox_steps](#list_webbox_steps) - List Web Box steps
@@ -232,50 +231,6 @@ with Continuous(
 | errors.Error                      | 400, 401, 404, 408, 413, 415, 422 | application/problem+json          |
 | errors.Error                      | 500, 503                          | application/problem+json          |
 | errors.ContinuousDefaultError     | 4XX, 5XX                          | \*/\*                             |
-
-## ~~get_webbox_connection~~
-
-Deprecated: get the Web Box, whose connection this returns. Returns the URL that opens the Web Box's app, whether it is running or stopped.
-
-> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="get-webbox-connection" method="get" path="/v1/webbox/{id}/connection" -->
-```python
-from continuous import Continuous
-import os
-
-
-with Continuous(
-    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
-) as c_client:
-
-    res = c_client.webbox.get_webbox_connection(id="<id>")
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Web Box ID.                                                         |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
-
-### Response
-
-**[models.WebBoxConnection](../../models/webboxconnection.md)**
-
-### Errors
-
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 404                      | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
-| errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
 ## save_webbox_snapshot
 

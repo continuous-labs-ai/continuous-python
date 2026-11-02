@@ -217,20 +217,12 @@ if TYPE_CHECKING:
         DeleteWebboxSnapshotRequestTypedDict,
     )
     from .delete_webboxop import DeleteWebboxRequest, DeleteWebboxRequestTypedDict
-    from .get_apibox_connectionop import (
-        GetApiboxConnectionRequest,
-        GetApiboxConnectionRequestTypedDict,
-    )
     from .get_apibox_snapshotop import (
         GetApiboxSnapshotRequest,
         GetApiboxSnapshotRequestTypedDict,
     )
     from .get_apiboxop import GetApiboxRequest, GetApiboxRequestTypedDict
     from .get_credentialop import GetCredentialRequest, GetCredentialRequestTypedDict
-    from .get_mcpbox_connectionop import (
-        GetMcpboxConnectionRequest,
-        GetMcpboxConnectionRequestTypedDict,
-    )
     from .get_mcpbox_snapshotop import (
         GetMcpboxSnapshotRequest,
         GetMcpboxSnapshotRequestTypedDict,
@@ -252,10 +244,6 @@ if TYPE_CHECKING:
     )
     from .get_simulationop import GetSimulationRequest, GetSimulationRequestTypedDict
     from .get_simulatorop import GetSimulatorRequest, GetSimulatorRequestTypedDict
-    from .get_webbox_connectionop import (
-        GetWebboxConnectionRequest,
-        GetWebboxConnectionRequestTypedDict,
-    )
     from .get_webbox_snapshotop import (
         GetWebboxSnapshotRequest,
         GetWebboxSnapshotRequestTypedDict,
@@ -793,8 +781,6 @@ __all__ = [
     "GetAPIBoxResponse",
     "GetAPIBoxResponseStatus",
     "GetAPIBoxResponseTypedDict",
-    "GetApiboxConnectionRequest",
-    "GetApiboxConnectionRequestTypedDict",
     "GetApiboxRequest",
     "GetApiboxRequestTypedDict",
     "GetApiboxSnapshotRequest",
@@ -804,8 +790,6 @@ __all__ = [
     "GetMCPBoxResponse",
     "GetMCPBoxResponseStatus",
     "GetMCPBoxResponseTypedDict",
-    "GetMcpboxConnectionRequest",
-    "GetMcpboxConnectionRequestTypedDict",
     "GetMcpboxRequest",
     "GetMcpboxRequestTypedDict",
     "GetMcpboxSnapshotRequest",
@@ -825,8 +809,6 @@ __all__ = [
     "GetWebBoxResponse",
     "GetWebBoxResponseStatus",
     "GetWebBoxResponseTypedDict",
-    "GetWebboxConnectionRequest",
-    "GetWebboxConnectionRequestTypedDict",
     "GetWebboxRequest",
     "GetWebboxRequestTypedDict",
     "GetWebboxSnapshotRequest",
@@ -1237,16 +1219,12 @@ _dynamic_imports: dict[str, str] = {
     "DeleteWebboxSnapshotRequestTypedDict": ".delete_webbox_snapshotop",
     "DeleteWebboxRequest": ".delete_webboxop",
     "DeleteWebboxRequestTypedDict": ".delete_webboxop",
-    "GetApiboxConnectionRequest": ".get_apibox_connectionop",
-    "GetApiboxConnectionRequestTypedDict": ".get_apibox_connectionop",
     "GetApiboxSnapshotRequest": ".get_apibox_snapshotop",
     "GetApiboxSnapshotRequestTypedDict": ".get_apibox_snapshotop",
     "GetApiboxRequest": ".get_apiboxop",
     "GetApiboxRequestTypedDict": ".get_apiboxop",
     "GetCredentialRequest": ".get_credentialop",
     "GetCredentialRequestTypedDict": ".get_credentialop",
-    "GetMcpboxConnectionRequest": ".get_mcpbox_connectionop",
-    "GetMcpboxConnectionRequestTypedDict": ".get_mcpbox_connectionop",
     "GetMcpboxSnapshotRequest": ".get_mcpbox_snapshotop",
     "GetMcpboxSnapshotRequestTypedDict": ".get_mcpbox_snapshotop",
     "GetMcpboxRequest": ".get_mcpboxop",
@@ -1263,8 +1241,6 @@ _dynamic_imports: dict[str, str] = {
     "GetSimulationRequestTypedDict": ".get_simulationop",
     "GetSimulatorRequest": ".get_simulatorop",
     "GetSimulatorRequestTypedDict": ".get_simulatorop",
-    "GetWebboxConnectionRequest": ".get_webbox_connectionop",
-    "GetWebboxConnectionRequestTypedDict": ".get_webbox_connectionop",
     "GetWebboxSnapshotRequest": ".get_webbox_snapshotop",
     "GetWebboxSnapshotRequestTypedDict": ".get_webbox_snapshotop",
     "GetWebboxRequest": ".get_webboxop",

@@ -190,7 +190,7 @@ with Continuous(
 
 ## update_mcpbox_snapshot
 
-Renames an MCP Box Snapshot or replaces its metadata. Omitted fields keep their current values. Its tools do not change.
+Renames an MCP Box Snapshot or replaces its metadata. Omitted fields keep their current values. Its tools do not change. Catalog Snapshots cannot be updated.
 
 ### Example Usage
 

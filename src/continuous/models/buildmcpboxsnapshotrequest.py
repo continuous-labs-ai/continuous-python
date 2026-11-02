@@ -9,7 +9,7 @@ from typing_extensions import NotRequired, TypedDict
 
 class BuildMCPBoxSnapshotRequestTypedDict(TypedDict):
     apibox_snapshot_id: str
-    r"""The ready API Box Snapshot of the workspace or the catalog whose API the MCP Box calls. Its spec is the build's."""
+    r"""The ready API Box Snapshot of the workspace or the catalog whose API the MCP Box calls. Its spec is the build's, and must be OpenAPI or GraphQL."""
     credential_ids: NotRequired[List[str]]
     r"""At most one workspace credential of the source MCP server: its base_url is the server's endpoint. With it, the build captures the live server's tools and QA compares the MCP Box with it. It must belong to the workspace. QA calls only tools the source marks read-only. Use a sandbox or test account."""
     instructions: NotRequired[str]
@@ -26,7 +26,7 @@ class BuildMCPBoxSnapshotRequestTypedDict(TypedDict):
 
 class BuildMCPBoxSnapshotRequest(BaseModel):
     apibox_snapshot_id: str
-    r"""The ready API Box Snapshot of the workspace or the catalog whose API the MCP Box calls. Its spec is the build's."""
+    r"""The ready API Box Snapshot of the workspace or the catalog whose API the MCP Box calls. Its spec is the build's, and must be OpenAPI or GraphQL."""
 
     credential_ids: Optional[List[str]] = None
     r"""At most one workspace credential of the source MCP server: its base_url is the server's endpoint. With it, the build captures the live server's tools and QA compares the MCP Box with it. It must belong to the workspace. QA calls only tools the source marks read-only. Use a sandbox or test account."""

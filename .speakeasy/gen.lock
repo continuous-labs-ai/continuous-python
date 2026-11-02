@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: 4bd5f92d7b56bf0474924dd91a38b400
+  docChecksum: c4905b7bacdfbc41b36c0dbce9f5653b
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.4.6
-  configChecksum: a78e11242cfadfdbf87141fca1b899a3
+  releaseVersion: 0.4.7
+  configChecksum: c7bf52c9c2cc4d99614c9e5b8d58bb58
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: ab2e90eb-a9f6-4328-99da-8e092707e0df
-  pristine_commit_hash: 0c68fe88fed688bebfbdfa1fa47feda36b2a79bb
-  pristine_tree_hash: bfa991942fe79f18dfd7a9143ea6f068d11dd08a
+  generation_id: c0d240ef-3100-40e8-b2c4-329a28eb1fce
+  pristine_commit_hash: 08056dcb7b87497ce9d4234c07ccbc6e0e025de3
+  pristine_tree_hash: 5f33b9b623ce5e641868ec40e87b3764a6c2550b
 features:
   python:
     additionalDependencies: 1.1.0
@@ -131,8 +131,8 @@ trackedFiles:
     pristine_git_object: b8109baf0fdb073bae64d63144d7ab2bdd19ef54
   docs/models/buildmcpboxsnapshotrequest.md:
     id: 48823370246f
-    last_write_checksum: sha1:e68fe714c9cb08a5a107fb756f0d2df8931c0221
-    pristine_git_object: c3d2d3e9fd8a7dfc18707b5510a363e289279a8c
+    last_write_checksum: sha1:9d6169a48e94d90030eb0e809fa30150556627a2
+    pristine_git_object: 4545a88b94fe61a26a61bb197bac9746c8debbac
   docs/models/buildsimulatordocument.md:
     id: fa15d59c58a4
     last_write_checksum: sha1:7c74a9956f7f0777b76f5c75f6ff87e4dfa5e6e7
@@ -405,10 +405,6 @@ trackedFiles:
     id: bc9972acb39f
     last_write_checksum: sha1:3adb9dc8bfa01875298b1eb4aad6670465518fa3
     pristine_git_object: 335c7287bea4be7502beba4b2de9bc591cc82546
-  docs/models/getapiboxconnectionrequest.md:
-    id: 332e27fb40b3
-    last_write_checksum: sha1:5669662280eb27c1c42ec79e1a950f030d4e83f5
-    pristine_git_object: e24102f30dfabbfab1f495eb8e381394b6b8437a
   docs/models/getapiboxrequest.md:
     id: a8789f5be45d
     last_write_checksum: sha1:75b02d55267fbf7944598fa719cc9a1d83dddd9b
@@ -429,10 +425,6 @@ trackedFiles:
     id: 6ab3a8eb3d33
     last_write_checksum: sha1:5a272081fb6f1ce4f9064cf6cf7f12fd73008fd2
     pristine_git_object: 53c61d61f8de6abd5bd8a6cebab7d0c0aa4918e4
-  docs/models/getmcpboxconnectionrequest.md:
-    id: 70ca022e076c
-    last_write_checksum: sha1:4177b5bd725d35e2bb226d22772cc199935fcfb4
-    pristine_git_object: 01c7cc6c79f10587f9a781395c322c0bed8621b9
   docs/models/getmcpboxrequest.md:
     id: f16d87db4d75
     last_write_checksum: sha1:5cca988473d405c8bcfa9daf3891f2c6378fd0ce
@@ -473,10 +465,6 @@ trackedFiles:
     id: 19b572251160
     last_write_checksum: sha1:b48249452676b9994e10961dba955681a43bc215
     pristine_git_object: 926d75c7a12c0cf115db9bac78deb047274c0fa0
-  docs/models/getwebboxconnectionrequest.md:
-    id: bbef75d70f5e
-    last_write_checksum: sha1:01c2b3689ea0b13c1757ab996d07fe0ac0892bff
-    pristine_git_object: d5ffce960dd59d1ebbaf061cc3609d3ffc270438
   docs/models/getwebboxrequest.md:
     id: edd153b26487
     last_write_checksum: sha1:4968b5129fd1474569c9bd087d24b2beedd90293
@@ -1067,8 +1055,8 @@ trackedFiles:
     pristine_git_object: 901478e8484ae11bd20d62f089cbed5e4b722662
   docs/sdks/apiboxsdk/README.md:
     id: 69e827943fc3
-    last_write_checksum: sha1:80c2d4ce73313ddd3c44691e17d411ebccf6d1f5
-    pristine_git_object: af593acd51e82aa5989d1493aa52e7894b7dfdd5
+    last_write_checksum: sha1:c0155e093e7b6aec5899e077aad3c7665c0a4497
+    pristine_git_object: beed4117fe216bbcf83c5bacb4dcd31ac88c268f
   docs/sdks/apiboxsnapshots/README.md:
     id: 1cdd53e655f6
     last_write_checksum: sha1:634c0c595c35842a56218723462c62e5e8ce3d44
@@ -1079,12 +1067,12 @@ trackedFiles:
     pristine_git_object: 38860df1f85d4120e6f6bb56a373b87467984069
   docs/sdks/mcpboxsdk/README.md:
     id: c74d2109e2fa
-    last_write_checksum: sha1:c152e33c88333f38488920f011ac48588f65763f
-    pristine_git_object: fef8b0b8c498f6aa62166763f2dcbe9bfdfcfc4d
+    last_write_checksum: sha1:d5fcee2c3a47c2aa4ce73e75759dae50c909fefa
+    pristine_git_object: 69fe61800abdadf5b5f6e8fe1e07721fdcc7b740
   docs/sdks/mcpboxsnapshots/README.md:
     id: 8dfd04ebf73d
-    last_write_checksum: sha1:ae9418836b4c1871297c4eb9848d854eea007db2
-    pristine_git_object: e95fdbfd161697ab9f7e39c088ea5291cf9dd6d1
+    last_write_checksum: sha1:df08cc3b984321f18e11db0a14d157db71c738c3
+    pristine_git_object: f51e18536fb1a8bbe447be313573f37e50942947
   docs/sdks/simulations/README.md:
     id: a9e027fcb2b0
     last_write_checksum: sha1:858b19e6a3d7be68fc6db6f8b611f1b4cd6646f0
@@ -1099,8 +1087,8 @@ trackedFiles:
     pristine_git_object: c02aee7887c0028c5113cb8b279cc6b255f15179
   docs/sdks/webboxsdk/README.md:
     id: 7f6c56f235ae
-    last_write_checksum: sha1:ea5eac2871935a4a285d139ab1a918fa53947f24
-    pristine_git_object: 92feddc80feac3c50636ade03c232cbba67c9fc7
+    last_write_checksum: sha1:2e5070f4249fd77361ad6c2ae206607e14e98373
+    pristine_git_object: 5893a5224f492281fea16d534fea6f94d81b65c3
   docs/sdks/webboxsnapshots/README.md:
     id: fcfe151b7749
     last_write_checksum: sha1:7a060ca8c84870b2c1b8526630f47a2107009ce6
@@ -1115,8 +1103,8 @@ trackedFiles:
     pristine_git_object: ba50994ac7aceefe62e1571a6cbff467d9a067da
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:83337bfe019bdf6f4580d43030351265c269cec8
-    pristine_git_object: 8a8c14d9248506e63aacae3f06bbd393d316cb40
+    last_write_checksum: sha1:ef8b8fe725186b6e61a83cf876c891bf3ea9da24
+    pristine_git_object: ae1a33f890cd9d4bff3f055ae95e8bb1e21769b6
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -1143,12 +1131,12 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:5467ff953905ca14998a2ad70adb5eedd73a259f
-    pristine_git_object: 9d4114777ffb5d036b37bb51f8f04426ada3ba73
+    last_write_checksum: sha1:1c6b6d8afe37dfca2a1d7003c6555113d82695af
+    pristine_git_object: 00641eff5287e24bda89b330cc882cecb194b77c
   src/continuous/apibox_sdk.py:
     id: c9db2171035d
-    last_write_checksum: sha1:bb913200872159c1930ecf8967c0c2ea33e36e59
-    pristine_git_object: 739b6acc3f895a54760c853645cacd991080792e
+    last_write_checksum: sha1:25fc64a829a4e4a18ccca48b58f8cc46115b0478
+    pristine_git_object: 028047c04f64c6140651d55dc1d40e8d11858ac3
   src/continuous/apibox_snapshots.py:
     id: 22b1ffcf83df
     last_write_checksum: sha1:7b85bbf9215b4dc3183e80060f281544991bae9d
@@ -1195,16 +1183,16 @@ trackedFiles:
     pristine_git_object: 89560b566073785535643e694c112bedbd3db13d
   src/continuous/mcpbox_sdk.py:
     id: c3b0cd2b7727
-    last_write_checksum: sha1:25efa9f18e9370705bf1511c24c2609d60c5c4d7
-    pristine_git_object: f96f1b3f1ae3e5d19e937d232adf8c374720d984
+    last_write_checksum: sha1:3e05ccd47145fe8c01093298bc7103b38f0e21de
+    pristine_git_object: e5bbe523d837798d0a084303f65e397d64bfabf4
   src/continuous/mcpbox_snapshots.py:
     id: a5fcd673e720
-    last_write_checksum: sha1:2d8cce48873d4e1eb1713c76d87875f2545a932d
-    pristine_git_object: 555261106b82fadfbf64ec1459aa83a1876cf18d
+    last_write_checksum: sha1:dd147ecf501b52629e3ab7ce7b7394b66014a5fb
+    pristine_git_object: a36777ea98acebbedcd8a7c93843540a65adeafc
   src/continuous/models/__init__.py:
     id: 53b8497bf08d
-    last_write_checksum: sha1:b221b152a2bc8b666346377ae6e6d8e3d1690d8f
-    pristine_git_object: 5f94899ece54f425f8d7ce24a6740e1245eabb74
+    last_write_checksum: sha1:537b775b24747ed1df7959c51bfef7ca33f9f53a
+    pristine_git_object: c6645d73ee9f36220951cbd6338de843d6863661
   src/continuous/models/advancetimerequest.py:
     id: 67dd05bf69fb
     last_write_checksum: sha1:e3cd230346b6b2245192bb869661ac82118f46dd
@@ -1243,8 +1231,8 @@ trackedFiles:
     pristine_git_object: 40fa5e9d38f504d894cb111d5ac689bb6d77ee06
   src/continuous/models/buildmcpboxsnapshotrequest.py:
     id: e1b8d5b19db9
-    last_write_checksum: sha1:3697a0accca5511a561d42162d0e26b8e388aabe
-    pristine_git_object: 4d4c60190cde6e2a275cabafb27b3ed47c6cc292
+    last_write_checksum: sha1:ce446d6c7d6112db4c600c9b33ff7859c3af0676
+    pristine_git_object: 5b744813a9536a6b0b67ea1e6b34af1fdb694c32
   src/continuous/models/buildsimulatorrequest.py:
     id: de11b8340ddc
     last_write_checksum: sha1:77c89e71424235910265d0d74770a79cea91bff8
@@ -1429,10 +1417,6 @@ trackedFiles:
     id: 97c9288d4f3a
     last_write_checksum: sha1:510bd2abf00a8d710ac6933bb7a1373ef5cd7130
     pristine_git_object: e68c8192e1d5187c6b7a9db4f71da550b4ba4e8c
-  src/continuous/models/get_apibox_connectionop.py:
-    id: 3f17eba9536f
-    last_write_checksum: sha1:7e438ef7edcc5a79d981e3b3cf7f446526cf1352
-    pristine_git_object: 321aad391802181ea4b9ffaeabab32391cca0309
   src/continuous/models/get_apibox_snapshotop.py:
     id: 9405edaadea0
     last_write_checksum: sha1:6278d010e40f4ebd82f98315ff70e0c10e810254
@@ -1445,10 +1429,6 @@ trackedFiles:
     id: 400427cd479f
     last_write_checksum: sha1:d1017a37196c8cf5dbc8d98edf2ad7f436d0ab7e
     pristine_git_object: 56ce58a08692084df914f51778c6c0167769686f
-  src/continuous/models/get_mcpbox_connectionop.py:
-    id: 8f97daf6b6a2
-    last_write_checksum: sha1:0150316847d6a4bbb689ce3d426eb7e633f2ffdd
-    pristine_git_object: c55d90d26560bb8081db95d5a3cedfb08bf02268
   src/continuous/models/get_mcpbox_snapshotop.py:
     id: d5b0b65ba84b
     last_write_checksum: sha1:e9a706894425f51eb1ed141e7c29b94dac402f36
@@ -1477,10 +1457,6 @@ trackedFiles:
     id: e88f4dab93e0
     last_write_checksum: sha1:8719658d06d3cd6d96e71f3b57d323f2a10cb101
     pristine_git_object: afec9a8f513690f5c2f77fdb5072c66dda47a80d
-  src/continuous/models/get_webbox_connectionop.py:
-    id: 34f370d5ef3e
-    last_write_checksum: sha1:09057569a447e7de1ca451185c794b36f1d16c39
-    pristine_git_object: e38694dace77a8f40fd631146dd409dbfb3519e5
   src/continuous/models/get_webbox_snapshotop.py:
     id: ea822099b731
     last_write_checksum: sha1:fb6e9adaebccdb99d9124b32b2350b9a923c8cff
@@ -1975,8 +1951,8 @@ trackedFiles:
     pristine_git_object: ac217f473c5d52a454a2979b3eb35e66175d365c
   src/continuous/webbox_sdk.py:
     id: 218c3ebf0eb8
-    last_write_checksum: sha1:f0d798599eec886404670cdafa1e43ed17a34f04
-    pristine_git_object: 33bd53a45a84203550f022ba42cec6180ce48140
+    last_write_checksum: sha1:79b4cf71d22682183cfd551443240c9eecfd9521
+    pristine_git_object: e5d41ffa363c0c473543db8a8a919a47cee709d8
   src/continuous/webbox_snapshots.py:
     id: e84779208b67
     last_write_checksum: sha1:9dd67790cd815f611427311b75caff001f858f7e
@@ -4962,4 +4938,8 @@ examples:
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
 examplesVersion: 1.0.2
-releaseNotes: "## Python SDK Changes:\n* `continuous.mcpbox.create_mcpbox()`:  `response.mcpbox` **Changed** (Breaking ⚠️)\n* `continuous.webbox.stop_webbox()`:  `response` **Changed** (Breaking ⚠️)\n* `continuous.webbox.start_webbox()`:  `response` **Changed** (Breaking ⚠️)\n* `continuous.apibox.list_apiboxes()`:  `response.apiboxes[]` **Changed** (Breaking ⚠️)\n* `continuous.apibox.create_apibox()`: \n  *  `response.apibox` **Changed** (Breaking ⚠️)\n  *  `error.status[422]` **Added**\n* `continuous.webbox.update_webbox()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error.status[422]` **Added**\n* `continuous.apibox.get_apibox()`:  `response` **Changed** (Breaking ⚠️)\n* `continuous.apibox.update_apibox()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error.status[422]` **Added**\n* `continuous.webbox.get_webbox()`:  `response` **Changed** (Breaking ⚠️)\n* `continuous.apibox.start_apibox()`:  `response` **Changed** (Breaking ⚠️)\n* `continuous.apibox.stop_apibox()`:  `response` **Changed** (Breaking ⚠️)\n* `continuous.webbox.create_webbox()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error.status[422]` **Added**\n* `continuous.webbox.list_webboxes()`:  `response.webboxes[]` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox.stop_mcpbox()`:  `response` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox.start_mcpbox()`:  `response` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox.update_mcpbox()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error.status[422]` **Added**\n* `continuous.mcpbox.get_mcpbox()`:  `response` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox.list_mcpboxes()`:  `response.mcpboxes[]` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox_snapshots.list_mcpbox_snapshots()`: \n  *  `request` **Changed**\n  *  `response.snapshots[]` **Changed**\n* `continuous.simulators.get_simulator()`:  `response.build.waiting.type` **Added**\n* `continuous.apibox_snapshots.cancel_apibox_snapshot()`:  `response` **Changed**\n* `continuous.mcpbox.get_mcpbox_connection()`: **Deprecated**\n* `continuous.apibox_snapshots.update_apibox_snapshot()`: \n  *  `response` **Changed**\n  *  `error.status[422]` **Added**\n* `continuous.apibox_snapshots.get_apibox_snapshot()`:  `response` **Changed**\n* `continuous.apibox.save_apibox_snapshot()`: **Added**\n* `continuous.mcpbox_snapshots.create_mcpbox_snapshot()`:  `response` **Changed**\n* `continuous.mcpbox_snapshots.delete_mcpbox_snapshot()`:  `error.status[403]` **Added**\n* `continuous.mcpbox_snapshots.get_mcpbox_snapshot()`:  `response` **Changed**\n* `continuous.mcpbox_snapshots.update_mcpbox_snapshot()`: \n  *  `response` **Changed**\n  *  `error` **Changed**\n* `continuous.mcpbox_snapshots.cancel_mcpbox_snapshot()`: \n  *  `response` **Changed**\n  *  `error.status[403]` **Added**\n* `continuous.mcpbox_snapshots.resume_mcpbox_snapshot()`: \n  *  `request.add_seconds` **Added**\n  *  `response` **Changed**\n  *  `error` **Changed**\n* `continuous.simulators.list_simulators()`:  `response.simulators[].build.waiting.type` **Added**\n* `continuous.simulators.build_simulator()`:  `response.build.waiting.type` **Added**\n* `continuous.apibox_snapshots.resume_apibox_snapshot()`: \n  *  `request.add_seconds` **Added**\n  *  `response` **Changed**\n  *  `error` **Changed**\n* `continuous.simulators.update_simulator()`:  `response.build.waiting.type` **Added**\n* `continuous.simulators.cancel_simulator()`:  `response.build.waiting.type` **Added**\n* `continuous.simulators.resume_simulator()`: \n  *  `request.add_seconds` **Added**\n  *  `response.build.waiting.type` **Added**\n  *  `error` **Changed**\n* `continuous.apibox_snapshots.create_apibox_snapshot()`:  `response` **Changed**\n* `continuous.apibox_snapshots.list_apibox_snapshots()`: \n  *  `request.source` **Changed**\n  *  `response.snapshots[]` **Changed**\n* `continuous.apibox.get_apibox_connection()`: **Deprecated**\n* `continuous.apibox.delete_apibox()`:  `error.status[409]` **Added**\n* `continuous.webbox.get_webbox_connection()`: **Deprecated**\n* `continuous.webbox.save_webbox_snapshot()`: **Added**\n* `continuous.mcpbox.save_mcpbox_snapshot()`: **Added**\n* `continuous.webbox_snapshots.list_webbox_snapshots()`: \n  *  `request.source` **Changed**\n  *  `response.snapshots[]` **Changed**\n* `continuous.webbox_snapshots.create_webbox_snapshot()`:  `response` **Changed**\n* `continuous.webbox_snapshots.get_webbox_snapshot()`:  `response` **Changed**\n* `continuous.webbox_snapshots.update_webbox_snapshot()`: \n  *  `response` **Changed**\n  *  `error.status[422]` **Added**\n* `continuous.webbox_snapshots.cancel_webbox_snapshot()`:  `response` **Changed**\n* `continuous.webbox_snapshots.resume_webbox_snapshot()`: \n  *  `request.add_seconds` **Added**\n  *  `response` **Changed**\n  *  `error` **Changed**\n"
+releaseNotes: |
+  ## Python SDK Changes:
+  * `continuous.apibox.get_apibox_connection()`: **Removed** (Breaking ⚠️)
+  * `continuous.mcpbox.get_mcpbox_connection()`: **Removed** (Breaking ⚠️)
+  * `continuous.webbox.get_webbox_connection()`: **Removed** (Breaking ⚠️)
