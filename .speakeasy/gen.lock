@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: c4905b7bacdfbc41b36c0dbce9f5653b
+  docChecksum: dfba60fb111767ff63222ed4db3651b4
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.4.7
-  configChecksum: c7bf52c9c2cc4d99614c9e5b8d58bb58
+  releaseVersion: 0.4.8
+  configChecksum: 162157db5ce3077dd737475c5774f2d2
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: c0d240ef-3100-40e8-b2c4-329a28eb1fce
-  pristine_commit_hash: 08056dcb7b87497ce9d4234c07ccbc6e0e025de3
-  pristine_tree_hash: 5f33b9b623ce5e641868ec40e87b3764a6c2550b
+  generation_id: 97cfd009-3d52-459c-838b-b4ee24011d80
+  pristine_commit_hash: f35af9c864a11f4d6f5d6ca4c0bd8923e74b6e0d
+  pristine_tree_hash: 5b0ba4f88725803d0cea5b19cd18c28d028e8ea0
 features:
   python:
     additionalDependencies: 1.1.0
@@ -103,8 +103,8 @@ trackedFiles:
     pristine_git_object: 7dfce19a3247a6256e60e38b2c76190b6341b4fc
   docs/models/apiboxtokenresponse.md:
     id: 28e6bb869ad5
-    last_write_checksum: sha1:d66cf5993451ec8cb37a7e9586da6b44fce8570f
-    pristine_git_object: baae6a171a487cc9766b3232bdeae61f2f67ca2f
+    last_write_checksum: sha1:56c9b35c1db000aad347e807390eefb39c6605cc
+    pristine_git_object: 3aa5f700cae52f8e38297b3d98b015da6de7df57
   docs/models/authmethod.md:
     id: f8f6a8d30e5d
     last_write_checksum: sha1:fce462d56b43e0653b53e2c12b3e19d3b775af9f
@@ -411,8 +411,8 @@ trackedFiles:
     pristine_git_object: 12dd6a2ccf9816a8afa0d8f80e80c921bb19fb17
   docs/models/getapiboxresponse.md:
     id: 325ce274b37a
-    last_write_checksum: sha1:831417beeafb9575edd36e5c81063530949f7241
-    pristine_git_object: b587f498a2a265bb26b08c04dcaa1faf6756cfd2
+    last_write_checksum: sha1:325dc6efa7a3dc022571d8c21ebf673514804070
+    pristine_git_object: 0782f301c1394b682f6c76b8422eeb4511d0ac85
   docs/models/getapiboxresponsestatus.md:
     id: 90cb71387781
     last_write_checksum: sha1:75d4252e5aaa77ab2313f2870a2e3eb850bf1ce5
@@ -431,8 +431,8 @@ trackedFiles:
     pristine_git_object: 89228f466345cb86b0385723a6eb7a35da342114
   docs/models/getmcpboxresponse.md:
     id: 50d4e949ac56
-    last_write_checksum: sha1:4a5a83cab384b658180a9cf6bc0b75b2c3a231ba
-    pristine_git_object: c29734960262fa2a6fc846b2347244aec160aa20
+    last_write_checksum: sha1:51c8c2990c5d05dd04de43b108452f2becfbb6a3
+    pristine_git_object: 01d83457905f24ad3c75e974c4bf35037e325e85
   docs/models/getmcpboxresponsestatus.md:
     id: 338b689d4321
     last_write_checksum: sha1:25ec48957b2b761b11a97b9f9de146dea7815bd6
@@ -723,8 +723,8 @@ trackedFiles:
     pristine_git_object: e064c53f4e2bf237d8a4941112625e2694a24309
   docs/models/mcpboxtokenresponse.md:
     id: d7e1b2351ca9
-    last_write_checksum: sha1:e95c51fbe2b0278518bd42ef52631257d90c6fe5
-    pristine_git_object: 6f2bf49e855deecdc6eee098caf459a8770212fe
+    last_write_checksum: sha1:addeeb3fefde195afec0d2c287ffa673019acb0a
+    pristine_git_object: ad92d906b86f7f75e5f57d7d971c5402e18f5423
   docs/models/phase.md:
     id: a2d01dc13e35
     last_write_checksum: sha1:dead231dbebee5961f5f23592a39d56902e4df44
@@ -1103,8 +1103,8 @@ trackedFiles:
     pristine_git_object: ba50994ac7aceefe62e1571a6cbff467d9a067da
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:ef8b8fe725186b6e61a83cf876c891bf3ea9da24
-    pristine_git_object: ae1a33f890cd9d4bff3f055ae95e8bb1e21769b6
+    last_write_checksum: sha1:890aef7ac7c3e569aaa5fb16828aebff355095ca
+    pristine_git_object: 3027eb2269a8929f92641be59bd42b8ae9eedfb0
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -1131,8 +1131,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:1c6b6d8afe37dfca2a1d7003c6555113d82695af
-    pristine_git_object: 00641eff5287e24bda89b330cc882cecb194b77c
+    last_write_checksum: sha1:ac35e63d34b848b822c941def4a20c4cbbcb272d
+    pristine_git_object: 23998e3c1f0b3da5c22b77f16a8bffecc0fdb909
   src/continuous/apibox_sdk.py:
     id: c9db2171035d
     last_write_checksum: sha1:25fc64a829a4e4a18ccca48b58f8cc46115b0478
@@ -1211,8 +1211,8 @@ trackedFiles:
     pristine_git_object: 5ea682379cf27c9d221d7acba392cf8e1d5add65
   src/continuous/models/apiboxtokenresponse.py:
     id: 5225b92f6c15
-    last_write_checksum: sha1:afffed1ea5e0b38145fe9fbc8f1db330aca1ee88
-    pristine_git_object: af5097ab380f8d510054bfc1e8daa9a967d0ff97
+    last_write_checksum: sha1:39ef62c741b14d299a18ff03589ac34aa367fc68
+    pristine_git_object: 548b2e7998294b4a0685ebe33eb787be5a7f3f72
   src/continuous/models/boxerror.py:
     id: ac0b17d2088e
     last_write_checksum: sha1:b660214cdedec2c4c76bc4e640ce000f57a672ce
@@ -1467,12 +1467,12 @@ trackedFiles:
     pristine_git_object: adfdc33a622182e7ca97ffe1f4841a7537f0c03e
   src/continuous/models/getapiboxresponse.py:
     id: 0405e989ad00
-    last_write_checksum: sha1:6c5bcb932fcdfd568bd108bd61328d74b693a6ff
-    pristine_git_object: 2af127570b198944fe27dedf19309863271ba773
+    last_write_checksum: sha1:7d1ca53b5a5c46c67ec1356936c0a8fb56496be3
+    pristine_git_object: a8dc3d9f76a6cf6e7006b85ed35798375253d3e3
   src/continuous/models/getmcpboxresponse.py:
     id: 87c7df33339e
-    last_write_checksum: sha1:15dd772ea2e84a8024f3f242751428894a2af714
-    pristine_git_object: 788aace131ffcd0504bd94d3f2fb319e99da4cc4
+    last_write_checksum: sha1:9de0ecaabad6295697c5841e7ed1a5345f3cd66f
+    pristine_git_object: b83434ea900a6a3bd52ebd46943b46da1a45a39a
   src/continuous/models/getwebboxresponse.py:
     id: dd5d9e617361
     last_write_checksum: sha1:09fbc2e727ddf78a03c8008e223f01c04084498e
@@ -1603,8 +1603,8 @@ trackedFiles:
     pristine_git_object: cb5ab9773aa1b94c5432d9a8f87933800ead1f1b
   src/continuous/models/mcpboxtokenresponse.py:
     id: ac8fb48f004f
-    last_write_checksum: sha1:d519dab133f1b6cf06e26a4f1609bc7e4184f748
-    pristine_git_object: 935c87094bbe3a5b1cc016fe2ab86be4dfa7da46
+    last_write_checksum: sha1:ebab6d43b487d86f706d9a0f8cabecc2e16d09ba
+    pristine_git_object: ed736b8ee9ed8d565285fc587fbe1029b2f2315d
   src/continuous/models/regenerate_simulation_tokenop.py:
     id: 0d7cc6e9e28d
     last_write_checksum: sha1:9f38a715c45d16ef88bfa759b2aef92970d4648b
@@ -4938,8 +4938,3 @@ examples:
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
 examplesVersion: 1.0.2
-releaseNotes: |
-  ## Python SDK Changes:
-  * `continuous.apibox.get_apibox_connection()`: **Removed** (Breaking ⚠️)
-  * `continuous.mcpbox.get_mcpbox_connection()`: **Removed** (Breaking ⚠️)
-  * `continuous.webbox.get_webbox_connection()`: **Removed** (Breaking ⚠️)
