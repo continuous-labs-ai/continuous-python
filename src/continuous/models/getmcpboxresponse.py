@@ -26,7 +26,7 @@ class GetMCPBoxResponseTypedDict(TypedDict):
     apibox_id: str
     r"""The API Box it fronts, whose state its tools read and change."""
     connection: Nullable[MCPBoxConnectionTypedDict]
-    r"""The MCP Box's endpoint and token, or null while it has no stored token; its next start issues one."""
+    r"""The MCP Box's endpoint and token, or null for a box created before boxes stored their tokens."""
     created_at: datetime
     r"""MCP Box creation time."""
     endpoint: str
@@ -53,7 +53,7 @@ class GetMCPBoxResponse(BaseModel):
     r"""The API Box it fronts, whose state its tools read and change."""
 
     connection: Nullable[MCPBoxConnection]
-    r"""The MCP Box's endpoint and token, or null while it has no stored token; its next start issues one."""
+    r"""The MCP Box's endpoint and token, or null for a box created before boxes stored their tokens."""
 
     created_at: datetime
     r"""MCP Box creation time."""

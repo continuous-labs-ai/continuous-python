@@ -10,14 +10,14 @@ from typing_extensions import TypedDict
 class APIBoxTokenResponseTypedDict(TypedDict):
     apibox: APIBoxTypedDict
     token: Nullable[str]
-    r"""The API Box's token, which lasts until the API Box is deleted. It is null only on a retried create whose first attempt stored no token; a start then issues one, which the API Box's get returns."""
+    r"""The API Box's token, which lasts until the API Box is deleted. It is null only for a box created before boxes stored their tokens."""
 
 
 class APIBoxTokenResponse(BaseModel):
     apibox: APIBox
 
     token: Nullable[str]
-    r"""The API Box's token, which lasts until the API Box is deleted. It is null only on a retried create whose first attempt stored no token; a start then issues one, which the API Box's get returns."""
+    r"""The API Box's token, which lasts until the API Box is deleted. It is null only for a box created before boxes stored their tokens."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

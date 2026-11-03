@@ -10,14 +10,14 @@ from typing_extensions import TypedDict
 class MCPBoxTokenResponseTypedDict(TypedDict):
     mcpbox: MCPBoxTypedDict
     token: Nullable[str]
-    r"""The MCP Box's token, which lasts until the MCP Box is deleted. It is null only on a retried create whose first attempt stored no token; a start then issues one, which the MCP Box's get returns."""
+    r"""The MCP Box's token, which lasts until the MCP Box is deleted. It is null only for a box created before boxes stored their tokens."""
 
 
 class MCPBoxTokenResponse(BaseModel):
     mcpbox: MCPBox
 
     token: Nullable[str]
-    r"""The MCP Box's token, which lasts until the MCP Box is deleted. It is null only on a retried create whose first attempt stored no token; a start then issues one, which the MCP Box's get returns."""
+    r"""The MCP Box's token, which lasts until the MCP Box is deleted. It is null only for a box created before boxes stored their tokens."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
