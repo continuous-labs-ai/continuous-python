@@ -12,6 +12,7 @@ Build MCP Box Snapshots of an MCP server's tools against a ready API Box Snapsho
 * [get_mcpbox_snapshot](#get_mcpbox_snapshot) - Get MCP Box Snapshot
 * [update_mcpbox_snapshot](#update_mcpbox_snapshot) - Update MCP Box Snapshot
 * [cancel_mcpbox_snapshot](#cancel_mcpbox_snapshot) - Cancel MCP Box Snapshot build
+* [clone_mcpbox_snapshot](#clone_mcpbox_snapshot) - Clone MCP Box Snapshot
 * [resume_mcpbox_snapshot](#resume_mcpbox_snapshot) - Resume MCP Box Snapshot build
 
 ## list_mcpbox_snapshots
@@ -63,7 +64,7 @@ with Continuous(
 
 ## create_mcpbox_snapshot
 
-Starts an asynchronous build and returns the MCP Box Snapshot with status pending. Get the Snapshot until its status is ready, failed or canceled; MCP Boxes serve a ready one. The build makes an MCP server that answers from the API Box Snapshot it names, run in real time: with a credential, it copies the live MCP server at the credential's base_url; without one, the server its instructions or research name. Builds queue with Simulator builds and count toward the same quotas. Send multipart/form-data with a JSON part named request and optional file parts named document with vendor documentation.
+Starts an asynchronous build and returns the MCP Box Snapshot with status pending. Get the Snapshot until its status is ready, failed or canceled; MCP Boxes serve a ready one. The build makes an MCP server that answers from the API Box Snapshot it names, run in real time: with a credential, it copies the live MCP server at the credential's base_url; without one, the server its instructions or research name. Builds queue with Simulator builds and count toward the same quotas. Send multipart/form-data with a JSON part named request and optional file parts named document with vendor documentation. To build on a ready MCP Box Snapshot, set parent_id.
 
 ### Example Usage
 
@@ -77,9 +78,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.mcpbox_snapshots.create_mcpbox_snapshot(request={
-        "apibox_snapshot_id": "<id>",
-    })
+    res = c_client.mcpbox_snapshots.create_mcpbox_snapshot(request={})
 
     # Handle response
     print(res)
@@ -273,6 +272,69 @@ with Continuous(
 | errors.Error                  | 401, 403, 404                 | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
+
+## clone_mcpbox_snapshot
+
+Creates a ready copy of a ready MCP Box Snapshot in another workspace, without a build. The clone has a new ID and the source's artifact, documents and saved state; the source is unchanged. The clone records no credentials, since they belong to the source workspace, and no parent or source Snapshot. An API Box Snapshot of the source workspace that the MCP Box Snapshot was built against is cloned with it, and the clone is built against the copy; a catalog one is kept. The source is the caller's workspace: an API key's own workspace, or X-Workspace-Id for a session. An API key may clone into any other workspace of its organization.
+
+### Example Usage: bad_request_body
+
+<!-- UsageSnippet language="python" operationID="clone-mcpbox-snapshot" method="post" path="/v1/mcpbox-snapshots/{id}/clone" example="bad_request_body" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.mcpbox_snapshots.clone_mcpbox_snapshot(id="<id>", target_workspace_id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+### Example Usage: bad_request_clone_target
+
+<!-- UsageSnippet language="python" operationID="clone-mcpbox-snapshot" method="post" path="/v1/mcpbox-snapshots/{id}/clone" example="bad_request_clone_target" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.mcpbox_snapshots.clone_mcpbox_snapshot(id="<id>", target_workspace_id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                                                                                         | Type                                                                                                                                                                                                                                                                              | Required                                                                                                                                                                                                                                                                          | Description                                                                                                                                                                                                                                                                       |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                                                                                                                                                                                                                                                                              | *str*                                                                                                                                                                                                                                                                             | :heavy_check_mark:                                                                                                                                                                                                                                                                | Source Snapshot ID.                                                                                                                                                                                                                                                               |
+| `target_workspace_id`                                                                                                                                                                                                                                                             | *str*                                                                                                                                                                                                                                                                             | :heavy_check_mark:                                                                                                                                                                                                                                                                | Workspace that receives the clone. It must differ from the source workspace.                                                                                                                                                                                                      |
+| `idempotency_key`                                                                                                                                                                                                                                                                 | *Optional[str]*                                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                                                | Optional key for retrying this create safely. A retry with the same key and request returns the original clone; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new clone. Keys are scoped to the target workspace. |
+| `name`                                                                                                                                                                                                                                                                            | *Optional[str]*                                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                                                | Name for the clone. Defaults to the source Snapshot's name.                                                                                                                                                                                                                       |
+| `retries`                                                                                                                                                                                                                                                                         | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                | Configuration to override the default retry behavior of the client.                                                                                                                                                                                                               |
+
+### Response
+
+**[models.MCPBoxSnapshot](../../models/mcpboxsnapshot.md)**
+
+### Errors
+
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| errors.Error                                | 400, 401, 403, 404, 408, 409, 413, 415, 422 | application/problem+json                    |
+| errors.Error                                | 500, 503                                    | application/problem+json                    |
+| errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
 
 ## resume_mcpbox_snapshot
 

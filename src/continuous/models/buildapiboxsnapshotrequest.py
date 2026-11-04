@@ -20,13 +20,15 @@ class BuildAPIBoxSnapshotRequestTypedDict(TypedDict):
     credential_ids: NotRequired[List[str]]
     r"""Workspace credentials QA and the builder can call real systems with, to compare the build with them. A build with credentials runs QA after its review rounds. At most 5. Each must belong to the workspace and have a base_url. QA may create test objects in the live system and delete them or, where the API cannot, leave them in a final state; otherwise the builder sends only reads. Use a sandbox or test account."""
     filter_: NotRequired[List[str]]
-    r"""Regular expressions (RE2 syntax) that select the operations to implement. Each is matched against the OpenAPI operationId, the WSDL operation name, or the GraphQL Query or Mutation field name; an operation is kept when any expression matches, and an OpenAPI operation without an operationId is dropped. At most 64 expressions of at most 1,024 characters each. Omit or send an empty list to keep every operation."""
+    r"""Regular expressions (RE2 syntax) that select the operations to implement. Each is matched against the OpenAPI operationId, the WSDL operation name, or the GraphQL Query or Mutation field name; an operation is kept when any expression matches, and an OpenAPI operation without an operationId is dropped. At most 64 expressions of at most 1,024 characters each. Omit or send an empty list to keep every operation of the spec, which for a build on a parent without a spec part is the parent's selection."""
     instructions: NotRequired[str]
     r"""Instructions for the builder. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
     model: NotRequired[str]
     r"""Model that builds and reviews the Snapshot. Defaults to combined. Its provider is derived from the model. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does."""
     name: NotRequired[str]
     r"""Name for the Snapshot. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
+    parent_id: NotRequired[str]
+    r"""A ready API Box Snapshot of the workspace or the catalog to build on. The build starts from its source, documents and tests. What the request does not set comes from the parent: its spec, its documents, which an upload of the same name replaces, its model, its review rounds, and those of its credentials the workspace still has; timeout_seconds keeps its default. Without a spec part, filter narrows the parent's operations; to widen them, send the full spec."""
     review_rounds: NotRequired[int]
     r"""Review rounds, from 1 to 10. Defaults to 1. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
     spec_kind: NotRequired[BuildAPIBoxSnapshotRequestSpecKind]
@@ -40,7 +42,7 @@ class BuildAPIBoxSnapshotRequest(BaseModel):
     r"""Workspace credentials QA and the builder can call real systems with, to compare the build with them. A build with credentials runs QA after its review rounds. At most 5. Each must belong to the workspace and have a base_url. QA may create test objects in the live system and delete them or, where the API cannot, leave them in a final state; otherwise the builder sends only reads. Use a sandbox or test account."""
 
     filter_: Annotated[Optional[List[str]], pydantic.Field(alias="filter")] = None
-    r"""Regular expressions (RE2 syntax) that select the operations to implement. Each is matched against the OpenAPI operationId, the WSDL operation name, or the GraphQL Query or Mutation field name; an operation is kept when any expression matches, and an OpenAPI operation without an operationId is dropped. At most 64 expressions of at most 1,024 characters each. Omit or send an empty list to keep every operation."""
+    r"""Regular expressions (RE2 syntax) that select the operations to implement. Each is matched against the OpenAPI operationId, the WSDL operation name, or the GraphQL Query or Mutation field name; an operation is kept when any expression matches, and an OpenAPI operation without an operationId is dropped. At most 64 expressions of at most 1,024 characters each. Omit or send an empty list to keep every operation of the spec, which for a build on a parent without a spec part is the parent's selection."""
 
     instructions: Optional[str] = None
     r"""Instructions for the builder. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
@@ -50,6 +52,9 @@ class BuildAPIBoxSnapshotRequest(BaseModel):
 
     name: Optional[str] = None
     r"""Name for the Snapshot. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
+
+    parent_id: Optional[str] = None
+    r"""A ready API Box Snapshot of the workspace or the catalog to build on. The build starts from its source, documents and tests. What the request does not set comes from the parent: its spec, its documents, which an upload of the same name replaces, its model, its review rounds, and those of its credentials the workspace still has; timeout_seconds keeps its default. Without a spec part, filter narrows the parent's operations; to widen them, send the full spec."""
 
     review_rounds: Optional[int] = 1
     r"""Review rounds, from 1 to 10. Defaults to 1. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
@@ -69,6 +74,7 @@ class BuildAPIBoxSnapshotRequest(BaseModel):
                 "instructions",
                 "model",
                 "name",
+                "parent_id",
                 "review_rounds",
                 "spec_kind",
                 "timeout_seconds",

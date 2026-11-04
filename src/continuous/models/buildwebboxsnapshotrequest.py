@@ -8,14 +8,16 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class BuildWebBoxSnapshotRequestTypedDict(TypedDict):
-    credential_ids: List[str]
-    r"""Workspace credentials: exactly one login for the vendor's web app, whose saved sign-in the builder and QA use on the live app, and up to four others with a base_url that they can call real systems with. Each must belong to the workspace. QA may create test objects in the live app; use a sandbox or test account."""
+    credential_ids: NotRequired[List[str]]
+    r"""Workspace credentials: exactly one login for the vendor's web app, whose saved sign-in the builder and QA use on the live app, and up to four others with a base_url that they can call real systems with. Each must belong to the workspace. Required without parent_id. QA may create test objects in the live app; use a sandbox or test account."""
     instructions: NotRequired[str]
     r"""Instructions for the builder. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
     model: NotRequired[str]
     r"""Model that builds and reviews the Snapshot: a Claude model or combined, the default. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does."""
     name: NotRequired[str]
     r"""Name for the Snapshot. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
+    parent_id: NotRequired[str]
+    r"""A ready Web Box Snapshot of the workspace or the catalog to build on. The build starts from its source, documents and tests. What the request does not set comes from the parent: its documents, which an upload of the same name replaces, its model, its review rounds, and those of its credentials the workspace still has, which must include its login. timeout_seconds keeps its default."""
     review_rounds: NotRequired[int]
     r"""Review rounds, from 1 to 10. Defaults to 1. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
     timeout_seconds: NotRequired[int]
@@ -23,8 +25,8 @@ class BuildWebBoxSnapshotRequestTypedDict(TypedDict):
 
 
 class BuildWebBoxSnapshotRequest(BaseModel):
-    credential_ids: List[str]
-    r"""Workspace credentials: exactly one login for the vendor's web app, whose saved sign-in the builder and QA use on the live app, and up to four others with a base_url that they can call real systems with. Each must belong to the workspace. QA may create test objects in the live app; use a sandbox or test account."""
+    credential_ids: Optional[List[str]] = None
+    r"""Workspace credentials: exactly one login for the vendor's web app, whose saved sign-in the builder and QA use on the live app, and up to four others with a base_url that they can call real systems with. Each must belong to the workspace. Required without parent_id. QA may create test objects in the live app; use a sandbox or test account."""
 
     instructions: Optional[str] = None
     r"""Instructions for the builder. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
@@ -35,6 +37,9 @@ class BuildWebBoxSnapshotRequest(BaseModel):
     name: Optional[str] = None
     r"""Name for the Snapshot. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
 
+    parent_id: Optional[str] = None
+    r"""A ready Web Box Snapshot of the workspace or the catalog to build on. The build starts from its source, documents and tests. What the request does not set comes from the parent: its documents, which an upload of the same name replaces, its model, its review rounds, and those of its credentials the workspace still has, which must include its login. timeout_seconds keeps its default."""
+
     review_rounds: Optional[int] = 1
     r"""Review rounds, from 1 to 10. Defaults to 1. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
 
@@ -44,7 +49,15 @@ class BuildWebBoxSnapshotRequest(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["instructions", "model", "name", "review_rounds", "timeout_seconds"]
+            [
+                "credential_ids",
+                "instructions",
+                "model",
+                "name",
+                "parent_id",
+                "review_rounds",
+                "timeout_seconds",
+            ]
         )
         serialized = handler(self)
         m = {}

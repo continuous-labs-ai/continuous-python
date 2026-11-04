@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .limitation import Limitation, LimitationTypedDict
+from .simulatoractor import SimulatorActor, SimulatorActorTypedDict
 from .simulatorbuildprogress import (
     SimulatorBuildProgress,
     SimulatorBuildProgressTypedDict,
@@ -41,6 +42,8 @@ r"""pending while waiting for capacity; building while the build runs; ready whe
 
 
 class MCPBoxSnapshotTypedDict(TypedDict):
+    actors: List[SimulatorActorTypedDict]
+    r"""The callers a request to a Box started from the Snapshot can act as by sending an actor's id in the X-Continuous-Actor header. Without the header, a request acts as the default actor. An MCP Box Snapshot lists its API Box Snapshot's actors. Empty before the Snapshot is ready, when its build names none, or in a list until the Snapshot's actors are first read."""
     apibox_snapshot_id: str
     r"""The API Box Snapshot the MCP Box was built against, whose API it calls."""
     build: Nullable[SimulatorBuildProgressTypedDict]
@@ -64,10 +67,16 @@ class MCPBoxSnapshotTypedDict(TypedDict):
     r"""Customer JSON metadata, or null."""
     name: str
     r"""Snapshot name. The ID is its identity, and names need not be unique."""
+    parent_id: Nullable[str]
+    r"""The Snapshot an incremental build started from, or null for any other Snapshot or once that Snapshot is deleted."""
     research: Nullable[SimulatorResearchTypedDict]
     r"""The build's research stage, or null when research did not run."""
     source: MCPBoxSnapshotSource
     r"""catalog for a Snapshot Continuous publishes, build for one built or published into the workspace, box for one saved from an MCP Box."""
+    source_box_id: Nullable[str]
+    r"""The box the Snapshot was saved from, or null for a built or published Snapshot."""
+    source_snapshot_id: Nullable[str]
+    r"""The Snapshot the box it was saved from started from, or null for a built or published Snapshot, or once that Snapshot is deleted."""
     source_url: str
     r"""The source MCP server whose tools the MCP Box serves, or empty when the build called no live source."""
     status: MCPBoxSnapshotStatus
@@ -75,6 +84,9 @@ class MCPBoxSnapshotTypedDict(TypedDict):
 
 
 class MCPBoxSnapshot(BaseModel):
+    actors: List[SimulatorActor]
+    r"""The callers a request to a Box started from the Snapshot can act as by sending an actor's id in the X-Continuous-Actor header. Without the header, a request acts as the default actor. An MCP Box Snapshot lists its API Box Snapshot's actors. Empty before the Snapshot is ready, when its build names none, or in a list until the Snapshot's actors are first read."""
+
     apibox_snapshot_id: str
     r"""The API Box Snapshot the MCP Box was built against, whose API it calls."""
 
@@ -110,11 +122,20 @@ class MCPBoxSnapshot(BaseModel):
     name: str
     r"""Snapshot name. The ID is its identity, and names need not be unique."""
 
+    parent_id: Nullable[str]
+    r"""The Snapshot an incremental build started from, or null for any other Snapshot or once that Snapshot is deleted."""
+
     research: Nullable[SimulatorResearch]
     r"""The build's research stage, or null when research did not run."""
 
     source: MCPBoxSnapshotSource
     r"""catalog for a Snapshot Continuous publishes, build for one built or published into the workspace, box for one saved from an MCP Box."""
+
+    source_box_id: Nullable[str]
+    r"""The box the Snapshot was saved from, or null for a built or published Snapshot."""
+
+    source_snapshot_id: Nullable[str]
+    r"""The Snapshot the box it was saved from started from, or null for a built or published Snapshot, or once that Snapshot is deleted."""
 
     source_url: str
     r"""The source MCP server whose tools the MCP Box serves, or empty when the build called no live source."""

@@ -8,8 +8,8 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class BuildMCPBoxSnapshotRequestTypedDict(TypedDict):
-    apibox_snapshot_id: str
-    r"""The ready API Box Snapshot of the workspace or the catalog whose API the MCP Box calls. Its spec is the build's, and must be OpenAPI or GraphQL."""
+    apibox_snapshot_id: NotRequired[str]
+    r"""The ready API Box Snapshot of the workspace or the catalog whose API the MCP Box calls. Its spec is the build's, and must be OpenAPI or GraphQL. Required without parent_id; with it, omission takes the parent's."""
     credential_ids: NotRequired[List[str]]
     r"""At most one workspace credential of the source MCP server: its base_url is the server's endpoint. With it, the build captures the live server's tools and QA compares the MCP Box with it. It must belong to the workspace. QA calls only tools the source marks read-only. Use a sandbox or test account."""
     instructions: NotRequired[str]
@@ -18,6 +18,8 @@ class BuildMCPBoxSnapshotRequestTypedDict(TypedDict):
     r"""Model that builds and reviews the Snapshot. Defaults to combined. Its provider is derived from the model. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does."""
     name: NotRequired[str]
     r"""Name for the Snapshot. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
+    parent_id: NotRequired[str]
+    r"""A ready MCP Box Snapshot of the workspace or the catalog to build on. The build starts from its handlers, tests and documents; its capture and research run as a new build's, with the parent's folder for reference. What the request does not set comes from the parent: its API Box Snapshot, its documents, which an upload of the same name replaces, its model, its review rounds, and its credential if the workspace still has it. timeout_seconds keeps its default."""
     review_rounds: NotRequired[int]
     r"""Review rounds, from 1 to 10. Defaults to 1. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
     timeout_seconds: NotRequired[int]
@@ -25,8 +27,8 @@ class BuildMCPBoxSnapshotRequestTypedDict(TypedDict):
 
 
 class BuildMCPBoxSnapshotRequest(BaseModel):
-    apibox_snapshot_id: str
-    r"""The ready API Box Snapshot of the workspace or the catalog whose API the MCP Box calls. Its spec is the build's, and must be OpenAPI or GraphQL."""
+    apibox_snapshot_id: Optional[str] = None
+    r"""The ready API Box Snapshot of the workspace or the catalog whose API the MCP Box calls. Its spec is the build's, and must be OpenAPI or GraphQL. Required without parent_id; with it, omission takes the parent's."""
 
     credential_ids: Optional[List[str]] = None
     r"""At most one workspace credential of the source MCP server: its base_url is the server's endpoint. With it, the build captures the live server's tools and QA compares the MCP Box with it. It must belong to the workspace. QA calls only tools the source marks read-only. Use a sandbox or test account."""
@@ -40,6 +42,9 @@ class BuildMCPBoxSnapshotRequest(BaseModel):
     name: Optional[str] = None
     r"""Name for the Snapshot. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
 
+    parent_id: Optional[str] = None
+    r"""A ready MCP Box Snapshot of the workspace or the catalog to build on. The build starts from its handlers, tests and documents; its capture and research run as a new build's, with the parent's folder for reference. What the request does not set comes from the parent: its API Box Snapshot, its documents, which an upload of the same name replaces, its model, its review rounds, and its credential if the workspace still has it. timeout_seconds keeps its default."""
+
     review_rounds: Optional[int] = 1
     r"""Review rounds, from 1 to 10. Defaults to 1. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
 
@@ -50,10 +55,12 @@ class BuildMCPBoxSnapshotRequest(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
+                "apibox_snapshot_id",
                 "credential_ids",
                 "instructions",
                 "model",
                 "name",
+                "parent_id",
                 "review_rounds",
                 "timeout_seconds",
             ]
