@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .limitation import Limitation, LimitationTypedDict
+from .simulatoractor import SimulatorActor, SimulatorActorTypedDict
 from .simulatorbuildprogress import (
     SimulatorBuildProgress,
     SimulatorBuildProgressTypedDict,
@@ -41,6 +42,8 @@ r"""pending while waiting for capacity; building while the build runs; ready whe
 
 
 class WebBoxSnapshotTypedDict(TypedDict):
+    actors: List[SimulatorActorTypedDict]
+    r"""The callers a request to a Box started from the Snapshot can act as by sending an actor's id in the X-Continuous-Actor header. Without the header, a request acts as the default actor. An MCP Box Snapshot lists its API Box Snapshot's actors. Empty before the Snapshot is ready, when its build names none, or in a list until the Snapshot's actors are first read."""
     build: Nullable[SimulatorBuildProgressTypedDict]
     r"""The build's latest progress report, or null before the first report. A settled Snapshot keeps its last report. A build waiting for its live credentials resumes when the Snapshot's resume is requested."""
     composition: Nullable[SimulatorCompositionTypedDict]
@@ -62,15 +65,24 @@ class WebBoxSnapshotTypedDict(TypedDict):
     r"""Customer JSON metadata, or null."""
     name: str
     r"""Snapshot name. The ID is its identity, and names need not be unique."""
+    parent_id: Nullable[str]
+    r"""The Snapshot an incremental build started from, or null for any other Snapshot or once that Snapshot is deleted."""
     research: Nullable[SimulatorResearchTypedDict]
     r"""The build's research stage, or null when research did not run."""
     source: WebBoxSnapshotSource
     r"""catalog for a Snapshot Continuous publishes, build for one built into the workspace, box for one saved from a Web Box."""
+    source_box_id: Nullable[str]
+    r"""The box the Snapshot was saved from, or null for a built or published Snapshot."""
+    source_snapshot_id: Nullable[str]
+    r"""The Snapshot the box it was saved from started from, or null for a built or published Snapshot, or once that Snapshot is deleted."""
     status: WebBoxSnapshotStatus
     r"""pending while waiting for capacity; building while the build runs; ready when boxes can start from it; failed when the build failed; canceled when a cancel request took effect."""
 
 
 class WebBoxSnapshot(BaseModel):
+    actors: List[SimulatorActor]
+    r"""The callers a request to a Box started from the Snapshot can act as by sending an actor's id in the X-Continuous-Actor header. Without the header, a request acts as the default actor. An MCP Box Snapshot lists its API Box Snapshot's actors. Empty before the Snapshot is ready, when its build names none, or in a list until the Snapshot's actors are first read."""
+
     build: Nullable[SimulatorBuildProgress]
     r"""The build's latest progress report, or null before the first report. A settled Snapshot keeps its last report. A build waiting for its live credentials resumes when the Snapshot's resume is requested."""
 
@@ -103,11 +115,20 @@ class WebBoxSnapshot(BaseModel):
     name: str
     r"""Snapshot name. The ID is its identity, and names need not be unique."""
 
+    parent_id: Nullable[str]
+    r"""The Snapshot an incremental build started from, or null for any other Snapshot or once that Snapshot is deleted."""
+
     research: Nullable[SimulatorResearch]
     r"""The build's research stage, or null when research did not run."""
 
     source: WebBoxSnapshotSource
     r"""catalog for a Snapshot Continuous publishes, build for one built into the workspace, box for one saved from a Web Box."""
+
+    source_box_id: Nullable[str]
+    r"""The box the Snapshot was saved from, or null for a built or published Snapshot."""
+
+    source_snapshot_id: Nullable[str]
+    r"""The Snapshot the box it was saved from started from, or null for a built or published Snapshot, or once that Snapshot is deleted."""
 
     status: WebBoxSnapshotStatus
     r"""pending while waiting for capacity; building while the build runs; ready when boxes can start from it; failed when the build failed; canceled when a cancel request took effect."""

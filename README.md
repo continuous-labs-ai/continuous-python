@@ -216,6 +216,7 @@ with Continuous(
 * [get_apibox_snapshot](docs/sdks/apiboxsnapshots/README.md#get_apibox_snapshot) - Get API Box Snapshot
 * [update_apibox_snapshot](docs/sdks/apiboxsnapshots/README.md#update_apibox_snapshot) - Update API Box Snapshot
 * [cancel_apibox_snapshot](docs/sdks/apiboxsnapshots/README.md#cancel_apibox_snapshot) - Cancel API Box Snapshot build
+* [clone_apibox_snapshot](docs/sdks/apiboxsnapshots/README.md#clone_apibox_snapshot) - Clone API Box Snapshot
 * [resume_apibox_snapshot](docs/sdks/apiboxsnapshots/README.md#resume_apibox_snapshot) - Resume API Box Snapshot build
 
 ### [Credentials](docs/sdks/credentials/README.md)
@@ -245,6 +246,7 @@ with Continuous(
 * [get_mcpbox_snapshot](docs/sdks/mcpboxsnapshots/README.md#get_mcpbox_snapshot) - Get MCP Box Snapshot
 * [update_mcpbox_snapshot](docs/sdks/mcpboxsnapshots/README.md#update_mcpbox_snapshot) - Update MCP Box Snapshot
 * [cancel_mcpbox_snapshot](docs/sdks/mcpboxsnapshots/README.md#cancel_mcpbox_snapshot) - Cancel MCP Box Snapshot build
+* [clone_mcpbox_snapshot](docs/sdks/mcpboxsnapshots/README.md#clone_mcpbox_snapshot) - Clone MCP Box Snapshot
 * [resume_mcpbox_snapshot](docs/sdks/mcpboxsnapshots/README.md#resume_mcpbox_snapshot) - Resume MCP Box Snapshot build
 
 ### [~~SimulationSnapshots~~](docs/sdks/simulationsnapshots/README.md)
@@ -302,6 +304,7 @@ with Continuous(
 * [get_webbox_snapshot](docs/sdks/webboxsnapshots/README.md#get_webbox_snapshot) - Get Web Box Snapshot
 * [update_webbox_snapshot](docs/sdks/webboxsnapshots/README.md#update_webbox_snapshot) - Update Web Box Snapshot
 * [cancel_webbox_snapshot](docs/sdks/webboxsnapshots/README.md#cancel_webbox_snapshot) - Cancel Web Box Snapshot build
+* [clone_webbox_snapshot](docs/sdks/webboxsnapshots/README.md#clone_webbox_snapshot) - Clone Web Box Snapshot
 * [resume_webbox_snapshot](docs/sdks/webboxsnapshots/README.md#resume_webbox_snapshot) - Resume Web Box Snapshot build
 
 </details>
@@ -474,7 +477,7 @@ with Continuous(
 
 
 **Inherit from [`ContinuousError`](./src/continuous/errors/continuouserror.py)**:
-* [`SimulatorDeleteConflictError`](./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 78 methods.*
+* [`SimulatorDeleteConflictError`](./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 81 methods.*
 * [`ResponseValidationError`](./src/continuous/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>

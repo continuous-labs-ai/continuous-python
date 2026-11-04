@@ -73,9 +73,25 @@ if TYPE_CHECKING:
         ClockAdvanceMemberTypedDict,
     )
     from .clockevent import ClockEvent, ClockEventTypedDict
+    from .clone_apibox_snapshotop import (
+        CloneApiboxSnapshotRequest,
+        CloneApiboxSnapshotRequestTypedDict,
+    )
+    from .clone_mcpbox_snapshotop import (
+        CloneMcpboxSnapshotRequest,
+        CloneMcpboxSnapshotRequestTypedDict,
+    )
     from .clone_simulatorop import (
         CloneSimulatorRequestRequest,
         CloneSimulatorRequestRequestTypedDict,
+    )
+    from .clone_webbox_snapshotop import (
+        CloneWebboxSnapshotRequest,
+        CloneWebboxSnapshotRequestTypedDict,
+    )
+    from .cloneboxsnapshotrequest import (
+        CloneBoxSnapshotRequest,
+        CloneBoxSnapshotRequestTypedDict,
     )
     from .clonesimulatorrequest import (
         CloneSimulatorRequest,
@@ -681,12 +697,20 @@ __all__ = [
     "ClockAdvanceTypedDict",
     "ClockEvent",
     "ClockEventTypedDict",
+    "CloneApiboxSnapshotRequest",
+    "CloneApiboxSnapshotRequestTypedDict",
+    "CloneBoxSnapshotRequest",
+    "CloneBoxSnapshotRequestTypedDict",
+    "CloneMcpboxSnapshotRequest",
+    "CloneMcpboxSnapshotRequestTypedDict",
     "CloneSimulatorRequest",
     "CloneSimulatorRequestRequest",
     "CloneSimulatorRequestRequestTypedDict",
     "CloneSimulatorRequestTypedDict",
     "CloneSimulatorResponse",
     "CloneSimulatorResponseTypedDict",
+    "CloneWebboxSnapshotRequest",
+    "CloneWebboxSnapshotRequestTypedDict",
     "CreateAPIBoxRequest",
     "CreateAPIBoxRequestTypedDict",
     "CreateApiboxRequestRequest",
@@ -1121,8 +1145,16 @@ _dynamic_imports: dict[str, str] = {
     "ClockAdvanceMemberTypedDict": ".clockadvancemember",
     "ClockEvent": ".clockevent",
     "ClockEventTypedDict": ".clockevent",
+    "CloneApiboxSnapshotRequest": ".clone_apibox_snapshotop",
+    "CloneApiboxSnapshotRequestTypedDict": ".clone_apibox_snapshotop",
+    "CloneMcpboxSnapshotRequest": ".clone_mcpbox_snapshotop",
+    "CloneMcpboxSnapshotRequestTypedDict": ".clone_mcpbox_snapshotop",
     "CloneSimulatorRequestRequest": ".clone_simulatorop",
     "CloneSimulatorRequestRequestTypedDict": ".clone_simulatorop",
+    "CloneWebboxSnapshotRequest": ".clone_webbox_snapshotop",
+    "CloneWebboxSnapshotRequestTypedDict": ".clone_webbox_snapshotop",
+    "CloneBoxSnapshotRequest": ".cloneboxsnapshotrequest",
+    "CloneBoxSnapshotRequestTypedDict": ".cloneboxsnapshotrequest",
     "CloneSimulatorRequest": ".clonesimulatorrequest",
     "CloneSimulatorRequestTypedDict": ".clonesimulatorrequest",
     "CloneSimulatorResponse": ".clonesimulatorresponse",

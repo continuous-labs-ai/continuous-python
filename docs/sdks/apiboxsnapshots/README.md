@@ -12,6 +12,7 @@ Build API Box Snapshots from an OpenAPI, WSDL or GraphQL document, or use the ca
 * [get_apibox_snapshot](#get_apibox_snapshot) - Get API Box Snapshot
 * [update_apibox_snapshot](#update_apibox_snapshot) - Update API Box Snapshot
 * [cancel_apibox_snapshot](#cancel_apibox_snapshot) - Cancel API Box Snapshot build
+* [clone_apibox_snapshot](#clone_apibox_snapshot) - Clone API Box Snapshot
 * [resume_apibox_snapshot](#resume_apibox_snapshot) - Resume API Box Snapshot build
 
 ## list_apibox_snapshots
@@ -63,7 +64,7 @@ with Continuous(
 
 ## create_apibox_snapshot
 
-Starts an asynchronous build and returns the API Box Snapshot with status pending. Get the Snapshot until its status is ready, failed or canceled; API Boxes start from a ready one. The build is a Simulator build in api mode, run in real time: the built service has no simulated clock, and its scheduled work runs at the first request at or after its time. Builds queue with Simulator builds and count toward the same quotas. Send multipart/form-data with a JSON part named request, a file part named spec with the OpenAPI, WSDL or GraphQL document, and optional file parts named document with vendor documentation.
+Starts an asynchronous build and returns the API Box Snapshot with status pending. Get the Snapshot until its status is ready, failed or canceled; API Boxes start from a ready one. The build is a Simulator build in api mode, run in real time: the built service has no simulated clock, and its scheduled work runs at the first request at or after its time. Builds queue with Simulator builds and count toward the same quotas. Send multipart/form-data with a JSON part named request, a file part named spec with the OpenAPI, WSDL or GraphQL document, and optional file parts named document with vendor documentation. To build on a ready Snapshot, set parent_id; the spec part is then optional.
 
 ### Example Usage
 
@@ -272,6 +273,69 @@ with Continuous(
 | errors.Error                  | 401, 403, 404                 | application/problem+json      |
 | errors.Error                  | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
+
+## clone_apibox_snapshot
+
+Creates a ready copy of a ready API Box Snapshot in another workspace, without a build. The clone has a new ID and the source's artifact, documents and saved state; the source is unchanged. The clone records no credentials, since they belong to the source workspace, and no parent or source Snapshot. The source is the caller's workspace: an API key's own workspace, or X-Workspace-Id for a session. An API key may clone into any other workspace of its organization.
+
+### Example Usage: bad_request_body
+
+<!-- UsageSnippet language="python" operationID="clone-apibox-snapshot" method="post" path="/v1/apibox-snapshots/{id}/clone" example="bad_request_body" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.apibox_snapshots.clone_apibox_snapshot(id="<id>", target_workspace_id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+### Example Usage: bad_request_clone_target
+
+<!-- UsageSnippet language="python" operationID="clone-apibox-snapshot" method="post" path="/v1/apibox-snapshots/{id}/clone" example="bad_request_clone_target" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.apibox_snapshots.clone_apibox_snapshot(id="<id>", target_workspace_id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                                                                                         | Type                                                                                                                                                                                                                                                                              | Required                                                                                                                                                                                                                                                                          | Description                                                                                                                                                                                                                                                                       |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                                                                                                                                                                                                                                                                              | *str*                                                                                                                                                                                                                                                                             | :heavy_check_mark:                                                                                                                                                                                                                                                                | Source Snapshot ID.                                                                                                                                                                                                                                                               |
+| `target_workspace_id`                                                                                                                                                                                                                                                             | *str*                                                                                                                                                                                                                                                                             | :heavy_check_mark:                                                                                                                                                                                                                                                                | Workspace that receives the clone. It must differ from the source workspace.                                                                                                                                                                                                      |
+| `idempotency_key`                                                                                                                                                                                                                                                                 | *Optional[str]*                                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                                                | Optional key for retrying this create safely. A retry with the same key and request returns the original clone; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new clone. Keys are scoped to the target workspace. |
+| `name`                                                                                                                                                                                                                                                                            | *Optional[str]*                                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                                                | Name for the clone. Defaults to the source Snapshot's name.                                                                                                                                                                                                                       |
+| `retries`                                                                                                                                                                                                                                                                         | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                | Configuration to override the default retry behavior of the client.                                                                                                                                                                                                               |
+
+### Response
+
+**[models.APIBoxSnapshot](../../models/apiboxsnapshot.md)**
+
+### Errors
+
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| errors.Error                                | 400, 401, 403, 404, 408, 409, 413, 415, 422 | application/problem+json                    |
+| errors.Error                                | 500, 503                                    | application/problem+json                    |
+| errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
 
 ## resume_apibox_snapshot
 
