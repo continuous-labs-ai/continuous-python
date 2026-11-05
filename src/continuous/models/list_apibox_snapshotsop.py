@@ -39,6 +39,8 @@ class ListApiboxSnapshotsRequestTypedDict(TypedDict):
     r"""Opaque next_cursor value from a previous page."""
     source: NotRequired[ListApiboxSnapshotsSource]
     r"""Optional source filter."""
+    box_id: NotRequired[str]
+    r"""Optional filter for the Snapshots saved from this Box."""
 
 
 class ListApiboxSnapshotsRequest(BaseModel):
@@ -66,9 +68,15 @@ class ListApiboxSnapshotsRequest(BaseModel):
     ] = None
     r"""Optional source filter."""
 
+    box_id: Annotated[
+        Optional[str],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
+    ] = None
+    r"""Optional filter for the Snapshots saved from this Box."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["status", "limit", "cursor", "source"])
+        optional_fields = set(["status", "limit", "cursor", "source", "box_id"])
         serialized = handler(self)
         m = {}
 

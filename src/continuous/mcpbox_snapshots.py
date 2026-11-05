@@ -20,6 +20,7 @@ class McpboxSnapshots(BaseSDK):
         limit: Optional[int] = 50,
         cursor: Optional[str] = None,
         source: Optional[models.ListMcpboxSnapshotsSource] = None,
+        box_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -27,12 +28,13 @@ class McpboxSnapshots(BaseSDK):
     ) -> Optional[models.ListMcpboxSnapshotsResponseResponse]:
         r"""List MCP Box Snapshots
 
-        Returns the workspace's MCP Box Snapshots and the catalog's, newest first. Results can be filtered by status and source.
+        Returns the workspace's MCP Box Snapshots and the catalog's, newest first. Results can be filtered by status and source, and by the MCP Box a Snapshot was saved from.
 
         :param status: Optional build status filter.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param source: Optional source filter.
+        :param box_id: Optional filter for the Snapshots saved from this Box.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -53,6 +55,7 @@ class McpboxSnapshots(BaseSDK):
             limit=limit,
             cursor=cursor,
             source=source,
+            box_id=box_id,
         )
 
         req = self._build_request(
@@ -118,6 +121,7 @@ class McpboxSnapshots(BaseSDK):
                 limit=limit,
                 cursor=next_cursor,
                 source=source,
+                box_id=box_id,
                 retries=retries,
                 server_url=server_url,
                 timeout_ms=timeout_ms,
@@ -160,6 +164,7 @@ class McpboxSnapshots(BaseSDK):
         limit: Optional[int] = 50,
         cursor: Optional[str] = None,
         source: Optional[models.ListMcpboxSnapshotsSource] = None,
+        box_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -167,12 +172,13 @@ class McpboxSnapshots(BaseSDK):
     ) -> Optional[models.ListMcpboxSnapshotsResponseResponse]:
         r"""List MCP Box Snapshots
 
-        Returns the workspace's MCP Box Snapshots and the catalog's, newest first. Results can be filtered by status and source.
+        Returns the workspace's MCP Box Snapshots and the catalog's, newest first. Results can be filtered by status and source, and by the MCP Box a Snapshot was saved from.
 
         :param status: Optional build status filter.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param source: Optional source filter.
+        :param box_id: Optional filter for the Snapshots saved from this Box.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -193,6 +199,7 @@ class McpboxSnapshots(BaseSDK):
             limit=limit,
             cursor=cursor,
             source=source,
+            box_id=box_id,
         )
 
         req = self._build_request_async(
@@ -263,6 +270,7 @@ class McpboxSnapshots(BaseSDK):
                 limit=limit,
                 cursor=next_cursor,
                 source=source,
+                box_id=box_id,
                 retries=retries,
                 server_url=server_url,
                 timeout_ms=timeout_ms,
@@ -583,7 +591,7 @@ class McpboxSnapshots(BaseSDK):
     ):
         r"""Delete MCP Box Snapshot
 
-        Deletes an MCP Box Snapshot. A build that is still pending or building is canceled first. The API Box Snapshot it was built against stays. A Snapshot that MCP Boxes serve returns 409 mcpbox_snapshot_in_use; delete those MCP Boxes first.
+        Deletes an MCP Box Snapshot. A build that is still pending or building is canceled first. The API Box Snapshot it was built against stays. A Snapshot that MCP Boxes serve returns 409 mcpbox_snapshot_in_use; delete those MCP Boxes first. While a build that names it as parent_id is pending or building, it returns 409 mcpbox_snapshot_parent_in_use; retry after the build finishes.
 
         :param id: MCP Box Snapshot ID.
         :param retries: Override the default retry configuration for this method
@@ -682,7 +690,7 @@ class McpboxSnapshots(BaseSDK):
     ):
         r"""Delete MCP Box Snapshot
 
-        Deletes an MCP Box Snapshot. A build that is still pending or building is canceled first. The API Box Snapshot it was built against stays. A Snapshot that MCP Boxes serve returns 409 mcpbox_snapshot_in_use; delete those MCP Boxes first.
+        Deletes an MCP Box Snapshot. A build that is still pending or building is canceled first. The API Box Snapshot it was built against stays. A Snapshot that MCP Boxes serve returns 409 mcpbox_snapshot_in_use; delete those MCP Boxes first. While a build that names it as parent_id is pending or building, it returns 409 mcpbox_snapshot_parent_in_use; retry after the build finishes.
 
         :param id: MCP Box Snapshot ID.
         :param retries: Override the default retry configuration for this method

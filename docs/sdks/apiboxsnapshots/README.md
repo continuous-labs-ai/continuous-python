@@ -17,7 +17,7 @@ Build API Box Snapshots from an OpenAPI, WSDL or GraphQL document, or use the ca
 
 ## list_apibox_snapshots
 
-Returns the workspace's API Box Snapshots and the catalog's, newest first. Results can be filtered by source and status.
+Returns the workspace's API Box Snapshots and the catalog's, newest first. Results can be filtered by source and status, and by the API Box a Snapshot was saved from.
 
 ### Example Usage
 
@@ -48,6 +48,7 @@ with Continuous(
 | `limit`                                                                                 | *Optional[int]*                                                                         | :heavy_minus_sign:                                                                      | Page size. Values below 1 use 50. Values above 200 use 200.                             |
 | `cursor`                                                                                | *Optional[str]*                                                                         | :heavy_minus_sign:                                                                      | Opaque next_cursor value from a previous page.                                          |
 | `source`                                                                                | [Optional[models.ListApiboxSnapshotsSource]](../../models/listapiboxsnapshotssource.md) | :heavy_minus_sign:                                                                      | Optional source filter.                                                                 |
+| `box_id`                                                                                | *Optional[str]*                                                                         | :heavy_minus_sign:                                                                      | Optional filter for the Snapshots saved from this Box.                                  |
 | `retries`                                                                               | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                        | :heavy_minus_sign:                                                                      | Configuration to override the default retry behavior of the client.                     |
 
 ### Response
@@ -111,7 +112,7 @@ with Continuous(
 
 ## delete_apibox_snapshot
 
-Deletes an API Box Snapshot. A build that is still pending or building is canceled first. A Snapshot that API Boxes started from or MCP Box Snapshots were built against returns 409 apibox_snapshot_in_use; delete those first. Catalog Snapshots cannot be deleted.
+Deletes an API Box Snapshot. A build that is still pending or building is canceled first. A Snapshot that API Boxes started from or MCP Box Snapshots were built against returns 409 apibox_snapshot_in_use; delete those first. While a build that names it as parent_id is pending or building, it returns 409 apibox_snapshot_parent_in_use; retry after the build finishes. Catalog Snapshots cannot be deleted.
 
 ### Example Usage
 
