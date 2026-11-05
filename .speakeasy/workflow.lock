@@ -8,18 +8,18 @@ sources:
             - latest
     continuous-simulation:
         sourceNamespace: continuous-simulation
-        sourceRevisionDigest: sha256:a86698f8b645af7ebb1320233c778b130bbae99c85bef7fec3f0f331563b9af7
-        sourceBlobDigest: sha256:55277625035d35796c855b65a96edbb6a1e46e9ded01f35dd8a84ce1e3292ec0
+        sourceRevisionDigest: sha256:6780965388f99580f52d6a88cf87eb94a19aed7f7ecf0d395ebf9bbf0d5c54b6
+        sourceBlobDigest: sha256:f1597f1dbfd329673432f93cd41e9fa1b930fb47a2753757e9766cdaff0df612
         tags:
             - latest
 targets:
     continuous-python:
         source: continuous-simulation
         sourceNamespace: continuous-simulation
-        sourceRevisionDigest: sha256:a86698f8b645af7ebb1320233c778b130bbae99c85bef7fec3f0f331563b9af7
-        sourceBlobDigest: sha256:55277625035d35796c855b65a96edbb6a1e46e9ded01f35dd8a84ce1e3292ec0
+        sourceRevisionDigest: sha256:6780965388f99580f52d6a88cf87eb94a19aed7f7ecf0d395ebf9bbf0d5c54b6
+        sourceBlobDigest: sha256:f1597f1dbfd329673432f93cd41e9fa1b930fb47a2753757e9766cdaff0df612
         codeSamplesNamespace: continuous-python-code-samples
-        codeSamplesRevisionDigest: sha256:16b7492353578b459c40774dee7f44b89dce91378d74628e87e87928b3a0a722
+        codeSamplesRevisionDigest: sha256:207ba4ccd919c0b6d23f3130d06ccb4a2022c002872763828da68da88ba90d0f
     continuous-simulation:
         source: ContinuousSimulation-OAS
         sourceNamespace: continuous-simulation

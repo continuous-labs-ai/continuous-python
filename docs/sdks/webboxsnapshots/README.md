@@ -17,7 +17,7 @@ Build Web Box Snapshots from a vendor's live web app, or use the catalog's. Web 
 
 ## list_webbox_snapshots
 
-Returns the workspace's Web Box Snapshots and the catalog's, newest first. Results can be filtered by source and status.
+Returns the workspace's Web Box Snapshots and the catalog's, newest first. Results can be filtered by source and status, and by the Web Box a Snapshot was saved from.
 
 ### Example Usage
 
@@ -48,6 +48,7 @@ with Continuous(
 | `limit`                                                                                 | *Optional[int]*                                                                         | :heavy_minus_sign:                                                                      | Page size. Values below 1 use 50. Values above 200 use 200.                             |
 | `cursor`                                                                                | *Optional[str]*                                                                         | :heavy_minus_sign:                                                                      | Opaque next_cursor value from a previous page.                                          |
 | `source`                                                                                | [Optional[models.ListWebboxSnapshotsSource]](../../models/listwebboxsnapshotssource.md) | :heavy_minus_sign:                                                                      | Optional source filter.                                                                 |
+| `box_id`                                                                                | *Optional[str]*                                                                         | :heavy_minus_sign:                                                                      | Optional filter for the Snapshots saved from this Box.                                  |
 | `retries`                                                                               | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                        | :heavy_minus_sign:                                                                      | Configuration to override the default retry behavior of the client.                     |
 
 ### Response
@@ -110,7 +111,7 @@ with Continuous(
 
 ## delete_webbox_snapshot
 
-Deletes a Web Box Snapshot. A build that is still pending or building is canceled first. A Snapshot that Web Boxes started from returns 409 webbox_snapshot_in_use; delete those Web Boxes first. Catalog Snapshots cannot be deleted.
+Deletes a Web Box Snapshot. A build that is still pending or building is canceled first. A Snapshot that Web Boxes started from returns 409 webbox_snapshot_in_use; delete those Web Boxes first. While a build that names it as parent_id is pending or building, it returns 409 webbox_snapshot_parent_in_use; retry after the build finishes. Catalog Snapshots cannot be deleted.
 
 ### Example Usage
 

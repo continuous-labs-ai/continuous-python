@@ -9,7 +9,7 @@ from typing_extensions import TypedDict
 
 class BoxStepTypedDict(TypedDict):
     label: str
-    r"""The request that made the step."""
+    r"""The request that made the step, or \"Handle async events\" for events the app scheduled."""
     step: int
     r"""Step number, from 1 in order."""
     time: Nullable[datetime]
@@ -18,7 +18,7 @@ class BoxStepTypedDict(TypedDict):
 
 class BoxStep(BaseModel):
     label: str
-    r"""The request that made the step."""
+    r"""The request that made the step, or \"Handle async events\" for events the app scheduled."""
 
     step: int
     r"""Step number, from 1 in order."""

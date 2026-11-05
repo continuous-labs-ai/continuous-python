@@ -17,7 +17,7 @@ Build MCP Box Snapshots of an MCP server's tools against a ready API Box Snapsho
 
 ## list_mcpbox_snapshots
 
-Returns the workspace's MCP Box Snapshots and the catalog's, newest first. Results can be filtered by status and source.
+Returns the workspace's MCP Box Snapshots and the catalog's, newest first. Results can be filtered by status and source, and by the MCP Box a Snapshot was saved from.
 
 ### Example Usage
 
@@ -48,6 +48,7 @@ with Continuous(
 | `limit`                                                                                 | *Optional[int]*                                                                         | :heavy_minus_sign:                                                                      | Page size. Values below 1 use 50. Values above 200 use 200.                             |
 | `cursor`                                                                                | *Optional[str]*                                                                         | :heavy_minus_sign:                                                                      | Opaque next_cursor value from a previous page.                                          |
 | `source`                                                                                | [Optional[models.ListMcpboxSnapshotsSource]](../../models/listmcpboxsnapshotssource.md) | :heavy_minus_sign:                                                                      | Optional source filter.                                                                 |
+| `box_id`                                                                                | *Optional[str]*                                                                         | :heavy_minus_sign:                                                                      | Optional filter for the Snapshots saved from this Box.                                  |
 | `retries`                                                                               | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                        | :heavy_minus_sign:                                                                      | Configuration to override the default retry behavior of the client.                     |
 
 ### Response
@@ -110,7 +111,7 @@ with Continuous(
 
 ## delete_mcpbox_snapshot
 
-Deletes an MCP Box Snapshot. A build that is still pending or building is canceled first. The API Box Snapshot it was built against stays. A Snapshot that MCP Boxes serve returns 409 mcpbox_snapshot_in_use; delete those MCP Boxes first.
+Deletes an MCP Box Snapshot. A build that is still pending or building is canceled first. The API Box Snapshot it was built against stays. A Snapshot that MCP Boxes serve returns 409 mcpbox_snapshot_in_use; delete those MCP Boxes first. While a build that names it as parent_id is pending or building, it returns 409 mcpbox_snapshot_parent_in_use; retry after the build finishes.
 
 ### Example Usage
 

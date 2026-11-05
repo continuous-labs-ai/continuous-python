@@ -43,7 +43,7 @@ r"""pending while waiting for capacity; building while the build runs; ready whe
 
 class MCPBoxSnapshotTypedDict(TypedDict):
     actors: List[SimulatorActorTypedDict]
-    r"""The callers a request to a Box started from the Snapshot can act as by sending an actor's id in the X-Continuous-Actor header. Without the header, a request acts as the default actor. An MCP Box Snapshot lists its API Box Snapshot's actors. Empty before the Snapshot is ready, when its build names none, or in a list until the Snapshot's actors are first read."""
+    r"""The callers a request to a Box started from the Snapshot can act as by sending an actor's id in the X-Continuous-Actor header. Without the header, a request acts as the default actor. An MCP Box Snapshot lists its API Box Snapshot's actors. A Web Box Snapshot lists its one actor, the account every page is served as, which no header selects. Empty before the Snapshot is ready, when its build names none, or in a list until the Snapshot's actors are first read."""
     apibox_snapshot_id: str
     r"""The API Box Snapshot the MCP Box was built against, whose API it calls."""
     build: Nullable[SimulatorBuildProgressTypedDict]
@@ -85,7 +85,7 @@ class MCPBoxSnapshotTypedDict(TypedDict):
 
 class MCPBoxSnapshot(BaseModel):
     actors: List[SimulatorActor]
-    r"""The callers a request to a Box started from the Snapshot can act as by sending an actor's id in the X-Continuous-Actor header. Without the header, a request acts as the default actor. An MCP Box Snapshot lists its API Box Snapshot's actors. Empty before the Snapshot is ready, when its build names none, or in a list until the Snapshot's actors are first read."""
+    r"""The callers a request to a Box started from the Snapshot can act as by sending an actor's id in the X-Continuous-Actor header. Without the header, a request acts as the default actor. An MCP Box Snapshot lists its API Box Snapshot's actors. A Web Box Snapshot lists its one actor, the account every page is served as, which no header selects. Empty before the Snapshot is ready, when its build names none, or in a list until the Snapshot's actors are first read."""
 
     apibox_snapshot_id: str
     r"""The API Box Snapshot the MCP Box was built against, whose API it calls."""
