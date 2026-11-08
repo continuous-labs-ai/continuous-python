@@ -5,9 +5,21 @@ from .limitation import Limitation, LimitationTypedDict
 from .simulatorbuildwaiting import SimulatorBuildWaiting, SimulatorBuildWaitingTypedDict
 from .specificationwarning import SpecificationWarning, SpecificationWarningTypedDict
 from continuous.types import BaseModel, Nullable, UNSET_SENTINEL, UnrecognizedStr
+from datetime import datetime
 from pydantic import model_serializer
 from typing import List, Literal, Union
 from typing_extensions import TypedDict
+
+
+AgentState = Union[
+    Literal[
+        "working",
+        "idle",
+        "waiting_for_limit",
+    ],
+    UnrecognizedStr,
+]
+r"""What the build's agent was doing when the build last checked on it, every few minutes: working while it thinks or runs a command, idle when its turn ended without a tool call, waiting_for_limit while a subscription model waits for its usage limit to reset. Null when the build is not running, while it waits for the requester, or for a build recorded before agents reported it."""
 
 
 LastSubmission = Union[
@@ -59,8 +71,12 @@ r"""derive while the effective spec, build skeleton, and sandbox are prepared; b
 
 
 class SimulatorBuildProgressTypedDict(TypedDict):
+    agent_state: Nullable[AgentState]
+    r"""What the build's agent was doing when the build last checked on it, every few minutes: working while it thinks or runs a command, idle when its turn ended without a tool call, waiting_for_limit while a subscription model waits for its usage limit to reset. Null when the build is not running, while it waits for the requester, or for a build recorded before agents reported it."""
     hidden_limitations: int
     r"""Limitations the accepted build records beyond those listed in limitations."""
+    last_activity_at: Nullable[datetime]
+    r"""When the build last saw its agent act, with or without a tool call. Null when agent_state is null or no activity was seen."""
     last_submission: Nullable[LastSubmission]
     r"""Outcome of the most recent submit attempt, or null."""
     last_tool: Nullable[str]
@@ -85,13 +101,21 @@ class SimulatorBuildProgressTypedDict(TypedDict):
     r"""Total seconds of the build's ended waits, which do not count toward its time limit. 0 when none has ended. The current wait, from waiting.since, is not included."""
     waiting: Nullable[SimulatorBuildWaitingTypedDict]
     r"""Set while the build waits for the requester: at QA because the live systems rejected its credentials, or for more time after it used its time limit. Resume it with its resource's resume operation, such as POST /v1/simulators/{id}/resume. Null otherwise."""
+    waiting_until: Nullable[datetime]
+    r"""When the usage limit resets while agent_state is waiting_for_limit. The agent continues then, within the build's time limit. Null otherwise."""
     warnings: List[SpecificationWarningTypedDict]
     r"""Specification defects the build tolerated without changing the specification, set when the build prepares its specification. Empty when none."""
 
 
 class SimulatorBuildProgress(BaseModel):
+    agent_state: Nullable[AgentState]
+    r"""What the build's agent was doing when the build last checked on it, every few minutes: working while it thinks or runs a command, idle when its turn ended without a tool call, waiting_for_limit while a subscription model waits for its usage limit to reset. Null when the build is not running, while it waits for the requester, or for a build recorded before agents reported it."""
+
     hidden_limitations: int
     r"""Limitations the accepted build records beyond those listed in limitations."""
+
+    last_activity_at: Nullable[datetime]
+    r"""When the build last saw its agent act, with or without a tool call. Null when agent_state is null or no activity was seen."""
 
     last_submission: Nullable[LastSubmission]
     r"""Outcome of the most recent submit attempt, or null."""
@@ -128,6 +152,9 @@ class SimulatorBuildProgress(BaseModel):
 
     waiting: Nullable[SimulatorBuildWaiting]
     r"""Set while the build waits for the requester: at QA because the live systems rejected its credentials, or for more time after it used its time limit. Resume it with its resource's resume operation, such as POST /v1/simulators/{id}/resume. Null otherwise."""
+
+    waiting_until: Nullable[datetime]
+    r"""When the usage limit resets while agent_state is waiting_for_limit. The agent continues then, within the build's time limit. Null otherwise."""
 
     warnings: List[SpecificationWarning]
     r"""Specification defects the build tolerated without changing the specification, set when the build prepares its specification. Empty when none."""
