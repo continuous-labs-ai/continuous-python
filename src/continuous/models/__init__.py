@@ -499,6 +499,7 @@ if TYPE_CHECKING:
     )
     from .simulatoractor import SimulatorActor, SimulatorActorTypedDict
     from .simulatorbuildprogress import (
+        AgentState,
         LastSubmission,
         Phase,
         SimulatorBuildProgress,
@@ -653,6 +654,7 @@ __all__ = [
     "APIBoxTypedDict",
     "AdvanceTimeRequest",
     "AdvanceTimeRequestTypedDict",
+    "AgentState",
     "AuthMethod",
     "BoxError",
     "BoxErrorCode",
@@ -1435,6 +1437,7 @@ _dynamic_imports: dict[str, str] = {
     "SimulatorTypedDict": ".simulator",
     "SimulatorActor": ".simulatoractor",
     "SimulatorActorTypedDict": ".simulatoractor",
+    "AgentState": ".simulatorbuildprogress",
     "LastSubmission": ".simulatorbuildprogress",
     "Phase": ".simulatorbuildprogress",
     "SimulatorBuildProgress": ".simulatorbuildprogress",
