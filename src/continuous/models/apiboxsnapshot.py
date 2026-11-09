@@ -56,7 +56,7 @@ class APIBoxSnapshotTypedDict(TypedDict):
     actors: List[SimulatorActorTypedDict]
     r"""The callers a request to a Box started from the Snapshot can act as by sending an actor's id in the X-Continuous-Actor header. Without the header, a request acts as the default actor. An MCP Box Snapshot lists its API Box Snapshot's actors. A Web Box Snapshot lists its one actor, the account every page is served as, which no header selects. Empty before the Snapshot is ready, when its build names none, or in a list until the Snapshot's actors are first read."""
     build: Nullable[SimulatorBuildProgressTypedDict]
-    r"""The build's latest progress report, or null before the first report. A settled Snapshot keeps its last report. A build waiting for its live credentials resumes when the Snapshot's resume is requested."""
+    r"""The build's latest progress report, or null before the first report. A settled Snapshot keeps its last report. A waiting build resumes when the Snapshot's resume is requested."""
     composition: Nullable[SimulatorCompositionTypedDict]
     r"""What a ready Snapshot serves, or null."""
     created_at: datetime
@@ -97,7 +97,7 @@ class APIBoxSnapshot(BaseModel):
     r"""The callers a request to a Box started from the Snapshot can act as by sending an actor's id in the X-Continuous-Actor header. Without the header, a request acts as the default actor. An MCP Box Snapshot lists its API Box Snapshot's actors. A Web Box Snapshot lists its one actor, the account every page is served as, which no header selects. Empty before the Snapshot is ready, when its build names none, or in a list until the Snapshot's actors are first read."""
 
     build: Nullable[SimulatorBuildProgress]
-    r"""The build's latest progress report, or null before the first report. A settled Snapshot keeps its last report. A build waiting for its live credentials resumes when the Snapshot's resume is requested."""
+    r"""The build's latest progress report, or null before the first report. A settled Snapshot keeps its last report. A waiting build resumes when the Snapshot's resume is requested."""
 
     composition: Nullable[SimulatorComposition]
     r"""What a ready Snapshot serves, or null."""

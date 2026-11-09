@@ -1710,12 +1710,12 @@ class Simulators(BaseSDK):
     ) -> models.Simulator:
         r"""Resume Simulator Build
 
-        Resumes a build that waits, as build.waiting reports: at QA because its live credentials were rejected, or for more time after it used its time limit. For a credential wait, refresh each credential it names with PATCH /v1/credentials/{id} first: QA then runs again with their current values, and the build goes on to finalize. For a wait for more time, send add_seconds: the build continues where it stopped, with that much time from the resume. Returns the Simulator, still building. A wait does not count toward the build's time limit: a build resumed from a credential wait has the time it had left when it began waiting. A build that is not waiting returns 409 simulator_not_waiting.
+        Resumes a build that waits, as build.waiting reports: at QA because its live credentials were rejected or the live systems rate limited its calls, or for more time after it used its time limit. For a credential wait, refresh each credential it names with PATCH /v1/credentials/{id} first: QA then runs again with their current values, and the build goes on to finalize. For a rate-limit wait, resume once the rate limit resets: QA then runs again. For a wait for more time, send add_seconds: the build continues where it stopped, with that much time from the resume. Returns the Simulator, still building. A wait does not count toward the build's time limit: a build resumed from a QA wait has the time it had left when it began waiting. A build that is not waiting returns 409 simulator_not_waiting.
 
         Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulator ID.
-        :param add_seconds: Seconds to add to a build that waits for more time, from 1 to the largest timeout_seconds a build request accepts. Required for a build whose build.waiting.type is time_limit, and refused for one waiting for live credentials. The build's time limit with every addition is at most 259200 seconds (72 hours).
+        :param add_seconds: Seconds to add to a build that waits for more time, from 1 to the largest timeout_seconds a build request accepts. Required for a build whose build.waiting.type is time_limit, and refused for any other wait. The build's time limit with every addition is at most 259200 seconds (72 hours).
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1828,12 +1828,12 @@ class Simulators(BaseSDK):
     ) -> models.Simulator:
         r"""Resume Simulator Build
 
-        Resumes a build that waits, as build.waiting reports: at QA because its live credentials were rejected, or for more time after it used its time limit. For a credential wait, refresh each credential it names with PATCH /v1/credentials/{id} first: QA then runs again with their current values, and the build goes on to finalize. For a wait for more time, send add_seconds: the build continues where it stopped, with that much time from the resume. Returns the Simulator, still building. A wait does not count toward the build's time limit: a build resumed from a credential wait has the time it had left when it began waiting. A build that is not waiting returns 409 simulator_not_waiting.
+        Resumes a build that waits, as build.waiting reports: at QA because its live credentials were rejected or the live systems rate limited its calls, or for more time after it used its time limit. For a credential wait, refresh each credential it names with PATCH /v1/credentials/{id} first: QA then runs again with their current values, and the build goes on to finalize. For a rate-limit wait, resume once the rate limit resets: QA then runs again. For a wait for more time, send add_seconds: the build continues where it stopped, with that much time from the resume. Returns the Simulator, still building. A wait does not count toward the build's time limit: a build resumed from a QA wait has the time it had left when it began waiting. A build that is not waiting returns 409 simulator_not_waiting.
 
         Deprecated. Use API Box for APIs and Web Box for web apps.
 
         :param id: Simulator ID.
-        :param add_seconds: Seconds to add to a build that waits for more time, from 1 to the largest timeout_seconds a build request accepts. Required for a build whose build.waiting.type is time_limit, and refused for one waiting for live credentials. The build's time limit with every addition is at most 259200 seconds (72 hours).
+        :param add_seconds: Seconds to add to a build that waits for more time, from 1 to the largest timeout_seconds a build request accepts. Required for a build whose build.waiting.type is time_limit, and refused for any other wait. The build's time limit with every addition is at most 259200 seconds (72 hours).
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds

@@ -23,7 +23,7 @@ class BuildMCPBoxSnapshotRequestTypedDict(TypedDict):
     review_rounds: NotRequired[int]
     r"""Review rounds, from 1 to 10. Defaults to 1. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
     timeout_seconds: NotRequired[int]
-    r"""Time limit for generation and validation in seconds, from 1 to 172800. Defaults to 28800 (eight hours). Excludes queue wait, finalization, and any wait for live credentials. Retries share the same deadline."""
+    r"""Time limit for generation and validation in seconds, from 1 to 172800. Defaults to 28800 (eight hours). Excludes queue wait, finalization, and any wait for the requester. Retries share the same deadline."""
 
 
 class BuildMCPBoxSnapshotRequest(BaseModel):
@@ -49,7 +49,7 @@ class BuildMCPBoxSnapshotRequest(BaseModel):
     r"""Review rounds, from 1 to 10. Defaults to 1. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
 
     timeout_seconds: Optional[int] = 28800
-    r"""Time limit for generation and validation in seconds, from 1 to 172800. Defaults to 28800 (eight hours). Excludes queue wait, finalization, and any wait for live credentials. Retries share the same deadline."""
+    r"""Time limit for generation and validation in seconds, from 1 to 172800. Defaults to 28800 (eight hours). Excludes queue wait, finalization, and any wait for the requester. Retries share the same deadline."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
