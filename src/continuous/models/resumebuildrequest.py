@@ -9,12 +9,12 @@ from typing_extensions import NotRequired, TypedDict
 
 class ResumeBuildRequestTypedDict(TypedDict):
     add_seconds: NotRequired[int]
-    r"""Seconds to add to a build that waits for more time, from 1 to the largest timeout_seconds a build request accepts. Required for a build whose build.waiting.type is time_limit, and refused for one waiting for live credentials. The build's time limit with every addition is at most 259200 seconds (72 hours)."""
+    r"""Seconds to add to a build that waits for more time, from 1 to the largest timeout_seconds a build request accepts. Required for a build whose build.waiting.type is time_limit, and refused for any other wait. The build's time limit with every addition is at most 259200 seconds (72 hours)."""
 
 
 class ResumeBuildRequest(BaseModel):
     add_seconds: Optional[int] = None
-    r"""Seconds to add to a build that waits for more time, from 1 to the largest timeout_seconds a build request accepts. Required for a build whose build.waiting.type is time_limit, and refused for one waiting for live credentials. The build's time limit with every addition is at most 259200 seconds (72 hours)."""
+    r"""Seconds to add to a build that waits for more time, from 1 to the largest timeout_seconds a build request accepts. Required for a build whose build.waiting.type is time_limit, and refused for any other wait. The build's time limit with every addition is at most 259200 seconds (72 hours)."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

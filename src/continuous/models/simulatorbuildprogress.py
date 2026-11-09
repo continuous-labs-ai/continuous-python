@@ -100,7 +100,7 @@ class SimulatorBuildProgressTypedDict(TypedDict):
     waited_seconds: int
     r"""Total seconds of the build's ended waits, which do not count toward its time limit. 0 when none has ended. The current wait, from waiting.since, is not included."""
     waiting: Nullable[SimulatorBuildWaitingTypedDict]
-    r"""Set while the build waits for the requester: at QA because the live systems rejected its credentials, or for more time after it used its time limit. Resume it with its resource's resume operation, such as POST /v1/simulators/{id}/resume. Null otherwise."""
+    r"""Set while the build waits for the requester: at QA because the live systems rejected its credentials or rate limited its calls, or for more time after it used its time limit. Resume it with its resource's resume operation, such as POST /v1/simulators/{id}/resume. Null otherwise."""
     waiting_until: Nullable[datetime]
     r"""When the usage limit resets while agent_state is waiting_for_limit. The agent continues then, within the build's time limit. Null otherwise."""
     warnings: List[SpecificationWarningTypedDict]
@@ -151,7 +151,7 @@ class SimulatorBuildProgress(BaseModel):
     r"""Total seconds of the build's ended waits, which do not count toward its time limit. 0 when none has ended. The current wait, from waiting.since, is not included."""
 
     waiting: Nullable[SimulatorBuildWaiting]
-    r"""Set while the build waits for the requester: at QA because the live systems rejected its credentials, or for more time after it used its time limit. Resume it with its resource's resume operation, such as POST /v1/simulators/{id}/resume. Null otherwise."""
+    r"""Set while the build waits for the requester: at QA because the live systems rejected its credentials or rate limited its calls, or for more time after it used its time limit. Resume it with its resource's resume operation, such as POST /v1/simulators/{id}/resume. Null otherwise."""
 
     waiting_until: Nullable[datetime]
     r"""When the usage limit resets while agent_state is waiting_for_limit. The agent continues then, within the build's time limit. Null otherwise."""

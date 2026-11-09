@@ -47,7 +47,7 @@ class MCPBoxSnapshotTypedDict(TypedDict):
     apibox_snapshot_id: str
     r"""The API Box Snapshot the MCP Box was built against, whose API it calls."""
     build: Nullable[SimulatorBuildProgressTypedDict]
-    r"""The build's latest progress report, or null before the first report. A settled Snapshot keeps its last report. A build waiting for its live credentials resumes when the Snapshot's resume is requested."""
+    r"""The build's latest progress report, or null before the first report. A settled Snapshot keeps its last report. A waiting build resumes when the Snapshot's resume is requested."""
     composition: Nullable[SimulatorCompositionTypedDict]
     r"""What a ready Snapshot serves, or null."""
     created_at: datetime
@@ -91,7 +91,7 @@ class MCPBoxSnapshot(BaseModel):
     r"""The API Box Snapshot the MCP Box was built against, whose API it calls."""
 
     build: Nullable[SimulatorBuildProgress]
-    r"""The build's latest progress report, or null before the first report. A settled Snapshot keeps its last report. A build waiting for its live credentials resumes when the Snapshot's resume is requested."""
+    r"""The build's latest progress report, or null before the first report. A settled Snapshot keeps its last report. A waiting build resumes when the Snapshot's resume is requested."""
 
     composition: Nullable[SimulatorComposition]
     r"""What a ready Snapshot serves, or null."""
