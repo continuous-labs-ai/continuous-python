@@ -51,7 +51,7 @@ python:
   clientServerStatusCodesAsErrors: true
   constFieldCasing: normal
   defaultErrorName: ContinuousDefaultError
-  description: Python SDK for the Continuous Simulation API.
+  description: Python SDK for the Continuous API.
   durationFormat: true
   enableCustomCodeRegions: false
   enumFormat: union
