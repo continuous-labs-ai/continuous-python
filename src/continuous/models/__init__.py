@@ -5,6 +5,7 @@ from typing import Any, TYPE_CHECKING
 from continuous.utils.dynamic_imports import lazy_getattr, lazy_dir
 
 if TYPE_CHECKING:
+    from .actor import Actor, ActorTypedDict
     from .advancetimerequest import AdvanceTimeRequest, AdvanceTimeRequestTypedDict
     from .apibox import APIBox, APIBoxStatus, APIBoxTypedDict
     from .apiboxconnection import APIBoxConnection, APIBoxConnectionTypedDict
@@ -35,9 +36,24 @@ if TYPE_CHECKING:
         BuildAPIBoxSnapshotRequestSpecKind,
         BuildAPIBoxSnapshotRequestTypedDict,
     )
+    from .builderror import BuildError, BuildErrorCode, BuildErrorTypedDict, Reason
     from .buildmcpboxsnapshotrequest import (
         BuildMCPBoxSnapshotRequest,
         BuildMCPBoxSnapshotRequestTypedDict,
+    )
+    from .buildprogress import (
+        AgentState,
+        BuildProgress,
+        BuildProgressModel,
+        BuildProgressTypedDict,
+        LastSubmission,
+        Phase,
+        Stage,
+    )
+    from .buildresearch import (
+        BuildResearch,
+        BuildResearchStatus,
+        BuildResearchTypedDict,
     )
     from .buildsimulatorrequest import (
         BuildSimulatorRequest,
@@ -46,6 +62,7 @@ if TYPE_CHECKING:
         BuildSimulatorRequestSpecKind,
         BuildSimulatorRequestTypedDict,
     )
+    from .buildwaiting import BuildWaiting, BuildWaitingTypedDict, Type
     from .buildwebboxsnapshotrequest import (
         BuildWebBoxSnapshotRequest,
         BuildWebBoxSnapshotRequestTypedDict,
@@ -497,42 +514,13 @@ if TYPE_CHECKING:
         SimulatorStatus,
         SimulatorTypedDict,
     )
-    from .simulatoractor import SimulatorActor, SimulatorActorTypedDict
-    from .simulatorbuildprogress import (
-        AgentState,
-        LastSubmission,
-        Phase,
-        SimulatorBuildProgress,
-        SimulatorBuildProgressModel,
-        SimulatorBuildProgressTypedDict,
-        Stage,
-    )
-    from .simulatorbuildwaiting import (
-        SimulatorBuildWaiting,
-        SimulatorBuildWaitingTypedDict,
-        Type,
-    )
-    from .simulatorcomposition import (
-        SimulatorComposition,
-        SimulatorCompositionTypedDict,
-    )
     from .simulatordependents import SimulatorDependents, SimulatorDependentsTypedDict
-    from .simulatorerror import (
-        Reason,
-        SimulatorError,
-        SimulatorErrorCode,
-        SimulatorErrorTypedDict,
-    )
     from .simulatorpublication import (
         SimulatorPublication,
         SimulatorPublicationStatus,
         SimulatorPublicationTypedDict,
     )
-    from .simulatorresearch import (
-        SimulatorResearch,
-        SimulatorResearchStatus,
-        SimulatorResearchTypedDict,
-    )
+    from .snapshotcomposition import SnapshotComposition, SnapshotCompositionTypedDict
     from .specificationissue import (
         SpecificationIssue,
         SpecificationIssueKind,
@@ -652,6 +640,8 @@ __all__ = [
     "APIBoxTokenResponse",
     "APIBoxTokenResponseTypedDict",
     "APIBoxTypedDict",
+    "Actor",
+    "ActorTypedDict",
     "AdvanceTimeRequest",
     "AdvanceTimeRequestTypedDict",
     "AgentState",
@@ -664,8 +654,17 @@ __all__ = [
     "BuildAPIBoxSnapshotRequest",
     "BuildAPIBoxSnapshotRequestSpecKind",
     "BuildAPIBoxSnapshotRequestTypedDict",
+    "BuildError",
+    "BuildErrorCode",
+    "BuildErrorTypedDict",
     "BuildMCPBoxSnapshotRequest",
     "BuildMCPBoxSnapshotRequestTypedDict",
+    "BuildProgress",
+    "BuildProgressModel",
+    "BuildProgressTypedDict",
+    "BuildResearch",
+    "BuildResearchStatus",
+    "BuildResearchTypedDict",
     "BuildSimulatorDocument",
     "BuildSimulatorDocumentTypedDict",
     "BuildSimulatorRequest",
@@ -681,6 +680,8 @@ __all__ = [
     "BuildSimulatorResponseTypedDict",
     "BuildSimulatorSpec",
     "BuildSimulatorSpecTypedDict",
+    "BuildWaiting",
+    "BuildWaitingTypedDict",
     "BuildWebBoxSnapshotRequest",
     "BuildWebBoxSnapshotRequestTypedDict",
     "CancelApiboxSnapshotRequest",
@@ -984,31 +985,18 @@ __all__ = [
     "SimulationStatus",
     "SimulationTypedDict",
     "Simulator",
-    "SimulatorActor",
-    "SimulatorActorTypedDict",
-    "SimulatorBuildProgress",
-    "SimulatorBuildProgressModel",
-    "SimulatorBuildProgressTypedDict",
-    "SimulatorBuildWaiting",
-    "SimulatorBuildWaitingTypedDict",
-    "SimulatorComposition",
-    "SimulatorCompositionTypedDict",
     "SimulatorDependents",
     "SimulatorDependentsTypedDict",
-    "SimulatorError",
-    "SimulatorErrorCode",
-    "SimulatorErrorTypedDict",
     "SimulatorMode",
     "SimulatorPublication",
     "SimulatorPublicationStatus",
     "SimulatorPublicationTypedDict",
-    "SimulatorResearch",
-    "SimulatorResearchStatus",
-    "SimulatorResearchTypedDict",
     "SimulatorSource",
     "SimulatorSpecKind",
     "SimulatorStatus",
     "SimulatorTypedDict",
+    "SnapshotComposition",
+    "SnapshotCompositionTypedDict",
     "SpecificationIssue",
     "SpecificationIssueKind",
     "SpecificationIssueTypedDict",
@@ -1090,6 +1078,8 @@ __all__ = [
 ]
 
 _dynamic_imports: dict[str, str] = {
+    "Actor": ".actor",
+    "ActorTypedDict": ".actor",
     "AdvanceTimeRequest": ".advancetimerequest",
     "AdvanceTimeRequestTypedDict": ".advancetimerequest",
     "APIBox": ".apibox",
@@ -1122,13 +1112,30 @@ _dynamic_imports: dict[str, str] = {
     "BuildAPIBoxSnapshotRequest": ".buildapiboxsnapshotrequest",
     "BuildAPIBoxSnapshotRequestSpecKind": ".buildapiboxsnapshotrequest",
     "BuildAPIBoxSnapshotRequestTypedDict": ".buildapiboxsnapshotrequest",
+    "BuildError": ".builderror",
+    "BuildErrorCode": ".builderror",
+    "BuildErrorTypedDict": ".builderror",
+    "Reason": ".builderror",
     "BuildMCPBoxSnapshotRequest": ".buildmcpboxsnapshotrequest",
     "BuildMCPBoxSnapshotRequestTypedDict": ".buildmcpboxsnapshotrequest",
+    "AgentState": ".buildprogress",
+    "BuildProgress": ".buildprogress",
+    "BuildProgressModel": ".buildprogress",
+    "BuildProgressTypedDict": ".buildprogress",
+    "LastSubmission": ".buildprogress",
+    "Phase": ".buildprogress",
+    "Stage": ".buildprogress",
+    "BuildResearch": ".buildresearch",
+    "BuildResearchStatus": ".buildresearch",
+    "BuildResearchTypedDict": ".buildresearch",
     "BuildSimulatorRequest": ".buildsimulatorrequest",
     "BuildSimulatorRequestMode": ".buildsimulatorrequest",
     "BuildSimulatorRequestModel": ".buildsimulatorrequest",
     "BuildSimulatorRequestSpecKind": ".buildsimulatorrequest",
     "BuildSimulatorRequestTypedDict": ".buildsimulatorrequest",
+    "BuildWaiting": ".buildwaiting",
+    "BuildWaitingTypedDict": ".buildwaiting",
+    "Type": ".buildwaiting",
     "BuildWebBoxSnapshotRequest": ".buildwebboxsnapshotrequest",
     "BuildWebBoxSnapshotRequestTypedDict": ".buildwebboxsnapshotrequest",
     "CancelApiboxSnapshotRequest": ".cancel_apibox_snapshotop",
@@ -1435,32 +1442,13 @@ _dynamic_imports: dict[str, str] = {
     "SimulatorSpecKind": ".simulator",
     "SimulatorStatus": ".simulator",
     "SimulatorTypedDict": ".simulator",
-    "SimulatorActor": ".simulatoractor",
-    "SimulatorActorTypedDict": ".simulatoractor",
-    "AgentState": ".simulatorbuildprogress",
-    "LastSubmission": ".simulatorbuildprogress",
-    "Phase": ".simulatorbuildprogress",
-    "SimulatorBuildProgress": ".simulatorbuildprogress",
-    "SimulatorBuildProgressModel": ".simulatorbuildprogress",
-    "SimulatorBuildProgressTypedDict": ".simulatorbuildprogress",
-    "Stage": ".simulatorbuildprogress",
-    "SimulatorBuildWaiting": ".simulatorbuildwaiting",
-    "SimulatorBuildWaitingTypedDict": ".simulatorbuildwaiting",
-    "Type": ".simulatorbuildwaiting",
-    "SimulatorComposition": ".simulatorcomposition",
-    "SimulatorCompositionTypedDict": ".simulatorcomposition",
     "SimulatorDependents": ".simulatordependents",
     "SimulatorDependentsTypedDict": ".simulatordependents",
-    "Reason": ".simulatorerror",
-    "SimulatorError": ".simulatorerror",
-    "SimulatorErrorCode": ".simulatorerror",
-    "SimulatorErrorTypedDict": ".simulatorerror",
     "SimulatorPublication": ".simulatorpublication",
     "SimulatorPublicationStatus": ".simulatorpublication",
     "SimulatorPublicationTypedDict": ".simulatorpublication",
-    "SimulatorResearch": ".simulatorresearch",
-    "SimulatorResearchStatus": ".simulatorresearch",
-    "SimulatorResearchTypedDict": ".simulatorresearch",
+    "SnapshotComposition": ".snapshotcomposition",
+    "SnapshotCompositionTypedDict": ".snapshotcomposition",
     "SpecificationIssue": ".specificationissue",
     "SpecificationIssueKind": ".specificationissue",
     "SpecificationIssueTypedDict": ".specificationissue",

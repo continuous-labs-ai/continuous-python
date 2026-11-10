@@ -8,9 +8,9 @@ from typing_extensions import TypedDict
 
 class LimitationTypedDict(TypedDict):
     location: str
-    r"""The operations the limitation affects, readably, or Simulator when it names none."""
+    r"""The operations the limitation affects, readably, or Service when it names none."""
     message: str
-    r"""What the Simulator does differently from the real system."""
+    r"""What the service does differently from the real system."""
     operations: List[str]
     r"""Operation IDs the limitation affects, or empty when it names none."""
     reviewed: bool
@@ -19,10 +19,10 @@ class LimitationTypedDict(TypedDict):
 
 class Limitation(BaseModel):
     location: str
-    r"""The operations the limitation affects, readably, or Simulator when it names none."""
+    r"""The operations the limitation affects, readably, or Service when it names none."""
 
     message: str
-    r"""What the Simulator does differently from the real system."""
+    r"""What the service does differently from the real system."""
 
     operations: List[str]
     r"""Operation IDs the limitation affects, or empty when it names none."""

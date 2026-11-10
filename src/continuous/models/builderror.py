@@ -11,7 +11,7 @@ from typing import Literal, Union
 from typing_extensions import TypedDict
 
 
-SimulatorErrorCode = Union[
+BuildErrorCode = Union[
     Literal[
         "build_failed",
         "build_canceled",
@@ -21,7 +21,7 @@ SimulatorErrorCode = Union[
     ],
     UnrecognizedStr,
 ]
-r"""Stable Simulator build error code. live_credential_rejected is a build that waited at QA for its rejected live credentials and was not resumed within 7 days; live_rate_limited is one that waited at QA for the live systems' rate limit and was not resumed within 7 days."""
+r"""Stable build error code. live_credential_rejected is a build that waited at QA for its rejected live credentials and was not resumed within 7 days; live_rate_limited is one that waited at QA for the live systems' rate limit and was not resumed within 7 days."""
 
 
 Reason = Union[
@@ -37,11 +37,11 @@ Reason = Union[
 r"""Bounded failure reason for selecting recovery guidance, or null when unavailable."""
 
 
-class SimulatorErrorTypedDict(TypedDict):
+class BuildErrorTypedDict(TypedDict):
     agent_message: Nullable[str]
     r"""Plain-text explanation from the build agent when it could not continue, or the problems the check of the build's index found. At most 4096 UTF-8 bytes."""
-    code: SimulatorErrorCode
-    r"""Stable Simulator build error code. live_credential_rejected is a build that waited at QA for its rejected live credentials and was not resumed within 7 days; live_rate_limited is one that waited at QA for the live systems' rate limit and was not resumed within 7 days."""
+    code: BuildErrorCode
+    r"""Stable build error code. live_credential_rejected is a build that waited at QA for its rejected live credentials and was not resumed within 7 days; live_rate_limited is one that waited at QA for the live systems' rate limit and was not resumed within 7 days."""
     detail: str
     r"""Safe human-readable error detail."""
     reason: Nullable[Reason]
@@ -49,12 +49,12 @@ class SimulatorErrorTypedDict(TypedDict):
     validation: Nullable[SpecificationValidationTypedDict]
 
 
-class SimulatorError(BaseModel):
+class BuildError(BaseModel):
     agent_message: Nullable[str]
     r"""Plain-text explanation from the build agent when it could not continue, or the problems the check of the build's index found. At most 4096 UTF-8 bytes."""
 
-    code: SimulatorErrorCode
-    r"""Stable Simulator build error code. live_credential_rejected is a build that waited at QA for its rejected live credentials and was not resumed within 7 days; live_rate_limited is one that waited at QA for the live systems' rate limit and was not resumed within 7 days."""
+    code: BuildErrorCode
+    r"""Stable build error code. live_credential_rejected is a build that waited at QA for its rejected live credentials and was not resumed within 7 days; live_rate_limited is one that waited at QA for the live systems' rate limit and was not resumed within 7 days."""
 
     detail: str
     r"""Safe human-readable error detail."""

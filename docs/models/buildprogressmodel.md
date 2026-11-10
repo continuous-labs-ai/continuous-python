@@ -1,14 +1,14 @@
-# SimulatorBuildProgressModel
+# BuildProgressModel
 
 The model the builder and reviewer run on, or combined, which currently runs as claude-opus-5-5. A build recorded before model selection reports its provider's default.
 
 ## Example Usage
 
 ```python
-from continuous.models import SimulatorBuildProgressModel
+from continuous.models import BuildProgressModel
 
 # Open enum: unrecognized values are captured as UnrecognizedStr
-value: SimulatorBuildProgressModel = "gpt-6-astra"
+value: BuildProgressModel = "gpt-6-astra"
 ```
 
 

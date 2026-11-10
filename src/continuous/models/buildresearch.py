@@ -7,7 +7,7 @@ from typing import Literal, Union
 from typing_extensions import Annotated, TypedDict
 
 
-SimulatorResearchStatus = Union[
+BuildResearchStatus = Union[
     Literal[
         "pending",
         "running",
@@ -20,27 +20,27 @@ SimulatorResearchStatus = Union[
 r"""pending until the stage starts; running while the research agent indexes the documents and saves the vendor pages they lack; complete when it wrote an index that names every document; failed when it could not finish, which fails the build, or when the build ended first; provided when research did not run because the build already had an index."""
 
 
-class SimulatorResearchTypedDict(TypedDict):
+class BuildResearchTypedDict(TypedDict):
     bytes_: int
     r"""Total size of the saved pages in bytes."""
     pages: int
     r"""Vendor pages research saved for the build."""
-    status: SimulatorResearchStatus
+    status: BuildResearchStatus
     r"""pending until the stage starts; running while the research agent indexes the documents and saves the vendor pages they lack; complete when it wrote an index that names every document; failed when it could not finish, which fails the build, or when the build ended first; provided when research did not run because the build already had an index."""
 
 
-class SimulatorResearch(BaseModel):
+class BuildResearch(BaseModel):
     bytes_: Annotated[int, pydantic.Field(alias="bytes")]
     r"""Total size of the saved pages in bytes."""
 
     pages: int
     r"""Vendor pages research saved for the build."""
 
-    status: SimulatorResearchStatus
+    status: BuildResearchStatus
     r"""pending until the stage starts; running while the research agent indexes the documents and saves the vendor pages they lack; complete when it wrote an index that names every document; failed when it could not finish, which fails the build, or when the build ended first; provided when research did not run because the build already had an index."""
 
 
 try:
-    SimulatorResearch.model_rebuild()
+    BuildResearch.model_rebuild()
 except NameError:
     pass
