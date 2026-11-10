@@ -5,7 +5,7 @@ from continuous.types import BaseModel
 from typing_extensions import TypedDict
 
 
-class SimulatorActorTypedDict(TypedDict):
+class ActorTypedDict(TypedDict):
     default: bool
     r"""Whether a request without the header acts as this caller."""
     entity: str
@@ -18,7 +18,7 @@ class SimulatorActorTypedDict(TypedDict):
     r"""The caller's role in the simulated service."""
 
 
-class SimulatorActor(BaseModel):
+class Actor(BaseModel):
     default: bool
     r"""Whether a request without the header acts as this caller."""
 

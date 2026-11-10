@@ -1,4 +1,4 @@
-# SimulatorActor
+# Actor
 
 
 ## Fields

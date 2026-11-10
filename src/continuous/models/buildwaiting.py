@@ -18,7 +18,7 @@ Type = Union[
 r"""live_credentials while QA waits for the credentials it names to be refreshed; live_rate_limit while QA waits for the live systems' rate limit to reset; time_limit while the build waits for a resume that adds time with add_seconds."""
 
 
-class SimulatorBuildWaitingTypedDict(TypedDict):
+class BuildWaitingTypedDict(TypedDict):
     credential_ids: List[str]
     r"""The credentials to refresh with PATCH /v1/credentials/{id} before resuming the build. Empty for live_rate_limit and time_limit."""
     deadline: datetime
@@ -31,7 +31,7 @@ class SimulatorBuildWaitingTypedDict(TypedDict):
     r"""live_credentials while QA waits for the credentials it names to be refreshed; live_rate_limit while QA waits for the live systems' rate limit to reset; time_limit while the build waits for a resume that adds time with add_seconds."""
 
 
-class SimulatorBuildWaiting(BaseModel):
+class BuildWaiting(BaseModel):
     credential_ids: List[str]
     r"""The credentials to refresh with PATCH /v1/credentials/{id} before resuming the build. Empty for live_rate_limit and time_limit."""
 

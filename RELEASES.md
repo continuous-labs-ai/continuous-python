@@ -519,3 +519,13 @@ Based on:
 - [python v0.4.12] .
 ### Releases
 - [PyPI v0.4.12] https://pypi.org/project/continuous-labs/0.4.12 - .
+
+## 2026-11-10 05:02:15
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.796.4 (2.935.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v0.4.13] .
+### Releases
+- [PyPI v0.4.13] https://pypi.org/project/continuous-labs/0.4.13 - .

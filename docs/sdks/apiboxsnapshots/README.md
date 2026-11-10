@@ -65,7 +65,7 @@ with Continuous(
 
 ## create_apibox_snapshot
 
-Starts an asynchronous build and returns the API Box Snapshot with status pending. Get the Snapshot until its status is ready, failed or canceled; API Boxes start from a ready one. The build is a Simulator build in api mode, run in real time: the built service has no simulated clock, and its scheduled work runs at the first request at or after its time. Builds queue with Simulator builds and count toward the same quotas. Send multipart/form-data with a JSON part named request, a file part named spec with the OpenAPI, WSDL or GraphQL document, and optional file parts named document with vendor documentation. To build on a ready Snapshot, set parent_id; the spec part is then optional.
+Starts an asynchronous build and returns the API Box Snapshot with status pending. Get the Snapshot until its status is ready, failed or canceled; API Boxes start from a ready one. The build runs in real time: the built service has no simulated clock, and its scheduled work runs at the first request at or after its time. Builds of every kind share one queue and the daily quota. Send multipart/form-data with a JSON part named request, a file part named spec with the OpenAPI, WSDL or GraphQL document, and optional file parts named document with vendor documentation. To build on a ready Snapshot, set parent_id; the spec part is then optional.
 
 ### Example Usage
 
