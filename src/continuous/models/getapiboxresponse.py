@@ -24,7 +24,7 @@ r"""starting while its runtime boots; running while it serves requests; stopping
 
 class GetAPIBoxResponseTypedDict(TypedDict):
     connection: Nullable[APIBoxConnectionTypedDict]
-    r"""The API Box's endpoint and token, or null for a box created before boxes stored their tokens."""
+    r"""The API Box's endpoint and token."""
     created_at: datetime
     r"""API Box creation time."""
     endpoint: str
@@ -50,7 +50,7 @@ class GetAPIBoxResponseTypedDict(TypedDict):
 
 class GetAPIBoxResponse(BaseModel):
     connection: Nullable[APIBoxConnection]
-    r"""The API Box's endpoint and token, or null for a box created before boxes stored their tokens."""
+    r"""The API Box's endpoint and token."""
 
     created_at: datetime
     r"""API Box creation time."""

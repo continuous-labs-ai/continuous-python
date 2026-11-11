@@ -22,7 +22,7 @@ APIBoxSnapshotSource = Union[
     ],
     UnrecognizedStr,
 ]
-r"""catalog for a Snapshot Continuous publishes, build for one built or published into the workspace, box for one saved from an API Box."""
+r"""catalog for a Snapshot Continuous publishes, build for one built or cloned into the workspace, box for one saved from an API Box."""
 
 
 APIBoxSnapshotSpecKind = Union[
@@ -78,11 +78,11 @@ class APIBoxSnapshotTypedDict(TypedDict):
     research: Nullable[BuildResearchTypedDict]
     r"""The build's research stage, or null when research did not run."""
     source: APIBoxSnapshotSource
-    r"""catalog for a Snapshot Continuous publishes, build for one built or published into the workspace, box for one saved from an API Box."""
+    r"""catalog for a Snapshot Continuous publishes, build for one built or cloned into the workspace, box for one saved from an API Box."""
     source_box_id: Nullable[str]
-    r"""The box the Snapshot was saved from, or null for a built or published Snapshot."""
+    r"""The box the Snapshot was saved from, or null for a Snapshot not saved from a box."""
     source_snapshot_id: Nullable[str]
-    r"""The Snapshot the box it was saved from started from, or null for a built or published Snapshot, or once that Snapshot is deleted."""
+    r"""The Snapshot the box it was saved from started from, or null for a Snapshot not saved from a box, or once that Snapshot is deleted."""
     spec_kind: Nullable[APIBoxSnapshotSpecKind]
     r"""The specification the Snapshot was built from, or null until the build has read it."""
     status: APIBoxSnapshotStatus
@@ -132,13 +132,13 @@ class APIBoxSnapshot(BaseModel):
     r"""The build's research stage, or null when research did not run."""
 
     source: APIBoxSnapshotSource
-    r"""catalog for a Snapshot Continuous publishes, build for one built or published into the workspace, box for one saved from an API Box."""
+    r"""catalog for a Snapshot Continuous publishes, build for one built or cloned into the workspace, box for one saved from an API Box."""
 
     source_box_id: Nullable[str]
-    r"""The box the Snapshot was saved from, or null for a built or published Snapshot."""
+    r"""The box the Snapshot was saved from, or null for a Snapshot not saved from a box."""
 
     source_snapshot_id: Nullable[str]
-    r"""The Snapshot the box it was saved from started from, or null for a built or published Snapshot, or once that Snapshot is deleted."""
+    r"""The Snapshot the box it was saved from started from, or null for a Snapshot not saved from a box, or once that Snapshot is deleted."""
 
     spec_kind: Nullable[APIBoxSnapshotSpecKind]
     r"""The specification the Snapshot was built from, or null until the build has read it."""

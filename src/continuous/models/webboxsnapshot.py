@@ -69,9 +69,9 @@ class WebBoxSnapshotTypedDict(TypedDict):
     source: WebBoxSnapshotSource
     r"""catalog for a Snapshot Continuous publishes, build for one built into the workspace, box for one saved from a Web Box."""
     source_box_id: Nullable[str]
-    r"""The box the Snapshot was saved from, or null for a built or published Snapshot."""
+    r"""The box the Snapshot was saved from, or null for a Snapshot not saved from a box."""
     source_snapshot_id: Nullable[str]
-    r"""The Snapshot the box it was saved from started from, or null for a built or published Snapshot, or once that Snapshot is deleted."""
+    r"""The Snapshot the box it was saved from started from, or null for a Snapshot not saved from a box, or once that Snapshot is deleted."""
     status: WebBoxSnapshotStatus
     r"""pending while waiting for capacity; building while the build runs; ready when boxes can start from it; failed when the build failed; canceled when a cancel request took effect."""
 
@@ -122,10 +122,10 @@ class WebBoxSnapshot(BaseModel):
     r"""catalog for a Snapshot Continuous publishes, build for one built into the workspace, box for one saved from a Web Box."""
 
     source_box_id: Nullable[str]
-    r"""The box the Snapshot was saved from, or null for a built or published Snapshot."""
+    r"""The box the Snapshot was saved from, or null for a Snapshot not saved from a box."""
 
     source_snapshot_id: Nullable[str]
-    r"""The Snapshot the box it was saved from started from, or null for a built or published Snapshot, or once that Snapshot is deleted."""
+    r"""The Snapshot the box it was saved from started from, or null for a Snapshot not saved from a box, or once that Snapshot is deleted."""
 
     status: WebBoxSnapshotStatus
     r"""pending while waiting for capacity; building while the build runs; ready when boxes can start from it; failed when the build failed; canceled when a cancel request took effect."""

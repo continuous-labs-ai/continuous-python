@@ -413,7 +413,7 @@ class Simulators(BaseSDK):
             )
         if utils.match_response(
             http_res,
-            ["400", "401", "408", "409", "413", "415", "422"],
+            ["400", "401", "404", "408", "409", "413", "415", "422"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -558,7 +558,7 @@ class Simulators(BaseSDK):
             )
         if utils.match_response(
             http_res,
-            ["400", "401", "408", "409", "413", "415", "422"],
+            ["400", "401", "404", "408", "409", "413", "415", "422"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -1472,7 +1472,7 @@ class Simulators(BaseSDK):
     ) -> models.CloneSimulatorResponse:
         r"""Clone Simulator
 
-        Creates a ready copy of a ready Simulator in another workspace. The clone has a new ID and the source's image digest; the source is unchanged. The source is the caller's workspace: an API key's own workspace, or X-Workspace-Id for a session. An API key may clone into any other workspace of its organization.
+        Creates a ready copy of a ready Simulator in another workspace. The clone has a new ID and the source's image digest; the source is unchanged. The source is the caller's workspace. An API key may clone into any other workspace of its organization.
 
         Deprecated. Use API Box for APIs and Web Box for web apps.
 
@@ -1592,7 +1592,7 @@ class Simulators(BaseSDK):
     ) -> models.CloneSimulatorResponse:
         r"""Clone Simulator
 
-        Creates a ready copy of a ready Simulator in another workspace. The clone has a new ID and the source's image digest; the source is unchanged. The source is the caller's workspace: an API key's own workspace, or X-Workspace-Id for a session. An API key may clone into any other workspace of its organization.
+        Creates a ready copy of a ready Simulator in another workspace. The clone has a new ID and the source's image digest; the source is unchanged. The source is the caller's workspace. An API key may clone into any other workspace of its organization.
 
         Deprecated. Use API Box for APIs and Web Box for web apps.
 

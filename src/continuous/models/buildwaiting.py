@@ -22,7 +22,7 @@ class BuildWaitingTypedDict(TypedDict):
     credential_ids: List[str]
     r"""The credentials to refresh with PATCH /v1/credentials/{id} before resuming the build. Empty for live_rate_limit and time_limit."""
     deadline: datetime
-    r"""When the wait ends, 7 days after it began: a build not resumed by then fails, with error code live_credential_rejected for live_credentials, live_rate_limited for live_rate_limit, and for its time limit for time_limit. The wait does not count toward the build's time limit."""
+    r"""When the wait ends, 7 days after it began: a build not resumed by then fails with error code live_credential_rejected for live_credentials, live_rate_limited for live_rate_limit, or build_failed with reason time_limit for time_limit. The wait does not count toward the build's time limit."""
     reason: str
     r"""Why the build waits: for live_credentials, the status and detail of the live reply that rejected QA's authenticated read; for live_rate_limit, of the reply that rate limited QA's calls."""
     since: datetime
@@ -36,7 +36,7 @@ class BuildWaiting(BaseModel):
     r"""The credentials to refresh with PATCH /v1/credentials/{id} before resuming the build. Empty for live_rate_limit and time_limit."""
 
     deadline: datetime
-    r"""When the wait ends, 7 days after it began: a build not resumed by then fails, with error code live_credential_rejected for live_credentials, live_rate_limited for live_rate_limit, and for its time limit for time_limit. The wait does not count toward the build's time limit."""
+    r"""When the wait ends, 7 days after it began: a build not resumed by then fails with error code live_credential_rejected for live_credentials, live_rate_limited for live_rate_limit, or build_failed with reason time_limit for time_limit. The wait does not count toward the build's time limit."""
 
     reason: str
     r"""Why the build waits: for live_credentials, the status and detail of the live reply that rejected QA's authenticated read; for live_rate_limit, of the reply that rate limited QA's calls."""

@@ -134,6 +134,10 @@ if TYPE_CHECKING:
         CreateApiboxRequestRequest,
         CreateApiboxRequestRequestTypedDict,
     )
+    from .create_credentialop import (
+        CreateCredentialRequestRequest,
+        CreateCredentialRequestRequestTypedDict,
+    )
     from .create_mcpbox_snapshotop import (
         CreateMcpboxSnapshotDocument,
         CreateMcpboxSnapshotDocumentTypedDict,
@@ -729,6 +733,8 @@ __all__ = [
     "CreateApiboxSnapshotSpec",
     "CreateApiboxSnapshotSpecTypedDict",
     "CreateCredentialRequest",
+    "CreateCredentialRequestRequest",
+    "CreateCredentialRequestRequestTypedDict",
     "CreateCredentialRequestTypedDict",
     "CreateMCPBoxRequest",
     "CreateMCPBoxRequestTypedDict",
@@ -1180,6 +1186,8 @@ _dynamic_imports: dict[str, str] = {
     "CreateApiboxSnapshotSpecTypedDict": ".create_apibox_snapshotop",
     "CreateApiboxRequestRequest": ".create_apiboxop",
     "CreateApiboxRequestRequestTypedDict": ".create_apiboxop",
+    "CreateCredentialRequestRequest": ".create_credentialop",
+    "CreateCredentialRequestRequestTypedDict": ".create_credentialop",
     "CreateMcpboxSnapshotDocument": ".create_mcpbox_snapshotop",
     "CreateMcpboxSnapshotDocumentTypedDict": ".create_mcpbox_snapshotop",
     "CreateMcpboxSnapshotRequest": ".create_mcpbox_snapshotop",

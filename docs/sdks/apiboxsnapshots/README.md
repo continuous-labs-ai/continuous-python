@@ -102,13 +102,13 @@ with Continuous(
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 408, 413, 415, 422  | application/problem+json      |
-| errors.Error                  | 429                           | application/problem+json      |
-| errors.Error                  | 500                           | application/problem+json      |
-| errors.Error                  | 503                           | application/problem+json      |
-| errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| errors.Error                      | 400, 401, 404, 408, 409, 413, 415 | application/problem+json          |
+| errors.Error                      | 429                               | application/problem+json          |
+| errors.Error                      | 500                               | application/problem+json          |
+| errors.Error                      | 503                               | application/problem+json          |
+| errors.ContinuousDefaultError     | 4XX, 5XX                          | \*/\*                             |
 
 ## delete_apibox_snapshot
 
@@ -277,7 +277,7 @@ with Continuous(
 
 ## clone_apibox_snapshot
 
-Creates a ready copy of a ready API Box Snapshot in another workspace, without a build. The clone has a new ID and the source's artifact, documents and saved state; the source is unchanged. The clone records no credentials, since they belong to the source workspace, and no parent or source Snapshot. The source is the caller's workspace: an API key's own workspace, or X-Workspace-Id for a session. An API key may clone into any other workspace of its organization.
+Creates a ready copy of a ready API Box Snapshot in another workspace, without a build. The clone has a new ID and the source's artifact, documents and saved state; the source is unchanged. The clone records no credentials, since they belong to the source workspace, and no parent or source Snapshot. The source is the caller's workspace. An API key may clone into any other workspace of its organization.
 
 ### Example Usage: bad_request_body
 
