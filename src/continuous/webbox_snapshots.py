@@ -13,14 +13,14 @@ from typing import Any, Awaitable, Dict, Iterable, List, Mapping, Optional, Unio
 class WebboxSnapshots(BaseSDK):
     r"""Build Web Box Snapshots from a vendor's live web app, or use the catalog's. Web Boxes start from a ready Snapshot."""
 
-    def list_webbox_snapshots(
+    def list(
         self,
         *,
         status: Optional[models.ListWebboxSnapshotsStatus] = None,
         limit: Optional[int] = 50,
         cursor: Optional[str] = None,
         source: Optional[models.ListWebboxSnapshotsSource] = None,
-        box_id: Optional[str] = None,
+        source_box_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -34,7 +34,7 @@ class WebboxSnapshots(BaseSDK):
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param source: Optional source filter.
-        :param box_id: Optional filter for the Snapshots saved from this Box.
+        :param source_box_id: Optional filter for the Snapshots saved from this Box.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -55,7 +55,7 @@ class WebboxSnapshots(BaseSDK):
             limit=limit,
             cursor=cursor,
             source=source,
-            box_id=box_id,
+            source_box_id=source_box_id,
         )
 
         req = self._build_request(
@@ -116,12 +116,12 @@ class WebboxSnapshots(BaseSDK):
             if next_cursor is None or str(next_cursor).strip() == "":
                 return None
 
-            return self.list_webbox_snapshots(
+            return self.list(
                 status=status,
                 limit=limit,
                 cursor=next_cursor,
                 source=source,
-                box_id=box_id,
+                source_box_id=source_box_id,
                 retries=retries,
                 server_url=server_url,
                 timeout_ms=timeout_ms,
@@ -139,11 +139,11 @@ class WebboxSnapshots(BaseSDK):
         if utils.match_response(
             http_res, ["400", "401", "422"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -157,14 +157,14 @@ class WebboxSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def list_webbox_snapshots_async(
+    async def list_async(
         self,
         *,
         status: Optional[models.ListWebboxSnapshotsStatus] = None,
         limit: Optional[int] = 50,
         cursor: Optional[str] = None,
         source: Optional[models.ListWebboxSnapshotsSource] = None,
-        box_id: Optional[str] = None,
+        source_box_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -178,7 +178,7 @@ class WebboxSnapshots(BaseSDK):
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param source: Optional source filter.
-        :param box_id: Optional filter for the Snapshots saved from this Box.
+        :param source_box_id: Optional filter for the Snapshots saved from this Box.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -199,7 +199,7 @@ class WebboxSnapshots(BaseSDK):
             limit=limit,
             cursor=cursor,
             source=source,
-            box_id=box_id,
+            source_box_id=source_box_id,
         )
 
         req = self._build_request_async(
@@ -265,12 +265,12 @@ class WebboxSnapshots(BaseSDK):
             if next_cursor is None or str(next_cursor).strip() == "":
                 return empty_result()
 
-            return self.list_webbox_snapshots_async(
+            return self.list_async(
                 status=status,
                 limit=limit,
                 cursor=next_cursor,
                 source=source,
-                box_id=box_id,
+                source_box_id=source_box_id,
                 retries=retries,
                 server_url=server_url,
                 timeout_ms=timeout_ms,
@@ -288,11 +288,11 @@ class WebboxSnapshots(BaseSDK):
         if utils.match_response(
             http_res, ["400", "401", "422"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -306,7 +306,7 @@ class WebboxSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def create_webbox_snapshot(
+    def create(
         self,
         *,
         request: Union[
@@ -419,17 +419,17 @@ class WebboxSnapshots(BaseSDK):
             ["400", "401", "404", "408", "409", "413", "415"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "429", "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "500", "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "503", "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -443,7 +443,7 @@ class WebboxSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def create_webbox_snapshot_async(
+    async def create_async(
         self,
         *,
         request: Union[
@@ -556,17 +556,17 @@ class WebboxSnapshots(BaseSDK):
             ["400", "401", "404", "408", "409", "413", "415"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "429", "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "500", "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "503", "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -580,7 +580,7 @@ class WebboxSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def delete_webbox_snapshot(
+    def delete(
         self,
         *,
         id: str,
@@ -661,11 +661,11 @@ class WebboxSnapshots(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404", "409"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -679,7 +679,7 @@ class WebboxSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def delete_webbox_snapshot_async(
+    async def delete_async(
         self,
         *,
         id: str,
@@ -760,11 +760,11 @@ class WebboxSnapshots(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404", "409"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -778,7 +778,7 @@ class WebboxSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def get_webbox_snapshot(
+    def get(
         self,
         *,
         id: str,
@@ -861,11 +861,11 @@ class WebboxSnapshots(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.WebBoxSnapshot, http_res)
         if utils.match_response(http_res, ["401", "404"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -879,7 +879,7 @@ class WebboxSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def get_webbox_snapshot_async(
+    async def get_async(
         self,
         *,
         id: str,
@@ -962,11 +962,11 @@ class WebboxSnapshots(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.WebBoxSnapshot, http_res)
         if utils.match_response(http_res, ["401", "404"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -980,7 +980,7 @@ class WebboxSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def update_webbox_snapshot(
+    def update(
         self,
         *,
         id: str,
@@ -1074,11 +1074,11 @@ class WebboxSnapshots(BaseSDK):
             ["400", "401", "403", "404", "408", "413", "415", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -1092,7 +1092,7 @@ class WebboxSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def update_webbox_snapshot_async(
+    async def update_async(
         self,
         *,
         id: str,
@@ -1186,11 +1186,11 @@ class WebboxSnapshots(BaseSDK):
             ["400", "401", "403", "404", "408", "413", "415", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -1204,7 +1204,7 @@ class WebboxSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def cancel_webbox_snapshot(
+    def cancel(
         self,
         *,
         id: str,
@@ -1285,11 +1285,11 @@ class WebboxSnapshots(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -1303,7 +1303,7 @@ class WebboxSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def cancel_webbox_snapshot_async(
+    async def cancel_async(
         self,
         *,
         id: str,
@@ -1384,11 +1384,11 @@ class WebboxSnapshots(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -1402,7 +1402,7 @@ class WebboxSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def clone_webbox_snapshot(
+    def clone(
         self,
         *,
         id: str,
@@ -1499,11 +1499,11 @@ class WebboxSnapshots(BaseSDK):
             ["400", "401", "403", "404", "408", "409", "413", "415", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -1517,7 +1517,7 @@ class WebboxSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def clone_webbox_snapshot_async(
+    async def clone_async(
         self,
         *,
         id: str,
@@ -1614,11 +1614,11 @@ class WebboxSnapshots(BaseSDK):
             ["400", "401", "403", "404", "408", "409", "413", "415", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -1632,7 +1632,7 @@ class WebboxSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def resume_webbox_snapshot(
+    def resume(
         self,
         *,
         id: str,
@@ -1727,11 +1727,11 @@ class WebboxSnapshots(BaseSDK):
             ["400", "401", "403", "404", "408", "409", "413", "415"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -1745,7 +1745,7 @@ class WebboxSnapshots(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def resume_webbox_snapshot_async(
+    async def resume_async(
         self,
         *,
         id: str,
@@ -1840,11 +1840,11 @@ class WebboxSnapshots(BaseSDK):
             ["400", "401", "403", "404", "408", "409", "413", "415"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(

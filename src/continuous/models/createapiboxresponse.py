@@ -7,13 +7,13 @@ from pydantic import model_serializer
 from typing_extensions import TypedDict
 
 
-class APIBoxTokenResponseTypedDict(TypedDict):
+class CreateAPIBoxResponseTypedDict(TypedDict):
     apibox: APIBoxTypedDict
     token: Nullable[str]
     r"""The API Box's token, which lasts until the API Box is deleted."""
 
 
-class APIBoxTokenResponse(BaseModel):
+class CreateAPIBoxResponse(BaseModel):
     apibox: APIBox
 
     token: Nullable[str]

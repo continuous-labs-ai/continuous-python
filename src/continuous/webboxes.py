@@ -10,13 +10,13 @@ from jsonpath import JSONPath
 from typing import Any, Awaitable, Dict, List, Mapping, Optional, Union
 
 
-class ApiboxSDK(BaseSDK):
-    r"""Start API Boxes from API Box Snapshots. Each API Box serves its Snapshot's API at its own endpoint, with its own state, in real time. Stop, start and delete them."""
+class Webboxes(BaseSDK):
+    r"""Start Web Boxes from Web Box Snapshots. Each Web Box serves its Snapshot's web app at a host of its own, with its own state, in real time. Stop, start and delete them."""
 
-    def list_apiboxes(
+    def list(
         self,
         *,
-        status: Optional[models.ListApiboxesStatus] = None,
+        status: Optional[models.ListWebboxesStatus] = None,
         snapshot_id: Optional[str] = None,
         limit: Optional[int] = 50,
         cursor: Optional[str] = None,
@@ -24,13 +24,13 @@ class ApiboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> Optional[models.ListApiboxesResponseResponse]:
-        r"""List API Boxes
+    ) -> Optional[models.ListWebboxesResponseResponse]:
+        r"""List Web Boxes
 
-        Returns the workspace's API Boxes, newest first. Results can be filtered by status and Snapshot.
+        Returns the workspace's Web Boxes, newest first. Results can be filtered by status and Snapshot.
 
-        :param status: Only API Boxes with this status.
-        :param snapshot_id: Only API Boxes started from this Snapshot.
+        :param status: Only Web Boxes with this status.
+        :param snapshot_id: Only Web Boxes started from this Snapshot.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
@@ -48,7 +48,7 @@ class ApiboxSDK(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.ListApiboxesRequest(
+        request = models.ListWebboxesRequest(
             status=status,
             snapshot_id=snapshot_id,
             limit=limit,
@@ -57,7 +57,7 @@ class ApiboxSDK(BaseSDK):
 
         req = self._build_request(
             method="GET",
-            path="/v1/apibox",
+            path="/v1/webbox",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -88,12 +88,12 @@ class ApiboxSDK(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="list-apiboxes",
+                operation_id="list-webboxes",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
                 ),
-                tags=["apibox"],
+                tags=["webboxes"],
                 extensions=None,
             ),
             request=req,
@@ -101,7 +101,7 @@ class ApiboxSDK(BaseSDK):
             retry_config=retry_config,
         )
 
-        def next_func() -> Optional[models.ListApiboxesResponseResponse]:
+        def next_func() -> Optional[models.ListWebboxesResponseResponse]:
             body = utils.unmarshal_json(http_res.text, Union[Dict[Any, Any], List[Any]])
 
             next_cursor = JSONPath("$.next_cursor").parse(body)
@@ -113,7 +113,7 @@ class ApiboxSDK(BaseSDK):
             if next_cursor is None or str(next_cursor).strip() == "":
                 return None
 
-            return self.list_apiboxes(
+            return self.list(
                 status=status,
                 snapshot_id=snapshot_id,
                 limit=limit,
@@ -126,18 +126,18 @@ class ApiboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return models.ListApiboxesResponseResponse(
-                result=unmarshal_json_response(models.ListAPIBoxesResponse, http_res),
+            return models.ListWebboxesResponseResponse(
+                result=unmarshal_json_response(models.ListWebBoxesResponse, http_res),
                 next=next_func,
             )
         if utils.match_response(
             http_res, ["400", "401", "422"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -151,10 +151,10 @@ class ApiboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def list_apiboxes_async(
+    async def list_async(
         self,
         *,
-        status: Optional[models.ListApiboxesStatus] = None,
+        status: Optional[models.ListWebboxesStatus] = None,
         snapshot_id: Optional[str] = None,
         limit: Optional[int] = 50,
         cursor: Optional[str] = None,
@@ -162,13 +162,13 @@ class ApiboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> Optional[models.ListApiboxesResponseResponse]:
-        r"""List API Boxes
+    ) -> Optional[models.ListWebboxesResponseResponse]:
+        r"""List Web Boxes
 
-        Returns the workspace's API Boxes, newest first. Results can be filtered by status and Snapshot.
+        Returns the workspace's Web Boxes, newest first. Results can be filtered by status and Snapshot.
 
-        :param status: Only API Boxes with this status.
-        :param snapshot_id: Only API Boxes started from this Snapshot.
+        :param status: Only Web Boxes with this status.
+        :param snapshot_id: Only Web Boxes started from this Snapshot.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
         :param retries: Override the default retry configuration for this method
@@ -186,7 +186,7 @@ class ApiboxSDK(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.ListApiboxesRequest(
+        request = models.ListWebboxesRequest(
             status=status,
             snapshot_id=snapshot_id,
             limit=limit,
@@ -195,7 +195,7 @@ class ApiboxSDK(BaseSDK):
 
         req = self._build_request_async(
             method="GET",
-            path="/v1/apibox",
+            path="/v1/webbox",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -226,12 +226,12 @@ class ApiboxSDK(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="list-apiboxes",
+                operation_id="list-webboxes",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
                 ),
-                tags=["apibox"],
+                tags=["webboxes"],
                 extensions=None,
             ),
             request=req,
@@ -239,7 +239,7 @@ class ApiboxSDK(BaseSDK):
             retry_config=retry_config,
         )
 
-        def next_func() -> Awaitable[Optional[models.ListApiboxesResponseResponse]]:
+        def next_func() -> Awaitable[Optional[models.ListWebboxesResponseResponse]]:
             body = utils.unmarshal_json(http_res.text, Union[Dict[Any, Any], List[Any]])
 
             async def empty_result():
@@ -254,7 +254,7 @@ class ApiboxSDK(BaseSDK):
             if next_cursor is None or str(next_cursor).strip() == "":
                 return empty_result()
 
-            return self.list_apiboxes_async(
+            return self.list_async(
                 status=status,
                 snapshot_id=snapshot_id,
                 limit=limit,
@@ -267,18 +267,18 @@ class ApiboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return models.ListApiboxesResponseResponse(
-                result=unmarshal_json_response(models.ListAPIBoxesResponse, http_res),
+            return models.ListWebboxesResponseResponse(
+                result=unmarshal_json_response(models.ListWebBoxesResponse, http_res),
                 next=next_func,
             )
         if utils.match_response(
             http_res, ["400", "401", "422"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -292,7 +292,7 @@ class ApiboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def create_apibox(
+    def create(
         self,
         *,
         snapshot_id: str,
@@ -304,16 +304,16 @@ class ApiboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.APIBoxTokenResponse:
-        r"""Create API Box
+    ) -> models.CreateWebBoxResponse:
+        r"""Create Web Box
 
-        Creates an API Box from a ready API Box Snapshot and starts it. It returns at once with status starting and the API Box's token; get the API Box until it is running. Send the token in X-Continuous-Token on each request to the API Box's endpoint. The token lasts as long as the API Box, and its get returns it again. Each API Box has its own state, and runs in real time.
+        Creates a Web Box from a ready Web Box Snapshot and starts it. It returns at once with status starting; get the Web Box until it is running. Open its url in a browser: the app is served at a host of its own, open to anyone with the URL. Each Web Box has its own state, and runs in real time.
 
-        :param snapshot_id: A ready API Box Snapshot of the workspace or the catalog.
-        :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the same API Box and token. The same key with a different request returns 409 idempotency_conflict.
+        :param snapshot_id: A ready Web Box Snapshot of the workspace or the catalog.
+        :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the same Web Box. The same key with a different request returns 409 idempotency_conflict.
         :param include_sample_data: Start with the Snapshot's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Snapshot that carries sample data; see its composition.
         :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels.
-        :param name: Name for the API Box. Omission generates a name.
+        :param name: Name for the Web Box. Omission generates a name.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -329,9 +329,9 @@ class ApiboxSDK(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.CreateApiboxRequestRequest(
+        request = models.CreateWebboxRequestRequest(
             idempotency_key=idempotency_key,
-            body=models.CreateAPIBoxRequest(
+            body=models.CreateWebBoxRequest(
                 include_sample_data=include_sample_data,
                 metadata=metadata,
                 name=name,
@@ -341,7 +341,7 @@ class ApiboxSDK(BaseSDK):
 
         req = self._build_request(
             method="POST",
-            path="/v1/apibox",
+            path="/v1/webbox",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -353,7 +353,7 @@ class ApiboxSDK(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.body, False, False, "json", models.CreateAPIBoxRequest
+                request.body, False, False, "json", models.CreateWebBoxRequest
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -371,12 +371,12 @@ class ApiboxSDK(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="create-apibox",
+                operation_id="create-webbox",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
                 ),
-                tags=["apibox"],
+                tags=["webboxes"],
                 extensions=None,
             ),
             request=req,
@@ -386,17 +386,17 @@ class ApiboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
-            return unmarshal_json_response(models.APIBoxTokenResponse, http_res)
+            return unmarshal_json_response(models.CreateWebBoxResponse, http_res)
         if utils.match_response(
             http_res,
             ["400", "401", "404", "408", "409", "413", "415", "422", "429"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -410,7 +410,7 @@ class ApiboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def create_apibox_async(
+    async def create_async(
         self,
         *,
         snapshot_id: str,
@@ -422,16 +422,16 @@ class ApiboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.APIBoxTokenResponse:
-        r"""Create API Box
+    ) -> models.CreateWebBoxResponse:
+        r"""Create Web Box
 
-        Creates an API Box from a ready API Box Snapshot and starts it. It returns at once with status starting and the API Box's token; get the API Box until it is running. Send the token in X-Continuous-Token on each request to the API Box's endpoint. The token lasts as long as the API Box, and its get returns it again. Each API Box has its own state, and runs in real time.
+        Creates a Web Box from a ready Web Box Snapshot and starts it. It returns at once with status starting; get the Web Box until it is running. Open its url in a browser: the app is served at a host of its own, open to anyone with the URL. Each Web Box has its own state, and runs in real time.
 
-        :param snapshot_id: A ready API Box Snapshot of the workspace or the catalog.
-        :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the same API Box and token. The same key with a different request returns 409 idempotency_conflict.
+        :param snapshot_id: A ready Web Box Snapshot of the workspace or the catalog.
+        :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the same Web Box. The same key with a different request returns 409 idempotency_conflict.
         :param include_sample_data: Start with the Snapshot's sample data: a realistic account loaded on top of its seed before the first request. Defaults to false, a brand-new workspace. Requires a Snapshot that carries sample data; see its composition.
         :param metadata: Customer JSON metadata, up to 16 KiB and 64 nesting levels.
-        :param name: Name for the API Box. Omission generates a name.
+        :param name: Name for the Web Box. Omission generates a name.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -447,9 +447,9 @@ class ApiboxSDK(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.CreateApiboxRequestRequest(
+        request = models.CreateWebboxRequestRequest(
             idempotency_key=idempotency_key,
-            body=models.CreateAPIBoxRequest(
+            body=models.CreateWebBoxRequest(
                 include_sample_data=include_sample_data,
                 metadata=metadata,
                 name=name,
@@ -459,7 +459,7 @@ class ApiboxSDK(BaseSDK):
 
         req = self._build_request_async(
             method="POST",
-            path="/v1/apibox",
+            path="/v1/webbox",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -471,7 +471,7 @@ class ApiboxSDK(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.body, False, False, "json", models.CreateAPIBoxRequest
+                request.body, False, False, "json", models.CreateWebBoxRequest
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -489,12 +489,12 @@ class ApiboxSDK(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="create-apibox",
+                operation_id="create-webbox",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
                 ),
-                tags=["apibox"],
+                tags=["webboxes"],
                 extensions=None,
             ),
             request=req,
@@ -504,17 +504,17 @@ class ApiboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
-            return unmarshal_json_response(models.APIBoxTokenResponse, http_res)
+            return unmarshal_json_response(models.CreateWebBoxResponse, http_res)
         if utils.match_response(
             http_res,
             ["400", "401", "404", "408", "409", "413", "415", "422", "429"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -528,7 +528,7 @@ class ApiboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def delete_apibox(
+    def delete(
         self,
         *,
         id: str,
@@ -537,11 +537,11 @@ class ApiboxSDK(BaseSDK):
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
     ):
-        r"""Delete API Box
+        r"""Delete Web Box
 
-        Deletes an API Box, running or stopped, with its state. Its runtime is released after the response. An API Box that MCP Boxes front returns 409 apibox_in_use; delete them first.
+        Deletes a Web Box, running or stopped, with its state. Its runtime is released after the response.
 
-        :param id: API Box ID.
+        :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -557,13 +557,13 @@ class ApiboxSDK(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.DeleteApiboxRequest(
+        request = models.DeleteWebboxRequest(
             id=id,
         )
 
         req = self._build_request(
             method="DELETE",
-            path="/v1/apibox/{id}",
+            path="/v1/webbox/{id}",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -590,12 +590,12 @@ class ApiboxSDK(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="delete-apibox",
+                operation_id="delete-webbox",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
                 ),
-                tags=["apibox"],
+                tags=["webboxes"],
                 extensions=None,
             ),
             request=req,
@@ -606,14 +606,12 @@ class ApiboxSDK(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return
-        if utils.match_response(
-            http_res, ["401", "404", "409"], "application/problem+json"
-        ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, ["401", "404"], "application/problem+json"):
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -627,7 +625,7 @@ class ApiboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def delete_apibox_async(
+    async def delete_async(
         self,
         *,
         id: str,
@@ -636,11 +634,11 @@ class ApiboxSDK(BaseSDK):
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
     ):
-        r"""Delete API Box
+        r"""Delete Web Box
 
-        Deletes an API Box, running or stopped, with its state. Its runtime is released after the response. An API Box that MCP Boxes front returns 409 apibox_in_use; delete them first.
+        Deletes a Web Box, running or stopped, with its state. Its runtime is released after the response.
 
-        :param id: API Box ID.
+        :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -656,13 +654,13 @@ class ApiboxSDK(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.DeleteApiboxRequest(
+        request = models.DeleteWebboxRequest(
             id=id,
         )
 
         req = self._build_request_async(
             method="DELETE",
-            path="/v1/apibox/{id}",
+            path="/v1/webbox/{id}",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -689,12 +687,12 @@ class ApiboxSDK(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="delete-apibox",
+                operation_id="delete-webbox",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
                 ),
-                tags=["apibox"],
+                tags=["webboxes"],
                 extensions=None,
             ),
             request=req,
@@ -705,14 +703,12 @@ class ApiboxSDK(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return
-        if utils.match_response(
-            http_res, ["401", "404", "409"], "application/problem+json"
-        ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+        if utils.match_response(http_res, ["401", "404"], "application/problem+json"):
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -726,7 +722,7 @@ class ApiboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def get_apibox(
+    def get(
         self,
         *,
         id: str,
@@ -734,12 +730,12 @@ class ApiboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.GetAPIBoxResponse:
-        r"""Get API Box
+    ) -> models.GetWebBoxResponse:
+        r"""Get Web Box
 
-        Returns an API Box, its status and its connection: its endpoint and token, whether it is running or stopped. Requests reach it only while it is running.
+        Returns a Web Box, its status and its connection: the URL that opens its app, whether it is running or stopped. The app answers only while the Web Box is running.
 
-        :param id: API Box ID.
+        :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -755,13 +751,13 @@ class ApiboxSDK(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.GetApiboxRequest(
+        request = models.GetWebboxRequest(
             id=id,
         )
 
         req = self._build_request(
             method="GET",
-            path="/v1/apibox/{id}",
+            path="/v1/webbox/{id}",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -792,12 +788,12 @@ class ApiboxSDK(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="get-apibox",
+                operation_id="get-webbox",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
                 ),
-                tags=["apibox"],
+                tags=["webboxes"],
                 extensions=None,
             ),
             request=req,
@@ -807,13 +803,13 @@ class ApiboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.GetAPIBoxResponse, http_res)
+            return unmarshal_json_response(models.GetWebBoxResponse, http_res)
         if utils.match_response(http_res, ["401", "404"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -827,7 +823,7 @@ class ApiboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def get_apibox_async(
+    async def get_async(
         self,
         *,
         id: str,
@@ -835,12 +831,12 @@ class ApiboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.GetAPIBoxResponse:
-        r"""Get API Box
+    ) -> models.GetWebBoxResponse:
+        r"""Get Web Box
 
-        Returns an API Box, its status and its connection: its endpoint and token, whether it is running or stopped. Requests reach it only while it is running.
+        Returns a Web Box, its status and its connection: the URL that opens its app, whether it is running or stopped. The app answers only while the Web Box is running.
 
-        :param id: API Box ID.
+        :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -856,13 +852,13 @@ class ApiboxSDK(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.GetApiboxRequest(
+        request = models.GetWebboxRequest(
             id=id,
         )
 
         req = self._build_request_async(
             method="GET",
-            path="/v1/apibox/{id}",
+            path="/v1/webbox/{id}",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -893,12 +889,12 @@ class ApiboxSDK(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="get-apibox",
+                operation_id="get-webbox",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
                 ),
-                tags=["apibox"],
+                tags=["webboxes"],
                 extensions=None,
             ),
             request=req,
@@ -908,13 +904,13 @@ class ApiboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.GetAPIBoxResponse, http_res)
+            return unmarshal_json_response(models.GetWebBoxResponse, http_res)
         if utils.match_response(http_res, ["401", "404"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -928,7 +924,7 @@ class ApiboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def update_apibox(
+    def update(
         self,
         *,
         id: str,
@@ -938,12 +934,12 @@ class ApiboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.APIBox:
-        r"""Update API Box
+    ) -> models.WebBox:
+        r"""Update Web Box
 
-        Renames an API Box or replaces its metadata. Omitted fields keep their current values.
+        Renames a Web Box or replaces its metadata. Omitted fields keep their current values.
 
-        :param id: API Box ID.
+        :param id: Web Box ID.
         :param metadata: Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it.
         :param name: New name.
         :param retries: Override the default retry configuration for this method
@@ -961,9 +957,9 @@ class ApiboxSDK(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.UpdateApiboxRequestRequest(
+        request = models.UpdateWebboxRequestRequest(
             id=id,
-            body=models.UpdateAPIBoxRequest(
+            body=models.UpdateWebBoxRequest(
                 metadata=metadata,
                 name=name,
             ),
@@ -971,7 +967,7 @@ class ApiboxSDK(BaseSDK):
 
         req = self._build_request(
             method="PATCH",
-            path="/v1/apibox/{id}",
+            path="/v1/webbox/{id}",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -983,7 +979,7 @@ class ApiboxSDK(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.body, False, False, "json", models.UpdateAPIBoxRequest
+                request.body, False, False, "json", models.UpdateWebBoxRequest
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -1001,12 +997,12 @@ class ApiboxSDK(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="update-apibox",
+                operation_id="update-webbox",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
                 ),
-                tags=["apibox"],
+                tags=["webboxes"],
                 extensions=None,
             ),
             request=req,
@@ -1016,17 +1012,17 @@ class ApiboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.APIBox, http_res)
+            return unmarshal_json_response(models.WebBox, http_res)
         if utils.match_response(
             http_res,
             ["400", "401", "404", "408", "413", "415", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -1040,7 +1036,7 @@ class ApiboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def update_apibox_async(
+    async def update_async(
         self,
         *,
         id: str,
@@ -1050,12 +1046,12 @@ class ApiboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.APIBox:
-        r"""Update API Box
+    ) -> models.WebBox:
+        r"""Update Web Box
 
-        Renames an API Box or replaces its metadata. Omitted fields keep their current values.
+        Renames a Web Box or replaces its metadata. Omitted fields keep their current values.
 
-        :param id: API Box ID.
+        :param id: Web Box ID.
         :param metadata: Replacement customer JSON metadata, up to 16 KiB and 64 nesting levels, or null to clear it.
         :param name: New name.
         :param retries: Override the default retry configuration for this method
@@ -1073,9 +1069,9 @@ class ApiboxSDK(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.UpdateApiboxRequestRequest(
+        request = models.UpdateWebboxRequestRequest(
             id=id,
-            body=models.UpdateAPIBoxRequest(
+            body=models.UpdateWebBoxRequest(
                 metadata=metadata,
                 name=name,
             ),
@@ -1083,7 +1079,7 @@ class ApiboxSDK(BaseSDK):
 
         req = self._build_request_async(
             method="PATCH",
-            path="/v1/apibox/{id}",
+            path="/v1/webbox/{id}",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1095,7 +1091,7 @@ class ApiboxSDK(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.body, False, False, "json", models.UpdateAPIBoxRequest
+                request.body, False, False, "json", models.UpdateWebBoxRequest
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -1113,12 +1109,12 @@ class ApiboxSDK(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="update-apibox",
+                operation_id="update-webbox",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
                 ),
-                tags=["apibox"],
+                tags=["webboxes"],
                 extensions=None,
             ),
             request=req,
@@ -1128,17 +1124,17 @@ class ApiboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.APIBox, http_res)
+            return unmarshal_json_response(models.WebBox, http_res)
         if utils.match_response(
             http_res,
             ["400", "401", "404", "408", "413", "415", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -1152,7 +1148,7 @@ class ApiboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def save_apibox_snapshot(
+    def save_snapshot(
         self,
         *,
         id: str,
@@ -1163,10 +1159,10 @@ class ApiboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.APIBoxSnapshot:
-        r"""Save API Box as Snapshot
+    ) -> models.WebBoxSnapshot:
+        r"""Save Web Box as Snapshot
 
-        Saves a running API Box's service and current state as an API Box Snapshot, ready when the response returns. The API Box keeps running, and a paused one is woken. API Boxes created from the Snapshot start with the saved state instead of a new workspace, so they refuse include_sample_data. The Snapshot outlives the API Box. A starting API Box returns 409 apibox_starting; a stopping or stopped one returns 409 apibox_stopped; one whose runtime cannot save its state returns 409 apibox_rebuild_required.
+        Saves a running Web Box's app and current state as a Web Box Snapshot, ready when the response returns. The Web Box keeps running, and a paused one is woken. Web Boxes created from the Snapshot start with the saved state instead of a new workspace, so they refuse include_sample_data. The Snapshot outlives the Web Box. A starting Web Box returns 409 webbox_starting; a stopping or stopped one returns 409 webbox_stopped; one whose runtime cannot save its state returns 409 webbox_rebuild_required.
 
         :param id: ID of the Box to save.
         :param idempotency_key: Optional key for retrying this save safely. A retry with the same key and request returns the Snapshot the first save created. The same key with a different request returns 409 idempotency_conflict.
@@ -1187,7 +1183,7 @@ class ApiboxSDK(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.SaveApiboxSnapshotRequest(
+        request = models.SaveWebboxSnapshotRequest(
             id=id,
             idempotency_key=idempotency_key,
             body=models.SaveBoxSnapshotRequest(
@@ -1198,7 +1194,7 @@ class ApiboxSDK(BaseSDK):
 
         req = self._build_request(
             method="POST",
-            path="/v1/apibox/{id}/snapshot",
+            path="/v1/webbox/{id}/snapshot",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1232,12 +1228,12 @@ class ApiboxSDK(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="save-apibox-snapshot",
+                operation_id="save-webbox-snapshot",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
                 ),
-                tags=["apibox"],
+                tags=["webboxes"],
                 extensions=None,
             ),
             request=req,
@@ -1247,17 +1243,17 @@ class ApiboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
-            return unmarshal_json_response(models.APIBoxSnapshot, http_res)
+            return unmarshal_json_response(models.WebBoxSnapshot, http_res)
         if utils.match_response(
             http_res,
             ["400", "401", "404", "408", "409", "413", "415", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -1271,7 +1267,7 @@ class ApiboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def save_apibox_snapshot_async(
+    async def save_snapshot_async(
         self,
         *,
         id: str,
@@ -1282,10 +1278,10 @@ class ApiboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.APIBoxSnapshot:
-        r"""Save API Box as Snapshot
+    ) -> models.WebBoxSnapshot:
+        r"""Save Web Box as Snapshot
 
-        Saves a running API Box's service and current state as an API Box Snapshot, ready when the response returns. The API Box keeps running, and a paused one is woken. API Boxes created from the Snapshot start with the saved state instead of a new workspace, so they refuse include_sample_data. The Snapshot outlives the API Box. A starting API Box returns 409 apibox_starting; a stopping or stopped one returns 409 apibox_stopped; one whose runtime cannot save its state returns 409 apibox_rebuild_required.
+        Saves a running Web Box's app and current state as a Web Box Snapshot, ready when the response returns. The Web Box keeps running, and a paused one is woken. Web Boxes created from the Snapshot start with the saved state instead of a new workspace, so they refuse include_sample_data. The Snapshot outlives the Web Box. A starting Web Box returns 409 webbox_starting; a stopping or stopped one returns 409 webbox_stopped; one whose runtime cannot save its state returns 409 webbox_rebuild_required.
 
         :param id: ID of the Box to save.
         :param idempotency_key: Optional key for retrying this save safely. A retry with the same key and request returns the Snapshot the first save created. The same key with a different request returns 409 idempotency_conflict.
@@ -1306,7 +1302,7 @@ class ApiboxSDK(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.SaveApiboxSnapshotRequest(
+        request = models.SaveWebboxSnapshotRequest(
             id=id,
             idempotency_key=idempotency_key,
             body=models.SaveBoxSnapshotRequest(
@@ -1317,7 +1313,7 @@ class ApiboxSDK(BaseSDK):
 
         req = self._build_request_async(
             method="POST",
-            path="/v1/apibox/{id}/snapshot",
+            path="/v1/webbox/{id}/snapshot",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1351,12 +1347,12 @@ class ApiboxSDK(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="save-apibox-snapshot",
+                operation_id="save-webbox-snapshot",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
                 ),
-                tags=["apibox"],
+                tags=["webboxes"],
                 extensions=None,
             ),
             request=req,
@@ -1366,17 +1362,17 @@ class ApiboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "201", "application/json"):
-            return unmarshal_json_response(models.APIBoxSnapshot, http_res)
+            return unmarshal_json_response(models.WebBoxSnapshot, http_res)
         if utils.match_response(
             http_res,
             ["400", "401", "404", "408", "409", "413", "415", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -1390,7 +1386,7 @@ class ApiboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def start_apibox(
+    def start(
         self,
         *,
         id: str,
@@ -1398,12 +1394,12 @@ class ApiboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.APIBox:
-        r"""Start API Box
+    ) -> models.WebBox:
+        r"""Start Web Box
 
-        Starts a stopped API Box from the state its stop saved, and returns at once with status starting; get the API Box until it is running. Its token stays the same; its get returns it. A running, starting or stopping API Box returns 409 apibox_not_stopped.
+        Starts a stopped Web Box from the state its stop saved, and returns at once with status starting. A running, starting or stopping Web Box returns 409 webbox_not_stopped.
 
-        :param id: API Box ID.
+        :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1419,13 +1415,13 @@ class ApiboxSDK(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.StartApiboxRequest(
+        request = models.StartWebboxRequest(
             id=id,
         )
 
         req = self._build_request(
             method="POST",
-            path="/v1/apibox/{id}/start",
+            path="/v1/webbox/{id}/start",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1452,12 +1448,12 @@ class ApiboxSDK(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="start-apibox",
+                operation_id="start-webbox",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
                 ),
-                tags=["apibox"],
+                tags=["webboxes"],
                 extensions=None,
             ),
             request=req,
@@ -1467,15 +1463,15 @@ class ApiboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
-            return unmarshal_json_response(models.APIBox, http_res)
+            return unmarshal_json_response(models.WebBox, http_res)
         if utils.match_response(
             http_res, ["401", "404", "409", "429"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -1489,7 +1485,7 @@ class ApiboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def start_apibox_async(
+    async def start_async(
         self,
         *,
         id: str,
@@ -1497,12 +1493,12 @@ class ApiboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.APIBox:
-        r"""Start API Box
+    ) -> models.WebBox:
+        r"""Start Web Box
 
-        Starts a stopped API Box from the state its stop saved, and returns at once with status starting; get the API Box until it is running. Its token stays the same; its get returns it. A running, starting or stopping API Box returns 409 apibox_not_stopped.
+        Starts a stopped Web Box from the state its stop saved, and returns at once with status starting. A running, starting or stopping Web Box returns 409 webbox_not_stopped.
 
-        :param id: API Box ID.
+        :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1518,13 +1514,13 @@ class ApiboxSDK(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.StartApiboxRequest(
+        request = models.StartWebboxRequest(
             id=id,
         )
 
         req = self._build_request_async(
             method="POST",
-            path="/v1/apibox/{id}/start",
+            path="/v1/webbox/{id}/start",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1551,12 +1547,12 @@ class ApiboxSDK(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="start-apibox",
+                operation_id="start-webbox",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
                 ),
-                tags=["apibox"],
+                tags=["webboxes"],
                 extensions=None,
             ),
             request=req,
@@ -1566,15 +1562,15 @@ class ApiboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
-            return unmarshal_json_response(models.APIBox, http_res)
+            return unmarshal_json_response(models.WebBox, http_res)
         if utils.match_response(
             http_res, ["401", "404", "409", "429"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -1588,7 +1584,7 @@ class ApiboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def list_apibox_steps(
+    def list_steps(
         self,
         *,
         id: str,
@@ -1598,12 +1594,12 @@ class ApiboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> Optional[models.ListApiboxStepsResponse]:
-        r"""List API Box steps
+    ) -> Optional[models.ListWebboxStepsResponse]:
+        r"""List Web Box steps
 
-        Lists the API Box's steps in order. Each request that changed state is one step; a request that only reads registers none. An API Box that is not running returns 409 apibox_stopped.
+        Lists the Web Box's steps in order. Each request that changed state is one step; a request that only reads registers none. A Web Box that is not running returns 409 webbox_stopped.
 
-        :param id: API Box ID.
+        :param id: Web Box ID.
         :param cursor: Opaque next_cursor value from a previous page.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param retries: Override the default retry configuration for this method
@@ -1621,7 +1617,7 @@ class ApiboxSDK(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.ListApiboxStepsRequest(
+        request = models.ListWebboxStepsRequest(
             id=id,
             cursor=cursor,
             limit=limit,
@@ -1629,7 +1625,7 @@ class ApiboxSDK(BaseSDK):
 
         req = self._build_request(
             method="GET",
-            path="/v1/apibox/{id}/steps",
+            path="/v1/webbox/{id}/steps",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1660,12 +1656,12 @@ class ApiboxSDK(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="list-apibox-steps",
+                operation_id="list-webbox-steps",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
                 ),
-                tags=["apibox"],
+                tags=["webboxes"],
                 extensions=None,
             ),
             request=req,
@@ -1673,7 +1669,7 @@ class ApiboxSDK(BaseSDK):
             retry_config=retry_config,
         )
 
-        def next_func() -> Optional[models.ListApiboxStepsResponse]:
+        def next_func() -> Optional[models.ListWebboxStepsResponse]:
             body = utils.unmarshal_json(http_res.text, Union[Dict[Any, Any], List[Any]])
 
             next_cursor = JSONPath("$.next_cursor").parse(body)
@@ -1685,7 +1681,7 @@ class ApiboxSDK(BaseSDK):
             if next_cursor is None or str(next_cursor).strip() == "":
                 return None
 
-            return self.list_apibox_steps(
+            return self.list_steps(
                 id=id,
                 cursor=next_cursor,
                 limit=limit,
@@ -1697,18 +1693,18 @@ class ApiboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return models.ListApiboxStepsResponse(
+            return models.ListWebboxStepsResponse(
                 result=unmarshal_json_response(models.ListBoxStepsResponse, http_res),
                 next=next_func,
             )
         if utils.match_response(
             http_res, ["400", "401", "404", "409", "422"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -1722,7 +1718,7 @@ class ApiboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def list_apibox_steps_async(
+    async def list_steps_async(
         self,
         *,
         id: str,
@@ -1732,12 +1728,12 @@ class ApiboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> Optional[models.ListApiboxStepsResponse]:
-        r"""List API Box steps
+    ) -> Optional[models.ListWebboxStepsResponse]:
+        r"""List Web Box steps
 
-        Lists the API Box's steps in order. Each request that changed state is one step; a request that only reads registers none. An API Box that is not running returns 409 apibox_stopped.
+        Lists the Web Box's steps in order. Each request that changed state is one step; a request that only reads registers none. A Web Box that is not running returns 409 webbox_stopped.
 
-        :param id: API Box ID.
+        :param id: Web Box ID.
         :param cursor: Opaque next_cursor value from a previous page.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param retries: Override the default retry configuration for this method
@@ -1755,7 +1751,7 @@ class ApiboxSDK(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.ListApiboxStepsRequest(
+        request = models.ListWebboxStepsRequest(
             id=id,
             cursor=cursor,
             limit=limit,
@@ -1763,7 +1759,7 @@ class ApiboxSDK(BaseSDK):
 
         req = self._build_request_async(
             method="GET",
-            path="/v1/apibox/{id}/steps",
+            path="/v1/webbox/{id}/steps",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1794,12 +1790,12 @@ class ApiboxSDK(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="list-apibox-steps",
+                operation_id="list-webbox-steps",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
                 ),
-                tags=["apibox"],
+                tags=["webboxes"],
                 extensions=None,
             ),
             request=req,
@@ -1807,7 +1803,7 @@ class ApiboxSDK(BaseSDK):
             retry_config=retry_config,
         )
 
-        def next_func() -> Awaitable[Optional[models.ListApiboxStepsResponse]]:
+        def next_func() -> Awaitable[Optional[models.ListWebboxStepsResponse]]:
             body = utils.unmarshal_json(http_res.text, Union[Dict[Any, Any], List[Any]])
 
             async def empty_result():
@@ -1822,7 +1818,7 @@ class ApiboxSDK(BaseSDK):
             if next_cursor is None or str(next_cursor).strip() == "":
                 return empty_result()
 
-            return self.list_apibox_steps_async(
+            return self.list_steps_async(
                 id=id,
                 cursor=next_cursor,
                 limit=limit,
@@ -1834,18 +1830,18 @@ class ApiboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return models.ListApiboxStepsResponse(
+            return models.ListWebboxStepsResponse(
                 result=unmarshal_json_response(models.ListBoxStepsResponse, http_res),
                 next=next_func,
             )
         if utils.match_response(
             http_res, ["400", "401", "404", "409", "422"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -1859,7 +1855,7 @@ class ApiboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def stop_apibox(
+    def stop(
         self,
         *,
         id: str,
@@ -1867,12 +1863,12 @@ class ApiboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.APIBox:
-        r"""Stop API Box
+    ) -> models.WebBox:
+        r"""Stop Web Box
 
-        Stops a running API Box: it saves its state, and releases its runtime; its token stays for the next start. It returns at once with status stopping; get the API Box until it is stopped. A stopped API Box is returned unchanged; a starting one returns 409 apibox_starting.
+        Stops a running Web Box: it saves its state, and releases its runtime. It returns at once with status stopping; get the Web Box until it is stopped. A stopped Web Box is returned unchanged; a starting one returns 409 webbox_starting.
 
-        :param id: API Box ID.
+        :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1888,13 +1884,13 @@ class ApiboxSDK(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.StopApiboxRequest(
+        request = models.StopWebboxRequest(
             id=id,
         )
 
         req = self._build_request(
             method="POST",
-            path="/v1/apibox/{id}/stop",
+            path="/v1/webbox/{id}/stop",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1921,12 +1917,12 @@ class ApiboxSDK(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="stop-apibox",
+                operation_id="stop-webbox",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
                 ),
-                tags=["apibox"],
+                tags=["webboxes"],
                 extensions=None,
             ),
             request=req,
@@ -1936,15 +1932,15 @@ class ApiboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
-            return unmarshal_json_response(models.APIBox, http_res)
+            return unmarshal_json_response(models.WebBox, http_res)
         if utils.match_response(
             http_res, ["401", "404", "409"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -1958,7 +1954,7 @@ class ApiboxSDK(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def stop_apibox_async(
+    async def stop_async(
         self,
         *,
         id: str,
@@ -1966,12 +1962,12 @@ class ApiboxSDK(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.APIBox:
-        r"""Stop API Box
+    ) -> models.WebBox:
+        r"""Stop Web Box
 
-        Stops a running API Box: it saves its state, and releases its runtime; its token stays for the next start. It returns at once with status stopping; get the API Box until it is stopped. A stopped API Box is returned unchanged; a starting one returns 409 apibox_starting.
+        Stops a running Web Box: it saves its state, and releases its runtime. It returns at once with status stopping; get the Web Box until it is stopped. A stopped Web Box is returned unchanged; a starting one returns 409 webbox_starting.
 
-        :param id: API Box ID.
+        :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1987,13 +1983,13 @@ class ApiboxSDK(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.StopApiboxRequest(
+        request = models.StopWebboxRequest(
             id=id,
         )
 
         req = self._build_request_async(
             method="POST",
-            path="/v1/apibox/{id}/stop",
+            path="/v1/webbox/{id}/stop",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -2020,12 +2016,12 @@ class ApiboxSDK(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="stop-apibox",
+                operation_id="stop-webbox",
                 oauth2_scopes=None,
                 security_source=get_security_from_env(
                     self.sdk_configuration.security, models.Security
                 ),
-                tags=["apibox"],
+                tags=["webboxes"],
                 extensions=None,
             ),
             request=req,
@@ -2035,15 +2031,15 @@ class ApiboxSDK(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "202", "application/json"):
-            return unmarshal_json_response(models.APIBox, http_res)
+            return unmarshal_json_response(models.WebBox, http_res)
         if utils.match_response(
             http_res, ["401", "404", "409"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(

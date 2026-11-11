@@ -73,8 +73,8 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 422                 | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 400, 401, 422                 | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
 ## ~~create_simulation~~
@@ -167,8 +167,8 @@ with Continuous(
 
 | Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| errors.Error                                | 400, 401, 404, 408, 409, 413, 415, 422, 429 | application/problem+json                    |
-| errors.Error                                | 500, 503                                    | application/problem+json                    |
+| errors.APIError                             | 400, 401, 404, 408, 409, 413, 415, 422, 429 | application/problem+json                    |
+| errors.APIError                             | 500, 503                                    | application/problem+json                    |
 | errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
 
 ## ~~delete_simulation~~
@@ -208,8 +208,8 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 403, 404                 | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 401, 403, 404                 | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
 ## ~~get_simulation~~
@@ -254,8 +254,8 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 403, 404                 | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 401, 403, 404                 | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
 ## ~~update_simulation~~
@@ -302,8 +302,8 @@ with Continuous(
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.Error                           | 400, 401, 403, 404, 408, 413, 415, 422 | application/problem+json               |
-| errors.Error                           | 500, 503                               | application/problem+json               |
+| errors.APIError                        | 400, 401, 403, 404, 408, 413, 415, 422 | application/problem+json               |
+| errors.APIError                        | 500, 503                               | application/problem+json               |
 | errors.ContinuousDefaultError          | 4XX, 5XX                               | \*/\*                                  |
 
 ## ~~create_simulation_advance~~
@@ -351,8 +351,8 @@ with Continuous(
 
 | Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| errors.Error                                | 400, 401, 403, 404, 408, 409, 413, 415, 422 | application/problem+json                    |
-| errors.Error                                | 500, 503                                    | application/problem+json                    |
+| errors.APIError                             | 400, 401, 403, 404, 408, 409, 413, 415, 422 | application/problem+json                    |
+| errors.APIError                             | 500, 503                                    | application/problem+json                    |
 | errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
 
 ## ~~get_simulation_advance~~
@@ -398,8 +398,8 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 403, 404, 409            | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 401, 403, 404, 409            | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
 ## ~~list_simulation_advance_events~~
@@ -449,8 +449,8 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 403, 404, 409, 422  | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 400, 401, 403, 404, 409, 422  | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
 ## ~~start_simulation~~
@@ -495,8 +495,8 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 403, 404, 409, 429       | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 401, 403, 404, 409, 429       | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
 ## ~~list_simulation_steps~~
@@ -545,8 +545,8 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 403, 404, 409, 422  | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 400, 401, 403, 404, 409, 422  | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
 ## ~~stop_simulation~~
@@ -591,8 +591,8 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 403, 404, 409            | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 401, 403, 404, 409            | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
 ## ~~get_simulation_token~~
@@ -637,8 +637,8 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 403, 404                 | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 401, 403, 404                 | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
 ## ~~regenerate_simulation_token~~
@@ -684,6 +684,6 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 403, 404, 409, 422       | application/problem+json      |
-| errors.Error                  | 500, 502, 503                 | application/problem+json      |
+| errors.APIError               | 401, 403, 404, 409, 422       | application/problem+json      |
+| errors.APIError               | 500, 502, 503                 | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |

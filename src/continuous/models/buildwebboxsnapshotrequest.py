@@ -13,7 +13,7 @@ class BuildWebBoxSnapshotRequestTypedDict(TypedDict):
     instructions: NotRequired[str]
     r"""Instructions for the builder. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
     model: NotRequired[str]
-    r"""Model that builds and reviews the Snapshot: a Claude model or combined, the default. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does."""
+    r"""Model that builds and reviews the Snapshot. Defaults to combined. Its provider is derived from the model. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does."""
     name: NotRequired[str]
     r"""Name for the Snapshot. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
     parent_id: NotRequired[str]
@@ -32,7 +32,7 @@ class BuildWebBoxSnapshotRequest(BaseModel):
     r"""Instructions for the builder. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
 
     model: Optional[str] = None
-    r"""Model that builds and reviews the Snapshot: a Claude model or combined, the default. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does."""
+    r"""Model that builds and reviews the Snapshot. Defaults to combined. Its provider is derived from the model. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does."""
 
     name: Optional[str] = None
     r"""Name for the Snapshot. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""

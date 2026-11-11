@@ -6,16 +6,16 @@ Build API Box Snapshots from an OpenAPI, WSDL or GraphQL document, or use the ca
 
 ### Available Operations
 
-* [list_apibox_snapshots](#list_apibox_snapshots) - List API Box Snapshots
-* [create_apibox_snapshot](#create_apibox_snapshot) - Create API Box Snapshot
-* [delete_apibox_snapshot](#delete_apibox_snapshot) - Delete API Box Snapshot
-* [get_apibox_snapshot](#get_apibox_snapshot) - Get API Box Snapshot
-* [update_apibox_snapshot](#update_apibox_snapshot) - Update API Box Snapshot
-* [cancel_apibox_snapshot](#cancel_apibox_snapshot) - Cancel API Box Snapshot build
-* [clone_apibox_snapshot](#clone_apibox_snapshot) - Clone API Box Snapshot
-* [resume_apibox_snapshot](#resume_apibox_snapshot) - Resume API Box Snapshot build
+* [list](#list) - List API Box Snapshots
+* [create](#create) - Create API Box Snapshot
+* [delete](#delete) - Delete API Box Snapshot
+* [get](#get) - Get API Box Snapshot
+* [update](#update) - Update API Box Snapshot
+* [cancel](#cancel) - Cancel API Box Snapshot build
+* [clone](#clone) - Clone API Box Snapshot
+* [resume](#resume) - Resume API Box Snapshot build
 
-## list_apibox_snapshots
+## list
 
 Returns the workspace's API Box Snapshots and the catalog's, newest first. Results can be filtered by source and status, and by the API Box a Snapshot was saved from.
 
@@ -31,7 +31,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.apibox_snapshots.list_apibox_snapshots(limit=50)
+    res = c_client.apibox_snapshots.list(limit=50)
 
     while res is not None:
         # Handle items
@@ -48,7 +48,7 @@ with Continuous(
 | `limit`                                                                                 | *Optional[int]*                                                                         | :heavy_minus_sign:                                                                      | Page size. Values below 1 use 50. Values above 200 use 200.                             |
 | `cursor`                                                                                | *Optional[str]*                                                                         | :heavy_minus_sign:                                                                      | Opaque next_cursor value from a previous page.                                          |
 | `source`                                                                                | [Optional[models.ListApiboxSnapshotsSource]](../../models/listapiboxsnapshotssource.md) | :heavy_minus_sign:                                                                      | Optional source filter.                                                                 |
-| `box_id`                                                                                | *Optional[str]*                                                                         | :heavy_minus_sign:                                                                      | Optional filter for the Snapshots saved from this Box.                                  |
+| `source_box_id`                                                                         | *Optional[str]*                                                                         | :heavy_minus_sign:                                                                      | Optional filter for the Snapshots saved from this Box.                                  |
 | `retries`                                                                               | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                        | :heavy_minus_sign:                                                                      | Configuration to override the default retry behavior of the client.                     |
 
 ### Response
@@ -59,11 +59,11 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 422                 | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 400, 401, 422                 | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## create_apibox_snapshot
+## create
 
 Starts an asynchronous build and returns the API Box Snapshot with status pending. Get the Snapshot until its status is ready, failed or canceled; API Boxes start from a ready one. The build runs in real time: the built service has no simulated clock, and its scheduled work runs at the first request at or after its time. Builds of every kind share one queue and the daily quota. Send multipart/form-data with a JSON part named request, a file part named spec with the OpenAPI, WSDL or GraphQL document, and optional file parts named document with vendor documentation. To build on a ready Snapshot, set parent_id; the spec part is then optional.
 
@@ -79,7 +79,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.apibox_snapshots.create_apibox_snapshot(request={})
+    res = c_client.apibox_snapshots.create(request={})
 
     # Handle response
     print(res)
@@ -104,13 +104,13 @@ with Continuous(
 
 | Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.Error                      | 400, 401, 404, 408, 409, 413, 415 | application/problem+json          |
-| errors.Error                      | 429                               | application/problem+json          |
-| errors.Error                      | 500                               | application/problem+json          |
-| errors.Error                      | 503                               | application/problem+json          |
+| errors.APIError                   | 400, 401, 404, 408, 409, 413, 415 | application/problem+json          |
+| errors.APIError                   | 429                               | application/problem+json          |
+| errors.APIError                   | 500                               | application/problem+json          |
+| errors.APIError                   | 503                               | application/problem+json          |
 | errors.ContinuousDefaultError     | 4XX, 5XX                          | \*/\*                             |
 
-## delete_apibox_snapshot
+## delete
 
 Deletes an API Box Snapshot. A build that is still pending or building is canceled first. A Snapshot that API Boxes started from or MCP Box Snapshots were built against returns 409 apibox_snapshot_in_use; delete those first. While a build that names it as parent_id is pending or building, it returns 409 apibox_snapshot_parent_in_use; retry after the build finishes. Catalog Snapshots cannot be deleted.
 
@@ -126,7 +126,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    c_client.apibox_snapshots.delete_apibox_snapshot(id="<id>")
+    c_client.apibox_snapshots.delete(id="<id>")
 
     # Use the SDK ...
 
@@ -143,11 +143,11 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 403, 404, 409            | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 401, 403, 404, 409            | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## get_apibox_snapshot
+## get
 
 Returns an API Box Snapshot of the workspace or the catalog, and its build status.
 
@@ -163,7 +163,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.apibox_snapshots.get_apibox_snapshot(id="<id>")
+    res = c_client.apibox_snapshots.get(id="<id>")
 
     # Handle response
     print(res)
@@ -185,11 +185,11 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 404                      | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 401, 404                      | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## update_apibox_snapshot
+## update
 
 Renames an API Box Snapshot or replaces its metadata. Omitted fields keep their current values. The built service does not change. Catalog Snapshots cannot be updated.
 
@@ -205,7 +205,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.apibox_snapshots.update_apibox_snapshot(id="<id>")
+    res = c_client.apibox_snapshots.update(id="<id>")
 
     # Handle response
     print(res)
@@ -229,11 +229,11 @@ with Continuous(
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.Error                           | 400, 401, 403, 404, 408, 413, 415, 422 | application/problem+json               |
-| errors.Error                           | 500, 503                               | application/problem+json               |
+| errors.APIError                        | 400, 401, 403, 404, 408, 413, 415, 422 | application/problem+json               |
+| errors.APIError                        | 500, 503                               | application/problem+json               |
 | errors.ContinuousDefaultError          | 4XX, 5XX                               | \*/\*                                  |
 
-## cancel_apibox_snapshot
+## cancel
 
 Requests cancellation of a pending or active build and returns the Snapshot without waiting for the build to stop. Get the Snapshot until its status leaves pending or building. The build can finish before cancellation takes effect. A Snapshot whose build has settled is returned unchanged.
 
@@ -249,7 +249,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.apibox_snapshots.cancel_apibox_snapshot(id="<id>")
+    res = c_client.apibox_snapshots.cancel(id="<id>")
 
     # Handle response
     print(res)
@@ -271,11 +271,11 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 403, 404                 | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 401, 403, 404                 | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## clone_apibox_snapshot
+## clone
 
 Creates a ready copy of a ready API Box Snapshot in another workspace, without a build. The clone has a new ID and the source's artifact, documents and saved state; the source is unchanged. The clone records no credentials, since they belong to the source workspace, and no parent or source Snapshot. The source is the caller's workspace. An API key may clone into any other workspace of its organization.
 
@@ -291,7 +291,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.apibox_snapshots.clone_apibox_snapshot(id="<id>", target_workspace_id="<id>")
+    res = c_client.apibox_snapshots.clone(id="<id>", target_workspace_id="<id>")
 
     # Handle response
     print(res)
@@ -309,7 +309,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.apibox_snapshots.clone_apibox_snapshot(id="<id>", target_workspace_id="<id>")
+    res = c_client.apibox_snapshots.clone(id="<id>", target_workspace_id="<id>")
 
     # Handle response
     print(res)
@@ -334,11 +334,11 @@ with Continuous(
 
 | Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| errors.Error                                | 400, 401, 403, 404, 408, 409, 413, 415, 422 | application/problem+json                    |
-| errors.Error                                | 500, 503                                    | application/problem+json                    |
+| errors.APIError                             | 400, 401, 403, 404, 408, 409, 413, 415, 422 | application/problem+json                    |
+| errors.APIError                             | 500, 503                                    | application/problem+json                    |
 | errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
 
-## resume_apibox_snapshot
+## resume
 
 Resumes a build that waits, as build.waiting reports: at QA because its live credentials were rejected or the live systems rate limited its calls, or for more time after it used its time limit. For a credential wait, refresh each credential it names with PATCH /v1/credentials/{id} first: QA then runs again with their current values, and the build goes on to finalize. For a rate-limit wait, resume once the rate limit resets: QA then runs again. For a wait for more time, send add_seconds: the build continues where it stopped, with that much time from the resume. Returns the Snapshot, still building. A wait does not count toward the build's time limit: a build resumed from a QA wait has the time it had left when it began waiting. A build that is not waiting returns 409 apibox_snapshot_not_waiting.
 
@@ -354,7 +354,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.apibox_snapshots.resume_apibox_snapshot(id="<id>")
+    res = c_client.apibox_snapshots.resume(id="<id>")
 
     # Handle response
     print(res)
@@ -377,6 +377,6 @@ with Continuous(
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.Error                           | 400, 401, 403, 404, 408, 409, 413, 415 | application/problem+json               |
-| errors.Error                           | 500, 503                               | application/problem+json               |
+| errors.APIError                        | 400, 401, 403, 404, 408, 409, 413, 415 | application/problem+json               |
+| errors.APIError                        | 500, 503                               | application/problem+json               |
 | errors.ContinuousDefaultError          | 4XX, 5XX                               | \*/\*                                  |

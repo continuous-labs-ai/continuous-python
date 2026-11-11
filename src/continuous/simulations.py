@@ -154,11 +154,11 @@ class Simulations(BaseSDK):
         if utils.match_response(
             http_res, ["400", "401", "422"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -314,11 +314,11 @@ class Simulations(BaseSDK):
         if utils.match_response(
             http_res, ["400", "401", "422"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -446,11 +446,11 @@ class Simulations(BaseSDK):
             ["400", "401", "404", "408", "409", "413", "415", "422", "429"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -578,11 +578,11 @@ class Simulations(BaseSDK):
             ["400", "401", "404", "408", "409", "413", "415", "422", "429"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -682,11 +682,11 @@ class Simulations(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -786,11 +786,11 @@ class Simulations(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -894,11 +894,11 @@ class Simulations(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -1002,11 +1002,11 @@ class Simulations(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -1119,11 +1119,11 @@ class Simulations(BaseSDK):
             ["400", "401", "403", "404", "408", "413", "415", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -1236,11 +1236,11 @@ class Simulations(BaseSDK):
             ["400", "401", "403", "404", "408", "413", "415", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -1353,11 +1353,11 @@ class Simulations(BaseSDK):
             ["400", "401", "403", "404", "408", "409", "413", "415", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -1470,11 +1470,11 @@ class Simulations(BaseSDK):
             ["400", "401", "403", "404", "408", "409", "413", "415", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -1581,11 +1581,11 @@ class Simulations(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404", "409"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -1692,11 +1692,11 @@ class Simulations(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404", "409"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -1839,11 +1839,11 @@ class Simulations(BaseSDK):
             ["400", "401", "403", "404", "409", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -1991,11 +1991,11 @@ class Simulations(BaseSDK):
             ["400", "401", "403", "404", "409", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -2095,11 +2095,11 @@ class Simulations(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404", "409", "429"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -2199,11 +2199,11 @@ class Simulations(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404", "409", "429"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -2342,11 +2342,11 @@ class Simulations(BaseSDK):
             ["400", "401", "403", "404", "409", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -2490,11 +2490,11 @@ class Simulations(BaseSDK):
             ["400", "401", "403", "404", "409", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -2594,11 +2594,11 @@ class Simulations(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404", "409"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -2698,11 +2698,11 @@ class Simulations(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404", "409"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -2809,11 +2809,11 @@ class Simulations(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -2920,11 +2920,11 @@ class Simulations(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -3030,13 +3030,13 @@ class Simulations(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404", "409", "422"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(
             http_res, ["500", "502", "503"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -3142,13 +3142,13 @@ class Simulations(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404", "409", "422"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(
             http_res, ["500", "502", "503"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(

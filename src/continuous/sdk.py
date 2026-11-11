@@ -15,28 +15,28 @@ from typing import Any, Callable, Dict, Optional, TYPE_CHECKING, Union, cast
 import weakref
 
 if TYPE_CHECKING:
-    from continuous.apibox_sdk import ApiboxSDK
     from continuous.apibox_snapshots import ApiboxSnapshots
+    from continuous.apiboxes import Apiboxes
     from continuous.credentials import Credentials
-    from continuous.mcpbox_sdk import McpboxSDK
     from continuous.mcpbox_snapshots import McpboxSnapshots
+    from continuous.mcpboxes import Mcpboxes
     from continuous.simulation_snapshots import SimulationSnapshots
     from continuous.simulations import Simulations
     from continuous.simulators import Simulators
-    from continuous.webbox_sdk import WebboxSDK
     from continuous.webbox_snapshots import WebboxSnapshots
+    from continuous.webboxes import Webboxes
 
 
 class Continuous(BaseSDK):
     r"""Continuous API: Start API Boxes, Web Boxes and MCP Boxes from Snapshots. Authenticate every request with an API key sent as a Bearer token."""
 
-    apibox: "ApiboxSDK"
+    apiboxes: "Apiboxes"
     r"""Start API Boxes from API Box Snapshots. Each API Box serves its Snapshot's API at its own endpoint, with its own state, in real time. Stop, start and delete them."""
     apibox_snapshots: "ApiboxSnapshots"
     r"""Build API Box Snapshots from an OpenAPI, WSDL or GraphQL document, or use the catalog's. API Boxes start from a ready Snapshot."""
     credentials: "Credentials"
     r"""Store connections to real systems: a base URL, the header that carries the credential, and its value. The API never returns a value."""
-    mcpbox: "McpboxSDK"
+    mcpboxes: "Mcpboxes"
     r"""Start MCP Boxes from MCP Box Snapshots. Each MCP Box serves its Snapshot's tools over MCP in front of an API Box. Stop, start and delete them."""
     mcpbox_snapshots: "McpboxSnapshots"
     r"""Build MCP Box Snapshots of an MCP server's tools against a ready API Box Snapshot. MCP Boxes serve a ready Snapshot."""
@@ -46,15 +46,15 @@ class Continuous(BaseSDK):
     r"""Deprecated. Use API Box for APIs and Web Box for web apps. Create Simulations from ready Simulators or Snapshots, then rename, stop, start, and delete them."""
     simulators: "Simulators"
     r"""Deprecated. Use API Box for APIs and Web Box for web apps. Build Simulators from OpenAPI, WSDL or GraphQL documents, check or cancel a build, clone Simulators into other workspaces, and rename and delete Simulators."""
-    webbox: "WebboxSDK"
+    webboxes: "Webboxes"
     r"""Start Web Boxes from Web Box Snapshots. Each Web Box serves its Snapshot's web app at a host of its own, with its own state, in real time. Stop, start and delete them."""
     webbox_snapshots: "WebboxSnapshots"
     r"""Build Web Box Snapshots from a vendor's live web app, or use the catalog's. Web Boxes start from a ready Snapshot."""
     _sub_sdk_map = {
-        "apibox": ("continuous.apibox_sdk", "ApiboxSDK"),
+        "apiboxes": ("continuous.apiboxes", "Apiboxes"),
         "apibox_snapshots": ("continuous.apibox_snapshots", "ApiboxSnapshots"),
         "credentials": ("continuous.credentials", "Credentials"),
-        "mcpbox": ("continuous.mcpbox_sdk", "McpboxSDK"),
+        "mcpboxes": ("continuous.mcpboxes", "Mcpboxes"),
         "mcpbox_snapshots": ("continuous.mcpbox_snapshots", "McpboxSnapshots"),
         "simulation_snapshots": (
             "continuous.simulation_snapshots",
@@ -62,7 +62,7 @@ class Continuous(BaseSDK):
         ),
         "simulations": ("continuous.simulations", "Simulations"),
         "simulators": ("continuous.simulators", "Simulators"),
-        "webbox": ("continuous.webbox_sdk", "WebboxSDK"),
+        "webboxes": ("continuous.webboxes", "Webboxes"),
         "webbox_snapshots": ("continuous.webbox_snapshots", "WebboxSnapshots"),
     }
 

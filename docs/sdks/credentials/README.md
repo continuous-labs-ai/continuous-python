@@ -6,13 +6,13 @@ Store connections to real systems: a base URL, the header that carries the crede
 
 ### Available Operations
 
-* [list_credentials](#list_credentials) - List credentials
-* [create_credential](#create_credential) - Create credential
-* [delete_credential](#delete_credential) - Delete credential
-* [get_credential](#get_credential) - Get credential
-* [update_credential](#update_credential) - Update credential
+* [list](#list) - List credentials
+* [create](#create) - Create credential
+* [delete](#delete) - Delete credential
+* [get](#get) - Get credential
+* [update](#update) - Update credential
 
-## list_credentials
+## list
 
 Returns the workspace's credentials, newest first. Credential values are never returned.
 
@@ -28,7 +28,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.credentials.list_credentials(limit=50)
+    res = c_client.credentials.list(limit=50)
 
     while res is not None:
         # Handle items
@@ -53,11 +53,11 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 422                 | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 400, 401, 422                 | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## create_credential
+## create
 
 Stores a connection to a real system: an API base URL and the header that carries the credential, with either the header value or an OAuth 2.0 client whose access token the API gets and renews; or a Web App login with its sign-in URL, which a person then signs in to by hand in the console. Returns the credential without its value.
 
@@ -73,7 +73,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.credentials.create_credential(name="stripe-test", base_url="https://api.stripe.com", header="Authorization", value="Bearer <redacted>")
+    res = c_client.credentials.create(name="stripe-test", base_url="https://api.stripe.com", header="Authorization", value="Bearer <redacted>")
 
     # Handle response
     print(res)
@@ -101,11 +101,11 @@ with Continuous(
 
 | Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.Error                      | 400, 401, 408, 409, 413, 415, 422 | application/problem+json          |
-| errors.Error                      | 500, 503                          | application/problem+json          |
+| errors.APIError                   | 400, 401, 408, 409, 413, 415, 422 | application/problem+json          |
+| errors.APIError                   | 500, 503                          | application/problem+json          |
 | errors.ContinuousDefaultError     | 4XX, 5XX                          | \*/\*                             |
 
-## delete_credential
+## delete
 
 Deletes a credential and its stored value.
 
@@ -121,7 +121,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    c_client.credentials.delete_credential(id="<id>")
+    c_client.credentials.delete(id="<id>")
 
     # Use the SDK ...
 
@@ -138,11 +138,11 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 403, 404                 | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 401, 403, 404                 | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## get_credential
+## get
 
 Returns a credential without its value.
 
@@ -158,7 +158,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.credentials.get_credential(id="<id>")
+    res = c_client.credentials.get(id="<id>")
 
     # Handle response
     print(res)
@@ -180,11 +180,11 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 403, 404                 | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 401, 403, 404                 | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## update_credential
+## update
 
 Renames a credential, changes its base URL and header or its login, or replaces its value or its OAuth 2.0 client. An API credential can move between a value and an OAuth client; a login stays a login. Omitted fields keep their current values.
 
@@ -200,7 +200,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.credentials.update_credential(id="<id>")
+    res = c_client.credentials.update(id="<id>")
 
     # Handle response
     print(res)
@@ -228,6 +228,6 @@ with Continuous(
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.Error                           | 400, 401, 403, 404, 408, 413, 415, 422 | application/problem+json               |
-| errors.Error                           | 500, 503                               | application/problem+json               |
+| errors.APIError                        | 400, 401, 403, 404, 408, 413, 415, 422 | application/problem+json               |
+| errors.APIError                        | 500, 503                               | application/problem+json               |
 | errors.ContinuousDefaultError          | 4XX, 5XX                               | \*/\*                                  |

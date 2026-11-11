@@ -6,16 +6,16 @@ Build MCP Box Snapshots of an MCP server's tools against a ready API Box Snapsho
 
 ### Available Operations
 
-* [list_mcpbox_snapshots](#list_mcpbox_snapshots) - List MCP Box Snapshots
-* [create_mcpbox_snapshot](#create_mcpbox_snapshot) - Create MCP Box Snapshot
-* [delete_mcpbox_snapshot](#delete_mcpbox_snapshot) - Delete MCP Box Snapshot
-* [get_mcpbox_snapshot](#get_mcpbox_snapshot) - Get MCP Box Snapshot
-* [update_mcpbox_snapshot](#update_mcpbox_snapshot) - Update MCP Box Snapshot
-* [cancel_mcpbox_snapshot](#cancel_mcpbox_snapshot) - Cancel MCP Box Snapshot build
-* [clone_mcpbox_snapshot](#clone_mcpbox_snapshot) - Clone MCP Box Snapshot
-* [resume_mcpbox_snapshot](#resume_mcpbox_snapshot) - Resume MCP Box Snapshot build
+* [list](#list) - List MCP Box Snapshots
+* [create](#create) - Create MCP Box Snapshot
+* [delete](#delete) - Delete MCP Box Snapshot
+* [get](#get) - Get MCP Box Snapshot
+* [update](#update) - Update MCP Box Snapshot
+* [cancel](#cancel) - Cancel MCP Box Snapshot build
+* [clone](#clone) - Clone MCP Box Snapshot
+* [resume](#resume) - Resume MCP Box Snapshot build
 
-## list_mcpbox_snapshots
+## list
 
 Returns the workspace's MCP Box Snapshots and the catalog's, newest first. Results can be filtered by status and source, and by the MCP Box a Snapshot was saved from.
 
@@ -31,7 +31,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.mcpbox_snapshots.list_mcpbox_snapshots(limit=50)
+    res = c_client.mcpbox_snapshots.list(limit=50)
 
     while res is not None:
         # Handle items
@@ -48,7 +48,7 @@ with Continuous(
 | `limit`                                                                                 | *Optional[int]*                                                                         | :heavy_minus_sign:                                                                      | Page size. Values below 1 use 50. Values above 200 use 200.                             |
 | `cursor`                                                                                | *Optional[str]*                                                                         | :heavy_minus_sign:                                                                      | Opaque next_cursor value from a previous page.                                          |
 | `source`                                                                                | [Optional[models.ListMcpboxSnapshotsSource]](../../models/listmcpboxsnapshotssource.md) | :heavy_minus_sign:                                                                      | Optional source filter.                                                                 |
-| `box_id`                                                                                | *Optional[str]*                                                                         | :heavy_minus_sign:                                                                      | Optional filter for the Snapshots saved from this Box.                                  |
+| `source_box_id`                                                                         | *Optional[str]*                                                                         | :heavy_minus_sign:                                                                      | Optional filter for the Snapshots saved from this Box.                                  |
 | `retries`                                                                               | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                        | :heavy_minus_sign:                                                                      | Configuration to override the default retry behavior of the client.                     |
 
 ### Response
@@ -59,11 +59,11 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 422                 | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 400, 401, 422                 | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## create_mcpbox_snapshot
+## create
 
 Starts an asynchronous build and returns the MCP Box Snapshot with status pending. Get the Snapshot until its status is ready, failed or canceled; MCP Boxes serve a ready one. The build makes an MCP server that answers from the API Box Snapshot it names, run in real time: with a credential, it copies the live MCP server at the credential's base_url; without one, the server its instructions or research name. Builds of every kind share one queue and the daily quota. Send multipart/form-data with a JSON part named request and optional file parts named document with vendor documentation. To build on a ready MCP Box Snapshot, set parent_id.
 
@@ -79,7 +79,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.mcpbox_snapshots.create_mcpbox_snapshot(request={})
+    res = c_client.mcpbox_snapshots.create(request={})
 
     # Handle response
     print(res)
@@ -103,13 +103,13 @@ with Continuous(
 
 | Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.Error                      | 400, 401, 404, 408, 409, 413, 415 | application/problem+json          |
-| errors.Error                      | 429                               | application/problem+json          |
-| errors.Error                      | 500                               | application/problem+json          |
-| errors.Error                      | 503                               | application/problem+json          |
+| errors.APIError                   | 400, 401, 404, 408, 409, 413, 415 | application/problem+json          |
+| errors.APIError                   | 429                               | application/problem+json          |
+| errors.APIError                   | 500                               | application/problem+json          |
+| errors.APIError                   | 503                               | application/problem+json          |
 | errors.ContinuousDefaultError     | 4XX, 5XX                          | \*/\*                             |
 
-## delete_mcpbox_snapshot
+## delete
 
 Deletes an MCP Box Snapshot. A build that is still pending or building is canceled first. The API Box Snapshot it was built against stays. A Snapshot that MCP Boxes serve returns 409 mcpbox_snapshot_in_use; delete those MCP Boxes first. While a build that names it as parent_id is pending or building, it returns 409 mcpbox_snapshot_parent_in_use; retry after the build finishes.
 
@@ -125,7 +125,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    c_client.mcpbox_snapshots.delete_mcpbox_snapshot(id="<id>")
+    c_client.mcpbox_snapshots.delete(id="<id>")
 
     # Use the SDK ...
 
@@ -142,11 +142,11 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 403, 404, 409            | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 401, 403, 404, 409            | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## get_mcpbox_snapshot
+## get
 
 Returns an MCP Box Snapshot of the workspace or the catalog, and its build status.
 
@@ -162,7 +162,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.mcpbox_snapshots.get_mcpbox_snapshot(id="<id>")
+    res = c_client.mcpbox_snapshots.get(id="<id>")
 
     # Handle response
     print(res)
@@ -184,11 +184,11 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 404                      | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 401, 404                      | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## update_mcpbox_snapshot
+## update
 
 Renames an MCP Box Snapshot or replaces its metadata. Omitted fields keep their current values. Its tools do not change. Catalog Snapshots cannot be updated.
 
@@ -204,7 +204,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.mcpbox_snapshots.update_mcpbox_snapshot(id="<id>")
+    res = c_client.mcpbox_snapshots.update(id="<id>")
 
     # Handle response
     print(res)
@@ -228,11 +228,11 @@ with Continuous(
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.Error                           | 400, 401, 403, 404, 408, 413, 415, 422 | application/problem+json               |
-| errors.Error                           | 500, 503                               | application/problem+json               |
+| errors.APIError                        | 400, 401, 403, 404, 408, 413, 415, 422 | application/problem+json               |
+| errors.APIError                        | 500, 503                               | application/problem+json               |
 | errors.ContinuousDefaultError          | 4XX, 5XX                               | \*/\*                                  |
 
-## cancel_mcpbox_snapshot
+## cancel
 
 Requests cancellation of a pending or active build and returns the Snapshot without waiting for the build to stop. Get the Snapshot until its status leaves pending or building. The build can finish before cancellation takes effect. A Snapshot whose build has settled is returned unchanged.
 
@@ -248,7 +248,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.mcpbox_snapshots.cancel_mcpbox_snapshot(id="<id>")
+    res = c_client.mcpbox_snapshots.cancel(id="<id>")
 
     # Handle response
     print(res)
@@ -270,11 +270,11 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 403, 404                 | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 401, 403, 404                 | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## clone_mcpbox_snapshot
+## clone
 
 Creates a ready copy of a ready MCP Box Snapshot in another workspace, without a build. The clone has a new ID and the source's artifact, documents and saved state; the source is unchanged. The clone records no credentials, since they belong to the source workspace, and no parent or source Snapshot. An API Box Snapshot of the source workspace that the MCP Box Snapshot was built against is cloned with it, and the clone is built against the copy; a catalog one is kept. The source is the caller's workspace. An API key may clone into any other workspace of its organization.
 
@@ -290,7 +290,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.mcpbox_snapshots.clone_mcpbox_snapshot(id="<id>", target_workspace_id="<id>")
+    res = c_client.mcpbox_snapshots.clone(id="<id>", target_workspace_id="<id>")
 
     # Handle response
     print(res)
@@ -308,7 +308,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.mcpbox_snapshots.clone_mcpbox_snapshot(id="<id>", target_workspace_id="<id>")
+    res = c_client.mcpbox_snapshots.clone(id="<id>", target_workspace_id="<id>")
 
     # Handle response
     print(res)
@@ -333,11 +333,11 @@ with Continuous(
 
 | Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| errors.Error                                | 400, 401, 403, 404, 408, 409, 413, 415, 422 | application/problem+json                    |
-| errors.Error                                | 500, 503                                    | application/problem+json                    |
+| errors.APIError                             | 400, 401, 403, 404, 408, 409, 413, 415, 422 | application/problem+json                    |
+| errors.APIError                             | 500, 503                                    | application/problem+json                    |
 | errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
 
-## resume_mcpbox_snapshot
+## resume
 
 Resumes a build that waits, as build.waiting reports: at QA because its live credential was rejected or the live source rate limited its calls, or for more time after it used its time limit. For a credential wait, refresh the credential it names with PATCH /v1/credentials/{id} first: QA then runs again with its current value, and the build goes on to finalize. For a rate-limit wait, resume once the rate limit resets: QA then runs again. For a wait for more time, send add_seconds: the build continues where it stopped, with that much time from the resume. Returns the Snapshot, still building. A wait does not count toward the build's time limit: a build resumed from a QA wait has the time it had left when it began waiting. A build that is not waiting returns 409 mcpbox_snapshot_not_waiting.
 
@@ -353,7 +353,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.mcpbox_snapshots.resume_mcpbox_snapshot(id="<id>")
+    res = c_client.mcpbox_snapshots.resume(id="<id>")
 
     # Handle response
     print(res)
@@ -376,6 +376,6 @@ with Continuous(
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.Error                           | 400, 401, 403, 404, 408, 409, 413, 415 | application/problem+json               |
-| errors.Error                           | 500, 503                               | application/problem+json               |
+| errors.APIError                        | 400, 401, 403, 404, 408, 409, 413, 415 | application/problem+json               |
+| errors.APIError                        | 500, 503                               | application/problem+json               |
 | errors.ContinuousDefaultError          | 4XX, 5XX                               | \*/\*                                  |

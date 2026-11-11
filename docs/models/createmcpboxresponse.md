@@ -1,4 +1,4 @@
-# MCPBoxTokenResponse
+# CreateMCPBoxResponse
 
 
 ## Fields
