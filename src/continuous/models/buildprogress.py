@@ -19,7 +19,7 @@ AgentState = Union[
     ],
     UnrecognizedStr,
 ]
-r"""What the build's agent was doing when the build last checked on it, every few minutes: working while it thinks or runs a command, idle when its turn ended without a tool call, waiting_for_limit while a subscription model waits for its usage limit to reset. Null when the build is not running, while it waits for the requester, or for a build recorded before agents reported it."""
+r"""What the build's agent was doing when the build last checked on it, every few minutes: working while it thinks or runs a command, idle when its turn ended without a tool call, waiting_for_limit while a subscription model waits for its usage limit to reset. Null when the build is not running or while it waits for the requester."""
 
 
 LastSubmission = Union[
@@ -43,7 +43,7 @@ BuildProgressModel = Union[
     ],
     UnrecognizedStr,
 ]
-r"""The model the builder and reviewer run on, or combined, which currently runs as claude-opus-5-5. A build recorded before model selection reports its provider's default."""
+r"""The model the builder and reviewer run on, or combined, which currently runs as claude-opus-5-5."""
 
 
 Phase = Union[
@@ -72,7 +72,7 @@ r"""derive while the effective spec, build skeleton, and sandbox are prepared; b
 
 class BuildProgressTypedDict(TypedDict):
     agent_state: Nullable[AgentState]
-    r"""What the build's agent was doing when the build last checked on it, every few minutes: working while it thinks or runs a command, idle when its turn ended without a tool call, waiting_for_limit while a subscription model waits for its usage limit to reset. Null when the build is not running, while it waits for the requester, or for a build recorded before agents reported it."""
+    r"""What the build's agent was doing when the build last checked on it, every few minutes: working while it thinks or runs a command, idle when its turn ended without a tool call, waiting_for_limit while a subscription model waits for its usage limit to reset. Null when the build is not running or while it waits for the requester."""
     hidden_limitations: int
     r"""Limitations the accepted build records beyond those listed in limitations."""
     last_activity_at: Nullable[datetime]
@@ -84,7 +84,7 @@ class BuildProgressTypedDict(TypedDict):
     limitations: List[LimitationTypedDict]
     r"""Behavior the accepted build does not serve like the real system, most important first, set when the build is accepted. Empty when none."""
     model: BuildProgressModel
-    r"""The model the builder and reviewer run on, or combined, which currently runs as claude-opus-5-5. A build recorded before model selection reports its provider's default."""
+    r"""The model the builder and reviewer run on, or combined, which currently runs as claude-opus-5-5."""
     phase: Nullable[Phase]
     r"""Agent phase: research while the research agent indexes the documents and saves the vendor pages they lack; build for generation, review for the separate reviewer, qa while QA tests the running service from outside, after the last review round of a build with credential_ids, repair while the author fixes the findings of a review or QA. Null when not recorded."""
     review_round: int
@@ -109,7 +109,7 @@ class BuildProgressTypedDict(TypedDict):
 
 class BuildProgress(BaseModel):
     agent_state: Nullable[AgentState]
-    r"""What the build's agent was doing when the build last checked on it, every few minutes: working while it thinks or runs a command, idle when its turn ended without a tool call, waiting_for_limit while a subscription model waits for its usage limit to reset. Null when the build is not running, while it waits for the requester, or for a build recorded before agents reported it."""
+    r"""What the build's agent was doing when the build last checked on it, every few minutes: working while it thinks or runs a command, idle when its turn ended without a tool call, waiting_for_limit while a subscription model waits for its usage limit to reset. Null when the build is not running or while it waits for the requester."""
 
     hidden_limitations: int
     r"""Limitations the accepted build records beyond those listed in limitations."""
@@ -127,7 +127,7 @@ class BuildProgress(BaseModel):
     r"""Behavior the accepted build does not serve like the real system, most important first, set when the build is accepted. Empty when none."""
 
     model: BuildProgressModel
-    r"""The model the builder and reviewer run on, or combined, which currently runs as claude-opus-5-5. A build recorded before model selection reports its provider's default."""
+    r"""The model the builder and reviewer run on, or combined, which currently runs as claude-opus-5-5."""
 
     phase: Nullable[Phase]
     r"""Agent phase: research while the research agent indexes the documents and saves the vendor pages they lack; build for generation, review for the separate reviewer, qa while QA tests the running service from outside, after the last review round of a build with credential_ids, repair while the author fixes the findings of a review or QA. Null when not recorded."""

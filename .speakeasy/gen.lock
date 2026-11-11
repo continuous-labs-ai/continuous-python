@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: 99464e49a9d5b9d3b88eda8915cd7f09
+  docChecksum: 3061394210432529a66d3e6e38708dd8
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.4.13
-  configChecksum: 6b42ca2f300af3fdf47dacb231446211
+  releaseVersion: 0.4.14
+  configChecksum: b0faacef382db123019f0f08e5bcc20c
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: e22a232b-763b-4ba8-b9d4-7fbc20a90395
-  pristine_commit_hash: fc5a72608457aaaee4e40814b97daca724dd7b70
-  pristine_tree_hash: 4fae0bc7d011029fd53575986069cb28e8d7ef29
+  generation_id: d72339d6-5bab-4cd1-bf78-5bc15c5e98b7
+  pristine_commit_hash: 755da59c962c458e18dc7183f8517697e9666276
+  pristine_tree_hash: 7b9144d9ac7b8cd0731f1dba1a9e5a89932e9e4d
 features:
   python:
     additionalDependencies: 1.1.0
@@ -79,8 +79,8 @@ trackedFiles:
     pristine_git_object: f9e70ba2125fd4c31ff2f069fcb9fb25933ceac8
   docs/models/agentstate.md:
     id: a9316ed396c7
-    last_write_checksum: sha1:2dbd1c7de7094d295083fdcd0abefc1087697aad
-    pristine_git_object: eb228354f89ee61248ff1ad81c5c03dab5cb12c7
+    last_write_checksum: sha1:8f0e51b9777c5a7394de458bb558860d20ea2ed4
+    pristine_git_object: cbfc3fed3586b8d0ccbedfd2fb8bb535e1da1cff
   docs/models/apibox.md:
     id: e1f8605b112c
     last_write_checksum: sha1:0cb50a5645a15da73b5b76412c2bf1e5218a4872
@@ -91,12 +91,12 @@ trackedFiles:
     pristine_git_object: 1ae18a9775e1ecb6a5f37ff7192957133afe2379
   docs/models/apiboxsnapshot.md:
     id: 6c4716b2a5a5
-    last_write_checksum: sha1:0cd0108381b08a27b04ab8ee5e938e31159b124a
-    pristine_git_object: ad4d8e00facae4bb4661fda3bfd9ef171825ab17
+    last_write_checksum: sha1:76fb425e052abe867997313d166493236f8b0198
+    pristine_git_object: 0c5f60137b3c83cfb2b3dccb7304d3ac53a87367
   docs/models/apiboxsnapshotsource.md:
     id: 6af7f926ef91
-    last_write_checksum: sha1:f6954ef22ad7d1d922894eddd61ed2c67d6d5150
-    pristine_git_object: ffc0249ae199f08e5fe439eedf52901a7ae3711b
+    last_write_checksum: sha1:91ed0c7b7e93a9629ad0f609c23487e6f3ec2c4c
+    pristine_git_object: f32fd63cdb41625a01020fca8a3a7bd4b741464a
   docs/models/apiboxsnapshotspeckind.md:
     id: 08ea1f1cae12
     last_write_checksum: sha1:ef4068152c8700748ccdb21003d79a2b21c99cec
@@ -111,8 +111,8 @@ trackedFiles:
     pristine_git_object: 7dfce19a3247a6256e60e38b2c76190b6341b4fc
   docs/models/apiboxtokenresponse.md:
     id: 28e6bb869ad5
-    last_write_checksum: sha1:56c9b35c1db000aad347e807390eefb39c6605cc
-    pristine_git_object: 3aa5f700cae52f8e38297b3d98b015da6de7df57
+    last_write_checksum: sha1:4fce769210c182950a9bf21e9411fbc37eef47b4
+    pristine_git_object: 3f14a9ec3ddaa2e4c52f7d130ffcbee9a4e20e3d
   docs/models/authmethod.md:
     id: f8f6a8d30e5d
     last_write_checksum: sha1:fce462d56b43e0653b53e2c12b3e19d3b775af9f
@@ -151,12 +151,12 @@ trackedFiles:
     pristine_git_object: 8b59a42ffb747fdf08cd80406822457e1af546cd
   docs/models/buildprogress.md:
     id: 2c5e4f611faa
-    last_write_checksum: sha1:a2582f312ce5dacc8fefa787cd73bc92bcaa3824
-    pristine_git_object: 990af8c85124c17481cda25aead3a3dd6eee413b
+    last_write_checksum: sha1:f0032e5538437dfa96f3b7bbbe1966a9d93b4989
+    pristine_git_object: 06b92481be0652c443736ad6eb4fdec240e8b0f6
   docs/models/buildprogressmodel.md:
     id: a190e2f077e4
-    last_write_checksum: sha1:57c978a940bd54349e4bc00f37cc75c8528e149f
-    pristine_git_object: 1bf5a3f5f09a43b189aff8a9cf8f85a7778c8c97
+    last_write_checksum: sha1:a328e5a3b6bce7e88022a8800923efa33c2b8342
+    pristine_git_object: 708d8aaff61beb4ae7a2f4d78b10a1979122110a
   docs/models/buildresearch.md:
     id: 949dcbcbe3d4
     last_write_checksum: sha1:8f04892b626f05b258f72ef91aaface5f9742e3b
@@ -203,8 +203,8 @@ trackedFiles:
     pristine_git_object: 35afbe0ab68557a8878cdf6215eb90969d83976f
   docs/models/buildwaiting.md:
     id: 40f9c970167f
-    last_write_checksum: sha1:10509f4a9f3e1cd016c06efffcb466355015ee71
-    pristine_git_object: 35ed412a7555b9de9f84d29287f536b78aed5f2a
+    last_write_checksum: sha1:f8bb19c97949d14ad5844ec2c2d19e6313e43111
+    pristine_git_object: 83142fee8fce6c5ff7df52c2da07d7ccac0cdb2a
   docs/models/buildwebboxsnapshotrequest.md:
     id: 10bc3a541364
     last_write_checksum: sha1:c7c94893e5b77ae9626c93b549099198e5b19680
@@ -305,6 +305,10 @@ trackedFiles:
     id: 595748985d0f
     last_write_checksum: sha1:6ee386ef85c78643b79be160dc9ad63359f969fa
     pristine_git_object: 3fd2a7b3cd36117a76b7464705a3befdc4090795
+  docs/models/createcredentialrequestrequest.md:
+    id: 41ac581c9564
+    last_write_checksum: sha1:25727176ce059d7ee0057da7b6154a74af7aead0
+    pristine_git_object: 2a8086d505fdcdb6e1c6aa71b00f72c749baef33
   docs/models/createdsimulation.md:
     id: 9f6d7f718545
     last_write_checksum: sha1:e6c51cdca5aa5abf3bb5b1aedfe32f98c7e86712
@@ -463,8 +467,8 @@ trackedFiles:
     pristine_git_object: 12dd6a2ccf9816a8afa0d8f80e80c921bb19fb17
   docs/models/getapiboxresponse.md:
     id: 325ce274b37a
-    last_write_checksum: sha1:325dc6efa7a3dc022571d8c21ebf673514804070
-    pristine_git_object: 0782f301c1394b682f6c76b8422eeb4511d0ac85
+    last_write_checksum: sha1:eb779fd9c9c64f99655ab79b9dfbaa7d23463a88
+    pristine_git_object: 45f185b3957e25337c6c540da1d87264b9a79f9b
   docs/models/getapiboxresponsestatus.md:
     id: 90cb71387781
     last_write_checksum: sha1:75d4252e5aaa77ab2313f2870a2e3eb850bf1ce5
@@ -483,8 +487,8 @@ trackedFiles:
     pristine_git_object: 89228f466345cb86b0385723a6eb7a35da342114
   docs/models/getmcpboxresponse.md:
     id: 50d4e949ac56
-    last_write_checksum: sha1:51c8c2990c5d05dd04de43b108452f2becfbb6a3
-    pristine_git_object: 01d83457905f24ad3c75e974c4bf35037e325e85
+    last_write_checksum: sha1:b6c011fbd8428c81e6475fe89c07cd20cd4e9cf0
+    pristine_git_object: 8ceb12753aefe6d35430db802f9659d39c4439a6
   docs/models/getmcpboxresponsestatus.md:
     id: 338b689d4321
     last_write_checksum: sha1:25ec48957b2b761b11a97b9f9de146dea7815bd6
@@ -759,12 +763,12 @@ trackedFiles:
     pristine_git_object: 8b3c3e4463c4398ff203188a287ef846588f515a
   docs/models/mcpboxsnapshot.md:
     id: b1833891090b
-    last_write_checksum: sha1:22ac9c3f46ca5b63360f6a39f33abd9fd163009b
-    pristine_git_object: d0c59a95f708bfb78de7ad71de354455c45c6926
+    last_write_checksum: sha1:3ae991902d8ed578a9781e39cfce0ec227c76b24
+    pristine_git_object: 1c18176c57def1acebe1d7815a73edd2344032a7
   docs/models/mcpboxsnapshotsource.md:
     id: b692994dda6f
-    last_write_checksum: sha1:2b49f5a3e473431b4a32fa70d94e52671f67fe9a
-    pristine_git_object: f368e688d53067fbc41bcad1efd11aeb4dec16d7
+    last_write_checksum: sha1:a1066e5cc73ce04d6115bcc2dd923d05d1098a0e
+    pristine_git_object: b5079debcd97df5b4a8df492ea844c547a516a60
   docs/models/mcpboxsnapshotstatus.md:
     id: 051ca87787a4
     last_write_checksum: sha1:9f4224159e6847049a299efdea194095e0cfa9fb
@@ -775,8 +779,8 @@ trackedFiles:
     pristine_git_object: e064c53f4e2bf237d8a4941112625e2694a24309
   docs/models/mcpboxtokenresponse.md:
     id: d7e1b2351ca9
-    last_write_checksum: sha1:addeeb3fefde195afec0d2c287ffa673019acb0a
-    pristine_git_object: ad92d906b86f7f75e5f57d7d971c5402e18f5423
+    last_write_checksum: sha1:a9cdccd79a16d49fe0f4a6d8e77e864118f4281a
+    pristine_git_object: 9a6be6d6126fe658a51b83656f9e8882bd284a20
   docs/models/phase.md:
     id: a2d01dc13e35
     last_write_checksum: sha1:166bb91f232807c0a48aaf3f23218c2052452da5
@@ -1059,8 +1063,8 @@ trackedFiles:
     pristine_git_object: e358c7e6fa2789acf3b8f406852e776e4c92e203
   docs/models/webboxsnapshot.md:
     id: 048a74c94c09
-    last_write_checksum: sha1:45edb261b8e7a7143ff4e4f8b559ee9e7be68b1b
-    pristine_git_object: e5ff5f044eeb97df2229e769edf5be76f971d222
+    last_write_checksum: sha1:19c634a7398f4da44a0d10d35f6a40e0899a952d
+    pristine_git_object: d676be31095e38b198a00dd3c26d05d90fb4502e
   docs/models/webboxsnapshotsource.md:
     id: db87d842d002
     last_write_checksum: sha1:dc5a65852c54dae5874c19747a29907eb199ca1c
@@ -1079,20 +1083,20 @@ trackedFiles:
     pristine_git_object: beed4117fe216bbcf83c5bacb4dcd31ac88c268f
   docs/sdks/apiboxsnapshots/README.md:
     id: 1cdd53e655f6
-    last_write_checksum: sha1:fc508c7b854b6b6cef09ab4addbd1c2827a6a76e
-    pristine_git_object: e5c409e5d6c7f8580710f56ee64070ba2ddf4bd4
+    last_write_checksum: sha1:503158cf8d873b733029b5ba9921bb22828b66f1
+    pristine_git_object: 4d57068a286a29584a66ac2707a979ba011f975f
   docs/sdks/credentials/README.md:
     id: fb7e49751327
-    last_write_checksum: sha1:9083a2518c532e19b3b383bb0dc2639040e4bb82
-    pristine_git_object: 38860df1f85d4120e6f6bb56a373b87467984069
+    last_write_checksum: sha1:ad35d3ce003cd0a63717cfa02b06c687069a9ec0
+    pristine_git_object: cb6211316391ce63d6251f09927c653bd78f9ede
   docs/sdks/mcpboxsdk/README.md:
     id: c74d2109e2fa
     last_write_checksum: sha1:d5fcee2c3a47c2aa4ce73e75759dae50c909fefa
     pristine_git_object: 69fe61800abdadf5b5f6e8fe1e07721fdcc7b740
   docs/sdks/mcpboxsnapshots/README.md:
     id: 8dfd04ebf73d
-    last_write_checksum: sha1:a13c66e9347cd16e7f3ab8ce3f7d3956b4ccfe7f
-    pristine_git_object: 378acfd92d34c3e6fa223478aaf8cbd18c191d2a
+    last_write_checksum: sha1:11c09e7e9f936d25a100baec561a6f341fecd935
+    pristine_git_object: 184454de3abb669b752aa3dd55f74bfb52dcd305
   docs/sdks/simulations/README.md:
     id: a9e027fcb2b0
     last_write_checksum: sha1:858b19e6a3d7be68fc6db6f8b611f1b4cd6646f0
@@ -1103,16 +1107,16 @@ trackedFiles:
     pristine_git_object: af50ae94908eafd9b3c5388808c5477686ff4ef7
   docs/sdks/simulators/README.md:
     id: 55eacdd8fa62
-    last_write_checksum: sha1:725bb9dda781b65b4b734671688dff2d4280890e
-    pristine_git_object: c413858aed993531b5e01bb817b314099376dce7
+    last_write_checksum: sha1:393c0b3be0dcee0702034d05c5d0d20a50964c96
+    pristine_git_object: ea5585737c786db03b908dafc38d8619168657db
   docs/sdks/webboxsdk/README.md:
     id: 7f6c56f235ae
     last_write_checksum: sha1:2e5070f4249fd77361ad6c2ae206607e14e98373
     pristine_git_object: 5893a5224f492281fea16d534fea6f94d81b65c3
   docs/sdks/webboxsnapshots/README.md:
     id: fcfe151b7749
-    last_write_checksum: sha1:d30adad1e65343638152db21d4e4ffdd9c3a6f03
-    pristine_git_object: d37a70308a4a76a416daeeb498e67fcee9619ec6
+    last_write_checksum: sha1:c0dacc4f1b850028f6961885106af603b25efec3
+    pristine_git_object: 4e97ba886cd06a8c0360657f71297ed80d8f5f31
   py.typed:
     id: 258c3ed47ae4
     last_write_checksum: sha1:8efc425ffe830805ffcc0f3055871bdcdc542c60
@@ -1123,8 +1127,8 @@ trackedFiles:
     pristine_git_object: ba50994ac7aceefe62e1571a6cbff467d9a067da
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:185e3f3be517706913afc3cb46d51bb610e71311
-    pristine_git_object: f1be5e7417b89ee3d54dde60bdcb045da689c306
+    last_write_checksum: sha1:5191ed606126b7ad42ab75e9fec08df9a0d49b75
+    pristine_git_object: 0d555a500117fb01fc3d4559f6991c0ac28df97d
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -1151,24 +1155,24 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:64a8cd65e6ef2402d6e187ea8b0055578b2ce5bb
-    pristine_git_object: c7ff321642a54c4245ce9150d2da6bc45b68131e
+    last_write_checksum: sha1:9b731e1068e2b25836b121e83d5773bca9d10fee
+    pristine_git_object: 474a7546d5cd4c312ecd18c2e558587cf67f5f62
   src/continuous/apibox_sdk.py:
     id: c9db2171035d
     last_write_checksum: sha1:25fc64a829a4e4a18ccca48b58f8cc46115b0478
     pristine_git_object: 028047c04f64c6140651d55dc1d40e8d11858ac3
   src/continuous/apibox_snapshots.py:
     id: 22b1ffcf83df
-    last_write_checksum: sha1:1f8302dde1ea88daaae6dbe73ba0e54e9a8a4b00
-    pristine_git_object: a9a5f8d5528f1db43d1f8559073df5de0e845296
+    last_write_checksum: sha1:0aab9f31f5e8035566f440fb6dd96e0c1b3adf0d
+    pristine_git_object: fe4d3c6fde3d0a925a746a8541b6f0896d573225
   src/continuous/basesdk.py:
     id: 7c7025a9c533
     last_write_checksum: sha1:c2195f8abe74c3f8baf5cb652679b710b838987d
     pristine_git_object: 0de1883ef4d6fd595fcfd9a606d67d6ad1996463
   src/continuous/credentials.py:
     id: 7dd4bfb79162
-    last_write_checksum: sha1:b813cb4a6015098eaebcc4da7c90a3a87b5f1e98
-    pristine_git_object: 32200903d5b8f8e980cde14db3b6be52555473f6
+    last_write_checksum: sha1:5bc3e22a3dc4cc489ab2a2c59962df05c7326951
+    pristine_git_object: cbf6724c84e21271e6aafa0e60d00474dd52b247
   src/continuous/errors/__init__.py:
     id: 521959dbf78a
     last_write_checksum: sha1:5a7e8af7b28067a4ab58f84c0b56743d94534505
@@ -1207,12 +1211,12 @@ trackedFiles:
     pristine_git_object: e5bbe523d837798d0a084303f65e397d64bfabf4
   src/continuous/mcpbox_snapshots.py:
     id: a5fcd673e720
-    last_write_checksum: sha1:8c886361ae3b92be04a02f93ca7f609daa362e33
-    pristine_git_object: d12491f2395236c7e8b21698b4c1f2cce4dbb7f7
+    last_write_checksum: sha1:3e03902fe2713a724cc56de4dbe31ebd0272da52
+    pristine_git_object: fbf049dc418742b20b12a5ef6d0979fa5449195a
   src/continuous/models/__init__.py:
     id: 53b8497bf08d
-    last_write_checksum: sha1:db0da0d458fe4694ec63e484d33b6aa5d3f4dfe6
-    pristine_git_object: 81413d8e476e37251d67308475b1136fe55f93eb
+    last_write_checksum: sha1:aa87cde5258b9de0cf5f27607665dcf8ad39a731
+    pristine_git_object: 47fe14b3375007f86f249944d6950a5733677ca6
   src/continuous/models/actor.py:
     id: 4a91c2c63ec7
     last_write_checksum: sha1:08971be651f2ad5fdaf85beeee26334b5efb55f9
@@ -1231,12 +1235,12 @@ trackedFiles:
     pristine_git_object: e8674094de99bc88061adfc612e0e691351162a2
   src/continuous/models/apiboxsnapshot.py:
     id: f277a1f6d027
-    last_write_checksum: sha1:32074a48b3c6aef4c8e12ebbbdfafd370da7ed10
-    pristine_git_object: ebe4571d68a8b00d4526e51ba493aba5707b5726
+    last_write_checksum: sha1:8182563c0e1da0005696c97207767ce658059e4c
+    pristine_git_object: 2cacf9d6d66fd7a7e1014a2e8f37e9069dc60089
   src/continuous/models/apiboxtokenresponse.py:
     id: 5225b92f6c15
-    last_write_checksum: sha1:39ef62c741b14d299a18ff03589ac34aa367fc68
-    pristine_git_object: 548b2e7998294b4a0685ebe33eb787be5a7f3f72
+    last_write_checksum: sha1:3bd87216f56e148bd56a09a6717505c9bc4da3f1
+    pristine_git_object: af46719ac480b556d4262a3fb2f484f07dcdc6ef
   src/continuous/models/boxerror.py:
     id: ac0b17d2088e
     last_write_checksum: sha1:b660214cdedec2c4c76bc4e640ce000f57a672ce
@@ -1263,8 +1267,8 @@ trackedFiles:
     pristine_git_object: fbe14aee3189ead2391c262b3b8b5a587689cabb
   src/continuous/models/buildprogress.py:
     id: 9186e3939d99
-    last_write_checksum: sha1:599d75903683c172d079952730877b92c4dab92c
-    pristine_git_object: 14441979f640a6571e4f32091904c21294948aab
+    last_write_checksum: sha1:1b49ae2b67fd5361577fb86fe86e909e57c88d15
+    pristine_git_object: 63dd6d0fa6780aced28ff8c639814bd7211e43fd
   src/continuous/models/buildresearch.py:
     id: 38a44469461a
     last_write_checksum: sha1:dd99d7b11e4efd91fb7b6bbfd5230aae8b1a7cad
@@ -1275,8 +1279,8 @@ trackedFiles:
     pristine_git_object: 51c0775754c49c1a81464e8d1405f704c00fb5b0
   src/continuous/models/buildwaiting.py:
     id: 3c9c3e294e74
-    last_write_checksum: sha1:b09e843d08be70a9c509b64d8f6ea09b4afbf808
-    pristine_git_object: 104ec0eeb9447c3ae814d31f2cf1fd49c7993560
+    last_write_checksum: sha1:bbf1beb26b9263dab99fba70b2fe3d9c175bc3b1
+    pristine_git_object: d1339d832ccb08d68c842d7bb0d01f2acd3b07b8
   src/continuous/models/buildwebboxsnapshotrequest.py:
     id: bb6017774d40
     last_write_checksum: sha1:5cf90513ffb73129071d45994fa39d25475ef0c1
@@ -1345,6 +1349,10 @@ trackedFiles:
     id: aa7c5d5bd45d
     last_write_checksum: sha1:c42d31dfb3bbba9e7fe69e1f1cf28bf9fa5e4160
     pristine_git_object: 2a9bed2fb23cc8f22d3aff8f2427c38f0743f50a
+  src/continuous/models/create_credentialop.py:
+    id: f386e56e6bbe
+    last_write_checksum: sha1:a2276ce275a4a4264d6f33c75f5a32fdb33f58d9
+    pristine_git_object: 7c32946b03337b992ea461c9216eed6a2fee5ea0
   src/continuous/models/create_mcpbox_snapshotop.py:
     id: 7dd0310a0ae7
     last_write_checksum: sha1:74af0514a4e1712f6a81898b32d4a38020be2778
@@ -1523,12 +1531,12 @@ trackedFiles:
     pristine_git_object: adfdc33a622182e7ca97ffe1f4841a7537f0c03e
   src/continuous/models/getapiboxresponse.py:
     id: 0405e989ad00
-    last_write_checksum: sha1:7d1ca53b5a5c46c67ec1356936c0a8fb56496be3
-    pristine_git_object: a8dc3d9f76a6cf6e7006b85ed35798375253d3e3
+    last_write_checksum: sha1:01e1e9d601f48fe9df0d8432b46aa98cf4aff89f
+    pristine_git_object: ea43d823dbb601bf35d4277ce290b3520af88375
   src/continuous/models/getmcpboxresponse.py:
     id: 87c7df33339e
-    last_write_checksum: sha1:9de0ecaabad6295697c5841e7ed1a5345f3cd66f
-    pristine_git_object: b83434ea900a6a3bd52ebd46943b46da1a45a39a
+    last_write_checksum: sha1:bb5a6deeca242d99f6b3200ef7584b97b664c082
+    pristine_git_object: 5f246d3e5663e11681f4e859a6c6f001d4656adb
   src/continuous/models/getwebboxresponse.py:
     id: dd5d9e617361
     last_write_checksum: sha1:09fbc2e727ddf78a03c8008e223f01c04084498e
@@ -1655,12 +1663,12 @@ trackedFiles:
     pristine_git_object: 656bc018e5594b488a6bfd4f8379f3b85a98dc73
   src/continuous/models/mcpboxsnapshot.py:
     id: 0d02e3bca1df
-    last_write_checksum: sha1:afc7055c9eb24d1a4dc6be9a03da5d4541c5424b
-    pristine_git_object: fff5e0afaa10abe7d04b5257f20993b9b75341b5
+    last_write_checksum: sha1:f199f7611eb6b3413eb572703f0f3dab9e5ad72f
+    pristine_git_object: 81847c38b41371c2affa1a595ccca29afe252534
   src/continuous/models/mcpboxtokenresponse.py:
     id: ac8fb48f004f
-    last_write_checksum: sha1:ebab6d43b487d86f706d9a0f8cabecc2e16d09ba
-    pristine_git_object: ed736b8ee9ed8d565285fc587fbe1029b2f2315d
+    last_write_checksum: sha1:03c6fbc2a634a04cd84b0716a9789e3ab0a45dc0
+    pristine_git_object: b793b5b91f25605096b714f00fa51906fd3ae3ae
   src/continuous/models/regenerate_simulation_tokenop.py:
     id: 0d7cc6e9e28d
     last_write_checksum: sha1:9f38a715c45d16ef88bfa759b2aef92970d4648b
@@ -1875,8 +1883,8 @@ trackedFiles:
     pristine_git_object: eccb870153f9c7166a68bd314a3d6088504e4485
   src/continuous/models/webboxsnapshot.py:
     id: d938e963918f
-    last_write_checksum: sha1:8a49b8a67e935de32b73d0a3c33d4e6016a55f7f
-    pristine_git_object: edfd74cd4357a65c229fb70fe7ac155243cccece
+    last_write_checksum: sha1:028c754c3b54579946c27fb68b80d404a81fe25c
+    pristine_git_object: 7de44c7683dae80cefc6376041958ab971844a6a
   src/continuous/py.typed:
     id: ae9610f5e7ee
     last_write_checksum: sha1:8efc425ffe830805ffcc0f3055871bdcdc542c60
@@ -1899,8 +1907,8 @@ trackedFiles:
     pristine_git_object: 84b77d489f4b3477a65f6bc33148c49ab659ad47
   src/continuous/simulators.py:
     id: f782f4a769f3
-    last_write_checksum: sha1:170b66f20f38cc9a704137fe57aaf857348fc1d0
-    pristine_git_object: 8015e6ae86703591c7a38e97f9a337bd73bc3c49
+    last_write_checksum: sha1:a2e29861399a6adbee9df4decf91322b7e73f70e
+    pristine_git_object: 9dd3c62a13698d99c32ee6ede09f3744070280bb
   src/continuous/types/__init__.py:
     id: c9ee84986773
     last_write_checksum: sha1:f9ad14217f832e74f594285960125add50324be9
@@ -1991,8 +1999,8 @@ trackedFiles:
     pristine_git_object: e5d41ffa363c0c473543db8a8a919a47cee709d8
   src/continuous/webbox_snapshots.py:
     id: e84779208b67
-    last_write_checksum: sha1:8373534dc85d8791f7869937e279227f3b3b8c6a
-    pristine_git_object: 065043dbdb9dcad4a9aac0cb05cba500f910cbb3
+    last_write_checksum: sha1:555ea1f415a6f5355d010da0e2e5929ed6038ae1
+    pristine_git_object: fd5e830ca5e457e1462230b03055d0dba5328ca2
 examples:
   list-simulations:
     bad_request:
@@ -2091,6 +2099,15 @@ examples:
           application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
         "500":
           application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   get-simulation:
     speakeasy-default-get-simulation:
       parameters:
@@ -2115,6 +2132,15 @@ examples:
         "500":
           application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
     auth_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+    auth_invalid_missing:
       parameters:
         path:
           id: "<id>"
@@ -2182,6 +2208,15 @@ examples:
           application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
         "500":
           application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   list-simulation-steps:
     bad_request:
       parameters:
@@ -2233,6 +2268,15 @@ examples:
         "500":
           application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
     auth_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+    auth_invalid_missing:
       parameters:
         path:
           id: "<id>"
@@ -2365,6 +2409,15 @@ examples:
       responses:
         "409":
           application/problem+json: {"code": "simulator_in_use", "dependents": {"child_simulators": [], "simulations": ["sim_01J8Z5X4K7M2N9P0Q1R2S3T4V6"], "snapshots": []}, "detail": "The Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" has dependent Simulations, child Simulators, or Simulation Snapshots. Delete those resources before you delete this Simulator.", "validation": null}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   get-simulator:
     speakeasy-default-get-simulator:
       parameters:
@@ -2389,6 +2442,15 @@ examples:
         "500":
           application/problem+json: {"code": "auth_invalid", "detail": "The authentication credential is invalid.", "validation": null}
     auth_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+    auth_invalid_missing:
       parameters:
         path:
           id: "<id>"
@@ -2710,6 +2772,16 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+          advance_id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   list-simulation-advance-events:
     bad_request:
       parameters:
@@ -2860,6 +2932,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "202":
           application/json: {"build": {"agent_state": "working", "hidden_limitations": 0, "last_activity_at": "2026-01-15T12:09:30Z", "last_submission": "rejected", "last_tool": "test", "limitations": [], "model": "claude-fable-5-1", "phase": "build", "review_round": 0, "review_rounds": 1, "stage": "build", "submissions": 1, "tool_calls": 7, "waited_seconds": 0, "waiting": null, "waiting_until": null, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "credential_ids": [], "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "mode": "api", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "publication": null, "research": null, "source": "workspace", "spec_kind": "openapi", "status": "building"}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   advance-world:
     bad_request_body:
       parameters:
@@ -2951,6 +3032,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   regenerate-simulation-token:
     auth_invalid:
       parameters:
@@ -2987,6 +3077,17 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+        header:
+          Idempotency-Key: "<value>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   clone-simulator:
     bad_request_body:
       parameters:
@@ -3091,6 +3192,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   get-credential:
     auth_invalid:
       parameters:
@@ -3121,6 +3231,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   update-credential:
     bad_request_body:
       parameters:
@@ -3350,6 +3469,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   get-simulation-snapshot:
     auth_invalid:
       parameters:
@@ -3380,6 +3508,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": null}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": null}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   create-simulation-advance:
     bad_request_body:
       parameters:
@@ -3656,6 +3793,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   get-apibox:
     auth_invalid:
       parameters:
@@ -3686,6 +3832,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": null}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": null}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   update-apibox:
     bad_request_body:
       parameters:
@@ -3771,6 +3926,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   list-apibox-steps:
     bad_request:
       parameters:
@@ -3826,6 +3990,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "incomplete", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "incomplete", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   list-apibox-snapshots:
     bad_request:
       parameters:
@@ -3902,6 +4075,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   get-apibox-snapshot:
     auth_invalid:
       parameters:
@@ -3932,6 +4114,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   update-apibox-snapshot:
     bad_request_body:
       parameters:
@@ -3987,6 +4178,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   resume-apibox-snapshot:
     auth_invalid:
       parameters:
@@ -4105,6 +4305,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   get-mcpbox:
     auth_invalid:
       parameters:
@@ -4135,6 +4344,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "incomplete", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "incomplete", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   update-mcpbox:
     bad_request_body:
       parameters:
@@ -4220,6 +4438,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unknown", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unknown", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   stop-mcpbox:
     auth_invalid:
       parameters:
@@ -4250,6 +4477,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   list-mcpbox-snapshots:
     bad_request:
       parameters:
@@ -4326,6 +4562,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   get-mcpbox-snapshot:
     auth_invalid:
       parameters:
@@ -4356,6 +4601,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unknown", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unknown", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   update-mcpbox-snapshot:
     bad_request_body:
       parameters:
@@ -4411,6 +4665,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   resume-mcpbox-snapshot:
     auth_invalid:
       parameters:
@@ -4529,6 +4792,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unsupported", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   get-webbox:
     auth_invalid:
       parameters:
@@ -4559,6 +4831,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   update-webbox:
     bad_request_body:
       parameters:
@@ -4644,6 +4925,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   list-webbox-steps:
     bad_request:
       parameters:
@@ -4699,6 +4989,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "incomplete", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "incomplete", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   list-webbox-snapshots:
     bad_request:
       parameters:
@@ -4775,6 +5074,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   get-webbox-snapshot:
     auth_invalid:
       parameters:
@@ -4805,6 +5113,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   update-webbox-snapshot:
     bad_request_body:
       parameters:
@@ -4860,6 +5177,15 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "limit", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "limit", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
+    auth_invalid_missing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
+        "500":
+          application/problem+json: {"code": "auth_invalid", "detail": "Authentication credentials are required.", "validation": null}
   resume-webbox-snapshot:
     auth_invalid:
       parameters:
@@ -5082,3 +5408,4 @@ examples:
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
 examplesVersion: 1.0.2
+releaseNotes: "## Python SDK Changes:\n* `continuous.apibox_snapshots.create_apibox_snapshot()`:  `error` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox_snapshots.create_mcpbox_snapshot()`:  `error.status[422]` **Removed** (Breaking ⚠️)\n* `continuous.webbox_snapshots.create_webbox_snapshot()`:  `error` **Changed** (Breaking ⚠️)\n* `continuous.credentials.create_credential()`: \n  *  `request.idempotency_key` **Added**\n  *  `error.status[409]` **Added**\n* `continuous.simulators.build_simulator()`:  `error.status[404]` **Added**\n"

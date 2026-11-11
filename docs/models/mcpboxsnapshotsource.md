@@ -1,6 +1,6 @@
 # MCPBoxSnapshotSource
 
-catalog for a Snapshot Continuous publishes, build for one built or published into the workspace, box for one saved from an MCP Box.
+catalog for a Snapshot Continuous publishes, build for one built or cloned into the workspace, box for one saved from an MCP Box.
 
 ## Example Usage
 

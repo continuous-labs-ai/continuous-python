@@ -284,6 +284,7 @@ class Credentials(BaseSDK):
         self,
         *,
         name: str,
+        idempotency_key: Optional[str] = None,
         base_url: Optional[str] = None,
         header: Optional[str] = None,
         login: Optional[
@@ -303,6 +304,7 @@ class Credentials(BaseSDK):
         Stores a connection to a real system: an API base URL and the header that carries the credential, with either the header value or an OAuth 2.0 client whose access token the API gets and renews; or a Web App login with its sign-in URL, which a person then signs in to by hand in the console. Returns the credential without its value.
 
         :param name: Credential name.
+        :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status, even with other secrets; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource.
         :param base_url: The https URL of the real system. Requests go to paths under it. Send exactly one of base_url and login.
         :param header: The HTTP header that carries the value. Defaults to Authorization. Not allowed with login.
         :param login:
@@ -323,17 +325,20 @@ class Credentials(BaseSDK):
         else:
             base_url_ = self._get_url(base_url_, url_variables)
 
-        request = models.CreateCredentialRequest(
-            base_url=base_url,
-            header=header,
-            login=utils.get_pydantic_model(
-                login, Optional[models.CredentialLoginRequest]
+        request = models.CreateCredentialRequestRequest(
+            idempotency_key=idempotency_key,
+            body=models.CreateCredentialRequest(
+                base_url=base_url,
+                header=header,
+                login=utils.get_pydantic_model(
+                    login, Optional[models.CredentialLoginRequest]
+                ),
+                name=name,
+                oauth=utils.get_pydantic_model(
+                    oauth, Optional[models.CredentialOAuthRequest]
+                ),
+                value=value,
             ),
-            name=name,
-            oauth=utils.get_pydantic_model(
-                oauth, Optional[models.CredentialOAuthRequest]
-            ),
-            value=value,
         )
 
         req = self._build_request(
@@ -350,7 +355,7 @@ class Credentials(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.CreateCredentialRequest
+                request.body, False, False, "json", models.CreateCredentialRequest
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -386,7 +391,7 @@ class Credentials(BaseSDK):
             return unmarshal_json_response(models.Credential, http_res)
         if utils.match_response(
             http_res,
-            ["400", "401", "408", "413", "415", "422"],
+            ["400", "401", "408", "409", "413", "415", "422"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -411,6 +416,7 @@ class Credentials(BaseSDK):
         self,
         *,
         name: str,
+        idempotency_key: Optional[str] = None,
         base_url: Optional[str] = None,
         header: Optional[str] = None,
         login: Optional[
@@ -430,6 +436,7 @@ class Credentials(BaseSDK):
         Stores a connection to a real system: an API base URL and the header that carries the credential, with either the header value or an OAuth 2.0 client whose access token the API gets and renews; or a Web App login with its sign-in URL, which a person then signs in to by hand in the console. Returns the credential without its value.
 
         :param name: Credential name.
+        :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status, even with other secrets; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource.
         :param base_url: The https URL of the real system. Requests go to paths under it. Send exactly one of base_url and login.
         :param header: The HTTP header that carries the value. Defaults to Authorization. Not allowed with login.
         :param login:
@@ -450,17 +457,20 @@ class Credentials(BaseSDK):
         else:
             base_url_ = self._get_url(base_url_, url_variables)
 
-        request = models.CreateCredentialRequest(
-            base_url=base_url,
-            header=header,
-            login=utils.get_pydantic_model(
-                login, Optional[models.CredentialLoginRequest]
+        request = models.CreateCredentialRequestRequest(
+            idempotency_key=idempotency_key,
+            body=models.CreateCredentialRequest(
+                base_url=base_url,
+                header=header,
+                login=utils.get_pydantic_model(
+                    login, Optional[models.CredentialLoginRequest]
+                ),
+                name=name,
+                oauth=utils.get_pydantic_model(
+                    oauth, Optional[models.CredentialOAuthRequest]
+                ),
+                value=value,
             ),
-            name=name,
-            oauth=utils.get_pydantic_model(
-                oauth, Optional[models.CredentialOAuthRequest]
-            ),
-            value=value,
         )
 
         req = self._build_request_async(
@@ -477,7 +487,7 @@ class Credentials(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.CreateCredentialRequest
+                request.body, False, False, "json", models.CreateCredentialRequest
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -513,7 +523,7 @@ class Credentials(BaseSDK):
             return unmarshal_json_response(models.Credential, http_res)
         if utils.match_response(
             http_res,
-            ["400", "401", "408", "413", "415", "422"],
+            ["400", "401", "408", "409", "413", "415", "422"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)

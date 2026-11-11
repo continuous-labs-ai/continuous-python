@@ -416,7 +416,7 @@ class McpboxSnapshots(BaseSDK):
             )
         if utils.match_response(
             http_res,
-            ["400", "401", "404", "408", "409", "413", "415", "422"],
+            ["400", "401", "404", "408", "409", "413", "415"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -553,7 +553,7 @@ class McpboxSnapshots(BaseSDK):
             )
         if utils.match_response(
             http_res,
-            ["400", "401", "404", "408", "409", "413", "415", "422"],
+            ["400", "401", "404", "408", "409", "413", "415"],
             "application/problem+json",
         ):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
@@ -1416,7 +1416,7 @@ class McpboxSnapshots(BaseSDK):
     ) -> models.MCPBoxSnapshot:
         r"""Clone MCP Box Snapshot
 
-        Creates a ready copy of a ready MCP Box Snapshot in another workspace, without a build. The clone has a new ID and the source's artifact, documents and saved state; the source is unchanged. The clone records no credentials, since they belong to the source workspace, and no parent or source Snapshot. An API Box Snapshot of the source workspace that the MCP Box Snapshot was built against is cloned with it, and the clone is built against the copy; a catalog one is kept. The source is the caller's workspace: an API key's own workspace, or X-Workspace-Id for a session. An API key may clone into any other workspace of its organization.
+        Creates a ready copy of a ready MCP Box Snapshot in another workspace, without a build. The clone has a new ID and the source's artifact, documents and saved state; the source is unchanged. The clone records no credentials, since they belong to the source workspace, and no parent or source Snapshot. An API Box Snapshot of the source workspace that the MCP Box Snapshot was built against is cloned with it, and the clone is built against the copy; a catalog one is kept. The source is the caller's workspace. An API key may clone into any other workspace of its organization.
 
         :param id: Source Snapshot ID.
         :param target_workspace_id: Workspace that receives the clone. It must differ from the source workspace.
@@ -1531,7 +1531,7 @@ class McpboxSnapshots(BaseSDK):
     ) -> models.MCPBoxSnapshot:
         r"""Clone MCP Box Snapshot
 
-        Creates a ready copy of a ready MCP Box Snapshot in another workspace, without a build. The clone has a new ID and the source's artifact, documents and saved state; the source is unchanged. The clone records no credentials, since they belong to the source workspace, and no parent or source Snapshot. An API Box Snapshot of the source workspace that the MCP Box Snapshot was built against is cloned with it, and the clone is built against the copy; a catalog one is kept. The source is the caller's workspace: an API key's own workspace, or X-Workspace-Id for a session. An API key may clone into any other workspace of its organization.
+        Creates a ready copy of a ready MCP Box Snapshot in another workspace, without a build. The clone has a new ID and the source's artifact, documents and saved state; the source is unchanged. The clone records no credentials, since they belong to the source workspace, and no parent or source Snapshot. An API Box Snapshot of the source workspace that the MCP Box Snapshot was built against is cloned with it, and the clone is built against the copy; a catalog one is kept. The source is the caller's workspace. An API key may clone into any other workspace of its organization.
 
         :param id: Source Snapshot ID.
         :param target_workspace_id: Workspace that receives the clone. It must differ from the source workspace.

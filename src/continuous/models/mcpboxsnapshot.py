@@ -22,7 +22,7 @@ MCPBoxSnapshotSource = Union[
     ],
     UnrecognizedStr,
 ]
-r"""catalog for a Snapshot Continuous publishes, build for one built or published into the workspace, box for one saved from an MCP Box."""
+r"""catalog for a Snapshot Continuous publishes, build for one built or cloned into the workspace, box for one saved from an MCP Box."""
 
 
 MCPBoxSnapshotStatus = Union[
@@ -69,11 +69,11 @@ class MCPBoxSnapshotTypedDict(TypedDict):
     research: Nullable[BuildResearchTypedDict]
     r"""The build's research stage, or null when research did not run."""
     source: MCPBoxSnapshotSource
-    r"""catalog for a Snapshot Continuous publishes, build for one built or published into the workspace, box for one saved from an MCP Box."""
+    r"""catalog for a Snapshot Continuous publishes, build for one built or cloned into the workspace, box for one saved from an MCP Box."""
     source_box_id: Nullable[str]
-    r"""The box the Snapshot was saved from, or null for a built or published Snapshot."""
+    r"""The box the Snapshot was saved from, or null for a Snapshot not saved from a box."""
     source_snapshot_id: Nullable[str]
-    r"""The Snapshot the box it was saved from started from, or null for a built or published Snapshot, or once that Snapshot is deleted."""
+    r"""The Snapshot the box it was saved from started from, or null for a Snapshot not saved from a box, or once that Snapshot is deleted."""
     source_url: str
     r"""The source MCP server whose tools the MCP Box serves, or empty when the build called no live source."""
     status: MCPBoxSnapshotStatus
@@ -126,13 +126,13 @@ class MCPBoxSnapshot(BaseModel):
     r"""The build's research stage, or null when research did not run."""
 
     source: MCPBoxSnapshotSource
-    r"""catalog for a Snapshot Continuous publishes, build for one built or published into the workspace, box for one saved from an MCP Box."""
+    r"""catalog for a Snapshot Continuous publishes, build for one built or cloned into the workspace, box for one saved from an MCP Box."""
 
     source_box_id: Nullable[str]
-    r"""The box the Snapshot was saved from, or null for a built or published Snapshot."""
+    r"""The box the Snapshot was saved from, or null for a Snapshot not saved from a box."""
 
     source_snapshot_id: Nullable[str]
-    r"""The Snapshot the box it was saved from started from, or null for a built or published Snapshot, or once that Snapshot is deleted."""
+    r"""The Snapshot the box it was saved from started from, or null for a Snapshot not saved from a box, or once that Snapshot is deleted."""
 
     source_url: str
     r"""The source MCP server whose tools the MCP Box serves, or empty when the build called no live source."""
