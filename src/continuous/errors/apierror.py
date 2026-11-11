@@ -9,7 +9,7 @@ import httpx
 from typing import Optional
 
 
-class ErrorData(BaseModel):
+class APIErrorData(BaseModel):
     code: str
     r"""Stable machine-readable error code."""
     detail: str
@@ -18,11 +18,14 @@ class ErrorData(BaseModel):
 
 
 @dataclass(unsafe_hash=True)
-class Error(ContinuousError):
-    data: ErrorData = field(hash=False)
+class APIError(ContinuousError):
+    data: APIErrorData = field(hash=False)
 
     def __init__(
-        self, data: ErrorData, raw_response: httpx.Response, body: Optional[str] = None
+        self,
+        data: APIErrorData,
+        raw_response: httpx.Response,
+        body: Optional[str] = None,
     ):
         message = body or raw_response.text
         super().__init__(message, raw_response, body)

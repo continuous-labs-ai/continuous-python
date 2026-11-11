@@ -1,4 +1,4 @@
-# Mcpbox
+# Mcpboxes
 
 ## Overview
 
@@ -6,16 +6,16 @@ Start MCP Boxes from MCP Box Snapshots. Each MCP Box serves its Snapshot's tools
 
 ### Available Operations
 
-* [list_mcpboxes](#list_mcpboxes) - List MCP Boxes
-* [create_mcpbox](#create_mcpbox) - Create MCP Box
-* [delete_mcpbox](#delete_mcpbox) - Delete MCP Box
-* [get_mcpbox](#get_mcpbox) - Get MCP Box
-* [update_mcpbox](#update_mcpbox) - Update MCP Box
-* [save_mcpbox_snapshot](#save_mcpbox_snapshot) - Save MCP Box as Snapshot
-* [start_mcpbox](#start_mcpbox) - Start MCP Box
-* [stop_mcpbox](#stop_mcpbox) - Stop MCP Box
+* [list](#list) - List MCP Boxes
+* [create](#create) - Create MCP Box
+* [delete](#delete) - Delete MCP Box
+* [get](#get) - Get MCP Box
+* [update](#update) - Update MCP Box
+* [save_snapshot](#save_snapshot) - Save MCP Box as Snapshot
+* [start](#start) - Start MCP Box
+* [stop](#stop) - Stop MCP Box
 
-## list_mcpboxes
+## list
 
 Returns the workspace's MCP Boxes, newest first. Results can be filtered by status and Snapshot.
 
@@ -31,7 +31,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.mcpbox.list_mcpboxes(limit=50)
+    res = c_client.mcpboxes.list(limit=50)
 
     while res is not None:
         # Handle items
@@ -58,11 +58,11 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 400, 401, 422                 | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 400, 401, 422                 | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## create_mcpbox
+## create
 
 Creates an MCP Box that serves an MCP Box Snapshot's tools over MCP in front of an API Box, and starts it. The API Box must be in the workspace and started from the API Box Snapshot the MCP Box Snapshot was built against. It returns at once with status starting and the MCP Box's token; get the MCP Box until it is running. Send MCP requests to its endpoint followed by /mcp, with the token in X-Continuous-Token. The MCP Box keeps no state: its tools read and change the API Box, and a tool call while the API Box is stopped returns the API Box's refusal as a tool error.
 
@@ -78,7 +78,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.mcpbox.create_mcpbox(apibox_id="abx_01J8Z5X4K70000000000000001", snapshot_id="mbs_01J8Z5X4K70000000000000007", name="billing-tools")
+    res = c_client.mcpboxes.create(apibox_id="abx_01J8Z5X4K70000000000000001", snapshot_id="mbs_01J8Z5X4K70000000000000007", name="billing-tools")
 
     # Handle response
     print(res)
@@ -98,17 +98,17 @@ with Continuous(
 
 ### Response
 
-**[models.MCPBoxTokenResponse](../../models/mcpboxtokenresponse.md)**
+**[models.CreateMCPBoxResponse](../../models/createmcpboxresponse.md)**
 
 ### Errors
 
 | Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| errors.Error                                | 400, 401, 404, 408, 409, 413, 415, 422, 429 | application/problem+json                    |
-| errors.Error                                | 500, 503                                    | application/problem+json                    |
+| errors.APIError                             | 400, 401, 404, 408, 409, 413, 415, 422, 429 | application/problem+json                    |
+| errors.APIError                             | 500, 503                                    | application/problem+json                    |
 | errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
 
-## delete_mcpbox
+## delete
 
 Deletes an MCP Box, running or stopped. Its API Box stays. Its runtime is released after the response.
 
@@ -124,7 +124,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    c_client.mcpbox.delete_mcpbox(id="<id>")
+    c_client.mcpboxes.delete(id="<id>")
 
     # Use the SDK ...
 
@@ -141,11 +141,11 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 404                      | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 401, 404                      | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## get_mcpbox
+## get
 
 Returns an MCP Box, its status and its connection: its endpoint and token, whether it is running or stopped. Requests reach it only while it is running.
 
@@ -161,7 +161,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.mcpbox.get_mcpbox(id="<id>")
+    res = c_client.mcpboxes.get(id="<id>")
 
     # Handle response
     print(res)
@@ -183,11 +183,11 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 404                      | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 401, 404                      | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## update_mcpbox
+## update
 
 Renames an MCP Box or replaces its metadata. Omitted fields keep their current values.
 
@@ -203,7 +203,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.mcpbox.update_mcpbox(id="<id>")
+    res = c_client.mcpboxes.update(id="<id>")
 
     # Handle response
     print(res)
@@ -227,11 +227,11 @@ with Continuous(
 
 | Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.Error                      | 400, 401, 404, 408, 413, 415, 422 | application/problem+json          |
-| errors.Error                      | 500, 503                          | application/problem+json          |
+| errors.APIError                   | 400, 401, 404, 408, 413, 415, 422 | application/problem+json          |
+| errors.APIError                   | 500, 503                          | application/problem+json          |
 | errors.ContinuousDefaultError     | 4XX, 5XX                          | \*/\*                             |
 
-## save_mcpbox_snapshot
+## save_snapshot
 
 Saves an MCP Box and the API Box it fronts as a new MCP Box Snapshot and a new API Box Snapshot, both ready when the response returns, or neither. The API Box must be running; a paused one is woken, and it keeps running. The MCP Box Snapshot serves the MCP Box's tools and is built against the API Box Snapshot, which holds the API Box's service and current state. Create an API Box from apibox_snapshot_id, then an MCP Box from the MCP Box Snapshot in front of it. Both Snapshots outlive the Boxes. An MCP Box whose API Box was deleted returns 409 mcpbox_apibox_gone; a starting API Box returns 409 apibox_starting; a stopping or stopped one returns 409 apibox_stopped; one whose runtime cannot save its state returns 409 mcpbox_rebuild_required.
 
@@ -247,7 +247,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.mcpbox.save_mcpbox_snapshot(id="<id>")
+    res = c_client.mcpboxes.save_snapshot(id="<id>")
 
     # Handle response
     print(res)
@@ -272,11 +272,11 @@ with Continuous(
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.Error                           | 400, 401, 404, 408, 409, 413, 415, 422 | application/problem+json               |
-| errors.Error                           | 500, 503                               | application/problem+json               |
+| errors.APIError                        | 400, 401, 404, 408, 409, 413, 415, 422 | application/problem+json               |
+| errors.APIError                        | 500, 503                               | application/problem+json               |
 | errors.ContinuousDefaultError          | 4XX, 5XX                               | \*/\*                                  |
 
-## start_mcpbox
+## start
 
 Starts a stopped MCP Box in front of its API Box, and returns at once with status starting; get the MCP Box until it is running. Its token stays the same; its get returns it. A running, starting or stopping MCP Box returns 409 mcpbox_not_stopped, and one whose API Box was deleted 409 mcpbox_apibox_gone.
 
@@ -292,7 +292,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.mcpbox.start_mcpbox(id="<id>")
+    res = c_client.mcpboxes.start(id="<id>")
 
     # Handle response
     print(res)
@@ -314,11 +314,11 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 404, 409, 429            | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 401, 404, 409, 429            | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 
-## stop_mcpbox
+## stop
 
 Stops a running MCP Box and releases its runtime; its API Box keeps running, and its token stays for the next start. It returns at once with status stopping; get the MCP Box until it is stopped. A stopped MCP Box is returned unchanged; a starting one returns 409 mcpbox_starting.
 
@@ -334,7 +334,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.mcpbox.stop_mcpbox(id="<id>")
+    res = c_client.mcpboxes.stop(id="<id>")
 
     # Handle response
     print(res)
@@ -356,6 +356,6 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.Error                  | 401, 404, 409                 | application/problem+json      |
-| errors.Error                  | 500, 503                      | application/problem+json      |
+| errors.APIError               | 401, 404, 409                 | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |

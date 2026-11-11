@@ -124,7 +124,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.apibox.list_apiboxes(limit=50)
+    res = c_client.apiboxes.list(limit=50)
 
     while res is not None:
         # Handle items
@@ -148,7 +148,7 @@ async def main():
         api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
     ) as c_client:
 
-        res = await c_client.apibox.list_apiboxes_async(limit=50)
+        res = await c_client.apiboxes.list_async(limit=50)
 
         while res is not None:
             # Handle items
@@ -180,7 +180,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.apibox.list_apiboxes(limit=50)
+    res = c_client.apiboxes.list(limit=50)
 
     while res is not None:
         # Handle items
@@ -196,58 +196,58 @@ with Continuous(
 <details open>
 <summary>Available methods</summary>
 
-### [Apibox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md)
-
-* [list_apiboxes](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#list_apiboxes) - List API Boxes
-* [create_apibox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#create_apibox) - Create API Box
-* [delete_apibox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#delete_apibox) - Delete API Box
-* [get_apibox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#get_apibox) - Get API Box
-* [update_apibox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#update_apibox) - Update API Box
-* [save_apibox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#save_apibox_snapshot) - Save API Box as Snapshot
-* [start_apibox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#start_apibox) - Start API Box
-* [list_apibox_steps](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#list_apibox_steps) - List API Box steps
-* [stop_apibox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsdk/README.md#stop_apibox) - Stop API Box
-
 ### [ApiboxSnapshots](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md)
 
-* [list_apibox_snapshots](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#list_apibox_snapshots) - List API Box Snapshots
-* [create_apibox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#create_apibox_snapshot) - Create API Box Snapshot
-* [delete_apibox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#delete_apibox_snapshot) - Delete API Box Snapshot
-* [get_apibox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#get_apibox_snapshot) - Get API Box Snapshot
-* [update_apibox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#update_apibox_snapshot) - Update API Box Snapshot
-* [cancel_apibox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#cancel_apibox_snapshot) - Cancel API Box Snapshot build
-* [clone_apibox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#clone_apibox_snapshot) - Clone API Box Snapshot
-* [resume_apibox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#resume_apibox_snapshot) - Resume API Box Snapshot build
+* [list](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#list) - List API Box Snapshots
+* [create](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#create) - Create API Box Snapshot
+* [delete](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#delete) - Delete API Box Snapshot
+* [get](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#get) - Get API Box Snapshot
+* [update](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#update) - Update API Box Snapshot
+* [cancel](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#cancel) - Cancel API Box Snapshot build
+* [clone](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#clone) - Clone API Box Snapshot
+* [resume](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#resume) - Resume API Box Snapshot build
+
+### [Apiboxes](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxes/README.md)
+
+* [list](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxes/README.md#list) - List API Boxes
+* [create](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxes/README.md#create) - Create API Box
+* [delete](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxes/README.md#delete) - Delete API Box
+* [get](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxes/README.md#get) - Get API Box
+* [update](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxes/README.md#update) - Update API Box
+* [save_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxes/README.md#save_snapshot) - Save API Box as Snapshot
+* [start](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxes/README.md#start) - Start API Box
+* [list_steps](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxes/README.md#list_steps) - List API Box steps
+* [stop](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxes/README.md#stop) - Stop API Box
 
 ### [Credentials](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/credentials/README.md)
 
-* [list_credentials](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/credentials/README.md#list_credentials) - List credentials
-* [create_credential](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/credentials/README.md#create_credential) - Create credential
-* [delete_credential](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/credentials/README.md#delete_credential) - Delete credential
-* [get_credential](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/credentials/README.md#get_credential) - Get credential
-* [update_credential](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/credentials/README.md#update_credential) - Update credential
-
-### [Mcpbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsdk/README.md)
-
-* [list_mcpboxes](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsdk/README.md#list_mcpboxes) - List MCP Boxes
-* [create_mcpbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsdk/README.md#create_mcpbox) - Create MCP Box
-* [delete_mcpbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsdk/README.md#delete_mcpbox) - Delete MCP Box
-* [get_mcpbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsdk/README.md#get_mcpbox) - Get MCP Box
-* [update_mcpbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsdk/README.md#update_mcpbox) - Update MCP Box
-* [save_mcpbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsdk/README.md#save_mcpbox_snapshot) - Save MCP Box as Snapshot
-* [start_mcpbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsdk/README.md#start_mcpbox) - Start MCP Box
-* [stop_mcpbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsdk/README.md#stop_mcpbox) - Stop MCP Box
+* [list](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/credentials/README.md#list) - List credentials
+* [create](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/credentials/README.md#create) - Create credential
+* [delete](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/credentials/README.md#delete) - Delete credential
+* [get](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/credentials/README.md#get) - Get credential
+* [update](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/credentials/README.md#update) - Update credential
 
 ### [McpboxSnapshots](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md)
 
-* [list_mcpbox_snapshots](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#list_mcpbox_snapshots) - List MCP Box Snapshots
-* [create_mcpbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#create_mcpbox_snapshot) - Create MCP Box Snapshot
-* [delete_mcpbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#delete_mcpbox_snapshot) - Delete MCP Box Snapshot
-* [get_mcpbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#get_mcpbox_snapshot) - Get MCP Box Snapshot
-* [update_mcpbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#update_mcpbox_snapshot) - Update MCP Box Snapshot
-* [cancel_mcpbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#cancel_mcpbox_snapshot) - Cancel MCP Box Snapshot build
-* [clone_mcpbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#clone_mcpbox_snapshot) - Clone MCP Box Snapshot
-* [resume_mcpbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#resume_mcpbox_snapshot) - Resume MCP Box Snapshot build
+* [list](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#list) - List MCP Box Snapshots
+* [create](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#create) - Create MCP Box Snapshot
+* [delete](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#delete) - Delete MCP Box Snapshot
+* [get](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#get) - Get MCP Box Snapshot
+* [update](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#update) - Update MCP Box Snapshot
+* [cancel](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#cancel) - Cancel MCP Box Snapshot build
+* [clone](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#clone) - Clone MCP Box Snapshot
+* [resume](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#resume) - Resume MCP Box Snapshot build
+
+### [Mcpboxes](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxes/README.md)
+
+* [list](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxes/README.md#list) - List MCP Boxes
+* [create](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxes/README.md#create) - Create MCP Box
+* [delete](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxes/README.md#delete) - Delete MCP Box
+* [get](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxes/README.md#get) - Get MCP Box
+* [update](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxes/README.md#update) - Update MCP Box
+* [save_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxes/README.md#save_snapshot) - Save MCP Box as Snapshot
+* [start](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxes/README.md#start) - Start MCP Box
+* [stop](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxes/README.md#stop) - Stop MCP Box
 
 ### [~~SimulationSnapshots~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulationsnapshots/README.md)
 
@@ -284,28 +284,28 @@ with Continuous(
 * [~~clone_simulator~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#clone_simulator) - Clone Simulator :warning: **Deprecated**
 * [~~resume_simulator~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#resume_simulator) - Resume Simulator Build :warning: **Deprecated**
 
-### [Webbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md)
-
-* [list_webboxes](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#list_webboxes) - List Web Boxes
-* [create_webbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#create_webbox) - Create Web Box
-* [delete_webbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#delete_webbox) - Delete Web Box
-* [get_webbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#get_webbox) - Get Web Box
-* [update_webbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#update_webbox) - Update Web Box
-* [save_webbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#save_webbox_snapshot) - Save Web Box as Snapshot
-* [start_webbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#start_webbox) - Start Web Box
-* [list_webbox_steps](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#list_webbox_steps) - List Web Box steps
-* [stop_webbox](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsdk/README.md#stop_webbox) - Stop Web Box
-
 ### [WebboxSnapshots](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md)
 
-* [list_webbox_snapshots](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#list_webbox_snapshots) - List Web Box Snapshots
-* [create_webbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#create_webbox_snapshot) - Create Web Box Snapshot
-* [delete_webbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#delete_webbox_snapshot) - Delete Web Box Snapshot
-* [get_webbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#get_webbox_snapshot) - Get Web Box Snapshot
-* [update_webbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#update_webbox_snapshot) - Update Web Box Snapshot
-* [cancel_webbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#cancel_webbox_snapshot) - Cancel Web Box Snapshot build
-* [clone_webbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#clone_webbox_snapshot) - Clone Web Box Snapshot
-* [resume_webbox_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#resume_webbox_snapshot) - Resume Web Box Snapshot build
+* [list](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#list) - List Web Box Snapshots
+* [create](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#create) - Create Web Box Snapshot
+* [delete](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#delete) - Delete Web Box Snapshot
+* [get](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#get) - Get Web Box Snapshot
+* [update](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#update) - Update Web Box Snapshot
+* [cancel](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#cancel) - Cancel Web Box Snapshot build
+* [clone](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#clone) - Clone Web Box Snapshot
+* [resume](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#resume) - Resume Web Box Snapshot build
+
+### [Webboxes](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxes/README.md)
+
+* [list](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxes/README.md#list) - List Web Boxes
+* [create](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxes/README.md#create) - Create Web Box
+* [delete](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxes/README.md#delete) - Delete Web Box
+* [get](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxes/README.md#get) - Get Web Box
+* [update](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxes/README.md#update) - Update Web Box
+* [save_snapshot](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxes/README.md#save_snapshot) - Save Web Box as Snapshot
+* [start](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxes/README.md#start) - Start Web Box
+* [list_steps](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxes/README.md#list_steps) - List Web Box steps
+* [stop](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxes/README.md#stop) - Stop Web Box
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -327,7 +327,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.apibox.list_apiboxes(limit=50)
+    res = c_client.apiboxes.list(limit=50)
 
     while res is not None:
         # Handle items
@@ -356,7 +356,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.apibox_snapshots.create_apibox_snapshot(request={})
+    res = c_client.apibox_snapshots.create(request={})
 
     # Handle response
     print(res)
@@ -380,7 +380,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.apibox.list_apiboxes(limit=50,
+    res = c_client.apiboxes.list(limit=50,
         RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False))
 
     while res is not None:
@@ -402,7 +402,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.apibox.list_apiboxes(limit=50)
+    res = c_client.apiboxes.list(limit=50)
 
     while res is not None:
         # Handle items
@@ -438,7 +438,7 @@ with Continuous(
     res = None
     try:
 
-        res = c_client.apibox.list_apiboxes(limit=50)
+        res = c_client.apiboxes.list(limit=50)
 
         while res is not None:
             # Handle items
@@ -455,7 +455,7 @@ with Continuous(
         print(e.raw_response)
 
         # Depending on the method different errors may be thrown
-        if isinstance(e, errors.Error):
+        if isinstance(e, errors.APIError):
             print(e.data.code)  # str
             print(e.data.detail)  # str
             print(e.data.validation)  # Nullable[models.SpecificationValidation]
@@ -464,7 +464,7 @@ with Continuous(
 ### Error Classes
 **Primary errors:**
 * [`ContinuousError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/continuouserror.py): The base class for HTTP error responses.
-  * [`Error`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/error.py): Generic error.
+  * [`APIError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/apierror.py): Generic error.
 
 <details><summary>Less common errors (6)</summary>
 
@@ -501,7 +501,7 @@ with Continuous(
     api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
 ) as c_client:
 
-    res = c_client.apibox.list_apiboxes(limit=50)
+    res = c_client.apiboxes.list(limit=50)
 
     while res is not None:
         # Handle items

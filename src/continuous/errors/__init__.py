@@ -6,8 +6,8 @@ from typing import Any, TYPE_CHECKING
 from continuous.utils.dynamic_imports import lazy_getattr, lazy_dir
 
 if TYPE_CHECKING:
+    from .apierror import APIError, APIErrorData
     from .continuousdefaulterror import ContinuousDefaultError
-    from .error import Error, ErrorData
     from .no_response_error import NoResponseError
     from .responsevalidationerror import ResponseValidationError
     from .simulatordeleteconflict_error import (
@@ -16,10 +16,10 @@ if TYPE_CHECKING:
     )
 
 __all__ = [
+    "APIError",
+    "APIErrorData",
     "ContinuousDefaultError",
     "ContinuousError",
-    "Error",
-    "ErrorData",
     "NoResponseError",
     "ResponseValidationError",
     "SimulatorDeleteConflictError",
@@ -27,9 +27,9 @@ __all__ = [
 ]
 
 _dynamic_imports: dict[str, str] = {
+    "APIError": ".apierror",
+    "APIErrorData": ".apierror",
     "ContinuousDefaultError": ".continuousdefaulterror",
-    "Error": ".error",
-    "ErrorData": ".error",
     "NoResponseError": ".no_response_error",
     "ResponseValidationError": ".responsevalidationerror",
     "SimulatorDeleteConflictError": ".simulatordeleteconflict_error",

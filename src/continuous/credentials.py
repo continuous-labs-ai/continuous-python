@@ -13,7 +13,7 @@ from typing import Any, Awaitable, Dict, List, Mapping, Optional, Union
 class Credentials(BaseSDK):
     r"""Store connections to real systems: a base URL, the header that carries the credential, and its value. The API never returns a value."""
 
-    def list_credentials(
+    def list(
         self,
         *,
         limit: Optional[int] = 50,
@@ -107,7 +107,7 @@ class Credentials(BaseSDK):
             if next_cursor is None or str(next_cursor).strip() == "":
                 return None
 
-            return self.list_credentials(
+            return self.list(
                 limit=limit,
                 cursor=next_cursor,
                 retries=retries,
@@ -127,11 +127,11 @@ class Credentials(BaseSDK):
         if utils.match_response(
             http_res, ["400", "401", "422"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -145,7 +145,7 @@ class Credentials(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def list_credentials_async(
+    async def list_async(
         self,
         *,
         limit: Optional[int] = 50,
@@ -242,7 +242,7 @@ class Credentials(BaseSDK):
             if next_cursor is None or str(next_cursor).strip() == "":
                 return empty_result()
 
-            return self.list_credentials_async(
+            return self.list_async(
                 limit=limit,
                 cursor=next_cursor,
                 retries=retries,
@@ -262,11 +262,11 @@ class Credentials(BaseSDK):
         if utils.match_response(
             http_res, ["400", "401", "422"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -280,7 +280,7 @@ class Credentials(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def create_credential(
+    def create(
         self,
         *,
         name: str,
@@ -394,11 +394,11 @@ class Credentials(BaseSDK):
             ["400", "401", "408", "409", "413", "415", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -412,7 +412,7 @@ class Credentials(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def create_credential_async(
+    async def create_async(
         self,
         *,
         name: str,
@@ -526,11 +526,11 @@ class Credentials(BaseSDK):
             ["400", "401", "408", "409", "413", "415", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -544,7 +544,7 @@ class Credentials(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def delete_credential(
+    def delete(
         self,
         *,
         id: str,
@@ -625,11 +625,11 @@ class Credentials(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -643,7 +643,7 @@ class Credentials(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def delete_credential_async(
+    async def delete_async(
         self,
         *,
         id: str,
@@ -724,11 +724,11 @@ class Credentials(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -742,7 +742,7 @@ class Credentials(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def get_credential(
+    def get(
         self,
         *,
         id: str,
@@ -827,11 +827,11 @@ class Credentials(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -845,7 +845,7 @@ class Credentials(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def get_credential_async(
+    async def get_async(
         self,
         *,
         id: str,
@@ -930,11 +930,11 @@ class Credentials(BaseSDK):
         if utils.match_response(
             http_res, ["401", "403", "404"], "application/problem+json"
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(
@@ -948,7 +948,7 @@ class Credentials(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    def update_credential(
+    def update(
         self,
         *,
         id: str,
@@ -1062,11 +1062,11 @@ class Credentials(BaseSDK):
             ["400", "401", "403", "404", "408", "413", "415", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.ContinuousDefaultError(
@@ -1080,7 +1080,7 @@ class Credentials(BaseSDK):
 
         raise errors.ContinuousDefaultError("Unexpected response received", http_res)
 
-    async def update_credential_async(
+    async def update_async(
         self,
         *,
         id: str,
@@ -1194,11 +1194,11 @@ class Credentials(BaseSDK):
             ["400", "401", "403", "404", "408", "413", "415", "422"],
             "application/problem+json",
         ):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
-            response_data = unmarshal_json_response(errors.ErrorData, http_res)
-            raise errors.Error(response_data, http_res)
+            response_data = unmarshal_json_response(errors.APIErrorData, http_res)
+            raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.ContinuousDefaultError(

@@ -16,7 +16,6 @@ if TYPE_CHECKING:
         APIBoxSnapshotStatus,
         APIBoxSnapshotTypedDict,
     )
-    from .apiboxtokenresponse import APIBoxTokenResponse, APIBoxTokenResponseTypedDict
     from .boxerror import BoxError, BoxErrorCode, BoxErrorTypedDict
     from .boxstep import BoxStep, BoxStepTypedDict
     from .build_simulatorop import (
@@ -181,6 +180,10 @@ if TYPE_CHECKING:
         CreateWebboxRequestRequestTypedDict,
     )
     from .createapiboxrequest import CreateAPIBoxRequest, CreateAPIBoxRequestTypedDict
+    from .createapiboxresponse import (
+        CreateAPIBoxResponse,
+        CreateAPIBoxResponseTypedDict,
+    )
     from .createcredentialrequest import (
         CreateCredentialRequest,
         CreateCredentialRequestTypedDict,
@@ -191,6 +194,10 @@ if TYPE_CHECKING:
         CreatedSimulationTypedDict,
     )
     from .createmcpboxrequest import CreateMCPBoxRequest, CreateMCPBoxRequestTypedDict
+    from .createmcpboxresponse import (
+        CreateMCPBoxResponse,
+        CreateMCPBoxResponseTypedDict,
+    )
     from .createsimulationrequest import (
         CreateSimulationRequest,
         CreateSimulationRequestTypedDict,
@@ -457,7 +464,6 @@ if TYPE_CHECKING:
         MCPBoxSnapshotStatus,
         MCPBoxSnapshotTypedDict,
     )
-    from .mcpboxtokenresponse import MCPBoxTokenResponse, MCPBoxTokenResponseTypedDict
     from .regenerate_simulation_tokenop import (
         RegenerateSimulationTokenRequest,
         RegenerateSimulationTokenRequestTypedDict,
@@ -641,8 +647,6 @@ __all__ = [
     "APIBoxSnapshotStatus",
     "APIBoxSnapshotTypedDict",
     "APIBoxStatus",
-    "APIBoxTokenResponse",
-    "APIBoxTokenResponseTypedDict",
     "APIBoxTypedDict",
     "Actor",
     "ActorTypedDict",
@@ -720,6 +724,8 @@ __all__ = [
     "CloneWebboxSnapshotRequestTypedDict",
     "CreateAPIBoxRequest",
     "CreateAPIBoxRequestTypedDict",
+    "CreateAPIBoxResponse",
+    "CreateAPIBoxResponseTypedDict",
     "CreateApiboxRequestRequest",
     "CreateApiboxRequestRequestTypedDict",
     "CreateApiboxSnapshotDocument",
@@ -738,6 +744,8 @@ __all__ = [
     "CreateCredentialRequestTypedDict",
     "CreateMCPBoxRequest",
     "CreateMCPBoxRequestTypedDict",
+    "CreateMCPBoxResponse",
+    "CreateMCPBoxResponseTypedDict",
     "CreateMcpboxRequestRequest",
     "CreateMcpboxRequestRequestTypedDict",
     "CreateMcpboxSnapshotDocument",
@@ -950,8 +958,6 @@ __all__ = [
     "MCPBoxSnapshotStatus",
     "MCPBoxSnapshotTypedDict",
     "MCPBoxStatus",
-    "MCPBoxTokenResponse",
-    "MCPBoxTokenResponseTypedDict",
     "MCPBoxTypedDict",
     "Phase",
     "Reason",
@@ -1098,8 +1104,6 @@ _dynamic_imports: dict[str, str] = {
     "APIBoxSnapshotSpecKind": ".apiboxsnapshot",
     "APIBoxSnapshotStatus": ".apiboxsnapshot",
     "APIBoxSnapshotTypedDict": ".apiboxsnapshot",
-    "APIBoxTokenResponse": ".apiboxtokenresponse",
-    "APIBoxTokenResponseTypedDict": ".apiboxtokenresponse",
     "BoxError": ".boxerror",
     "BoxErrorCode": ".boxerror",
     "BoxErrorTypedDict": ".boxerror",
@@ -1218,6 +1222,8 @@ _dynamic_imports: dict[str, str] = {
     "CreateWebboxRequestRequestTypedDict": ".create_webboxop",
     "CreateAPIBoxRequest": ".createapiboxrequest",
     "CreateAPIBoxRequestTypedDict": ".createapiboxrequest",
+    "CreateAPIBoxResponse": ".createapiboxresponse",
+    "CreateAPIBoxResponseTypedDict": ".createapiboxresponse",
     "CreateCredentialRequest": ".createcredentialrequest",
     "CreateCredentialRequestTypedDict": ".createcredentialrequest",
     "CreatedSimulation": ".createdsimulation",
@@ -1225,6 +1231,8 @@ _dynamic_imports: dict[str, str] = {
     "CreatedSimulationTypedDict": ".createdsimulation",
     "CreateMCPBoxRequest": ".createmcpboxrequest",
     "CreateMCPBoxRequestTypedDict": ".createmcpboxrequest",
+    "CreateMCPBoxResponse": ".createmcpboxresponse",
+    "CreateMCPBoxResponseTypedDict": ".createmcpboxresponse",
     "CreateSimulationRequest": ".createsimulationrequest",
     "CreateSimulationRequestTypedDict": ".createsimulationrequest",
     "CreateSimulationSnapshotRequest": ".createsimulationsnapshotrequest",
@@ -1407,8 +1415,6 @@ _dynamic_imports: dict[str, str] = {
     "MCPBoxSnapshotSource": ".mcpboxsnapshot",
     "MCPBoxSnapshotStatus": ".mcpboxsnapshot",
     "MCPBoxSnapshotTypedDict": ".mcpboxsnapshot",
-    "MCPBoxTokenResponse": ".mcpboxtokenresponse",
-    "MCPBoxTokenResponseTypedDict": ".mcpboxtokenresponse",
     "RegenerateSimulationTokenRequest": ".regenerate_simulation_tokenop",
     "RegenerateSimulationTokenRequestTypedDict": ".regenerate_simulation_tokenop",
     "RegenerateSimulationTokenResponse": ".regenerate_simulation_tokenop",
