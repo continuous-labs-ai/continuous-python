@@ -19,6 +19,7 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"gpt-6-astra"`
 - `"gpt-6.1-sol"`
 - `"claude-opus-5-5"`
-- `"claude-fable-5-1"`
+- `"claude-fable-5-2"`
 - `"gpt-6-sol"`
+- `"claude-fable-5-1"`
 - `"combined"`

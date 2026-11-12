@@ -3,8 +3,18 @@
 from __future__ import annotations
 from continuous.types import BaseModel, UNSET_SENTINEL
 from pydantic import model_serializer
-from typing import List, Optional
+from typing import List, Literal, Optional
 from typing_extensions import NotRequired, TypedDict
+
+
+BuildWebBoxSnapshotRequestModel = Literal[
+    "gpt-6-astra",
+    "gpt-6.1-sol",
+    "claude-opus-5-5",
+    "claude-fable-5-2",
+    "combined",
+]
+r"""Model that builds and reviews the Snapshot. Defaults to combined. Its provider is derived from the model. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does."""
 
 
 class BuildWebBoxSnapshotRequestTypedDict(TypedDict):
@@ -12,7 +22,7 @@ class BuildWebBoxSnapshotRequestTypedDict(TypedDict):
     r"""Workspace credentials: exactly one login for the vendor's web app, whose saved sign-in the builder and QA use on the live app, and up to four others with a base_url that they can call real systems with. Each must belong to the workspace. Required without parent_id. QA may create test objects in the live app; use a sandbox or test account."""
     instructions: NotRequired[str]
     r"""Instructions for the builder. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
-    model: NotRequired[str]
+    model: NotRequired[BuildWebBoxSnapshotRequestModel]
     r"""Model that builds and reviews the Snapshot. Defaults to combined. Its provider is derived from the model. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does."""
     name: NotRequired[str]
     r"""Name for the Snapshot. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
@@ -31,7 +41,7 @@ class BuildWebBoxSnapshotRequest(BaseModel):
     instructions: Optional[str] = None
     r"""Instructions for the builder. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
 
-    model: Optional[str] = None
+    model: Optional[BuildWebBoxSnapshotRequestModel] = "combined"
     r"""Model that builds and reviews the Snapshot. Defaults to combined. Its provider is derived from the model. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does."""
 
     name: Optional[str] = None

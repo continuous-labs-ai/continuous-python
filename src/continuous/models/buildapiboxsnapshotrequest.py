@@ -8,6 +8,16 @@ from typing import List, Literal, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
+BuildAPIBoxSnapshotRequestModel = Literal[
+    "gpt-6-astra",
+    "gpt-6.1-sol",
+    "claude-opus-5-5",
+    "claude-fable-5-2",
+    "combined",
+]
+r"""Model that builds and reviews the Snapshot. Defaults to combined. Its provider is derived from the model. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does."""
+
+
 BuildAPIBoxSnapshotRequestSpecKind = Literal[
     "openapi",
     "wsdl",
@@ -23,7 +33,7 @@ class BuildAPIBoxSnapshotRequestTypedDict(TypedDict):
     r"""Regular expressions (RE2 syntax) that select the operations to implement. Each is matched against the OpenAPI operationId, the WSDL operation name, or the GraphQL Query or Mutation field name; an operation is kept when any expression matches, and an OpenAPI operation without an operationId is dropped. At most 64 expressions of at most 1,024 characters each. Omit or send an empty list to keep every operation of the spec, which for a build on a parent without a spec part is the parent's selection."""
     instructions: NotRequired[str]
     r"""Instructions for the builder. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
-    model: NotRequired[str]
+    model: NotRequired[BuildAPIBoxSnapshotRequestModel]
     r"""Model that builds and reviews the Snapshot. Defaults to combined. Its provider is derived from the model. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does."""
     name: NotRequired[str]
     r"""Name for the Snapshot. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
@@ -47,7 +57,7 @@ class BuildAPIBoxSnapshotRequest(BaseModel):
     instructions: Optional[str] = None
     r"""Instructions for the builder. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
 
-    model: Optional[str] = None
+    model: Optional[BuildAPIBoxSnapshotRequestModel] = "combined"
     r"""Model that builds and reviews the Snapshot. Defaults to combined. Its provider is derived from the model. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does."""
 
     name: Optional[str] = None
