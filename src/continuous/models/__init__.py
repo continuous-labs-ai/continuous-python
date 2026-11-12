@@ -32,23 +32,17 @@ if TYPE_CHECKING:
     )
     from .buildapiboxsnapshotrequest import (
         BuildAPIBoxSnapshotRequest,
+        BuildAPIBoxSnapshotRequestModel,
         BuildAPIBoxSnapshotRequestSpecKind,
         BuildAPIBoxSnapshotRequestTypedDict,
     )
     from .builderror import BuildError, BuildErrorCode, BuildErrorTypedDict, Reason
     from .buildmcpboxsnapshotrequest import (
         BuildMCPBoxSnapshotRequest,
+        BuildMCPBoxSnapshotRequestModel,
         BuildMCPBoxSnapshotRequestTypedDict,
     )
-    from .buildprogress import (
-        AgentState,
-        BuildProgress,
-        BuildProgressModel,
-        BuildProgressTypedDict,
-        LastSubmission,
-        Phase,
-        Stage,
-    )
+    from .buildprogress import BuildProgress, BuildProgressModel, BuildProgressTypedDict
     from .buildresearch import (
         BuildResearch,
         BuildResearchStatus,
@@ -64,6 +58,7 @@ if TYPE_CHECKING:
     from .buildwaiting import BuildWaiting, BuildWaitingTypedDict, Type
     from .buildwebboxsnapshotrequest import (
         BuildWebBoxSnapshotRequest,
+        BuildWebBoxSnapshotRequestModel,
         BuildWebBoxSnapshotRequestTypedDict,
     )
     from .cancel_apibox_snapshotop import (
@@ -652,7 +647,6 @@ __all__ = [
     "ActorTypedDict",
     "AdvanceTimeRequest",
     "AdvanceTimeRequestTypedDict",
-    "AgentState",
     "AuthMethod",
     "BoxError",
     "BoxErrorCode",
@@ -660,12 +654,14 @@ __all__ = [
     "BoxStep",
     "BoxStepTypedDict",
     "BuildAPIBoxSnapshotRequest",
+    "BuildAPIBoxSnapshotRequestModel",
     "BuildAPIBoxSnapshotRequestSpecKind",
     "BuildAPIBoxSnapshotRequestTypedDict",
     "BuildError",
     "BuildErrorCode",
     "BuildErrorTypedDict",
     "BuildMCPBoxSnapshotRequest",
+    "BuildMCPBoxSnapshotRequestModel",
     "BuildMCPBoxSnapshotRequestTypedDict",
     "BuildProgress",
     "BuildProgressModel",
@@ -691,6 +687,7 @@ __all__ = [
     "BuildWaiting",
     "BuildWaitingTypedDict",
     "BuildWebBoxSnapshotRequest",
+    "BuildWebBoxSnapshotRequestModel",
     "BuildWebBoxSnapshotRequestTypedDict",
     "CancelApiboxSnapshotRequest",
     "CancelApiboxSnapshotRequestTypedDict",
@@ -854,7 +851,6 @@ __all__ = [
     "GetWebboxRequestTypedDict",
     "GetWebboxSnapshotRequest",
     "GetWebboxSnapshotRequestTypedDict",
-    "LastSubmission",
     "Limitation",
     "LimitationTypedDict",
     "ListAPIBoxSnapshotsResponse",
@@ -959,7 +955,6 @@ __all__ = [
     "MCPBoxSnapshotTypedDict",
     "MCPBoxStatus",
     "MCPBoxTypedDict",
-    "Phase",
     "Reason",
     "RegenerateSimulationTokenRequest",
     "RegenerateSimulationTokenRequestTypedDict",
@@ -1017,7 +1012,6 @@ __all__ = [
     "SpecificationWarning",
     "SpecificationWarningCode",
     "SpecificationWarningTypedDict",
-    "Stage",
     "StartApiboxRequest",
     "StartApiboxRequestTypedDict",
     "StartMcpboxRequest",
@@ -1120,6 +1114,7 @@ _dynamic_imports: dict[str, str] = {
     "BuildSimulatorSpec": ".build_simulatorop",
     "BuildSimulatorSpecTypedDict": ".build_simulatorop",
     "BuildAPIBoxSnapshotRequest": ".buildapiboxsnapshotrequest",
+    "BuildAPIBoxSnapshotRequestModel": ".buildapiboxsnapshotrequest",
     "BuildAPIBoxSnapshotRequestSpecKind": ".buildapiboxsnapshotrequest",
     "BuildAPIBoxSnapshotRequestTypedDict": ".buildapiboxsnapshotrequest",
     "BuildError": ".builderror",
@@ -1127,14 +1122,11 @@ _dynamic_imports: dict[str, str] = {
     "BuildErrorTypedDict": ".builderror",
     "Reason": ".builderror",
     "BuildMCPBoxSnapshotRequest": ".buildmcpboxsnapshotrequest",
+    "BuildMCPBoxSnapshotRequestModel": ".buildmcpboxsnapshotrequest",
     "BuildMCPBoxSnapshotRequestTypedDict": ".buildmcpboxsnapshotrequest",
-    "AgentState": ".buildprogress",
     "BuildProgress": ".buildprogress",
     "BuildProgressModel": ".buildprogress",
     "BuildProgressTypedDict": ".buildprogress",
-    "LastSubmission": ".buildprogress",
-    "Phase": ".buildprogress",
-    "Stage": ".buildprogress",
     "BuildResearch": ".buildresearch",
     "BuildResearchStatus": ".buildresearch",
     "BuildResearchTypedDict": ".buildresearch",
@@ -1147,6 +1139,7 @@ _dynamic_imports: dict[str, str] = {
     "BuildWaitingTypedDict": ".buildwaiting",
     "Type": ".buildwaiting",
     "BuildWebBoxSnapshotRequest": ".buildwebboxsnapshotrequest",
+    "BuildWebBoxSnapshotRequestModel": ".buildwebboxsnapshotrequest",
     "BuildWebBoxSnapshotRequestTypedDict": ".buildwebboxsnapshotrequest",
     "CancelApiboxSnapshotRequest": ".cancel_apibox_snapshotop",
     "CancelApiboxSnapshotRequestTypedDict": ".cancel_apibox_snapshotop",

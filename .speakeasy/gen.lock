@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: 2be7c823c671f72203f88af75fa96ac8
+  docChecksum: ed811480ab8db4d5943a012bc8067936
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.5.0
-  configChecksum: b0b29f38685183ded5b7a13eddae9f25
+  releaseVersion: 0.5.1
+  configChecksum: 7c3e0cbafdee87685b70aee774bd783c
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: 4984526a-82b6-4501-9664-962708bfc436
-  pristine_commit_hash: cc0b4df7720ed809cf429eccd5b8771cb9f2f1fd
-  pristine_tree_hash: f4b71800ce270bfa83797e496c400253a6efe481
+  generation_id: d1a8977c-a89b-4462-9d33-a1e0682497ae
+  pristine_commit_hash: 26a1a10dbdea5106b581859be07bf8a855714a68
+  pristine_tree_hash: 6d29d3f0b8d4fd994dbde5b42149803a40eb672d
 features:
   python:
     additionalDependencies: 1.1.0
@@ -78,10 +78,6 @@ trackedFiles:
     id: 06337a82f955
     last_write_checksum: sha1:b92b0e229c18b3938c857d0bd07890bd14e17e97
     pristine_git_object: f9e70ba2125fd4c31ff2f069fcb9fb25933ceac8
-  docs/models/agentstate.md:
-    id: a9316ed396c7
-    last_write_checksum: sha1:8f0e51b9777c5a7394de458bb558860d20ea2ed4
-    pristine_git_object: cbfc3fed3586b8d0ccbedfd2fb8bb535e1da1cff
   docs/models/apibox.md:
     id: e1f8605b112c
     last_write_checksum: sha1:0cb50a5645a15da73b5b76412c2bf1e5218a4872
@@ -128,8 +124,12 @@ trackedFiles:
     pristine_git_object: 74ff0f200be18864fd120a2c995852cc4ba86802
   docs/models/buildapiboxsnapshotrequest.md:
     id: 98d2ce6441d2
-    last_write_checksum: sha1:f1861e2cf4373d7b52cfeaaa98ce703dffd5fe00
-    pristine_git_object: 7c0ad58367655ab0d11d788a541fe9260727445f
+    last_write_checksum: sha1:dd6e2449313a143adda804318702b3009d77cfcd
+    pristine_git_object: a3a108ffe4a3c14e3da792e17c0aeb4bc526b5cd
+  docs/models/buildapiboxsnapshotrequestmodel.md:
+    id: 8c9dbfa290a9
+    last_write_checksum: sha1:fa316a0eb365eeae0d929fbd7dc2b586db43fd2a
+    pristine_git_object: 26d60dfef51eae233c762c01e0a98f327add4ec6
   docs/models/buildapiboxsnapshotrequestspeckind.md:
     id: a228794d5e27
     last_write_checksum: sha1:d8c89a28c309696a590e3b3f490342f4ae3fc88c
@@ -144,16 +144,20 @@ trackedFiles:
     pristine_git_object: d6c60461b2291d0809054b366a9dc1a0a737e06a
   docs/models/buildmcpboxsnapshotrequest.md:
     id: 48823370246f
-    last_write_checksum: sha1:cc9c8f0d4dab075b9af3bea7a0cb4f1a54b861b7
-    pristine_git_object: 8b59a42ffb747fdf08cd80406822457e1af546cd
+    last_write_checksum: sha1:37aa1d7d17ccc53225cf337cac84c0ef36a55fc2
+    pristine_git_object: cdaf67f07cd6e846048bcca6a98b5d6d2d271dd7
+  docs/models/buildmcpboxsnapshotrequestmodel.md:
+    id: a28495b6c4dc
+    last_write_checksum: sha1:a3ab2e73e6d799cd2138ed5b23a1b0646a402fe8
+    pristine_git_object: d74fc0e8eee7daa7ab514604e83c9cda0d7ba3f2
   docs/models/buildprogress.md:
     id: 2c5e4f611faa
-    last_write_checksum: sha1:79f8fcb8735c0789bae0e40ced2875beadd8c678
-    pristine_git_object: 48f8bb0a5357bbd19ce9bb0675d25d4e67e33b48
+    last_write_checksum: sha1:b98bd5abebc4e672b3c620249c6bc217c94255be
+    pristine_git_object: 182fa6fef377217116b1996e2939a4add021dd74
   docs/models/buildprogressmodel.md:
     id: a190e2f077e4
-    last_write_checksum: sha1:a328e5a3b6bce7e88022a8800923efa33c2b8342
-    pristine_git_object: 708d8aaff61beb4ae7a2f4d78b10a1979122110a
+    last_write_checksum: sha1:d5d8ca0a1d6f4f0ebeb4dd529318bcb43cf81c5a
+    pristine_git_object: 112321b6004a3b597872dc911fddb1e21db66bee
   docs/models/buildresearch.md:
     id: 949dcbcbe3d4
     last_write_checksum: sha1:8f04892b626f05b258f72ef91aaface5f9742e3b
@@ -172,16 +176,16 @@ trackedFiles:
     pristine_git_object: ebcf931ad1011e9f1f1090457c2af7eab35442b8
   docs/models/buildsimulatorrequestbody.md:
     id: bacfc180a18c
-    last_write_checksum: sha1:2d1fdac9dc57c8904f25f2d36b2f5d112d068d47
-    pristine_git_object: dd6673a6a855ab18884acbcf1cff2c39f45b1d7e
+    last_write_checksum: sha1:ea7a2188642578e9006869803e9fb079138a83a4
+    pristine_git_object: 698459a7c1a09a7553af39763dd63f60b2a887c5
   docs/models/buildsimulatorrequestmode.md:
     id: 86a55b772fb8
     last_write_checksum: sha1:797d6eaa865e9c5777d7270f39cd7b6236238a40
     pristine_git_object: 65edc19caaf7687a290085ccdab36369887a0221
   docs/models/buildsimulatorrequestmodel.md:
     id: 45b3242a15cf
-    last_write_checksum: sha1:8c763d5b8a7d4567f20a41073683e59c9d1eb221
-    pristine_git_object: 78ede553c7b8fc4003689711a7dc3d99be73bf20
+    last_write_checksum: sha1:9a4c55faf53a8e79dfe720b471954d1c61333262
+    pristine_git_object: d42d3b6e71e75f86177176ff8f242950b2586087
   docs/models/buildsimulatorrequestrequest.md:
     id: eec6543fefe9
     last_write_checksum: sha1:25b64230432b225cd28a8e42f84acd956edde7bf
@@ -192,8 +196,8 @@ trackedFiles:
     pristine_git_object: b671b43e51e25f1d294e0554a5dd3641437c9825
   docs/models/buildsimulatorresponse.md:
     id: 7bb7eff50b23
-    last_write_checksum: sha1:766720bffbdc4cfec655abe2f96971f653b07498
-    pristine_git_object: bc5990686b181864bf869fe9848803ea8b2a31b3
+    last_write_checksum: sha1:5d64b2dab0b91aa89cfb229e003fa4c59fa930a5
+    pristine_git_object: 6a9bcd99a12e43b8dba9733763af81954f62b17b
   docs/models/buildsimulatorspec.md:
     id: 5aa43337d6ee
     last_write_checksum: sha1:9425dffc70139c1d1cb96ba8c06b6a2e6ff75684
@@ -204,8 +208,12 @@ trackedFiles:
     pristine_git_object: 83142fee8fce6c5ff7df52c2da07d7ccac0cdb2a
   docs/models/buildwebboxsnapshotrequest.md:
     id: 10bc3a541364
-    last_write_checksum: sha1:4b69705aa30e74abd452402eb2d9f84eb89d54b6
-    pristine_git_object: ea54e34b9b6926cd32e2afd27929d57d464bd5ff
+    last_write_checksum: sha1:65d38d400146a581bd17a7f057fc03096d0262fc
+    pristine_git_object: 4c12eac9de1771d23a30ca1c9f0b5ebf5818a619
+  docs/models/buildwebboxsnapshotrequestmodel.md:
+    id: dfe38bb3ba66
+    last_write_checksum: sha1:5190528da76f41d86c3a857ae4cdcfd7fba2f6fb
+    pristine_git_object: b3654b6f7ff7701aa1ee745501a23bd1274b2717
   docs/models/cancelapiboxsnapshotrequest.md:
     id: c79690bab68d
     last_write_checksum: sha1:766cd1501f7ab1014218de89e9ead9b5617c092b
@@ -542,10 +550,6 @@ trackedFiles:
     id: eff06766a42c
     last_write_checksum: sha1:847a12435931c4bbbb1512499c9a5c09e81b57ad
     pristine_git_object: ad39cda2c515e16ad4bf33a374418bd02b727821
-  docs/models/lastsubmission.md:
-    id: c731b0ff5e1a
-    last_write_checksum: sha1:808dff2bbe852fd1499b60d83ca4fb4b002ef3b1
-    pristine_git_object: f6c7d4b947368d796d0c5b7744221425d05ae244
   docs/models/limitation.md:
     id: 9dc9889267c6
     last_write_checksum: sha1:ef7a76fd48c2a770ac844b9c5ce112c9fa69358e
@@ -782,10 +786,6 @@ trackedFiles:
     id: cd18decf7d8d
     last_write_checksum: sha1:763ebcb9a838df6f84429fe54e07fa155ae319af
     pristine_git_object: e064c53f4e2bf237d8a4941112625e2694a24309
-  docs/models/phase.md:
-    id: a2d01dc13e35
-    last_write_checksum: sha1:166bb91f232807c0a48aaf3f23218c2052452da5
-    pristine_git_object: 3a23a0fdfaaf1f23584f54028e40e75733985942
   docs/models/reason.md:
     id: 087688da6fd4
     last_write_checksum: sha1:b5e25f9ec4ee8958338ff10b6674af20a6350d44
@@ -922,10 +922,6 @@ trackedFiles:
     id: dc3b3b217506
     last_write_checksum: sha1:bbea83f123003b3515733da4771d1f49c8b238f8
     pristine_git_object: 81e3a67a351f36c91229f4f37ca5a1d3090ed637
-  docs/models/stage.md:
-    id: 3c1109e8f1c1
-    last_write_checksum: sha1:d5b6f3c7a8b13cd8b42a31bd84fb4a796ee494af
-    pristine_git_object: 9108b04dfb9b97377115f4f844f4648d4f0537f0
   docs/models/startapiboxrequest.md:
     id: 12bea518af25
     last_write_checksum: sha1:2f681681418fbfec05bec0986ad3e3cd36cd7a5c
@@ -1108,8 +1104,8 @@ trackedFiles:
     pristine_git_object: 6121cc3352f9c134517caa87fc2d2d8ea3af3ad0
   docs/sdks/simulators/README.md:
     id: 55eacdd8fa62
-    last_write_checksum: sha1:dfb3083164524edfe490ee86b62fc59edac14637
-    pristine_git_object: 83636c31b085f2f10fdf8be73e43d78ee3988117
+    last_write_checksum: sha1:ed9e5c33158838f80e09d076e4aa015b477d5657
+    pristine_git_object: df808586dc96cc9bdd198d540847665802acaffb
   docs/sdks/webboxes/README.md:
     id: 40c97909b902
     last_write_checksum: sha1:876afbeb5f0bf26569d11cb157bd9734145667e6
@@ -1128,8 +1124,8 @@ trackedFiles:
     pristine_git_object: ba50994ac7aceefe62e1571a6cbff467d9a067da
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:64fd1eeaaa6977f8ddeea285af492aa2d92225ef
-    pristine_git_object: bb2223f9ca8632ac634459c691ed04bf2c6e95a1
+    last_write_checksum: sha1:aa9f4a213f01aef80c4229106de7b3d41ed29583
+    pristine_git_object: d06fc6238a614c0e479f4fbfff1a36e9a277d735
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -1156,8 +1152,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:5198171a8780a8d3360993d87b38d91fbe78c487
-    pristine_git_object: 0e64a05254d873d89258932f1a65ca9fd5e0e779
+    last_write_checksum: sha1:8c7eb99a1471576d804b029ca9257149a511f0e5
+    pristine_git_object: 39ea56fe4e6f4de5fe586081c50044c9afd656e5
   src/continuous/apibox_snapshots.py:
     id: 22b1ffcf83df
     last_write_checksum: sha1:affc683b235b5596309ec055e7b57ac4fefb7f61
@@ -1216,8 +1212,8 @@ trackedFiles:
     pristine_git_object: db3cf383463906fda98a7a769049ca7ea0bb693c
   src/continuous/models/__init__.py:
     id: 53b8497bf08d
-    last_write_checksum: sha1:92e15ff4fafab5d935cdb89e45681ab340a53ec5
-    pristine_git_object: c7c92b3ea77dd059d0446f12e80ae836a6cfd22e
+    last_write_checksum: sha1:22f64ed8d75d86e9957d2b014da275319eff1775
+    pristine_git_object: 1ed5d02d316ef6667e05547869ebce9848664d9d
   src/continuous/models/actor.py:
     id: 4a91c2c63ec7
     last_write_checksum: sha1:08971be651f2ad5fdaf85beeee26334b5efb55f9
@@ -1252,36 +1248,36 @@ trackedFiles:
     pristine_git_object: 672187592881d78062397e0feaa8f79917350b72
   src/continuous/models/buildapiboxsnapshotrequest.py:
     id: b35777acedcb
-    last_write_checksum: sha1:b8ebf8a887496f8a564c323b21ecccf9ebe26355
-    pristine_git_object: 5cffd7bc239d481e1a84fe7a81be14f2fc26c533
+    last_write_checksum: sha1:e559bcdd62f0f71f305f5fe2fa865d2ca37cb003
+    pristine_git_object: 1e34810ca660092b60a1c6eeff642572a9c31c12
   src/continuous/models/builderror.py:
     id: c847ffba6969
     last_write_checksum: sha1:923363de69dbf9c04834553740a3246fb359a271
     pristine_git_object: aa19692ca57ecb7b713b8cdb79531effa5764d20
   src/continuous/models/buildmcpboxsnapshotrequest.py:
     id: e1b8d5b19db9
-    last_write_checksum: sha1:d902f15ff7af12edabcd98ced14dbfd3c080a56c
-    pristine_git_object: fbe14aee3189ead2391c262b3b8b5a587689cabb
+    last_write_checksum: sha1:4c97b1bcbe3cba9b501311915160ebc358819492
+    pristine_git_object: 4bc56334a5698b95562e45afad404a3df2aa630d
   src/continuous/models/buildprogress.py:
     id: 9186e3939d99
-    last_write_checksum: sha1:354e8856630f0ff02e7ae29f200fbe63620efbfb
-    pristine_git_object: bb15e935443ae13ae823cb291bfc788f79c631d6
+    last_write_checksum: sha1:28e46d038ca23101e10cd9e54e7dea19ac9c6f51
+    pristine_git_object: 57b7db64f60506332006a9f6a988d949368444d5
   src/continuous/models/buildresearch.py:
     id: 38a44469461a
     last_write_checksum: sha1:dd99d7b11e4efd91fb7b6bbfd5230aae8b1a7cad
     pristine_git_object: f9b857f80274506dc547adbff24f2e325d031cd8
   src/continuous/models/buildsimulatorrequest.py:
     id: de11b8340ddc
-    last_write_checksum: sha1:214c851c802d7ef52d73f682bd58f7ba3d53ed2b
-    pristine_git_object: 1e9453d5d435c4e01e5127dc7e58650424db5a06
+    last_write_checksum: sha1:efd392364b27b8feec03d92c9110d2e4f9426a40
+    pristine_git_object: 770767499d3fe6f3d9c0c5303854a2543f8b6169
   src/continuous/models/buildwaiting.py:
     id: 3c9c3e294e74
     last_write_checksum: sha1:bbf1beb26b9263dab99fba70b2fe3d9c175bc3b1
     pristine_git_object: d1339d832ccb08d68c842d7bb0d01f2acd3b07b8
   src/continuous/models/buildwebboxsnapshotrequest.py:
     id: bb6017774d40
-    last_write_checksum: sha1:bf4fc26be1cedafc7514aca50e78561cc883fb5f
-    pristine_git_object: b90e948c425dea1a055f4b4dd1bfcf6a2b05b652
+    last_write_checksum: sha1:d18545cb5a4ad4a233d09ddd2fd3848e0083db0f
+    pristine_git_object: 231532c39108427b271ba4bec28d46f1f9143868
   src/continuous/models/cancel_apibox_snapshotop.py:
     id: ff04aa3e18ce
     last_write_checksum: sha1:009ecd888196b801f36908d1da26e2028ded62e2
@@ -2335,7 +2331,7 @@ examples:
   build-simulator:
     simulator_unknown_parent:
       requestBody:
-        multipart/form-data: {"request": {"filter": [], "instructions": "Return stable example data for every operation.", "mode": "api", "model": "claude-fable-5-1", "name": "billing-api", "review_rounds": 1, "spec_kind": "openapi", "timeout_seconds": 28800}}
+        multipart/form-data: {"request": {"filter": [], "instructions": "Return stable example data for every operation.", "mode": "api", "model": "claude-fable-5-2", "name": "billing-api", "review_rounds": 1, "spec_kind": "openapi", "timeout_seconds": 28800}}
       responses:
         "400":
           application/problem+json: {"code": "simulator_unknown", "detail": "The parent Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace.", "validation": null}
@@ -2347,10 +2343,10 @@ examples:
           application/problem+json: {"code": "simulator_unknown", "detail": "The parent Simulator with ID \"smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5\" is unknown or belongs to another workspace.", "validation": null}
     speakeasy-default-build-simulator:
       requestBody:
-        multipart/form-data: {"request": {"filter": [], "instructions": "Return stable example data for every operation.", "mode": "api", "model": "claude-fable-5-1", "name": "billing-api", "review_rounds": 1, "spec_kind": "openapi", "timeout_seconds": 28800}}
+        multipart/form-data: {"request": {"filter": [], "instructions": "Return stable example data for every operation.", "mode": "api", "model": "claude-fable-5-2", "name": "billing-api", "review_rounds": 1, "spec_kind": "openapi", "timeout_seconds": 28800}}
       responses:
         "202":
-          application/json: {"build": {"agent_state": "working", "hidden_limitations": 0, "last_activity_at": "2026-01-15T12:09:30Z", "last_submission": "rejected", "last_tool": "test", "limitations": [], "model": "claude-fable-5-1", "phase": "build", "review_round": 0, "review_rounds": 1, "stage": "build", "submissions": 1, "tool_calls": 7, "waited_seconds": 0, "waiting": null, "waiting_until": null, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "credential_ids": [], "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "mode": "api", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "publication": null, "research": null, "source": "workspace", "spec_kind": "openapi", "status": "building"}
+          application/json: {"build": {"agent_state": "working", "hidden_limitations": 0, "last_activity_at": "2026-01-15T12:09:30Z", "last_submission": "rejected", "last_tool": "test", "limitations": [], "model": "claude-fable-5-2", "phase": "build", "review_round": 0, "review_rounds": 1, "stage": "build", "submissions": 1, "tool_calls": 7, "waited_seconds": 0, "waiting": null, "waiting_until": null, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "credential_ids": [], "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "mode": "api", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "publication": null, "research": null, "source": "workspace", "spec_kind": "openapi", "status": "building"}
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
@@ -2361,7 +2357,7 @@ examples:
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
     bad_request_body:
       requestBody:
-        multipart/form-data: {"request": {"filter": [], "instructions": "Return stable example data for every operation.", "mode": "api", "model": "claude-fable-5-1", "name": "billing-api", "review_rounds": 1, "spec_kind": "openapi", "timeout_seconds": 28800}}
+        multipart/form-data: {"request": {"filter": [], "instructions": "Return stable example data for every operation.", "mode": "api", "model": "claude-fable-5-2", "name": "billing-api", "review_rounds": 1, "spec_kind": "openapi", "timeout_seconds": 28800}}
       responses:
         "400":
           application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
@@ -2426,7 +2422,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"build": {"agent_state": "working", "hidden_limitations": 0, "last_activity_at": "2026-01-15T12:09:30Z", "last_submission": "rejected", "last_tool": "test", "limitations": [], "model": "claude-fable-5-1", "phase": "build", "review_round": 0, "review_rounds": 1, "stage": "build", "submissions": 1, "tool_calls": 7, "waited_seconds": 0, "waiting": null, "waiting_until": null, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "credential_ids": [], "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "mode": "api", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "publication": null, "research": null, "source": "workspace", "spec_kind": "openapi", "status": "building"}
+          application/json: {"build": {"agent_state": "working", "hidden_limitations": 0, "last_activity_at": "2026-01-15T12:09:30Z", "last_submission": "rejected", "last_tool": "test", "limitations": [], "model": "claude-fable-5-2", "phase": "build", "review_round": 0, "review_rounds": 1, "stage": "build", "submissions": 1, "tool_calls": 7, "waited_seconds": 0, "waiting": null, "waiting_until": null, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "credential_ids": [], "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "mode": "api", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "publication": null, "research": null, "source": "workspace", "spec_kind": "openapi", "status": "building"}
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>"}
         "500":
@@ -2932,7 +2928,7 @@ examples:
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "202":
-          application/json: {"build": {"agent_state": "working", "hidden_limitations": 0, "last_activity_at": "2026-01-15T12:09:30Z", "last_submission": "rejected", "last_tool": "test", "limitations": [], "model": "claude-fable-5-1", "phase": "build", "review_round": 0, "review_rounds": 1, "stage": "build", "submissions": 1, "tool_calls": 7, "waited_seconds": 0, "waiting": null, "waiting_until": null, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "credential_ids": [], "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "mode": "api", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "publication": null, "research": null, "source": "workspace", "spec_kind": "openapi", "status": "building"}
+          application/json: {"build": {"agent_state": "working", "hidden_limitations": 0, "last_activity_at": "2026-01-15T12:09:30Z", "last_submission": "rejected", "last_tool": "test", "limitations": [], "model": "claude-fable-5-2", "phase": "build", "review_round": 0, "review_rounds": 1, "stage": "build", "submissions": 1, "tool_calls": 7, "waited_seconds": 0, "waiting": null, "waiting_until": null, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "credential_ids": [], "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "mode": "api", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "publication": null, "research": null, "source": "workspace", "spec_kind": "openapi", "status": "building"}
     auth_invalid_missing:
       parameters:
         path:
@@ -3646,7 +3642,7 @@ examples:
         application/json: {}
       responses:
         "200":
-          application/json: {"build": {"agent_state": "working", "hidden_limitations": 0, "last_activity_at": "2026-01-15T12:09:30Z", "last_submission": "rejected", "last_tool": "test", "limitations": [], "model": "claude-fable-5-1", "phase": "build", "review_round": 0, "review_rounds": 1, "stage": "build", "submissions": 1, "tool_calls": 7, "waited_seconds": 0, "waiting": null, "waiting_until": null, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "credential_ids": [], "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "mode": "api", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "publication": null, "research": null, "source": "workspace", "spec_kind": "openapi", "status": "building"}
+          application/json: {"build": {"agent_state": "working", "hidden_limitations": 0, "last_activity_at": "2026-01-15T12:09:30Z", "last_submission": "rejected", "last_tool": "test", "limitations": [], "model": "claude-fable-5-2", "phase": "build", "review_round": 0, "review_rounds": 1, "stage": "build", "submissions": 1, "tool_calls": 7, "waited_seconds": 0, "waiting": null, "waiting_until": null, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "credential_ids": [], "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "mode": "api", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "publication": null, "research": null, "source": "workspace", "spec_kind": "openapi", "status": "building"}
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "incomplete", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
@@ -3701,7 +3697,7 @@ examples:
           id: "<id>"
       responses:
         "202":
-          application/json: {"build": {"agent_state": "working", "hidden_limitations": 0, "last_activity_at": "2026-01-15T12:09:30Z", "last_submission": "rejected", "last_tool": "test", "limitations": [], "model": "claude-fable-5-1", "phase": "build", "review_round": 0, "review_rounds": 1, "stage": "build", "submissions": 1, "tool_calls": 7, "waited_seconds": 0, "waiting": null, "waiting_until": null, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "credential_ids": [], "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "mode": "api", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "publication": null, "research": null, "source": "workspace", "spec_kind": "openapi", "status": "building"}
+          application/json: {"build": {"agent_state": "working", "hidden_limitations": 0, "last_activity_at": "2026-01-15T12:09:30Z", "last_submission": "rejected", "last_tool": "test", "limitations": [], "model": "claude-fable-5-2", "phase": "build", "review_round": 0, "review_rounds": 1, "stage": "build", "submissions": 1, "tool_calls": 7, "waited_seconds": 0, "waiting": null, "waiting_until": null, "warnings": []}, "created_at": "2026-01-15T12:00:00Z", "credential_ids": [], "error": null, "id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V5", "instructions": "Return stable example data for every operation.", "mode": "api", "name": "billing-api", "parent_id": "smr_01J8Z5X4K7M2N9P0Q1R2S3T4V9", "publication": null, "research": null, "source": "workspace", "spec_kind": "openapi", "status": "building"}
         "401":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
@@ -4024,7 +4020,7 @@ examples:
   create-apibox-snapshot:
     bad_request_body:
       requestBody:
-        multipart/form-data: {"request": {"review_rounds": 1, "timeout_seconds": 28800}}
+        multipart/form-data: {"request": {"model": "combined", "review_rounds": 1, "timeout_seconds": 28800}}
       responses:
         "400":
           application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
@@ -4036,7 +4032,7 @@ examples:
           application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
     speakeasy-default-create-apibox-snapshot:
       requestBody:
-        multipart/form-data: {"request": {"review_rounds": 1, "timeout_seconds": 28800}}
+        multipart/form-data: {"request": {"model": "combined", "review_rounds": 1, "timeout_seconds": 28800}}
       responses:
         "202":
           application/json: {"actors": [{"default": false, "entity": "<value>", "id": "<id>", "name": "<value>", "role": "<value>"}], "build": {"agent_state": "waiting_for_limit", "hidden_limitations": 848274, "last_activity_at": null, "last_submission": null, "last_tool": "<value>", "limitations": [{"location": "<value>", "message": "<value>", "operations": ["<value 1>", "<value 2>"], "reviewed": false}], "model": "claude-opus-5-5", "phase": "review", "review_round": 132479, "review_rounds": 275550, "stage": "derive", "submissions": 995961, "tool_calls": 180750, "waited_seconds": 121407, "waiting": {"credential_ids": ["<value 1>", "<value 2>"], "deadline": "2025-03-13T17:04:42.031Z", "reason": "<value>", "since": "2024-11-13T22:02:31.552Z", "type": "time_limit"}, "waiting_until": "2025-11-17T12:26:18.537Z", "warnings": []}, "composition": {"entities": 26097, "operations": 27093, "sample": false}, "created_at": "2026-01-02T09:15:33.916Z", "credential_ids": ["<value 1>"], "error": {"agent_message": "<value>", "code": "build_failed", "detail": "<value>", "reason": "time_limit", "validation": {"issues": []}}, "hidden_limitations": 67986, "id": "<id>", "instructions": "<value>", "limitations": [], "metadata": "<value>", "name": "<value>", "parent_id": null, "research": {"bytes": 504376, "pages": 407090, "status": "running"}, "source": "catalog", "source_box_id": "<id>", "source_snapshot_id": "<id>", "spec_kind": "graphql", "status": "pending"}
@@ -4511,7 +4507,7 @@ examples:
   create-mcpbox-snapshot:
     bad_request_body:
       requestBody:
-        multipart/form-data: {"request": {"review_rounds": 1, "timeout_seconds": 28800}}
+        multipart/form-data: {"request": {"model": "combined", "review_rounds": 1, "timeout_seconds": 28800}}
       responses:
         "400":
           application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
@@ -4523,7 +4519,7 @@ examples:
           application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
     speakeasy-default-create-mcpbox-snapshot:
       requestBody:
-        multipart/form-data: {"request": {"review_rounds": 1, "timeout_seconds": 28800}}
+        multipart/form-data: {"request": {"model": "combined", "review_rounds": 1, "timeout_seconds": 28800}}
       responses:
         "202":
           application/json: {"actors": [{"default": false, "entity": "<value>", "id": "<id>", "name": "<value>", "role": "<value>"}], "apibox_snapshot_id": "<id>", "build": {"agent_state": "waiting_for_limit", "hidden_limitations": 741990, "last_activity_at": "2024-01-09T22:13:12.724Z", "last_submission": "accepted", "last_tool": "<value>", "limitations": [{"location": "<value>", "message": "<value>", "operations": ["<value 1>", "<value 2>"], "reviewed": true}], "model": "combined", "phase": "review", "review_round": 392293, "review_rounds": 958047, "stage": "build", "submissions": 475968, "tool_calls": 953993, "waited_seconds": 949523, "waiting": {"credential_ids": ["<value 1>", "<value 2>", "<value 3>"], "deadline": "2024-11-29T07:13:28.056Z", "reason": "<value>", "since": "2026-06-22T11:38:11.258Z", "type": "time_limit"}, "waiting_until": "2025-10-03T12:04:01.952Z", "warnings": [{"code": "spec.default_invalid", "location": "<value>", "message": "<value>", "operations": ["<value 1>"]}]}, "composition": {"entities": 718593, "operations": 8144, "sample": true}, "created_at": "2024-06-10T12:49:50.134Z", "credential_ids": ["<value 1>", "<value 2>", "<value 3>"], "error": {"agent_message": "<value>", "code": "specification_validation_failed", "detail": "<value>", "reason": "canceled", "validation": null}, "hidden_limitations": 585313, "id": "<id>", "instructions": "<value>", "limitations": [{"location": "<value>", "message": "<value>", "operations": ["<value 1>"], "reviewed": false}], "metadata": "<value>", "name": "<value>", "parent_id": "<id>", "research": {"bytes": 353810, "pages": 538370, "status": "running"}, "source": "build", "source_box_id": null, "source_snapshot_id": "<id>", "source_url": "https://sticky-harp.name/", "status": "ready"}
@@ -5023,7 +5019,7 @@ examples:
   create-webbox-snapshot:
     bad_request_body:
       requestBody:
-        multipart/form-data: {"request": {"review_rounds": 1, "timeout_seconds": 28800}}
+        multipart/form-data: {"request": {"model": "combined", "review_rounds": 1, "timeout_seconds": 28800}}
       responses:
         "400":
           application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
@@ -5035,7 +5031,7 @@ examples:
           application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
     speakeasy-default-create-webbox-snapshot:
       requestBody:
-        multipart/form-data: {"request": {"review_rounds": 1, "timeout_seconds": 28800}}
+        multipart/form-data: {"request": {"model": "combined", "review_rounds": 1, "timeout_seconds": 28800}}
       responses:
         "202":
           application/json: {"actors": [{"default": true, "entity": "<value>", "id": "<id>", "name": "<value>", "role": "<value>"}], "build": null, "composition": {"entities": 612094, "operations": 173088, "sample": true}, "created_at": "2025-07-20T04:18:20.874Z", "credential_ids": [], "error": {"agent_message": "<value>", "code": "specification_validation_failed", "detail": "<value>", "reason": "time_limit", "validation": {"issues": [{"code": "<value>", "kind": "limit", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}, "hidden_limitations": 187300, "id": "<id>", "instructions": "<value>", "limitations": [{"location": "<value>", "message": "<value>", "operations": ["<value 1>"], "reviewed": false}], "metadata": "<value>", "name": "<value>", "parent_id": "<id>", "research": {"bytes": 859524, "pages": 193083, "status": "failed"}, "source": "catalog", "source_box_id": "<id>", "source_snapshot_id": "<id>", "status": "failed"}
@@ -5409,115 +5405,4 @@ examples:
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
 examplesVersion: 1.0.2
-releaseNotes: |
-  ## Python SDK Changes:
-  * `continuous.apiboxes.list()`: **Added**
-  * `continuous.apiboxes.create()`: **Added**
-  * `continuous.apiboxes.delete()`: **Added**
-  * `continuous.apiboxes.get()`: **Added**
-  * `continuous.apiboxes.update()`: **Added**
-  * `continuous.apiboxes.save_snapshot()`: **Added**
-  * `continuous.apiboxes.start()`: **Added**
-  * `continuous.apiboxes.list_steps()`: **Added**
-  * `continuous.apiboxes.stop()`: **Added**
-  * `continuous.apibox_snapshots.list()`: **Added**
-  * `continuous.apibox_snapshots.create()`: **Added**
-  * `continuous.apibox_snapshots.delete()`: **Added**
-  * `continuous.apibox_snapshots.get()`: **Added**
-  * `continuous.apibox_snapshots.update()`: **Added**
-  * `continuous.apibox_snapshots.cancel()`: **Added**
-  * `continuous.apibox_snapshots.clone()`: **Added**
-  * `continuous.apibox_snapshots.resume()`: **Added**
-  * `continuous.credentials.list()`: **Added**
-  * `continuous.credentials.create()`: **Added**
-  * `continuous.credentials.delete()`: **Added**
-  * `continuous.credentials.get()`: **Added**
-  * `continuous.credentials.update()`: **Added**
-  * `continuous.mcpboxes.list()`: **Added**
-  * `continuous.mcpboxes.create()`: **Added**
-  * `continuous.mcpboxes.delete()`: **Added**
-  * `continuous.mcpboxes.get()`: **Added**
-  * `continuous.mcpboxes.update()`: **Added**
-  * `continuous.mcpboxes.save_snapshot()`: **Added**
-  * `continuous.mcpboxes.start()`: **Added**
-  * `continuous.mcpboxes.stop()`: **Added**
-  * `continuous.mcpbox_snapshots.list()`: **Added**
-  * `continuous.mcpbox_snapshots.create()`: **Added**
-  * `continuous.mcpbox_snapshots.delete()`: **Added**
-  * `continuous.mcpbox_snapshots.get()`: **Added**
-  * `continuous.mcpbox_snapshots.update()`: **Added**
-  * `continuous.mcpbox_snapshots.cancel()`: **Added**
-  * `continuous.mcpbox_snapshots.clone()`: **Added**
-  * `continuous.mcpbox_snapshots.resume()`: **Added**
-  * `continuous.webboxes.list()`: **Added**
-  * `continuous.webboxes.create()`: **Added**
-  * `continuous.webboxes.delete()`: **Added**
-  * `continuous.webboxes.get()`: **Added**
-  * `continuous.webboxes.update()`: **Added**
-  * `continuous.webboxes.save_snapshot()`: **Added**
-  * `continuous.webboxes.start()`: **Added**
-  * `continuous.webboxes.list_steps()`: **Added**
-  * `continuous.webboxes.stop()`: **Added**
-  * `continuous.webbox_snapshots.list()`: **Added**
-  * `continuous.webbox_snapshots.create()`: **Added**
-  * `continuous.webbox_snapshots.delete()`: **Added**
-  * `continuous.webbox_snapshots.get()`: **Added**
-  * `continuous.webbox_snapshots.update()`: **Added**
-  * `continuous.webbox_snapshots.cancel()`: **Added**
-  * `continuous.webbox_snapshots.clone()`: **Added**
-  * `continuous.webbox_snapshots.resume()`: **Added**
-  * `continuous.apibox.list_apiboxes()`: **Removed** (Breaking ⚠️)
-  * `continuous.apibox.create_apibox()`: **Removed** (Breaking ⚠️)
-  * `continuous.apibox.delete_apibox()`: **Removed** (Breaking ⚠️)
-  * `continuous.apibox.get_apibox()`: **Removed** (Breaking ⚠️)
-  * `continuous.apibox.update_apibox()`: **Removed** (Breaking ⚠️)
-  * `continuous.apibox.save_apibox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.apibox.start_apibox()`: **Removed** (Breaking ⚠️)
-  * `continuous.apibox.list_apibox_steps()`: **Removed** (Breaking ⚠️)
-  * `continuous.apibox.stop_apibox()`: **Removed** (Breaking ⚠️)
-  * `continuous.apibox_snapshots.list_apibox_snapshots()`: **Removed** (Breaking ⚠️)
-  * `continuous.apibox_snapshots.create_apibox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.apibox_snapshots.delete_apibox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.apibox_snapshots.get_apibox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.apibox_snapshots.update_apibox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.apibox_snapshots.cancel_apibox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.apibox_snapshots.clone_apibox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.apibox_snapshots.resume_apibox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.credentials.list_credentials()`: **Removed** (Breaking ⚠️)
-  * `continuous.credentials.create_credential()`: **Removed** (Breaking ⚠️)
-  * `continuous.credentials.delete_credential()`: **Removed** (Breaking ⚠️)
-  * `continuous.credentials.get_credential()`: **Removed** (Breaking ⚠️)
-  * `continuous.credentials.update_credential()`: **Removed** (Breaking ⚠️)
-  * `continuous.mcpbox.list_mcpboxes()`: **Removed** (Breaking ⚠️)
-  * `continuous.mcpbox.create_mcpbox()`: **Removed** (Breaking ⚠️)
-  * `continuous.mcpbox.delete_mcpbox()`: **Removed** (Breaking ⚠️)
-  * `continuous.mcpbox.get_mcpbox()`: **Removed** (Breaking ⚠️)
-  * `continuous.mcpbox.update_mcpbox()`: **Removed** (Breaking ⚠️)
-  * `continuous.mcpbox.save_mcpbox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.mcpbox.start_mcpbox()`: **Removed** (Breaking ⚠️)
-  * `continuous.mcpbox.stop_mcpbox()`: **Removed** (Breaking ⚠️)
-  * `continuous.mcpbox_snapshots.list_mcpbox_snapshots()`: **Removed** (Breaking ⚠️)
-  * `continuous.mcpbox_snapshots.create_mcpbox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.mcpbox_snapshots.delete_mcpbox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.mcpbox_snapshots.get_mcpbox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.mcpbox_snapshots.update_mcpbox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.mcpbox_snapshots.cancel_mcpbox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.mcpbox_snapshots.clone_mcpbox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.mcpbox_snapshots.resume_mcpbox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.webbox.list_webboxes()`: **Removed** (Breaking ⚠️)
-  * `continuous.webbox.create_webbox()`: **Removed** (Breaking ⚠️)
-  * `continuous.webbox.delete_webbox()`: **Removed** (Breaking ⚠️)
-  * `continuous.webbox.get_webbox()`: **Removed** (Breaking ⚠️)
-  * `continuous.webbox.update_webbox()`: **Removed** (Breaking ⚠️)
-  * `continuous.webbox.save_webbox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.webbox.start_webbox()`: **Removed** (Breaking ⚠️)
-  * `continuous.webbox.list_webbox_steps()`: **Removed** (Breaking ⚠️)
-  * `continuous.webbox.stop_webbox()`: **Removed** (Breaking ⚠️)
-  * `continuous.webbox_snapshots.list_webbox_snapshots()`: **Removed** (Breaking ⚠️)
-  * `continuous.webbox_snapshots.create_webbox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.webbox_snapshots.delete_webbox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.webbox_snapshots.get_webbox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.webbox_snapshots.update_webbox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.webbox_snapshots.cancel_webbox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.webbox_snapshots.clone_webbox_snapshot()`: **Removed** (Breaking ⚠️)
-  * `continuous.webbox_snapshots.resume_webbox_snapshot()`: **Removed** (Breaking ⚠️)
+releaseNotes: "## Python SDK Changes:\n* `continuous.apiboxes.save_snapshot()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.apibox_snapshots.list()`:  `response.snapshots[].build` **Changed** (Breaking ⚠️)\n* `continuous.apibox_snapshots.create()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.apibox_snapshots.get()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.apibox_snapshots.update()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.apibox_snapshots.cancel()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.apibox_snapshots.clone()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.apibox_snapshots.resume()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.mcpboxes.save_snapshot()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox_snapshots.list()`:  `response.snapshots[].build` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox_snapshots.create()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox_snapshots.get()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox_snapshots.update()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox_snapshots.cancel()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox_snapshots.clone()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox_snapshots.resume()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.simulators.list_simulators()`:  `response.simulators[].build` **Changed** (Breaking ⚠️)\n* `continuous.simulators.build_simulator()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.simulators.get_simulator()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.simulators.update_simulator()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.simulators.cancel_simulator()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.simulators.resume_simulator()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.webboxes.save_snapshot()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.webbox_snapshots.list()`:  `response.snapshots[].build` **Changed** (Breaking ⚠️)\n* `continuous.webbox_snapshots.create()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.webbox_snapshots.get()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.webbox_snapshots.update()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.webbox_snapshots.cancel()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.webbox_snapshots.clone()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.webbox_snapshots.resume()`:  `response.build` **Changed** (Breaking ⚠️)\n"

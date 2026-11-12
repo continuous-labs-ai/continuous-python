@@ -3,8 +3,18 @@
 from __future__ import annotations
 from continuous.types import BaseModel, UNSET_SENTINEL
 from pydantic import model_serializer
-from typing import List, Optional
+from typing import List, Literal, Optional
 from typing_extensions import NotRequired, TypedDict
+
+
+BuildMCPBoxSnapshotRequestModel = Literal[
+    "gpt-6-astra",
+    "gpt-6.1-sol",
+    "claude-opus-5-5",
+    "claude-fable-5-2",
+    "combined",
+]
+r"""Model that builds and reviews the Snapshot. Defaults to combined. Its provider is derived from the model. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does."""
 
 
 class BuildMCPBoxSnapshotRequestTypedDict(TypedDict):
@@ -14,7 +24,7 @@ class BuildMCPBoxSnapshotRequestTypedDict(TypedDict):
     r"""At most one workspace credential of the source MCP server: its base_url is the server's endpoint. With it, the build captures the live server's tools and QA compares the MCP Box with it. It must belong to the workspace. QA calls only tools the source marks read-only. Use a sandbox or test account."""
     instructions: NotRequired[str]
     r"""Instructions for the builder, such as the open-source MCP server to copy. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
-    model: NotRequired[str]
+    model: NotRequired[BuildMCPBoxSnapshotRequestModel]
     r"""Model that builds and reviews the Snapshot. Defaults to combined. Its provider is derived from the model. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does."""
     name: NotRequired[str]
     r"""Name for the Snapshot. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
@@ -36,7 +46,7 @@ class BuildMCPBoxSnapshotRequest(BaseModel):
     instructions: Optional[str] = None
     r"""Instructions for the builder, such as the open-source MCP server to copy. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
 
-    model: Optional[str] = None
+    model: Optional[BuildMCPBoxSnapshotRequestModel] = "combined"
     r"""Model that builds and reviews the Snapshot. Defaults to combined. Its provider is derived from the model. combined currently builds, reviews, and runs QA exactly as claude-opus-5-5 does."""
 
     name: Optional[str] = None
