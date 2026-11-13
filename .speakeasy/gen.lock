@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: ed811480ab8db4d5943a012bc8067936
+  docChecksum: e070184c4efee51ab67e1404a37f8011
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.5.1
-  configChecksum: 7c3e0cbafdee87685b70aee774bd783c
+  releaseVersion: 0.5.2
+  configChecksum: 1a5f1289e8dbfe413d1a217a070a052c
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: d1a8977c-a89b-4462-9d33-a1e0682497ae
-  pristine_commit_hash: 26a1a10dbdea5106b581859be07bf8a855714a68
-  pristine_tree_hash: 6d29d3f0b8d4fd994dbde5b42149803a40eb672d
+  generation_id: 7dde4a44-c725-42d2-89e9-95f97ab49b9a
+  pristine_commit_hash: 0d7df7688d1253af86ee9bb50ef8047567f263c7
+  pristine_tree_hash: e1c81d6c4c3099bd8a022ef90d883477e2a9a8a5
 features:
   python:
     additionalDependencies: 1.1.0
@@ -124,12 +124,12 @@ trackedFiles:
     pristine_git_object: 74ff0f200be18864fd120a2c995852cc4ba86802
   docs/models/buildapiboxsnapshotrequest.md:
     id: 98d2ce6441d2
-    last_write_checksum: sha1:dd6e2449313a143adda804318702b3009d77cfcd
-    pristine_git_object: a3a108ffe4a3c14e3da792e17c0aeb4bc526b5cd
+    last_write_checksum: sha1:3071115774cf83b951f7e7a460a3a0586a82d6ba
+    pristine_git_object: 675080405620434c88ff0e6410091aee7be38900
   docs/models/buildapiboxsnapshotrequestmodel.md:
     id: 8c9dbfa290a9
-    last_write_checksum: sha1:fa316a0eb365eeae0d929fbd7dc2b586db43fd2a
-    pristine_git_object: 26d60dfef51eae233c762c01e0a98f327add4ec6
+    last_write_checksum: sha1:7414d825c62b4548b0148ebff00dba7161269254
+    pristine_git_object: df8d6983d315895abd05dfb5997fd5c173064110
   docs/models/buildapiboxsnapshotrequestspeckind.md:
     id: a228794d5e27
     last_write_checksum: sha1:d8c89a28c309696a590e3b3f490342f4ae3fc88c
@@ -144,12 +144,12 @@ trackedFiles:
     pristine_git_object: d6c60461b2291d0809054b366a9dc1a0a737e06a
   docs/models/buildmcpboxsnapshotrequest.md:
     id: 48823370246f
-    last_write_checksum: sha1:37aa1d7d17ccc53225cf337cac84c0ef36a55fc2
-    pristine_git_object: cdaf67f07cd6e846048bcca6a98b5d6d2d271dd7
+    last_write_checksum: sha1:6b23b16921e7d684843f2332b5679ef32a05ad91
+    pristine_git_object: c3d9e19e44139fbbcf7b30b4b0ab864023b70be8
   docs/models/buildmcpboxsnapshotrequestmodel.md:
     id: a28495b6c4dc
-    last_write_checksum: sha1:a3ab2e73e6d799cd2138ed5b23a1b0646a402fe8
-    pristine_git_object: d74fc0e8eee7daa7ab514604e83c9cda0d7ba3f2
+    last_write_checksum: sha1:5533a7f0729cc530e1b7d84beac6496ce3170d21
+    pristine_git_object: 0d3ee9c0da5ae963e0aad72073f4341f0522169c
   docs/models/buildprogress.md:
     id: 2c5e4f611faa
     last_write_checksum: sha1:b98bd5abebc4e672b3c620249c6bc217c94255be
@@ -208,12 +208,12 @@ trackedFiles:
     pristine_git_object: 83142fee8fce6c5ff7df52c2da07d7ccac0cdb2a
   docs/models/buildwebboxsnapshotrequest.md:
     id: 10bc3a541364
-    last_write_checksum: sha1:65d38d400146a581bd17a7f057fc03096d0262fc
-    pristine_git_object: 4c12eac9de1771d23a30ca1c9f0b5ebf5818a619
+    last_write_checksum: sha1:0841faa67880dc45ba67f2e03eff9e24ce1d6643
+    pristine_git_object: 5ee3d6a4c05faf7252385cbe9c5c243f44abff90
   docs/models/buildwebboxsnapshotrequestmodel.md:
     id: dfe38bb3ba66
-    last_write_checksum: sha1:5190528da76f41d86c3a857ae4cdcfd7fba2f6fb
-    pristine_git_object: b3654b6f7ff7701aa1ee745501a23bd1274b2717
+    last_write_checksum: sha1:4facb9a8f32edccbce543f105b246137b2272ff9
+    pristine_git_object: e73319f41c1f0314882f216d58e861a0a2681e4b
   docs/models/cancelapiboxsnapshotrequest.md:
     id: c79690bab68d
     last_write_checksum: sha1:766cd1501f7ab1014218de89e9ead9b5617c092b
@@ -1124,8 +1124,8 @@ trackedFiles:
     pristine_git_object: ba50994ac7aceefe62e1571a6cbff467d9a067da
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:aa9f4a213f01aef80c4229106de7b3d41ed29583
-    pristine_git_object: d06fc6238a614c0e479f4fbfff1a36e9a277d735
+    last_write_checksum: sha1:2bfe14343326d9a2232f18defa907e1e6a3498dd
+    pristine_git_object: 043e42f836a571c9ac22aabfe9c3e5407e359219
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -1152,8 +1152,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:8c7eb99a1471576d804b029ca9257149a511f0e5
-    pristine_git_object: 39ea56fe4e6f4de5fe586081c50044c9afd656e5
+    last_write_checksum: sha1:03ebaf65acd8e01116bf0ced320fe62a30296ba9
+    pristine_git_object: 4bd17f8b02ef70467b5b954a5b990e65b0e57c42
   src/continuous/apibox_snapshots.py:
     id: 22b1ffcf83df
     last_write_checksum: sha1:affc683b235b5596309ec055e7b57ac4fefb7f61
@@ -1248,16 +1248,16 @@ trackedFiles:
     pristine_git_object: 672187592881d78062397e0feaa8f79917350b72
   src/continuous/models/buildapiboxsnapshotrequest.py:
     id: b35777acedcb
-    last_write_checksum: sha1:e559bcdd62f0f71f305f5fe2fa865d2ca37cb003
-    pristine_git_object: 1e34810ca660092b60a1c6eeff642572a9c31c12
+    last_write_checksum: sha1:3a252bb4d002ead2fbe19e0ef8195edbd9db929d
+    pristine_git_object: 5f82511861303913a1755175b612f3c27d40a05d
   src/continuous/models/builderror.py:
     id: c847ffba6969
     last_write_checksum: sha1:923363de69dbf9c04834553740a3246fb359a271
     pristine_git_object: aa19692ca57ecb7b713b8cdb79531effa5764d20
   src/continuous/models/buildmcpboxsnapshotrequest.py:
     id: e1b8d5b19db9
-    last_write_checksum: sha1:4c97b1bcbe3cba9b501311915160ebc358819492
-    pristine_git_object: 4bc56334a5698b95562e45afad404a3df2aa630d
+    last_write_checksum: sha1:54f0e17152295056bb1a05bbbdef4d9d1879e030
+    pristine_git_object: b6ba0d60f78a3f51abd8c796890ba442ef78c714
   src/continuous/models/buildprogress.py:
     id: 9186e3939d99
     last_write_checksum: sha1:28e46d038ca23101e10cd9e54e7dea19ac9c6f51
@@ -1276,8 +1276,8 @@ trackedFiles:
     pristine_git_object: d1339d832ccb08d68c842d7bb0d01f2acd3b07b8
   src/continuous/models/buildwebboxsnapshotrequest.py:
     id: bb6017774d40
-    last_write_checksum: sha1:d18545cb5a4ad4a233d09ddd2fd3848e0083db0f
-    pristine_git_object: 231532c39108427b271ba4bec28d46f1f9143868
+    last_write_checksum: sha1:71ee998169688299f7aae5a65b227208dadab2ef
+    pristine_git_object: 699936165e8e689584bf403f0cf41845c8038612
   src/continuous/models/cancel_apibox_snapshotop.py:
     id: ff04aa3e18ce
     last_write_checksum: sha1:009ecd888196b801f36908d1da26e2028ded62e2
@@ -4020,7 +4020,7 @@ examples:
   create-apibox-snapshot:
     bad_request_body:
       requestBody:
-        multipart/form-data: {"request": {"model": "combined", "review_rounds": 1, "timeout_seconds": 28800}}
+        multipart/form-data: {"request": {"timeout_seconds": 28800}}
       responses:
         "400":
           application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
@@ -4032,7 +4032,7 @@ examples:
           application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
     speakeasy-default-create-apibox-snapshot:
       requestBody:
-        multipart/form-data: {"request": {"model": "combined", "review_rounds": 1, "timeout_seconds": 28800}}
+        multipart/form-data: {"request": {"timeout_seconds": 28800}}
       responses:
         "202":
           application/json: {"actors": [{"default": false, "entity": "<value>", "id": "<id>", "name": "<value>", "role": "<value>"}], "build": {"agent_state": "waiting_for_limit", "hidden_limitations": 848274, "last_activity_at": null, "last_submission": null, "last_tool": "<value>", "limitations": [{"location": "<value>", "message": "<value>", "operations": ["<value 1>", "<value 2>"], "reviewed": false}], "model": "claude-opus-5-5", "phase": "review", "review_round": 132479, "review_rounds": 275550, "stage": "derive", "submissions": 995961, "tool_calls": 180750, "waited_seconds": 121407, "waiting": {"credential_ids": ["<value 1>", "<value 2>"], "deadline": "2025-03-13T17:04:42.031Z", "reason": "<value>", "since": "2024-11-13T22:02:31.552Z", "type": "time_limit"}, "waiting_until": "2025-11-17T12:26:18.537Z", "warnings": []}, "composition": {"entities": 26097, "operations": 27093, "sample": false}, "created_at": "2026-01-02T09:15:33.916Z", "credential_ids": ["<value 1>"], "error": {"agent_message": "<value>", "code": "build_failed", "detail": "<value>", "reason": "time_limit", "validation": {"issues": []}}, "hidden_limitations": 67986, "id": "<id>", "instructions": "<value>", "limitations": [], "metadata": "<value>", "name": "<value>", "parent_id": null, "research": {"bytes": 504376, "pages": 407090, "status": "running"}, "source": "catalog", "source_box_id": "<id>", "source_snapshot_id": "<id>", "spec_kind": "graphql", "status": "pending"}
@@ -4507,7 +4507,7 @@ examples:
   create-mcpbox-snapshot:
     bad_request_body:
       requestBody:
-        multipart/form-data: {"request": {"model": "combined", "review_rounds": 1, "timeout_seconds": 28800}}
+        multipart/form-data: {"request": {"timeout_seconds": 28800}}
       responses:
         "400":
           application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
@@ -4519,7 +4519,7 @@ examples:
           application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
     speakeasy-default-create-mcpbox-snapshot:
       requestBody:
-        multipart/form-data: {"request": {"model": "combined", "review_rounds": 1, "timeout_seconds": 28800}}
+        multipart/form-data: {"request": {"timeout_seconds": 28800}}
       responses:
         "202":
           application/json: {"actors": [{"default": false, "entity": "<value>", "id": "<id>", "name": "<value>", "role": "<value>"}], "apibox_snapshot_id": "<id>", "build": {"agent_state": "waiting_for_limit", "hidden_limitations": 741990, "last_activity_at": "2024-01-09T22:13:12.724Z", "last_submission": "accepted", "last_tool": "<value>", "limitations": [{"location": "<value>", "message": "<value>", "operations": ["<value 1>", "<value 2>"], "reviewed": true}], "model": "combined", "phase": "review", "review_round": 392293, "review_rounds": 958047, "stage": "build", "submissions": 475968, "tool_calls": 953993, "waited_seconds": 949523, "waiting": {"credential_ids": ["<value 1>", "<value 2>", "<value 3>"], "deadline": "2024-11-29T07:13:28.056Z", "reason": "<value>", "since": "2026-06-22T11:38:11.258Z", "type": "time_limit"}, "waiting_until": "2025-10-03T12:04:01.952Z", "warnings": [{"code": "spec.default_invalid", "location": "<value>", "message": "<value>", "operations": ["<value 1>"]}]}, "composition": {"entities": 718593, "operations": 8144, "sample": true}, "created_at": "2024-06-10T12:49:50.134Z", "credential_ids": ["<value 1>", "<value 2>", "<value 3>"], "error": {"agent_message": "<value>", "code": "specification_validation_failed", "detail": "<value>", "reason": "canceled", "validation": null}, "hidden_limitations": 585313, "id": "<id>", "instructions": "<value>", "limitations": [{"location": "<value>", "message": "<value>", "operations": ["<value 1>"], "reviewed": false}], "metadata": "<value>", "name": "<value>", "parent_id": "<id>", "research": {"bytes": 353810, "pages": 538370, "status": "running"}, "source": "build", "source_box_id": null, "source_snapshot_id": "<id>", "source_url": "https://sticky-harp.name/", "status": "ready"}
@@ -5019,7 +5019,7 @@ examples:
   create-webbox-snapshot:
     bad_request_body:
       requestBody:
-        multipart/form-data: {"request": {"model": "combined", "review_rounds": 1, "timeout_seconds": 28800}}
+        multipart/form-data: {"request": {"timeout_seconds": 28800}}
       responses:
         "400":
           application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
@@ -5031,7 +5031,7 @@ examples:
           application/problem+json: {"code": "bad_request", "detail": "request body is invalid", "validation": null}
     speakeasy-default-create-webbox-snapshot:
       requestBody:
-        multipart/form-data: {"request": {"model": "combined", "review_rounds": 1, "timeout_seconds": 28800}}
+        multipart/form-data: {"request": {"timeout_seconds": 28800}}
       responses:
         "202":
           application/json: {"actors": [{"default": true, "entity": "<value>", "id": "<id>", "name": "<value>", "role": "<value>"}], "build": null, "composition": {"entities": 612094, "operations": 173088, "sample": true}, "created_at": "2025-07-20T04:18:20.874Z", "credential_ids": [], "error": {"agent_message": "<value>", "code": "specification_validation_failed", "detail": "<value>", "reason": "time_limit", "validation": {"issues": [{"code": "<value>", "kind": "limit", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}, "hidden_limitations": 187300, "id": "<id>", "instructions": "<value>", "limitations": [{"location": "<value>", "message": "<value>", "operations": ["<value 1>"], "reviewed": false}], "metadata": "<value>", "name": "<value>", "parent_id": "<id>", "research": {"bytes": 859524, "pages": 193083, "status": "failed"}, "source": "catalog", "source_box_id": "<id>", "source_snapshot_id": "<id>", "status": "failed"}
@@ -5405,4 +5405,8 @@ examples:
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
 examplesVersion: 1.0.2
-releaseNotes: "## Python SDK Changes:\n* `continuous.apiboxes.save_snapshot()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.apibox_snapshots.list()`:  `response.snapshots[].build` **Changed** (Breaking ⚠️)\n* `continuous.apibox_snapshots.create()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.apibox_snapshots.get()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.apibox_snapshots.update()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.apibox_snapshots.cancel()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.apibox_snapshots.clone()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.apibox_snapshots.resume()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.mcpboxes.save_snapshot()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox_snapshots.list()`:  `response.snapshots[].build` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox_snapshots.create()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox_snapshots.get()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox_snapshots.update()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox_snapshots.cancel()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox_snapshots.clone()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.mcpbox_snapshots.resume()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.simulators.list_simulators()`:  `response.simulators[].build` **Changed** (Breaking ⚠️)\n* `continuous.simulators.build_simulator()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.simulators.get_simulator()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.simulators.update_simulator()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.simulators.cancel_simulator()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.simulators.resume_simulator()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.webboxes.save_snapshot()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.webbox_snapshots.list()`:  `response.snapshots[].build` **Changed** (Breaking ⚠️)\n* `continuous.webbox_snapshots.create()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.webbox_snapshots.get()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.webbox_snapshots.update()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.webbox_snapshots.cancel()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.webbox_snapshots.clone()`:  `response.build` **Changed** (Breaking ⚠️)\n* `continuous.webbox_snapshots.resume()`:  `response.build` **Changed** (Breaking ⚠️)\n"
+releaseNotes: |
+  ## Python SDK Changes:
+  * `continuous.apibox_snapshots.create()`:  `request` **Changed**
+  * `continuous.mcpbox_snapshots.create()`:  `request` **Changed**
+  * `continuous.webbox_snapshots.create()`:  `request` **Changed**
