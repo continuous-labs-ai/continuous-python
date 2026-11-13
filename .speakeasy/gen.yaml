@@ -37,7 +37,8 @@ python:
   version: 0.5.2
   additionalDependencies:
     dev: {}
-    main: {}
+    main:
+      certifi: '>=2026.10.19'
   allowedRedefinedBuiltins:
     - id
     - object

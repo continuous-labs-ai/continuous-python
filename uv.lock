@@ -65,6 +65,7 @@ name = "continuous-labs"
 version = "0.5.2"
 source = { editable = "." }
 dependencies = [
+    { name = "certifi" },
     { name = "httpcore" },
     { name = "httpx" },
     { name = "jsonpath-python" },
@@ -80,6 +81,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "certifi", specifier = ">=2026.10.19" },
     { name = "httpcore", specifier = ">=1.0.9" },
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "jsonpath-python", specifier = ">=1.0.6" },
