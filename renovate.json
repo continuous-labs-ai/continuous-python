@@ -141,12 +141,12 @@
       "enabled": true
     },
     {
-      "description": "Operator decision 2026-11-13 (continuous-python PR 57): pylint is a generator-pinned dev-only tool and Dependabot alert 3 is dismissed as tolerable risk; OSV does not know about the dismissal.",
+      "description": "Operator decision 2026-11-13 (continuous-python PR 57): pylint is a generator-pinned dev-only tool and Dependabot alert 3 is dismissed as tolerable risk; OSV does not know about the dismissal. The rule matches only while GHSA-22qq-2fwx-7p67 is the one advisory fixed, so a new pylint advisory still gets its PR.",
       "matchPackageNames": [
         "pylint"
       ],
       "matchJsonata": [
-        "$contains($join(prBodyNotes), /GHSA-22qq-2fwx-7p67/)"
+        "$contains($join(prBodyNotes), \"GHSA-22qq-2fwx-7p67\") and $count(prBodyNotes[$contains($, \"#### Severity\") and $not($contains($, \"GHSA-22qq-2fwx-7p67\"))]) = 0"
       ],
       "enabled": false
     }
