@@ -17,8 +17,6 @@ BuildProgressModel = Union[
         "gpt-6.1-sol",
         "claude-opus-5-5",
         "claude-fable-5-2",
-        "gpt-6-sol",
-        "claude-fable-5-1",
         "combined",
     ],
     UnrecognizedStr,
