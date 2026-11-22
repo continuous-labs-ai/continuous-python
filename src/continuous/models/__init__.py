@@ -6,7 +6,6 @@ from continuous.utils.dynamic_imports import lazy_getattr, lazy_dir
 
 if TYPE_CHECKING:
     from .actor import Actor, ActorTypedDict
-    from .advancetimerequest import AdvanceTimeRequest, AdvanceTimeRequestTypedDict
     from .apibox import APIBox, APIBoxStatus, APIBoxTypedDict
     from .apiboxconnection import APIBoxConnection, APIBoxConnectionTypedDict
     from .apiboxsnapshot import (
@@ -18,18 +17,6 @@ if TYPE_CHECKING:
     )
     from .boxerror import BoxError, BoxErrorCode, BoxErrorTypedDict
     from .boxstep import BoxStep, BoxStepTypedDict
-    from .build_simulatorop import (
-        BuildSimulatorDocument,
-        BuildSimulatorDocumentTypedDict,
-        BuildSimulatorRequestBody,
-        BuildSimulatorRequestBodyTypedDict,
-        BuildSimulatorRequestRequest,
-        BuildSimulatorRequestRequestTypedDict,
-        BuildSimulatorResponse,
-        BuildSimulatorResponseTypedDict,
-        BuildSimulatorSpec,
-        BuildSimulatorSpecTypedDict,
-    )
     from .buildapiboxsnapshotrequest import (
         BuildAPIBoxSnapshotRequest,
         BuildAPIBoxSnapshotRequestModel,
@@ -48,13 +35,6 @@ if TYPE_CHECKING:
         BuildResearchStatus,
         BuildResearchTypedDict,
     )
-    from .buildsimulatorrequest import (
-        BuildSimulatorRequest,
-        BuildSimulatorRequestMode,
-        BuildSimulatorRequestModel,
-        BuildSimulatorRequestSpecKind,
-        BuildSimulatorRequestTypedDict,
-    )
     from .buildwaiting import BuildWaiting, BuildWaitingTypedDict, Type
     from .buildwebboxsnapshotrequest import (
         BuildWebBoxSnapshotRequest,
@@ -69,21 +49,10 @@ if TYPE_CHECKING:
         CancelMcpboxSnapshotRequest,
         CancelMcpboxSnapshotRequestTypedDict,
     )
-    from .cancel_simulatorop import (
-        CancelSimulatorRequest,
-        CancelSimulatorRequestTypedDict,
-    )
     from .cancel_webbox_snapshotop import (
         CancelWebboxSnapshotRequest,
         CancelWebboxSnapshotRequestTypedDict,
     )
-    from .clockadvance import ClockAdvance, ClockAdvanceStatus, ClockAdvanceTypedDict
-    from .clockadvancemember import (
-        ClockAdvanceMember,
-        ClockAdvanceMemberStatus,
-        ClockAdvanceMemberTypedDict,
-    )
-    from .clockevent import ClockEvent, ClockEventTypedDict
     from .clone_apibox_snapshotop import (
         CloneApiboxSnapshotRequest,
         CloneApiboxSnapshotRequestTypedDict,
@@ -92,10 +61,6 @@ if TYPE_CHECKING:
         CloneMcpboxSnapshotRequest,
         CloneMcpboxSnapshotRequestTypedDict,
     )
-    from .clone_simulatorop import (
-        CloneSimulatorRequestRequest,
-        CloneSimulatorRequestRequestTypedDict,
-    )
     from .clone_webbox_snapshotop import (
         CloneWebboxSnapshotRequest,
         CloneWebboxSnapshotRequestTypedDict,
@@ -103,14 +68,6 @@ if TYPE_CHECKING:
     from .cloneboxsnapshotrequest import (
         CloneBoxSnapshotRequest,
         CloneBoxSnapshotRequestTypedDict,
-    )
-    from .clonesimulatorrequest import (
-        CloneSimulatorRequest,
-        CloneSimulatorRequestTypedDict,
-    )
-    from .clonesimulatorresponse import (
-        CloneSimulatorResponse,
-        CloneSimulatorResponseTypedDict,
     )
     from .create_apibox_snapshotop import (
         CreateApiboxSnapshotDocument,
@@ -121,8 +78,8 @@ if TYPE_CHECKING:
         CreateApiboxSnapshotRequestTypedDict,
         CreateApiboxSnapshotResponse,
         CreateApiboxSnapshotResponseTypedDict,
-        CreateApiboxSnapshotSpec,
-        CreateApiboxSnapshotSpecTypedDict,
+        Spec,
+        SpecTypedDict,
     )
     from .create_apiboxop import (
         CreateApiboxRequestRequest,
@@ -145,20 +102,6 @@ if TYPE_CHECKING:
     from .create_mcpboxop import (
         CreateMcpboxRequestRequest,
         CreateMcpboxRequestRequestTypedDict,
-    )
-    from .create_simulation_advanceop import (
-        CreateSimulationAdvanceRequest,
-        CreateSimulationAdvanceRequestTypedDict,
-    )
-    from .create_simulation_snapshotop import (
-        CreateSimulationSnapshotRequestRequest,
-        CreateSimulationSnapshotRequestRequestTypedDict,
-    )
-    from .create_simulationop import (
-        CreateSimulationRequestRequest,
-        CreateSimulationRequestRequestTypedDict,
-        CreateSimulationResponse,
-        CreateSimulationResponseTypedDict,
     )
     from .create_webbox_snapshotop import (
         CreateWebboxSnapshotDocument,
@@ -183,23 +126,10 @@ if TYPE_CHECKING:
         CreateCredentialRequest,
         CreateCredentialRequestTypedDict,
     )
-    from .createdsimulation import (
-        CreatedSimulation,
-        CreatedSimulationStatus,
-        CreatedSimulationTypedDict,
-    )
     from .createmcpboxrequest import CreateMCPBoxRequest, CreateMCPBoxRequestTypedDict
     from .createmcpboxresponse import (
         CreateMCPBoxResponse,
         CreateMCPBoxResponseTypedDict,
-    )
-    from .createsimulationrequest import (
-        CreateSimulationRequest,
-        CreateSimulationRequestTypedDict,
-    )
-    from .createsimulationsnapshotrequest import (
-        CreateSimulationSnapshotRequest,
-        CreateSimulationSnapshotRequestTypedDict,
     )
     from .createwebboxrequest import CreateWebBoxRequest, CreateWebBoxRequestTypedDict
     from .createwebboxresponse import (
@@ -221,10 +151,6 @@ if TYPE_CHECKING:
         CredentialOAuthRequest,
         CredentialOAuthRequestTypedDict,
     )
-    from .currentsimulationtoken import (
-        CurrentSimulationToken,
-        CurrentSimulationTokenTypedDict,
-    )
     from .delete_apibox_snapshotop import (
         DeleteApiboxSnapshotRequest,
         DeleteApiboxSnapshotRequestTypedDict,
@@ -239,18 +165,6 @@ if TYPE_CHECKING:
         DeleteMcpboxSnapshotRequestTypedDict,
     )
     from .delete_mcpboxop import DeleteMcpboxRequest, DeleteMcpboxRequestTypedDict
-    from .delete_simulation_snapshotop import (
-        DeleteSimulationSnapshotRequest,
-        DeleteSimulationSnapshotRequestTypedDict,
-    )
-    from .delete_simulationop import (
-        DeleteSimulationRequest,
-        DeleteSimulationRequestTypedDict,
-    )
-    from .delete_simulatorop import (
-        DeleteSimulatorRequest,
-        DeleteSimulatorRequestTypedDict,
-    )
     from .delete_webbox_snapshotop import (
         DeleteWebboxSnapshotRequest,
         DeleteWebboxSnapshotRequestTypedDict,
@@ -267,22 +181,6 @@ if TYPE_CHECKING:
         GetMcpboxSnapshotRequestTypedDict,
     )
     from .get_mcpboxop import GetMcpboxRequest, GetMcpboxRequestTypedDict
-    from .get_simulation_advanceop import (
-        GetSimulationAdvanceRequest,
-        GetSimulationAdvanceRequestTypedDict,
-    )
-    from .get_simulation_snapshotop import (
-        GetSimulationSnapshotRequest,
-        GetSimulationSnapshotRequestTypedDict,
-    )
-    from .get_simulation_tokenop import (
-        GetSimulationTokenRequest,
-        GetSimulationTokenRequestTypedDict,
-        GetSimulationTokenResponse,
-        GetSimulationTokenResponseTypedDict,
-    )
-    from .get_simulationop import GetSimulationRequest, GetSimulationRequestTypedDict
-    from .get_simulatorop import GetSimulatorRequest, GetSimulatorRequestTypedDict
     from .get_webbox_snapshotop import (
         GetWebboxSnapshotRequest,
         GetWebboxSnapshotRequestTypedDict,
@@ -346,38 +244,6 @@ if TYPE_CHECKING:
         ListMcpboxesResponseResponseTypedDict,
         ListMcpboxesStatus,
     )
-    from .list_simulation_advance_eventsop import (
-        ListSimulationAdvanceEventsRequest,
-        ListSimulationAdvanceEventsRequestTypedDict,
-        ListSimulationAdvanceEventsResponse,
-        ListSimulationAdvanceEventsResponseTypedDict,
-    )
-    from .list_simulation_snapshotsop import (
-        ListSimulationSnapshotsRequest,
-        ListSimulationSnapshotsRequestTypedDict,
-        ListSimulationSnapshotsResponseResponse,
-        ListSimulationSnapshotsResponseResponseTypedDict,
-    )
-    from .list_simulation_stepsop import (
-        ListSimulationStepsRequest,
-        ListSimulationStepsRequestTypedDict,
-        ListSimulationStepsResponseResponse,
-        ListSimulationStepsResponseResponseTypedDict,
-    )
-    from .list_simulationsop import (
-        ListSimulationsRequest,
-        ListSimulationsRequestTypedDict,
-        ListSimulationsResponseResponse,
-        ListSimulationsResponseResponseTypedDict,
-        ListSimulationsStatus,
-    )
-    from .list_simulatorsop import (
-        ListSimulatorsRequest,
-        ListSimulatorsRequestTypedDict,
-        ListSimulatorsResponseResponse,
-        ListSimulatorsResponseResponseTypedDict,
-        ListSimulatorsStatus,
-    )
     from .list_webbox_snapshotsop import (
         ListWebboxSnapshotsRequest,
         ListWebboxSnapshotsRequestTypedDict,
@@ -411,10 +277,6 @@ if TYPE_CHECKING:
         ListBoxStepsResponse,
         ListBoxStepsResponseTypedDict,
     )
-    from .listclockadvanceeventsresponse import (
-        ListClockAdvanceEventsResponse,
-        ListClockAdvanceEventsResponseTypedDict,
-    )
     from .listcredentialsresponse import (
         ListCredentialsResponse,
         ListCredentialsResponseTypedDict,
@@ -426,22 +288,6 @@ if TYPE_CHECKING:
     from .listmcpboxsnapshotsresponse import (
         ListMCPBoxSnapshotsResponse,
         ListMCPBoxSnapshotsResponseTypedDict,
-    )
-    from .listsimulationsnapshotsresponse import (
-        ListSimulationSnapshotsResponse,
-        ListSimulationSnapshotsResponseTypedDict,
-    )
-    from .listsimulationsresponse import (
-        ListSimulationsResponse,
-        ListSimulationsResponseTypedDict,
-    )
-    from .listsimulationstepsresponse import (
-        ListSimulationStepsResponse,
-        ListSimulationStepsResponseTypedDict,
-    )
-    from .listsimulatorsresponse import (
-        ListSimulatorsResponse,
-        ListSimulatorsResponseTypedDict,
     )
     from .listwebboxesresponse import (
         ListWebBoxesResponse,
@@ -459,13 +305,6 @@ if TYPE_CHECKING:
         MCPBoxSnapshotStatus,
         MCPBoxSnapshotTypedDict,
     )
-    from .regenerate_simulation_tokenop import (
-        RegenerateSimulationTokenRequest,
-        RegenerateSimulationTokenRequestTypedDict,
-        RegenerateSimulationTokenResponse,
-        RegenerateSimulationTokenResponseTypedDict,
-    )
-    from .resourceerror import ResourceError, ResourceErrorTypedDict
     from .resume_apibox_snapshotop import (
         ResumeApiboxSnapshotRequest,
         ResumeApiboxSnapshotRequestTypedDict,
@@ -473,10 +312,6 @@ if TYPE_CHECKING:
     from .resume_mcpbox_snapshotop import (
         ResumeMcpboxSnapshotRequest,
         ResumeMcpboxSnapshotRequestTypedDict,
-    )
-    from .resume_simulatorop import (
-        ResumeSimulatorRequest,
-        ResumeSimulatorRequestTypedDict,
     )
     from .resume_webbox_snapshotop import (
         ResumeWebboxSnapshotRequest,
@@ -500,35 +335,10 @@ if TYPE_CHECKING:
         SaveBoxSnapshotRequestTypedDict,
     )
     from .security import Security, SecurityTypedDict
-    from .simulation import Simulation, SimulationStatus, SimulationTypedDict
-    from .simulationdetail import (
-        SimulationDetail,
-        SimulationDetailStatus,
-        SimulationDetailTypedDict,
-    )
-    from .simulationsnapshot import (
-        SimulationSnapshot,
-        SimulationSnapshotStatus,
-        SimulationSnapshotTypedDict,
-    )
-    from .simulator import (
-        Simulator,
-        SimulatorMode,
-        SimulatorSource,
-        SimulatorSpecKind,
-        SimulatorStatus,
-        SimulatorTypedDict,
-    )
-    from .simulatordependents import SimulatorDependents, SimulatorDependentsTypedDict
-    from .simulatorpublication import (
-        SimulatorPublication,
-        SimulatorPublicationStatus,
-        SimulatorPublicationTypedDict,
-    )
     from .snapshotcomposition import SnapshotComposition, SnapshotCompositionTypedDict
     from .specificationissue import (
+        Kind,
         SpecificationIssue,
-        SpecificationIssueKind,
         SpecificationIssueTypedDict,
     )
     from .specificationvalidation import (
@@ -542,15 +352,9 @@ if TYPE_CHECKING:
     )
     from .start_apiboxop import StartApiboxRequest, StartApiboxRequestTypedDict
     from .start_mcpboxop import StartMcpboxRequest, StartMcpboxRequestTypedDict
-    from .start_simulationop import (
-        StartSimulationRequest,
-        StartSimulationRequestTypedDict,
-    )
     from .start_webboxop import StartWebboxRequest, StartWebboxRequestTypedDict
-    from .step import Step, StepKind, StepTypedDict
     from .stop_apiboxop import StopApiboxRequest, StopApiboxRequestTypedDict
     from .stop_mcpboxop import StopMcpboxRequest, StopMcpboxRequestTypedDict
-    from .stop_simulationop import StopSimulationRequest, StopSimulationRequestTypedDict
     from .stop_webboxop import StopWebboxRequest, StopWebboxRequestTypedDict
     from .update_apibox_snapshotop import (
         UpdateApiboxSnapshotRequestRequest,
@@ -571,18 +375,6 @@ if TYPE_CHECKING:
     from .update_mcpboxop import (
         UpdateMcpboxRequestRequest,
         UpdateMcpboxRequestRequestTypedDict,
-    )
-    from .update_simulation_snapshotop import (
-        UpdateSimulationSnapshotRequestRequest,
-        UpdateSimulationSnapshotRequestRequestTypedDict,
-    )
-    from .update_simulationop import (
-        UpdateSimulationRequestRequest,
-        UpdateSimulationRequestRequestTypedDict,
-    )
-    from .update_simulatorop import (
-        UpdateSimulatorRequestRequest,
-        UpdateSimulatorRequestRequestTypedDict,
     )
     from .update_webbox_snapshotop import (
         UpdateWebboxSnapshotRequestRequest,
@@ -605,18 +397,6 @@ if TYPE_CHECKING:
     from .updatemcpboxsnapshotrequest import (
         UpdateMCPBoxSnapshotRequest,
         UpdateMCPBoxSnapshotRequestTypedDict,
-    )
-    from .updatesimulationrequest import (
-        UpdateSimulationRequest,
-        UpdateSimulationRequestTypedDict,
-    )
-    from .updatesimulationsnapshotrequest import (
-        UpdateSimulationSnapshotRequest,
-        UpdateSimulationSnapshotRequestTypedDict,
-    )
-    from .updatesimulatorrequest import (
-        UpdateSimulatorRequest,
-        UpdateSimulatorRequestTypedDict,
     )
     from .updatewebboxrequest import UpdateWebBoxRequest, UpdateWebBoxRequestTypedDict
     from .updatewebboxsnapshotrequest import (
@@ -645,8 +425,6 @@ __all__ = [
     "APIBoxTypedDict",
     "Actor",
     "ActorTypedDict",
-    "AdvanceTimeRequest",
-    "AdvanceTimeRequestTypedDict",
     "AuthMethod",
     "BoxError",
     "BoxErrorCode",
@@ -669,21 +447,6 @@ __all__ = [
     "BuildResearch",
     "BuildResearchStatus",
     "BuildResearchTypedDict",
-    "BuildSimulatorDocument",
-    "BuildSimulatorDocumentTypedDict",
-    "BuildSimulatorRequest",
-    "BuildSimulatorRequestBody",
-    "BuildSimulatorRequestBodyTypedDict",
-    "BuildSimulatorRequestMode",
-    "BuildSimulatorRequestModel",
-    "BuildSimulatorRequestRequest",
-    "BuildSimulatorRequestRequestTypedDict",
-    "BuildSimulatorRequestSpecKind",
-    "BuildSimulatorRequestTypedDict",
-    "BuildSimulatorResponse",
-    "BuildSimulatorResponseTypedDict",
-    "BuildSimulatorSpec",
-    "BuildSimulatorSpecTypedDict",
     "BuildWaiting",
     "BuildWaitingTypedDict",
     "BuildWebBoxSnapshotRequest",
@@ -693,30 +456,14 @@ __all__ = [
     "CancelApiboxSnapshotRequestTypedDict",
     "CancelMcpboxSnapshotRequest",
     "CancelMcpboxSnapshotRequestTypedDict",
-    "CancelSimulatorRequest",
-    "CancelSimulatorRequestTypedDict",
     "CancelWebboxSnapshotRequest",
     "CancelWebboxSnapshotRequestTypedDict",
-    "ClockAdvance",
-    "ClockAdvanceMember",
-    "ClockAdvanceMemberStatus",
-    "ClockAdvanceMemberTypedDict",
-    "ClockAdvanceStatus",
-    "ClockAdvanceTypedDict",
-    "ClockEvent",
-    "ClockEventTypedDict",
     "CloneApiboxSnapshotRequest",
     "CloneApiboxSnapshotRequestTypedDict",
     "CloneBoxSnapshotRequest",
     "CloneBoxSnapshotRequestTypedDict",
     "CloneMcpboxSnapshotRequest",
     "CloneMcpboxSnapshotRequestTypedDict",
-    "CloneSimulatorRequest",
-    "CloneSimulatorRequestRequest",
-    "CloneSimulatorRequestRequestTypedDict",
-    "CloneSimulatorRequestTypedDict",
-    "CloneSimulatorResponse",
-    "CloneSimulatorResponseTypedDict",
     "CloneWebboxSnapshotRequest",
     "CloneWebboxSnapshotRequestTypedDict",
     "CreateAPIBoxRequest",
@@ -733,8 +480,6 @@ __all__ = [
     "CreateApiboxSnapshotRequestTypedDict",
     "CreateApiboxSnapshotResponse",
     "CreateApiboxSnapshotResponseTypedDict",
-    "CreateApiboxSnapshotSpec",
-    "CreateApiboxSnapshotSpecTypedDict",
     "CreateCredentialRequest",
     "CreateCredentialRequestRequest",
     "CreateCredentialRequestRequestTypedDict",
@@ -753,18 +498,6 @@ __all__ = [
     "CreateMcpboxSnapshotRequestTypedDict",
     "CreateMcpboxSnapshotResponse",
     "CreateMcpboxSnapshotResponseTypedDict",
-    "CreateSimulationAdvanceRequest",
-    "CreateSimulationAdvanceRequestTypedDict",
-    "CreateSimulationRequest",
-    "CreateSimulationRequestRequest",
-    "CreateSimulationRequestRequestTypedDict",
-    "CreateSimulationRequestTypedDict",
-    "CreateSimulationResponse",
-    "CreateSimulationResponseTypedDict",
-    "CreateSimulationSnapshotRequest",
-    "CreateSimulationSnapshotRequestRequest",
-    "CreateSimulationSnapshotRequestRequestTypedDict",
-    "CreateSimulationSnapshotRequestTypedDict",
     "CreateWebBoxRequest",
     "CreateWebBoxRequestTypedDict",
     "CreateWebBoxResponse",
@@ -779,9 +512,6 @@ __all__ = [
     "CreateWebboxSnapshotRequestTypedDict",
     "CreateWebboxSnapshotResponse",
     "CreateWebboxSnapshotResponseTypedDict",
-    "CreatedSimulation",
-    "CreatedSimulationStatus",
-    "CreatedSimulationTypedDict",
     "Credential",
     "CredentialLogin",
     "CredentialLoginRequest",
@@ -794,8 +524,6 @@ __all__ = [
     "CredentialOAuthRequestTypedDict",
     "CredentialOAuthTypedDict",
     "CredentialTypedDict",
-    "CurrentSimulationToken",
-    "CurrentSimulationTokenTypedDict",
     "DeleteApiboxRequest",
     "DeleteApiboxRequestTypedDict",
     "DeleteApiboxSnapshotRequest",
@@ -806,12 +534,6 @@ __all__ = [
     "DeleteMcpboxRequestTypedDict",
     "DeleteMcpboxSnapshotRequest",
     "DeleteMcpboxSnapshotRequestTypedDict",
-    "DeleteSimulationRequest",
-    "DeleteSimulationRequestTypedDict",
-    "DeleteSimulationSnapshotRequest",
-    "DeleteSimulationSnapshotRequestTypedDict",
-    "DeleteSimulatorRequest",
-    "DeleteSimulatorRequestTypedDict",
     "DeleteWebboxRequest",
     "DeleteWebboxRequestTypedDict",
     "DeleteWebboxSnapshotRequest",
@@ -832,18 +554,6 @@ __all__ = [
     "GetMcpboxRequestTypedDict",
     "GetMcpboxSnapshotRequest",
     "GetMcpboxSnapshotRequestTypedDict",
-    "GetSimulationAdvanceRequest",
-    "GetSimulationAdvanceRequestTypedDict",
-    "GetSimulationRequest",
-    "GetSimulationRequestTypedDict",
-    "GetSimulationSnapshotRequest",
-    "GetSimulationSnapshotRequestTypedDict",
-    "GetSimulationTokenRequest",
-    "GetSimulationTokenRequestTypedDict",
-    "GetSimulationTokenResponse",
-    "GetSimulationTokenResponseTypedDict",
-    "GetSimulatorRequest",
-    "GetSimulatorRequestTypedDict",
     "GetWebBoxResponse",
     "GetWebBoxResponseStatus",
     "GetWebBoxResponseTypedDict",
@@ -851,6 +561,7 @@ __all__ = [
     "GetWebboxRequestTypedDict",
     "GetWebboxSnapshotRequest",
     "GetWebboxSnapshotRequestTypedDict",
+    "Kind",
     "Limitation",
     "LimitationTypedDict",
     "ListAPIBoxSnapshotsResponse",
@@ -874,8 +585,6 @@ __all__ = [
     "ListApiboxesStatus",
     "ListBoxStepsResponse",
     "ListBoxStepsResponseTypedDict",
-    "ListClockAdvanceEventsResponse",
-    "ListClockAdvanceEventsResponseTypedDict",
     "ListCredentialsRequest",
     "ListCredentialsRequestTypedDict",
     "ListCredentialsResponse",
@@ -897,36 +606,6 @@ __all__ = [
     "ListMcpboxesResponseResponse",
     "ListMcpboxesResponseResponseTypedDict",
     "ListMcpboxesStatus",
-    "ListSimulationAdvanceEventsRequest",
-    "ListSimulationAdvanceEventsRequestTypedDict",
-    "ListSimulationAdvanceEventsResponse",
-    "ListSimulationAdvanceEventsResponseTypedDict",
-    "ListSimulationSnapshotsRequest",
-    "ListSimulationSnapshotsRequestTypedDict",
-    "ListSimulationSnapshotsResponse",
-    "ListSimulationSnapshotsResponseResponse",
-    "ListSimulationSnapshotsResponseResponseTypedDict",
-    "ListSimulationSnapshotsResponseTypedDict",
-    "ListSimulationStepsRequest",
-    "ListSimulationStepsRequestTypedDict",
-    "ListSimulationStepsResponse",
-    "ListSimulationStepsResponseResponse",
-    "ListSimulationStepsResponseResponseTypedDict",
-    "ListSimulationStepsResponseTypedDict",
-    "ListSimulationsRequest",
-    "ListSimulationsRequestTypedDict",
-    "ListSimulationsResponse",
-    "ListSimulationsResponseResponse",
-    "ListSimulationsResponseResponseTypedDict",
-    "ListSimulationsResponseTypedDict",
-    "ListSimulationsStatus",
-    "ListSimulatorsRequest",
-    "ListSimulatorsRequestTypedDict",
-    "ListSimulatorsResponse",
-    "ListSimulatorsResponseResponse",
-    "ListSimulatorsResponseResponseTypedDict",
-    "ListSimulatorsResponseTypedDict",
-    "ListSimulatorsStatus",
     "ListWebBoxSnapshotsResponse",
     "ListWebBoxSnapshotsResponseTypedDict",
     "ListWebBoxesResponse",
@@ -956,20 +635,12 @@ __all__ = [
     "MCPBoxStatus",
     "MCPBoxTypedDict",
     "Reason",
-    "RegenerateSimulationTokenRequest",
-    "RegenerateSimulationTokenRequestTypedDict",
-    "RegenerateSimulationTokenResponse",
-    "RegenerateSimulationTokenResponseTypedDict",
-    "ResourceError",
-    "ResourceErrorTypedDict",
     "ResumeApiboxSnapshotRequest",
     "ResumeApiboxSnapshotRequestTypedDict",
     "ResumeBuildRequest",
     "ResumeBuildRequestTypedDict",
     "ResumeMcpboxSnapshotRequest",
     "ResumeMcpboxSnapshotRequestTypedDict",
-    "ResumeSimulatorRequest",
-    "ResumeSimulatorRequestTypedDict",
     "ResumeWebboxSnapshotRequest",
     "ResumeWebboxSnapshotRequestTypedDict",
     "SaveApiboxSnapshotRequest",
@@ -982,30 +653,11 @@ __all__ = [
     "SaveWebboxSnapshotRequestTypedDict",
     "Security",
     "SecurityTypedDict",
-    "Simulation",
-    "SimulationDetail",
-    "SimulationDetailStatus",
-    "SimulationDetailTypedDict",
-    "SimulationSnapshot",
-    "SimulationSnapshotStatus",
-    "SimulationSnapshotTypedDict",
-    "SimulationStatus",
-    "SimulationTypedDict",
-    "Simulator",
-    "SimulatorDependents",
-    "SimulatorDependentsTypedDict",
-    "SimulatorMode",
-    "SimulatorPublication",
-    "SimulatorPublicationStatus",
-    "SimulatorPublicationTypedDict",
-    "SimulatorSource",
-    "SimulatorSpecKind",
-    "SimulatorStatus",
-    "SimulatorTypedDict",
     "SnapshotComposition",
     "SnapshotCompositionTypedDict",
+    "Spec",
+    "SpecTypedDict",
     "SpecificationIssue",
-    "SpecificationIssueKind",
     "SpecificationIssueTypedDict",
     "SpecificationValidation",
     "SpecificationValidationTypedDict",
@@ -1016,19 +668,12 @@ __all__ = [
     "StartApiboxRequestTypedDict",
     "StartMcpboxRequest",
     "StartMcpboxRequestTypedDict",
-    "StartSimulationRequest",
-    "StartSimulationRequestTypedDict",
     "StartWebboxRequest",
     "StartWebboxRequestTypedDict",
-    "Step",
-    "StepKind",
-    "StepTypedDict",
     "StopApiboxRequest",
     "StopApiboxRequestTypedDict",
     "StopMcpboxRequest",
     "StopMcpboxRequestTypedDict",
-    "StopSimulationRequest",
-    "StopSimulationRequestTypedDict",
     "StopWebboxRequest",
     "StopWebboxRequestTypedDict",
     "Type",
@@ -1052,18 +697,6 @@ __all__ = [
     "UpdateMcpboxRequestRequestTypedDict",
     "UpdateMcpboxSnapshotRequestRequest",
     "UpdateMcpboxSnapshotRequestRequestTypedDict",
-    "UpdateSimulationRequest",
-    "UpdateSimulationRequestRequest",
-    "UpdateSimulationRequestRequestTypedDict",
-    "UpdateSimulationRequestTypedDict",
-    "UpdateSimulationSnapshotRequest",
-    "UpdateSimulationSnapshotRequestRequest",
-    "UpdateSimulationSnapshotRequestRequestTypedDict",
-    "UpdateSimulationSnapshotRequestTypedDict",
-    "UpdateSimulatorRequest",
-    "UpdateSimulatorRequestRequest",
-    "UpdateSimulatorRequestRequestTypedDict",
-    "UpdateSimulatorRequestTypedDict",
     "UpdateWebBoxRequest",
     "UpdateWebBoxRequestTypedDict",
     "UpdateWebBoxSnapshotRequest",
@@ -1086,8 +719,6 @@ __all__ = [
 _dynamic_imports: dict[str, str] = {
     "Actor": ".actor",
     "ActorTypedDict": ".actor",
-    "AdvanceTimeRequest": ".advancetimerequest",
-    "AdvanceTimeRequestTypedDict": ".advancetimerequest",
     "APIBox": ".apibox",
     "APIBoxStatus": ".apibox",
     "APIBoxTypedDict": ".apibox",
@@ -1103,16 +734,6 @@ _dynamic_imports: dict[str, str] = {
     "BoxErrorTypedDict": ".boxerror",
     "BoxStep": ".boxstep",
     "BoxStepTypedDict": ".boxstep",
-    "BuildSimulatorDocument": ".build_simulatorop",
-    "BuildSimulatorDocumentTypedDict": ".build_simulatorop",
-    "BuildSimulatorRequestBody": ".build_simulatorop",
-    "BuildSimulatorRequestBodyTypedDict": ".build_simulatorop",
-    "BuildSimulatorRequestRequest": ".build_simulatorop",
-    "BuildSimulatorRequestRequestTypedDict": ".build_simulatorop",
-    "BuildSimulatorResponse": ".build_simulatorop",
-    "BuildSimulatorResponseTypedDict": ".build_simulatorop",
-    "BuildSimulatorSpec": ".build_simulatorop",
-    "BuildSimulatorSpecTypedDict": ".build_simulatorop",
     "BuildAPIBoxSnapshotRequest": ".buildapiboxsnapshotrequest",
     "BuildAPIBoxSnapshotRequestModel": ".buildapiboxsnapshotrequest",
     "BuildAPIBoxSnapshotRequestSpecKind": ".buildapiboxsnapshotrequest",
@@ -1130,11 +751,6 @@ _dynamic_imports: dict[str, str] = {
     "BuildResearch": ".buildresearch",
     "BuildResearchStatus": ".buildresearch",
     "BuildResearchTypedDict": ".buildresearch",
-    "BuildSimulatorRequest": ".buildsimulatorrequest",
-    "BuildSimulatorRequestMode": ".buildsimulatorrequest",
-    "BuildSimulatorRequestModel": ".buildsimulatorrequest",
-    "BuildSimulatorRequestSpecKind": ".buildsimulatorrequest",
-    "BuildSimulatorRequestTypedDict": ".buildsimulatorrequest",
     "BuildWaiting": ".buildwaiting",
     "BuildWaitingTypedDict": ".buildwaiting",
     "Type": ".buildwaiting",
@@ -1145,32 +761,16 @@ _dynamic_imports: dict[str, str] = {
     "CancelApiboxSnapshotRequestTypedDict": ".cancel_apibox_snapshotop",
     "CancelMcpboxSnapshotRequest": ".cancel_mcpbox_snapshotop",
     "CancelMcpboxSnapshotRequestTypedDict": ".cancel_mcpbox_snapshotop",
-    "CancelSimulatorRequest": ".cancel_simulatorop",
-    "CancelSimulatorRequestTypedDict": ".cancel_simulatorop",
     "CancelWebboxSnapshotRequest": ".cancel_webbox_snapshotop",
     "CancelWebboxSnapshotRequestTypedDict": ".cancel_webbox_snapshotop",
-    "ClockAdvance": ".clockadvance",
-    "ClockAdvanceStatus": ".clockadvance",
-    "ClockAdvanceTypedDict": ".clockadvance",
-    "ClockAdvanceMember": ".clockadvancemember",
-    "ClockAdvanceMemberStatus": ".clockadvancemember",
-    "ClockAdvanceMemberTypedDict": ".clockadvancemember",
-    "ClockEvent": ".clockevent",
-    "ClockEventTypedDict": ".clockevent",
     "CloneApiboxSnapshotRequest": ".clone_apibox_snapshotop",
     "CloneApiboxSnapshotRequestTypedDict": ".clone_apibox_snapshotop",
     "CloneMcpboxSnapshotRequest": ".clone_mcpbox_snapshotop",
     "CloneMcpboxSnapshotRequestTypedDict": ".clone_mcpbox_snapshotop",
-    "CloneSimulatorRequestRequest": ".clone_simulatorop",
-    "CloneSimulatorRequestRequestTypedDict": ".clone_simulatorop",
     "CloneWebboxSnapshotRequest": ".clone_webbox_snapshotop",
     "CloneWebboxSnapshotRequestTypedDict": ".clone_webbox_snapshotop",
     "CloneBoxSnapshotRequest": ".cloneboxsnapshotrequest",
     "CloneBoxSnapshotRequestTypedDict": ".cloneboxsnapshotrequest",
-    "CloneSimulatorRequest": ".clonesimulatorrequest",
-    "CloneSimulatorRequestTypedDict": ".clonesimulatorrequest",
-    "CloneSimulatorResponse": ".clonesimulatorresponse",
-    "CloneSimulatorResponseTypedDict": ".clonesimulatorresponse",
     "CreateApiboxSnapshotDocument": ".create_apibox_snapshotop",
     "CreateApiboxSnapshotDocumentTypedDict": ".create_apibox_snapshotop",
     "CreateApiboxSnapshotRequest": ".create_apibox_snapshotop",
@@ -1179,8 +779,8 @@ _dynamic_imports: dict[str, str] = {
     "CreateApiboxSnapshotRequestTypedDict": ".create_apibox_snapshotop",
     "CreateApiboxSnapshotResponse": ".create_apibox_snapshotop",
     "CreateApiboxSnapshotResponseTypedDict": ".create_apibox_snapshotop",
-    "CreateApiboxSnapshotSpec": ".create_apibox_snapshotop",
-    "CreateApiboxSnapshotSpecTypedDict": ".create_apibox_snapshotop",
+    "Spec": ".create_apibox_snapshotop",
+    "SpecTypedDict": ".create_apibox_snapshotop",
     "CreateApiboxRequestRequest": ".create_apiboxop",
     "CreateApiboxRequestRequestTypedDict": ".create_apiboxop",
     "CreateCredentialRequestRequest": ".create_credentialop",
@@ -1195,14 +795,6 @@ _dynamic_imports: dict[str, str] = {
     "CreateMcpboxSnapshotResponseTypedDict": ".create_mcpbox_snapshotop",
     "CreateMcpboxRequestRequest": ".create_mcpboxop",
     "CreateMcpboxRequestRequestTypedDict": ".create_mcpboxop",
-    "CreateSimulationAdvanceRequest": ".create_simulation_advanceop",
-    "CreateSimulationAdvanceRequestTypedDict": ".create_simulation_advanceop",
-    "CreateSimulationSnapshotRequestRequest": ".create_simulation_snapshotop",
-    "CreateSimulationSnapshotRequestRequestTypedDict": ".create_simulation_snapshotop",
-    "CreateSimulationRequestRequest": ".create_simulationop",
-    "CreateSimulationRequestRequestTypedDict": ".create_simulationop",
-    "CreateSimulationResponse": ".create_simulationop",
-    "CreateSimulationResponseTypedDict": ".create_simulationop",
     "CreateWebboxSnapshotDocument": ".create_webbox_snapshotop",
     "CreateWebboxSnapshotDocumentTypedDict": ".create_webbox_snapshotop",
     "CreateWebboxSnapshotRequest": ".create_webbox_snapshotop",
@@ -1219,17 +811,10 @@ _dynamic_imports: dict[str, str] = {
     "CreateAPIBoxResponseTypedDict": ".createapiboxresponse",
     "CreateCredentialRequest": ".createcredentialrequest",
     "CreateCredentialRequestTypedDict": ".createcredentialrequest",
-    "CreatedSimulation": ".createdsimulation",
-    "CreatedSimulationStatus": ".createdsimulation",
-    "CreatedSimulationTypedDict": ".createdsimulation",
     "CreateMCPBoxRequest": ".createmcpboxrequest",
     "CreateMCPBoxRequestTypedDict": ".createmcpboxrequest",
     "CreateMCPBoxResponse": ".createmcpboxresponse",
     "CreateMCPBoxResponseTypedDict": ".createmcpboxresponse",
-    "CreateSimulationRequest": ".createsimulationrequest",
-    "CreateSimulationRequestTypedDict": ".createsimulationrequest",
-    "CreateSimulationSnapshotRequest": ".createsimulationsnapshotrequest",
-    "CreateSimulationSnapshotRequestTypedDict": ".createsimulationsnapshotrequest",
     "CreateWebBoxRequest": ".createwebboxrequest",
     "CreateWebBoxRequestTypedDict": ".createwebboxrequest",
     "CreateWebBoxResponse": ".createwebboxresponse",
@@ -1247,8 +832,6 @@ _dynamic_imports: dict[str, str] = {
     "CredentialOAuthTypedDict": ".credentialoauth",
     "CredentialOAuthRequest": ".credentialoauthrequest",
     "CredentialOAuthRequestTypedDict": ".credentialoauthrequest",
-    "CurrentSimulationToken": ".currentsimulationtoken",
-    "CurrentSimulationTokenTypedDict": ".currentsimulationtoken",
     "DeleteApiboxSnapshotRequest": ".delete_apibox_snapshotop",
     "DeleteApiboxSnapshotRequestTypedDict": ".delete_apibox_snapshotop",
     "DeleteApiboxRequest": ".delete_apiboxop",
@@ -1259,12 +842,6 @@ _dynamic_imports: dict[str, str] = {
     "DeleteMcpboxSnapshotRequestTypedDict": ".delete_mcpbox_snapshotop",
     "DeleteMcpboxRequest": ".delete_mcpboxop",
     "DeleteMcpboxRequestTypedDict": ".delete_mcpboxop",
-    "DeleteSimulationSnapshotRequest": ".delete_simulation_snapshotop",
-    "DeleteSimulationSnapshotRequestTypedDict": ".delete_simulation_snapshotop",
-    "DeleteSimulationRequest": ".delete_simulationop",
-    "DeleteSimulationRequestTypedDict": ".delete_simulationop",
-    "DeleteSimulatorRequest": ".delete_simulatorop",
-    "DeleteSimulatorRequestTypedDict": ".delete_simulatorop",
     "DeleteWebboxSnapshotRequest": ".delete_webbox_snapshotop",
     "DeleteWebboxSnapshotRequestTypedDict": ".delete_webbox_snapshotop",
     "DeleteWebboxRequest": ".delete_webboxop",
@@ -1279,18 +856,6 @@ _dynamic_imports: dict[str, str] = {
     "GetMcpboxSnapshotRequestTypedDict": ".get_mcpbox_snapshotop",
     "GetMcpboxRequest": ".get_mcpboxop",
     "GetMcpboxRequestTypedDict": ".get_mcpboxop",
-    "GetSimulationAdvanceRequest": ".get_simulation_advanceop",
-    "GetSimulationAdvanceRequestTypedDict": ".get_simulation_advanceop",
-    "GetSimulationSnapshotRequest": ".get_simulation_snapshotop",
-    "GetSimulationSnapshotRequestTypedDict": ".get_simulation_snapshotop",
-    "GetSimulationTokenRequest": ".get_simulation_tokenop",
-    "GetSimulationTokenRequestTypedDict": ".get_simulation_tokenop",
-    "GetSimulationTokenResponse": ".get_simulation_tokenop",
-    "GetSimulationTokenResponseTypedDict": ".get_simulation_tokenop",
-    "GetSimulationRequest": ".get_simulationop",
-    "GetSimulationRequestTypedDict": ".get_simulationop",
-    "GetSimulatorRequest": ".get_simulatorop",
-    "GetSimulatorRequestTypedDict": ".get_simulatorop",
     "GetWebboxSnapshotRequest": ".get_webbox_snapshotop",
     "GetWebboxSnapshotRequestTypedDict": ".get_webbox_snapshotop",
     "GetWebboxRequest": ".get_webboxop",
@@ -1336,28 +901,6 @@ _dynamic_imports: dict[str, str] = {
     "ListMcpboxesResponseResponse": ".list_mcpboxesop",
     "ListMcpboxesResponseResponseTypedDict": ".list_mcpboxesop",
     "ListMcpboxesStatus": ".list_mcpboxesop",
-    "ListSimulationAdvanceEventsRequest": ".list_simulation_advance_eventsop",
-    "ListSimulationAdvanceEventsRequestTypedDict": ".list_simulation_advance_eventsop",
-    "ListSimulationAdvanceEventsResponse": ".list_simulation_advance_eventsop",
-    "ListSimulationAdvanceEventsResponseTypedDict": ".list_simulation_advance_eventsop",
-    "ListSimulationSnapshotsRequest": ".list_simulation_snapshotsop",
-    "ListSimulationSnapshotsRequestTypedDict": ".list_simulation_snapshotsop",
-    "ListSimulationSnapshotsResponseResponse": ".list_simulation_snapshotsop",
-    "ListSimulationSnapshotsResponseResponseTypedDict": ".list_simulation_snapshotsop",
-    "ListSimulationStepsRequest": ".list_simulation_stepsop",
-    "ListSimulationStepsRequestTypedDict": ".list_simulation_stepsop",
-    "ListSimulationStepsResponseResponse": ".list_simulation_stepsop",
-    "ListSimulationStepsResponseResponseTypedDict": ".list_simulation_stepsop",
-    "ListSimulationsRequest": ".list_simulationsop",
-    "ListSimulationsRequestTypedDict": ".list_simulationsop",
-    "ListSimulationsResponseResponse": ".list_simulationsop",
-    "ListSimulationsResponseResponseTypedDict": ".list_simulationsop",
-    "ListSimulationsStatus": ".list_simulationsop",
-    "ListSimulatorsRequest": ".list_simulatorsop",
-    "ListSimulatorsRequestTypedDict": ".list_simulatorsop",
-    "ListSimulatorsResponseResponse": ".list_simulatorsop",
-    "ListSimulatorsResponseResponseTypedDict": ".list_simulatorsop",
-    "ListSimulatorsStatus": ".list_simulatorsop",
     "ListWebboxSnapshotsRequest": ".list_webbox_snapshotsop",
     "ListWebboxSnapshotsRequestTypedDict": ".list_webbox_snapshotsop",
     "ListWebboxSnapshotsResponseResponse": ".list_webbox_snapshotsop",
@@ -1379,22 +922,12 @@ _dynamic_imports: dict[str, str] = {
     "ListAPIBoxSnapshotsResponseTypedDict": ".listapiboxsnapshotsresponse",
     "ListBoxStepsResponse": ".listboxstepsresponse",
     "ListBoxStepsResponseTypedDict": ".listboxstepsresponse",
-    "ListClockAdvanceEventsResponse": ".listclockadvanceeventsresponse",
-    "ListClockAdvanceEventsResponseTypedDict": ".listclockadvanceeventsresponse",
     "ListCredentialsResponse": ".listcredentialsresponse",
     "ListCredentialsResponseTypedDict": ".listcredentialsresponse",
     "ListMCPBoxesResponse": ".listmcpboxesresponse",
     "ListMCPBoxesResponseTypedDict": ".listmcpboxesresponse",
     "ListMCPBoxSnapshotsResponse": ".listmcpboxsnapshotsresponse",
     "ListMCPBoxSnapshotsResponseTypedDict": ".listmcpboxsnapshotsresponse",
-    "ListSimulationSnapshotsResponse": ".listsimulationsnapshotsresponse",
-    "ListSimulationSnapshotsResponseTypedDict": ".listsimulationsnapshotsresponse",
-    "ListSimulationsResponse": ".listsimulationsresponse",
-    "ListSimulationsResponseTypedDict": ".listsimulationsresponse",
-    "ListSimulationStepsResponse": ".listsimulationstepsresponse",
-    "ListSimulationStepsResponseTypedDict": ".listsimulationstepsresponse",
-    "ListSimulatorsResponse": ".listsimulatorsresponse",
-    "ListSimulatorsResponseTypedDict": ".listsimulatorsresponse",
     "ListWebBoxesResponse": ".listwebboxesresponse",
     "ListWebBoxesResponseTypedDict": ".listwebboxesresponse",
     "ListWebBoxSnapshotsResponse": ".listwebboxsnapshotsresponse",
@@ -1408,18 +941,10 @@ _dynamic_imports: dict[str, str] = {
     "MCPBoxSnapshotSource": ".mcpboxsnapshot",
     "MCPBoxSnapshotStatus": ".mcpboxsnapshot",
     "MCPBoxSnapshotTypedDict": ".mcpboxsnapshot",
-    "RegenerateSimulationTokenRequest": ".regenerate_simulation_tokenop",
-    "RegenerateSimulationTokenRequestTypedDict": ".regenerate_simulation_tokenop",
-    "RegenerateSimulationTokenResponse": ".regenerate_simulation_tokenop",
-    "RegenerateSimulationTokenResponseTypedDict": ".regenerate_simulation_tokenop",
-    "ResourceError": ".resourceerror",
-    "ResourceErrorTypedDict": ".resourceerror",
     "ResumeApiboxSnapshotRequest": ".resume_apibox_snapshotop",
     "ResumeApiboxSnapshotRequestTypedDict": ".resume_apibox_snapshotop",
     "ResumeMcpboxSnapshotRequest": ".resume_mcpbox_snapshotop",
     "ResumeMcpboxSnapshotRequestTypedDict": ".resume_mcpbox_snapshotop",
-    "ResumeSimulatorRequest": ".resume_simulatorop",
-    "ResumeSimulatorRequestTypedDict": ".resume_simulatorop",
     "ResumeWebboxSnapshotRequest": ".resume_webbox_snapshotop",
     "ResumeWebboxSnapshotRequestTypedDict": ".resume_webbox_snapshotop",
     "ResumeBuildRequest": ".resumebuildrequest",
@@ -1434,30 +959,10 @@ _dynamic_imports: dict[str, str] = {
     "SaveBoxSnapshotRequestTypedDict": ".saveboxsnapshotrequest",
     "Security": ".security",
     "SecurityTypedDict": ".security",
-    "Simulation": ".simulation",
-    "SimulationStatus": ".simulation",
-    "SimulationTypedDict": ".simulation",
-    "SimulationDetail": ".simulationdetail",
-    "SimulationDetailStatus": ".simulationdetail",
-    "SimulationDetailTypedDict": ".simulationdetail",
-    "SimulationSnapshot": ".simulationsnapshot",
-    "SimulationSnapshotStatus": ".simulationsnapshot",
-    "SimulationSnapshotTypedDict": ".simulationsnapshot",
-    "Simulator": ".simulator",
-    "SimulatorMode": ".simulator",
-    "SimulatorSource": ".simulator",
-    "SimulatorSpecKind": ".simulator",
-    "SimulatorStatus": ".simulator",
-    "SimulatorTypedDict": ".simulator",
-    "SimulatorDependents": ".simulatordependents",
-    "SimulatorDependentsTypedDict": ".simulatordependents",
-    "SimulatorPublication": ".simulatorpublication",
-    "SimulatorPublicationStatus": ".simulatorpublication",
-    "SimulatorPublicationTypedDict": ".simulatorpublication",
     "SnapshotComposition": ".snapshotcomposition",
     "SnapshotCompositionTypedDict": ".snapshotcomposition",
+    "Kind": ".specificationissue",
     "SpecificationIssue": ".specificationissue",
-    "SpecificationIssueKind": ".specificationissue",
     "SpecificationIssueTypedDict": ".specificationissue",
     "SpecificationValidation": ".specificationvalidation",
     "SpecificationValidationTypedDict": ".specificationvalidation",
@@ -1468,19 +973,12 @@ _dynamic_imports: dict[str, str] = {
     "StartApiboxRequestTypedDict": ".start_apiboxop",
     "StartMcpboxRequest": ".start_mcpboxop",
     "StartMcpboxRequestTypedDict": ".start_mcpboxop",
-    "StartSimulationRequest": ".start_simulationop",
-    "StartSimulationRequestTypedDict": ".start_simulationop",
     "StartWebboxRequest": ".start_webboxop",
     "StartWebboxRequestTypedDict": ".start_webboxop",
-    "Step": ".step",
-    "StepKind": ".step",
-    "StepTypedDict": ".step",
     "StopApiboxRequest": ".stop_apiboxop",
     "StopApiboxRequestTypedDict": ".stop_apiboxop",
     "StopMcpboxRequest": ".stop_mcpboxop",
     "StopMcpboxRequestTypedDict": ".stop_mcpboxop",
-    "StopSimulationRequest": ".stop_simulationop",
-    "StopSimulationRequestTypedDict": ".stop_simulationop",
     "StopWebboxRequest": ".stop_webboxop",
     "StopWebboxRequestTypedDict": ".stop_webboxop",
     "UpdateApiboxSnapshotRequestRequest": ".update_apibox_snapshotop",
@@ -1493,12 +991,6 @@ _dynamic_imports: dict[str, str] = {
     "UpdateMcpboxSnapshotRequestRequestTypedDict": ".update_mcpbox_snapshotop",
     "UpdateMcpboxRequestRequest": ".update_mcpboxop",
     "UpdateMcpboxRequestRequestTypedDict": ".update_mcpboxop",
-    "UpdateSimulationSnapshotRequestRequest": ".update_simulation_snapshotop",
-    "UpdateSimulationSnapshotRequestRequestTypedDict": ".update_simulation_snapshotop",
-    "UpdateSimulationRequestRequest": ".update_simulationop",
-    "UpdateSimulationRequestRequestTypedDict": ".update_simulationop",
-    "UpdateSimulatorRequestRequest": ".update_simulatorop",
-    "UpdateSimulatorRequestRequestTypedDict": ".update_simulatorop",
     "UpdateWebboxSnapshotRequestRequest": ".update_webbox_snapshotop",
     "UpdateWebboxSnapshotRequestRequestTypedDict": ".update_webbox_snapshotop",
     "UpdateWebboxRequestRequest": ".update_webboxop",
@@ -1513,12 +1005,6 @@ _dynamic_imports: dict[str, str] = {
     "UpdateMCPBoxRequestTypedDict": ".updatemcpboxrequest",
     "UpdateMCPBoxSnapshotRequest": ".updatemcpboxsnapshotrequest",
     "UpdateMCPBoxSnapshotRequestTypedDict": ".updatemcpboxsnapshotrequest",
-    "UpdateSimulationRequest": ".updatesimulationrequest",
-    "UpdateSimulationRequestTypedDict": ".updatesimulationrequest",
-    "UpdateSimulationSnapshotRequest": ".updatesimulationsnapshotrequest",
-    "UpdateSimulationSnapshotRequestTypedDict": ".updatesimulationsnapshotrequest",
-    "UpdateSimulatorRequest": ".updatesimulatorrequest",
-    "UpdateSimulatorRequestTypedDict": ".updatesimulatorrequest",
     "UpdateWebBoxRequest": ".updatewebboxrequest",
     "UpdateWebBoxRequestTypedDict": ".updatewebboxrequest",
     "UpdateWebBoxSnapshotRequest": ".updatewebboxsnapshotrequest",

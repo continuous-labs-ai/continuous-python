@@ -23,9 +23,11 @@ r"""starting while its runtime boots; running while it serves MCP; stopping whil
 
 class MCPBoxTypedDict(TypedDict):
     apibox_id: str
-    r"""The API Box it fronts, whose state its tools read and change."""
+    r"""The API Box it fronts, whose state its tools read and change; empty for a deleted MCP Box."""
     created_at: datetime
     r"""MCP Box creation time."""
+    deleted_at: Nullable[datetime]
+    r"""When the Box was deleted, in a list of deleted Boxes; null otherwise."""
     endpoint: str
     r"""Base URL of the MCP Box. Send MCP Streamable HTTP requests to it followed by /mcp, with the MCP Box's token in X-Continuous-Token."""
     error: Nullable[BoxErrorTypedDict]
@@ -38,7 +40,7 @@ class MCPBoxTypedDict(TypedDict):
     name: str
     r"""MCP Box name. The ID is its identity, and names need not be unique."""
     snapshot_id: str
-    r"""The MCP Box Snapshot it serves."""
+    r"""The MCP Box Snapshot it serves; empty for a deleted MCP Box whose Snapshot is deleted too."""
     status: MCPBoxStatus
     r"""starting while its runtime boots; running while it serves MCP; stopping while it releases its runtime; stopped when it holds no runtime."""
     status_changed_at: datetime
@@ -47,10 +49,13 @@ class MCPBoxTypedDict(TypedDict):
 
 class MCPBox(BaseModel):
     apibox_id: str
-    r"""The API Box it fronts, whose state its tools read and change."""
+    r"""The API Box it fronts, whose state its tools read and change; empty for a deleted MCP Box."""
 
     created_at: datetime
     r"""MCP Box creation time."""
+
+    deleted_at: Nullable[datetime]
+    r"""When the Box was deleted, in a list of deleted Boxes; null otherwise."""
 
     endpoint: str
     r"""Base URL of the MCP Box. Send MCP Streamable HTTP requests to it followed by /mcp, with the MCP Box's token in X-Continuous-Token."""
@@ -70,7 +75,7 @@ class MCPBox(BaseModel):
     r"""MCP Box name. The ID is its identity, and names need not be unique."""
 
     snapshot_id: str
-    r"""The MCP Box Snapshot it serves."""
+    r"""The MCP Box Snapshot it serves; empty for a deleted MCP Box whose Snapshot is deleted too."""
 
     status: MCPBoxStatus
     r"""starting while its runtime boots; running while it serves MCP; stopping while it releases its runtime; stopped when it holds no runtime."""

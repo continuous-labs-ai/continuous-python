@@ -249,41 +249,6 @@ with Continuous(
 * [start](docs/sdks/mcpboxes/README.md#start) - Start MCP Box
 * [stop](docs/sdks/mcpboxes/README.md#stop) - Stop MCP Box
 
-### [~~SimulationSnapshots~~](docs/sdks/simulationsnapshots/README.md)
-
-* [~~list_simulation_snapshots~~](docs/sdks/simulationsnapshots/README.md#list_simulation_snapshots) - List Simulation Snapshots :warning: **Deprecated**
-* [~~create_simulation_snapshot~~](docs/sdks/simulationsnapshots/README.md#create_simulation_snapshot) - Create Simulation Snapshot :warning: **Deprecated**
-* [~~delete_simulation_snapshot~~](docs/sdks/simulationsnapshots/README.md#delete_simulation_snapshot) - Delete Simulation Snapshot :warning: **Deprecated**
-* [~~get_simulation_snapshot~~](docs/sdks/simulationsnapshots/README.md#get_simulation_snapshot) - Get Simulation Snapshot :warning: **Deprecated**
-* [~~update_simulation_snapshot~~](docs/sdks/simulationsnapshots/README.md#update_simulation_snapshot) - Update Simulation Snapshot :warning: **Deprecated**
-
-### [~~Simulations~~](docs/sdks/simulations/README.md)
-
-* [~~list_simulations~~](docs/sdks/simulations/README.md#list_simulations) - List Simulations :warning: **Deprecated**
-* [~~create_simulation~~](docs/sdks/simulations/README.md#create_simulation) - Create Simulation :warning: **Deprecated**
-* [~~delete_simulation~~](docs/sdks/simulations/README.md#delete_simulation) - Delete Simulation :warning: **Deprecated**
-* [~~get_simulation~~](docs/sdks/simulations/README.md#get_simulation) - Get Simulation :warning: **Deprecated**
-* [~~update_simulation~~](docs/sdks/simulations/README.md#update_simulation) - Update Simulation :warning: **Deprecated**
-* [~~create_simulation_advance~~](docs/sdks/simulations/README.md#create_simulation_advance) - Advance Simulation Time :warning: **Deprecated**
-* [~~get_simulation_advance~~](docs/sdks/simulations/README.md#get_simulation_advance) - Get Simulation Clock Advance :warning: **Deprecated**
-* [~~list_simulation_advance_events~~](docs/sdks/simulations/README.md#list_simulation_advance_events) - List Clock Advance Events :warning: **Deprecated**
-* [~~start_simulation~~](docs/sdks/simulations/README.md#start_simulation) - Start Simulation :warning: **Deprecated**
-* [~~list_simulation_steps~~](docs/sdks/simulations/README.md#list_simulation_steps) - List Simulation Steps :warning: **Deprecated**
-* [~~stop_simulation~~](docs/sdks/simulations/README.md#stop_simulation) - Stop Simulation :warning: **Deprecated**
-* [~~get_simulation_token~~](docs/sdks/simulations/README.md#get_simulation_token) - Get Current Simulation Token :warning: **Deprecated**
-* [~~regenerate_simulation_token~~](docs/sdks/simulations/README.md#regenerate_simulation_token) - Regenerate Simulation Token :warning: **Deprecated**
-
-### [~~Simulators~~](docs/sdks/simulators/README.md)
-
-* [~~list_simulators~~](docs/sdks/simulators/README.md#list_simulators) - List Simulators :warning: **Deprecated**
-* [~~build_simulator~~](docs/sdks/simulators/README.md#build_simulator) - Build Simulator :warning: **Deprecated**
-* [~~delete_simulator~~](docs/sdks/simulators/README.md#delete_simulator) - Delete Simulator :warning: **Deprecated**
-* [~~get_simulator~~](docs/sdks/simulators/README.md#get_simulator) - Get Simulator :warning: **Deprecated**
-* [~~update_simulator~~](docs/sdks/simulators/README.md#update_simulator) - Update Simulator :warning: **Deprecated**
-* [~~cancel_simulator~~](docs/sdks/simulators/README.md#cancel_simulator) - Cancel Simulator Build :warning: **Deprecated**
-* [~~clone_simulator~~](docs/sdks/simulators/README.md#clone_simulator) - Clone Simulator :warning: **Deprecated**
-* [~~resume_simulator~~](docs/sdks/simulators/README.md#resume_simulator) - Resume Simulator Build :warning: **Deprecated**
-
 ### [WebboxSnapshots](docs/sdks/webboxsnapshots/README.md)
 
 * [list](docs/sdks/webboxsnapshots/README.md#list) - List Web Box Snapshots
@@ -466,7 +431,7 @@ with Continuous(
 * [`ContinuousError`](./src/continuous/errors/continuouserror.py): The base class for HTTP error responses.
   * [`APIError`](./src/continuous/errors/apierror.py): Generic error.
 
-<details><summary>Less common errors (6)</summary>
+<details><summary>Less common errors (5)</summary>
 
 <br />
 
@@ -477,12 +442,9 @@ with Continuous(
 
 
 **Inherit from [`ContinuousError`](./src/continuous/errors/continuouserror.py)**:
-* [`SimulatorDeleteConflictError`](./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 81 methods.*
 * [`ResponseValidationError`](./src/continuous/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>
-
-\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->

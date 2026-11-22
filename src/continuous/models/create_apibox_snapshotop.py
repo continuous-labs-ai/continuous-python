@@ -60,13 +60,13 @@ class CreateApiboxSnapshotDocument(BaseModel):
         return m
 
 
-class CreateApiboxSnapshotSpecTypedDict(TypedDict):
+class SpecTypedDict(TypedDict):
     file_name: str
     content: Union[bytes, IO[bytes], io.IOBase]
     content_type: NotRequired[str]
 
 
-class CreateApiboxSnapshotSpec(BaseModel):
+class Spec(BaseModel):
     file_name: Annotated[
         str, pydantic.Field(alias="fileName"), FieldMetadata(multipart=True)
     ]
@@ -104,7 +104,7 @@ class CreateApiboxSnapshotRequestBodyTypedDict(TypedDict):
     request: BuildAPIBoxSnapshotRequestTypedDict
     document: NotRequired[List[CreateApiboxSnapshotDocumentTypedDict]]
     r"""Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec."""
-    spec: NotRequired[CreateApiboxSnapshotSpecTypedDict]
+    spec: NotRequired[SpecTypedDict]
     r"""OpenAPI, WSDL or GraphQL document, UTF-8 encoded, at most 64 MiB."""
 
 
@@ -121,8 +121,7 @@ class CreateApiboxSnapshotRequestBody(BaseModel):
     r"""Vendor documentation the builder and reviewer read before they start, as repeated file parts: UTF-8 text (.md, .txt, .html, .json, .yaml, .xml, .csv) or PDF (.pdf). The documents share the request body limit with the spec."""
 
     spec: Annotated[
-        Optional[CreateApiboxSnapshotSpec],
-        FieldMetadata(multipart=MultipartFormMetadata(file=True)),
+        Optional[Spec], FieldMetadata(multipart=MultipartFormMetadata(file=True))
     ] = None
     r"""OpenAPI, WSDL or GraphQL document, UTF-8 encoded, at most 64 MiB."""
 

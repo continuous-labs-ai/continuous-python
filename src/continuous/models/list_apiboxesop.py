@@ -27,6 +27,8 @@ class ListApiboxesRequestTypedDict(TypedDict):
     r"""Page size. Values below 1 use 50. Values above 200 use 200."""
     cursor: NotRequired[str]
     r"""Opaque next_cursor value from a previous page."""
+    deleted: NotRequired[bool]
+    r"""List only the API Boxes deleted in the last 14 days, each with when it was deleted, in place of those not deleted."""
 
 
 class ListApiboxesRequest(BaseModel):
@@ -54,9 +56,15 @@ class ListApiboxesRequest(BaseModel):
     ] = None
     r"""Opaque next_cursor value from a previous page."""
 
+    deleted: Annotated[
+        Optional[bool],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
+    ] = None
+    r"""List only the API Boxes deleted in the last 14 days, each with when it was deleted, in place of those not deleted."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["status", "snapshot_id", "limit", "cursor"])
+        optional_fields = set(["status", "snapshot_id", "limit", "cursor", "deleted"])
         serialized = handler(self)
         m = {}
 
