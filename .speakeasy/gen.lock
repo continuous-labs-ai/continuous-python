@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 6943685a-c58e-447d-864e-771144f9b720
 management:
-  docChecksum: d4615361b5f0341c4e3d087180b7b307
+  docChecksum: e1561cd4e488bcd848c492ec4875c1fe
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.6.0
-  configChecksum: 0c786fce5234e9abc40942eeabf5107f
+  releaseVersion: 0.6.1
+  configChecksum: e00ce2113bfe9aa97f2ba8658b0810e7
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: fc0e9379-7e61-427d-a8e8-58c4ca4073ce
-  pristine_commit_hash: c71ca056cdec14ebca9c5567b5f1ed59540dc643
-  pristine_tree_hash: 6487311c67c07405a14cadcbf92fc3706b22b924
+  generation_id: 90135075-4029-4e4c-bdbd-475145582895
+  pristine_commit_hash: eefab7eac910a26cddb781441fb84936c137c34e
+  pristine_tree_hash: 43b0352f5b7dac656d28b980317f14aea1d96458
 features:
   python:
     additionalDependencies: 1.1.0
@@ -146,8 +146,8 @@ trackedFiles:
     pristine_git_object: 182fa6fef377217116b1996e2939a4add021dd74
   docs/models/buildprogressmodel.md:
     id: a190e2f077e4
-    last_write_checksum: sha1:d5d8ca0a1d6f4f0ebeb4dd529318bcb43cf81c5a
-    pristine_git_object: 112321b6004a3b597872dc911fddb1e21db66bee
+    last_write_checksum: sha1:44d73efcdff866b682594d22e36d6d8539f284b9
+    pristine_git_object: 8c5e64ab257d9855ff7d2ef8ea1256965e13e8ee
   docs/models/buildresearch.md:
     id: 949dcbcbe3d4
     last_write_checksum: sha1:8f04892b626f05b258f72ef91aaface5f9742e3b
@@ -778,8 +778,8 @@ trackedFiles:
     pristine_git_object: c00200cfd072e9febac5d6be783da1925d11dac0
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:b59588461a88d304b1f66a51914e4600d92fc08f
-    pristine_git_object: 5f78e90e2b74848e57071632dd8c6988caeaf03b
+    last_write_checksum: sha1:cadd585b773e6643dd848ca697e53307b55f0c8f
+    pristine_git_object: cf689553dc6dcff185ad31c9ae3969c86c01465c
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -806,8 +806,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:9c99fbeb91017562fafc3c94422a59ba3f044ce4
-    pristine_git_object: 78fc89d8a05d96da9cfc0001472cef16ae0a527a
+    last_write_checksum: sha1:26faebe50fb035563df10ebf83f7eb5689754c66
+    pristine_git_object: 5cc0e3f8296ad020634e2194cfb46e51f4844192
   src/continuous/apibox_snapshots.py:
     id: 22b1ffcf83df
     last_write_checksum: sha1:f93ef64a36385d1ed99380a13bb86a7eb3186ef6
@@ -902,8 +902,8 @@ trackedFiles:
     pristine_git_object: b6ba0d60f78a3f51abd8c796890ba442ef78c714
   src/continuous/models/buildprogress.py:
     id: 9186e3939d99
-    last_write_checksum: sha1:28e46d038ca23101e10cd9e54e7dea19ac9c6f51
-    pristine_git_object: 57b7db64f60506332006a9f6a988d949368444d5
+    last_write_checksum: sha1:6a525f2b6a36d55819d769be812a84398e29c1b1
+    pristine_git_object: ef05217239846e5d08e4039f42d05f2c41a969a2
   src/continuous/models/buildresearch.py:
     id: 38a44469461a
     last_write_checksum: sha1:dd99d7b11e4efd91fb7b6bbfd5230aae8b1a7cad
@@ -3532,7 +3532,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"actors": [{"default": false, "entity": "<value>", "id": "<id>", "name": "<value>", "role": "<value>"}], "build": {"agent_state": "idle", "hidden_limitations": 572730, "last_activity_at": "2026-08-04T19:13:45.780Z", "last_submission": "rejected", "last_tool": "<value>", "limitations": [{"location": "<value>", "message": "<value>", "operations": ["<value 1>", "<value 2>", "<value 3>"], "reviewed": false}], "model": "claude-fable-5-1", "phase": "qa", "review_round": 958108, "review_rounds": 954301, "stage": "derive", "submissions": 787879, "tool_calls": 313673, "waited_seconds": 24106, "waiting": {"credential_ids": ["<value 1>", "<value 2>"], "deadline": "2024-10-26T11:15:18.060Z", "reason": "<value>", "since": "2024-06-15T00:46:52.554Z", "type": "time_limit"}, "waiting_until": "2026-11-09T00:56:50.207Z", "warnings": [{"code": "spec.response_untyped", "location": "<value>", "message": "<value>", "operations": ["<value 1>", "<value 2>", "<value 3>"]}]}, "composition": {"entities": 378974, "operations": 318763, "sample": true}, "created_at": "2026-05-14T17:48:17.691Z", "credential_ids": ["<value 1>"], "error": {"agent_message": "<value>", "code": "build_canceled", "detail": "<value>", "reason": "service_unavailable", "validation": {"issues": []}}, "hidden_limitations": 386771, "id": "<id>", "instructions": "<value>", "limitations": [], "metadata": "<value>", "name": "<value>", "parent_id": "<id>", "research": {"bytes": 76014, "pages": 58309, "status": "provided"}, "source": "build", "source_box_id": "<id>", "source_snapshot_id": "<id>", "spec_kind": "wsdl", "status": "pending"}
+          application/json: {"actors": [{"default": false, "entity": "<value>", "id": "<id>", "name": "<value>", "role": "<value>"}], "build": {"agent_state": "idle", "hidden_limitations": 572730, "last_activity_at": "2026-08-04T19:13:45.780Z", "last_submission": "rejected", "last_tool": "<value>", "limitations": [{"location": "<value>", "message": "<value>", "operations": ["<value 1>", "<value 2>", "<value 3>"], "reviewed": false}], "model": "combined", "phase": "qa", "review_round": 958108, "review_rounds": 954301, "stage": "derive", "submissions": 787879, "tool_calls": 313673, "waited_seconds": 24106, "waiting": {"credential_ids": ["<value 1>", "<value 2>"], "deadline": "2024-10-26T11:15:18.060Z", "reason": "<value>", "since": "2024-06-15T00:46:52.554Z", "type": "time_limit"}, "waiting_until": "2026-11-09T00:56:50.207Z", "warnings": [{"code": "spec.response_untyped", "location": "<value>", "message": "<value>", "operations": ["<value 1>", "<value 2>", "<value 3>"]}]}, "composition": {"entities": 378974, "operations": 318763, "sample": true}, "created_at": "2026-05-14T17:48:17.691Z", "credential_ids": ["<value 1>"], "error": {"agent_message": "<value>", "code": "build_canceled", "detail": "<value>", "reason": "service_unavailable", "validation": {"issues": []}}, "hidden_limitations": 386771, "id": "<id>", "instructions": "<value>", "limitations": [], "metadata": "<value>", "name": "<value>", "parent_id": "<id>", "research": {"bytes": 76014, "pages": 58309, "status": "provided"}, "source": "build", "source_box_id": "<id>", "source_snapshot_id": "<id>", "spec_kind": "wsdl", "status": "pending"}
         "401":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
@@ -4019,7 +4019,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"actors": [{"default": false, "entity": "<value>", "id": "<id>", "name": "<value>", "role": "<value>"}], "apibox_snapshot_id": "<id>", "build": {"agent_state": "idle", "hidden_limitations": 655164, "last_activity_at": "2024-01-20T01:32:15.952Z", "last_submission": "accepted", "last_tool": null, "limitations": [], "model": "gpt-6-sol", "phase": null, "review_round": 659172, "review_rounds": 330766, "stage": "build", "submissions": 501097, "tool_calls": 104558, "waited_seconds": 671426, "waiting": {"credential_ids": ["<value 1>", "<value 2>"], "deadline": "2024-10-25T06:16:06.956Z", "reason": "<value>", "since": "2024-11-25T02:00:36.387Z", "type": "time_limit"}, "waiting_until": null, "warnings": [{"code": "spec.example_null", "location": "<value>", "message": "<value>", "operations": ["<value 1>", "<value 2>", "<value 3>"]}]}, "composition": {"entities": 778551, "operations": 17394, "sample": true}, "created_at": "2024-07-12T17:21:14.400Z", "credential_ids": ["<value 1>", "<value 2>", "<value 3>"], "error": {"agent_message": "<value>", "code": "live_credential_rejected", "detail": "<value>", "reason": "specification_invalid", "validation": {"issues": [{"code": "<value>", "kind": "unknown", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}, "hidden_limitations": 335163, "id": "<id>", "instructions": "<value>", "limitations": [{"location": "<value>", "message": "<value>", "operations": [], "reviewed": false}], "metadata": "<value>", "name": "<value>", "parent_id": "<id>", "research": {"bytes": 427258, "pages": 809391, "status": "running"}, "source": "catalog", "source_box_id": null, "source_snapshot_id": null, "source_url": "https://cultivated-humor.com/", "status": "building"}
+          application/json: {"actors": [{"default": false, "entity": "<value>", "id": "<id>", "name": "<value>", "role": "<value>"}], "apibox_snapshot_id": "<id>", "build": {"agent_state": "idle", "hidden_limitations": 655164, "last_activity_at": "2024-01-20T01:32:15.952Z", "last_submission": "accepted", "last_tool": null, "limitations": [], "model": "claude-opus-5-5", "phase": null, "review_round": 659172, "review_rounds": 330766, "stage": "build", "submissions": 501097, "tool_calls": 104558, "waited_seconds": 671426, "waiting": {"credential_ids": ["<value 1>", "<value 2>"], "deadline": "2024-10-25T06:16:06.956Z", "reason": "<value>", "since": "2024-11-25T02:00:36.387Z", "type": "time_limit"}, "waiting_until": null, "warnings": [{"code": "spec.example_null", "location": "<value>", "message": "<value>", "operations": ["<value 1>", "<value 2>", "<value 3>"]}]}, "composition": {"entities": 778551, "operations": 17394, "sample": true}, "created_at": "2024-07-12T17:21:14.400Z", "credential_ids": ["<value 1>", "<value 2>", "<value 3>"], "error": {"agent_message": "<value>", "code": "live_credential_rejected", "detail": "<value>", "reason": "specification_invalid", "validation": {"issues": [{"code": "<value>", "kind": "unknown", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}, "hidden_limitations": 335163, "id": "<id>", "instructions": "<value>", "limitations": [{"location": "<value>", "message": "<value>", "operations": [], "reviewed": false}], "metadata": "<value>", "name": "<value>", "parent_id": "<id>", "research": {"bytes": 427258, "pages": 809391, "status": "running"}, "source": "catalog", "source_box_id": null, "source_snapshot_id": null, "source_url": "https://cultivated-humor.com/", "status": "building"}
         "401":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "unknown", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
@@ -4053,7 +4053,7 @@ examples:
         application/json: {}
       responses:
         "200":
-          application/json: {"actors": [], "apibox_snapshot_id": "<id>", "build": {"agent_state": "working", "hidden_limitations": 46013, "last_activity_at": "2024-03-29T12:49:30.810Z", "last_submission": "accepted", "last_tool": "<value>", "limitations": [{"location": "<value>", "message": "<value>", "operations": ["<value 1>", "<value 2>"], "reviewed": false}], "model": "gpt-6-sol", "phase": null, "review_round": 633758, "review_rounds": 949957, "stage": "build", "submissions": 265086, "tool_calls": 429360, "waited_seconds": 490838, "waiting": {"credential_ids": [], "deadline": "2024-10-22T09:26:10.632Z", "reason": "<value>", "since": "2024-05-26T21:00:30.855Z", "type": "live_credentials"}, "waiting_until": "2025-12-07T09:15:39.066Z", "warnings": [{"code": "spec.response_untyped", "location": "<value>", "message": "<value>", "operations": ["<value 1>", "<value 2>", "<value 3>"]}]}, "composition": null, "created_at": "2026-06-18T11:02:14.504Z", "credential_ids": ["<value 1>", "<value 2>", "<value 3>"], "error": {"agent_message": "<value>", "code": "specification_validation_failed", "detail": "<value>", "reason": "specification_invalid", "validation": {"issues": []}}, "hidden_limitations": 284886, "id": "<id>", "instructions": "<value>", "limitations": [], "metadata": "<value>", "name": "<value>", "parent_id": null, "research": null, "source": "box", "source_box_id": "<id>", "source_snapshot_id": null, "source_url": "https://interesting-ceramic.info/", "status": "building"}
+          application/json: {"actors": [], "apibox_snapshot_id": "<id>", "build": {"agent_state": "working", "hidden_limitations": 46013, "last_activity_at": "2024-03-29T12:49:30.810Z", "last_submission": "accepted", "last_tool": "<value>", "limitations": [{"location": "<value>", "message": "<value>", "operations": ["<value 1>", "<value 2>"], "reviewed": false}], "model": "gpt-6.1-sol", "phase": null, "review_round": 633758, "review_rounds": 949957, "stage": "build", "submissions": 265086, "tool_calls": 429360, "waited_seconds": 490838, "waiting": {"credential_ids": [], "deadline": "2024-10-22T09:26:10.632Z", "reason": "<value>", "since": "2024-05-26T21:00:30.855Z", "type": "live_credentials"}, "waiting_until": "2025-12-07T09:15:39.066Z", "warnings": [{"code": "spec.response_untyped", "location": "<value>", "message": "<value>", "operations": ["<value 1>", "<value 2>", "<value 3>"]}]}, "composition": null, "created_at": "2026-06-18T11:02:14.504Z", "credential_ids": ["<value 1>", "<value 2>", "<value 3>"], "error": {"agent_message": "<value>", "code": "specification_validation_failed", "detail": "<value>", "reason": "specification_invalid", "validation": {"issues": []}}, "hidden_limitations": 284886, "id": "<id>", "instructions": "<value>", "limitations": [], "metadata": "<value>", "name": "<value>", "parent_id": null, "research": null, "source": "box", "source_box_id": "<id>", "source_snapshot_id": null, "source_url": "https://interesting-ceramic.info/", "status": "building"}
         "400":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": []}}
         "500":
@@ -4531,7 +4531,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"actors": [{"default": true, "entity": "<value>", "id": "<id>", "name": "<value>", "role": "<value>"}], "build": {"agent_state": "working", "hidden_limitations": 274990, "last_activity_at": "2024-06-09T23:43:19.228Z", "last_submission": "accepted", "last_tool": "<value>", "limitations": [], "model": "claude-fable-5-1", "phase": "qa", "review_round": 201325, "review_rounds": 376128, "stage": "build", "submissions": 555331, "tool_calls": 216313, "waited_seconds": 931441, "waiting": {"credential_ids": ["<value 1>", "<value 2>"], "deadline": "2024-01-24T06:18:51.778Z", "reason": "<value>", "since": "2026-10-12T23:14:16.042Z", "type": "time_limit"}, "waiting_until": "2024-08-17T12:39:02.008Z", "warnings": []}, "composition": {"entities": 913012, "operations": 905337, "sample": true}, "created_at": "2026-01-11T01:58:04.589Z", "credential_ids": ["<value 1>"], "error": {"agent_message": "<value>", "code": "build_canceled", "detail": "<value>", "reason": "service_unavailable", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}, "hidden_limitations": 43874, "id": "<id>", "instructions": "<value>", "limitations": [{"location": "<value>", "message": "<value>", "operations": ["<value 1>"], "reviewed": false}], "metadata": "<value>", "name": "<value>", "parent_id": "<id>", "research": {"bytes": 944345, "pages": 855128, "status": "provided"}, "source": "build", "source_box_id": "<id>", "source_snapshot_id": "<id>", "status": "building"}
+          application/json: {"actors": [{"default": true, "entity": "<value>", "id": "<id>", "name": "<value>", "role": "<value>"}], "build": {"agent_state": "working", "hidden_limitations": 274990, "last_activity_at": "2024-06-09T23:43:19.228Z", "last_submission": "accepted", "last_tool": "<value>", "limitations": [], "model": "claude-fable-5-2", "phase": "qa", "review_round": 201325, "review_rounds": 376128, "stage": "build", "submissions": 555331, "tool_calls": 216313, "waited_seconds": 931441, "waiting": {"credential_ids": ["<value 1>", "<value 2>"], "deadline": "2024-01-24T06:18:51.778Z", "reason": "<value>", "since": "2026-10-12T23:14:16.042Z", "type": "time_limit"}, "waiting_until": "2024-08-17T12:39:02.008Z", "warnings": []}, "composition": {"entities": 913012, "operations": 905337, "sample": true}, "created_at": "2026-01-11T01:58:04.589Z", "credential_ids": ["<value 1>"], "error": {"agent_message": "<value>", "code": "build_canceled", "detail": "<value>", "reason": "service_unavailable", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}, "hidden_limitations": 43874, "id": "<id>", "instructions": "<value>", "limitations": [{"location": "<value>", "message": "<value>", "operations": ["<value 1>"], "reviewed": false}], "metadata": "<value>", "name": "<value>", "parent_id": "<id>", "research": {"bytes": 944345, "pages": 855128, "status": "provided"}, "source": "build", "source_box_id": "<id>", "source_snapshot_id": "<id>", "status": "building"}
         "401":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
         "500":
@@ -4831,4 +4831,29 @@ examples:
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
 examplesVersion: 1.0.2
-releaseNotes: "## Python SDK Changes:\n* `continuous.simulation_snapshots.list_simulation_snapshots()`: **Removed** (Breaking ⚠️)\n* `continuous.simulation_snapshots.create_simulation_snapshot()`: **Removed** (Breaking ⚠️)\n* `continuous.simulation_snapshots.delete_simulation_snapshot()`: **Removed** (Breaking ⚠️)\n* `continuous.simulation_snapshots.get_simulation_snapshot()`: **Removed** (Breaking ⚠️)\n* `continuous.simulation_snapshots.update_simulation_snapshot()`: **Removed** (Breaking ⚠️)\n* `continuous.simulations.list_simulations()`: **Removed** (Breaking ⚠️)\n* `continuous.simulations.create_simulation()`: **Removed** (Breaking ⚠️)\n* `continuous.simulations.delete_simulation()`: **Removed** (Breaking ⚠️)\n* `continuous.simulations.get_simulation()`: **Removed** (Breaking ⚠️)\n* `continuous.simulations.update_simulation()`: **Removed** (Breaking ⚠️)\n* `continuous.simulations.create_simulation_advance()`: **Removed** (Breaking ⚠️)\n* `continuous.simulations.get_simulation_advance()`: **Removed** (Breaking ⚠️)\n* `continuous.simulations.list_simulation_advance_events()`: **Removed** (Breaking ⚠️)\n* `continuous.simulations.start_simulation()`: **Removed** (Breaking ⚠️)\n* `continuous.simulations.list_simulation_steps()`: **Removed** (Breaking ⚠️)\n* `continuous.simulations.stop_simulation()`: **Removed** (Breaking ⚠️)\n* `continuous.simulations.get_simulation_token()`: **Removed** (Breaking ⚠️)\n* `continuous.simulations.regenerate_simulation_token()`: **Removed** (Breaking ⚠️)\n* `continuous.simulators.list_simulators()`: **Removed** (Breaking ⚠️)\n* `continuous.simulators.build_simulator()`: **Removed** (Breaking ⚠️)\n* `continuous.simulators.delete_simulator()`: **Removed** (Breaking ⚠️)\n* `continuous.simulators.get_simulator()`: **Removed** (Breaking ⚠️)\n* `continuous.simulators.update_simulator()`: **Removed** (Breaking ⚠️)\n* `continuous.simulators.cancel_simulator()`: **Removed** (Breaking ⚠️)\n* `continuous.simulators.clone_simulator()`: **Removed** (Breaking ⚠️)\n* `continuous.simulators.resume_simulator()`: **Removed** (Breaking ⚠️)\n* `continuous.apiboxes.list()`: \n  *  `request.deleted` **Added**\n  *  `response.apiboxes[].deleted_at` **Added**\n* `continuous.apiboxes.create()`:  `response.apibox.deleted_at` **Added**\n* `continuous.apiboxes.get()`:  `response.deleted_at` **Added**\n* `continuous.apiboxes.update()`:  `response.deleted_at` **Added**\n* `continuous.apiboxes.start()`:  `response.deleted_at` **Added**\n* `continuous.apiboxes.stop()`:  `response.deleted_at` **Added**\n* `continuous.mcpboxes.list()`: \n  *  `request.deleted` **Added**\n  *  `response.mcpboxes[].deleted_at` **Added**\n* `continuous.mcpboxes.create()`:  `response.mcpbox.deleted_at` **Added**\n* `continuous.mcpboxes.get()`:  `response.deleted_at` **Added**\n* `continuous.mcpboxes.update()`:  `response.deleted_at` **Added**\n* `continuous.mcpboxes.start()`:  `response.deleted_at` **Added**\n* `continuous.mcpboxes.stop()`:  `response.deleted_at` **Added**\n* `continuous.webboxes.list()`: \n  *  `request.deleted` **Added**\n  *  `response.webboxes[].deleted_at` **Added**\n* `continuous.webboxes.create()`:  `response.webbox.deleted_at` **Added**\n* `continuous.webboxes.get()`:  `response.deleted_at` **Added**\n* `continuous.webboxes.update()`:  `response.deleted_at` **Added**\n* `continuous.webboxes.start()`:  `response.deleted_at` **Added**\n* `continuous.webboxes.stop()`:  `response.deleted_at` **Added**\n"
+releaseNotes: |
+  ## Python SDK Changes:
+  * `continuous.apiboxes.save_snapshot()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.apibox_snapshots.list()`:  `response.snapshots[].build.model` **Changed** (Breaking ⚠️)
+  * `continuous.apibox_snapshots.create()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.apibox_snapshots.get()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.apibox_snapshots.update()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.apibox_snapshots.cancel()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.apibox_snapshots.clone()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.apibox_snapshots.resume()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.mcpboxes.save_snapshot()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.mcpbox_snapshots.list()`:  `response.snapshots[].build.model` **Changed** (Breaking ⚠️)
+  * `continuous.mcpbox_snapshots.create()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.mcpbox_snapshots.get()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.mcpbox_snapshots.update()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.mcpbox_snapshots.cancel()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.mcpbox_snapshots.clone()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.mcpbox_snapshots.resume()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.webboxes.save_snapshot()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.webbox_snapshots.list()`:  `response.snapshots[].build.model` **Changed** (Breaking ⚠️)
+  * `continuous.webbox_snapshots.create()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.webbox_snapshots.get()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.webbox_snapshots.update()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.webbox_snapshots.cancel()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.webbox_snapshots.clone()`:  `response.build.model` **Changed** (Breaking ⚠️)
+  * `continuous.webbox_snapshots.resume()`:  `response.build.model` **Changed** (Breaking ⚠️)
