@@ -6,7 +6,7 @@ from typing import Literal, Union
 from typing_extensions import TypedDict
 
 
-SpecificationIssueKind = Union[
+Kind = Union[
     Literal[
         "invalid",
         "unsupported",
@@ -22,7 +22,7 @@ r"""Whether the input is invalid, unsupported, incomplete, exceeds a build limit
 class SpecificationIssueTypedDict(TypedDict):
     code: str
     r"""Stable validation rule code."""
-    kind: SpecificationIssueKind
+    kind: Kind
     r"""Whether the input is invalid, unsupported, incomplete, exceeds a build limit, or has no specific diagnosis."""
     location: str
     r"""Readable endpoint or field affected by this issue."""
@@ -38,7 +38,7 @@ class SpecificationIssue(BaseModel):
     code: str
     r"""Stable validation rule code."""
 
-    kind: SpecificationIssueKind
+    kind: Kind
     r"""Whether the input is invalid, unsupported, incomplete, exceeds a build limit, or has no specific diagnosis."""
 
     location: str

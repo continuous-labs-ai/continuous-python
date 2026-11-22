@@ -320,12 +320,7 @@ class ApiboxSnapshots(BaseSDK):
                 Iterable[models.CreateApiboxSnapshotDocumentTypedDict],
             ]
         ] = None,
-        spec: Optional[
-            Union[
-                models.CreateApiboxSnapshotSpec,
-                models.CreateApiboxSnapshotSpecTypedDict,
-            ]
-        ] = None,
+        spec: Optional[Union[models.Spec, models.SpecTypedDict]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -363,9 +358,7 @@ class ApiboxSnapshots(BaseSDK):
                 request=utils.get_pydantic_model(
                     request, models.BuildAPIBoxSnapshotRequest
                 ),
-                spec=utils.get_pydantic_model(
-                    spec, Optional[models.CreateApiboxSnapshotSpec]
-                ),
+                spec=utils.get_pydantic_model(spec, Optional[models.Spec]),
             ),
         )
 
@@ -467,12 +460,7 @@ class ApiboxSnapshots(BaseSDK):
                 Iterable[models.CreateApiboxSnapshotDocumentTypedDict],
             ]
         ] = None,
-        spec: Optional[
-            Union[
-                models.CreateApiboxSnapshotSpec,
-                models.CreateApiboxSnapshotSpecTypedDict,
-            ]
-        ] = None,
+        spec: Optional[Union[models.Spec, models.SpecTypedDict]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -510,9 +498,7 @@ class ApiboxSnapshots(BaseSDK):
                 request=utils.get_pydantic_model(
                     request, models.BuildAPIBoxSnapshotRequest
                 ),
-                spec=utils.get_pydantic_model(
-                    spec, Optional[models.CreateApiboxSnapshotSpec]
-                ),
+                spec=utils.get_pydantic_model(spec, Optional[models.Spec]),
             ),
         )
 

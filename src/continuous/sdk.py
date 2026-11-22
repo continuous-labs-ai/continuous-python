@@ -20,9 +20,6 @@ if TYPE_CHECKING:
     from continuous.credentials import Credentials
     from continuous.mcpbox_snapshots import McpboxSnapshots
     from continuous.mcpboxes import Mcpboxes
-    from continuous.simulation_snapshots import SimulationSnapshots
-    from continuous.simulations import Simulations
-    from continuous.simulators import Simulators
     from continuous.webbox_snapshots import WebboxSnapshots
     from continuous.webboxes import Webboxes
 
@@ -40,12 +37,6 @@ class Continuous(BaseSDK):
     r"""Start MCP Boxes from MCP Box Snapshots. Each MCP Box serves its Snapshot's tools over MCP in front of an API Box. Stop, start and delete them."""
     mcpbox_snapshots: "McpboxSnapshots"
     r"""Build MCP Box Snapshots of an MCP server's tools against a ready API Box Snapshot. MCP Boxes serve a ready Snapshot."""
-    simulation_snapshots: "SimulationSnapshots"
-    r"""Deprecated. Use API Box for APIs and Web Box for web apps. Save a running Simulation's state as a Snapshot, create Simulations from it, and rename and delete it."""
-    simulations: "Simulations"
-    r"""Deprecated. Use API Box for APIs and Web Box for web apps. Create Simulations from ready Simulators or Snapshots, then rename, stop, start, and delete them."""
-    simulators: "Simulators"
-    r"""Deprecated. Use API Box for APIs and Web Box for web apps. Build Simulators from OpenAPI, WSDL or GraphQL documents, check or cancel a build, clone Simulators into other workspaces, and rename and delete Simulators."""
     webboxes: "Webboxes"
     r"""Start Web Boxes from Web Box Snapshots. Each Web Box serves its Snapshot's web app at a host of its own, with its own state, in real time. Stop, start and delete them."""
     webbox_snapshots: "WebboxSnapshots"
@@ -56,12 +47,6 @@ class Continuous(BaseSDK):
         "credentials": ("continuous.credentials", "Credentials"),
         "mcpboxes": ("continuous.mcpboxes", "Mcpboxes"),
         "mcpbox_snapshots": ("continuous.mcpbox_snapshots", "McpboxSnapshots"),
-        "simulation_snapshots": (
-            "continuous.simulation_snapshots",
-            "SimulationSnapshots",
-        ),
-        "simulations": ("continuous.simulations", "Simulations"),
-        "simulators": ("continuous.simulators", "Simulators"),
         "webboxes": ("continuous.webboxes", "Webboxes"),
         "webbox_snapshots": ("continuous.webbox_snapshots", "WebboxSnapshots"),
     }

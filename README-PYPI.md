@@ -249,41 +249,6 @@ with Continuous(
 * [start](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxes/README.md#start) - Start MCP Box
 * [stop](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxes/README.md#stop) - Stop MCP Box
 
-### [~~SimulationSnapshots~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulationsnapshots/README.md)
-
-* [~~list_simulation_snapshots~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulationsnapshots/README.md#list_simulation_snapshots) - List Simulation Snapshots :warning: **Deprecated**
-* [~~create_simulation_snapshot~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulationsnapshots/README.md#create_simulation_snapshot) - Create Simulation Snapshot :warning: **Deprecated**
-* [~~delete_simulation_snapshot~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulationsnapshots/README.md#delete_simulation_snapshot) - Delete Simulation Snapshot :warning: **Deprecated**
-* [~~get_simulation_snapshot~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulationsnapshots/README.md#get_simulation_snapshot) - Get Simulation Snapshot :warning: **Deprecated**
-* [~~update_simulation_snapshot~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulationsnapshots/README.md#update_simulation_snapshot) - Update Simulation Snapshot :warning: **Deprecated**
-
-### [~~Simulations~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md)
-
-* [~~list_simulations~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#list_simulations) - List Simulations :warning: **Deprecated**
-* [~~create_simulation~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#create_simulation) - Create Simulation :warning: **Deprecated**
-* [~~delete_simulation~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#delete_simulation) - Delete Simulation :warning: **Deprecated**
-* [~~get_simulation~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#get_simulation) - Get Simulation :warning: **Deprecated**
-* [~~update_simulation~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#update_simulation) - Update Simulation :warning: **Deprecated**
-* [~~create_simulation_advance~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#create_simulation_advance) - Advance Simulation Time :warning: **Deprecated**
-* [~~get_simulation_advance~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#get_simulation_advance) - Get Simulation Clock Advance :warning: **Deprecated**
-* [~~list_simulation_advance_events~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#list_simulation_advance_events) - List Clock Advance Events :warning: **Deprecated**
-* [~~start_simulation~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#start_simulation) - Start Simulation :warning: **Deprecated**
-* [~~list_simulation_steps~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#list_simulation_steps) - List Simulation Steps :warning: **Deprecated**
-* [~~stop_simulation~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#stop_simulation) - Stop Simulation :warning: **Deprecated**
-* [~~get_simulation_token~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#get_simulation_token) - Get Current Simulation Token :warning: **Deprecated**
-* [~~regenerate_simulation_token~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulations/README.md#regenerate_simulation_token) - Regenerate Simulation Token :warning: **Deprecated**
-
-### [~~Simulators~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md)
-
-* [~~list_simulators~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#list_simulators) - List Simulators :warning: **Deprecated**
-* [~~build_simulator~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#build_simulator) - Build Simulator :warning: **Deprecated**
-* [~~delete_simulator~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#delete_simulator) - Delete Simulator :warning: **Deprecated**
-* [~~get_simulator~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#get_simulator) - Get Simulator :warning: **Deprecated**
-* [~~update_simulator~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#update_simulator) - Update Simulator :warning: **Deprecated**
-* [~~cancel_simulator~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#cancel_simulator) - Cancel Simulator Build :warning: **Deprecated**
-* [~~clone_simulator~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#clone_simulator) - Clone Simulator :warning: **Deprecated**
-* [~~resume_simulator~~](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/simulators/README.md#resume_simulator) - Resume Simulator Build :warning: **Deprecated**
-
 ### [WebboxSnapshots](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md)
 
 * [list](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#list) - List Web Box Snapshots
@@ -466,7 +431,7 @@ with Continuous(
 * [`ContinuousError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/continuouserror.py): The base class for HTTP error responses.
   * [`APIError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/apierror.py): Generic error.
 
-<details><summary>Less common errors (6)</summary>
+<details><summary>Less common errors (5)</summary>
 
 <br />
 
@@ -477,12 +442,9 @@ with Continuous(
 
 
 **Inherit from [`ContinuousError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/continuouserror.py)**:
-* [`SimulatorDeleteConflictError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/simulatordeleteconflicterror.py): Conflict. Status code `409`. Applicable to 1 of 81 methods.*
 * [`ResponseValidationError`](https://github.com/continuous-labs-ai/continuous-python/blob/master/./src/continuous/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>
-
-\* Check [the method documentation](https://github.com/continuous-labs-ai/continuous-python/blob/master/#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->

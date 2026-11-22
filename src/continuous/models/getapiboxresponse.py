@@ -27,6 +27,8 @@ class GetAPIBoxResponseTypedDict(TypedDict):
     r"""The API Box's endpoint and token."""
     created_at: datetime
     r"""API Box creation time."""
+    deleted_at: Nullable[datetime]
+    r"""When the Box was deleted, in a list of deleted Boxes; null otherwise."""
     endpoint: str
     r"""Base URL of the API Box's API. Send the API Box's token in X-Continuous-Token."""
     error: Nullable[BoxErrorTypedDict]
@@ -41,7 +43,7 @@ class GetAPIBoxResponseTypedDict(TypedDict):
     name: str
     r"""API Box name. The ID is its identity, and names need not be unique."""
     snapshot_id: str
-    r"""The API Box Snapshot it started from."""
+    r"""The API Box Snapshot it started from; empty for a deleted API Box whose Snapshot is deleted too."""
     status: GetAPIBoxResponseStatus
     r"""starting while its runtime boots; running while it serves requests; stopping while it saves its state; stopped when it holds no runtime. A start resumes the saved state."""
     status_changed_at: datetime
@@ -54,6 +56,9 @@ class GetAPIBoxResponse(BaseModel):
 
     created_at: datetime
     r"""API Box creation time."""
+
+    deleted_at: Nullable[datetime]
+    r"""When the Box was deleted, in a list of deleted Boxes; null otherwise."""
 
     endpoint: str
     r"""Base URL of the API Box's API. Send the API Box's token in X-Continuous-Token."""
@@ -76,7 +81,7 @@ class GetAPIBoxResponse(BaseModel):
     r"""API Box name. The ID is its identity, and names need not be unique."""
 
     snapshot_id: str
-    r"""The API Box Snapshot it started from."""
+    r"""The API Box Snapshot it started from; empty for a deleted API Box whose Snapshot is deleted too."""
 
     status: GetAPIBoxResponseStatus
     r"""starting while its runtime boots; running while it serves requests; stopping while it saves its state; stopped when it holds no runtime. A start resumes the saved state."""

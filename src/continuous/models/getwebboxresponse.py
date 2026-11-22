@@ -27,6 +27,8 @@ class GetWebBoxResponseTypedDict(TypedDict):
     r"""The URL that opens the Web Box's app, or null where the API serves no Web App hosts."""
     created_at: datetime
     r"""Web Box creation time."""
+    deleted_at: Nullable[datetime]
+    r"""When the Box was deleted, in a list of deleted Boxes; null otherwise."""
     error: Nullable[BoxErrorTypedDict]
     id: str
     r"""Web Box ID."""
@@ -39,7 +41,7 @@ class GetWebBoxResponseTypedDict(TypedDict):
     name: str
     r"""Web Box name. The ID is its identity, and names need not be unique."""
     snapshot_id: str
-    r"""The Web Box Snapshot it started from."""
+    r"""The Web Box Snapshot it started from; empty for a deleted Web Box whose Snapshot is deleted too."""
     status: GetWebBoxResponseStatus
     r"""starting while its runtime boots; running while it serves its app; stopping while it saves its state; stopped when it holds no runtime. A start resumes the saved state."""
     status_changed_at: datetime
@@ -54,6 +56,9 @@ class GetWebBoxResponse(BaseModel):
 
     created_at: datetime
     r"""Web Box creation time."""
+
+    deleted_at: Nullable[datetime]
+    r"""When the Box was deleted, in a list of deleted Boxes; null otherwise."""
 
     error: Nullable[BoxError]
 
@@ -73,7 +78,7 @@ class GetWebBoxResponse(BaseModel):
     r"""Web Box name. The ID is its identity, and names need not be unique."""
 
     snapshot_id: str
-    r"""The Web Box Snapshot it started from."""
+    r"""The Web Box Snapshot it started from; empty for a deleted Web Box whose Snapshot is deleted too."""
 
     status: GetWebBoxResponseStatus
     r"""starting while its runtime boots; running while it serves its app; stopping while it saves its state; stopped when it holds no runtime. A start resumes the saved state."""

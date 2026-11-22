@@ -1,14 +1,14 @@
-# SpecificationIssueKind
+# Kind
 
 Whether the input is invalid, unsupported, incomplete, exceeds a build limit, or has no specific diagnosis.
 
 ## Example Usage
 
 ```python
-from continuous.models import SpecificationIssueKind
+from continuous.models import Kind
 
 # Open enum: unrecognized values are captured as UnrecognizedStr
-value: SpecificationIssueKind = "invalid"
+value: Kind = "invalid"
 ```
 
 

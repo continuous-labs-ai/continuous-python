@@ -20,6 +20,7 @@ class Mcpboxes(BaseSDK):
         snapshot_id: Optional[str] = None,
         limit: Optional[int] = 50,
         cursor: Optional[str] = None,
+        deleted: Optional[bool] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -27,12 +28,13 @@ class Mcpboxes(BaseSDK):
     ) -> Optional[models.ListMcpboxesResponseResponse]:
         r"""List MCP Boxes
 
-        Returns the workspace's MCP Boxes, newest first. Results can be filtered by status and Snapshot.
+        Returns the workspace's MCP Boxes, newest first. Results can be filtered by status and Snapshot. With deleted=true, it returns the MCP Boxes deleted in the last 14 days instead.
 
         :param status: Only MCP Boxes with this status.
         :param snapshot_id: Only MCP Boxes that serve this Snapshot.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
+        :param deleted: List only the MCP Boxes deleted in the last 14 days, each with when it was deleted, in place of those not deleted.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -53,6 +55,7 @@ class Mcpboxes(BaseSDK):
             snapshot_id=snapshot_id,
             limit=limit,
             cursor=cursor,
+            deleted=deleted,
         )
 
         req = self._build_request(
@@ -118,6 +121,7 @@ class Mcpboxes(BaseSDK):
                 snapshot_id=snapshot_id,
                 limit=limit,
                 cursor=next_cursor,
+                deleted=deleted,
                 retries=retries,
                 server_url=server_url,
                 timeout_ms=timeout_ms,
@@ -158,6 +162,7 @@ class Mcpboxes(BaseSDK):
         snapshot_id: Optional[str] = None,
         limit: Optional[int] = 50,
         cursor: Optional[str] = None,
+        deleted: Optional[bool] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -165,12 +170,13 @@ class Mcpboxes(BaseSDK):
     ) -> Optional[models.ListMcpboxesResponseResponse]:
         r"""List MCP Boxes
 
-        Returns the workspace's MCP Boxes, newest first. Results can be filtered by status and Snapshot.
+        Returns the workspace's MCP Boxes, newest first. Results can be filtered by status and Snapshot. With deleted=true, it returns the MCP Boxes deleted in the last 14 days instead.
 
         :param status: Only MCP Boxes with this status.
         :param snapshot_id: Only MCP Boxes that serve this Snapshot.
         :param limit: Page size. Values below 1 use 50. Values above 200 use 200.
         :param cursor: Opaque next_cursor value from a previous page.
+        :param deleted: List only the MCP Boxes deleted in the last 14 days, each with when it was deleted, in place of those not deleted.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -191,6 +197,7 @@ class Mcpboxes(BaseSDK):
             snapshot_id=snapshot_id,
             limit=limit,
             cursor=cursor,
+            deleted=deleted,
         )
 
         req = self._build_request_async(
@@ -259,6 +266,7 @@ class Mcpboxes(BaseSDK):
                 snapshot_id=snapshot_id,
                 limit=limit,
                 cursor=next_cursor,
+                deleted=deleted,
                 retries=retries,
                 server_url=server_url,
                 timeout_ms=timeout_ms,
