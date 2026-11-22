@@ -5,15 +5,15 @@ management:
   docVersion: v1
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.6.1
-  configChecksum: e00ce2113bfe9aa97f2ba8658b0810e7
+  releaseVersion: 0.6.2
+  configChecksum: dff3ab09667804dd03063b30a04e8fa6
   repoURL: https://github.com/continuous-labs-ai/continuous-python.git
   installationURL: https://github.com/continuous-labs-ai/continuous-python.git
   published: true
 persistentEdits:
-  generation_id: 90135075-4029-4e4c-bdbd-475145582895
-  pristine_commit_hash: eefab7eac910a26cddb781441fb84936c137c34e
-  pristine_tree_hash: 43b0352f5b7dac656d28b980317f14aea1d96458
+  generation_id: ef42b562-8d82-4eb7-8415-61cf3ffaa6fe
+  pristine_commit_hash: 8ee62731c0632fc43c73d3c9d5f6f81968d9f420
+  pristine_tree_hash: 9281170ebf89334db989f298e9ab9236d064ade4
 features:
   python:
     additionalDependencies: 1.1.0
@@ -778,8 +778,8 @@ trackedFiles:
     pristine_git_object: c00200cfd072e9febac5d6be783da1925d11dac0
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:cadd585b773e6643dd848ca697e53307b55f0c8f
-    pristine_git_object: cf689553dc6dcff185ad31c9ae3969c86c01465c
+    last_write_checksum: sha1:619b8f256af1b83863c24ed20e0821dfdfe5e801
+    pristine_git_object: 9b9f1e7594b1498194666aad5ba7f036ed9e0142
   scripts/prepare_readme.py:
     id: e0c5957a6035
     last_write_checksum: sha1:9340406eac785ac94864007bd24fce0a7e1bc32c
@@ -806,8 +806,8 @@ trackedFiles:
     pristine_git_object: b69410a276bda6430c0077b7c065cceda3278699
   src/continuous/_version.py:
     id: 17542278a0df
-    last_write_checksum: sha1:26faebe50fb035563df10ebf83f7eb5689754c66
-    pristine_git_object: 5cc0e3f8296ad020634e2194cfb46e51f4844192
+    last_write_checksum: sha1:cc3e7a65051f42e6f7b5c519e6edec4be656b703
+    pristine_git_object: c24de7807e0f5128d97a324095fdd49bbd63c300
   src/continuous/apibox_snapshots.py:
     id: 22b1ffcf83df
     last_write_checksum: sha1:f93ef64a36385d1ed99380a13bb86a7eb3186ef6
@@ -3159,29 +3159,3 @@ examples:
         "500":
           application/problem+json: {"code": "<value>", "detail": "<value>", "validation": {"issues": [{"code": "<value>", "kind": "invalid", "location": "<value>", "message": "<value>", "operation": "<value>", "suggestion": "<value>"}]}}
 examplesVersion: 1.0.2
-releaseNotes: |
-  ## Python SDK Changes:
-  * `continuous.apiboxes.save_snapshot()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.apibox_snapshots.list()`:  `response.snapshots[].build.model` **Changed** (Breaking ⚠️)
-  * `continuous.apibox_snapshots.create()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.apibox_snapshots.get()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.apibox_snapshots.update()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.apibox_snapshots.cancel()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.apibox_snapshots.clone()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.apibox_snapshots.resume()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.mcpboxes.save_snapshot()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.mcpbox_snapshots.list()`:  `response.snapshots[].build.model` **Changed** (Breaking ⚠️)
-  * `continuous.mcpbox_snapshots.create()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.mcpbox_snapshots.get()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.mcpbox_snapshots.update()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.mcpbox_snapshots.cancel()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.mcpbox_snapshots.clone()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.mcpbox_snapshots.resume()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.webboxes.save_snapshot()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.webbox_snapshots.list()`:  `response.snapshots[].build.model` **Changed** (Breaking ⚠️)
-  * `continuous.webbox_snapshots.create()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.webbox_snapshots.get()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.webbox_snapshots.update()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.webbox_snapshots.cancel()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.webbox_snapshots.clone()`:  `response.build.model` **Changed** (Breaking ⚠️)
-  * `continuous.webbox_snapshots.resume()`:  `response.build.model` **Changed** (Breaking ⚠️)
