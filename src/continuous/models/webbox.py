@@ -22,6 +22,8 @@ r"""starting while its runtime boots; running while it serves its app; stopping 
 
 
 class WebBoxTypedDict(TypedDict):
+    apibox_id: str
+    r"""The API Box it fronts, which owns its state and runtime and serves the same data over the API; empty for a Web Box with a runtime of its own, and for a deleted Web Box. While that API Box is stopped, the Web Box's URL answers 409."""
     created_at: datetime
     r"""Web Box creation time."""
     deleted_at: Nullable[datetime]
@@ -48,6 +50,9 @@ class WebBoxTypedDict(TypedDict):
 
 
 class WebBox(BaseModel):
+    apibox_id: str
+    r"""The API Box it fronts, which owns its state and runtime and serves the same data over the API; empty for a Web Box with a runtime of its own, and for a deleted Web Box. While that API Box is stopped, the Web Box's URL answers 409."""
+
     created_at: datetime
     r"""Web Box creation time."""
 

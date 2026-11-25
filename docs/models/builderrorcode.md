@@ -1,6 +1,6 @@
 # BuildErrorCode
 
-Stable build error code. live_credential_rejected is a build that waited at QA for its rejected live credentials and was not resumed within 7 days; live_rate_limited is one that waited at QA for the live systems' rate limit and was not resumed within 7 days.
+Stable build error code. live_credential_rejected is a build that waited for its rejected live credentials and was not resumed within 7 days; live_rate_limited is one that waited for the live system's rate limit and was not resumed within 7 days.
 
 ## Example Usage
 

@@ -23,6 +23,8 @@ r"""starting while its runtime boots; running while it serves its app; stopping 
 
 
 class GetWebBoxResponseTypedDict(TypedDict):
+    apibox_id: str
+    r"""The API Box it fronts, which owns its state and runtime and serves the same data over the API; empty for a Web Box with a runtime of its own, and for a deleted Web Box. While that API Box is stopped, the Web Box's URL answers 409."""
     connection: Nullable[WebBoxConnectionTypedDict]
     r"""The URL that opens the Web Box's app, or null where the API serves no Web App hosts."""
     created_at: datetime
@@ -51,6 +53,9 @@ class GetWebBoxResponseTypedDict(TypedDict):
 
 
 class GetWebBoxResponse(BaseModel):
+    apibox_id: str
+    r"""The API Box it fronts, which owns its state and runtime and serves the same data over the API; empty for a Web Box with a runtime of its own, and for a deleted Web Box. While that API Box is stopped, the Web Box's URL answers 409."""
+
     connection: Nullable[WebBoxConnection]
     r"""The URL that opens the Web Box's app, or null where the API serves no Web App hosts."""
 

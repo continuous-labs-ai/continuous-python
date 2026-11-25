@@ -315,7 +315,7 @@ class Webboxes(BaseSDK):
     ) -> models.CreateWebBoxResponse:
         r"""Create Web Box
 
-        Creates a Web Box from a ready Web Box Snapshot and starts it. It returns at once with status starting; get the Web Box until it is running. Open its url in a browser: the app is served at a host of its own, open to anyone with the URL. Each Web Box has its own state, and runs in real time.
+        Creates a Web Box from a ready Web Box Snapshot and starts it. It returns at once with status starting; get the Web Box until it is running. Open its url in a browser: the app is served at a host of its own, open to anyone with the URL. Each Web Box has its own state, and runs in real time. From a Snapshot built on an API Box Snapshot, it also creates a new API Box, named in apibox_id, and the Web Box fronts it: the API Box owns the state and the runtime, and the web app and the API read and write the same data. Each of the two Boxes counts toward the Box quota.
 
         :param snapshot_id: A ready Web Box Snapshot of the workspace or the catalog.
         :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the same Web Box. The same key with a different request returns 409 idempotency_conflict.
@@ -433,7 +433,7 @@ class Webboxes(BaseSDK):
     ) -> models.CreateWebBoxResponse:
         r"""Create Web Box
 
-        Creates a Web Box from a ready Web Box Snapshot and starts it. It returns at once with status starting; get the Web Box until it is running. Open its url in a browser: the app is served at a host of its own, open to anyone with the URL. Each Web Box has its own state, and runs in real time.
+        Creates a Web Box from a ready Web Box Snapshot and starts it. It returns at once with status starting; get the Web Box until it is running. Open its url in a browser: the app is served at a host of its own, open to anyone with the URL. Each Web Box has its own state, and runs in real time. From a Snapshot built on an API Box Snapshot, it also creates a new API Box, named in apibox_id, and the Web Box fronts it: the API Box owns the state and the runtime, and the web app and the API read and write the same data. Each of the two Boxes counts toward the Box quota.
 
         :param snapshot_id: A ready Web Box Snapshot of the workspace or the catalog.
         :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the same Web Box. The same key with a different request returns 409 idempotency_conflict.
@@ -547,7 +547,7 @@ class Webboxes(BaseSDK):
     ):
         r"""Delete Web Box
 
-        Deletes a Web Box, running or stopped, with its state. Its runtime is released after the response.
+        Deletes a Web Box, running or stopped, with its state. Its runtime is released after the response. The API Box that a Web Box fronts stays, with its state.
 
         :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
@@ -644,7 +644,7 @@ class Webboxes(BaseSDK):
     ):
         r"""Delete Web Box
 
-        Deletes a Web Box, running or stopped, with its state. Its runtime is released after the response.
+        Deletes a Web Box, running or stopped, with its state. Its runtime is released after the response. The API Box that a Web Box fronts stays, with its state.
 
         :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
@@ -1170,7 +1170,7 @@ class Webboxes(BaseSDK):
     ) -> models.WebBoxSnapshot:
         r"""Save Web Box as Snapshot
 
-        Saves a running Web Box's app and current state as a Web Box Snapshot, ready when the response returns. The Web Box keeps running, and a paused one is woken. Web Boxes created from the Snapshot start with the saved state instead of a new workspace, so they refuse include_sample_data. The Snapshot outlives the Web Box. A starting Web Box returns 409 webbox_starting; a stopping or stopped one returns 409 webbox_stopped; one whose runtime cannot save its state returns 409 webbox_rebuild_required.
+        Saves a running Web Box's app and current state as a Web Box Snapshot, ready when the response returns. The Web Box keeps running, and a paused one is woken. Web Boxes created from the Snapshot start with the saved state instead of a new workspace, so they refuse include_sample_data. The Snapshot outlives the Web Box. A starting Web Box returns 409 webbox_starting; a stopping or stopped one returns 409 webbox_stopped; one whose runtime cannot save its state returns 409 webbox_rebuild_required. A Web Box that fronts an API Box saves a pair, both ready or neither: a new API Box Snapshot with the API Box's current state, and the Web Box Snapshot, whose apibox_snapshot_id names it. The API Box must be running: a starting one returns 409 apibox_starting, and a stopping or stopped one 409 apibox_stopped. A Web Box created from the Web Box Snapshot starts with the saved state.
 
         :param id: ID of the Box to save.
         :param idempotency_key: Optional key for retrying this save safely. A retry with the same key and request returns the Snapshot the first save created. The same key with a different request returns 409 idempotency_conflict.
@@ -1289,7 +1289,7 @@ class Webboxes(BaseSDK):
     ) -> models.WebBoxSnapshot:
         r"""Save Web Box as Snapshot
 
-        Saves a running Web Box's app and current state as a Web Box Snapshot, ready when the response returns. The Web Box keeps running, and a paused one is woken. Web Boxes created from the Snapshot start with the saved state instead of a new workspace, so they refuse include_sample_data. The Snapshot outlives the Web Box. A starting Web Box returns 409 webbox_starting; a stopping or stopped one returns 409 webbox_stopped; one whose runtime cannot save its state returns 409 webbox_rebuild_required.
+        Saves a running Web Box's app and current state as a Web Box Snapshot, ready when the response returns. The Web Box keeps running, and a paused one is woken. Web Boxes created from the Snapshot start with the saved state instead of a new workspace, so they refuse include_sample_data. The Snapshot outlives the Web Box. A starting Web Box returns 409 webbox_starting; a stopping or stopped one returns 409 webbox_stopped; one whose runtime cannot save its state returns 409 webbox_rebuild_required. A Web Box that fronts an API Box saves a pair, both ready or neither: a new API Box Snapshot with the API Box's current state, and the Web Box Snapshot, whose apibox_snapshot_id names it. The API Box must be running: a starting one returns 409 apibox_starting, and a stopping or stopped one 409 apibox_stopped. A Web Box created from the Web Box Snapshot starts with the saved state.
 
         :param id: ID of the Box to save.
         :param idempotency_key: Optional key for retrying this save safely. A retry with the same key and request returns the Snapshot the first save created. The same key with a different request returns 409 idempotency_conflict.
@@ -1405,7 +1405,7 @@ class Webboxes(BaseSDK):
     ) -> models.WebBox:
         r"""Start Web Box
 
-        Starts a stopped Web Box from the state its stop saved, and returns at once with status starting. A running, starting or stopping Web Box returns 409 webbox_not_stopped.
+        Starts a stopped Web Box from the state its stop saved, and returns at once with status starting. A running, starting or stopping Web Box returns 409 webbox_not_stopped. A Web Box that fronts an API Box only opens its URL again: start the API Box on its own.
 
         :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
@@ -1504,7 +1504,7 @@ class Webboxes(BaseSDK):
     ) -> models.WebBox:
         r"""Start Web Box
 
-        Starts a stopped Web Box from the state its stop saved, and returns at once with status starting. A running, starting or stopping Web Box returns 409 webbox_not_stopped.
+        Starts a stopped Web Box from the state its stop saved, and returns at once with status starting. A running, starting or stopping Web Box returns 409 webbox_not_stopped. A Web Box that fronts an API Box only opens its URL again: start the API Box on its own.
 
         :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
@@ -1874,7 +1874,7 @@ class Webboxes(BaseSDK):
     ) -> models.WebBox:
         r"""Stop Web Box
 
-        Stops a running Web Box: it saves its state, and releases its runtime. It returns at once with status stopping; get the Web Box until it is stopped. A stopped Web Box is returned unchanged; a starting one returns 409 webbox_starting.
+        Stops a running Web Box: it saves its state, and releases its runtime. It returns at once with status stopping; get the Web Box until it is stopped. A stopped Web Box is returned unchanged; a starting one returns 409 webbox_starting. A Web Box that fronts an API Box only closes its URL: the API Box keeps running, with the state.
 
         :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
@@ -1973,7 +1973,7 @@ class Webboxes(BaseSDK):
     ) -> models.WebBox:
         r"""Stop Web Box
 
-        Stops a running Web Box: it saves its state, and releases its runtime. It returns at once with status stopping; get the Web Box until it is stopped. A stopped Web Box is returned unchanged; a starting one returns 409 webbox_starting.
+        Stops a running Web Box: it saves its state, and releases its runtime. It returns at once with status stopping; get the Web Box until it is stopped. A stopped Web Box is returned unchanged; a starting one returns 409 webbox_starting. A Web Box that fronts an API Box only closes its URL: the API Box keeps running, with the state.
 
         :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method

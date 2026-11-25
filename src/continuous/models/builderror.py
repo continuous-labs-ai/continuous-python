@@ -21,7 +21,7 @@ BuildErrorCode = Union[
     ],
     UnrecognizedStr,
 ]
-r"""Stable build error code. live_credential_rejected is a build that waited at QA for its rejected live credentials and was not resumed within 7 days; live_rate_limited is one that waited at QA for the live systems' rate limit and was not resumed within 7 days."""
+r"""Stable build error code. live_credential_rejected is a build that waited for its rejected live credentials and was not resumed within 7 days; live_rate_limited is one that waited for the live system's rate limit and was not resumed within 7 days."""
 
 
 Reason = Union[
@@ -41,7 +41,7 @@ class BuildErrorTypedDict(TypedDict):
     agent_message: Nullable[str]
     r"""Plain-text explanation from the build agent when it could not continue, or the problems the check of the build's index found. At most 4096 UTF-8 bytes."""
     code: BuildErrorCode
-    r"""Stable build error code. live_credential_rejected is a build that waited at QA for its rejected live credentials and was not resumed within 7 days; live_rate_limited is one that waited at QA for the live systems' rate limit and was not resumed within 7 days."""
+    r"""Stable build error code. live_credential_rejected is a build that waited for its rejected live credentials and was not resumed within 7 days; live_rate_limited is one that waited for the live system's rate limit and was not resumed within 7 days."""
     detail: str
     r"""Safe human-readable error detail."""
     reason: Nullable[Reason]
@@ -54,7 +54,7 @@ class BuildError(BaseModel):
     r"""Plain-text explanation from the build agent when it could not continue, or the problems the check of the build's index found. At most 4096 UTF-8 bytes."""
 
     code: BuildErrorCode
-    r"""Stable build error code. live_credential_rejected is a build that waited at QA for its rejected live credentials and was not resumed within 7 days; live_rate_limited is one that waited at QA for the live systems' rate limit and was not resumed within 7 days."""
+    r"""Stable build error code. live_credential_rejected is a build that waited for its rejected live credentials and was not resumed within 7 days; live_rate_limited is one that waited for the live system's rate limit and was not resumed within 7 days."""
 
     detail: str
     r"""Safe human-readable error detail."""

@@ -11,38 +11,39 @@ Type = Union[
     Literal[
         "live_credentials",
         "live_rate_limit",
+        "unavailable",
         "time_limit",
     ],
     UnrecognizedStr,
 ]
-r"""live_credentials while QA waits for the credentials it names to be refreshed; live_rate_limit while QA waits for the live systems' rate limit to reset; time_limit while the build waits for a resume that adds time with add_seconds."""
+r"""live_credentials while the build waits for the credentials it names to be refreshed; live_rate_limit while it waits for the live system's rate limit to reset; unavailable while it waits for a live system it could not reach; time_limit while it waits for a resume that adds time with add_seconds."""
 
 
 class BuildWaitingTypedDict(TypedDict):
     credential_ids: List[str]
-    r"""The credentials to refresh with PATCH /v1/credentials/{id} before resuming the build. Empty for live_rate_limit and time_limit."""
+    r"""The credentials to refresh with PATCH /v1/credentials/{id} before resuming the build. Empty for live_rate_limit, unavailable and time_limit."""
     deadline: datetime
-    r"""When the wait ends, 7 days after it began: a build not resumed by then fails with error code live_credential_rejected for live_credentials, live_rate_limited for live_rate_limit, or build_failed with reason time_limit for time_limit. The wait does not count toward the build's time limit."""
+    r"""When the wait ends, 7 days after it began: a build not resumed by then fails with error code live_credential_rejected for live_credentials, live_rate_limited for live_rate_limit, build_failed with reason service_unavailable for unavailable, or build_failed with reason time_limit for time_limit. The wait does not count toward the build's time limit."""
     reason: str
-    r"""Why the build waits: for live_credentials, the status and detail of the live reply that rejected QA's authenticated read; for live_rate_limit, of the reply that rate limited QA's calls."""
+    r"""Why the build waits: for live_credentials, the status and detail of the live reply that rejected the build's credentials; for live_rate_limit, of the reply that rate limited its calls; for unavailable, of what the build could not reach."""
     since: datetime
     r"""When the build started waiting."""
     type: Type
-    r"""live_credentials while QA waits for the credentials it names to be refreshed; live_rate_limit while QA waits for the live systems' rate limit to reset; time_limit while the build waits for a resume that adds time with add_seconds."""
+    r"""live_credentials while the build waits for the credentials it names to be refreshed; live_rate_limit while it waits for the live system's rate limit to reset; unavailable while it waits for a live system it could not reach; time_limit while it waits for a resume that adds time with add_seconds."""
 
 
 class BuildWaiting(BaseModel):
     credential_ids: List[str]
-    r"""The credentials to refresh with PATCH /v1/credentials/{id} before resuming the build. Empty for live_rate_limit and time_limit."""
+    r"""The credentials to refresh with PATCH /v1/credentials/{id} before resuming the build. Empty for live_rate_limit, unavailable and time_limit."""
 
     deadline: datetime
-    r"""When the wait ends, 7 days after it began: a build not resumed by then fails with error code live_credential_rejected for live_credentials, live_rate_limited for live_rate_limit, or build_failed with reason time_limit for time_limit. The wait does not count toward the build's time limit."""
+    r"""When the wait ends, 7 days after it began: a build not resumed by then fails with error code live_credential_rejected for live_credentials, live_rate_limited for live_rate_limit, build_failed with reason service_unavailable for unavailable, or build_failed with reason time_limit for time_limit. The wait does not count toward the build's time limit."""
 
     reason: str
-    r"""Why the build waits: for live_credentials, the status and detail of the live reply that rejected QA's authenticated read; for live_rate_limit, of the reply that rate limited QA's calls."""
+    r"""Why the build waits: for live_credentials, the status and detail of the live reply that rejected the build's credentials; for live_rate_limit, of the reply that rate limited its calls; for unavailable, of what the build could not reach."""
 
     since: datetime
     r"""When the build started waiting."""
 
     type: Type
-    r"""live_credentials while QA waits for the credentials it names to be refreshed; live_rate_limit while QA waits for the live systems' rate limit to reset; time_limit while the build waits for a resume that adds time with add_seconds."""
+    r"""live_credentials while the build waits for the credentials it names to be refreshed; live_rate_limit while it waits for the live system's rate limit to reset; unavailable while it waits for a live system it could not reach; time_limit while it waits for a resume that adds time with add_seconds."""

@@ -547,7 +547,7 @@ class Apiboxes(BaseSDK):
     ):
         r"""Delete API Box
 
-        Deletes an API Box, running or stopped, with its state. Its runtime is released after the response. An API Box that MCP Boxes front returns 409 apibox_in_use; delete them first.
+        Deletes an API Box, running or stopped, with its state. Its runtime is released after the response. An API Box that MCP Boxes or a Web Box front returns 409 apibox_in_use; delete them first.
 
         :param id: API Box ID.
         :param retries: Override the default retry configuration for this method
@@ -646,7 +646,7 @@ class Apiboxes(BaseSDK):
     ):
         r"""Delete API Box
 
-        Deletes an API Box, running or stopped, with its state. Its runtime is released after the response. An API Box that MCP Boxes front returns 409 apibox_in_use; delete them first.
+        Deletes an API Box, running or stopped, with its state. Its runtime is released after the response. An API Box that MCP Boxes or a Web Box front returns 409 apibox_in_use; delete them first.
 
         :param id: API Box ID.
         :param retries: Override the default retry configuration for this method
