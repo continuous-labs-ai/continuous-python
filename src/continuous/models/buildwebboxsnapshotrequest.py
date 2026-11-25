@@ -18,6 +18,8 @@ r"""Model that builds and reviews the Snapshot. Omission means combined without 
 
 
 class BuildWebBoxSnapshotRequestTypedDict(TypedDict):
+    apibox_snapshot_id: NotRequired[str]
+    r"""A ready API Box Snapshot of the workspace or the catalog to build the web app on. The build starts from its source and spec, keeps its API, and adds the app on the same state. Web Boxes created from the result front an API Box that serves that API. Not allowed with parent_id: a build on a parent keeps the parent's."""
     credential_ids: NotRequired[List[str]]
     r"""Workspace credentials: exactly one login for the vendor's web app, whose saved sign-in the builder and QA use on the live app, and up to four others with a base_url that they can call real systems with. Each must belong to the workspace. Required without parent_id. QA may create test objects in the live app; use a sandbox or test account."""
     instructions: NotRequired[str]
@@ -35,6 +37,9 @@ class BuildWebBoxSnapshotRequestTypedDict(TypedDict):
 
 
 class BuildWebBoxSnapshotRequest(BaseModel):
+    apibox_snapshot_id: Optional[str] = None
+    r"""A ready API Box Snapshot of the workspace or the catalog to build the web app on. The build starts from its source and spec, keeps its API, and adds the app on the same state. Web Boxes created from the result front an API Box that serves that API. Not allowed with parent_id: a build on a parent keeps the parent's."""
+
     credential_ids: Optional[List[str]] = None
     r"""Workspace credentials: exactly one login for the vendor's web app, whose saved sign-in the builder and QA use on the live app, and up to four others with a base_url that they can call real systems with. Each must belong to the workspace. Required without parent_id. QA may create test objects in the live app; use a sandbox or test account."""
 
@@ -60,6 +65,7 @@ class BuildWebBoxSnapshotRequest(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
+                "apibox_snapshot_id",
                 "credential_ids",
                 "instructions",
                 "model",

@@ -327,7 +327,7 @@ class WebboxSnapshots(BaseSDK):
     ) -> models.CreateWebboxSnapshotResponse:
         r"""Create Web Box Snapshot
 
-        Starts an asynchronous build and returns the Web Box Snapshot with status pending. Get the Snapshot until its status is ready, failed or canceled; Web Boxes start from a ready one. The build runs in real time: the builder and QA use the vendor's live web app through its login credential, and the built app has no simulated clock. Builds of every kind share one queue and the daily quota. Send multipart/form-data with a JSON part named request and optional file parts named document with vendor documentation. To build on a ready Snapshot, set parent_id.
+        Starts an asynchronous build and returns the Web Box Snapshot with status pending. Get the Snapshot until its status is ready, failed or canceled; Web Boxes start from a ready one. The build runs in real time: the builder and QA use the vendor's live web app through its login credential, and the built app has no simulated clock. Builds of every kind share one queue and the daily quota. Send multipart/form-data with a JSON part named request and optional file parts named document with vendor documentation. To build on a ready Snapshot, set parent_id. To build the app on an API Box Snapshot's API and state, set apibox_snapshot_id.
 
         :param request: The request object to send.
         :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource. The key is recorded before the build starts, so a retry never starts a second build.
@@ -464,7 +464,7 @@ class WebboxSnapshots(BaseSDK):
     ) -> models.CreateWebboxSnapshotResponse:
         r"""Create Web Box Snapshot
 
-        Starts an asynchronous build and returns the Web Box Snapshot with status pending. Get the Snapshot until its status is ready, failed or canceled; Web Boxes start from a ready one. The build runs in real time: the builder and QA use the vendor's live web app through its login credential, and the built app has no simulated clock. Builds of every kind share one queue and the daily quota. Send multipart/form-data with a JSON part named request and optional file parts named document with vendor documentation. To build on a ready Snapshot, set parent_id.
+        Starts an asynchronous build and returns the Web Box Snapshot with status pending. Get the Snapshot until its status is ready, failed or canceled; Web Boxes start from a ready one. The build runs in real time: the builder and QA use the vendor's live web app through its login credential, and the built app has no simulated clock. Builds of every kind share one queue and the daily quota. Send multipart/form-data with a JSON part named request and optional file parts named document with vendor documentation. To build on a ready Snapshot, set parent_id. To build the app on an API Box Snapshot's API and state, set apibox_snapshot_id.
 
         :param request: The request object to send.
         :param idempotency_key: Optional key for retrying this create safely. A retry with the same key and request returns the original result with its status; the same key with a different request returns 409 idempotency_conflict. Without a key, each request creates a new resource. The key is recorded before the build starts, so a retry never starts a second build.
@@ -591,7 +591,7 @@ class WebboxSnapshots(BaseSDK):
     ):
         r"""Delete Web Box Snapshot
 
-        Deletes a Web Box Snapshot. A build that is still pending or building is canceled first. A Snapshot that Web Boxes started from returns 409 webbox_snapshot_in_use; delete those Web Boxes first. While a build that names it as parent_id is pending or building, it returns 409 webbox_snapshot_parent_in_use; retry after the build finishes. Catalog Snapshots cannot be deleted.
+        Deletes a Web Box Snapshot. A build that is still pending or building is canceled first. A Snapshot that Web Boxes started from, or whose image API Boxes run, returns 409 webbox_snapshot_in_use; delete those Boxes first. While a build that names it as parent_id is pending or building, it returns 409 webbox_snapshot_parent_in_use; retry after the build finishes. Catalog Snapshots cannot be deleted.
 
         :param id: Web Box Snapshot ID.
         :param retries: Override the default retry configuration for this method
@@ -690,7 +690,7 @@ class WebboxSnapshots(BaseSDK):
     ):
         r"""Delete Web Box Snapshot
 
-        Deletes a Web Box Snapshot. A build that is still pending or building is canceled first. A Snapshot that Web Boxes started from returns 409 webbox_snapshot_in_use; delete those Web Boxes first. While a build that names it as parent_id is pending or building, it returns 409 webbox_snapshot_parent_in_use; retry after the build finishes. Catalog Snapshots cannot be deleted.
+        Deletes a Web Box Snapshot. A build that is still pending or building is canceled first. A Snapshot that Web Boxes started from, or whose image API Boxes run, returns 409 webbox_snapshot_in_use; delete those Boxes first. While a build that names it as parent_id is pending or building, it returns 409 webbox_snapshot_parent_in_use; retry after the build finishes. Catalog Snapshots cannot be deleted.
 
         :param id: Web Box Snapshot ID.
         :param retries: Override the default retry configuration for this method
@@ -1416,7 +1416,7 @@ class WebboxSnapshots(BaseSDK):
     ) -> models.WebBoxSnapshot:
         r"""Clone Web Box Snapshot
 
-        Creates a ready copy of a ready Web Box Snapshot in another workspace, without a build. The clone has a new ID and the source's artifact, documents and saved state; the source is unchanged. The clone records no credentials, since they belong to the source workspace, and no parent or source Snapshot. The source is the caller's workspace. An API key may clone into any other workspace of its organization.
+        Creates a ready copy of a ready Web Box Snapshot in another workspace, without a build. The clone has a new ID and the source's artifact, documents and saved state; the source is unchanged. The clone records no credentials, since they belong to the source workspace, and no parent or source Snapshot. A Snapshot built on an API Box Snapshot of the source workspace is cloned with a clone of that Snapshot, which the clone's apibox_snapshot_id names; one built on a catalog API Box Snapshot keeps it. The source is the caller's workspace. An API key may clone into any other workspace of its organization.
 
         :param id: Source Snapshot ID.
         :param target_workspace_id: Workspace that receives the clone. It must differ from the source workspace.
@@ -1531,7 +1531,7 @@ class WebboxSnapshots(BaseSDK):
     ) -> models.WebBoxSnapshot:
         r"""Clone Web Box Snapshot
 
-        Creates a ready copy of a ready Web Box Snapshot in another workspace, without a build. The clone has a new ID and the source's artifact, documents and saved state; the source is unchanged. The clone records no credentials, since they belong to the source workspace, and no parent or source Snapshot. The source is the caller's workspace. An API key may clone into any other workspace of its organization.
+        Creates a ready copy of a ready Web Box Snapshot in another workspace, without a build. The clone has a new ID and the source's artifact, documents and saved state; the source is unchanged. The clone records no credentials, since they belong to the source workspace, and no parent or source Snapshot. A Snapshot built on an API Box Snapshot of the source workspace is cloned with a clone of that Snapshot, which the clone's apibox_snapshot_id names; one built on a catalog API Box Snapshot keeps it. The source is the caller's workspace. An API key may clone into any other workspace of its organization.
 
         :param id: Source Snapshot ID.
         :param target_workspace_id: Workspace that receives the clone. It must differ from the source workspace.
@@ -1644,7 +1644,7 @@ class WebboxSnapshots(BaseSDK):
     ) -> models.WebBoxSnapshot:
         r"""Resume Web Box Snapshot build
 
-        Resumes a build that waits, as build.waiting reports: at QA because its live credentials were rejected or the live systems rate limited its calls, or for more time after it used its time limit. For a credential wait, refresh each credential it names with PATCH /v1/credentials/{id} first: QA then runs again with their current values, and the build goes on to finalize. For a rate-limit wait, resume once the rate limit resets: QA then runs again. For a wait for more time, send add_seconds: the build continues where it stopped, with that much time from the resume. Returns the Snapshot, still building. A wait does not count toward the build's time limit: a build resumed from a QA wait has the time it had left when it began waiting. A build that is not waiting returns 409 webbox_snapshot_not_waiting.
+        Resumes a build that waits, as build.waiting reports: because its live system rejected its credentials, rate limited its calls or could not be reached, or for more time after it used its time limit. For a credential wait, refresh each credential it names with PATCH /v1/credentials/{id} first. For a rate-limit wait, resume once the rate limit resets. For an unavailable wait, resume once the live system can be reached. The build then checks the live system again and continues where it stopped, or waits again if the live system still fails. For a wait for more time, send add_seconds: the build continues where it stopped, with that much time from the resume. Returns the Snapshot, still building. A wait does not count toward the build's time limit: a build resumed from a live wait has the time it had left when it began waiting. A build that is not waiting returns 409 webbox_snapshot_not_waiting.
 
         :param id: Snapshot ID.
         :param add_seconds: Seconds to add to a build that waits for more time, from 1 to the largest timeout_seconds a build request accepts. Required for a build whose build.waiting.type is time_limit, and refused for any other wait. The build's time limit with every addition is at most 259200 seconds (72 hours).
@@ -1757,7 +1757,7 @@ class WebboxSnapshots(BaseSDK):
     ) -> models.WebBoxSnapshot:
         r"""Resume Web Box Snapshot build
 
-        Resumes a build that waits, as build.waiting reports: at QA because its live credentials were rejected or the live systems rate limited its calls, or for more time after it used its time limit. For a credential wait, refresh each credential it names with PATCH /v1/credentials/{id} first: QA then runs again with their current values, and the build goes on to finalize. For a rate-limit wait, resume once the rate limit resets: QA then runs again. For a wait for more time, send add_seconds: the build continues where it stopped, with that much time from the resume. Returns the Snapshot, still building. A wait does not count toward the build's time limit: a build resumed from a QA wait has the time it had left when it began waiting. A build that is not waiting returns 409 webbox_snapshot_not_waiting.
+        Resumes a build that waits, as build.waiting reports: because its live system rejected its credentials, rate limited its calls or could not be reached, or for more time after it used its time limit. For a credential wait, refresh each credential it names with PATCH /v1/credentials/{id} first. For a rate-limit wait, resume once the rate limit resets. For an unavailable wait, resume once the live system can be reached. The build then checks the live system again and continues where it stopped, or waits again if the live system still fails. For a wait for more time, send add_seconds: the build continues where it stopped, with that much time from the resume. Returns the Snapshot, still building. A wait does not count toward the build's time limit: a build resumed from a live wait has the time it had left when it began waiting. A build that is not waiting returns 409 webbox_snapshot_not_waiting.
 
         :param id: Snapshot ID.
         :param add_seconds: Seconds to add to a build that waits for more time, from 1 to the largest timeout_seconds a build request accepts. Required for a build whose build.waiting.type is time_limit, and refused for any other wait. The build's time limit with every addition is at most 259200 seconds (72 hours).

@@ -8,13 +8,18 @@ from typing_extensions import TypedDict
 class APIBoxConnectionTypedDict(TypedDict):
     endpoint: str
     r"""Base URL of the API Box's API."""
+    private_endpoint: str
+    r"""Base URL of the private API that the web app calls, for an API Box of a pair: one paired with a Web Box, or started from the API Box Snapshot of a pair saved from a Web Box, while that pair's Web Box Snapshot exists. It takes the same token and never reaches an operation of the API. Send the path the web app sends: its own paths as they are, and a call to another host under /_origin/{host}/. Empty for any other API Box."""
     token: str
-    r"""The API Box's token. Send it in X-Continuous-Token on each request to the endpoint."""
+    r"""The API Box's token. Send it in X-Continuous-Token on each request to either endpoint."""
 
 
 class APIBoxConnection(BaseModel):
     endpoint: str
     r"""Base URL of the API Box's API."""
 
+    private_endpoint: str
+    r"""Base URL of the private API that the web app calls, for an API Box of a pair: one paired with a Web Box, or started from the API Box Snapshot of a pair saved from a Web Box, while that pair's Web Box Snapshot exists. It takes the same token and never reaches an operation of the API. Send the path the web app sends: its own paths as they are, and a call to another host under /_origin/{host}/. Empty for any other API Box."""
+
     token: str
-    r"""The API Box's token. Send it in X-Continuous-Token on each request to the endpoint."""
+    r"""The API Box's token. Send it in X-Continuous-Token on each request to either endpoint."""
