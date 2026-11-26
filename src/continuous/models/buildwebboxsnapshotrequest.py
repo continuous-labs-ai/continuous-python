@@ -33,7 +33,7 @@ class BuildWebBoxSnapshotRequestTypedDict(TypedDict):
     review_rounds: NotRequired[int]
     r"""Review rounds, from 1 to 10. Omission means 1 without parent_id and the parent's review rounds with it. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
     timeout_seconds: NotRequired[int]
-    r"""Time limit for generation and validation in seconds, from 1 to 172800. Defaults to 28800 (eight hours). Excludes queue wait, finalization, and any wait for the requester. Retries share the same deadline."""
+    r"""Time limit for generation and validation in seconds, from 1 to 172800. Defaults to 43200 (twelve hours). Excludes queue wait, finalization, and any wait for the requester. Retries share the same deadline."""
 
 
 class BuildWebBoxSnapshotRequest(BaseModel):
@@ -58,8 +58,8 @@ class BuildWebBoxSnapshotRequest(BaseModel):
     review_rounds: Optional[int] = None
     r"""Review rounds, from 1 to 10. Omission means 1 without parent_id and the parent's review rounds with it. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
 
-    timeout_seconds: Optional[int] = 28800
-    r"""Time limit for generation and validation in seconds, from 1 to 172800. Defaults to 28800 (eight hours). Excludes queue wait, finalization, and any wait for the requester. Retries share the same deadline."""
+    timeout_seconds: Optional[int] = 43200
+    r"""Time limit for generation and validation in seconds, from 1 to 172800. Defaults to 43200 (twelve hours). Excludes queue wait, finalization, and any wait for the requester. Retries share the same deadline."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
