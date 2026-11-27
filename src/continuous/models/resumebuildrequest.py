@@ -10,15 +10,20 @@ from typing_extensions import NotRequired, TypedDict
 class ResumeBuildRequestTypedDict(TypedDict):
     add_seconds: NotRequired[int]
     r"""Seconds to add to a build that waits for more time, from 1 to the largest timeout_seconds a build request accepts. Required for a build whose build.waiting.type is time_limit, and refused for any other wait. The build's time limit with every addition is at most 259200 seconds (72 hours)."""
+    message: NotRequired[str]
+    r"""A message for the builder, such as what changed while the build waited. The builder reads it once, at its next turn boundary; reviewers, QA and research never read it. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
 
 
 class ResumeBuildRequest(BaseModel):
     add_seconds: Optional[int] = None
     r"""Seconds to add to a build that waits for more time, from 1 to the largest timeout_seconds a build request accepts. Required for a build whose build.waiting.type is time_limit, and refused for any other wait. The build's time limit with every addition is at most 259200 seconds (72 hours)."""
 
+    message: Optional[str] = None
+    r"""A message for the builder, such as what changed while the build waited. The builder reads it once, at its next turn boundary; reviewers, QA and research never read it. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["add_seconds"])
+        optional_fields = set(["add_seconds", "message"])
         serialized = handler(self)
         m = {}
 

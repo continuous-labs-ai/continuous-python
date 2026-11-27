@@ -305,6 +305,18 @@ if TYPE_CHECKING:
         MCPBoxSnapshotStatus,
         MCPBoxSnapshotTypedDict,
     )
+    from .pause_apibox_snapshotop import (
+        PauseApiboxSnapshotRequest,
+        PauseApiboxSnapshotRequestTypedDict,
+    )
+    from .pause_mcpbox_snapshotop import (
+        PauseMcpboxSnapshotRequest,
+        PauseMcpboxSnapshotRequestTypedDict,
+    )
+    from .pause_webbox_snapshotop import (
+        PauseWebboxSnapshotRequest,
+        PauseWebboxSnapshotRequestTypedDict,
+    )
     from .resume_apibox_snapshotop import (
         ResumeApiboxSnapshotRequest,
         ResumeApiboxSnapshotRequestTypedDict,
@@ -634,6 +646,12 @@ __all__ = [
     "MCPBoxSnapshotTypedDict",
     "MCPBoxStatus",
     "MCPBoxTypedDict",
+    "PauseApiboxSnapshotRequest",
+    "PauseApiboxSnapshotRequestTypedDict",
+    "PauseMcpboxSnapshotRequest",
+    "PauseMcpboxSnapshotRequestTypedDict",
+    "PauseWebboxSnapshotRequest",
+    "PauseWebboxSnapshotRequestTypedDict",
     "Reason",
     "ResumeApiboxSnapshotRequest",
     "ResumeApiboxSnapshotRequestTypedDict",
@@ -941,6 +959,12 @@ _dynamic_imports: dict[str, str] = {
     "MCPBoxSnapshotSource": ".mcpboxsnapshot",
     "MCPBoxSnapshotStatus": ".mcpboxsnapshot",
     "MCPBoxSnapshotTypedDict": ".mcpboxsnapshot",
+    "PauseApiboxSnapshotRequest": ".pause_apibox_snapshotop",
+    "PauseApiboxSnapshotRequestTypedDict": ".pause_apibox_snapshotop",
+    "PauseMcpboxSnapshotRequest": ".pause_mcpbox_snapshotop",
+    "PauseMcpboxSnapshotRequestTypedDict": ".pause_mcpbox_snapshotop",
+    "PauseWebboxSnapshotRequest": ".pause_webbox_snapshotop",
+    "PauseWebboxSnapshotRequestTypedDict": ".pause_webbox_snapshotop",
     "ResumeApiboxSnapshotRequest": ".resume_apibox_snapshotop",
     "ResumeApiboxSnapshotRequestTypedDict": ".resume_apibox_snapshotop",
     "ResumeMcpboxSnapshotRequest": ".resume_mcpbox_snapshotop",

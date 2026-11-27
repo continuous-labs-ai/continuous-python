@@ -13,6 +13,7 @@ Build Web Box Snapshots from a vendor's live web app, or use the catalog's. Web 
 * [update](#update) - Update Web Box Snapshot
 * [cancel](#cancel) - Cancel Web Box Snapshot build
 * [clone](#clone) - Clone Web Box Snapshot
+* [pause](#pause) - Pause Web Box Snapshot build
 * [resume](#resume) - Resume Web Box Snapshot build
 
 ## list
@@ -337,9 +338,51 @@ with Continuous(
 | errors.APIError                             | 500, 503                                    | application/problem+json                    |
 | errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
 
+## pause
+
+Requests a pause of a running build and returns the Snapshot without waiting for the pause to take effect. The build ends its agent's turn and pauses once no tool result is waiting to reach the agent, which can take a few minutes; build.waiting then has type paused. Get the Snapshot until build.waiting is set. A build that is accepted before the pause takes effect finishes instead. Resume the build with POST /v1/webbox-snapshots/{id}/resume. The pause does not count toward the build's time limit, and a build not resumed within 7 days fails. A build that is waiting or has settled returns 409 webbox_snapshot_not_ready.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="pause-webbox-snapshot" method="post" path="/v1/webbox-snapshots/{id}/pause" -->
+```python
+from continuous import Continuous
+import os
+
+
+with Continuous(
+    api_key_auth=os.getenv("CONTINUOUS_API_KEY_AUTH", ""),
+) as c_client:
+
+    res = c_client.webbox_snapshots.pause(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Web Box Snapshot ID.                                                |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebBoxSnapshot](../../models/webboxsnapshot.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| errors.APIError               | 401, 403, 404, 409            | application/problem+json      |
+| errors.APIError               | 500, 503                      | application/problem+json      |
+| errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
+
 ## resume
 
-Resumes a build that waits, as build.waiting reports: because its live system rejected its credentials, rate limited its calls or could not be reached, because its model or sandbox provider was unavailable, or for more time after it used its time limit. For a credential wait, refresh each credential it names with PATCH /v1/credentials/{id} first. For a rate-limit wait, resume once the rate limit resets. For an unavailable wait, resume once what the wait's reason names can be reached. The build then tries it again and continues where it stopped, or waits again if it still fails. For a wait for more time, send add_seconds: the build continues where it stopped, with that much time from the resume. Returns the Snapshot, still building. A wait does not count toward the build's time limit: a build resumed from a live wait has the time it had left when it began waiting. A build that is not waiting returns 409 webbox_snapshot_not_waiting.
+Resumes a build that waits, as build.waiting reports: because its live system rejected its credentials, rate limited its calls or could not be reached, because its model or sandbox provider was unavailable, for more time after it used its time limit, or because it was paused. For a credential wait, refresh each credential it names with PATCH /v1/credentials/{id} first. For a rate-limit wait, resume once the rate limit resets. For an unavailable wait, resume once what the wait's reason names can be reached. The build then tries it again and continues where it stopped, or waits again if it still fails. A paused build continues where it stopped. For a wait for more time, send add_seconds: the build continues where it stopped, with that much time from the resume. To tell the builder what changed while the build waited, send message: the builder reads it once. Returns the Snapshot, still building. A wait does not count toward the build's time limit: a build resumed from a live wait has the time it had left when it began waiting. A build that is not waiting returns 409 webbox_snapshot_not_waiting.
 
 ### Example Usage
 
@@ -366,6 +409,7 @@ with Continuous(
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `id`                                                                                                                                                                                                                                                                                             | *str*                                                                                                                                                                                                                                                                                            | :heavy_check_mark:                                                                                                                                                                                                                                                                               | Snapshot ID.                                                                                                                                                                                                                                                                                     |
 | `add_seconds`                                                                                                                                                                                                                                                                                    | *Optional[int]*                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                               | Seconds to add to a build that waits for more time, from 1 to the largest timeout_seconds a build request accepts. Required for a build whose build.waiting.type is time_limit, and refused for any other wait. The build's time limit with every addition is at most 259200 seconds (72 hours). |
+| `message`                                                                                                                                                                                                                                                                                        | *Optional[str]*                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                               | A message for the builder, such as what changed while the build waited. The builder reads it once, at its next turn boundary; reviewers, QA and research never read it. At most 16,384 characters and 65,536 UTF-8 bytes; must not be blank or contain U+0000.                                   |
 | `retries`                                                                                                                                                                                                                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                                                               | Configuration to override the default retry behavior of the client.                                                                                                                                                                                                                              |
 
 ### Response
@@ -374,8 +418,8 @@ with Continuous(
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.APIError                        | 400, 401, 403, 404, 408, 409, 413, 415 | application/problem+json               |
-| errors.APIError                        | 500, 503                               | application/problem+json               |
-| errors.ContinuousDefaultError          | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| errors.APIError                             | 400, 401, 403, 404, 408, 409, 413, 415, 422 | application/problem+json                    |
+| errors.APIError                             | 500, 503                                    | application/problem+json                    |
+| errors.ContinuousDefaultError               | 4XX, 5XX                                    | \*/\*                                       |
