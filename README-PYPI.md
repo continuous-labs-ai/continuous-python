@@ -205,6 +205,7 @@ with Continuous(
 * [update](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#update) - Update API Box Snapshot
 * [cancel](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#cancel) - Cancel API Box Snapshot build
 * [clone](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#clone) - Clone API Box Snapshot
+* [pause](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#pause) - Pause API Box Snapshot build
 * [resume](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxsnapshots/README.md#resume) - Resume API Box Snapshot build
 
 ### [Apiboxes](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/apiboxes/README.md)
@@ -236,6 +237,7 @@ with Continuous(
 * [update](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#update) - Update MCP Box Snapshot
 * [cancel](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#cancel) - Cancel MCP Box Snapshot build
 * [clone](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#clone) - Clone MCP Box Snapshot
+* [pause](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#pause) - Pause MCP Box Snapshot build
 * [resume](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxsnapshots/README.md#resume) - Resume MCP Box Snapshot build
 
 ### [Mcpboxes](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/mcpboxes/README.md)
@@ -258,6 +260,7 @@ with Continuous(
 * [update](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#update) - Update Web Box Snapshot
 * [cancel](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#cancel) - Cancel Web Box Snapshot build
 * [clone](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#clone) - Clone Web Box Snapshot
+* [pause](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#pause) - Pause Web Box Snapshot build
 * [resume](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxsnapshots/README.md#resume) - Resume Web Box Snapshot build
 
 ### [Webboxes](https://github.com/continuous-labs-ai/continuous-python/blob/master/docs/sdks/webboxes/README.md)
