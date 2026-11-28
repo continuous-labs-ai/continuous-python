@@ -547,7 +547,7 @@ class Webboxes(BaseSDK):
     ):
         r"""Delete Web Box
 
-        Deletes a Web Box, running or stopped, with its state. Its runtime is released after the response. The API Box that a Web Box fronts stays, with its state.
+        Deletes a Web Box, running or stopped, with its state. Its runtime is released after the response. A Web Box that fronts an API Box is deleted with that API Box and its state. While an MCP Box fronts the API Box, the delete removes the Web Box and returns 409 apibox_in_use: delete the MCP Box, then send the delete again.
 
         :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
@@ -614,7 +614,9 @@ class Webboxes(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return
-        if utils.match_response(http_res, ["401", "404"], "application/problem+json"):
+        if utils.match_response(
+            http_res, ["401", "404", "409"], "application/problem+json"
+        ):
             response_data = unmarshal_json_response(errors.APIErrorData, http_res)
             raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
@@ -644,7 +646,7 @@ class Webboxes(BaseSDK):
     ):
         r"""Delete Web Box
 
-        Deletes a Web Box, running or stopped, with its state. Its runtime is released after the response. The API Box that a Web Box fronts stays, with its state.
+        Deletes a Web Box, running or stopped, with its state. Its runtime is released after the response. A Web Box that fronts an API Box is deleted with that API Box and its state. While an MCP Box fronts the API Box, the delete removes the Web Box and returns 409 apibox_in_use: delete the MCP Box, then send the delete again.
 
         :param id: Web Box ID.
         :param retries: Override the default retry configuration for this method
@@ -711,7 +713,9 @@ class Webboxes(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "204", "*"):
             return
-        if utils.match_response(http_res, ["401", "404"], "application/problem+json"):
+        if utils.match_response(
+            http_res, ["401", "404", "409"], "application/problem+json"
+        ):
             response_data = unmarshal_json_response(errors.APIErrorData, http_res)
             raise errors.APIError(response_data, http_res)
         if utils.match_response(http_res, ["500", "503"], "application/problem+json"):
