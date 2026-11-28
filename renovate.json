@@ -1,0 +1,154 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    ":dependencyDashboard",
+    "schedule:weekly"
+  ],
+  "enabledManagers": [
+    "custom.regex",
+    "pep621",
+    "github-actions"
+  ],
+  "minimumReleaseAge": "1 day",
+  "internalChecksFilter": "strict",
+  "ignorePaths": [
+    "**/node_modules/**"
+  ],
+  "automerge": false,
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "labels": [
+    "dependencies"
+  ],
+  "osvVulnerabilityAlerts": true,
+  "vulnerabilityAlerts": {
+    "labels": [
+      "dependencies",
+      "security"
+    ]
+  },
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Speakeasy mirror (same as continuous)",
+      "managerFilePatterns": [
+        "/^\\.speakeasy/workflow\\.yaml$/"
+      ],
+      "matchStrings": [
+        "speakeasyVersion: (?<currentValue>\\S+)"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "speakeasy-api/speakeasy",
+      "extractVersionTemplate": "^v(?<version>.*)$"
+    }
+  ],
+  "packageRules": [
+    {
+      "description": "Speakeasy generates pyproject.toml, so updates change only uv.lock while the new version is within the declared range.",
+      "matchManagers": [
+        "pep621"
+      ],
+      "rangeStrategy": "update-lockfile"
+    },
+    {
+      "description": "Speakeasy pins the dev tools (dependency-groups) exactly and writes build-system.requires, so any regular update would edit pyproject.toml and be reverted; the final rule keeps security updates.",
+      "matchManagers": [
+        "pep621"
+      ],
+      "matchDepTypes": [
+        "dependency-groups",
+        "build-system.requires"
+      ],
+      "matchUpdateTypes": [
+        "*"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "As in continuous: manifests' toolchain and runtime constraints, workflow runners, package overrides and Go replace directives keep their hand-set versions.",
+      "matchUpdateTypes": [
+        "*"
+      ],
+      "matchDepTypes": [
+        "golang",
+        "toolchain",
+        "packageManager",
+        "engines",
+        "requires-python",
+        "required_version",
+        "github-runner",
+        "service",
+        "install",
+        "overrides",
+        "replace"
+      ],
+      "enabled": false
+    },
+    {
+      "matchManagers": [
+        "pep621"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "groupName": "sdk-minor-patch"
+    },
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "groupName": "actions-minor-patch"
+    },
+    {
+      "matchManagers": [
+        "custom.regex"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "groupName": "tool pins"
+    },
+    {
+      "matchManagers": [
+        "custom.regex"
+      ],
+      "addLabels": [
+        "tool-pins"
+      ]
+    },
+    {
+      "matchManagers": [
+        "pep621"
+      ],
+      "prBodyNotes": [
+        "`pyproject.toml` is generator-owned: Speakeasy rewrites it on every regeneration. If this PR changes `pyproject.toml`, add the same floor to `.speakeasy/gen.yaml` under `python.additionalDependencies.main (or .dev)` in this PR, or the next regeneration reverts it. A change to the lock file only survives regeneration."
+      ]
+    },
+    {
+      "description": "As in continuous: a rule above that matches every update type disables dependencies only after lookup, when Renovate knows which updates fix a vulnerability, so this rule keeps their security updates.",
+      "matchJsonata": [
+        "isVulnerabilityAlert"
+      ],
+      "enabled": true
+    },
+    {
+      "description": "Operator decision 2026-11-13 (continuous-python PR 57): pylint is a generator-pinned dev-only tool and Dependabot alert 3 is dismissed as tolerable risk; OSV does not know about the dismissal. The rule matches only while GHSA-22qq-2fwx-7p67 is the one advisory fixed, so a new pylint advisory still gets its PR.",
+      "matchPackageNames": [
+        "pylint"
+      ],
+      "matchJsonata": [
+        "$contains($join(prBodyNotes), \"GHSA-22qq-2fwx-7p67\") and $count(prBodyNotes[$contains($, \"#### Severity\") and $not($contains($, \"GHSA-22qq-2fwx-7p67\"))]) = 0"
+      ],
+      "enabled": false
+    }
+  ]
+}
