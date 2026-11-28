@@ -112,7 +112,7 @@ with Continuous(
 
 ## delete
 
-Deletes a Web Box, running or stopped, with its state. Its runtime is released after the response. The API Box that a Web Box fronts stays, with its state.
+Deletes a Web Box, running or stopped, with its state. Its runtime is released after the response. A Web Box that fronts an API Box is deleted with that API Box and its state. While an MCP Box fronts the API Box, the delete removes the Web Box and returns 409 apibox_in_use: delete the MCP Box, then send the delete again.
 
 ### Example Usage
 
@@ -143,7 +143,7 @@ with Continuous(
 
 | Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.APIError               | 401, 404                      | application/problem+json      |
+| errors.APIError               | 401, 404, 409                 | application/problem+json      |
 | errors.APIError               | 500, 503                      | application/problem+json      |
 | errors.ContinuousDefaultError | 4XX, 5XX                      | \*/\*                         |
 

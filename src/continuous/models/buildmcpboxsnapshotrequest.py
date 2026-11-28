@@ -29,9 +29,9 @@ class BuildMCPBoxSnapshotRequestTypedDict(TypedDict):
     name: NotRequired[str]
     r"""Name for the Snapshot. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
     parent_id: NotRequired[str]
-    r"""A ready MCP Box Snapshot of the workspace or the catalog to build on. The build starts from its handlers, tests and documents; its capture and research run as a new build's, with the parent's folder for reference. What the request does not set comes from the parent: its API Box Snapshot, its documents, which an upload of the same name replaces, its model, its review rounds, and its credential if the workspace still has it. timeout_seconds keeps its default."""
+    r"""A ready MCP Box Snapshot of the workspace or the catalog to build on. The build starts from its handlers, tests and documents, with the parent's folder for reference. Without a credential it serves the parent's capture, so its tools stay the parent's; send a credential to capture them again. Research runs again unless the build keeps the parent's API Box Snapshot and index and its capture matches the parent's. What the request does not set comes from the parent: its API Box Snapshot, its documents, which an upload of the same name replaces, its model, and its credential if the workspace still has it. timeout_seconds keeps its default."""
     review_rounds: NotRequired[int]
-    r"""Review rounds, from 1 to 10. Omission means 1 without parent_id and the parent's review rounds with it. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
+    r"""Review rounds, from 1 to 10. Omission means 1, with or without parent_id. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
     timeout_seconds: NotRequired[int]
     r"""Time limit for generation and validation in seconds, from 1 to 172800. Defaults to 43200 (twelve hours). Excludes queue wait, finalization, and any wait for the requester. Retries share the same deadline."""
 
@@ -53,10 +53,10 @@ class BuildMCPBoxSnapshotRequest(BaseModel):
     r"""Name for the Snapshot. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
 
     parent_id: Optional[str] = None
-    r"""A ready MCP Box Snapshot of the workspace or the catalog to build on. The build starts from its handlers, tests and documents; its capture and research run as a new build's, with the parent's folder for reference. What the request does not set comes from the parent: its API Box Snapshot, its documents, which an upload of the same name replaces, its model, its review rounds, and its credential if the workspace still has it. timeout_seconds keeps its default."""
+    r"""A ready MCP Box Snapshot of the workspace or the catalog to build on. The build starts from its handlers, tests and documents, with the parent's folder for reference. Without a credential it serves the parent's capture, so its tools stay the parent's; send a credential to capture them again. Research runs again unless the build keeps the parent's API Box Snapshot and index and its capture matches the parent's. What the request does not set comes from the parent: its API Box Snapshot, its documents, which an upload of the same name replaces, its model, and its credential if the workspace still has it. timeout_seconds keeps its default."""
 
     review_rounds: Optional[int] = None
-    r"""Review rounds, from 1 to 10. Omission means 1 without parent_id and the parent's review rounds with it. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
+    r"""Review rounds, from 1 to 10. Omission means 1, with or without parent_id. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
 
     timeout_seconds: Optional[int] = 43200
     r"""Time limit for generation and validation in seconds, from 1 to 172800. Defaults to 43200 (twelve hours). Excludes queue wait, finalization, and any wait for the requester. Retries share the same deadline."""

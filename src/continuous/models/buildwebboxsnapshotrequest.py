@@ -19,7 +19,7 @@ r"""Model that builds and reviews the Snapshot. Omission means combined without 
 
 class BuildWebBoxSnapshotRequestTypedDict(TypedDict):
     apibox_snapshot_id: NotRequired[str]
-    r"""A ready API Box Snapshot of the workspace or the catalog to build the web app on. The build starts from its source and spec, keeps its API, and adds the app on the same state. Web Boxes created from the result front an API Box that serves that API. Not allowed with parent_id: a build on a parent keeps the parent's."""
+    r"""A ready API Box Snapshot of the workspace or the catalog to build the web app on. The build starts from its source and spec, keeps its API, and adds the app on the same state. Web Boxes created from the result front an API Box that serves that API. One saved from a Web Box pair takes its API files from the API Box Snapshot it was saved from, which must still exist in the same workspace or the catalog. With parent_id, it moves a parent built on another API Box Snapshot onto this one: the build keeps the parent's app, docs and Web tests, replaces every file of the API with this Snapshot's, and runs research and this Snapshot's tests again. Without it, a build on a parent keeps the parent's."""
     credential_ids: NotRequired[List[str]]
     r"""Workspace credentials: exactly one login for the vendor's web app, whose saved sign-in the builder and QA use on the live app, and up to four others with a base_url that they can call real systems with. Each must belong to the workspace. Required without parent_id. QA may create test objects in the live app; use a sandbox or test account."""
     instructions: NotRequired[str]
@@ -29,16 +29,16 @@ class BuildWebBoxSnapshotRequestTypedDict(TypedDict):
     name: NotRequired[str]
     r"""Name for the Snapshot. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
     parent_id: NotRequired[str]
-    r"""A ready Web Box Snapshot of the workspace or the catalog to build on. The build starts from its source, documents and tests. What the request does not set comes from the parent: its documents, which an upload of the same name replaces, its model, its review rounds, and those of its credentials the workspace still has, which must include its login. timeout_seconds keeps its default."""
+    r"""A ready Web Box Snapshot of the workspace or the catalog to build on. The build starts from its source, documents and tests. What the request does not set comes from the parent: its documents, which an upload of the same name replaces, its model, and those of its credentials the workspace still has, which must include its login. A login the request sends must be for the app the parent was built on. Its API Box Snapshot comes from the parent too, unless apibox_snapshot_id names a newer one. timeout_seconds keeps its default."""
     review_rounds: NotRequired[int]
-    r"""Review rounds, from 1 to 10. Omission means 1 without parent_id and the parent's review rounds with it. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
+    r"""Review rounds, from 1 to 10. Omission means 1, with or without parent_id. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
     timeout_seconds: NotRequired[int]
     r"""Time limit for generation and validation in seconds, from 1 to 172800. Defaults to 43200 (twelve hours). Excludes queue wait, finalization, and any wait for the requester. Retries share the same deadline."""
 
 
 class BuildWebBoxSnapshotRequest(BaseModel):
     apibox_snapshot_id: Optional[str] = None
-    r"""A ready API Box Snapshot of the workspace or the catalog to build the web app on. The build starts from its source and spec, keeps its API, and adds the app on the same state. Web Boxes created from the result front an API Box that serves that API. Not allowed with parent_id: a build on a parent keeps the parent's."""
+    r"""A ready API Box Snapshot of the workspace or the catalog to build the web app on. The build starts from its source and spec, keeps its API, and adds the app on the same state. Web Boxes created from the result front an API Box that serves that API. One saved from a Web Box pair takes its API files from the API Box Snapshot it was saved from, which must still exist in the same workspace or the catalog. With parent_id, it moves a parent built on another API Box Snapshot onto this one: the build keeps the parent's app, docs and Web tests, replaces every file of the API with this Snapshot's, and runs research and this Snapshot's tests again. Without it, a build on a parent keeps the parent's."""
 
     credential_ids: Optional[List[str]] = None
     r"""Workspace credentials: exactly one login for the vendor's web app, whose saved sign-in the builder and QA use on the live app, and up to four others with a base_url that they can call real systems with. Each must belong to the workspace. Required without parent_id. QA may create test objects in the live app; use a sandbox or test account."""
@@ -53,10 +53,10 @@ class BuildWebBoxSnapshotRequest(BaseModel):
     r"""Name for the Snapshot. Omission generates a name. Names must not contain U+0000. The ID stays its identity, and names need not be unique."""
 
     parent_id: Optional[str] = None
-    r"""A ready Web Box Snapshot of the workspace or the catalog to build on. The build starts from its source, documents and tests. What the request does not set comes from the parent: its documents, which an upload of the same name replaces, its model, its review rounds, and those of its credentials the workspace still has, which must include its login. timeout_seconds keeps its default."""
+    r"""A ready Web Box Snapshot of the workspace or the catalog to build on. The build starts from its source, documents and tests. What the request does not set comes from the parent: its documents, which an upload of the same name replaces, its model, and those of its credentials the workspace still has, which must include its login. A login the request sends must be for the app the parent was built on. Its API Box Snapshot comes from the parent too, unless apibox_snapshot_id names a newer one. timeout_seconds keeps its default."""
 
     review_rounds: Optional[int] = None
-    r"""Review rounds, from 1 to 10. Omission means 1 without parent_id and the parent's review rounds with it. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
+    r"""Review rounds, from 1 to 10. Omission means 1, with or without parent_id. Each round is a review and a repair of its findings, by the same builder and reviewer. The rounds stop early when the reviewer reports no findings."""
 
     timeout_seconds: Optional[int] = 43200
     r"""Time limit for generation and validation in seconds, from 1 to 172800. Defaults to 43200 (twelve hours). Excludes queue wait, finalization, and any wait for the requester. Retries share the same deadline."""
